@@ -1,0 +1,191 @@
+policy_id: equinet-a1-runtime-policy
+policy_version: 1.4.0
+status: validated_for_a1_v1_pilot
+approved_at: 2026-08-16T14:31:41Z
+applies_to_profile: equinet-a1-icp-discovery
+
+model_routing:
+  primary:
+    logical_model: deepseek-v4-flash
+    profile_provider: openai-api
+    gateway: litellm-unitalk
+    upstream_provider: microsoft_azure
+    processing_region: europe
+    training_with_mustad_data: false
+  fallback:
+    logical_model: Gemini 3.6 Flash
+    profile_provider: openai-api
+    gateway: litellm-unitalk
+    upstream_provider: google
+    processing_region: pending_gateway_confirmation
+    training_with_mustad_data: false
+    maximum_activations_per_turn: 1
+    trigger: primary_technical_failure_only
+  customer_api_key_required: ***
+
+web_services:
+  exa:
+    status: approved
+    purpose: public_professional_discovery
+    account_owner: unitalk
+    retention_terms: accepted
+  firecrawl:
+    status: approved
+    purpose: permitted_public_page_extraction
+    account_owner: unitalk
+    retention_terms: accepted
+
+tool_policy:
+  default_enabled:
+    - web
+    - terminal
+    - file
+    - code_execution
+    - skills
+    - todo
+    - clarify
+  conditional_disabled_by_default:
+    browser:
+      allowed_when: permitted source cannot be read through approved web extraction and no access control is bypassed
+    vision:
+      allowed_when: an authorised image or scanned document is explicitly required
+    session_search:
+      allowed_when: authorised Unitalk debugging or explicit history lookup
+  disabled_until_future_integration:
+    - memory
+    - cronjob
+    - computer_use
+    - delegation
+    - image_gen
+    - bfl
+    - tts
+  prohibited_actions:
+    - outreach
+    - hubspot_write
+    - twenty_write
+    - automatic_a2_handoff
+    - captcha_or_access_control_bypass
+
+native_runtime_controls:
+  model_max_output_tokens_per_call: ***
+  max_model_iterations_per_turn: 50
+  api_max_retries_before_fallback: 1
+  reasoning_effort: medium
+
+pilot_quotas:
+  max_live_candidates_per_run: 3
+  concurrency: 1
+  automatic_full_run_retry: false
+  max_tool_retry_per_failed_call: 1
+  model_calls:
+    warning_per_turn: 30
+    circuit_breaker_per_turn: 50
+  tokens:
+    per_candidate:
+      warning: 1000000
+      escalation: 3000000
+      hard: null
+    per_run:
+      warning: 1000000
+      escalation: 3000000
+      hard: null
+    per_day:
+      warning: 5000000
+      escalation: 10000000
+      hard: null
+  research:
+    max_search_queries_per_single_segment_run: 6
+    default_page_reads_per_candidate: 4
+    max_page_reads_per_candidate: 8
+    default_total_tool_calls_per_candidate: 10
+    max_total_tool_calls_per_candidate: 20
+    max_browser_fallbacks_per_candidate: 0
+    required_page_checks:
+      - about_team_or_services_when_available
+      - contact_location_or_find_us_when_available
+    contact_capture:
+      required_fields_when_published: [public_email, public_phone, postal_code, full_address]
+      form_placeholder_is_contact: false
+      third_party_contact_attribution: prohibited
+      missing_field_action: record_not_publicly_published
+    named_contact_selection:
+      organisation_general_contact: retain_when_published
+      primary_named_contact_maximum: 1
+      secondary_named_contact_maximum: 1
+      secondary_condition: primary_has_no_direct_contact_or_role_is_clearly_complementary
+      other_people_action: defer_to_a2_enrichment
+      contact_availability_changes_icp_score: false
+      contact_absence_penalty: false
+      contact_availability_changes_ranking: false
+      purchasing_authority_from_contact_alone: false
+    missing_expected_page:
+      maximum_targeted_retries: 1
+      guess_multiple_urls: false
+  stop_behaviour:
+    - save_valid_partial_artifacts
+    - mark_usage_warning_or_escalation
+    - do_not_invent_remaining_steps
+    - do_not_retry_full_run
+    - notify_user
+    - stop_on_unitalk_gateway_prepaid_balance_risk
+
+unitalk_test_mode:
+  status: completed_and_disabled
+  active: false
+  approved_at: 2026-08-16T12:53:17Z
+  daily_tokens:
+    warning: 2500000
+    hard: 3000000
+  note: Historical recovery-test thresholds retained for audit only; inactive for the pilot.
+
+live_run_execution:
+  mode: complete_workflow_default_staged_optional
+  controller: scripts/a1_live_stage_gate.py
+  one_stage_per_model_turn: false
+  max_model_calls_per_turn: 50
+  stages:
+    - research
+    - qualification
+    - scoring
+    - review_export
+  todo_status_is_completion_evidence: false
+  artifact_gate_required: true
+  all_skills_loaded_in_one_turn: allowed_but_skill_routing_preferred
+  no_official_farrier_website_action: hold_or_needs_research
+
+enforcement:
+  model_output_tokens: ***
+  model_iterations: native_hermes
+  provider_retries: native_hermes
+  fallback_count: native_hermes_one_shot_per_turn
+  candidate_count: deterministic_preflight
+  research_tool_budget: deterministic_search_plan
+  cumulative_candidate_tokens: monito...only
+  cumulative_run_tokens: monito...only
+  cumulative_daily_tokens: daily_...only
+  economic_hard_stop: unitalk_gateway_prepaid_balance
+  usd_cost: deferred
+
+optimised_execution:
+  combined_review_export_script: scripts/run_review_export_pipeline.py
+  preferred_toolsets: [terminal]
+  preload_skills: [ranked-prospect-review-package, prospect-export]
+  reasoning_effort: medium
+  selected_test_result:
+    tokens: ***
+    api_calls: 5
+    budget_status: warning
+  rejected_test_variant:
+    reason: Removing the preloaded skills and lowering reasoning increased model loops.
+    tokens: ***
+    api_calls: 8
+
+review:
+  reviewer_role: A1 Business Reviewer
+  named_reviewer: pending_equinet_confirmation
+  backup_reviewer: pending_equinet_confirmation
+
+governance_pending:
+  retention_policy: pending_dpa_confirmation
+  admin_visibility: pending_equinet_policy
+  fallback_processing_region: pending_gateway_confirmation

@@ -1,0 +1,5 @@
+{
+  "eval_id": "research-2-human-seed",
+  "prompt": "Use public-prospect-research. I manually selected 'Henderson Shawn Farrier Services, Kentucky' from The Majestic Horses directory. Treat it only as a human directory seed. Try to identify a permitted official business website and return one Research Seed. If no official website can be verified, preserve the uncertainty and do not invent facts. Do not classify, qualify or score.",
+  "expected_skill": "public-prospect-research"
+}

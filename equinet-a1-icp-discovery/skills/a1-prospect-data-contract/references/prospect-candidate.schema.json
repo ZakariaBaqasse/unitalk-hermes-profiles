@@ -1,0 +1,481 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/prospect-candidate/1.1.0",
+  "title": "Equinet A1 Prospect Candidate",
+  "description": "Unitalk-approved V1 data contract for evidence-backed prospects discovered and qualified by Equinet A1 ICP Discovery.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_kind",
+    "candidate_id",
+    "run_id",
+    "discovered_at",
+    "updated_at",
+    "segment",
+    "prospect_type",
+    "identity",
+    "location",
+    "public_contacts",
+    "source_evidence",
+    "qualification",
+    "scoring",
+    "confidence",
+    "duplicate_check",
+    "data_quality",
+    "data_governance",
+    "recommendation",
+    "workflow",
+    "system_references",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.1.0" },
+    "record_kind": { "type": "string", "enum": ["production", "synthetic_test"] },
+    "candidate_id": { "type": "string", "pattern": "^A1-[A-Z0-9][A-Z0-9_-]{5,63}$" },
+    "run_id": { "type": "string", "minLength": 6, "maxLength": 100 },
+    "discovered_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "segment": { "type": "string", "enum": ["farrier", "horse_owner"] },
+    "prospect_type": { "$ref": "#/$defs/prospectType" },
+    "identity": { "$ref": "#/$defs/identity" },
+    "location": { "$ref": "#/$defs/location" },
+    "public_contacts": {
+      "type": "array",
+      "description": "Contact details plainly published for professional or business use. A1 does not guess or enrich hidden contact details.",
+      "items": { "$ref": "#/$defs/publicContact" },
+      "uniqueItems": true
+    },
+    "source_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "qualification": { "$ref": "#/$defs/qualification" },
+    "scoring": { "$ref": "#/$defs/scoring" },
+    "confidence": { "$ref": "#/$defs/confidence" },
+    "duplicate_check": { "$ref": "#/$defs/duplicateCheck" },
+    "data_quality": { "$ref": "#/$defs/dataQuality" },
+    "data_governance": { "$ref": "#/$defs/dataGovernance" },
+    "recommendation": { "$ref": "#/$defs/recommendation" },
+    "workflow": { "$ref": "#/$defs/workflow" },
+    "system_references": { "$ref": "#/$defs/systemReferences" },
+    "provenance": { "$ref": "#/$defs/provenance" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "segment": { "const": "farrier" } }, "required": ["segment"] },
+      "then": {
+        "properties": {
+          "prospect_type": {
+            "enum": [
+              "farrier_independent",
+              "farrier_business",
+              "mobile_farrier_service",
+              "farrier_multi_practitioner_business",
+              "farrier_apprentice"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "segment": { "const": "horse_owner" } }, "required": ["segment"] },
+      "then": {
+        "properties": {
+          "prospect_type": {
+            "enum": [
+              "horse_owner_professional",
+              "farm",
+              "breeding_farm",
+              "boarding_stable",
+              "training_stable",
+              "equestrian_centre",
+              "competition_yard",
+              "trainer_or_stable_manager",
+              "other_equine_business"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "prospectType": {
+      "type": "string",
+      "enum": [
+        "farrier_independent",
+        "farrier_business",
+        "mobile_farrier_service",
+        "farrier_multi_practitioner_business",
+        "farrier_apprentice",
+        "horse_owner_professional",
+        "farm",
+        "breeding_farm",
+        "boarding_stable",
+        "training_stable",
+        "equestrian_centre",
+        "competition_yard",
+        "trainer_or_stable_manager",
+        "other_equine_business"
+      ]
+    },
+    "person": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["full_name"],
+      "properties": {
+        "full_name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "first_name": { "type": ["string", "null"], "maxLength": 100 },
+        "last_name": { "type": ["string", "null"], "maxLength": 100 },
+        "role_title": { "type": ["string", "null"], "maxLength": 200 }
+      }
+    },
+    "organisation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 250 },
+        "website": { "type": ["string", "null"], "format": "uri" },
+        "domain": { "type": ["string", "null"], "pattern": "^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}$" }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "display_name": { "type": "string", "minLength": 1, "maxLength": 250 },
+        "person": { "anyOf": [{ "$ref": "#/$defs/person" }, { "type": "null" }] },
+        "organisation": { "anyOf": [{ "$ref": "#/$defs/organisation" }, { "type": "null" }] },
+        "aliases": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 250 }, "uniqueItems": true }
+      },
+      "required": ["display_name", "person", "organisation", "aliases"],
+      "anyOf": [
+        { "properties": { "person": { "$ref": "#/$defs/person" } } },
+        { "properties": { "organisation": { "$ref": "#/$defs/organisation" } } }
+      ]
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["country_code", "state_region", "city", "postal_code", "public_address", "geography_status", "geography_rule_version"],
+      "properties": {
+        "country_code": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "state_region": { "type": ["string", "null"], "maxLength": 120 },
+        "city": { "type": ["string", "null"], "maxLength": 120 },
+        "postal_code": { "type": ["string", "null"], "maxLength": 30 },
+        "public_address": { "type": ["string", "null"], "maxLength": 500 },
+        "geography_status": { "type": "string", "enum": ["in_scope", "out_of_scope", "uncertain"] },
+        "geography_rule_version": { "type": "string", "minLength": 1, "maxLength": 50 }
+      }
+    },
+    "publicContact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contact_type", "value", "label", "evidence_ids"],
+      "properties": {
+        "contact_type": { "type": "string", "enum": ["email", "phone", "linkedin", "facebook", "instagram", "other_public_profile"] },
+        "value": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "label": { "type": ["string", "null"], "maxLength": 150 },
+        "evidence_ids": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "contact_type": { "const": "email" } }, "required": ["contact_type"] },
+          "then": { "properties": { "value": { "type": "string", "format": "email" } } }
+        },
+        {
+          "if": { "properties": { "contact_type": { "enum": ["linkedin", "facebook", "instagram", "other_public_profile"] } }, "required": ["contact_type"] },
+          "then": { "properties": { "value": { "type": "string", "format": "uri" } } }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_url",
+        "source_name",
+        "source_type",
+        "source_policy_status",
+        "access_method",
+        "retrieved_at",
+        "title",
+        "evidence_excerpt",
+        "fact_or_inference",
+        "supports_claims",
+        "reliability_level"
+      ],
+      "properties": {
+        "evidence_id": { "type": "string", "pattern": "^EV-[A-Z0-9_-]{3,50}$" },
+        "source_url": { "type": "string", "format": "uri" },
+        "source_name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "official_registry",
+            "professional_association",
+            "business_website",
+            "public_directory",
+            "public_social_profile",
+            "public_event_listing",
+            "public_sale_record",
+            "map_listing",
+            "news_or_press",
+            "client_provided_authorised_file",
+            "crm_authoritative",
+            "other_approved_public_source"
+          ]
+        },
+        "source_policy_status": { "type": "string", "enum": ["approved", "conditional", "blocked", "unknown"] },
+        "access_method": { "type": "string", "enum": ["manual_browser", "approved_search_tool", "approved_api", "client_provided_file", "crm_connector"] },
+        "retrieved_at": { "type": "string", "format": "date-time" },
+        "title": { "type": ["string", "null"], "maxLength": 300 },
+        "evidence_excerpt": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "fact_or_inference": { "type": "string", "enum": ["direct_fact", "reasonable_inference", "contradictory_evidence"] },
+        "supports_claims": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1, "maxLength": 200 }, "uniqueItems": true },
+        "reliability_level": { "type": "string", "enum": ["high", "medium", "low", "unassessed"] }
+      }
+    },
+    "criterion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criterion_id", "criterion_label", "category", "status", "evidence_ids", "notes"],
+      "properties": {
+        "criterion_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]{2,99}$" },
+        "criterion_label": { "type": "string", "minLength": 1, "maxLength": 250 },
+        "category": { "type": "string", "enum": ["fit", "priority", "negative", "exclusion", "geography", "minimum_data"] },
+        "status": { "type": "string", "enum": ["confirmed", "not_confirmed", "contradicted", "unknown"] },
+        "evidence_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "notes": { "type": ["string", "null"], "maxLength": 1000 }
+      }
+    },
+    "qualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["icp_config_version", "criteria", "minimum_data_status", "missing_minimum_fields", "exclusion_status", "exclusion_reasons"],
+      "properties": {
+        "icp_config_version": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "criteria": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/criterion" } },
+        "minimum_data_status": { "type": "string", "enum": ["pass", "fail", "needs_review"] },
+        "missing_minimum_fields": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "exclusion_status": { "type": "string", "enum": ["eligible", "excluded", "needs_review", "not_checked"] },
+        "exclusion_reasons": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 500 }, "uniqueItems": true }
+      }
+    },
+    "scoreComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["criterion_id", "points_awarded", "max_points", "evidence_ids", "notes"],
+      "properties": {
+        "criterion_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_.-]{2,99}$" },
+        "points_awarded": { "type": "number", "minimum": 0, "maximum": 100 },
+        "max_points": { "type": "number", "exclusiveMinimum": 0, "maximum": 100 },
+        "evidence_ids": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "notes": { "type": ["string", "null"], "maxLength": 1000 }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "score", "band", "model_version", "components", "rationale", "block_reason"],
+      "properties": {
+        "status": { "type": "string", "enum": ["not_scored", "scored", "blocked"] },
+        "score": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "band": { "type": ["string", "null"], "enum": ["high", "medium", "low", "unqualified", null] },
+        "model_version": { "type": ["string", "null"], "maxLength": 50 },
+        "components": { "type": "array", "items": { "$ref": "#/$defs/scoreComponent" } },
+        "rationale": { "type": ["string", "null"], "maxLength": 3000 },
+        "block_reason": { "type": ["string", "null"], "maxLength": 1000 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "scored" } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "score": { "type": "number", "minimum": 0, "maximum": 100 },
+              "band": { "type": "string", "enum": ["high", "medium", "low", "unqualified"] },
+              "model_version": { "type": "string", "minLength": 1 },
+              "components": { "type": "array", "items": { "$ref": "#/$defs/scoreComponent" } },
+              "rationale": { "type": "string", "minLength": 1 },
+              "block_reason": { "type": "null" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "status": { "const": "not_scored" } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "score": { "type": "null" },
+              "band": { "type": "null" },
+              "model_version": { "type": "null" },
+              "components": { "maxItems": 0 },
+              "rationale": { "type": "null" },
+              "block_reason": { "type": "null" }
+            }
+          }
+        },
+        {
+          "if": { "properties": { "status": { "const": "blocked" } }, "required": ["status"] },
+          "then": {
+            "properties": {
+              "score": { "type": "null" },
+              "band": { "type": "null" },
+              "components": { "maxItems": 0 },
+              "block_reason": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      ]
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "score", "method_version", "reasons", "limitations"],
+      "properties": {
+        "level": { "type": "string", "enum": ["high", "medium", "low"] },
+        "score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "method_version": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "reasons": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 500 }, "uniqueItems": true },
+        "limitations": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 500 }, "uniqueItems": true }
+      }
+    },
+    "duplicateMatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "record_id", "record_url", "match_level", "matched_fields"],
+      "properties": {
+        "system": { "type": "string", "enum": ["current_batch", "provided_exclusion_file", "twenty", "hubspot"] },
+        "record_id": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "record_url": { "type": ["string", "null"], "format": "uri" },
+        "match_level": { "type": "string", "enum": ["exact", "probable"] },
+        "matched_fields": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "duplicateCheckResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "checked_at", "method_version", "matches", "notes"],
+      "properties": {
+        "status": { "type": "string", "enum": ["unavailable", "not_checked", "not_checked_no_domain", "no_match", "possible_match", "possible_duplicate", "confirmed_duplicate", "hubspot_duplicate", "error", "hubspot_check_failed"] },
+        "checked_at": { "type": ["string", "null"], "format": "date-time" },
+        "method_version": { "type": ["string", "null"], "maxLength": 50 },
+        "matches": { "type": "array", "items": { "$ref": "#/$defs/duplicateMatch" } },
+        "notes": { "type": ["string", "null"], "maxLength": 1000 }
+      }
+    },
+    "duplicateCheck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["batch", "provided_exclusion_file", "twenty", "hubspot"],
+      "properties": {
+        "batch": { "$ref": "#/$defs/duplicateCheckResult" },
+        "provided_exclusion_file": { "$ref": "#/$defs/duplicateCheckResult" },
+        "twenty": { "$ref": "#/$defs/duplicateCheckResult" },
+        "hubspot": { "$ref": "#/$defs/duplicateCheckResult" }
+      }
+    },
+    "dataQuality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validation_status", "missing_fields", "conflicts", "last_validated_at"],
+      "properties": {
+        "validation_status": { "type": "string", "enum": ["unvalidated", "partially_validated", "validated", "conflict", "invalid"] },
+        "missing_fields": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+        "conflicts": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 1000 }, "uniqueItems": true },
+        "last_validated_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "dataGovernance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contains_personal_data", "collection_context", "source_terms_review_status", "retention_policy_version", "a1_outreach_prohibited"],
+      "properties": {
+        "contains_personal_data": { "type": "boolean" },
+        "collection_context": { "type": "string", "enum": ["public_business_information", "client_provided_authorised_data", "crm_authorised_data", "mixed", "not_assessed"] },
+        "source_terms_review_status": { "type": "string", "enum": ["confirmed", "conditional", "not_assessed", "blocked"] },
+        "retention_policy_version": { "type": ["string", "null"], "maxLength": 50 },
+        "a1_outreach_prohibited": { "const": true }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["next_action", "priority_rank", "suggested_owner", "suggested_territory", "notes"],
+      "properties": {
+        "next_action": { "type": "string", "enum": ["review", "pass_to_a2", "manual_duplicate_review", "exclude", "hold"] },
+        "priority_rank": { "type": ["integer", "null"], "minimum": 1 },
+        "suggested_owner": { "type": ["string", "null"], "maxLength": 200 },
+        "suggested_territory": { "type": ["string", "null"], "maxLength": 200 },
+        "notes": { "type": ["string", "null"], "maxLength": 1500 }
+      }
+    },
+    "reviewActor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_id", "actor_role", "display_name"],
+      "properties": {
+        "actor_id": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "actor_role": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "display_name": { "type": ["string", "null"], "maxLength": 200 }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "review_decision", "reviewer", "decision_at", "rejection_reason"],
+      "properties": {
+        "stage": {
+          "type": "string",
+          "enum": [
+            "discovered",
+            "researched",
+            "scored",
+            "needs_review",
+            "possible_duplicate",
+            "rejected",
+            "approved_for_a2",
+            "a2_enrichment_in_progress",
+            "a2_review_required",
+            "approved_for_hubspot",
+            "synced",
+            "sync_failed"
+          ]
+        },
+        "review_decision": { "type": "string", "enum": ["none", "approved", "rejected", "needs_changes"] },
+        "reviewer": { "anyOf": [{ "$ref": "#/$defs/reviewActor" }, { "type": "null" }] },
+        "decision_at": { "type": ["string", "null"], "format": "date-time" },
+        "rejection_reason": { "type": ["string", "null"], "maxLength": 1000 }
+      }
+    },
+    "systemReferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["twenty_company_id", "twenty_person_id", "twenty_person_relation_status", "a2_handoff_id", "hubspot_contact_id", "hubspot_company_id", "hubspot_sync_id"],
+      "properties": {
+        "twenty_company_id": { "type": ["string", "null"], "maxLength": 200 },
+        "twenty_person_id": { "type": ["string", "null"], "maxLength": 200 },
+        "twenty_person_relation_status": { "type": ["string", "null"], "enum": ["verified", "not_required", "unverified", null] },
+        "a2_handoff_id": { "type": ["string", "null"], "maxLength": 200 },
+        "hubspot_contact_id": { "type": ["string", "null"], "maxLength": 200 },
+        "hubspot_company_id": { "type": ["string", "null"], "maxLength": 200 },
+        "hubspot_sync_id": { "type": ["string", "null"], "maxLength": 200 }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by_profile", "initiated_by", "model", "tools_used", "audit_correlation_id", "synthetic"],
+      "properties": {
+        "created_by_profile": { "const": "equinet-a1-icp-discovery" },
+        "initiated_by": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "model": { "type": ["string", "null"], "maxLength": 200 },
+        "tools_used": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 200 }, "uniqueItems": true },
+        "audit_correlation_id": { "type": "string", "minLength": 6, "maxLength": 200 },
+        "synthetic": { "type": "boolean" }
+      }
+    }
+  }
+}

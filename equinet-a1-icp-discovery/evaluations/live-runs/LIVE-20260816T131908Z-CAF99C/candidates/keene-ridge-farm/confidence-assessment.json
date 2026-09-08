@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "method_version": "evidence-confidence-1.0.0",
+  "candidate_reference": {
+    "run_id": "RUN-20260816T132904Z-DC866757",
+    "seed_id": "SEED-KEENERIDGE-FARM-001"
+  },
+  "available_evidence_ids": ["EV-001", "EV-002", "EV-003"],
+  "dimensions": {
+    "identity_certainty": {
+      "level": "strong_unique_match",
+      "evidence_ids": ["EV-001", "EV-002"],
+      "rationale": "Official website domain (keeneridgefarm.com) matches business name. Owner Ann Bakhaus is explicitly named on the About page. Full address (4630 Bosworth Ln, Lexington, KY 40510) and email (keeneridgefarm@gmail.com) all align. No naming conflicts or variations."
+    },
+    "source_quality": {
+      "level": "authoritative_primary_business_source",
+      "evidence_ids": ["EV-001", "EV-002", "EV-003"],
+      "rationale": "All evidence is from the candidate's current official business website (rank 3 — primary_business_source). The site is actively maintained (Wix platform, current pricing, operating hours, current boarder testimonials). No blocked, secondary or directory sources used."
+    },
+    "evidence_directness": {
+      "level": "mostly_direct",
+      "evidence_ids": ["EV-001", "EV-002", "EV-003"],
+      "rationale": "Business name, owner name, full address, contact email, pricing ($775/$450), services (boarding, retirement, lessons), facilities (170 acres, multiple barns, arenas), and blacksmith scheduling policy are all direct facts. Horse count is unknown (not stated), which is the one material uncertainty."
+    },
+    "corroboration": {
+      "level": "one_strong_source",
+      "evidence_ids": ["EV-001", "EV-002", "EV-003"],
+      "rationale": "All evidence comes from one authoritative primary source (the official website). While three evidence IDs capture different pages/sections, they are on the same domain (keeneridgefarm.com) and are not independent sources per the independence rules."
+    },
+    "freshness": {
+      "level": "current_within_claim_window",
+      "evidence_ids": ["EV-001", "EV-002"],
+      "rationale": "Current active website with current pricing ($775 full board), current operating hours (Mon-Fri listed), current boarder testimonials (since 2020), and current contact details. No visible publication date required for explicit self-controlled facts on a current official business website."
+    },
+    "completeness": {
+      "level": "minimum_review_package_only",
+      "evidence_ids": ["EV-001", "EV-002", "EV-003"],
+      "rationale": "Identity is resolved, segment is classified and confirmed, qualification assessment covers all 11 criteria, exclusion status is eligible. However, horse count is unknown (one material gap) and phone is not publicly published."
+    }
+  },
+  "gates": {
+    "mandatory_claim_inference_only": {
+      "value": false,
+      "evidence_ids": ["EV-002", "EV-003"],
+      "rationale": "All mandatory claims for Horse Owner qualification (commercial_operation) are direct facts. Horse count is unknown (not inferred from photos/acreage), and the threshold exception pathway handles this explicitly."
+    },
+    "unresolved_identity_conflict": {
+      "value": false,
+      "evidence_ids": ["EV-001", "EV-002"],
+      "rationale": "Identity is fully resolved: Ann Bakhaus is the named owner of Keene Ridge Farm at 4630 Bosworth Ln, Lexington, KY 40510. No naming conflicts or variations."
+    },
+    "critical_evidence_conflict": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No evidence conflicts exist. All official website content is internally consistent. No contradictory sources."
+    },
+    "minimum_data_failed": {
+      "value": false,
+      "evidence_ids": ["EV-001", "EV-002", "EV-003"],
+      "rationale": "Confidence-stage minimum data is met: resolved identity, confirmed segment, at least one permitted evidence record, qualification criteria object, exclusion status, visible unknowns. Scoring/confidence/recommendation/export fields not required yet."
+    },
+    "blocked_source_used": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No blocked sources used. All evidence is from the candidate's current official business website (permitted primary source)."
+    },
+    "no_evidence": {
+      "value": false,
+      "evidence_ids": ["EV-001", "EV-002", "EV-003"],
+      "rationale": "Three evidence records from the official website support the candidate."
+    },
+    "fabricated_or_untraceable_evidence": {
+      "value": false,
+      "evidence_ids": ["EV-001", "EV-002", "EV-003"],
+      "rationale": "All evidence is traceable to the live official website https://www.keeneridgefarm.com/ which was successfully read and verified."
+    }
+  },
+  "confidence_stage_missing_fields": []
+}

@@ -1,0 +1,9 @@
+{
+  "session_id": "20260816_115815_326ced",
+  "model": "deepseek-v4-flash",
+  "provider": "openai-api",
+  "total_tokens": 987616,
+  "api_calls": 15,
+  "completed": false,
+  "failed": true
+}

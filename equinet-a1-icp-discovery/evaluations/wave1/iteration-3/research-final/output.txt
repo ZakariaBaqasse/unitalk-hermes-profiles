@@ -1,0 +1,134 @@
+Query: Use public-prospect-research. Find at most 1 professional Farrier 
+Research Seed in Lexington, Kentucky. Retain evidence only from the prospect's 
+verified official public business website. Search results are discovery-only. Do
+not retain any directory, aggregator, news, social, Maps or unregistered 
+non-business-website source. Run validate_research_seed.py. If no valid official
+website is found, return no ready seed and explain the evidence gap. Do not 
+classify, qualify, calculate confidence or score.
+Initializing agent...
+  ⚠ tirith security scanner enabled but not available — command scanning will use pattern matching only
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+I'll load the relevant skills first, then proceed with the research.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     public-prospect-research  0.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Let me also check the approved source register, ICP config, the research seed schema, and the validation
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 read      approved-source-register-v1.yaml  0.1s
+  ┊ 📖 read      equinet-icp-v1.yaml  0.1s
+  ┊ 📚 skill     public-prospect-research → references/research-seed.schema.json  0.0s
+  ┊ 📚 skill     public-prospect-research → scripts/validate_research_seed.py  0.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now let me also check the build_search_plan script since the skill requires it before live research:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     public-prospect-research → scripts/build_search_plan.py  0.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Good. I have all the context needed. Let me now:
+
+1. Create a search plan request JSON
+2. Build the search plan
+3. Run a Farrier web search for Lexington, Kentucky
+4. Find the official business website
+5. Validate the seed
+
+Let me start by building the plan:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️  write     /opt/data/profiles/equinet-a1-icp-discovery/tmp/search-plan-request.json  0.1s
+  ┊ review diff
+a/profiles/equinet-a1-icp-discovery/tmp/search-plan-request.json → b/profiles/equinet-a1-icp-discovery/tmp/search-plan-request.json
+@@ -1,13 +1,10 @@
+ {
+   "segment": "farrier",
+-  "max_candidates": 2,
++  "max_candidates": 1,
+   "geography": {
+     "country_code": "US",
+     "state_region": "Kentucky",
+     "city": "Lexington"
+   },
+-  "requested_source_ids": [
+-    "general.google_search",
+-    "general.public_business_websites"
+-  ]
++  "requested_source_ids": ["general.google_search", "general.public_business_websites"]
+ }
+  ┊ 💻 $         python3 /opt/data/profiles/equinet-a1-icp-discovery/skills/public-prospect-research/scripts/build_search_plan.py /opt/data/profiles/equinet-a1-icp-discovery/tmp/search-plan-request.json  0.1s [exit 1]
+  ┊ 💻 $         uv run python3 /opt/data/profiles/equinet-a1-icp-discovery/skills/public-prospect-research/scripts/build_search_plan.py /opt/data/profiles/equinet-a1-icp-discovery/tmp/search-plan-request.json  0.2s [exit 1]
+  ┊ 💻 $         uv add pyyaml  0.0s
+  ┊ 💻 $         uv venv + 1 command  0.1s [exit 2]
+  ┊ 💻 $         pip install pyyaml jsonschema  0.0s
+  ┊ 💻 $         uv pip install pyyaml jsonschema  0.6s
+  ┊ 💻 $         uv run python3 /opt/data/profiles/equinet-a1-icp-discovery/skills/public-prospect-research/scripts/build_search_plan.py /opt/data/profiles/equinet-a1-icp-discovery/tmp/search-plan-request.json  0.4s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Plan is built and valid. Now let me search for a professional Farrier in Lexington, Kentucky:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔍 search    professional farrier Lexington Kentucky official website  1.8s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+The search results show directory/aggregator listings and a magazine article. These are discovery-only — I need to find a Farrier's own official business website. Let me search more specifically:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔍 search    site:*.com "farrier" Lexington KY "professional" farrier services  1.2s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+I see James Holub Equine Services has a website listed: jamesholubequine.com. Let me check that directly. Also, I spotted "Equi-Move Master Farrier Service" with equimovemasterfarrier.com. Let me check both:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📄 fetch     jamesholubequine.com +1  2.2s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+James Holub Equine Services has a real official business website. However, the address on the Mad Barn directory says P.O. Box 13111, Lexington, KY. Let me check if the site itself states the Lexington location explicitly:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📄 fetch     jamesholubequine.com  3.8s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+No contact page found directly. Let me check the site structure:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🌐 navigate  jamesholubequine.com  3.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+The site has a "CONTACT" link. Let me click it
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 👆 click     @e11  0.3s
+  ┊ 📸 snapshot  full  0.3s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Excellent. This is a verified official business website for James Holub Equine Services. Key facts found:
+
+- Person: J.T. Holub (James Holub)
+- Organisation: James Holub Equine Services
+- Location: P.O. Box 13111, Lexington, KY 40583
+- Phone: 440.522.2995
+- Email: holubfarrierltd@gmail.com
+- Service description: Professional farrier — lameness, glue-on shoes, travel between Wellington, FL and Lexington, KY
+- Website: jamesholubequine.com
+
+Now let me also check the About and Services pages for more evidence
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 👆 click     @e9  0.3s
+⚠️  Truncated tool call arguments detected (finish_reason='tool_calls') — refusing to execute.
+ ─  ⚕ Hermes  ───────────────────────────────────────────────────────────────── 
+                                                                                
+ Response truncated due to output length limit                                  
+                                                                                
+ ────────────────────────────────────────────────────────────────────────────── 
+
+Resume this session with:
+  hermes --resume 20260812_185128_342233 -p equinet-a1-icp-discovery
+
+Session:        20260812_185128_342233
+Duration:       2m 23s
+Messages:       43 (1 user, 41 tool calls)

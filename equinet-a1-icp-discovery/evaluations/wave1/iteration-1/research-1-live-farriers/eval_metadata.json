@@ -1,0 +1,5 @@
+{
+  "eval_id": "research-1-live-farriers",
+  "prompt": "Use public-prospect-research. Find up to 3 professional Farrier candidate seeds in Lexington, Kentucky for the A1 Wave 1 test. Use approved search and permitted official business websites only. Stop after producing Research Seed objects; do not classify, qualify, calculate confidence, score, contact anyone, or claim HubSpot/Twenty checks.",
+  "expected_skill": "public-prospect-research"
+}

@@ -1,0 +1,14 @@
+{
+  "segment": "horse_owner",
+  "max_candidates": 1,
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "requested_source_ids": [
+    "general.google_search",
+    "general.public_business_websites"
+  ],
+  "focus": "commercial breeding farm training stable boarding stable official business website"
+}

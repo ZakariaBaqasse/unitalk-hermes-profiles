@@ -1,0 +1,18 @@
+{
+  "run_id": "LIVE-20260823T170816Z-469CA5",
+  "created_at": "2026-08-23T17:08:16Z",
+  "segment": "farrier",
+  "max_candidates": 3,
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "requested_source_ids": ["pdf.mad_barn_directory", "pdf.newhorse"],
+  "source_preflight_approvals": {
+    "pdf.mad_barn_directory": "validated_wave2_madbarn_approved_for_bounded_pilot_identity_and_duplicate_review",
+    "pdf.newhorse": "validated_wave2_newhorse_approved_for_bounded_pilot_self_submitted_content_controls"
+  },
+  "focus": "farrier",
+  "human_seeds": []
+}

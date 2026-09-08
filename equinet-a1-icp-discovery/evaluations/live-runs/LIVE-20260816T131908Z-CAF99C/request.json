@@ -1,0 +1,18 @@
+{
+  "run_id": "LIVE-20260816T131908Z-CAF99C",
+  "created_at": "2026-08-16T13:19:08Z",
+  "farriers": 1,
+  "horse_owners": 1,
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "excluded_candidates": [
+    "James Holub Equine Services / J.T. Holub",
+    "Rood & Riddle Lexington Podiatry",
+    "Jonabell Farm / Darley America",
+    "Kentucky Horseshoeing School"
+  ],
+  "mode": "staged_manual_live_pilot"
+}

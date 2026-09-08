@@ -1,0 +1,163 @@
+{
+  "segment": "farrier",
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "criterion_label": "Active professional Farrier activity",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-BOBBY-MADBARN-DIR"
+        ],
+        "notes": "Mad Barn directory confirms Bobby Menker as active professional farrier with CJF and APF-I credentials. Directory listing: Bobby Menker Horseshoeing, Lexington KY. No standalone website to independently verify current activity, but directory presence with professional certification titles confirms professional farrier status."
+      },
+      {
+        "criterion_id": "farrier.product_usage_or_influence",
+        "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+        "category": "fit",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No evidence of specific products used or recommended. CJF/APF-I certification implies broad professional tool use, but specific product details not available from directory sources."
+      },
+      {
+        "criterion_id": "farrier.established_client_base",
+        "criterion_label": "Established or broad client base",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No evidence of client base size. Professional certifications suggest established practice but no direct source confirms client count or breadth."
+      },
+      {
+        "criterion_id": "farrier.regular_business_activity",
+        "criterion_label": "Regular appointments and established business activity",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Directory listing is current but provides no evidence of current booking activity, appointment schedule, or active client work."
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "criterion_label": "Serves a high-equine-activity area",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-BOBBY-MADBARN-DIR"
+        ],
+        "notes": "Lexington, KY is a major equine hub. Location confirmed by Mad Barn directory listing."
+      },
+      {
+        "criterion_id": "farrier.advanced_specialisation",
+        "criterion_label": "Advanced hoof-care specialisation",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "CJF and APF-I credentials suggest advanced capability, but specific specialisation areas not detailed in available directory evidence."
+      },
+      {
+        "criterion_id": "farrier.certified_or_experienced",
+        "criterion_label": "Certified, experienced or well-established professional",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-BOBBY-MADBARN-DIR"
+        ],
+        "notes": "CJF (Certified Journeyman Farrier) and APF-I (Accredited Professional Farrier - Instructor) credentials are visible in the Mad Barn directory listing title. These are recognised professional certifications."
+      },
+      {
+        "criterion_id": "farrier.sport_horse_focus",
+        "criterion_label": "Works with sport or competition horses",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No evidence of specific sport horse focus from directory sources. CJF/APF-I certification is broad and not exclusive to sport horses."
+      },
+      {
+        "criterion_id": "farrier.multi_farrier_business",
+        "criterion_label": "Multi-Farrier or established Farrier business",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Business name 'Bobby Menker Horseshoeing' suggests single-practitioner operation."
+      },
+      {
+        "criterion_id": "farrier.buying_influence",
+        "criterion_label": "Influences product selection",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "As a practising farrier, product purchasing influence is plausible but not directly evidenced from directory sources."
+      },
+      {
+        "criterion_id": "farrier.product_fit",
+        "criterion_label": "Strong fit with professional hoof-care products",
+        "category": "fit",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Professional farrier role implies regular product needs but specific product fit not evidenced."
+      },
+      {
+        "criterion_id": "farrier.engagement_signal",
+        "criterion_label": "Recent professional engagement signal",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No evidence of recent events, conferences, or professional engagement beyond directory listing."
+      },
+      {
+        "criterion_id": "farrier.apprentice_future_potential",
+        "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Bobby Menker is an established professional farrier with CJF and APF-I, not an apprentice."
+      },
+      {
+        "criterion_id": "farrier.inactive_or_hobbyist",
+        "criterion_label": "Inactive or hobby-only Farrier",
+        "category": "negative",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Directory presence with professional credentials suggests active professional practice."
+      },
+      {
+        "criterion_id": "farrier.no_professional_evidence",
+        "criterion_label": "No evidence of professional hoof-care activity",
+        "category": "exclusion",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Evidence of professional farrier activity exists via Mad Barn directory listing with CJF/APF-I credentials."
+      }
+    ],
+    "minimum_data_status": "fail",
+    "missing_minimum_fields": [
+      "candidate_id",
+      "identity.display_name",
+      "location.country_code",
+      "location.state_region",
+      "location.geography_status",
+      "source_evidence",
+      "provenance.audit_correlation_id"
+    ],
+    "exclusion_status": "eligible",
+    "exclusion_reasons": []
+  },
+  "confidence": {
+    "level": "medium",
+    "score": 63,
+    "method_version": "evidence-confidence-1.0.0",
+    "reasons": [
+      "identity_certainty: good_multi_field_match (15/20)",
+      "source_quality: permitted_primary_plus_directory (15/20)",
+      "evidence_directness: mixed_direct_and_inferred (8/20)",
+      "corroboration: one_strong_source (12/20)",
+      "freshness: current_within_claim_window (10/10)",
+      "completeness: partial_noncritical_gaps (3/10)"
+    ],
+    "limitations": [
+      "No confidence score cap was triggered.",
+      "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+    ]
+  }
+}

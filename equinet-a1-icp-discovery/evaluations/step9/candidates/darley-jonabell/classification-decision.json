@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "seed_id": "SEED-DARLEY-JONABELL-001",
+  "segment": "horse_owner",
+  "prospect_type": "breeding_farm",
+  "identity_type": "person_and_organisation",
+  "classification_status": "confirmed",
+  "evidence_references": [
+    "EV-DARLEY-JONABELL-001",
+    "EV-DARLEY-CONTACT-001"
+  ],
+  "rationale": "The official Darley America pages identify Jonabell Farm as a working Lexington breeding/racing operation and publish Kate Galvin as Nominations Sales and Operating Manager, Jonabell Farm. She is retained as the single primary named contact; purchasing influence remains unknown and the ICP score is unchanged.",
+  "unresolved_questions": [
+    "The public pages do not name the hoof-care purchasing decision-maker."
+  ]
+}

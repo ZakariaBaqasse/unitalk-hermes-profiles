@@ -1,0 +1,66 @@
+{
+  "status": "pass",
+  "date": "2026-08-15",
+  "run_count": 5,
+  "total_tokens": 192686,
+  "api_calls": 23,
+  "warning": 700000,
+  "hard": 1000000,
+  "runs": [
+    {
+      "file": "evaluations/step7/fallback-test/usage.json",
+      "session_id": "20260815_164525_26660b",
+      "date": "2026-08-15",
+      "model": "Gemini 3.6 Flash",
+      "provider": "openai-api",
+      "tokens": 7616,
+      "api_calls": 1,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/step7/optimised-test/usage.json",
+      "session_id": "20260815_164602_373a15",
+      "date": "2026-08-15",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 41379,
+      "api_calls": 5,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/step7/optimised-test-v2/usage.json",
+      "session_id": "20260815_164701_07f399",
+      "date": "2026-08-15",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 68024,
+      "api_calls": 8,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/step8/behavioural/usage.json",
+      "session_id": "20260815_174956_cd8d5e",
+      "date": "2026-08-15",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 42560,
+      "api_calls": 5,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/step9/final/usage.json",
+      "session_id": "20260815_204307_21b754",
+      "date": "2026-08-15",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 33107,
+      "api_calls": 4,
+      "completed": true,
+      "failed": false
+    }
+  ]
+}

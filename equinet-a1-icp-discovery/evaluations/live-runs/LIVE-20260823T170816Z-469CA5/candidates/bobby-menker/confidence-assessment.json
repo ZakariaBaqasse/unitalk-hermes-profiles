@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "method_version": "evidence-confidence-1.0.0",
+  "candidate_reference": {
+    "run_id": "RUN-20260823T170830Z-2D1439AF",
+    "seed_id": "SEED-BOBBY-MENKER-LEX"
+  },
+  "available_evidence_ids": [
+    "EV-BOBBY-MADBARN-DIR",
+    "EV-BOBBY-PROFFARR-DIR",
+    "EV-BOBBY-NO-STANDALONE-SITE"
+  ],
+  "dimensions": {
+    "identity_certainty": {
+      "level": "good_multi_field_match",
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Identity is resolved at directory level: Bobby Menker, CJF, APF-I, Bobby Menker Horseshoeing, Lexington KY, phone and email on Mad Barn. Person and organisation both present. No standalone website for stronger verification. Location discrepancy (Lexington vs Georgetown per conditional source) adds minor ambiguity."
+    },
+    "source_quality": {
+      "level": "permitted_primary_plus_directory",
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Mad Barn directory is an approved bounded directory but is not a primary business website. No standalone website exists. Directory provides contact info and professional titles but less authoritative than an official site."
+    },
+    "evidence_directness": {
+      "level": "mixed_direct_and_inferred",
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Direct facts: directory confirms active farrier listing with name, organisation, certifications (CJF, APF-I), location, phone, email. Inferred: current activity level, client base, specialisation not directly stated."
+    },
+    "corroboration": {
+      "level": "one_strong_source",
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Single permitted approved directory source (Mad Barn). Second source (professionalfarriers.com) is conditional/blocked and cannot be used. No independent corroboration."
+    },
+    "freshness": {
+      "level": "current_within_claim_window",
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Mad Barn directory retrieved 2026-08-23 with current active listing. Within the 365-day freshness window."
+    },
+    "completeness": {
+      "level": "partial_noncritical_gaps",
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Confidence-stage minimum data met: identity resolved sufficiently, segment confirmed as needs_review, at least one permitted evidence record, qualification criteria present. Gaps: no standalone website, no current activity evidence, location discrepancy noted."
+    }
+  },
+  "gates": {
+    "mandatory_claim_inference_only": {
+      "value": false,
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Mandatory criterion farrier.professional_activity is directly confirmed by directory listing with professional certification titles and business name."
+    },
+    "unresolved_identity_conflict": {
+      "value": false,
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Identity is sufficiently resolved. Minor location discrepancy (Lexington vs Georgetown) flagged in conflicts but does not prevent identity resolution."
+    },
+    "critical_evidence_conflict": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No contradictory evidence among permitted sources. Professionalfarriers.com discrepancy noted but that source is not used as evidence."
+    },
+    "minimum_data_failed": {
+      "value": false,
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Confidence-stage minimum data satisfied: resolved identity, segment state (needs_review), at least one permitted evidence record, qualification criteria, exclusion status, visible conflicts."
+    },
+    "blocked_source_used": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "Only approved directory sources used. Professionalfarriers.com (conditional) was not used as evidence."
+    },
+    "no_evidence": {
+      "value": false,
+      "evidence_ids": ["EV-BOBBY-MADBARN-DIR"],
+      "rationale": "Permitted evidence exists from Mad Barn directory."
+    },
+    "fabricated_or_untraceable_evidence": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "All evidence is traceable to live, accessible URLs verified during research."
+    }
+  },
+  "confidence_stage_missing_fields": []
+}

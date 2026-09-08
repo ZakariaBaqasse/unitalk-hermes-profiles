@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/review-input/1.0.0",
+  "title": "Equinet A1 Review Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_id", "run_id", "generated_at", "initiated_by", "candidates"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "package_id": {"type": "string", "pattern": "^A1-RP-[A-Z0-9_-]{4,80}$"},
+    "run_id": {"type": "string", "minLength": 6, "maxLength": 100},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "initiated_by": {"type": "string", "minLength": 1, "maxLength": 200},
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "candidate_id", "record_kind", "research_seed", "classification_decision",
+          "qualification_package", "confidence_package", "scoring_package",
+          "source_policy_status", "access_method", "model", "tools_used"
+        ],
+        "properties": {
+          "candidate_id": {"type": "string", "pattern": "^A1-[A-Z0-9][A-Z0-9_-]{5,63}$"},
+          "record_kind": {"type": "string", "enum": ["production", "synthetic_test"]},
+          "research_seed": {"type": "object"},
+          "classification_decision": {"type": "object"},
+          "qualification_package": {"type": "object"},
+          "confidence_package": {"type": "object"},
+          "scoring_package": {"type": "object"},
+          "source_policy_status": {"type": "string", "enum": ["approved", "conditional"]},
+          "access_method": {"type": "string", "enum": ["manual_browser", "approved_search_tool", "approved_api", "client_provided_file", "crm_connector"]},
+          "model": {"type": ["string", "null"], "maxLength": 200},
+          "tools_used": {"type": "array", "items": {"type": "string", "minLength": 1, "maxLength": 200}, "uniqueItems": true},
+          "provided_exclusion_file_status": {"type": "string", "enum": ["unavailable", "not_checked", "no_match"], "default": "unavailable"},
+          "hubspot_check": {"$ref": "#/$defs/hubspotCheckResult"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hubspotMatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system", "record_id", "record_url", "match_level", "matched_fields"],
+      "properties": {
+        "system": {"const": "hubspot"},
+        "record_id": {"type": "string", "minLength": 1, "maxLength": 200},
+        "record_url": {"type": ["string", "null"], "format": "uri"},
+        "match_level": {"type": "string", "enum": ["exact", "probable"]},
+        "matched_fields": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+      }
+    },
+    "hubspotCheckResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "checked_at", "method_version", "matches", "notes"],
+      "properties": {
+        "status": {"type": "string", "enum": ["unavailable", "not_checked", "not_checked_no_domain", "no_match", "possible_match", "possible_duplicate", "confirmed_duplicate", "hubspot_duplicate", "error", "hubspot_check_failed"]},
+        "checked_at": {"type": ["string", "null"], "format": "date-time"},
+        "method_version": {"type": ["string", "null"], "maxLength": 50},
+        "matches": {"type": "array", "items": {"$ref": "#/$defs/hubspotMatch"}},
+        "notes": {"type": ["string", "null"], "maxLength": 1000}
+      }
+    }
+  }
+}

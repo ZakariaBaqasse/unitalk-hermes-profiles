@@ -1,0 +1,260 @@
+policy_id: equinet-a1-runtime-policy
+policy_version: 4.2.0
+status: production_active_e2e_validated
+approved_at: 2026-09-04
+applies_to_profile: equinet-a1-icp-discovery
+
+responsibility_boundary:
+  n8n_owns:
+    - approved_source_discovery
+    - source_acquisition_and_normalisation
+    - source_and_global_deduplication
+    - read_only_hubspot_domain_check
+    - compact_discovery_result
+  hermes_owns:
+    - n8n_mcp_invocation
+    - durable_cron_monitoring
+    - final_result_retrieval_and_validation
+    - deterministic_website_lane_routing
+    - official_website_verification_and_cited_enrichment_for_website_candidates
+    - deterministic_qualification_confidence_and_scoring_for_verified_sites
+    - twenty_company_and_optional_linked_person_review_staging_and_reconciliation
+  hermes_must_not_revalidate:
+    - n8n_source_selection
+    - n8n_source_credentials
+    - n8n_provider_configuration
+    - n8n_source_preflight
+    - n8n_hubspot_query_implementation
+
+control_plane:
+  controller_skill: equinet-n8n-discovery-control
+  execution_modes:
+    controlled_test: manual_when_supported_even_if_workflow_inactive
+    production: active_published_workflow_required
+    readiness_evidence: live_mcp_metadata_and_execution_response
+    stale_embedded_setup_notes_are_not_authoritative: true
+  final_node: Build Final Discovery Result
+  result_contract: a1.discovery-result.v1
+  polling:
+    metadata_only_until_terminal: true
+    include_data_after_success_only: true
+    node_names: [Build Final Discovery Result]
+    truncate_data_items_per_node: 1
+    unchanged_tick_output: "[SILENT]"
+    recursive_cron_management: prohibited
+  exactly_once_markers:
+    - result_claimed_at
+    - result_retrieved_at
+    - consumed_at
+    - delivered_at
+
+production_acceptance:
+  status: accepted
+  effective_at: 2026-09-03
+  accepted_by: authorised_user_current_session
+  full_two_lane_execution_required_for_acceptance: false
+  workflow_id: 3tBw9IHcr4knwM4H
+  execution_ids: ['1215']
+  application_run_ids: [A1-20260902182623-B0A7B5]
+  evidence:
+    poll_ticket: runtime/n8n-poll-tickets/A1-20260902182623-B0A7B5.json
+    combined_staging_index: runtime/n8n-poll-tickets/two-lane-v1/final-staging-index.json
+  evidence_scope:
+    n8n_execution_succeeded: true
+    exactly_once_result_retrieval_completed: true
+    no_website_lane_company_staging_reconciled: true
+    website_candidate_lane_exercised_in_cited_run: false
+  limitations:
+    - Production acceptance does not imply contractual acceptance.
+    - A2 automation, outreach and Twenty writes outside Company plus optional linked Person staging remain disabled.
+
+location_preflight:
+  mapping_path: configurations/geography/location-resolution-v1.json
+  resolver_script: scripts/resolve_discovery_location.py
+  required_before_n8n_invocation: true
+  required_user_fields: [country, region, city]
+  derived_fields: [country_code, region_code, country_slug, region_slug, city_slug, location_key]
+  code_resolution: deterministic_approved_mapping_only
+  approved_country_codes: [US, AU, NZ]
+  defaults_allowed: false
+  infer_from_city_name: prohibited
+  infer_from_previous_run: prohibited
+  infer_from_user_profile: prohibited
+  infer_from_ip_or_locale: prohibited
+  complete_unambiguous_request_requires_additional_confirmation: false
+  missing_or_ambiguous_interactive_action: ask_user_before_launch
+  supplied_name_code_conflict_action: ask_user_before_launch
+  unattended_missing_or_ambiguous_action: reject_before_launch
+  canonical_display_format: city_region_country
+
+request_limits:
+  minimum_requested_candidates: 1
+  maximum_requested_candidates: 200
+  default_requested_candidates: 10
+  maximum_active_discovery_runs: 1
+  split_request_to_bypass_limit: prohibited
+
+source_execution:
+  source_register_path: configurations/sources/approved-source-register-v1.yaml
+  source_register_version: 2.0.0
+  accepted_runtime_labels: [approved-source-register-v1, 2.0.0]
+  maximum_candidates_per_source_per_run: null
+  maximum_candidates_per_source_per_day: null
+  source_request_limit: remaining_discovery_target
+  concurrency_per_source: 1
+  stop_when: globally_new_leads_reach_discovery_target
+  farrier_priority:
+    - pdf.mad_barn_directory
+    - integration.apify_google_maps_scraper
+    - pdf.farrieriq
+    - pdf.newhorse
+    - pdf.best_of_lexington_farriers
+    - pdf.horseprofinder
+  horse_owner_priority:
+    - integration.apify_google_maps_scraper
+    - pdf.horseprofinder
+  constraints:
+    - Mad Barn is not currently enabled by its adapter for horse_owner runs.
+    - Provider billing, payload and technical limits remain operational constraints, not policy candidate caps.
+    - Stop immediately on source access, terms, robots, CAPTCHA, login, 403, 429, rate-limit or sensitive-data conflict.
+    - Source geography capability is evaluated independently from the approved market-country scope; unsupported sources are skipped before network access.
+    - Opaque source geography identifiers and routes must come from verified mappings and must never be guessed.
+
+policy_changes:
+  - version: 3.2.0
+    effective_at: 2026-09-02T17:47:44Z
+    authorised_by: authorised_user_current_session
+    changes:
+      - removed fixed 20-candidate per-source run cap
+      - removed fixed 50-candidate per-source daily cap
+      - set Farrier priority to Mad Barn, Google Maps, then remaining approved adapters
+      - retained maximum 200 requested candidates per run and concurrency 1 per source
+    implementation_status: policy_updated_workflow_update_and_live_validation_pending
+  - version: 4.0.0
+    effective_at: 2026-09-03
+    authorised_by: authorised_user_current_session
+    changes:
+      - approved production discovery in the United States, Australia and New Zealand
+      - removed the Kentucky and Lexington default discovery geography
+      - required user-supplied country, region or state, and city before interactive discovery
+      - assigned deterministic country-code and region-code resolution to the profile
+      - prohibited assumptions from city name, prior run, user profile, IP, locale or timezone
+      - accepted production status without requiring one cited execution to exercise both routing lanes
+    implementation_status: policy_updated_dependent_workflow_and_crm_validation_required
+  - version: 4.1.0
+    effective_at: 2026-09-04
+    authorised_by: authorised_user_current_session
+    changes:
+      - permitted one linked Twenty Person when the immutable n8n lead has a non-empty name
+      - required Company-first sequencing and verified companyId relation read-back
+      - routed phone and email exclusively to Person when expected, otherwise to Company
+      - added Person duplicate preflight, soft-delete holds and terminal partial-failure states
+    implementation_status: policy_worker_contract_and_regression_tests_updated
+
+post_discovery:
+  mandatory_path: retrieve_validate_route_enrich_when_supported_and_stage_companies_plus_optional_linked_people
+  staging_skill: evidence-aware-crm-staging
+  staging_script: skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_rest.py
+  router_script: skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py
+  enrichment_state_script: skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py
+  staging_index_required: true
+  route_by_website_candidate: true
+  no_website_lane: stage_unscored_without_web_research
+  website_candidate_lane: verify_then_score_when_inputs_are_available_and_stage
+  website_candidate_is_not_verified_evidence: true
+  verified_official_site_without_scoring_inputs: stage_domain_with_explicit_not_scored_assessment
+  item_level_enrichment_failure: fall_back_to_unscored_company_staging
+  combined_index_requires_every_original_fingerprint: true
+  missing_company_name_disposition: blocked_missing_company_name
+  preserve_n8n_lead_fingerprint: true
+  preserve_n8n_hubspot_result: true
+  contact_routing:
+    business_name_and_name: company_business_name_person_name_contacts_on_person
+    name_only: company_name_and_person_name_contacts_on_person
+    business_name_only: company_business_name_no_person_contacts_on_company
+    neither: blocked_missing_company_name
+    split_person_name: prohibited
+  entity_sequence:
+    - stage_and_reconcile_company
+    - use_verified_company_uuid_as_person_companyId
+    - preflight_person_within_company
+    - stage_and_reconcile_person_when_required
+    - verify_relation
+  person_duplicate_preflight:
+    precedence: [companyId_plus_exact_email, companyId_plus_exact_phone, companyId_plus_exact_normalized_full_name]
+    soft_deleted_people_scan_required: true
+    ambiguity_action: hold_without_write
+    uncertain_write_retry: prohibited
+  optional_after_human_request:
+    - ranked_review_package
+    - exports
+
+hubspot_boundary:
+  owner: n8n
+  hermes_access: consume_result_only
+  writes: prohibited
+  broader_match_claims_without_result_evidence: prohibited
+
+twenty_boundary:
+  status: company_review_staging_enabled
+  storage_role: human_review_system
+  allowed_objects: [companies,people]
+  allowed_operations: [find, create, update, read_back]
+  writes: permitted_for_company_and_linked_person_review_staging
+  single_review_queue: true
+  default_discovery_status: DISCOVERED
+  people_write: permitted_when_linked_to_staged_company
+  company_person_relation_write: permitted
+  opportunity_write: prohibited
+  task_write: prohibited
+  messaging_and_campaign_actions: prohibited
+  delete_actions: prohibited
+  duplicate_preflight_required: true
+  reconciliation_required: true
+  human_review_required: true
+  reviewer_approval_does_not_trigger_downstream_actions: true
+  person_extension_validation: deterministic_mock_and_contract_validated_live_write_not_executed
+
+allowed_tools:
+  - n8n_mcp
+  - twenty_mcp
+  - cronjob
+  - web_search
+  - web_extract
+  - terminal
+  - file
+  - code_execution
+  - skills
+  - todo
+  - clarify
+
+prohibited_actions:
+  - outreach
+  - hubspot_read_or_write
+  - twenty_write_outside_company_and_linked_person_staging
+  - twenty_company_delete
+  - twenty_outreach_or_campaign_action
+  - automatic_a2_handoff
+  - private_contact_inference
+  - access_control_bypass
+  - fabricated_or_untraceable_evidence
+
+failure_policy:
+  unknown_n8n_status: stop_and_report
+  terminal_n8n_failure: stop_and_report
+  result_claimed_without_persistence: operator_recovery
+  staging_possible_match: persist_and_continue
+  staging_sync_failure: persist_and_require_safe_recovery_without_blind_retry
+  person_partial_failure: preserve_verified_company_and_terminal_person_status
+  staging_missing_company_name: persist_block_without_guessing
+  item_level_enrichment_failure: checkpoint_and_fallback_to_unscored_staging
+  deterministic_enrichment_or_scoring_failure_after_verified_site: retain_verified_domain_and_fallback_to_unscored_staging
+  deterministic_failure_before_official_site_verification: stop_for_operator_repair
+  never_restart_paid_or_remote_work_blindly: true
+
+governance:
+  review_role: A1 Business Reviewer
+  named_reviewer: pending_equinet_confirmation
+  no_outreach: true
+  retention_policy: pending_dpa_confirmation
+  admin_visibility: pending_equinet_policy

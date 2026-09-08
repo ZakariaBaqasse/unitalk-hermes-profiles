@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "run_id": "LIVE-20260816T131908Z-CAF99C",
+  "candidate_count": 1,
+  "recommendations": {
+    "accept": 0,
+    "needs_research": 1,
+    "reject": 0
+  },
+  "candidates": [
+    {
+      "candidate_id": "A1-KEENE-RIDGE-FARM",
+      "display_name": "Keene Ridge Farm",
+      "segment": "horse_owner",
+      "prospect_type": "boarding_stable",
+      "score": 68,
+      "band": "medium",
+      "confidence": 84,
+      "confidence_level": "high",
+      "recommendation": "needs_research",
+      "reviewer_decision": "pending",
+      "full_address": "4630 Bosworth Ln, Lexington, KY 40510",
+      "primary_contact": "Ann Bakhaus",
+      "primary_contact_role": "Owner",
+      "public_contacts": [
+        {
+          "contact_type": "email",
+          "value": "keeneridgefarm@gmail.com",
+          "label": "Organisation general contact",
+          "evidence_ids": [
+            "EV-001"
+          ]
+        }
+      ],
+      "source_urls": [
+        "https://www.keeneridgefarm.com/"
+      ],
+      "limitations": [
+        "Confidence relies on one strong primary source; external claims remain subject to targeted verification.",
+        "Explicit horse count not published on the website",
+        "Phone number not publicly published (contact via form or email only)",
+        "No named farrier or hoof-care provider mentioned",
+        "Exact number of boarders not stated"
+      ]
+    }
+  ],
+  "integration_status": {
+    "hubspot": "unavailable",
+    "twenty": "unavailable",
+    "a2": "not_triggered"
+  },
+  "human_decisions_pending": true,
+  "export_validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  },
+  "json_output": "/opt/data/profiles/equinet-a1-icp-discovery/evaluations/live-runs/LIVE-20260816T131908Z-CAF99C/final/exports/a1-live-20260816t131908z-caf99c.json",
+  "markdown_output": "/opt/data/profiles/equinet-a1-icp-discovery/evaluations/live-runs/LIVE-20260816T131908Z-CAF99C/final/exports/a1-live-20260816t131908z-caf99c.md",
+  "csv_output": "/opt/data/.hermes/desktop-attachments/Equinet_A1_Staged_Pilot_Test.csv",
+  "xlsx_output": "/opt/data/profiles/equinet-a1-icp-discovery/evaluations/live-runs/LIVE-20260816T131908Z-CAF99C/final/exports/a1-live-20260816t131908z-caf99c.xlsx",
+  "stage_gate": {
+    "status": "stage_completed",
+    "run_id": "LIVE-20260816T131908Z-CAF99C",
+    "completed_stage": "review_export",
+    "next_stage": null,
+    "next_instruction": "Run complete. Deliver validated outputs and audit."
+  }
+}

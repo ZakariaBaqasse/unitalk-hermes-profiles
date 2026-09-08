@@ -1,0 +1,39 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 10,
+  "review_completed_at": "2026-08-16T11:39:18Z",
+  "release_id": "equinet-a1-v1-no-integration-1.0.1",
+  "status": "pilot_ready_no_integration",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-16T11:42:29Z",
+  "acceptance_record": "evaluations/step10/acceptance-record.json",
+  "target_status": "pilot_ready_no_integration",
+  "recovery_record": "evaluations/recovery/20260816-failed-live-run.json",
+  "successful_staged_run_record": "evaluations/recovery/staged-live-run-validation.json",
+  "quota_policy": "monitoring_and_escalation_with_gateway_economic_hard_stop",
+  "final_acceptance_suite": "passed",
+  "final_checks": 16,
+  "reference_replay": "exact_match",
+  "installed_packages": 8,
+  "authoritative_files_hashed": 18,
+  "delivery_package": {
+    "path": "/opt/data/.hermes/desktop-attachments/Equinet_A1_V1_No_Integration_Pilot_Ready_1_0_1.zip",
+    "files": 16,
+    "sha256": "19e3e8956f2f0ea5dc78c0574db2e3bfd86194647a629f5b352d5e952c0d4311",
+    "contains_secrets": false
+  },
+  "integration_state": {
+    "hubspot": "unavailable",
+    "twenty": "unavailable",
+    "a2": "not_triggered",
+    "n8n": "not_implemented"
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "review_artifact": "evaluations/step10/STEP10-VALIDATION-REVIEW.md",
+  "approval_applied": true
+}

@@ -1,0 +1,18 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "checkpoint": "wave3_business_design",
+  "approver": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "decision": "approved_for_controlled_behavioural_validation",
+  "approved_at": "2026-08-14T16:54:31Z",
+  "approved_elements": [
+    "Accept, Needs Research and Reject recommendation rules",
+    "deterministic ranking order",
+    "Markdown review structure and evidence detail",
+    "compact Excel Review Queue and detailed supporting sheets",
+    "JSON, CSV and Excel export approach"
+  ],
+  "scope": "Wave 3 business-design checkpoint prior to behavioural acceptance",
+  "promotion_applied": false,
+  "next_step": "Run one controlled behavioural end-to-end test through the actual profile."
+}

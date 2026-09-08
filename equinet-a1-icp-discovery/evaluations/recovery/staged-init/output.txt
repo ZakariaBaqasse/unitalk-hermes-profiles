@@ -1,0 +1,12 @@
+## Result
+
+| Field | Value |
+|---|---|
+| **Run ID** | `LIVE-20260816T130102Z-BC19C9` |
+| **Current stage** | `research` |
+| **Run directory** | `/opt/data/profiles/equinet-a1-icp-discovery/evaluations/live-runs/LIVE-20260816T130102Z-BC19C9` |
+| **Staged config** | 1 Farrier, 0 Horse Owners, Kentucky / Lexington |
+
+**Next instruction:** Complete research only — load `public-prospect-research`, discover and validate Farrier seeds for Lexington, Kentucky, persist Research Seeds, complete the research gate, then stop and ask the user to continue.
+
+I am stopped and awaiting your signal to proceed with Turn 1 (Research). Say `Continue A1 run` when ready.

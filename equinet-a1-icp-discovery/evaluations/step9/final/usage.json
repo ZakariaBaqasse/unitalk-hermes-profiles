@@ -1,0 +1,18 @@
+{
+  "estimated_cost_usd": 0.0,
+  "cost_status": "unknown",
+  "cost_source": "none",
+  "input_tokens": 32304,
+  "output_tokens": 803,
+  "cache_read_tokens": 0,
+  "cache_write_tokens": 0,
+  "reasoning_tokens": 0,
+  "total_tokens": 33107,
+  "api_calls": 4,
+  "model": "deepseek-v4-flash",
+  "provider": "openai-api",
+  "session_id": "20260815_204307_21b754",
+  "completed": true,
+  "failed": false,
+  "service_tier": null
+}

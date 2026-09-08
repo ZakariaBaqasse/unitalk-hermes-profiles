@@ -1,0 +1,23 @@
+{
+  "skill_name": "ranked-prospect-review-package",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a review package for the accepted James Holub Wave 1 and Wave 2 artifacts. Keep HubSpot and Twenty unavailable and do not trigger A2.",
+      "expected_output": "One schema-valid canonical candidate ranked for human review with score 86/High, confidence 84/High, visible limitations and pending decision.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Rank a mixed batch containing an accepted candidate, a High-score Low-confidence candidate and an excluded candidate.",
+      "expected_output": "Deterministic accept, needs_research and reject ordering without changing scores or approving any candidate.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Build a review package where two candidates share the same public business domain.",
+      "expected_output": "The batch duplicate check flags a possible match and both affected candidates require research rather than automatic acceptance.",
+      "files": []
+    }
+  ]
+}

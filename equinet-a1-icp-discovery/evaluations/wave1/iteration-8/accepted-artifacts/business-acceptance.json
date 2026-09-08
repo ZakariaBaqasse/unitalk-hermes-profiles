@@ -1,0 +1,17 @@
+{
+  "accepted_by": "Séverine",
+  "scope": "A1 Wave 1 behavioural business review",
+  "prospect": "James Holub Equine Services / J.T. Holub",
+  "validated": {
+    "relevance": true,
+    "segment": "farrier",
+    "prospect_type": "farrier_independent",
+    "identity_type": "person_and_organisation",
+    "classification_status": "confirmed",
+    "confirmed_criteria_reasonable": true,
+    "unknown_criteria_prudent": true,
+    "retain_public_business_contacts": true,
+    "explanation_length_acceptable": true,
+    "official_business_website_as_primary_evidence": true
+  }
+}

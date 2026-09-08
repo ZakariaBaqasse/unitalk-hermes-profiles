@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "profile": "equinet-a1-icp-discovery",
+  "run_id": "LIVE-20260823T170816Z-469CA5",
+  "decision": "approved_for_firecrawl_closure",
+  "approved_by": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "approved_at": "2026-08-23T18:08:33Z",
+  "approval_scope": [
+    "bounded Kentucky Farrier end-to-end directory pilot",
+    "research, qualification, scoring and review/export stage execution",
+    "validated three-candidate review package",
+    "validated JSON, Markdown, CSV and Excel exports",
+    "permission to proceed to Firecrawl Closure"
+  ],
+  "validation_basis": {
+    "research_stage": "passed",
+    "qualification_stage": "passed",
+    "scoring_stage": "passed",
+    "review_export_stage": "passed",
+    "candidate_count": 3,
+    "export_manifest_validation": "passed"
+  },
+  "preserved_limitations": [
+    "All candidate-level human decisions remain pending.",
+    "The approval does not authorise outreach, CRM writes or A2 handoff.",
+    "HubSpot duplicate, customer, opportunity, consent and exclusion checks remain unavailable.",
+    "Twenty staging remains unavailable.",
+    "Bobby Menker and Kentucky Legend Horseshoeing remain directory-only candidates without verified standalone official websites.",
+    "The Kentucky Legend Horseshoeing cross-source duplicate group remains unresolved.",
+    "The pilot reused Wave 2 directory listings and did not rerun the completed Wave 1 or Wave 2 Firecrawl tests."
+  ],
+  "candidate_decisions": "pending",
+  "production_acceptance": false,
+  "external_actions_authorised": [],
+  "next_step": "Firecrawl Closure"
+}

@@ -1,0 +1,5 @@
+{
+  "scenario": "Farrier confirmed no-professional-evidence exclusion",
+  "expected_skill": "icp-scoring-and-rationale",
+  "expected_result": "Scoring is blocked and no positive score is returned."
+}

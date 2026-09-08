@@ -1,0 +1,159 @@
+{
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "criterion_label": "Active professional Farrier activity",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001"
+        ],
+        "notes": "The official Podiatry team page has a dedicated Farriers section with multiple current named Farriers."
+      },
+      {
+        "criterion_id": "farrier.product_usage_or_influence",
+        "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001"
+        ],
+        "notes": "A current multi-practitioner Farrier team necessarily uses professional hoof-care products; this is a role-based product-usage conclusion, not a claim of procurement authority."
+      },
+      {
+        "criterion_id": "farrier.established_client_base",
+        "criterion_label": "Established or broad client base",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "The official pages describe a worldwide referral center but do not quantify Farrier-team clients."
+      },
+      {
+        "criterion_id": "farrier.regular_business_activity",
+        "criterion_label": "Regular appointments and established business activity",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001",
+          "EV-RR-LEX-001"
+        ],
+        "notes": "The official hospital and current team pages show an established active Lexington operation."
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "criterion_label": "Serves a high-equine-activity area",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-LEX-001"
+        ],
+        "notes": "The hospital is explicitly located in the heart of the Bluegrass in Lexington, Kentucky."
+      },
+      {
+        "criterion_id": "farrier.advanced_specialisation",
+        "criterion_label": "Advanced hoof-care specialisation",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001"
+        ],
+        "notes": "The dedicated Equine Podiatry team is an explicit advanced hoof-care specialisation."
+      },
+      {
+        "criterion_id": "farrier.certified_or_experienced",
+        "criterion_label": "Certified, experienced or well-established professional",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001"
+        ],
+        "notes": "The official team page lists CJF, NZCF and DIPWCF credentials among current team members."
+      },
+      {
+        "criterion_id": "farrier.sport_horse_focus",
+        "criterion_label": "Works with sport or competition horses",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "The retained pages state all breeds and disciplines rather than a specific sport-horse focus."
+      },
+      {
+        "criterion_id": "farrier.multi_farrier_business",
+        "criterion_label": "Multi-Farrier or established Farrier business",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001"
+        ],
+        "notes": "The official page lists multiple Farriers in the Lexington team."
+      },
+      {
+        "criterion_id": "farrier.buying_influence",
+        "criterion_label": "Influences product selection",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No named procurement or product-selection decision-maker is identified."
+      },
+      {
+        "criterion_id": "farrier.product_fit",
+        "criterion_label": "Strong fit with professional hoof-care products",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001"
+        ],
+        "notes": "A dedicated professional Farrier/Podiatry team has recurring hoof-care product requirements."
+      },
+      {
+        "criterion_id": "farrier.engagement_signal",
+        "criterion_label": "Recent professional engagement signal",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-RR-TEAM-001",
+          "EV-RR-LEX-001"
+        ],
+        "notes": "The current official site presents active team and hospital operations."
+      },
+      {
+        "criterion_id": "farrier.apprentice_future_potential",
+        "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "The retained public evidence does not establish this criterion."
+      },
+      {
+        "criterion_id": "farrier.inactive_or_hobbyist",
+        "criterion_label": "Inactive or hobby-only Farrier",
+        "category": "negative",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "No retained evidence confirms this negative or exclusion criterion."
+      },
+      {
+        "criterion_id": "farrier.no_professional_evidence",
+        "criterion_label": "No evidence of professional hoof-care activity",
+        "category": "exclusion",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "No retained evidence confirms this negative or exclusion criterion."
+      }
+    ],
+    "minimum_data_status": "pass",
+    "missing_minimum_fields": [],
+    "exclusion_status": "eligible",
+    "exclusion_reasons": []
+  },
+  "audit": {
+    "segment": "farrier",
+    "required_gate_statuses": {
+      "farrier.professional_activity": "confirmed"
+    },
+    "special_pathways": [],
+    "criteria_count": 15
+  }
+}

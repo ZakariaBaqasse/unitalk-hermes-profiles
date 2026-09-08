@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "FCR-20260823-469CA5",
+  "closure_status": "firecrawl_scope_closed_for_bounded_no-integration_pilot",
+  "profile": "equinet-a1-icp-discovery",
+  "pilot_run_id": "LIVE-20260823T170816Z-469CA5",
+  "prepared_for": "S\u00e9verine",
+  "prepared_at": "2026-08-23T19:40:55Z",
+  "decision_by": "Séverine",
+  "decision_at": "2026-08-23T19:40:55Z",
+  "decision": "approved_firecrawl_scope_closed_for_bounded_no-integration_pilot",
+  "validation_basis": {
+    "source_register_version": "1.4.3",
+    "source_register_validation": "passed",
+    "source_register_tests": "passed_26_of_26",
+    "runtime_policy_version": "1.7.3",
+    "runtime_policy_validation": "passed",
+    "foundation_test_results": "passed_43_of_43",
+    "wave1_offline_tests": "passed_26_of_26",
+    "wave2_offline_tests": "passed_45_of_45",
+    "recovery_tests": "passed_23_of_23",
+    "e2e_pilot_stages": "all_four_passed",
+    "export_manifest_validation": "passed"
+  },
+  "source_smoke_totals": {
+    "completed": 6,
+    "partial": 5,
+    "blocked": 1,
+    "total": 12
+  },
+  "adapter_totals": {
+    "validated_adapters": 6,
+    "no_adapter": 6,
+    "total": 12
+  },
+  "wider_register_categories": {
+    "blocked_commercial_sources": 4,
+    "conditional_manual_only_sources": 3,
+    "integration_pending": 1,
+    "needs_verification": 1,
+    "unavailable_no_licence": 2,
+    "unavailable_integrations": 2
+  },
+  "total_directory_pathways_reconciled": 12,
+  "deferred_adapter_implementations": 6,
+  "unavailable_integrations": {
+    "hubspot": true,
+    "twenty": true,
+    "apify_google_maps": "integration_pending",
+    "google_places_api": "needs_verification",
+    "clay": true,
+    "apollo": true
+  },
+  "candidate_decisions": "all_pending_0_accepted_0_rejected_3_needs_research",
+  "production_acceptance": false,
+  "external_actions_authorised": [],
+  "ready_for_severine_final_closure_decision": false,
+  "final_closure_decision_recorded": true,
+  "preserved_limitations": [
+    "All three pilot candidates remain at needs_research with unrecorded human decisions",
+    "HubSpot duplicate, customer, opportunity, consent and exclusion checks unavailable",
+    "Twenty staging unavailable",
+    "Apify Google Maps integration pending (credential, actor runtime, billing, audit)",
+    "Google Places API needs further verification",
+    "Kentucky Legend Horseshoeing cross-source duplicate group unresolved",
+    "Bobby Menker and Kentucky Legend Horseshoeing lack verified standalone official websites",
+    "No Horse Owner segment candidates produced in this all-Farrier pilot",
+    "Provider cost unknown for several tested sources",
+    "Candidate approval, outreach, CRM writes and A2 handoff remain prohibited"
+  ],
+  "closure_package_path": "evaluations/firecrawl-closure-20260823/"
+}

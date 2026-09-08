@@ -1,0 +1,16 @@
+{
+  "run_id": "LIVE-20260816T131908Z-CAF99C",
+  "status": "complete",
+  "current_stage": null,
+  "research_substage": "discovery_search",
+  "search_plan": "plans/search-plan.json",
+  "completed_stages": [
+    "research",
+    "qualification",
+    "scoring",
+    "review_export"
+  ],
+  "created_at": "2026-08-16T13:19:08Z",
+  "updated_at": "2026-08-16T14:04:20Z",
+  "next_instruction": "Run complete. Deliver validated outputs and audit."
+}

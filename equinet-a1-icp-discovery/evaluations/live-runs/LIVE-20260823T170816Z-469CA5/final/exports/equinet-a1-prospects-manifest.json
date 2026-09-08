@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "source_package_id": "A1-RP-LIVE-20260823-469CA5",
+  "candidate_count": 3,
+  "files": [
+    {
+      "format": "json",
+      "file_name": "equinet-a1-prospects.json",
+      "sha256": "00e81722d6b573eb11460a5f73805ba887f82ae04ea31c7567dea277fb322844",
+      "bytes": 63806
+    },
+    {
+      "format": "markdown",
+      "file_name": "equinet-a1-prospects.md",
+      "sha256": "a9b83442a04f37c232868f66156f6bfed67313e1317c078f87940cb2145078b9",
+      "bytes": 9386
+    },
+    {
+      "format": "csv",
+      "file_name": "equinet-a1-prospects.csv",
+      "sha256": "a406235191b17502c2a733e06dca791f557c5e052eeb4683b3922eb32ca048b2",
+      "bytes": 11256
+    },
+    {
+      "format": "xlsx",
+      "file_name": "equinet-a1-prospects.xlsx",
+      "sha256": "9510bade5117748baa022909258608da8628ca6cdc7d55cdc68a9c8291e4689b",
+      "bytes": 22327
+    }
+  ],
+  "validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  }
+}

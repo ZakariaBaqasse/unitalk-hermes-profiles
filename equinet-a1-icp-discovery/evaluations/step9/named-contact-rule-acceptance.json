@@ -1,0 +1,40 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "decision": "approved_named_contact_selection_v1_2",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-16T11:04:45Z",
+  "rules": {
+    "organisation_general_contact": "retain_when_published",
+    "primary_named_contact_maximum": 1,
+    "secondary_named_contact_maximum": 1,
+    "secondary_condition": "primary has no direct contact or the secondary role is clearly complementary",
+    "other_people": "defer_to_A2_enrichment",
+    "primary_storage": "identity.person",
+    "secondary_storage": "labelled public_contacts[]",
+    "associated_people_added": false,
+    "contact_availability_changes_icp_score": false,
+    "contact_absence_penalty": false,
+    "contact_availability_changes_ranking": false,
+    "purchasing_authority_from_contact_alone": false,
+    "public_contact_is_consent": false
+  },
+  "step9_application": {
+    "rood_primary_contact": "Manfred Eckert — Co-Founder/Farrier",
+    "rood_direct_named_contact_details": "not publicly published; organisation phone retained",
+    "darley_primary_contact": "Kate Galvin — Nominations Sales and Operating Manager, Jonabell Farm",
+    "darley_primary_email": "kgalvin@godolphin.com",
+    "darley_primary_mobile": "+1 859 519 5223",
+    "darley_secondary_contact": null,
+    "rood_score_before_after": "80 / 80",
+    "darley_score_before_after": "75 / 75"
+  },
+  "tests": {
+    "one_primary_one_secondary": "passed",
+    "second_primary_rejected": "passed",
+    "second_secondary_rejected": "passed",
+    "named_contact_non_scoring": "passed",
+    "associated_people_absent": "passed",
+    "public_contact_details_json_csv_excel": "passed",
+    "wave1_to_step8_regressions": "passed"
+  }
+}

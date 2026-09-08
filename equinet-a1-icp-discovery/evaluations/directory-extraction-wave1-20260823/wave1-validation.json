@@ -1,0 +1,67 @@
+{
+  "validation_id": "equinet-a1-directory-wave1-20260823",
+  "status": "passed_with_accepted_data_quality_risk",
+  "errors": [],
+  "network_requests": {
+    "targeted_farrieriq_profile_checks": 2,
+    "bounded_adapter_runs": 3,
+    "total": 5
+  },
+  "normalised_listings": 15,
+  "research_seed_contract_errors": [],
+  "audit_chain": {
+    "events": 6,
+    "verification_errors": []
+  },
+  "sources": {
+    "pdf.farrieriq": {
+      "run_id": "W1-FARRIERIQ-20260823",
+      "listing_count": 5,
+      "coverage_status": "partial",
+      "stop_reason": "candidate_limit_reached",
+      "adapter_requests": 1,
+      "contacts_found": 0,
+      "external_actions": {
+        "outreach": 0,
+        "crm_writes": 0,
+        "a2_handoffs": 0
+      }
+    },
+    "pdf.hast_farriers": {
+      "run_id": "W1-HAST-20260823",
+      "listing_count": 5,
+      "coverage_status": "partial",
+      "stop_reason": "candidate_limit_reached",
+      "adapter_requests": 1,
+      "contacts_found": 5,
+      "external_actions": {
+        "outreach": 0,
+        "crm_writes": 0,
+        "a2_handoffs": 0
+      }
+    },
+    "pdf.best_of_lexington_farriers": {
+      "run_id": "W1-BESTLEX-20260823",
+      "listing_count": 5,
+      "coverage_status": "complete_snapshot",
+      "stop_reason": null,
+      "adapter_requests": 1,
+      "contacts_found": 5,
+      "external_actions": {
+        "outreach": 0,
+        "crm_writes": 0,
+        "a2_handoffs": 0
+      }
+    }
+  },
+  "decisions": {
+    "pdf.farrieriq": "approved_for_bounded_pilot_with_placeholder_filter_and_official_site_verification",
+    "pdf.hast_farriers": "approved_for_bounded_pilot_with_staleness_warning",
+    "pdf.best_of_lexington_farriers": "approved_for_bounded_pilot_with_low_volume_limitation"
+  },
+  "farrieriq_placeholder_profile_sample": {
+    "profiles_checked": 2,
+    "profiles_with_555_contacts": 2
+  },
+  "cost_status": "unknown"
+}

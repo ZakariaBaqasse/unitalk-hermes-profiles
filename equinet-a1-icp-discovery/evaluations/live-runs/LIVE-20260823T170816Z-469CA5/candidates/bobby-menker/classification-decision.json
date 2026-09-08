@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "seed_id": "SEED-BOBBY-MENKER-LEX",
+  "segment": "farrier",
+  "prospect_type": "farrier_independent",
+  "identity_type": "person_and_organisation",
+  "classification_status": "needs_review",
+  "evidence_references": [
+    "EV-BOBBY-MADBARN-DIR"
+  ],
+  "rationale": "Bobby Menker is a highly experienced farrier (CJF, APF-I credentials) operating Bobby Menker Horseshoeing in Lexington, KY. Evidence from Mad Barn directory shows active professional farrier listing, company name, phone, email, and address. However, no standalone official business website exists to independently verify the business identity, services, or current activity. The Mad Barn directory listing is the primary public profile. Classification is needs_review pending human decision on whether the directory evidence is sufficient to proceed without an official site.",
+  "unresolved_questions": [
+    "No standalone official business website \u2014 is Mad Barn directory listing sufficient to proceed?",
+    "Location discrepancy: Mad Barn lists Lexington 40511; professionalfarriers.com (conditional/blocked) lists Georgetown 40324 \u2014 which is the primary service area?",
+    "Year started 1979 per conditional source \u2014 is there current active professional evidence beyond directory presence?",
+    "Bobby Menker Horseshoeing \u2014 does this include apprentices or multi-practitioner support?"
+  ]
+}

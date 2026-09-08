@@ -1,0 +1,31 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 9,
+  "approver": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "decision": "approved_step9_real_prospect_pilot_quality",
+  "approved_at": "2026-08-16T11:26:10Z",
+  "validated": {
+    "csv_reviewed": true,
+    "collected_information_accurate": true,
+    "contact_and_full_address_fields": true,
+    "primary_named_contact_rule": true,
+    "secondary_named_contact_rule": true,
+    "scores_unchanged_by_contact_availability": true,
+    "exports_valid": true
+  },
+  "pilot_results": [
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "business_quality_feedback": "acceptable for Step 9 evaluation",
+      "canonical_equinet_review_decision": "pending"
+    },
+    {
+      "candidate_id": "A1-DARLEY-JONABELL-001",
+      "business_quality_feedback": "acceptable for Step 9 evaluation",
+      "canonical_equinet_review_decision": "pending"
+    }
+  ],
+  "boundary": "This Unitalk validation closes the Step 9 profile test. It is not an Equinet approval for A2, outreach, CRM write or commercial action.",
+  "next_step": "Step 10 V1 evaluation, improvement consolidation and no-integration pilot freeze"
+}

@@ -1,0 +1,19 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "validation": "wave2-simplified",
+  "technical_preflight": "passed",
+  "corrected_behavioural_rerun": "passed",
+  "scenario_result": "6/6 passed",
+  "review_artifact": "evaluations/wave2/validation-simplified/WAVE2-SIMPLIFIED-REVIEW.md",
+  "grading_artifact": "evaluations/wave2/validation-simplified/grading.json",
+  "status": "approved_for_a1_v1_pilot",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-14T16:25:31Z",
+  "acceptance_record": "evaluations/wave2/validation-simplified/acceptance-record.json",
+  "post_promotion_verification": {
+    "prospect_evidence_and_confidence_package": "valid",
+    "icp_scoring_and_rationale_package": "valid",
+    "wave2_regression_suite": "passed"
+  },
+  "promotion_applied": true
+}

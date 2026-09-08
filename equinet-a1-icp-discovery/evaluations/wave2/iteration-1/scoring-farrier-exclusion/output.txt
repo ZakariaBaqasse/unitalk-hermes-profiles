@@ -1,0 +1,44 @@
+The scoring object itself is schema-compliant. Here's the test report.
+
+---
+
+## Test Report — Farrier Exclusion (No Professional Evidence)
+
+**Test case:** `evaluations/wave2/iteration-1/scoring-farrier-exclusion/`
+**Eval scenario:** Farrier confirmed `no_professional_evidence` exclusion
+**Expected result:** Scoring is blocked and no positive score is returned
+
+### Deterministic Result
+
+| Field | Value |
+|---|---|
+| **Scoring status** | `blocked` |
+| **Score** | `None` (no numeric score) |
+| **Band** | `None` |
+| **Block reason** | `Candidate exclusion_status is excluded.` |
+| **Outcome** | `excluded` |
+| **Components** | `0` (no criteria scored) |
+| **Review required** | `True` |
+| **Model version** | `1.0.0` |
+
+### How the block was reached
+
+The calculator hit line 102-103 of `calculate_icp_score.py`:
+
+> `if qualification.get("exclusion_status") == "excluded":`
+> `→ return blocked_result(...)`
+
+This fires **before** any positive criteria are evaluated, because the candidate's `qualification.exclusion_status` is already set to `"excluded"` from the earlier qualification step. No positive weights are consulted, no components are built, no band cap is applied — the result is a clean block with the `"excluded"` outcome.
+
+Note: the engine would also hit the `no_professional_evidence` non-scoring criterion exclusion at line 106-112 if the first check were bypassed, because the candidate has `farrier.no_professional_evidence` confirmed with status `confirmed`. Both pathways produce the same block.
+
+### Schema Compliance
+
+- Scoring object validates against `prospect-candidate.schema.json`: **PASS**
+- The wrapper package schema validation flagged an empty `summary` string (the build script's explanation text), not the scoring data itself — that is an explanation formatting concern, not a scoring integrity issue.
+
+### Audit Conclusion
+
+**PASS** — Scoring is correctly blocked. No positive score, no band, no components. The deterministic engine correctly rejects a Farrier candidate who has been qualified as having no professional evidence, exactly as specified in the ICP scoring model V1 (`common_rules.blocked_criteria: farrier.no_professional_evidence` and `no_professional_evidence` special rule with `action: block_scoring`).
+
+No research was conducted, no candidate was modified, no outreach was initiated, no CRM action was taken.

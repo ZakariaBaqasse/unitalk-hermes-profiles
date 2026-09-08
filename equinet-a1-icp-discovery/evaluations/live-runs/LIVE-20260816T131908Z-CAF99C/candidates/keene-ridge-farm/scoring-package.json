@@ -1,0 +1,157 @@
+{
+  "scoring": {
+    "status": "scored",
+    "score": 68,
+    "band": "medium",
+    "model_version": "1.0.0",
+    "components": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "points_awarded": 25,
+        "max_points": 25,
+        "evidence_ids": [
+          "EV-002",
+          "EV-003"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.purchasing_influence",
+        "points_awarded": 15,
+        "max_points": 15,
+        "evidence_ids": [
+          "EV-003"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "points_awarded": 10,
+        "max_points": 10,
+        "evidence_ids": [
+          "EV-003"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "points_awarded": 8,
+        "max_points": 8,
+        "evidence_ids": [
+          "EV-002",
+          "EV-003"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.professional_network",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "EV-003"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "EV-002"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      }
+    ],
+    "rationale": "Numeric ICP score 68/100 from 6 confirmed weighted criteria. Raw band medium; final band medium. Applied band rule(s): horse_count_unknown_human_review (Horse count is unknown; strong commercial signals trigger review only.)",
+    "block_reason": null
+  },
+  "audit": {
+    "raw_band": "medium",
+    "final_band": "medium",
+    "applied_band_caps": [
+      {
+        "maximum_band": "medium",
+        "outcome": "horse_count_unknown_human_review",
+        "reason": "Horse count is unknown; strong commercial signals trigger review only."
+      }
+    ],
+    "outcome": "horse_count_unknown_human_review",
+    "review_required": true,
+    "confirmed_positive_criteria": [
+      "horse_owner.commercial_operation",
+      "horse_owner.purchasing_influence",
+      "horse_owner.product_fit",
+      "horse_owner.performance_discipline",
+      "horse_owner.professional_network",
+      "horse_owner.high_equine_activity_location"
+    ],
+    "missing_required_gates": [
+      "horse_owner.more_than_three_horses"
+    ]
+  },
+  "explanation": {
+    "summary": "ICP score 68/100; final band medium. 6 weighted criteria earned points. Outcome: horse_count_unknown_human_review.",
+    "confirmed_criteria": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "points": 25,
+        "evidence_ids": [
+          "EV-002",
+          "EV-003"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.purchasing_influence",
+        "points": 15,
+        "evidence_ids": [
+          "EV-003"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "points": 10,
+        "evidence_ids": [
+          "EV-003"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "points": 8,
+        "evidence_ids": [
+          "EV-002",
+          "EV-003"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.professional_network",
+        "points": 5,
+        "evidence_ids": [
+          "EV-003"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "points": 5,
+        "evidence_ids": [
+          "EV-002"
+        ]
+      }
+    ],
+    "unearned_weighted_criteria": [
+      "horse_owner.more_than_three_horses",
+      "horse_owner.breeding_activity",
+      "horse_owner.buying_signal"
+    ],
+    "applied_band_rules": [
+      "horse_count_unknown_human_review: maximum medium — Horse count is unknown; strong commercial signals trigger review only."
+    ],
+    "outcome": "horse_count_unknown_human_review",
+    "review_required": true,
+    "confidence_interpretation": "ICP band medium; evidence confidence high. Review both values together."
+  },
+  "confidence_context": {
+    "level": "high",
+    "score": 84,
+    "method_version": "evidence-confidence-1.0.0"
+  }
+}

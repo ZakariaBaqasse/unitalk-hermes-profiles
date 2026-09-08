@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/review-package/1.1.0",
+  "title": "Equinet A1 Ranked Prospect Review Package",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "package_id", "run_id", "generated_at", "generated_by", "integration_status", "summary", "candidates"],
+  "properties": {
+    "schema_version": {"const": "1.1.0"},
+    "package_id": {"type": "string", "pattern": "^A1-RP-[A-Z0-9_-]{4,80}$"},
+    "run_id": {"type": "string", "minLength": 6, "maxLength": 100},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generated_by": {"const": "equinet-a1-icp-discovery"},
+    "integration_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hubspot", "twenty", "a2"],
+      "properties": {
+        "hubspot": {"type": "string", "enum": ["unavailable", "partial", "checked"]},
+        "twenty": {"type": "string", "enum": ["not_staged", "staged", "possible_match", "sync_failed"]},
+        "a2": {"const": "not_triggered"}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "accept", "needs_research", "reject", "farrier", "horse_owner"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 1},
+        "accept": {"type": "integer", "minimum": 0},
+        "needs_research": {"type": "integer", "minimum": 0},
+        "reject": {"type": "integer", "minimum": 0},
+        "farrier": {"type": "integer", "minimum": 0},
+        "horse_owner": {"type": "integer", "minimum": 0}
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "candidate_id", "overall_rank", "segment_rank", "recommended_review_status",
+          "recommendation_rationale", "reviewer_decision", "scoring_outcome",
+          "applied_band_rules", "confirmed_criteria", "uncertain_criteria",
+          "source_urls", "limitations", "integration_limitations", "a2_handoff",
+          "prospect_candidate"
+        ],
+        "properties": {
+          "candidate_id": {"type": "string"},
+          "overall_rank": {"type": "integer", "minimum": 1},
+          "segment_rank": {"type": "integer", "minimum": 1},
+          "recommended_review_status": {"type": "string", "enum": ["accept", "needs_research", "reject"]},
+          "recommendation_rationale": {"type": "string", "minLength": 1, "maxLength": 1500},
+          "reviewer_decision": {"const": "pending"},
+          "scoring_outcome": {"type": "string", "minLength": 1, "maxLength": 200},
+          "applied_band_rules": {"type": "array", "items": {"type": ["string", "object"]}},
+          "confirmed_criteria": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "uncertain_criteria": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "source_urls": {"type": "array", "minItems": 1, "items": {"type": "string", "format": "uri"}, "uniqueItems": true},
+          "limitations": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "integration_limitations": {"type": "array", "minItems": 2, "items": {"type": "string"}, "uniqueItems": true},
+          "a2_handoff": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "blockers"],
+            "properties": {
+              "status": {"const": "not_authorised"},
+              "blockers": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true}
+            }
+          },
+          "prospect_candidate": {"type": "object"}
+        }
+      }
+    }
+  }
+}

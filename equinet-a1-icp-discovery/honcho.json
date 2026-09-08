@@ -1,0 +1,79 @@
+{
+  "baseUrl": "https://memory.unitalk.ai/v3",
+  "apiKey": "hch-v3-ec2ve4cov9q50fiod5feihh6fjnremt2sqfv2mshyj1uiq46x0ma73n6jfm62lvY",
+  "workspace": "user_3DwmJL2jXtw8gOJtjSwA9ucg9rp",
+  "peerName": "user",
+  "contextCadence": 2,
+  "dialecticCadence": 3,
+  "dialecticDepth": 2,
+  "hosts": {
+    "hermes": {
+      "enabled": true,
+      "recallMode": "hybrid",
+      "writeFrequency": "async",
+      "sessionStrategy": "per-session",
+      "dialecticReasoningLevel": "low",
+      "dialecticDynamic": true,
+      "dialecticMaxChars": 600,
+      "messageMaxChars": 25000,
+      "saveMessages": true,
+      "observation": {
+        "organization-peer": {
+          "observeMe": true,
+          "observeOthers": false
+        },
+        "user": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "eugio-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "equinet-a1-icp-discovery-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "fitness-coach-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "hermes-baseline-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "iris-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "lumi-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "meeting-assistant-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "otto-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "voxo-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        },
+        "yui-g9rp": {
+          "observeMe": true,
+          "observeOthers": true
+        }
+      },
+      "workspace": "user_3DwmJL2jXtw8gOJtjSwA9ucg9rp",
+      "peerName": "user",
+      "aiPeer": "equinet-a1-icp-discovery-g9rp"
+    }
+  },
+  "workspaceId": "user_3DwmJL2jXtw8gOJtjSwA9ucg9rp",
+  "peerId": "organization-peer",
+  "sessionId": "organization-context-session",
+  "enabled": true
+}

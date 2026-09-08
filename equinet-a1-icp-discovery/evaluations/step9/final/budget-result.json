@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "scope": "run",
+  "candidate_count": 2,
+  "total_tokens": 33107,
+  "token_warning": 245000,
+  "token_hard": 350000,
+  "api_calls": 4,
+  "api_call_warning": 10,
+  "api_call_hard": 15,
+  "reasons": [],
+  "model": "deepseek-v4-flash",
+  "provider": "openai-api"
+}

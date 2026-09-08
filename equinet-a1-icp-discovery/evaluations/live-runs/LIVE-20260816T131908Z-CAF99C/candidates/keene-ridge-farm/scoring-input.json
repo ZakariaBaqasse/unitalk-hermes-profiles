@@ -1,0 +1,136 @@
+{
+  "segment": "horse_owner",
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "criterion_label": "Professional or commercial equine operation",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-002",
+          "EV-003"
+        ],
+        "notes": "Professional boarding and retirement facility on 170 acres with multiple barns. Owner Ann Bakhaus operates full-time with published pricing ($775 full board, $450 pasture board). Mission statement: 'give the highest quality care to our horses.' Services: boarding, retirement, riding lessons, workshops/clinics."
+      },
+      {
+        "criterion_id": "horse_owner.more_than_three_horses",
+        "criterion_label": "Manages more than three horses",
+        "category": "fit",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Horse count not explicitly published. However, facility has multiple barns (A, B, C), 20+ fields and paddocks, boarders since 2020, multiple breeds housed. Strong commercial signals clearly indicate >3 horses but the exact count is not stated on the website. This will trigger the threshold exception review pathway."
+      },
+      {
+        "criterion_id": "horse_owner.purchasing_influence",
+        "criterion_label": "Influences hoof-care purchasing decisions",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-003"
+        ],
+        "notes": "The farm schedules routine blacksmith and vet when needed. As the boarding facility operator, Ann Bakhaus influences which farrier and hoof-care services are used for boarder horses. The boarding agreement states: 'We schedule routine blacksmith and vet when needed. (If you use anyone other than the farm blacksmith or vet, you must schedule them yourself and be there to meet them).'"
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "criterion_label": "Regular need for hoof-care products or services",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-003"
+        ],
+        "notes": "Professional boarding operation with routine blacksmith scheduling, hoof trimming included in mare retirement 'Spa Day' service. Regular need for horseshoes, nails, and hoof-care products for multiple horses across multiple disciplines."
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "criterion_label": "Performance or competition discipline",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-002",
+          "EV-003"
+        ],
+        "notes": "Facility has jumps in both indoor and outdoor arenas, offers riding lessons, serves multiple disciplines. Boarders include hunters, jumpers, dressage riders. Breeds include Thoroughbreds, Warmbloods, Oldenburgs — sport and performance horse disciplines."
+      },
+      {
+        "criterion_id": "horse_owner.breeding_activity",
+        "criterion_label": "Active breeding operation",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Farm was originally a Thoroughbred breeding operation but transitioned to a full boarding farm. No evidence of current breeding activity."
+      },
+      {
+        "criterion_id": "horse_owner.professional_network",
+        "criterion_label": "Works with professional equine stakeholders",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-003"
+        ],
+        "notes": "Works with professional farriers (farm blacksmith), veterinarians, riding instructors, and hosts workshops/clinics. Serves riders of all ages, levels, and disciplines."
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "criterion_label": "Located in a high-equine-activity area",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-002"
+        ],
+        "notes": "Located in Lexington, Kentucky — the heart of Central Kentucky's horse country, near Keeneland racecourse. One of the highest equine-activity regions in the United States."
+      },
+      {
+        "criterion_id": "horse_owner.buying_signal",
+        "criterion_label": "Recent buying or expansion signal",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No recent buying, expansion, or acquisition signals found on the website beyond continued operation. The farm appears established rather than recently expanded."
+      },
+      {
+        "criterion_id": "horse_owner.single_horse_recreational",
+        "criterion_label": "Single-horse recreational owner without commercial involvement",
+        "category": "negative",
+        "status": "not_confirmed",
+        "evidence_ids": [
+          "EV-002"
+        ],
+        "notes": "The operation is a professional boarding facility with multiple horses, multiple barns, full-time staff, published commercial pricing — clearly not a single-horse recreational setup."
+      },
+      {
+        "criterion_id": "horse_owner.no_commercial_evidence",
+        "criterion_label": "No evidence of professional or commercial orientation",
+        "category": "exclusion",
+        "status": "not_confirmed",
+        "evidence_ids": [
+          "EV-002",
+          "EV-003"
+        ],
+        "notes": "Strong commercial evidence: published pricing, multiple barns, 170-acre facility, professional website with boarding services, owner operator, blacksmith/vet scheduling, boarder testimonials."
+      }
+    ],
+    "minimum_data_status": "pass",
+    "missing_minimum_fields": [],
+    "exclusion_status": "eligible",
+    "exclusion_reasons": []
+  },
+  "confidence": {
+    "level": "high",
+    "score": 84,
+    "method_version": "evidence-confidence-1.0.0",
+    "reasons": [
+      "identity_certainty: strong_unique_match (20/20)",
+      "source_quality: authoritative_primary_business_source (20/20)",
+      "evidence_directness: mostly_direct (15/20)",
+      "corroboration: one_strong_source (12/20)",
+      "freshness: current_within_claim_window (10/10)",
+      "completeness: minimum_review_package_only (7/10)"
+    ],
+    "limitations": [
+      "No confidence score cap was triggered.",
+      "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+    ]
+  }
+}

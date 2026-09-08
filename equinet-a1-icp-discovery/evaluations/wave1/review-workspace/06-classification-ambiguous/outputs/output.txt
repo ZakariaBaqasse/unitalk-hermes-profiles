@@ -1,0 +1,93 @@
+Query: Use prospect-segment-classification only. Classify this synthetic 
+Research Seed: SEED-CLASS-AMBIG. Two public sources mention Alex Smith, one in 
+Kentucky and one in Ohio. There is no matching domain, phone, address or 
+organisation. Return one classification decision object and preserve 
+uncertainty. Do not force a segment or prospect type.
+Initializing agent...
+  ⚠ tirith security scanner enabled but not available — command scanning will use pattern matching only
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+I'll load the prospect-segment-classification skill first, then classify the synthetic
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     prospect-segment-classification  0.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now let me check the classification decision schema and validate script:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     prospect-segment-classification → references/classification-decision.schema.json  0.0s
+  ┊ 📚 skill     prospect-segment-classification → scripts/validate_classification.py  0.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Good. Now I understand the schema, the classification rules, and the validation script. Let me build the classification decision for SEED-CLASS-AMBIG.
+
+Key facts from the synthetic seed:
+
+- Name: Alex Smith
+- Two sources: one Kentucky, one Ohio
+- No matching domain, phone, address or organisation
+- The skill says: "Do not merge similarly named people or businesses without distinguishing evidence such as domain, location, phone, address or official association."
+
+This is ambiguous — cannot determine if it's one person in two places or two different people. Both segment and identity are
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️  write     /opt/data/profiles/equinet-a1-icp-discovery/skills/prospect-segment-classification/references/seed-class-ambig-decision.json  0.1s
+  ┊ review diff
+a/profiles/equinet-a1-icp-discovery/skills/prospect-segment-classification/references/seed-class-ambig-decision.json → b/profiles/equinet-a1-icp-discovery/skills/prospect-segment-classification/references/seed-class-ambig-decision.json
+@@ -0,0 +1,15 @@
++{
++  "schema_version": "1.0.0",
++  "seed_id": "SEED-CLASS-AMBIG",
++  "segment": null,
++  "prospect_type": null,
++  "identity_type": "unresolved",
++  "classification_status": "needs_review",
++  "evidence_references": [],
++  "rationale": "Two public sources reference an Alex Smith in two different states (Kentucky and Ohio) with no matching domain, phone, address or organisation. Per classification skill rules, similarly named people or businesses must not be merged without distinguishing evidence. The available information does not establish whether this is one person operating across state lines or two different individuals. Without a confirmed identity, neither segment (farrier, horse_owner) nor prospect type can be assigned.",
++  "unresolved_questions": [
++    "Is the Alex Smith in Kentucky the same person as the Alex Smith in Ohio?",
++    "What is the professional activity of each Alex Smith (farrier, horse owner, or other)?",
++    "What are the distinct contact or business details for each candidate?"
++  ]
++}
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now validate it
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 $         uv run python3 skills/prospect-segment-classification/scripts/validate_classification.py skills/prospect-segment-classification/references/seed-class-ambig-decision.json  0.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+The decision validates. Here's the classification result:
+
+
+
+Classification Decision: SEED-CLASS-AMBIG
+
+| Field         | Value         |
+|---------------|---------------|
+| Segment       | null          |
+| Prospect type | null          |
+| Identity type | unresolved    |
+| Status        | needs_review  |
+| Evidence      | none retained |
+
+Rationale
+
+Two public sources reference an Alex Smith — one in Kentucky, one in Ohio — with no matching domain, phone, address or organisation. Per the classification skill's identity rule, similarly named people or businesses must not be merged without distinguishing evidence. The available facts do not establish whether this is one person operating across two states or two different individuals. Without a confirmed identity, neither segment (farrier, horse_owner) nor prospect type can be assigned.
+
+Unresolved questions
+
+1. Is the Alex Smith in Kentucky the same person as the Alex Smith in Ohio?
+2. What is the professional activity of each Alex Smith (farrier, horse owner, or other)?
+3. What are the distinct contact or business details for each candidate?
+
+The decision file is at skills/prospect-segment-classification/references/seed-class-ambig-decision.json and validates against the schema. A human reviewer should determine whether to investigate each Alex Smith separately (requiring two new research seeds with distinguishing location tags) or close the seed as unresolvable.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260812_183252_04466a -p equinet-a1-icp-discovery
+
+Session:        20260812_183252_04466a
+Duration:       28s
+Messages:       11 (1 user, 9 tool calls)

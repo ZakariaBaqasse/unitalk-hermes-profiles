@@ -1,0 +1,44 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "validation": "wave3",
+  "review_completed_at": "2026-08-14T16:56:26Z",
+  "skills": [
+    "ranked-prospect-review-package",
+    "prospect-export"
+  ],
+  "business_design": {
+    "status": "approved_by_severine",
+    "record": "evaluations/wave3/business-checkpoint.json"
+  },
+  "technical_validation": "passed",
+  "behavioural_validation": {
+    "status": "passed",
+    "profile_run_session": "20260814_165454_d0bb07",
+    "candidate_count": 1,
+    "recommendation": "accept",
+    "icp": "86/high",
+    "confidence": "84/high",
+    "human_decision": "pending",
+    "external_actions": "none"
+  },
+  "export_validation": {
+    "json": "passed",
+    "markdown": "passed",
+    "csv": "passed",
+    "xlsx": "passed",
+    "formula_errors": "none"
+  },
+  "review_artifact": "evaluations/wave3/WAVE3-VALIDATION-REVIEW.md",
+  "status": "approved_for_a1_v1_pilot",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-14T16:58:28Z",
+  "acceptance_record": "evaluations/wave3/acceptance-record.json",
+  "post_promotion_verification": {
+    "ranked_prospect_review_package": "valid",
+    "prospect_export": "valid",
+    "wave1_regression_suite": "passed",
+    "wave2_regression_suite": "passed",
+    "wave3_regression_suite": "passed"
+  },
+  "promotion_applied": true
+}

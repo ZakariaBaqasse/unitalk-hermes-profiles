@@ -1,0 +1,55 @@
+{
+  "plan_version": "1.2.0",
+  "run_id": "RUN-20260816T132904Z-DC866757",
+  "planned_at": "2026-08-16T13:29:04Z",
+  "source_register_version": "1.0.0",
+  "segment": "both",
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "max_candidates": 2,
+  "search_queries": [
+    "professional farrier Lexington Kentucky",
+    "therapeutic farrier Lexington Kentucky",
+    "corrective shoeing Kentucky",
+    "sport horse farrier Lexington Kentucky",
+    "competition horse farrier Lexington Kentucky",
+    "horse farm Lexington Kentucky",
+    "breeding farm Lexington Kentucky",
+    "boarding stable Lexington Kentucky",
+    "horse training facility Lexington Kentucky",
+    "equestrian center Lexington Kentucky"
+  ],
+  "allowed_sources": [
+    {
+      "source_id": "general.google_search",
+      "access_profile": "search_index_discovery_only"
+    },
+    {
+      "source_id": "general.public_business_websites",
+      "access_profile": "public_business_website"
+    }
+  ],
+  "rejected_sources": [],
+  "human_seeds": [],
+  "tool_budget": {
+    "max_search_queries_per_run": 10,
+    "max_page_reads_per_candidate": 4,
+    "max_browser_fallbacks_per_candidate": 0,
+    "max_total_tool_calls_per_candidate": 10
+  },
+  "required_page_checks": [
+    "about_team_or_services_when_available",
+    "contact_location_or_find_us_when_available"
+  ],
+  "rules": [
+    "Search results are discovery-only.",
+    "Prefer official business websites.",
+    "Retain explicitly published professional email, phone, postal code and full address with evidence IDs.",
+    "Do not attribute third-party contacts or form placeholders to the candidate.",
+    "Do not crawl conditional directories.",
+    "Do not qualify or score during research."
+  ]
+}

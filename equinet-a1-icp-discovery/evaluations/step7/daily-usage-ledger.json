@@ -1,0 +1,50 @@
+{
+  "status": "pass",
+  "run_count": 4,
+  "total_tokens": 613960,
+  "api_calls": 26,
+  "warning": 700000,
+  "hard": 1000000,
+  "runs": [
+    {
+      "file": "evaluations/wave3/behavioral-validation/james/usage.json",
+      "session_id": "20260814_165454_d0bb07",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 496941,
+      "api_calls": 12,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/step7/fallback-test/usage.json",
+      "session_id": "20260815_164525_26660b",
+      "model": "Gemini 3.6 Flash",
+      "provider": "openai-api",
+      "tokens": 7616,
+      "api_calls": 1,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/step7/optimised-test/usage.json",
+      "session_id": "20260815_164602_373a15",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 41379,
+      "api_calls": 5,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/step7/optimised-test-v2/usage.json",
+      "session_id": "20260815_164701_07f399",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 68024,
+      "api_calls": 8,
+      "completed": true,
+      "failed": false
+    }
+  ]
+}

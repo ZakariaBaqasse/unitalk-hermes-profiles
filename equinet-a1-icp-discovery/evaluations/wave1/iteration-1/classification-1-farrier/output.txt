@@ -1,0 +1,93 @@
+Query: Use prospect-segment-classification only. Classify this synthetic 
+Research Seed: SEED-CLASS-FARRIER. Evidence EV-1 from the official business 
+website states: “Smith Farrier Services provides professional corrective and 
+therapeutic shoeing in Lexington, Kentucky. Jane Smith — Owner and Professional 
+Farrier.” Return one classification decision object. Do not qualify, calculate 
+confidence or score.
+Initializing agent...
+  ⚠ tirith security scanner enabled but not available — command scanning will use pattern matching only
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+I'll load the prospect-segment-classification skill first.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     prospect-segment-classification  0.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now let me load the classification schema and the validation script.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     prospect-segment-classification → scripts/validate_classification.py  0.0s
+  ┊ 🔎 find      classification-decision.schema.json  0.1s
+  ┊ 📖 read      classification-decision.schema.json  0.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now I have the schema. Let me also check the ICP config for the allowed farrier prospect types to confirm.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 read      equinet-icp-v1.yaml  0.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Good — the allowed farrier prospect types are confirmed. Now let me craft the classification decision JSON and validate it.
+
+Based on the seed and evidence, here's my reasoning:
+
+1. Identity: "Jane Smith — Owner and Professional Farrier" at "Smith Farrier Services" → linked person + organisation
+2. Segment: Direct evidence of professional hoof-care work ("corrective and therapeutic shoeing") + "Professional Farrier" title → farrier
+3. Prospect type: An independent Farrier operating under their own business name → farrier_independent
+4. Geography: Lexington, Kentucky → inside US scope and within pilot geography
+5. Status: Identity is resolved, segment is clear → confirmed
+
+Let me create the decision JSON and validate
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️  write     /tmp/classify-seed-farrier.json  0.0s [Write denied: '/tmp/classify-seed-farrier.jso...]
+  ┊ ✍️  write     /opt/data/profiles/equinet-a1-icp-discovery/classify-seed-farrier.json  0.1s
+  ┊ review diff
+a/profiles/equinet-a1-icp-discovery/classify-seed-farrier.json → b/profiles/equinet-a1-icp-discovery/classify-seed-farrier.json
+@@ -0,0 +1,11 @@
++{
++  "schema_version": "1.0.0",
++  "seed_id": "SEED-CLASS-FARRIER",
++  "segment": "farrier",
++  "prospect_type": "farrier_independent",
++  "identity_type": "linked_person_organisation",
++  "classification_status": "confirmed",
++  "evidence_references": ["EV-1"],
++  "rationale": "EV-1 from the official business website directly states that Smith Farrier Services provides professional corrective and therapeutic shoeing in Lexington, Kentucky. Jane Smith is explicitly titled 'Owner and Professional Farrier'. This is direct evidence of professional hoof-care activity from a permitted primary source (the business's own website), establishing a linked person-organisation prospect within the approved US/Kentucky geography. The prospect type fits farrier_independent: an individual professional operating under their own business name.",
++  "unresolved_questions": []
++}
+  ┊ 💻 $         uv run python skills/prospect-segment-classification/scripts/validate_classification.py /opt/data/profiles/equinet-a1-icp-discovery/classify-seed-farrier.json  0.3s [exit 1]
+  ┊ 💻 $         uv pip install jsonschema PyYAML  0.1s
+  ┊ 💻 $         uv run python skills/prospect-segment-classification/scripts/validate_classification.py /opt/data/profiles/equinet-a1-icp-discovery/classify-seed-farrier.json  0.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Classification is VALID. Here is the decision object:
+
+
+
+Classification Decision — SEED-CLASS-FARRIER
+
+| Field                 | Value                      |
+|-----------------------|----------------------------|
+| schema_version        | 1.0.0                      |
+| seed_id               | SEED-CLASS-FARRIER         |
+| segment               | farrier                    |
+| prospect_type         | farrier_independent        |
+| identity_type         | linked_person_organisation |
+| classification_status | confirmed                  |
+| evidence_references   | EV-1                       |
+| unresolved_questions  | (none)                     |
+
+Rationale: EV-1 from the official business website directly confirms professional corrective and therapeutic shoeing in Lexington, Kentucky, with the title "Owner and Professional Farrier". This is a linked person-organisation (Jane Smith / Smith Farrier Services) within the approved US/Kentucky scope, fitting the farrier_independent type — an individual professional operating under their own business name. No ambiguity or contradictions present.
+
+Next: This confirmed decision is ready for handoff to equinet-icp-qualification.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260812_182902_d9deb5 -p equinet-a1-icp-discovery
+
+Session:        20260812_182902_d9deb5
+Duration:       51s
+Messages:       21 (1 user, 19 tool calls)

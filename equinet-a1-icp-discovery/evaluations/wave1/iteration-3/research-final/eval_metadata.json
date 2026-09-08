@@ -1,0 +1,4 @@
+{
+  "prompt": "Use public-prospect-research. Find at most 1 professional Farrier Research Seed in Lexington, Kentucky. Retain evidence only from the prospect's verified official public business website. Search results are discovery-only. Do not retain any directory, aggregator, news, social, Maps or unregistered non-business-website source. Run validate_research_seed.py. If no valid official website is found, return no ready seed and explain the evidence gap. Do not classify, qualify, calculate confidence or score.",
+  "expected_skill": "public-prospect-research"
+}

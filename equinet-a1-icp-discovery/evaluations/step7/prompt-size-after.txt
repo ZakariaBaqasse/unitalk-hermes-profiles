@@ -1,0 +1,36 @@
+Prompt-size breakdown (platform=cli, model=deepseek-v4-flash)
+
+  System prompt total :   31,576 B  (30.8 KB, 31,484 chars)
+
+  Major blocks:
+    skills index       :    1,036 B  (1.0 KB)
+    memory             :        0 B  (0.0 KB)
+    user profile       :        0 B  (0.0 KB)
+
+  Prompt tiers:
+    stable (identity/guidance/skills)   :   29,494 B  (28.8 KB)
+    context (AGENTS.md/cwd files)       :    1,992 B  (1.9 KB)
+    volatile (memory/profile/timestamp) :       86 B  (0.1 KB)
+
+  Tool schemas         :   27,043 B  (26.4 KB, 14 tools)
+
+  Toolsets by size (tool-schema JSON, largest first):
+    toolset                tools      schema
+    terminal                   2     6,882 B  (6.7 KB)
+    file                       4     5,922 B  (5.8 KB)
+    skills                     3     5,651 B  (5.5 KB)
+    code_execution             1     2,864 B  (2.8 KB)
+    clarify                    1     2,414 B  (2.4 KB)
+    web                        2     1,910 B  (1.9 KB)
+    todo                       1     1,372 B  (1.3 KB)
+
+  Skills by size (SKILL.md on-disk = read cost; index cost = attributed always-on bytes, largest first):
+    skill                          SKILL.md  index cost
+    public-prospect-research        8,438 B        92 B
+    equinet-icp-qualification       6,511 B        93 B
+    prospect-evidence-and-confi…    5,614 B       100 B
+    ranked-prospect-review-pack…    5,140 B        98 B
+    icp-scoring-and-rationale       5,102 B        93 B
+    prospect-segment-classifica…    4,948 B        99 B
+    prospect-export                 4,181 B        83 B
+    a1-prospect-data-contract       1,857 B        93 B

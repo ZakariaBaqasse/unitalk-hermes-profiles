@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "suite": "Equinet A1 HubSpot metadata-readiness validation",
+  "checks_total": 52,
+  "checks_passed": 49,
+  "errors": [
+    "runtime policy version is 1.8.0",
+    "SOUL records metadata availability",
+    "immutable artifact unchanged: skills/a1-prospect-data-contract/references/prospect-candidate.schema.json"
+  ],
+  "language_findings": [],
+  "external_actions": {
+    "hubspot_reads": 0,
+    "hubspot_writes": 0,
+    "workflow_enrolments": 0,
+    "outreach": 0
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "plan_version": "1.3.0",
+  "run_id": "RUN-20260823T170830Z-2D1439AF",
+  "planned_at": "2026-08-23T17:08:30Z",
+  "source_register_version": "1.4.2",
+  "segment": "farrier",
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "max_candidates": 3,
+  "search_queries": [
+    "professional farrier Lexington Kentucky",
+    "therapeutic farrier Lexington Kentucky",
+    "corrective shoeing Kentucky",
+    "sport horse farrier Lexington Kentucky",
+    "competition horse farrier Lexington Kentucky",
+    "mobile farrier service Lexington Kentucky"
+  ],
+  "allowed_sources": [
+    {
+      "source_id": "pdf.mad_barn_directory",
+      "access_profile": "public_directory_bounded_scraping"
+    },
+    {
+      "source_id": "pdf.newhorse",
+      "access_profile": "public_directory_bounded_scraping"
+    }
+  ],
+  "rejected_sources": [],
+  "human_seeds": [],
+  "source_preflight_approvals": {
+    "pdf.mad_barn_directory": "validated_wave2_madbarn_approved_for_bounded_pilot_identity_and_duplicate_review",
+    "pdf.newhorse": "validated_wave2_newhorse_approved_for_bounded_pilot_self_submitted_content_controls"
+  },
+  "bounded_source_limits": {
+    "max_candidates_per_source_per_run": 20,
+    "max_candidates_per_source_per_day": 50,
+    "concurrency_per_source": 1
+  },
+  "tool_budget": {
+    "max_search_queries_per_run": 6,
+    "default_page_reads_per_candidate": 4,
+    "max_page_reads_per_candidate": 8,
+    "max_browser_fallbacks_per_candidate": 0,
+    "default_total_tool_calls_per_candidate": 10,
+    "max_total_tool_calls_per_candidate": 20,
+    "enforcement": "warning_and_escalation"
+  },
+  "required_page_checks": [
+    "about_team_or_services_when_available",
+    "contact_location_or_find_us_when_available"
+  ],
+  "rules": [
+    "Search results are discovery-only.",
+    "Prefer official business websites.",
+    "Retain explicitly published professional email, phone, postal code and full address with evidence IDs.",
+    "Do not attribute third-party contacts or form placeholders to the candidate.",
+    "Scrape only approved active bounded directories and stay within source limits.",
+    "Do not crawl conditional directories.",
+    "Do not qualify or score during research."
+  ]
+}

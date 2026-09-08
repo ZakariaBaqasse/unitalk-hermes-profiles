@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/website-enrichment-state/v1.1.0",
+  "title": "Equinet A1 Website Enrichment State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_contract_version", "source_sha256", "run", "discovery_result", "max_retries", "leads"],
+  "properties": {
+    "schema_version": {"const": "a1.website-enrichment-state.v1"},
+    "source_contract_version": {"const": "a1.discovery-result.v1"},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "run": {
+      "type": "object",
+      "required": ["run_id"],
+      "properties": {"run_id": {"type": "string", "minLength": 1}}
+    },
+    "discovery_result": {"type": "object"},
+    "max_retries": {"type": "integer", "minimum": 0},
+    "leads": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/record"}
+    }
+  },
+  "$defs": {
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recorded_at", "error", "retryable"],
+      "properties": {
+        "recorded_at": {"type": "string", "format": "date-time"},
+        "error": {"type": "string", "minLength": 1},
+        "retryable": {"type": "boolean"}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lead", "status", "attempts", "failure_history", "enrichment", "pipeline_inputs", "artifacts"],
+      "properties": {
+        "lead": {"type": "object"},
+        "status": {"enum": ["pending", "completed", "scored", "failed"]},
+        "attempts": {"type": "integer", "minimum": 0},
+        "failure_history": {"type": "array", "items": {"$ref": "#/$defs/failure"}},
+        "enrichment": {"type": ["object", "null"]},
+        "pipeline_inputs": {"type": "object"},
+        "artifacts": {"type": "object"}
+      }
+    }
+  }
+}

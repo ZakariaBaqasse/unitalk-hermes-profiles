@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260823T170830Z-2D1439AF",
+  "seed_id": "SEED-KY-LEGEND-SCHELL",
+  "discovered_at": "2026-08-23T17:09:15Z",
+  "discovery_method": "approved_directory_scrape",
+  "discovery_query": "NewHorse directory \u2014 Kentucky farrier listings (validated Wave 2 run W2-NEWHORSE-20260823); cross-referenced with Best of Lexington directory (Wave 1)",
+  "segment_hint": "farrier",
+  "identity_hint": {
+    "display_name": "Kentucky Legend Horseshoeing",
+    "person_name": "David Schell",
+    "organisation_name": "Kentucky Legend Horseshoeing",
+    "role_title": "Farrier / Owner"
+  },
+  "website": null,
+  "location_hint": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Richmond",
+    "postal_code": null,
+    "public_address": "Richmond, Kentucky"
+  },
+  "public_contacts": [
+    {
+      "contact_type": "phone",
+      "value": "785-226-3628",
+      "label": "Primary named contact \u2014 David Schell \u2014 Farrier/Owner",
+      "evidence_ids": [
+        "EV-KYLEGEND-NEWHORSE-DIR"
+      ]
+    },
+    {
+      "contact_type": "phone",
+      "value": "+1 (859) 536-7054",
+      "label": "Primary named contact \u2014 David Schell \u2014 Farrier/Owner",
+      "evidence_ids": [
+        "EV-KYLEGEND-NEWHORSE-DIR"
+      ]
+    }
+  ],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-KYLEGEND-NEWHORSE-DIR",
+      "source_url": "https://www.newhorse.com/profile/b.2001.r.46475.u.3bf485.html",
+      "source_name": "NewHorse Farrier Directory (approved bounded directory \u2014 Wave 2)",
+      "source_type": "public_directory_bounded_scraping",
+      "retrieved_at": "2026-08-23T16:11:14Z",
+      "evidence_excerpt": "KentuckyLegendHorseshoeing \u2014 Richmond, KY \u2014 Professional Farrier service \u2014 David Schell \u2014 Phone: 785-226-3628 \u2014 Also: +1 (859) 536-7054 \u2014 Services: All Breeds & Disciplines, Cold Shoeing, Corrective & Lameness Shoeing, Draft Horses, Gaited Horses, Glue On Shoes, Handmade Shoes, Hoof Trimming, Natural Barefoot Trimming, Therapeutic Shoeing",
+      "fact_or_inference": "direct_fact"
+    }
+  ],
+  "missing_information": [
+    "No official standalone business website found",
+    "No About/Team/Contact page checks on a standalone site (no official site exists)",
+    "No email address publicly published",
+    "No postal code or full street address published",
+    "Service area listed as Lexington, Louisville, Danville area (per NewHorse description text) \u2014 not formally confirmed",
+    "No certification/association membership verified from authoritative source",
+    "Cross-source duplicate group identified in Wave 2 validation \u2014 possible same business listed under different names (Kentucky legend horseshoeing Frankfort vs KentuckyLegendHorseshoeing Richmond)",
+    "NO_STANDALONE_WEBSITE: No official business website found. NewHorse directory profile is primary public profile. Status downgraded to needs_research until a website or human review decision."
+  ],
+  "conflicts": [
+    "Two NewHorse profiles found: one in Frankfort, KY (listing ID DL-8A1EDEC133E43411) and one in Richmond, KY (listing ID DL-4F81BC0DB665E9DA) \u2014 may be same person/business serving multiple areas",
+    "Best of Lexington listing lists Richmond KY with phone 785-226-3628 \u2014 matches the Richmond NewHorse listing",
+    "Duplicate group flagged in Wave 2 validation (match_key: kentuckylegendhorseshoeing) \u2014 review required",
+    "Duplicate group flagged in Wave 2 validation (match_key: kentuckylegendhorseshoeing). Two NewHorse profiles exist: Frankfort listing (DL-8A1EDEC133E43411) and Richmond listing (DL-4F81BC0DB665E9DA). Also Best of Lexington listing (cross-source match)."
+  ],
+  "status": "needs_research"
+}

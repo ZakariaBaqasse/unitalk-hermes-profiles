@@ -1,0 +1,128 @@
+{
+  "segment": "farrier",
+  "qualification": {
+    "criteria": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-SITE",
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-CONTACT"
+        ]
+      },
+      {
+        "criterion_id": "farrier.product_usage_or_influence",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ]
+      },
+      {
+        "criterion_id": "farrier.product_fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-SITE"
+        ]
+      },
+      {
+        "criterion_id": "farrier.established_client_base",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-SITE"
+        ]
+      },
+      {
+        "criterion_id": "farrier.regular_business_activity",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-CONTACT"
+        ]
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-SITE",
+          "EV-JTHOLUB-MADBARN-DIR"
+        ]
+      },
+      {
+        "criterion_id": "farrier.advanced_specialisation",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ]
+      },
+      {
+        "criterion_id": "farrier.certified_or_experienced",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-MADBARN-DIR"
+        ]
+      },
+      {
+        "criterion_id": "farrier.sport_horse_focus",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ]
+      },
+      {
+        "criterion_id": "farrier.multi_farrier_business",
+        "status": "not_confirmed",
+        "evidence_ids": []
+      },
+      {
+        "criterion_id": "farrier.buying_influence",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ]
+      },
+      {
+        "criterion_id": "farrier.engagement_signal",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ]
+      },
+      {
+        "criterion_id": "farrier.apprentice_future_potential",
+        "status": "not_confirmed",
+        "evidence_ids": []
+      },
+      {
+        "criterion_id": "farrier.inactive_or_hobbyist",
+        "status": "not_confirmed",
+        "evidence_ids": []
+      },
+      {
+        "criterion_id": "farrier.no_professional_evidence",
+        "status": "not_confirmed",
+        "evidence_ids": []
+      }
+    ],
+    "exclusion_status": "eligible"
+  },
+  "confidence": {
+    "level": "high",
+    "score": 93,
+    "method_version": "evidence-confidence-1.0.0",
+    "reasons": [
+      "identity_certainty: strong_unique_match (20/20)",
+      "source_quality: authoritative_primary_business_source (20/20)",
+      "evidence_directness: all_material_claims_direct (20/20)",
+      "corroboration: two_or_more_independent_sources (20/20)",
+      "freshness: current_within_claim_window (10/10)",
+      "completeness: partial_noncritical_gaps (3/10)"
+    ],
+    "limitations": [
+      "No confidence score cap was triggered."
+    ]
+  }
+}

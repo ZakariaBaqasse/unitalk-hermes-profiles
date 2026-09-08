@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0.0",
+  "method_version": "evidence-confidence-1.0.0",
+  "candidate_reference": {
+    "run_id": "RUN-SYNTHETIC-BLOCKED-001",
+    "seed_id": "SEED-TEST-BLOCKED-01"
+  },
+  "available_evidence_ids": ["EV-YELLOWPAGES-001"],
+  "dimensions": {
+    "identity_certainty": {
+      "level": "weak_name_and_location_match",
+      "evidence_ids": ["EV-YELLOWPAGES-001"],
+      "rationale": "Name and location extracted from a Yellow Pages listing for a farrier in Kentucky."
+    },
+    "source_quality": {
+      "level": "weak_or_unassessed",
+      "evidence_ids": ["EV-YELLOWPAGES-001"],
+      "rationale": "The only evidence comes from a Yellow Pages directory listing, which is tier 9 blocked/unverified in the source register."
+    },
+    "evidence_directness": {
+      "level": "mostly_direct",
+      "evidence_ids": ["EV-YELLOWPAGES-001"],
+      "rationale": "The Yellow Pages page directly displays the business name, location and phone number."
+    },
+    "corroboration": {
+      "level": "one_weak_or_secondary_source",
+      "evidence_ids": ["EV-YELLOWPAGES-001"],
+      "rationale": "Only one source is available — a blocked directory listing with no corroboration."
+    },
+    "freshness": {
+      "level": "partly_stale",
+      "evidence_ids": ["EV-YELLOWPAGES-001"],
+      "rationale": "Yellow Pages listings do not carry a visible publication date or current-status signal; freshness is uncertain."
+    },
+    "completeness": {
+      "level": "minimum_review_package_only",
+      "evidence_ids": ["EV-YELLOWPAGES-001"],
+      "rationale": "Has at least one evidence record and identity, but the evidence depends on a blocked source."
+    }
+  },
+  "gates": {
+    "mandatory_claim_inference_only": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No mandatory ICP claim exists at this stage — only the synthetic assessment."
+    },
+    "unresolved_identity_conflict": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No identity conflict — the name from Yellow Pages is unambiguous."
+    },
+    "critical_evidence_conflict": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No contradictory evidence exists."
+    },
+    "minimum_data_failed": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "All required confidence-stage fields (identity, source, qualification) are present."
+    },
+    "blocked_source_used": {
+      "value": true,
+      "evidence_ids": ["EV-YELLOWPAGES-001"],
+      "rationale": "The sole evidence EV-YELLOWPAGES-001 is a Yellow Pages listing (source_id: pdf.yellow_pages), which has register_status: blocked in the Approved Source Register V1."
+    },
+    "no_evidence": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "One evidence record exists, even though it originates from a blocked source."
+    },
+    "fabricated_or_untraceable_evidence": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No fabricated or untraceable evidence — the source is real but blocked."
+    }
+  },
+  "confidence_stage_missing_fields": []
+}

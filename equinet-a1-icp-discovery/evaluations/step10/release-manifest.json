@@ -1,0 +1,205 @@
+{
+  "release_id": "equinet-a1-v1-no-integration-1.0.1",
+  "profile": "equinet-a1-icp-discovery",
+  "built_at": "2026-08-16T14:47:25Z",
+  "status": "pilot_ready_no_integration",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-16T14:31:41Z",
+  "scope": "Controlled manual A1 V1 pilot without HubSpot, Twenty, A2 or n8n integration",
+  "model": {
+    "primary": "deepseek-v4-flash",
+    "provider": "openai-api",
+    "gateway": "litellm-unitalk",
+    "fallback": "Gemini 3.6 Flash",
+    "max_output_tokens": 4000,
+    "max_turns": 50,
+    "api_max_retries": 1
+  },
+  "versions": {
+    "prospect_candidate_schema": "1.0.0",
+    "field_dictionary": "1.1.0",
+    "icp_configuration": "1.0.0",
+    "source_register": "1.0.0",
+    "evidence_confidence": "1.0.0",
+    "scoring_model": "1.0.0",
+    "runtime_policy": "1.4.0"
+  },
+  "skills": [
+    {
+      "name": "a1-prospect-data-contract",
+      "version": "1.1.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/a1-prospect-data-contract/SKILL.md",
+      "sha256": "dd1677a641e5fa783aef98317706ca0f1cac576485f028510c8e72f7696bdf15"
+    },
+    {
+      "name": "public-prospect-research",
+      "version": "1.2.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/public-prospect-research/SKILL.md",
+      "sha256": "cb27bdab09e833c62280094f877d2939dc97c7a3b207aa3f5f54485641778468"
+    },
+    {
+      "name": "prospect-segment-classification",
+      "version": "1.1.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/prospect-segment-classification/SKILL.md",
+      "sha256": "81813e1d9801da0d12bec5f1b14039bab1196968d090aa99f7d10681a38b55c6"
+    },
+    {
+      "name": "equinet-icp-qualification",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/equinet-icp-qualification/SKILL.md",
+      "sha256": "c6aaf0cdf3f2bab8b3b76b61b3948254df4c5510cf3d0d3c9f436dda12e8cea3"
+    },
+    {
+      "name": "prospect-evidence-and-confidence",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/prospect-evidence-and-confidence/SKILL.md",
+      "sha256": "6e41624fed352afb946db521a6276172f71555127adf07841eb51460322268fd"
+    },
+    {
+      "name": "icp-scoring-and-rationale",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/icp-scoring-and-rationale/SKILL.md",
+      "sha256": "784af440fa8324eda73758afce7d866a04c4906b166f9bba371dc10a89df6eac"
+    },
+    {
+      "name": "ranked-prospect-review-package",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/ranked-prospect-review-package/SKILL.md",
+      "sha256": "da57d08e335a83ef7d220800e04f15559158147f5908bba60f045b8cca91ea00"
+    },
+    {
+      "name": "prospect-export",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot",
+      "path": "skills/prospect-export/SKILL.md",
+      "sha256": "966c66140f325667ec2764567b9dfa49a52265f899278757e2edb92e8e7d414e"
+    }
+  ],
+  "authoritative_files": [
+    {
+      "path": "SOUL.md",
+      "sha256": "07c2bbd391e814152cc9e69cb04a54b1787c2323f5a84c35ab1ee6aae6043060",
+      "bytes": 22415
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "326acbcf8ac2ff397ca1dbdb6e88e791fee961c68a69aca5df63ec9f8d08c49a",
+      "bytes": 3404
+    },
+    {
+      "path": "configurations/icp/equinet-icp-v1.yaml",
+      "sha256": "4d28bc35d11a458015f08903b30f0560f204476016508135fe2d126014f16169",
+      "bytes": 18369
+    },
+    {
+      "path": "configurations/sources/approved-source-register-v1.yaml",
+      "sha256": "3ae57ddad6d7bf754e60a656322368d6c8774f9d062b743be656c4ebb9a48595",
+      "bytes": 35065
+    },
+    {
+      "path": "configurations/evidence/evidence-confidence-rules-v1.yaml",
+      "sha256": "5cf2377814ccf3ee635bb279b512778924d2eb42bf1a0a58ec684d90c69c8f80",
+      "bytes": 20530
+    },
+    {
+      "path": "configurations/scoring/icp-scoring-model-v1.yaml",
+      "sha256": "2bb426d73971509b7638ccfe55decb428b3fa11d5ce4b8d3bcc05418b6c75841",
+      "bytes": 9198
+    },
+    {
+      "path": "configurations/operations/a1-runtime-policy-v1.yaml",
+      "sha256": "964a93c389b391b3b8735fd463a3345e5c824891037e87547889de710b4771ff",
+      "bytes": 5895
+    },
+    {
+      "path": "skills/a1-prospect-data-contract/references/prospect-candidate.schema.json",
+      "sha256": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de",
+      "bytes": 21575
+    },
+    {
+      "path": "skills/a1-prospect-data-contract/references/field-dictionary.md",
+      "sha256": "5b3705a36a4ea4cd67bb5269f70b3d08be6de1497b572e160f8464fb97c329c6",
+      "bytes": 6101
+    },
+    {
+      "path": "skills/a1-prospect-data-contract/references/export-view.md",
+      "sha256": "8f64db9cd4aa32d5cd8d349af3f28e0ece5f3b2cdcbdad5d53805b2249754084",
+      "bytes": 3558
+    },
+    {
+      "path": "skills/public-prospect-research/references/research-seed.schema.json",
+      "sha256": "8a35a8662ca35fd728df4af81ebf8275840dc91a806576481a88ef38e40f62d3",
+      "bytes": 4271
+    },
+    {
+      "path": "skills/prospect-segment-classification/references/classification-decision.schema.json",
+      "sha256": "57f9347d3fb6db132204c4f6005740ea10a9fb68f5ceccf5d5eb911744f4739e",
+      "bytes": 2757
+    },
+    {
+      "path": "skills/equinet-icp-qualification/references/qualification-assessment.schema.json",
+      "sha256": "15303e1b190c22da39757018bd4cb0d7ee4778b5eebf9343e112ebd2d37f8b00",
+      "bytes": 1143
+    },
+    {
+      "path": "skills/prospect-evidence-and-confidence/references/confidence-assessment.schema.json",
+      "sha256": "63cec3f190b8658987b5f589df75e7d97d1869c21a39b67314203cee76b73c09",
+      "bytes": 3314
+    },
+    {
+      "path": "skills/icp-scoring-and-rationale/references/scoring-package.schema.json",
+      "sha256": "c4aa271823b98ea265e0f39504a606145fedb1a08b2000530fd63a4bf2edcca4",
+      "bytes": 2216
+    },
+    {
+      "path": "skills/ranked-prospect-review-package/references/review-input.schema.json",
+      "sha256": "f13170c8abf620303fb40ebf8e9fafd82f3831a3f34b44d24c8aa29d7de5af8d",
+      "bytes": 2176
+    },
+    {
+      "path": "skills/ranked-prospect-review-package/references/review-package.schema.json",
+      "sha256": "f55c450c22da9c7c62a7feb655d666f2e9e34d7c034e44ab1bba96d9d89409d1",
+      "bytes": 3688
+    },
+    {
+      "path": "skills/prospect-export/references/export-manifest.schema.json",
+      "sha256": "921e1fd77d334fd878fcb6af9adab880b5c685e8a38c38c0a34cf94317726643",
+      "bytes": 1553
+    }
+  ],
+  "validated_steps": {
+    "foundation_1_to_5": "passed",
+    "skills_step_6": "passed",
+    "runtime_step_7": "passed",
+    "synthetic_step_8": "passed",
+    "real_prospect_step_9": "passed"
+  },
+  "integration_state": {
+    "hubspot": "unavailable",
+    "twenty": "unavailable",
+    "a2": "not_triggered",
+    "n8n": "not_implemented"
+  },
+  "action_boundaries": {
+    "outreach": "prohibited",
+    "hubspot_write": "prohibited_unavailable",
+    "twenty_write": "prohibited_unavailable",
+    "automatic_a2_handoff": "prohibited",
+    "human_review": "required"
+  },
+  "open_governance_items": [
+    "Gemini processing region confirmation",
+    "DPA and retention policy",
+    "Equinet administrator visibility policy",
+    "Named A1 Business Reviewer and backup",
+    "USD cost conversion and Unitalk Gateway prepaid-balance visibility/enforcement",
+    "Contractual delivery and acceptance evidence"
+  ]
+}

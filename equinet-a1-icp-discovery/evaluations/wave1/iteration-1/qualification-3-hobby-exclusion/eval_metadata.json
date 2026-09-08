@@ -1,0 +1,5 @@
+{
+  "eval_id": "qualification-3-hobby-exclusion",
+  "prompt": "Use equinet-icp-qualification only. Synthetic classification needs review. Evidence EV-X1 explicitly states the person shoes only their own horse as a hobby and does not offer professional Farrier services. Build the full Farrier qualification object, confirm the appropriate exclusion criterion with evidence, and do not calculate confidence or score.",
+  "expected_skill": "equinet-icp-qualification"
+}

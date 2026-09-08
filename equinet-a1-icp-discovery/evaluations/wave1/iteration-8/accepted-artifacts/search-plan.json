@@ -1,0 +1,41 @@
+{
+  "plan_version": "1.0.0",
+  "run_id": "RUN-20260812T190824Z-890880",
+  "planned_at": "2026-08-12T19:08:24Z",
+  "plan_origin": "reconstructed_from_session_20260812_190820_890880_logs_after_evaluation_hardening",
+  "source_register_version": "1.0.0",
+  "segment": "farrier",
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "max_candidates": 1,
+  "search_queries": [],
+  "allowed_sources": [
+    {
+      "source_id": "general.public_business_websites",
+      "access_profile": "public_business_website"
+    }
+  ],
+  "rejected_sources": [],
+  "human_seeds": [
+    {
+      "source_id": "general.public_business_websites",
+      "name": "James Holub Equine Services",
+      "url": "https://jamesholubequine.com"
+    }
+  ],
+  "tool_budget": {
+    "max_search_queries_per_run": 6,
+    "max_page_reads_per_candidate": 3,
+    "max_browser_fallbacks_per_candidate": 0,
+    "max_total_tool_calls_per_candidate": 10
+  },
+  "rules": [
+    "Search results are discovery-only.",
+    "Prefer official business websites.",
+    "Do not crawl conditional directories.",
+    "Do not qualify or score during research."
+  ]
+}

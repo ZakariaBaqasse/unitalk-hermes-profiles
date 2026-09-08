@@ -1,0 +1,550 @@
+{
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "record_kind": "production",
+  "research_seed": {
+    "schema_version": "1.0.0",
+    "run_id": "RUN-20260815T203653Z-28F8CD90",
+    "seed_id": "SEED-DARLEY-JONABELL-001",
+    "discovered_at": "2026-08-15T20:38:58Z",
+    "discovery_method": "approved_web_search",
+    "discovery_query": "Lexington Kentucky breeding farm official website thoroughbred farm",
+    "segment_hint": "horse_owner",
+    "identity_hint": {
+      "display_name": "Jonabell Farm / Darley America",
+      "person_name": "Kate Galvin",
+      "organisation_name": "Jonabell Farm",
+      "role_title": "Nominations Sales and Operating Manager, Jonabell Farm"
+    },
+    "website": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+    "location_hint": {
+      "country_code": "US",
+      "state_region": "Kentucky",
+      "city": "Lexington",
+      "postal_code": "40513",
+      "public_address": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA"
+    },
+    "public_contacts": [
+      {
+        "contact_type": "phone",
+        "value": "+1 859 255 8537",
+        "label": "Organisation general contact",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ]
+      },
+      {
+        "contact_type": "email",
+        "value": "us-hello@godolphin.com",
+        "label": "Organisation general contact",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ]
+      },
+      {
+        "contact_type": "email",
+        "value": "kgalvin@godolphin.com",
+        "label": "Primary named contact — Kate Galvin — Nominations Sales and Operating Manager, Jonabell Farm",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ]
+      },
+      {
+        "contact_type": "phone",
+        "value": "+1 859 519 5223",
+        "label": "Primary named contact — Kate Galvin — Nominations Sales and Operating Manager, Jonabell Farm",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ]
+      }
+    ],
+    "source_candidates": [
+      {
+        "evidence_id": "EV-DARLEY-JONABELL-001",
+        "source_url": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+        "source_name": "Darley America — Tours at Jonabell Farm",
+        "source_type": "public_business_website",
+        "retrieved_at": "2026-08-15T20:38:58Z",
+        "evidence_excerpt": "Jonabell Farm in Lexington, Kentucky is described as one of the leading horse farms in the USA, the American headquarters of the global Godolphin operation, and home to the Darley thoroughbred stallions in the United States. The current roster names Cody’s Wish, Nyquist, Street Sense, Essential Quality, Frosted, Maxfield, and Medaglia d’Oro. The page describes Jonabell as a privately-owned, working thoroughbred horse farm and references its breeding shed.",
+        "fact_or_inference": "direct_fact"
+      },
+      {
+        "evidence_id": "EV-DARLEY-CONTACT-001",
+        "source_url": "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+        "source_name": "Darley America — Jonabell Farm Contact",
+        "source_type": "public_business_website",
+        "retrieved_at": "2026-08-15T20:59:46Z",
+        "evidence_excerpt": "The official Jonabell Farm contact page lists General Enquiries telephone +1 859 255 8537 and email us-hello@godolphin.com; Kate Galvin as Nominations Sales and Operating Manager, Jonabell Farm, with email kgalvin@godolphin.com and mobile +1 859 519 5223; and address 3333 Bowman Mill Road, Lexington, Kentucky 40513, USA.",
+        "fact_or_inference": "direct_fact"
+      }
+    ],
+    "missing_information": [
+      "No named hoof-care purchasing decision-maker is established by the retained pages.",
+      "The retained pages do not state specific hoof-care product brands or suppliers."
+    ],
+    "conflicts": [],
+    "status": "ready_for_classification"
+  },
+  "classification_decision": {
+    "schema_version": "1.0.0",
+    "seed_id": "SEED-DARLEY-JONABELL-001",
+    "segment": "horse_owner",
+    "prospect_type": "breeding_farm",
+    "identity_type": "person_and_organisation",
+    "classification_status": "confirmed",
+    "evidence_references": [
+      "EV-DARLEY-JONABELL-001",
+      "EV-DARLEY-CONTACT-001"
+    ],
+    "rationale": "The official Darley America pages identify Jonabell Farm as a working Lexington breeding/racing operation and publish Kate Galvin as Nominations Sales and Operating Manager, Jonabell Farm. She is retained as the single primary named contact; purchasing influence remains unknown and the ICP score is unchanged.",
+    "unresolved_questions": [
+      "The public pages do not name the hoof-care purchasing decision-maker."
+    ]
+  },
+  "qualification_package": {
+    "qualification": {
+      "icp_config_version": "1.0.0",
+      "criteria": [
+        {
+          "criterion_id": "horse_owner.commercial_operation",
+          "criterion_label": "Professional or commercial equine operation",
+          "category": "fit",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "The official page identifies a privately-owned working thoroughbred farm and international breeding/racing operation."
+        },
+        {
+          "criterion_id": "horse_owner.more_than_three_horses",
+          "criterion_label": "Manages more than three horses",
+          "category": "fit",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "The current roster explicitly names seven stallions, establishing more than three horses."
+        },
+        {
+          "criterion_id": "horse_owner.purchasing_influence",
+          "criterion_label": "Influences hoof-care purchasing decisions",
+          "category": "fit",
+          "status": "unknown",
+          "evidence_ids": [],
+          "notes": "No named owner, trainer or manager with purchasing responsibility is identified on the retained page."
+        },
+        {
+          "criterion_id": "horse_owner.product_fit",
+          "criterion_label": "Regular need for hoof-care products or services",
+          "category": "fit",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "A working breeding farm managing multiple current stallions has recurring professional hoof-care needs."
+        },
+        {
+          "criterion_id": "horse_owner.performance_discipline",
+          "criterion_label": "Performance or competition discipline",
+          "category": "priority",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "The page explicitly describes an international thoroughbred breeding and racing operation and names major race winners."
+        },
+        {
+          "criterion_id": "horse_owner.breeding_activity",
+          "criterion_label": "Active breeding operation",
+          "category": "priority",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "The page identifies current stallions and a breeding shed."
+        },
+        {
+          "criterion_id": "horse_owner.professional_network",
+          "criterion_label": "Works with professional equine stakeholders",
+          "category": "priority",
+          "status": "unknown",
+          "evidence_ids": [],
+          "notes": "The global operation is explicit, but the retained page does not state specific professional Farrier or trainer relationships."
+        },
+        {
+          "criterion_id": "horse_owner.high_equine_activity_location",
+          "criterion_label": "Located in a high-equine-activity area",
+          "category": "priority",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "Jonabell Farm is explicitly located in Lexington, Kentucky."
+        },
+        {
+          "criterion_id": "horse_owner.buying_signal",
+          "criterion_label": "Recent buying or expansion signal",
+          "category": "priority",
+          "status": "unknown",
+          "evidence_ids": [],
+          "notes": "No recent purchase or expansion signal is directly stated."
+        },
+        {
+          "criterion_id": "horse_owner.single_horse_recreational",
+          "criterion_label": "Single-horse recreational owner without commercial involvement",
+          "category": "negative",
+          "status": "not_confirmed",
+          "evidence_ids": [],
+          "notes": "No retained evidence confirms this negative or exclusion criterion."
+        },
+        {
+          "criterion_id": "horse_owner.no_commercial_evidence",
+          "criterion_label": "No evidence of professional or commercial orientation",
+          "category": "exclusion",
+          "status": "not_confirmed",
+          "evidence_ids": [],
+          "notes": "No retained evidence confirms this negative or exclusion criterion."
+        }
+      ],
+      "minimum_data_status": "pass",
+      "missing_minimum_fields": [],
+      "exclusion_status": "eligible",
+      "exclusion_reasons": []
+    },
+    "audit": {
+      "segment": "horse_owner",
+      "required_gate_statuses": {
+        "horse_owner.commercial_operation": "confirmed",
+        "horse_owner.more_than_three_horses": "confirmed"
+      },
+      "special_pathways": [],
+      "criteria_count": 11
+    }
+  },
+  "confidence_package": {
+    "assessment": {
+      "schema_version": "1.0.0",
+      "method_version": "evidence-confidence-1.0.0",
+      "candidate_reference": {
+        "run_id": "RUN-20260815T203653Z-28F8CD90",
+        "seed_id": "SEED-DARLEY-JONABELL-001"
+      },
+      "available_evidence_ids": [
+        "EV-DARLEY-JONABELL-001",
+        "EV-DARLEY-CONTACT-001"
+      ],
+      "dimensions": {
+        "identity_certainty": {
+          "level": "strong_unique_match",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "The organisation identity and official domain are unambiguous."
+        },
+        "source_quality": {
+          "level": "authoritative_primary_business_source",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "All retained evidence comes from the organisation's current official business website."
+        },
+        "evidence_directness": {
+          "level": "mostly_direct",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "Material identity, operation and location claims are direct; any role-based commercial conclusion remains explicit in the qualification notes."
+        },
+        "corroboration": {
+          "level": "one_strong_source",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "The retained pages belong to one official business domain and are counted as one strong source."
+        },
+        "freshness": {
+          "level": "current_within_claim_window",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "The official site presents current teams, operations or current roster information."
+        },
+        "completeness": {
+          "level": "minimum_review_package_only",
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "The confidence-stage minimum is met; CRM checks and named procurement contacts remain unavailable or unknown."
+        }
+      },
+      "gates": {
+        "mandatory_claim_inference_only": {
+          "value": false,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "Mandatory segment claims are directly supported by the official website."
+        },
+        "unresolved_identity_conflict": {
+          "value": false,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "No material identity conflict is present."
+        },
+        "critical_evidence_conflict": {
+          "value": false,
+          "evidence_ids": [],
+          "rationale": "No contradictory retained evidence is present."
+        },
+        "minimum_data_failed": {
+          "value": false,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "The confidence-stage minimum evidence package is present."
+        },
+        "blocked_source_used": {
+          "value": false,
+          "evidence_ids": [],
+          "rationale": "No blocked source is retained."
+        },
+        "no_evidence": {
+          "value": false,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001",
+            "EV-DARLEY-CONTACT-001"
+          ],
+          "rationale": "Permitted official-source evidence is present."
+        },
+        "fabricated_or_untraceable_evidence": {
+          "value": false,
+          "evidence_ids": [],
+          "rationale": "Every retained evidence item has an official URL and excerpt."
+        }
+      },
+      "confidence_stage_missing_fields": []
+    },
+    "confidence": {
+      "level": "high",
+      "score": 84,
+      "method_version": "evidence-confidence-1.0.0",
+      "reasons": [
+        "identity_certainty: strong_unique_match (20/20)",
+        "source_quality: authoritative_primary_business_source (20/20)",
+        "evidence_directness: mostly_direct (15/20)",
+        "corroboration: one_strong_source (12/20)",
+        "freshness: current_within_claim_window (10/10)",
+        "completeness: minimum_review_package_only (7/10)"
+      ],
+      "limitations": [
+        "No confidence score cap was triggered.",
+        "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+      ]
+    },
+    "audit": {
+      "raw_score": 84,
+      "adjusted_score": 84,
+      "dimension_scores": {
+        "identity_certainty": {
+          "level": "strong_unique_match",
+          "points": 20,
+          "maximum": 20
+        },
+        "source_quality": {
+          "level": "authoritative_primary_business_source",
+          "points": 20,
+          "maximum": 20
+        },
+        "evidence_directness": {
+          "level": "mostly_direct",
+          "points": 15,
+          "maximum": 20
+        },
+        "corroboration": {
+          "level": "one_strong_source",
+          "points": 12,
+          "maximum": 20
+        },
+        "freshness": {
+          "level": "current_within_claim_window",
+          "points": 10,
+          "maximum": 10
+        },
+        "completeness": {
+          "level": "minimum_review_package_only",
+          "points": 7,
+          "maximum": 10
+        }
+      },
+      "applied_caps": [],
+      "confidence_stage_missing_fields": [],
+      "available_evidence_ids": [
+        "EV-DARLEY-JONABELL-001",
+        "EV-DARLEY-CONTACT-001"
+      ]
+    }
+  },
+  "scoring_package": {
+    "scoring": {
+      "status": "scored",
+      "score": 75,
+      "band": "high",
+      "model_version": "1.0.0",
+      "components": [
+        {
+          "criterion_id": "horse_owner.commercial_operation",
+          "points_awarded": 25,
+          "max_points": 25,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "Full V1 weight awarded for confirmed criterion."
+        },
+        {
+          "criterion_id": "horse_owner.more_than_three_horses",
+          "points_awarded": 20,
+          "max_points": 20,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "Full V1 weight awarded for confirmed criterion."
+        },
+        {
+          "criterion_id": "horse_owner.product_fit",
+          "points_awarded": 10,
+          "max_points": 10,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "Full V1 weight awarded for confirmed criterion."
+        },
+        {
+          "criterion_id": "horse_owner.performance_discipline",
+          "points_awarded": 8,
+          "max_points": 8,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "Full V1 weight awarded for confirmed criterion."
+        },
+        {
+          "criterion_id": "horse_owner.breeding_activity",
+          "points_awarded": 7,
+          "max_points": 7,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "Full V1 weight awarded for confirmed criterion."
+        },
+        {
+          "criterion_id": "horse_owner.high_equine_activity_location",
+          "points_awarded": 5,
+          "max_points": 5,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ],
+          "notes": "Full V1 weight awarded for confirmed criterion."
+        }
+      ],
+      "rationale": "Numeric ICP score 75/100 from 6 confirmed weighted criteria. Raw band high; final band high.",
+      "block_reason": null
+    },
+    "audit": {
+      "raw_band": "high",
+      "final_band": "high",
+      "applied_band_caps": [],
+      "outcome": "high_priority_horse_owner",
+      "review_required": true,
+      "confirmed_positive_criteria": [
+        "horse_owner.commercial_operation",
+        "horse_owner.more_than_three_horses",
+        "horse_owner.product_fit",
+        "horse_owner.performance_discipline",
+        "horse_owner.breeding_activity",
+        "horse_owner.high_equine_activity_location"
+      ],
+      "missing_required_gates": []
+    },
+    "explanation": {
+      "summary": "ICP score 75/100; final band high. 6 weighted criteria earned points. Outcome: high_priority_horse_owner.",
+      "confirmed_criteria": [
+        {
+          "criterion_id": "horse_owner.commercial_operation",
+          "points": 25,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ]
+        },
+        {
+          "criterion_id": "horse_owner.more_than_three_horses",
+          "points": 20,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ]
+        },
+        {
+          "criterion_id": "horse_owner.product_fit",
+          "points": 10,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ]
+        },
+        {
+          "criterion_id": "horse_owner.performance_discipline",
+          "points": 8,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ]
+        },
+        {
+          "criterion_id": "horse_owner.breeding_activity",
+          "points": 7,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ]
+        },
+        {
+          "criterion_id": "horse_owner.high_equine_activity_location",
+          "points": 5,
+          "evidence_ids": [
+            "EV-DARLEY-JONABELL-001"
+          ]
+        }
+      ],
+      "unearned_weighted_criteria": [
+        "horse_owner.purchasing_influence",
+        "horse_owner.professional_network",
+        "horse_owner.buying_signal"
+      ],
+      "applied_band_rules": [],
+      "outcome": "high_priority_horse_owner",
+      "review_required": true,
+      "confidence_interpretation": "High commercial fit with High evidence confidence: attractive and well-supported for human review."
+    },
+    "confidence_context": {
+      "level": "high",
+      "score": 84,
+      "method_version": "evidence-confidence-1.0.0"
+    }
+  },
+  "source_policy_status": "approved",
+  "access_method": "approved_api",
+  "model": "deepseek-v4-flash",
+  "tools_used": [
+    "Exa web_search",
+    "Firecrawl web_extract",
+    "deterministic qualification builder",
+    "deterministic confidence calculator",
+    "deterministic ICP scorer"
+  ],
+  "provided_exclusion_file_status": "unavailable"
+}

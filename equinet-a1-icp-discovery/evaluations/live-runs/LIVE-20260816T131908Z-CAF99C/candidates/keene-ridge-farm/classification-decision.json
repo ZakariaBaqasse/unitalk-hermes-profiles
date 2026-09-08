@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "seed_id": "SEED-KEENERIDGE-FARM-001",
+  "segment": "horse_owner",
+  "prospect_type": "boarding_stable",
+  "identity_type": "person_and_organisation",
+  "classification_status": "confirmed",
+  "evidence_references": ["EV-001", "EV-002", "EV-003"],
+  "rationale": "Keene Ridge Farm is a professional boarding and retirement facility on 170 acres in Lexington, KY. Owner Ann Bakhaus operates multiple barns (A, B, C) with full board at $775, pasture board at $450, and mare retirement at $450. The facility includes indoor/outdoor arenas, 20+ fields, and offers boarding, retirement, riding lessons and clinics. Blacksmith and vet services are scheduled routinely. The operation serves multiple horses clearly exceeding 3 head, across multiple disciplines and breeds (Thoroughbreds, Shires, Paints, Warmbloods, etc.). The official website self-presents as the farm's own site with owner name, full address, contact email, detailed pricing and services, and boarder testimonials.",
+  "unresolved_questions": [
+    "Exact horse count not explicitly published on the website",
+    "Phone number not publicly published (contact via email or form only)",
+    "No named farrier or hoof-care provider mentioned on the site"
+  ]
+}

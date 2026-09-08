@@ -1,0 +1,226 @@
+{
+  "test_suite": "equinet-a1-shared-directory-extraction-foundation",
+  "test_mode": "synthetic_fixture_only",
+  "network_requests": 0,
+  "status": "passed",
+  "passed": 43,
+  "failed": 0,
+  "error": null,
+  "results": [
+    {
+      "name": "six source runtime profiles are configured",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "source runtime profile validates: pdf.farrieriq",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "source runtime profile validates: pdf.hast_farriers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "source runtime profile validates: pdf.best_of_lexington_farriers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "source runtime profile validates: pdf.horseprofinder",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "source runtime profile validates: pdf.newhorse",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "source runtime profile validates: pdf.mad_barn_directory",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bounded two-page run completes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "three unique listings are returned",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "duplicate listing is recorded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "raw listing count is four",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coverage reaches complete snapshot",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coverage records two pages",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no external actions are recorded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "normalised listing maps to the existing A1 Research Seed contract",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directory handoff remains needs_research",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "raw page artifacts exist",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fresh complete coverage suppresses refetch",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "append-only audit log records both runs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audit events form a valid hash chain",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "second audit event links to the first",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page cap produces partial coverage",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "partial coverage preserves next cursor",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "candidate cap never implies complete coverage",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "candidate cap records an explicit stop reason",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP 429 stops the source",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HTTP 429 is not retried",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "one transient retry can recover",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "transient retry occurs exactly once",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "adapter parser failure is audited instead of escaping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "per-run candidate limit is enforced",
+      "passed": true,
+      "detail": "Requested candidate count exceeds the source per-run limit."
+    },
+    {
+      "name": "daily candidate limit is enforced",
+      "passed": true,
+      "detail": "Requested candidate count would exceed the source daily limit."
+    },
+    {
+      "name": "wrong host is rejected",
+      "passed": true,
+      "detail": "URL host 'example.com' is not approved for source 'pdf.farrieriq'."
+    },
+    {
+      "name": "approved Wave 1 adapter passes the live policy gate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Wave 2 live run is rejected before adapter validation",
+      "passed": true,
+      "detail": "Source adapter 'horseprofinder' is not live-ready."
+    },
+    {
+      "name": "unsafe run identifier is rejected",
+      "passed": true,
+      "detail": "run_id must be a safe uppercase identifier."
+    },
+    {
+      "name": "non-US directory run is rejected",
+      "passed": true,
+      "detail": "Requested country 'CA' is outside the configured directory scope."
+    },
+    {
+      "name": "blocked source has no executable runtime profile",
+      "passed": true,
+      "detail": "Source 'pdf.ohorse' has no directory runtime profile."
+    },
+    {
+      "name": "concurrency lock prevents a second worker",
+      "passed": true,
+      "detail": "Directory extraction lock already exists: /tmp/a1-directory-foundation-z0phwijd/locks/lock-test.lock"
+    },
+    {
+      "name": "listing index stores three unique identities",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audit artifact validates from disk",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "request pacing persists across runs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fixed clock and identical fixtures produce byte-identical state",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

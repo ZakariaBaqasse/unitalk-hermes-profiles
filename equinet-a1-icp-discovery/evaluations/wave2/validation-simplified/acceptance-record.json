@@ -1,0 +1,32 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "checkpoint": "wave2",
+  "approver": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "decision": "approved_for_a1_v1_pilot",
+  "approved_at": "2026-08-14T16:25:31Z",
+  "skills": [
+    {
+      "name": "prospect-evidence-and-confidence",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot"
+    },
+    {
+      "name": "icp-scoring-and-rationale",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot"
+    }
+  ],
+  "basis": {
+    "technical_preflight": "passed",
+    "simplified_behavioural_validation": "6/6 scenarios passed",
+    "corrected_farrier_exclusion_rerun": "passed"
+  },
+  "scope": "Unitalk approval for the controlled A1 V1 pilot",
+  "limitations": [
+    "This is not Equinet production acceptance.",
+    "No outreach, CRM write, advertising, financial or A2 handoff action is authorised.",
+    "Wave 3 skills remain to be created and validated."
+  ],
+  "review_artifact": "evaluations/wave2/validation-simplified/WAVE2-SIMPLIFIED-REVIEW.md"
+}

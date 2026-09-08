@@ -1,0 +1,371 @@
+{
+  "register_id": "equinet-a1-frozen-component-register-20260823",
+  "generated_at": "2026-08-23T19:45:00Z",
+  "source_register_version": "1.4.3",
+  "hash_verification": "all_sha256_computed_from_on_disk_files",
+  "release_versions": {
+    "source_register": "1.4.3",
+    "runtime_policy": "1.7.3",
+    "directory_runtime_profiles": "1.6.1",
+    "public_prospect_research_skill": "2.0.0",
+    "farrieriq_adapter": "1.1.0",
+    "hast_adapter": "1.1.0",
+    "best_of_lexington_adapter": "1.1.0",
+    "horseprofinder_adapter": "1.0.0",
+    "newhorse_adapter": "1.0.0",
+    "mad_barn_adapter": "1.0.0"
+  },
+  "entries": [
+    {
+      "category": "configuration",
+      "relative_path": "configurations/directory-extraction/IMPLEMENTATION-CONTRACT.md",
+      "byte_count": 3827,
+      "sha256": "e175c6842df7033bb179edc252cd3fd6ff502bd1c2af11d38510e2b0d8583369",
+      "version": null
+    },
+    {
+      "category": "configuration",
+      "relative_path": "configurations/directory-extraction/coverage-policy-v1.yaml",
+      "byte_count": 1197,
+      "sha256": "cbcb032a7383a8137321f538957724d51643c1eaa205fc6f3cc9b125ea55990f",
+      "version": null
+    },
+    {
+      "category": "configuration",
+      "relative_path": "configurations/directory-extraction/field-mapping-v1.yaml",
+      "byte_count": 1544,
+      "sha256": "a3ab35978aa7675e208bf1c18d90066dbda2ea6abdf572a84a8244df382e07d2",
+      "version": null
+    },
+    {
+      "category": "configuration",
+      "relative_path": "configurations/directory-extraction/source-runtime-profiles-v1.yaml",
+      "byte_count": 6146,
+      "sha256": "bcfd4d0ba13cebaf681ee77aea76714dbdda3a9a78b5ad807b085a8afcf4dafd",
+      "version": null
+    },
+    {
+      "category": "configuration",
+      "relative_path": "configurations/operations/a1-runtime-policy-v1.yaml",
+      "byte_count": 7132,
+      "sha256": "4eb84f2d0517e588e35b010bda59d754eb1ae15498c5e80e248fb3a25ef5963f",
+      "version": null
+    },
+    {
+      "category": "configuration",
+      "relative_path": "configurations/sources/approved-source-register-v1.yaml",
+      "byte_count": 46703,
+      "sha256": "d7edc42354c01efcdfd5bdc8df343a8cd9cc33a5189110d4bd6e6214892b632f",
+      "version": null
+    },
+    {
+      "category": "configuration",
+      "relative_path": "configurations/sources/README.md",
+      "byte_count": 10818,
+      "sha256": "f67f80f3ec46994f5795ee37312486b6a4e463f96f4fa15d3318c97b3605c3ae",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/__init__.py",
+      "byte_count": 911,
+      "sha256": "dd7148154a879a9231cb963bc9b721b3bf73cf75aa9700117e1ae34aeef0ef4d",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/__init__.py",
+      "byte_count": 472,
+      "sha256": "029653068a65396499bc80c74e158c395971631ee7a34831a763ab43a782ea8e",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/best_of_lexington.py",
+      "byte_count": 3809,
+      "sha256": "a195b2deced644c13586f143989121069bdd22557ebc1a87bb62820a33f1395a",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/common.py",
+      "byte_count": 1616,
+      "sha256": "225eda6f4b4725959a3e8265adadcb1323ba7e39aeb601d8a0be59d5a9bc81b5",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/farrieriq.py",
+      "byte_count": 7371,
+      "sha256": "731c9a2eb3e272f8e18d4d860f2f91f62c6ce69164fc73f466c33cc33307d290",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/hast.py",
+      "byte_count": 4218,
+      "sha256": "c96599e1416cad0720a8f2f84a10595c1f9177826332c5f1a954c6b916155b06",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/horseprofinder.py",
+      "byte_count": 5193,
+      "sha256": "9afb92d180f8c521baba388a6252253653a1b4f9c5d6fbeca91d59671d5a9ecf",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/mad_barn.py",
+      "byte_count": 5963,
+      "sha256": "5ba182766d829521fe79cdc234e2c2200cc7cd2ba623d007300401af4c6e2aeb",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/adapters/newhorse.py",
+      "byte_count": 7112,
+      "sha256": "3207bb45c4e760854742cee9e636b686c50d60526eaadf656834fa06447a9c51",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/handoff.py",
+      "byte_count": 3037,
+      "sha256": "49b7cc1e7dcbadb447f68aaec6d3984a7775315ae5483c8d858448fbe9582a37",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/models.py",
+      "byte_count": 5711,
+      "sha256": "c9aa23a366c541bcb41b15bfd5f2be68fff91a3d09f99e84d793d245b2feac21",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/policy.py",
+      "byte_count": 5014,
+      "sha256": "deaead27cbc99da84df16dfd58fffbdd312a2c724c89d6c5dae6a1688e1a690d",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/reconciliation.py",
+      "byte_count": 1402,
+      "sha256": "1346a3715a5b3cc1ebabc0300daa1bdcbb03c88d024c21112e9d438bc446c14f",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/runner.py",
+      "byte_count": 17038,
+      "sha256": "887718bb1cd7e18163c7731dcce16250ba9fb0c0cb38248120dc9809e11032ed",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/storage.py",
+      "byte_count": 8315,
+      "sha256": "14413b7f57309690c3279a42a56b788e70823b3abbfa9f7fb0370813bf1bf9fb",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/transports.py",
+      "byte_count": 2553,
+      "sha256": "3eb07043b81c21b70b67b4b0a3c0b702cc259784901f7dc6445cc07e7c3a6d5c",
+      "version": null
+    },
+    {
+      "category": "runtime_code",
+      "relative_path": "skills/public-prospect-research/scripts/directory_extraction/validation.py",
+      "byte_count": 1246,
+      "sha256": "75ef75c346089c22885705c4a028159fc8ebbceeb48e830060dd4481a5bac413",
+      "version": null
+    },
+    {
+      "category": "validator",
+      "relative_path": "scripts/run_directory_extraction.py",
+      "byte_count": 2929,
+      "sha256": "ba03d78bcd36a39f8c5d3e5c9225511c6c15a8a45335fdd1618077f0220e19af",
+      "version": null
+    },
+    {
+      "category": "validator",
+      "relative_path": "scripts/validate_directory_extraction_foundation.py",
+      "byte_count": 5570,
+      "sha256": "47d5e6af9be82d97c83aeb88818cccd33df3d0432f607a61c2d8335b60d2c11e",
+      "version": null
+    },
+    {
+      "category": "validator",
+      "relative_path": "scripts/validate_directory_extraction_wave1.py",
+      "byte_count": 6544,
+      "sha256": "ce4404499e652569d98becc5d7f5f707441596a4c5c432610b5715de038974f2",
+      "version": null
+    },
+    {
+      "category": "validator",
+      "relative_path": "scripts/validate_directory_extraction_wave2.py",
+      "byte_count": 7137,
+      "sha256": "45e8e97e166e59c5268aee3638ac6f55d81f4546a2d5c737267f7b2ee0ecf198",
+      "version": null
+    },
+    {
+      "category": "validator",
+      "relative_path": "scripts/validate_source_register.py",
+      "byte_count": 15269,
+      "sha256": "1d45c6ea73bfd9a123f99812083285195eea2b5f31056c91a6539f3addf0c440",
+      "version": null
+    },
+    {
+      "category": "test_suite",
+      "relative_path": "evaluations/directory-extraction-foundation-20260823/test_foundation.py",
+      "byte_count": 16671,
+      "sha256": "5778c3f46b7c12672548d607f3aae27b1d54d5f38d614d773a808600d4409522",
+      "version": null
+    },
+    {
+      "category": "test_suite",
+      "relative_path": "evaluations/directory-extraction-wave1-20260823/test_adapters_offline.py",
+      "byte_count": 8252,
+      "sha256": "efaff4d38c4b8320220c1bcf135adcb61c0cd54c435ac4723dd70ea78696e215",
+      "version": null
+    },
+    {
+      "category": "test_suite",
+      "relative_path": "evaluations/directory-extraction-wave2-20260823/test_adapters_offline.py",
+      "byte_count": 8781,
+      "sha256": "d38c6ce5b404c663a723cfbf473bbddb2c83389e1088b56416d0529d31a915fc",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/SKILL.md",
+      "byte_count": 14489,
+      "sha256": "d477d3076902ce582c710013cfa4a0e6124ec4a7e709504a72f4a8f4cba3b5a4",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/audit-event.schema.json",
+      "byte_count": 945,
+      "sha256": "29a18f05f08e8c30937a2b261bbfe3466e4012d28747f6cdf720d6acc2a7a310",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/audit-record.schema.json",
+      "byte_count": 3202,
+      "sha256": "bebff516d0020dd9c3a41c8e9485b0c644d03acfd6ffa742f31f3b3491ffc2a1",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/coverage-record.schema.json",
+      "byte_count": 2197,
+      "sha256": "338f44bb41fc49355437919bd6bba36fcc7574c95637c14db470685fe99f9938",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/directory-listing.schema.json",
+      "byte_count": 4925,
+      "sha256": "0226547657dab2e240d76debdbfc47c3b1b8af1a3db192c4092a13218d1581f9",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/foundation.md",
+      "byte_count": 3235,
+      "sha256": "1947068e72ee58789555978b9e45eec8c25f40648f10d63a08b3051ec1d5f0d6",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/source-runtime-profile.schema.json",
+      "byte_count": 3177,
+      "sha256": "a38650f8a0e37b3863c8f5798745574aff3f392564cf86265d8a22c9f91aa8aa",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/wave1-adapters.md",
+      "byte_count": 1455,
+      "sha256": "0f60e5ad2ea402ad3bc7184c37718cbdc191e28ab9417c53586a6a79b175339a",
+      "version": null
+    },
+    {
+      "category": "contract_reference",
+      "relative_path": "skills/public-prospect-research/references/directory-extraction/wave2-adapters.md",
+      "byte_count": 1919,
+      "sha256": "018a37b484cab82efc06266b3a8fdcb74c9e08137a7a3955f90b26d53339e1fc",
+      "version": null
+    },
+    {
+      "category": "runbook",
+      "relative_path": "deliverables/step10/A1-V1-MANUAL-RUNBOOK.md",
+      "byte_count": 5269,
+      "sha256": "f16eb1a1ef3a1152b6932aa6e3f21dbc9fcf21cbb113f79373488bf7fbeb72ac",
+      "version": null
+    },
+    {
+      "category": "runbook",
+      "relative_path": "runtime/directory-extraction/README.md",
+      "byte_count": 789,
+      "sha256": "c22c10dd2d4cdce6d3a57f9ebfe79090f07a531922ea63c119053ee88a6a5cb6",
+      "version": null
+    },
+    {
+      "category": "agent_config",
+      "relative_path": "SOUL.md",
+      "byte_count": 24172,
+      "sha256": "a9706f2c2a0ed69181a7e9dbffe4065550cbe1a4e498c2b6bcd5b5a15380379d",
+      "version": null
+    },
+    {
+      "category": "validator",
+      "relative_path": "scripts/validate_step7_runtime_policy.py",
+      "byte_count": 9522,
+      "sha256": "75d2f8f7a38b64fd28adabb9392e4292042e518b30bf4dfac92e01f0f450f516",
+      "version": null
+    },
+    {
+      "category": "test_suite",
+      "relative_path": "scripts/run_source_register_tests.py",
+      "byte_count": 7524,
+      "sha256": "95467077074c1ba5a1f87d6bb19a156def0b7825a8ce8c06636c15d540290868",
+      "version": null
+    },
+    {
+      "category": "test_suite",
+      "relative_path": "scripts/run_recovery_tests.py",
+      "byte_count": 6561,
+      "sha256": "566bbbfde6c13bb134772a157d0559b07064f209b2ac982633528cd4ddc11e6c",
+      "version": null
+    },
+    {
+      "category": "test_suite",
+      "relative_path": "scripts/run_wave1_skill_tests.py",
+      "byte_count": 18950,
+      "sha256": "7956bbb5582165637c0b034139896ea2635fe5d6c484b41088cf35ef23a716a6",
+      "version": null
+    }
+  ],
+  "summary": {
+    "total_entries": 48,
+    "total_unique_paths": 48,
+    "total_byte_count": 337832,
+    "missing_files": [],
+    "category_breakdown": {
+      "configuration": 7,
+      "runtime_code": 17,
+      "validator": 6,
+      "test_suite": 6,
+      "contract_reference": 9,
+      "runbook": 2,
+      "agent_config": 1
+    }
+  }
+}

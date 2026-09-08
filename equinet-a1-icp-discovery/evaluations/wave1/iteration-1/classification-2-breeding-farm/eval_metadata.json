@@ -1,0 +1,5 @@
+{
+  "eval_id": "classification-2-breeding-farm",
+  "prompt": "Use prospect-segment-classification only. Classify this synthetic Research Seed: SEED-CLASS-OWNER. Evidence EV-2 from the official website states: \u201cBluegrass Breeding Farm is a commercial Thoroughbred breeding operation in Lexington, Kentucky, managed by Farm Manager Alex Doe.\u201d Return one classification decision object. Do not qualify or score.",
+  "expected_skill": "prospect-segment-classification"
+}

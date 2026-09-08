@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260815T203653Z-28F8CD90",
+  "seed_id": "SEED-DARLEY-JONABELL-001",
+  "discovered_at": "2026-08-15T20:38:58Z",
+  "discovery_method": "approved_web_search",
+  "discovery_query": "Lexington Kentucky breeding farm official website thoroughbred farm",
+  "segment_hint": "horse_owner",
+  "identity_hint": {
+    "display_name": "Jonabell Farm / Darley America",
+    "person_name": "Kate Galvin",
+    "organisation_name": "Jonabell Farm",
+    "role_title": "Nominations Sales and Operating Manager, Jonabell Farm"
+  },
+  "website": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+  "location_hint": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington",
+    "postal_code": "40513",
+    "public_address": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA"
+  },
+  "public_contacts": [
+    {
+      "contact_type": "phone",
+      "value": "+1 859 255 8537",
+      "label": "Organisation general contact",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001"
+      ]
+    },
+    {
+      "contact_type": "email",
+      "value": "us-hello@godolphin.com",
+      "label": "Organisation general contact",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001"
+      ]
+    },
+    {
+      "contact_type": "email",
+      "value": "kgalvin@godolphin.com",
+      "label": "Primary named contact — Kate Galvin — Nominations Sales and Operating Manager, Jonabell Farm",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001"
+      ]
+    },
+    {
+      "contact_type": "phone",
+      "value": "+1 859 519 5223",
+      "label": "Primary named contact — Kate Galvin — Nominations Sales and Operating Manager, Jonabell Farm",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001"
+      ]
+    }
+  ],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-DARLEY-JONABELL-001",
+      "source_url": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+      "source_name": "Darley America — Tours at Jonabell Farm",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-15T20:38:58Z",
+      "evidence_excerpt": "Jonabell Farm in Lexington, Kentucky is described as one of the leading horse farms in the USA, the American headquarters of the global Godolphin operation, and home to the Darley thoroughbred stallions in the United States. The current roster names Cody’s Wish, Nyquist, Street Sense, Essential Quality, Frosted, Maxfield, and Medaglia d’Oro. The page describes Jonabell as a privately-owned, working thoroughbred horse farm and references its breeding shed.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-DARLEY-CONTACT-001",
+      "source_url": "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+      "source_name": "Darley America — Jonabell Farm Contact",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-15T20:59:46Z",
+      "evidence_excerpt": "The official Jonabell Farm contact page lists General Enquiries telephone +1 859 255 8537 and email us-hello@godolphin.com; Kate Galvin as Nominations Sales and Operating Manager, Jonabell Farm, with email kgalvin@godolphin.com and mobile +1 859 519 5223; and address 3333 Bowman Mill Road, Lexington, Kentucky 40513, USA.",
+      "fact_or_inference": "direct_fact"
+    }
+  ],
+  "missing_information": [
+    "No named hoof-care purchasing decision-maker is established by the retained pages.",
+    "The retained pages do not state specific hoof-care product brands or suppliers."
+  ],
+  "conflicts": [],
+  "status": "ready_for_classification"
+}

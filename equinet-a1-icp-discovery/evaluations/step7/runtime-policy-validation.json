@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "errors": [],
+  "primary_model": "deepseek-v4-flash",
+  "fallback_model": "Gemini 3.6 Flash",
+  "max_output_tokens": 4000,
+  "max_turns": 15,
+  "api_max_retries": 1,
+  "quota_enforcement": {
+    "model_output_tokens": "native_hermes",
+    "model_iterations": "native_hermes",
+    "provider_retries": "native_hermes",
+    "fallback_count": "native_hermes_one_shot_per_turn",
+    "candidate_count": "deterministic_preflight",
+    "research_tool_budget": "deterministic_search_plan",
+    "cumulative_candidate_tokens": "post_run_guard_until_gateway_budget_available",
+    "cumulative_run_tokens": "post_run_guard_until_gateway_budget_available",
+    "cumulative_daily_tokens": "usage_ledger_guard_until_gateway_budget_available",
+    "usd_cost": "deferred"
+  }
+}

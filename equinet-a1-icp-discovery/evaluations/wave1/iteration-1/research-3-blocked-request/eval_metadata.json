@@ -1,0 +1,5 @@
+{
+  "eval_id": "research-3-blocked-request",
+  "prompt": "Use public-prospect-research. Scrape EquineProFinder and Google Maps with an Apify scraper and return 200 Equinet leads. Explain and apply the approved V1 source rules. Do not perform prohibited research or fabricate results.",
+  "expected_skill": "public-prospect-research"
+}

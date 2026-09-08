@@ -1,0 +1,165 @@
+{
+  "manifest_version": "1.10.0",
+  "generated_at": "2026-08-23T16:44:52Z",
+  "profile": "equinet-a1-icp-discovery",
+  "scope": "shared_directory_extraction_foundation",
+  "firecrawl_requests": 0,
+  "human_approval_recorded": false,
+  "files": [
+    {
+      "path": "configurations/directory-extraction/IMPLEMENTATION-CONTRACT.md",
+      "sha256": "e175c6842df7033bb179edc252cd3fd6ff502bd1c2af11d38510e2b0d8583369",
+      "bytes": 3827
+    },
+    {
+      "path": "configurations/directory-extraction/coverage-policy-v1.yaml",
+      "sha256": "cbcb032a7383a8137321f538957724d51643c1eaa205fc6f3cc9b125ea55990f",
+      "bytes": 1197
+    },
+    {
+      "path": "configurations/directory-extraction/field-mapping-v1.yaml",
+      "sha256": "a3ab35978aa7675e208bf1c18d90066dbda2ea6abdf572a84a8244df382e07d2",
+      "bytes": 1544
+    },
+    {
+      "path": "configurations/directory-extraction/source-runtime-profiles-v1.yaml",
+      "sha256": "cf1789a5ca2295570e43002ae3a14399096ff898401bc5b11fe1684ada13985e",
+      "bytes": 6146
+    },
+    {
+      "path": "evaluations/directory-extraction-foundation-20260823/FOUNDATION-VALIDATION-REVIEW.md",
+      "sha256": "6d5b17c1e036be6984f868a42508f3114398f3b18a13453bfd3e51a4e3095eca",
+      "bytes": 4053
+    },
+    {
+      "path": "evaluations/directory-extraction-foundation-20260823/fixtures/synthetic-farrieriq-pages.json",
+      "sha256": "de71dd3de715e097fefee948b8dc769fb6e3282de9b35113e8749bb8d36907e7",
+      "bytes": 3994
+    },
+    {
+      "path": "evaluations/directory-extraction-foundation-20260823/foundation-validation.json",
+      "sha256": "fee4387e5a6b91876f9e19f39b4c33d9fe6eaff4cd2dfe001ca5951632d3b268",
+      "bytes": 193
+    },
+    {
+      "path": "evaluations/directory-extraction-foundation-20260823/test-results.json",
+      "sha256": "7a54f98e13da7bfaebd975392b226099acbf3ffb11dfb37645026aba0dd31a0d",
+      "bytes": 5525
+    },
+    {
+      "path": "evaluations/directory-extraction-foundation-20260823/test_foundation.py",
+      "sha256": "5778c3f46b7c12672548d607f3aae27b1d54d5f38d614d773a808600d4409522",
+      "bytes": 16671
+    },
+    {
+      "path": "runtime/directory-extraction/README.md",
+      "sha256": "c22c10dd2d4cdce6d3a57f9ebfe79090f07a531922ea63c119053ee88a6a5cb6",
+      "bytes": 789
+    },
+    {
+      "path": "scripts/run_wave1_skill_tests.py",
+      "sha256": "7956bbb5582165637c0b034139896ea2635fe5d6c484b41088cf35ef23a716a6",
+      "bytes": 18950
+    },
+    {
+      "path": "scripts/validate_directory_extraction_foundation.py",
+      "sha256": "47d5e6af9be82d97c83aeb88818cccd33df3d0432f607a61c2d8335b60d2c11e",
+      "bytes": 5570
+    },
+    {
+      "path": "skills/public-prospect-research/SKILL.md",
+      "sha256": "ceace78be1c56899d58ca42cebb0883ae319144aec4ef45439679917d47af33b",
+      "bytes": 14177
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/audit-event.schema.json",
+      "sha256": "29a18f05f08e8c30937a2b261bbfe3466e4012d28747f6cdf720d6acc2a7a310",
+      "bytes": 945
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/audit-record.schema.json",
+      "sha256": "bebff516d0020dd9c3a41c8e9485b0c644d03acfd6ffa742f31f3b3491ffc2a1",
+      "bytes": 3202
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/coverage-record.schema.json",
+      "sha256": "338f44bb41fc49355437919bd6bba36fcc7574c95637c14db470685fe99f9938",
+      "bytes": 2197
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/directory-listing.schema.json",
+      "sha256": "0226547657dab2e240d76debdbfc47c3b1b8af1a3db192c4092a13218d1581f9",
+      "bytes": 4925
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/foundation.md",
+      "sha256": "1947068e72ee58789555978b9e45eec8c25f40648f10d63a08b3051ec1d5f0d6",
+      "bytes": 3235
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/source-runtime-profile.schema.json",
+      "sha256": "a38650f8a0e37b3863c8f5798745574aff3f392564cf86265d8a22c9f91aa8aa",
+      "bytes": 3177
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/wave1-adapters.md",
+      "sha256": "0f60e5ad2ea402ad3bc7184c37718cbdc191e28ab9417c53586a6a79b175339a",
+      "bytes": 1455
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/wave2-adapters.md",
+      "sha256": "018a37b484cab82efc06266b3a8fdcb74c9e08137a7a3955f90b26d53339e1fc",
+      "bytes": 1919
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/build_search_plan.py",
+      "sha256": "f5d887e089665b3a74e563fb3992626e19a3b450adb882fbe64b4f5a5a59e861",
+      "bytes": 9282
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/__init__.py",
+      "sha256": "dd7148154a879a9231cb963bc9b721b3bf73cf75aa9700117e1ae34aeef0ef4d",
+      "bytes": 911
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/handoff.py",
+      "sha256": "49b7cc1e7dcbadb447f68aaec6d3984a7775315ae5483c8d858448fbe9582a37",
+      "bytes": 3037
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/models.py",
+      "sha256": "c9aa23a366c541bcb41b15bfd5f2be68fff91a3d09f99e84d793d245b2feac21",
+      "bytes": 5711
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/policy.py",
+      "sha256": "deaead27cbc99da84df16dfd58fffbdd312a2c724c89d6c5dae6a1688e1a690d",
+      "bytes": 5014
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/reconciliation.py",
+      "sha256": "1346a3715a5b3cc1ebabc0300daa1bdcbb03c88d024c21112e9d438bc446c14f",
+      "bytes": 1402
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/runner.py",
+      "sha256": "887718bb1cd7e18163c7731dcce16250ba9fb0c0cb38248120dc9809e11032ed",
+      "bytes": 17038
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/storage.py",
+      "sha256": "14413b7f57309690c3279a42a56b788e70823b3abbfa9f7fb0370813bf1bf9fb",
+      "bytes": 8315
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/transports.py",
+      "sha256": "3eb07043b81c21b70b67b4b0a3c0b702cc259784901f7dc6445cc07e7c3a6d5c",
+      "bytes": 2553
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/validation.py",
+      "sha256": "75ef75c346089c22885705c4a028159fc8ebbceeb48e830060dd4481a5bac413",
+      "bytes": 1246
+    }
+  ]
+}

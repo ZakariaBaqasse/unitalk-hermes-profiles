@@ -1,0 +1,45 @@
+{
+  "plan_version": "1.0.0",
+  "run_id": "RUN-20260815T203652Z-4B969F6F",
+  "planned_at": "2026-08-15T20:36:52Z",
+  "source_register_version": "1.0.0",
+  "segment": "farrier",
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "max_candidates": 2,
+  "search_queries": [
+    "professional farrier Lexington Kentucky professional active official business website -James Holub",
+    "therapeutic farrier Lexington Kentucky professional active official business website -James Holub",
+    "corrective shoeing Kentucky professional active official business website -James Holub",
+    "sport horse farrier Lexington Kentucky professional active official business website -James Holub",
+    "competition horse farrier Lexington Kentucky professional active official business website -James Holub",
+    "mobile farrier service Lexington Kentucky professional active official business website -James Holub"
+  ],
+  "allowed_sources": [
+    {
+      "source_id": "general.google_search",
+      "access_profile": "search_index_discovery_only"
+    },
+    {
+      "source_id": "general.public_business_websites",
+      "access_profile": "public_business_website"
+    }
+  ],
+  "rejected_sources": [],
+  "human_seeds": [],
+  "tool_budget": {
+    "max_search_queries_per_run": 6,
+    "max_page_reads_per_candidate": 3,
+    "max_browser_fallbacks_per_candidate": 0,
+    "max_total_tool_calls_per_candidate": 10
+  },
+  "rules": [
+    "Search results are discovery-only.",
+    "Prefer official business websites.",
+    "Do not crawl conditional directories.",
+    "Do not qualify or score during research."
+  ]
+}

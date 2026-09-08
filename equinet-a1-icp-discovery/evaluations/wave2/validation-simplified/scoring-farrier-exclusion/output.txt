@@ -1,0 +1,19 @@
+## Test Report — Farrier Exclusion Scoring
+
+| Field | Value |
+|---|---|
+| **Scoring status** | `blocked` |
+| **Score** | `null` |
+| **Band** | `null` |
+| **Block reason** | Confirmed exclusion criterion: `farrier.no_professional_evidence` |
+| **Outcome** | `excluded_no_professional_evidence` |
+| **Review required** | `true` |
+| **Confidence interpretation** | ICP scoring is blocked; evidence confidence does not override the exclusion or authorise priority treatment. |
+| **Confidence context** | level: high, score: 90, method: evidence-confidence-1.0.0 |
+| **Outreach occurred?** | No |
+| **CRM write occurred?** | No |
+| **A2 handoff occurred?** | No |
+| **Wrapper error** | None — exit code 0, full pass |
+| **Output saved to** | `evaluations/wave2/validation-simplified/scoring-farrier-exclusion/scoring-package.json` |
+
+**Result:** The wrapper correctly blocks scoring when the farrier exclusion criterion (`farrier.no_professional_evidence`) is confirmed. No points are awarded, no band is assigned, and the high confidence (90) does not override the exclusion. The deterministic model handles the synthetic exclusion test exactly as specified.

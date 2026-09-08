@@ -1,0 +1,45 @@
+{
+  "status": "pass",
+  "date": "2026-08-16",
+  "quota_mode": "unitalk_test",
+  "run_count": 3,
+  "total_tokens": 1198851,
+  "api_calls": 36,
+  "warning": 1500000,
+  "hard": 2000000,
+  "runs": [
+    {
+      "file": "evaluations/recovery/failed-session-usage.json",
+      "session_id": "20260816_115815_326ced",
+      "date": "2026-08-16",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 987616,
+      "api_calls": 15,
+      "completed": false,
+      "failed": true
+    },
+    {
+      "file": "evaluations/recovery/staged-init/usage.json",
+      "session_id": "20260816_130026_c3211b",
+      "date": "2026-08-16",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 176208,
+      "api_calls": 17,
+      "completed": true,
+      "failed": false
+    },
+    {
+      "file": "evaluations/recovery/staged-init-v2/usage.json",
+      "session_id": "20260816_130602_9b45ae",
+      "date": "2026-08-16",
+      "model": "deepseek-v4-flash",
+      "provider": "openai-api",
+      "tokens": 35027,
+      "api_calls": 4,
+      "completed": true,
+      "failed": false
+    }
+  ]
+}

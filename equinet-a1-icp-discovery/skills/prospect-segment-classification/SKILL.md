@@ -1,0 +1,146 @@
+---
+name: prospect-segment-classification
+version: 1.2.0
+status: production_validated
+description: Use after accepted post-n8n website enrichment to determine whether a lead represents a professional Farrier, a professional/commercial Horse Owner, or an ambiguous/out-of-scope prospect. Produces a traceable segment, prospect type and identity decision without scoring, rediscovery, deduplication or invented facts.
+compatibility: Requires an accepted post-n8n enrichment record, ICP Configuration 2.0.0 and Prospect Candidate Schema V1.
+---
+
+# Prospect Segment Classification
+
+Use this skill after `post-n8n-public-website-enrichment` accepts cited official-website evidence and before ICP qualification. n8n has already performed discovery and deduplication: classify the supplied lead's operating identity and segment without broadening the lead set, scoring or fully qualifying it.
+
+## Authoritative dependencies
+
+Resolve from the active profile home:
+
+```text
+configurations/icp/equinet-icp-v1.yaml
+skills/a1-prospect-data-contract/references/prospect-candidate.schema.json
+skills/prospect-segment-classification/references/classification-decision.schema.json
+```
+
+Use the existing profile runtime to validate decisions:
+
+```text
+/opt/hermes/.venv/bin/python skills/prospect-segment-classification/scripts/validate_classification.py <decision.json>
+```
+
+Do not run `pip install` or `uv pip install` during classification. Store temporary decisions under the profile `tmp/` or evaluation workspace, never inside the skill's `references/` directory.
+
+## Input at the n8n handoff boundary
+
+Accept one completed enrichment state record containing:
+
+- the unchanged n8n lead and `lead_fingerprint`;
+- the verified official website URL;
+- Hermes-gathered evidence records with destination URLs, exact excerpts, claims, timestamps and approved retrieval tools;
+- missing information and conflicts.
+
+n8n names, categories, locations, website candidates and segment hints are discovery context, not confirmed evidence. A segment hint is not a final classification. Do not repeat discovery or deduplication. For the existing decision schema, set its `seed_id`/candidate reference to the n8n `lead_fingerprint`; do not use that identifier as evidence.
+
+## Classification questions
+
+Determine:
+
+1. Is the candidate a person, an organisation, or a linked person and organisation?
+2. Is there direct evidence of professional Farrier activity?
+3. Is there direct evidence of a professional/commercial equine operation or purchasing role?
+4. Which approved prospect type best matches the evidence?
+5. Is the identity sufficiently resolved?
+6. Is the candidate inside the approved United States, Australia or New Zealand scope, with country, region/state and city sufficiently resolved?
+7. Is the evidence ambiguous or contradictory enough to require review?
+
+## Farrier classification
+
+Classify as `farrier` only when evidence supports professional hoof-care work or active entry into the profession.
+
+Allowed types:
+
+```text
+farrier_independent
+farrier_business
+mobile_farrier_service
+farrier_multi_practitioner_business
+farrier_apprentice
+```
+
+- Full-time and part-time professionals are in scope.
+- Active apprentices may be classified as `farrier_apprentice` but remain a future-potential pathway.
+- A hobbyist or inactive contact without professional evidence is not a confirmed professional Farrier.
+
+## Horse Owner classification
+
+Classify as `horse_owner` when evidence supports a professional or commercial Horse Owner or equine operation.
+
+Allowed types:
+
+```text
+horse_owner_professional
+farm
+breeding_farm
+boarding_stable
+training_stable
+equestrian_centre
+competition_yard
+trainer_or_stable_manager
+other_equine_business
+```
+
+Do not classify a casual recreational owner as commercial solely because they own a horse or appear on social media.
+
+## Identity decision
+
+Use:
+
+- `person` when the prospect is an individual without a confirmed organisation;
+- `organisation` when the prospect is a business/operation without a decision-maker identity;
+- `person_and_organisation` when both are supported and the person is associated with the organisation;
+- `unresolved` when identity is ambiguous.
+
+Do not merge similarly named people or businesses without distinguishing evidence such as domain, location, phone, address or official association.
+
+For an organisation candidate, use `person_and_organisation` when A1 has selected one primary named contact from the official site. `identity.person` represents only that primary contact. A secondary named contact remains in `public_contacts[]` with the `Secondary named contact` label and must not create another candidate. Finding a contact does not change the segment, prospect type or score by itself.
+
+## Decision statuses
+
+- `confirmed`: segment, type and identity are sufficiently supported;
+- `needs_review`: segment or identity remains ambiguous or contradictory;
+- `out_of_scope`: evidence clearly places the candidate outside approved segment/geography;
+- `blocked`: the source or identity cannot be used safely.
+
+A confirmed classification requires evidence references.
+
+## Output
+
+Produce a classification decision containing:
+
+- research seed ID;
+- segment or null;
+- prospect type or null;
+- identity type;
+- classification status;
+- evidence IDs from the accepted Hermes website enrichment supporting the decision;
+- concise rationale;
+- unresolved questions.
+
+Validate against `references/classification-decision.schema.json` and then run `scripts/validate_classification.py`.
+
+## Boundaries
+
+Do not:
+
+- apply ICP points;
+- calculate confidence;
+- convert unknown horse count into a segment decision;
+- infer commercial status from photos, followers or review counts;
+- infer that every trainer or rider owns the operation;
+- treat n8n discovery fields or search snippets as destination evidence;
+- rediscover, merge or deduplicate leads;
+- contact the candidate;
+- create a CRM record;
+- claim HubSpot/Twenty checks.
+
+## Handoff
+
+Pass only `confirmed` or `needs_review` decisions to `equinet-icp-qualification`. Preserve the n8n lead reference, accepted enrichment evidence IDs and unresolved questions. Do not hide ambiguity to force a classification.

@@ -1,0 +1,143 @@
+{
+  "scoring": {
+    "status": "scored",
+    "score": 75,
+    "band": "high",
+    "model_version": "1.0.0",
+    "components": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "points_awarded": 25,
+        "max_points": 25,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.more_than_three_horses",
+        "points_awarded": 20,
+        "max_points": 20,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "points_awarded": 10,
+        "max_points": 10,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "points_awarded": 8,
+        "max_points": 8,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.breeding_activity",
+        "points_awarded": 7,
+        "max_points": 7,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      }
+    ],
+    "rationale": "Numeric ICP score 75/100 from 6 confirmed weighted criteria. Raw band high; final band high.",
+    "block_reason": null
+  },
+  "audit": {
+    "raw_band": "high",
+    "final_band": "high",
+    "applied_band_caps": [],
+    "outcome": "high_priority_horse_owner",
+    "review_required": true,
+    "confirmed_positive_criteria": [
+      "horse_owner.commercial_operation",
+      "horse_owner.more_than_three_horses",
+      "horse_owner.product_fit",
+      "horse_owner.performance_discipline",
+      "horse_owner.breeding_activity",
+      "horse_owner.high_equine_activity_location"
+    ],
+    "missing_required_gates": []
+  },
+  "explanation": {
+    "summary": "ICP score 75/100; final band high. 6 weighted criteria earned points. Outcome: high_priority_horse_owner.",
+    "confirmed_criteria": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "points": 25,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.more_than_three_horses",
+        "points": 20,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "points": 10,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "points": 8,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.breeding_activity",
+        "points": 7,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ]
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "points": 5,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ]
+      }
+    ],
+    "unearned_weighted_criteria": [
+      "horse_owner.purchasing_influence",
+      "horse_owner.professional_network",
+      "horse_owner.buying_signal"
+    ],
+    "applied_band_rules": [],
+    "outcome": "high_priority_horse_owner",
+    "review_required": true,
+    "confidence_interpretation": "High commercial fit with High evidence confidence: attractive and well-supported for human review."
+  },
+  "confidence_context": {
+    "level": "high",
+    "score": 84,
+    "method_version": "evidence-confidence-1.0.0"
+  }
+}

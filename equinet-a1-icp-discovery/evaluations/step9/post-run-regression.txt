@@ -1,0 +1,52 @@
+PASS: Step 7 runtime policy remains valid
+PASS: Wave 1–3 and Step 7 regression suites pass
+PASS: mixed batch summary is exactly 1 Accept, 1 Needs Research, 1 Reject
+PASS: mixed batch deterministic ranking is Accept, Needs Research, Reject
+PASS: qualified synthetic Farrier ranks first
+PASS: qualified Farrier preserves 86 / High
+PASS: qualified Farrier preserves 84 / High confidence
+PASS: unknown-count synthetic Horse Owner ranks second
+PASS: unknown-count Horse Owner preserves 80 / Medium
+PASS: unknown-count Horse Owner review pathway is preserved
+PASS: Horse Owner count remains unknown
+PASS: excluded synthetic Farrier ranks last
+PASS: excluded Farrier scoring is blocked
+PASS: excluded Farrier has null score and band
+PASS: duplicate batch returns two Needs Research recommendations
+PASS: both duplicate candidates show possible_match
+PASS: possible duplicates are not accepted or rejected automatically
+PASS: all five records are synthetic and preserve every action boundary
+PASS: mixed batch integration states remain unavailable/not triggered
+PASS: duplicate batch integration states remain unavailable/not triggered
+PASS: mixed batch JSON/CSV/XLSX validations pass
+PASS: duplicate batch JSON/CSV/XLSX validations pass
+PASS: both batches create JSON, Markdown, CSV and Excel
+{
+  "status": "passed",
+  "logical_scenarios": 4,
+  "batches": 2,
+  "synthetic_records": 5,
+  "mixed": {
+    "total": 3,
+    "accept": 1,
+    "needs_research": 1,
+    "reject": 1,
+    "farrier": 2,
+    "horse_owner": 1
+  },
+  "duplicates": {
+    "total": 2,
+    "accept": 0,
+    "needs_research": 2,
+    "reject": 0,
+    "farrier": 2,
+    "horse_owner": 0
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "all_checks_passed": true
+}

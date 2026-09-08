@@ -1,0 +1,53 @@
+{
+  "schema_version": "a1.twenty-person-field-manifest.v1",
+  "retrieved_at": "2026-09-04T00:00:00Z",
+  "source": "live_twenty_metadata",
+  "object": {
+    "name_singular": "person",
+    "name_plural": "people",
+    "label_singular": "Person",
+    "label_plural": "People"
+  },
+  "fields": {
+    "name": {
+      "label": "Name",
+      "type": "FULL_NAME",
+      "writable": true,
+      "nullable": true
+    },
+    "emails": {
+      "label": "Emails",
+      "type": "EMAILS",
+      "writable": true,
+      "nullable": true,
+      "max_number_of_values": 1
+    },
+    "phones": {
+      "label": "Phones",
+      "type": "PHONES",
+      "writable": true,
+      "nullable": true,
+      "max_number_of_values": 1
+    },
+    "company": {
+      "label": "Company",
+      "type": "RELATION",
+      "writable": true,
+      "nullable": true,
+      "write_via": "companyId",
+      "target_object": "company"
+    },
+    "jobTitle": {
+      "label": "Job Title",
+      "type": "TEXT",
+      "writable": true,
+      "nullable": true
+    }
+  },
+  "contract_notes": [
+    "Write the complete unsplit source name to name.firstName and an empty string to name.lastName; never guess components.",
+    "Emails and phones accept one primary value and an empty additional-values array.",
+    "Create or update a Person only after its Company UUID has been verified by read-back.",
+    "Write the Company relation through companyId and verify that relation on Person read-back."
+  ]
+}

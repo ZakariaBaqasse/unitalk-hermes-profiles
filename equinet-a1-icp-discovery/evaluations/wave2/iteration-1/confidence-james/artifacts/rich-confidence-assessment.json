@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "method_version": "evidence-confidence-1.0.0",
+  "candidate_reference": {
+    "run_id": "RUN-20260812T190824Z-890880",
+    "seed_id": "SEED-JHOLUB-001"
+  },
+  "available_evidence_ids": [
+    "EV-HOME-001",
+    "EV-ABOUT-001",
+    "EV-TRAVEL-001",
+    "EV-LAMENESS-001",
+    "EV-GLUE-001",
+    "EV-CONTACT-001"
+  ],
+  "dimensions": {
+    "identity_certainty": {
+      "level": "good_multi_field_match",
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-CONTACT-001"],
+      "rationale": "Person and organisation co-located on same official business website. Contact page identifies 'Farrier: J.T. Holub' while domain and business name use 'James Holub Equine Services'. About page consistently uses 'J.T.' throughout. This is a minor resolved name variation (initials vs full first name) on the same authoritative source. No external identity conflict exists."
+    },
+    "source_quality": {
+      "level": "authoritative_primary_business_source",
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-TRAVEL-001", "EV-LAMENESS-001", "EV-GLUE-001", "EV-CONTACT-001"],
+      "rationale": "All evidence records are pages on the current official business website (jamesholubequine.com). The site is an active Squarespace-hosted site presenting a professional farrier practice with current contact details. Per the approved source register and evidence policy, an official current business website is authoritative for facts the business controls and explicitly publishes. No blocked, unverified, or non-permitted sources are used."
+    },
+    "evidence_directness": {
+      "level": "all_material_claims_direct",
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-TRAVEL-001", "EV-LAMENESS-001", "EV-GLUE-001"],
+      "rationale": "All material confirmed claims are supported by direct_fact evidence: 'As a professional farrier' (EV-HOME-001), farrier school and career history (EV-ABOUT-001), service areas Wellington/Lexington (EV-TRAVEL-001), lameness evaluation services (EV-LAMENESS-001), specific glue-on shoe product usage (EV-GLUE-001). Purchasing influence is drawn from role-based inference (Professional Farrier = possible_influence_role under policy rules), not inference-only — the policy permits role-based purchasing influence wording. The single unknown criterion (client base) is recorded as unknown, not inferred."
+    },
+    "corroboration": {
+      "level": "one_strong_source",
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-TRAVEL-001", "EV-LAMENESS-001", "EV-GLUE-001", "EV-CONTACT-001"],
+      "rationale": "All evidence comes from one domain (jamesholubequine.com). Multiple pages on the same business website are not independent sources per the source independence rules. The single official business website is a strong primary source; per the corroboration rules, a current primary business website may stand alone for facts the business controls and explicitly publishes. No second independent source is present, so this is one_strong_source."
+    },
+    "freshness": {
+      "level": "current_within_claim_window",
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-TRAVEL-001", "EV-LAMENESS-001", "EV-GLUE-001", "EV-CONTACT-001"],
+      "rationale": "The official business website is current and operational (Squarespace site with active contact page, email, phone). Per freshness policy, a current official business website does not require a visible publication date for explicit self-controlled facts. No stale, broken, or contradictory signals present. Retrieved 2026-08-12 — well within all applicable claim windows."
+    },
+    "completeness": {
+      "level": "minimum_review_package_only",
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-TRAVEL-001", "EV-LAMENESS-001", "EV-GLUE-001", "EV-CONTACT-001"],
+      "rationale": "Confidence-stage minimum is met: resolved identity, confirmed farrier segment, 6 permitted evidence records, qualification criteria object with exclusion status, visible conflicts/unknowns/missing evidence all present. However, this is a confidence-stage assessment only — downstream fields (scoring, recommendation, workflow, final candidate schema fields) are not yet populated, which is expected at this stage per the policy. The evidence package itself is complete for confidence evaluation."
+    }
+  },
+  "gates": {
+    "mandatory_claim_inference_only": {
+      "value": false,
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001"],
+      "rationale": "The mandatory criterion 'farrier.professional_activity' is supported by direct fact evidence (EV-HOME-001: 'As a professional farrier...'; EV-ABOUT-001: farrier school, apprenticeship, track farrier experience). No mandatory claim depends solely on inference."
+    },
+    "unresolved_identity_conflict": {
+      "value": false,
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-CONTACT-001"],
+      "rationale": "The J.T./James name variation is a minor resolved naming convention (initials vs full first name) on the same official business website. The classification confirmed person_and_organisation. No actual identity conflict exists — the about page consistently uses 'J.T.' and the domain uses 'James'. Both refer to the same individual."
+    },
+    "critical_evidence_conflict": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No material evidence conflicts present. All evidence records are internally consistent and from the same source. The only documented 'conflict' is the J.T./James name variation, which is a naming convention, not a material evidence conflict."
+    },
+    "minimum_data_failed": {
+      "value": false,
+      "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001", "EV-CONTACT-001"],
+      "rationale": "Confidence-stage minimum is satisfied: resolved identity (person_and_organisation on official website), confirmed farrier segment, 6 permitted evidence records with evidence_ids and source URLs, qualification criteria object with exclusion status (eligible), visible conflicts/unknowns/missing evidence documented. Per policy, scoring, recommendation, workflow and export fields are not required at confidence stage."
+    },
+    "blocked_source_used": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No blocked or unverified sources used. All evidence comes from the official business website (jamesholubequine.com), which is a permitted source under the Approved Source Register."
+    },
+    "no_evidence": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "6 permitted evidence records exist, all with evidence_ids, source URLs, retrieved timestamps, and direct_fact excerpts."
+    },
+    "fabricated_or_untraceable_evidence": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "All evidence is traceable to the official business website jamesholubequine.com (homepage, about, travel, lameness, glue-on shoes, contact pages) with specific excerpts and retrieval dates. No fabricated or untraceable evidence."
+    }
+  },
+  "confidence_stage_missing_fields": []
+}

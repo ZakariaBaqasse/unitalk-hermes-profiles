@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260816T132904Z-DC866757",
+  "seed_id": "SEED-KEENERIDGE-FARM-001",
+  "discovered_at": "2026-08-16T13:40:00Z",
+  "discovery_method": "approved_web_search",
+  "discovery_query": "boarding stable Lexington Kentucky official website",
+  "segment_hint": "horse_owner",
+  "identity_hint": {
+    "display_name": "Keene Ridge Farm",
+    "person_name": "Ann Bakhaus",
+    "organisation_name": "Keene Ridge Farm",
+    "role_title": "Owner"
+  },
+  "website": "https://www.keeneridgefarm.com/",
+  "location_hint": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington",
+    "postal_code": "40510",
+    "public_address": "4630 Bosworth Ln, Lexington, KY 40510"
+  },
+  "public_contacts": [
+    {
+      "contact_type": "email",
+      "value": "keeneridgefarm@gmail.com",
+      "label": "Organisation general contact",
+      "evidence_ids": ["EV-001"]
+    }
+  ],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-001",
+      "source_url": "https://www.keeneridgefarm.com/",
+      "source_name": "Keene Ridge Farm official website",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-16T13:59:00Z",
+      "evidence_excerpt": "Contact section: 4630 Bosworth Ln, Lexington, KY 40510. Email: keeneridgefarm@gmail.com. Contact form available. Operating hours listed (Mon-Fri).",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-002",
+      "source_url": "https://www.keeneridgefarm.com/",
+      "source_name": "Keene Ridge Farm official website",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-16T13:59:00Z",
+      "evidence_excerpt": "About Us: Keene Ridge Farm is nestled in the heart of Central Kentucky on 170 rolling acres near Keeneland off Bosworth Rd. Owner Ann Bakhaus transitioned from thoroughbred breeding to a full boarding farm. Multiple barns (Barn A, B, C), 75'x100' indoor arena, 100'x200' outdoor arena, covered round pen, lunging ring, over 20 large fields and paddocks. Full board $775, pasture board $450, mare retirement $450. Services: boarding, retirement, horseback riding lessons, workshops/clinics.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-003",
+      "source_url": "https://www.keeneridgefarm.com/",
+      "source_name": "Keene Ridge Farm official website",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-16T13:59:00Z",
+      "evidence_excerpt": "Mission Statement: 'Our Mission at Keene Ridge Farm is to give the highest quality care to our horses.' Boarding options published with full pricing details. Multiple barns with 12'x12' stalls. 'We schedule routine blacksmith and vet when needed.' Testimonials from boarders since 2020.",
+      "fact_or_inference": "direct_fact"
+    }
+  ],
+  "missing_information": [
+    "Explicit horse count not published on the website",
+    "Phone number not publicly published (contact via form or email only)",
+    "No named farrier or hoof-care provider mentioned",
+    "Exact number of boarders not stated"
+  ],
+  "conflicts": [],
+  "status": "ready_for_classification"
+}

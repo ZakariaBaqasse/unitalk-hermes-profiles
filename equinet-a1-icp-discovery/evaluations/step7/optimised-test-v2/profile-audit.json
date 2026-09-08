@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "package_id": "A1-RP-WAVE3-JAMES",
+  "candidate_count": 1,
+  "recommendations": {
+    "accept": 1,
+    "needs_research": 0,
+    "reject": 0
+  },
+  "integration_status": {
+    "hubspot": "unavailable",
+    "twenty": "unavailable",
+    "a2": "not_triggered"
+  },
+  "human_decisions_pending": true,
+  "a2_handoffs_authorised": 0,
+  "export_validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  },
+  "files": [
+    "optimised-review-v2.json",
+    "optimised-review-v2.md",
+    "optimised-review-v2.csv",
+    "optimised-review-v2.xlsx"
+  ]
+}

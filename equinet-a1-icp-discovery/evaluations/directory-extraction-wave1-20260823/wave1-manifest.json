@@ -1,0 +1,211 @@
+{
+  "manifest_version": "1.4.0",
+  "generated_at": "2026-08-23T15:48:01Z",
+  "profile": "equinet-a1-icp-discovery",
+  "scope": "directory_extraction_wave1",
+  "live_firecrawl_requests": 5,
+  "human_approval_recorded": true,
+  "adapter_release": "1.1.0",
+  "files": [
+    {
+      "path": "configurations/directory-extraction/source-runtime-profiles-v1.yaml",
+      "sha256": "856d21b8d2dd66f1efcfabfed62e54ce8e6af0d57c26def5d23df958be2099dc",
+      "bytes": 5789
+    },
+    {
+      "path": "configurations/operations/a1-runtime-policy-v1.yaml",
+      "sha256": "112b01068947f9220afad9b2e44b112ebbbd662aeef1943b603a4eab4d06c061",
+      "bytes": 7132
+    },
+    {
+      "path": "configurations/sources/README.md",
+      "sha256": "fb8aa9340df4bf04b815f242af562c4a10736598e2a5a95ab0496e76daa9ebfb",
+      "bytes": 10749
+    },
+    {
+      "path": "configurations/sources/approved-source-register-v1.yaml",
+      "sha256": "8f3393bf49c12e0e8563690e917d49100688e8a1bef60d74071357291bcaf352",
+      "bytes": 44831
+    },
+    {
+      "path": "evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md",
+      "sha256": "dc16639a12ac7532d03a68e30574fcec0adc68db2c0a379a9ac08a040604bae8",
+      "bytes": 2950
+    },
+    {
+      "path": "evaluations/directory-extraction-wave1-20260823/WAVE1-VALIDATION-REVIEW.md",
+      "sha256": "9389ef98eb366b45dbbd5d2f77cf403438b0a68a082503397f4279c269a154bd",
+      "bytes": 5647
+    },
+    {
+      "path": "evaluations/directory-extraction-wave1-20260823/farrieriq-second-profile-check.json",
+      "sha256": "b923b1ad68947b3f077d53da6b089cd68676b1a5d190e01b5f435ac66448cd3a",
+      "bytes": 11356
+    },
+    {
+      "path": "evaluations/directory-extraction-wave1-20260823/farrieriq-target-profile.json",
+      "sha256": "f7253f137f1721fc3443b6d4cbb642f89a2554d11de0a58b8a447e9b89e4e25d",
+      "bytes": 10818
+    },
+    {
+      "path": "evaluations/directory-extraction-wave1-20260823/offline-adapter-test-results.json",
+      "sha256": "b4fa15174aed4367b2dd51849aa99b97a3405bf0439e8f9224cf22d144d75ae2",
+      "bytes": 3368
+    },
+    {
+      "path": "evaluations/directory-extraction-wave1-20260823/test_adapters_offline.py",
+      "sha256": "efaff4d38c4b8320220c1bcf135adcb61c0cd54c435ac4723dd70ea78696e215",
+      "bytes": 8252
+    },
+    {
+      "path": "evaluations/directory-extraction-wave1-20260823/wave1-validation.json",
+      "sha256": "a66dbbf5e4f9e5f37a318d378f334e0cd3350b19a014ab32b47e4a19d63cd8ad",
+      "bytes": 1889
+    },
+    {
+      "path": "runtime/directory-extraction/audit-log.jsonl",
+      "sha256": "561d3a71f95e15c497684dde053a3995f3eaa67fafbbce78d3dc8bab8b3cd3aa",
+      "bytes": 5404
+    },
+    {
+      "path": "runtime/directory-extraction/coverage-ledger.json",
+      "sha256": "78c53178520bed52ce8a542465523c9c27d7c39f3d37fa11ffe60b64b34af066",
+      "bytes": 2605
+    },
+    {
+      "path": "runtime/directory-extraction/listing-index.json",
+      "sha256": "0b19d02a315a16410851ff90cdbf9defc55939e5bc36de8324f5f17c98b4a930",
+      "bytes": 33628
+    },
+    {
+      "path": "runtime/directory-extraction/request-pacing.json",
+      "sha256": "713d75558b7cac670f0b899665901526c1d9bfd84566c8fa1e24bf4c136b8b04",
+      "bytes": 215
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-BESTLEX-20260823/audit.json",
+      "sha256": "3f82fd25856191c39eda006da43a9fed6297252e1b4906ac03bd15ce551776f3",
+      "bytes": 1722
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-BESTLEX-20260823/normalised-listings.json",
+      "sha256": "ea6f70f51efb85230b9a7842ece22b237b405f6d80d6af51bb4acc7ceb4a0a12",
+      "bytes": 10529
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-BESTLEX-20260823/raw/page-001.json",
+      "sha256": "edb061b192fe2478b4310e8b3f858a24f5023c7ac72ba1c902b853ae439d0257",
+      "bytes": 145103
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-BESTLEX-20260823/rejected-listings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-FARRIERIQ-20260823/audit.json",
+      "sha256": "67f58a2e37605f9586d1d59a15216605f5cf3d0c70fe8268a075214934c2671d",
+      "bytes": 1667
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-FARRIERIQ-20260823/normalised-listings.json",
+      "sha256": "fef511c965e753fa322250d0c532dbdbc37988a5ee29b78f30626a8b40020034",
+      "bytes": 8876
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-FARRIERIQ-20260823/raw/page-001.json",
+      "sha256": "0d0549e5b93389ce9aea3b0f9e4979f678edce14f105624b7cce0fb543c1c625",
+      "bytes": 4978
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-FARRIERIQ-20260823/rejected-listings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-HAST-20260823/audit.json",
+      "sha256": "6e3475a1d3ab041b955bc34749a47bdda19995a8c5c17a7742e53203d1234032",
+      "bytes": 1652
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-HAST-20260823/normalised-listings.json",
+      "sha256": "b6ff8e52ba2712eb1c69a6c3d77dde2fc48737600a583edc703822c5b8971f63",
+      "bytes": 8022
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-HAST-20260823/raw/page-001.json",
+      "sha256": "fcd55e0b564183f131222ccb836f21a24cdaacca117028b1098000d3bc2ce6c4",
+      "bytes": 5539
+    },
+    {
+      "path": "runtime/directory-extraction/runs/W1-HAST-20260823/rejected-listings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "path": "scripts/run_directory_extraction.py",
+      "sha256": "3956961e728c3303d34896e30076b636ac8a6f4d0787a4210a15d4dcf0a9fd90",
+      "bytes": 2741
+    },
+    {
+      "path": "scripts/run_wave1_skill_tests.py",
+      "sha256": "7956bbb5582165637c0b034139896ea2635fe5d6c484b41088cf35ef23a716a6",
+      "bytes": 18950
+    },
+    {
+      "path": "scripts/validate_directory_extraction_wave1.py",
+      "sha256": "97bf90f0c685373ec0d99a76386b8889e1f8a897c3ccdf772189f85fc555d366",
+      "bytes": 6540
+    },
+    {
+      "path": "scripts/validate_source_register.py",
+      "sha256": "a3d19c6e54ae5703d951306c16c4c72ecc0f13d3754ffafd936fe3b4f2a252b6",
+      "bytes": 14514
+    },
+    {
+      "path": "scripts/validate_step7_runtime_policy.py",
+      "sha256": "9c9496de23a9dbc67b1625705edec5cd6bf8d13a86b573d38e643e8475f5d435",
+      "bytes": 9522
+    },
+    {
+      "path": "skills/public-prospect-research/SKILL.md",
+      "sha256": "ffa2d7a0fada42050550300d34a593a782d2eba973382a57f4306bc710376797",
+      "bytes": 13926
+    },
+    {
+      "path": "skills/public-prospect-research/references/directory-extraction/wave1-adapters.md",
+      "sha256": "0f60e5ad2ea402ad3bc7184c37718cbdc191e28ab9417c53586a6a79b175339a",
+      "bytes": 1455
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/build_search_plan.py",
+      "sha256": "f5d887e089665b3a74e563fb3992626e19a3b450adb882fbe64b4f5a5a59e861",
+      "bytes": 9282
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/adapters/__init__.py",
+      "sha256": "e8c56d53d36627dff65aab739e4a14c71254cb37eaeb776eaad8ec027040a254",
+      "bytes": 247
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/adapters/best_of_lexington.py",
+      "sha256": "a195b2deced644c13586f143989121069bdd22557ebc1a87bb62820a33f1395a",
+      "bytes": 3809
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/adapters/common.py",
+      "sha256": "225eda6f4b4725959a3e8265adadcb1323ba7e39aeb601d8a0be59d5a9bc81b5",
+      "bytes": 1616
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/adapters/farrieriq.py",
+      "sha256": "731c9a2eb3e272f8e18d4d860f2f91f62c6ce69164fc73f466c33cc33307d290",
+      "bytes": 7371
+    },
+    {
+      "path": "skills/public-prospect-research/scripts/directory_extraction/adapters/hast.py",
+      "sha256": "c96599e1416cad0720a8f2f84a10595c1f9177826332c5f1a954c6b916155b06",
+      "bytes": 4218
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+```json
+{
+  "status": "passed",
+  "logical_scenarios": 4,
+  "batches": 2,
+  "synthetic_records": 5,
+  "mixed_summary": {
+    "total": 3,
+    "accept": 1,
+    "needs_research": 1,
+    "reject": 1,
+    "farrier": 2,
+    "horse_owner": 1
+  },
+  "duplicate_summary": {
+    "total": 2,
+    "accept": 0,
+    "needs_research": 2,
+    "reject": 0,
+    "farrier": 2,
+    "horse_owner": 0
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "regressions": {
+    "run_wave1_skill_tests.py": true,
+    "run_wave2_skill_tests.py": true,
+    "run_wave3_skill_tests.py": true,
+    "run_step7_tests.py": true
+  },
+  "all_checks_passed": true,
+  "artifacts": {
+    "mixed": "evaluations/step8/deterministic/mixed-batch",
+    "duplicates": "evaluations/step8/deterministic/duplicate-batch"
+  }
+}
+```
+
+No web research, outreach, CRM write or A2 handoff occurred. The audit output was written to `/opt/data/profiles/equinet-a1-icp-discovery/evaluations/step8/behavioural/profile-audit.json`. All regression checks (`Wave 1–3` and `Step 7`) also pass.

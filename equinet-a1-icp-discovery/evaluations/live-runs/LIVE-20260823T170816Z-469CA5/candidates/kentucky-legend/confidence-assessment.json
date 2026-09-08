@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "method_version": "evidence-confidence-1.0.0",
+  "candidate_reference": {
+    "run_id": "RUN-20260823T170830Z-2D1439AF",
+    "seed_id": "SEED-KY-LEGEND-SCHELL"
+  },
+  "available_evidence_ids": [
+    "EV-KYLEGEND-NEWHORSE-DIR"
+  ],
+  "dimensions": {
+    "identity_certainty": {
+      "level": "good_multi_field_match",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "NewHorse directory identifies David Schell as the farrier/owner of Kentucky Legend Horseshoeing in Richmond, KY, with two phone numbers. Cross-source match with Best of Lexington directory (same phone 785-226-3628) adds consistency. Duplicate group with Frankfort listing needs review but identity is sufficiently resolved for the Richmond base."
+    },
+    "source_quality": {
+      "level": "permitted_primary_plus_directory",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "NewHorse is an approved bounded directory with self-submitted content. No standalone website exists. Directory provides service listing and contact info but has known self-submitted content limitations."
+    },
+    "evidence_directness": {
+      "level": "mixed_direct_and_inferred",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "Direct facts: directory confirms active farrier listing, David Schell, Kentucky Legend Horseshoeing, Richmond KY, two phone numbers, extensive service catalogue. Inferred: current activity level, professional certifications, client base."
+    },
+    "corroboration": {
+      "level": "one_strong_source",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "Single permitted approved directory source (NewHorse). Best of Lexington cross-source was removed due to source-register restrictions. No independent corroboration from a verified official website."
+    },
+    "freshness": {
+      "level": "current_within_claim_window",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "NewHorse directory retrieved 2026-08-23 with photos dating from 2020-2023, suggesting ongoing maintenance. Within the 365-day freshness window."
+    },
+    "completeness": {
+      "level": "partial_noncritical_gaps",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "Confidence-stage minimum data satisfied: resolved identity, segment state (needs_review), at least one permitted evidence record, qualification criteria, exclusion status, visible conflicts. Gaps: no standalone website, no email, no certification, duplicate group unresolved."
+    }
+  },
+  "gates": {
+    "mandatory_claim_inference_only": {
+      "value": false,
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "Mandatory criterion farrier.professional_activity is directly confirmed by directory listing describing 'Professional Farrier service'."
+    },
+    "unresolved_identity_conflict": {
+      "value": false,
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "Identity is sufficiently resolved at the Richmond base. Duplicate group with Frankfort listing flagged as conflict but does not make the Richmond identity unresolvable."
+    },
+    "critical_evidence_conflict": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No contradictory evidence. Cross-source matches (Best of Lexington phone) actually reinforce consistency."
+    },
+    "minimum_data_failed": {
+      "value": false,
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "Confidence-stage minimum data satisfied: resolved identity, segment state (needs_review), permitted evidence record, qualification criteria, exclusion status, visible conflicts."
+    },
+    "blocked_source_used": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "Only approved directory source used. Best of Lexington cross-reference not retained as evidence."
+    },
+    "no_evidence": {
+      "value": false,
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "rationale": "Permitted evidence exists from NewHorse directory."
+    },
+    "fabricated_or_untraceable_evidence": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "Evidence is traceable to live, accessible URL verified during research."
+    }
+  },
+  "confidence_stage_missing_fields": []
+}

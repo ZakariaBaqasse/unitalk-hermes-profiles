@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260823T170830Z-2D1439AF",
+  "seed_id": "SEED-JTHOLUB-LEX",
+  "discovered_at": "2026-08-23T17:09:15Z",
+  "discovery_method": "approved_directory_scrape",
+  "discovery_query": "Mad Barn directory — Lexington, KY farrier listings (validated Wave 2 run W2-MADBARN-20260823); verified via official website jamesholubequine.com",
+  "segment_hint": "farrier",
+  "identity_hint": {
+    "display_name": "J.T. Holub, APF / James Holub Equine Services",
+    "person_name": "J.T. Holub",
+    "organisation_name": "James Holub Equine Services",
+    "role_title": "APF (Accredited Professional Farrier)"
+  },
+  "website": "https://jamesholubequine.com",
+  "location_hint": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington",
+    "postal_code": "40583",
+    "public_address": "P.O. Box 13111, Lexington, KY 40583"
+  },
+  "public_contacts": [
+    {
+      "contact_type": "phone",
+      "value": "440.522.2995",
+      "label": "Primary named contact — J.T. Holub — Farrier",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-CONTACT", "EV-JTHOLUB-MADBARN-DIR"]
+    },
+    {
+      "contact_type": "email",
+      "value": "holubfarrierltd@gmail.com",
+      "label": "Primary named contact — J.T. Holub — Farrier",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-CONTACT"]
+    },
+    {
+      "contact_type": "email",
+      "value": "jtholub.fep@gmail.com",
+      "label": "Organisation general contact",
+      "evidence_ids": ["EV-JTHOLUB-MADBARN-DIR"]
+    }
+  ],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-JTHOLUB-OFFICIAL-SITE",
+      "source_url": "https://jamesholubequine.com/",
+      "source_name": "James Holub Equine Services (official business website)",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-23T17:08:50Z",
+      "evidence_excerpt": "James Holub Equine Services — World Class Farriery — Works between Wellington, FL and Lexington, KY. Homepage states professional farrier services for sport horses (show jumping, dressage).",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-JTHOLUB-OFFICIAL-CONTACT",
+      "source_url": "https://jamesholubequine.com/contact-us",
+      "source_name": "James Holub Equine Services (official business website — Contact page)",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-23T17:09:00Z",
+      "evidence_excerpt": "Contact page: Farrier: J.T. Holub — 440.522.2995 — P.O. Box 13111 Lexington, KY 40583 — holubfarrierltd@gmail.com",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-JTHOLUB-OFFICIAL-ABOUT",
+      "source_url": "https://jamesholubequine.com/about",
+      "source_name": "James Holub Equine Services (official business website — About page)",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-23T17:09:05Z",
+      "evidence_excerpt": "J.T. Holub attended Casey & Son's Farrier School in 2003. Licensed track farrier at Presque Isle Downs, Mountaineer Racetrack, and Thistledown for 5 years. Moved to Kentucky in 2013 focusing on upper level sport horses. Worked in podiatry department at Hagyard's Equine Institute. Follows major show jumping and dressage circuits.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-JTHOLUB-MADBARN-DIR",
+      "source_url": "https://madbarn.com/directory/j-t-holub-apf/",
+      "source_name": "Mad Barn Equine Directory (approved bounded directory)",
+      "source_type": "public_directory_bounded_scraping",
+      "retrieved_at": "2026-08-23T16:11:31Z",
+      "evidence_excerpt": "J. T. Holub, APF — Farrier — Lexington, KY 40583 — Phone: (440) 522-2995 — Email: jtholub.fep@gmail.com",
+      "fact_or_inference": "direct_fact"
+    }
+  ],
+  "missing_information": [
+    "Services page not explicitly listed on official site (inferred from About page: sport horse specialty, therapeutic shoeing, glue-on shoes)",
+    "Postal code is a P.O. Box only",
+    "No AFA certification number visible on official site",
+    "No explicit horse count or team size published",
+    "No Facebook/Instagram/LinkedIn professional profiles retained"
+  ],
+  "conflicts": [
+    "Mad Barn listing email: jtholub.fep@gmail.com; official website contact email: holubfarrierltd@gmail.com — may be separate professional inboxes"
+  ],
+  "status": "ready_for_classification"
+}

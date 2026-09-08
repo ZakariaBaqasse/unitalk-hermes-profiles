@@ -1,0 +1,82 @@
+{
+  "scoring": {
+    "status": "scored",
+    "score": 25,
+    "band": "low",
+    "model_version": "1.0.0",
+    "components": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "points_awarded": 20,
+        "max_points": 20,
+        "evidence_ids": [
+          "EV-KYLEGEND-NEWHORSE-DIR"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "EV-KYLEGEND-NEWHORSE-DIR"
+        ],
+        "notes": "Full V1 weight awarded for confirmed criterion."
+      }
+    ],
+    "rationale": "Numeric ICP score 25/100 from 2 confirmed weighted criteria. Raw band low; final band low.",
+    "block_reason": null
+  },
+  "audit": {
+    "raw_band": "low",
+    "final_band": "low",
+    "applied_band_caps": [],
+    "outcome": "lower_priority_farrier",
+    "review_required": true,
+    "confirmed_positive_criteria": [
+      "farrier.professional_activity",
+      "farrier.high_value_service_area"
+    ],
+    "missing_required_gates": []
+  },
+  "explanation": {
+    "summary": "ICP score 25/100; final band low. 2 weighted criteria earned points. Outcome: lower_priority_farrier.",
+    "confirmed_criteria": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "points": 20,
+        "evidence_ids": [
+          "EV-KYLEGEND-NEWHORSE-DIR"
+        ]
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "points": 5,
+        "evidence_ids": [
+          "EV-KYLEGEND-NEWHORSE-DIR"
+        ]
+      }
+    ],
+    "unearned_weighted_criteria": [
+      "farrier.product_usage_or_influence",
+      "farrier.product_fit",
+      "farrier.established_client_base",
+      "farrier.regular_business_activity",
+      "farrier.advanced_specialisation",
+      "farrier.certified_or_experienced",
+      "farrier.sport_horse_focus",
+      "farrier.buying_influence",
+      "farrier.multi_farrier_business",
+      "farrier.engagement_signal"
+    ],
+    "applied_band_rules": [],
+    "outcome": "lower_priority_farrier",
+    "review_required": true,
+    "confidence_interpretation": "ICP band low; evidence confidence medium. Review both values together."
+  },
+  "confidence_context": {
+    "level": "medium",
+    "score": 63,
+    "method_version": "evidence-confidence-1.0.0"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "eval_id": "classification-1-farrier",
+  "prompt": "Use prospect-segment-classification only. Classify this synthetic Research Seed: SEED-CLASS-FARRIER. Evidence EV-1 from the official business website states: \u201cSmith Farrier Services provides professional corrective and therapeutic shoeing in Lexington, Kentucky. Jane Smith \u2014 Owner and Professional Farrier.\u201d Return one classification decision object. Do not qualify, calculate confidence or score.",
+  "expected_skill": "prospect-segment-classification"
+}

@@ -1,0 +1,14 @@
+{
+  "record_id": "A1-HUBSPOT-METADATA-READINESS-20260825",
+  "profile": "equinet-a1-icp-discovery",
+  "recorded_at": "2026-08-25T11:47:51Z",
+  "authorised_by": "Séverine",
+  "authorisation_scope": "Implementation of the agreed metadata-readiness patch",
+  "technical_validation": "passed",
+  "deployment_status": "pilot_ready_no_integration",
+  "client_production_acceptance": "not_claimed",
+  "hubspot_connector": "unavailable",
+  "hubspot_writes": 0,
+  "outreach_actions": 0,
+  "limitations_reference": "configurations/integrations/hubspot/OPEN-ITEMS.md"
+}

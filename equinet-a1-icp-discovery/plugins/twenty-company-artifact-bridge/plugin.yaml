@@ -1,0 +1,11 @@
+manifest_version: 2
+api_version: 1
+name: twenty-company-artifact-bridge
+version: 1.0.0
+description: Safely execute validated Twenty Company staging decisions from local artifacts without exposing E.164 values to model context.
+author: Equinet / Unitalk
+kind: standalone
+platforms:
+  - linux
+provides_tools:
+  - twenty_company_write_from_artifact

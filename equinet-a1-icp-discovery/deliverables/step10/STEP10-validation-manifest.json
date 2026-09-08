@@ -1,0 +1,33 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 10,
+  "review_completed_at": "2026-08-16T11:39:18Z",
+  "release_id": "equinet-a1-v1-no-integration-rc1",
+  "status": "ready_for_severine_final_approval",
+  "target_status": "pilot_ready_no_integration",
+  "final_acceptance_suite": "passed",
+  "final_checks": 16,
+  "reference_replay": "exact_match",
+  "installed_packages": 8,
+  "authoritative_files_hashed": 18,
+  "delivery_package": {
+    "path": "/opt/data/.hermes/desktop-attachments/Equinet_A1_V1_No_Integration_RC1.zip",
+    "files": 13,
+    "sha256": "dea42c0d9a6fc49b7619fec045ba25da1ec53775ea950b09ffc1e8b223f47006",
+    "contains_secrets": false
+  },
+  "integration_state": {
+    "hubspot": "unavailable",
+    "twenty": "unavailable",
+    "a2": "not_triggered",
+    "n8n": "not_implemented"
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "review_artifact": "evaluations/step10/STEP10-VALIDATION-REVIEW.md",
+  "approval_applied": false
+}

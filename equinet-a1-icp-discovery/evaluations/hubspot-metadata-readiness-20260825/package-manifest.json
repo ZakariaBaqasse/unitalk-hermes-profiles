@@ -1,0 +1,10 @@
+{
+  "package": "equinet-a1-hubspot-metadata-readiness-1.0.0.zip",
+  "sha256": "8ea40969d8e3288d99e964df4894aaea5539177d592844c12b7b4e824bcf2cf8",
+  "file_count": 25,
+  "contains_credentials": false,
+  "contains_live_hubspot_record_values": false,
+  "contains_client_supplied_metadata_snapshots": true,
+  "deployment_status": "pilot_ready_no_integration",
+  "validation_status": "passed"
+}

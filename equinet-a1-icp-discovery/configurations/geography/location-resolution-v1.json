@@ -1,0 +1,80 @@
+{
+  "policy_id": "equinet-a1-location-resolution",
+  "version": "1.0.0",
+  "status": "approved_for_production",
+  "effective_at": "2026-09-03",
+  "approved_country_codes": ["US", "AU", "NZ"],
+  "required_user_fields": ["country", "region", "city"],
+  "rules": {
+    "defaults_allowed": false,
+    "infer_country_from_city": false,
+    "infer_region_from_city": false,
+    "complete_unambiguous_input_requires_additional_confirmation": false,
+    "missing_or_ambiguous_interactive_action": "ask_user_before_launch",
+    "unattended_missing_or_ambiguous_action": "reject_before_launch",
+    "supplied_name_code_conflict_action": "ask_user_before_launch",
+    "location_key_format": "COUNTRY_CODE|REGION_CODE|city-slug"
+  },
+  "countries": {
+    "US": {
+      "name": "United States",
+      "aliases": ["US", "USA", "United States", "United States of America"],
+      "subdivision_code_system": "USPS",
+      "subdivisions": {
+        "AL": ["AL", "Alabama"], "AK": ["AK", "Alaska"], "AZ": ["AZ", "Arizona"], "AR": ["AR", "Arkansas"],
+        "CA": ["CA", "California"], "CO": ["CO", "Colorado"], "CT": ["CT", "Connecticut"], "DE": ["DE", "Delaware"],
+        "DC": ["DC", "District of Columbia", "Washington DC", "Washington, D.C."], "FL": ["FL", "Florida"],
+        "GA": ["GA", "Georgia"], "HI": ["HI", "Hawaii"], "ID": ["ID", "Idaho"], "IL": ["IL", "Illinois"],
+        "IN": ["IN", "Indiana"], "IA": ["IA", "Iowa"], "KS": ["KS", "Kansas"], "KY": ["KY", "Kentucky"],
+        "LA": ["LA", "Louisiana"], "ME": ["ME", "Maine"], "MD": ["MD", "Maryland"], "MA": ["MA", "Massachusetts"],
+        "MI": ["MI", "Michigan"], "MN": ["MN", "Minnesota"], "MS": ["MS", "Mississippi"], "MO": ["MO", "Missouri"],
+        "MT": ["MT", "Montana"], "NE": ["NE", "Nebraska"], "NV": ["NV", "Nevada"], "NH": ["NH", "New Hampshire"],
+        "NJ": ["NJ", "New Jersey"], "NM": ["NM", "New Mexico"], "NY": ["NY", "New York"], "NC": ["NC", "North Carolina"],
+        "ND": ["ND", "North Dakota"], "OH": ["OH", "Ohio"], "OK": ["OK", "Oklahoma"], "OR": ["OR", "Oregon"],
+        "PA": ["PA", "Pennsylvania"], "RI": ["RI", "Rhode Island"], "SC": ["SC", "South Carolina"], "SD": ["SD", "South Dakota"],
+        "TN": ["TN", "Tennessee"], "TX": ["TX", "Texas"], "UT": ["UT", "Utah"], "VT": ["VT", "Vermont"],
+        "VA": ["VA", "Virginia"], "WA": ["WA", "Washington", "Washington State"], "WV": ["WV", "West Virginia"],
+        "WI": ["WI", "Wisconsin"], "WY": ["WY", "Wyoming"]
+      }
+    },
+    "AU": {
+      "name": "Australia",
+      "aliases": ["AU", "AUS", "Australia"],
+      "subdivision_code_system": "AU_POSTAL",
+      "subdivisions": {
+        "ACT": ["ACT", "Australian Capital Territory"],
+        "NSW": ["NSW", "New South Wales"],
+        "NT": ["NT", "Northern Territory"],
+        "QLD": ["QLD", "Queensland"],
+        "SA": ["SA", "South Australia"],
+        "TAS": ["TAS", "Tasmania"],
+        "VIC": ["VIC", "Victoria"],
+        "WA": ["WA", "Western Australia"]
+      }
+    },
+    "NZ": {
+      "name": "New Zealand",
+      "aliases": ["NZ", "NZL", "New Zealand", "Aotearoa New Zealand"],
+      "subdivision_code_system": "ISO_3166_2_SUFFIX",
+      "subdivisions": {
+        "AUK": ["AUK", "NZ-AUK", "Auckland", "Auckland Region"],
+        "BOP": ["BOP", "NZ-BOP", "Bay of Plenty"],
+        "CAN": ["CAN", "NZ-CAN", "Canterbury"],
+        "CIT": ["CIT", "NZ-CIT", "Chatham Islands", "Chatham Islands Territory"],
+        "GIS": ["GIS", "NZ-GIS", "Gisborne"],
+        "HKB": ["HKB", "NZ-HKB", "Hawke's Bay", "Hawkes Bay"],
+        "MBH": ["MBH", "NZ-MBH", "Marlborough"],
+        "MWT": ["MWT", "NZ-MWT", "Manawatu-Whanganui", "Manawatū-Whanganui", "Manawatu Wanganui"],
+        "NSN": ["NSN", "NZ-NSN", "Nelson"],
+        "NTL": ["NTL", "NZ-NTL", "Northland"],
+        "OTA": ["OTA", "NZ-OTA", "Otago"],
+        "STL": ["STL", "NZ-STL", "Southland"],
+        "TAS": ["TAS", "NZ-TAS", "Tasman"],
+        "TKI": ["TKI", "NZ-TKI", "Taranaki"],
+        "WGN": ["WGN", "NZ-WGN", "Wellington", "Greater Wellington", "Wellington Region"],
+        "WKO": ["WKO", "NZ-WKO", "Waikato"],
+        "WTC": ["WTC", "NZ-WTC", "West Coast"]
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "eval_id": "qualification-2-owner-unknown-count",
+  "prompt": "Use equinet-icp-qualification only. Synthetic confirmed classification: segment horse_owner, type breeding_farm, organisation identity. Evidence EV-H1 from the official website confirms a commercial breeding operation in Lexington and Farm Manager role. The website does not state horse count. Build the full qualification object with every Horse Owner criterion. Preserve horse count as unknown. Do not calculate confidence or score.",
+  "expected_skill": "equinet-icp-qualification"
+}

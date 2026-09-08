@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260815T203652Z-4B969F6F",
+  "seed_id": "SEED-RR-PODIATRY-001",
+  "discovered_at": "2026-08-15T20:38:58Z",
+  "discovery_method": "approved_web_search",
+  "discovery_query": "site:roodandriddle.com Lexington podiatry farrier official Scott Morrison Raul Bras",
+  "segment_hint": "farrier",
+  "identity_hint": {
+    "display_name": "Rood & Riddle Equine Hospital — Lexington Podiatry",
+    "person_name": "Manfred Eckert",
+    "organisation_name": "Rood & Riddle Equine Hospital",
+    "role_title": "Co-Founder/Farrier"
+  },
+  "website": "https://roodandriddle.com/lexington-podiatry-team",
+  "location_hint": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington",
+    "postal_code": "40511",
+    "public_address": "2150 Georgetown Road, Lexington, KY 40511"
+  },
+  "public_contacts": [
+    {
+      "contact_type": "phone",
+      "value": "(859) 233-0371",
+      "label": "Organisation general contact",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001"
+      ]
+    }
+  ],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-RR-TEAM-001",
+      "source_url": "https://roodandriddle.com/lexington-podiatry-team",
+      "source_name": "Rood & Riddle Lexington Podiatry Team",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-15T20:38:58Z",
+      "evidence_excerpt": "Meet Your Podiatry Equine Veterinary Care Team. The Lexington page lists veterinarians and a dedicated FARRIERS team including Manfred Eckert (Co-Founder/Farrier), Benjamin Barhorst, CJF, Stuart Muir, NZCF, CJF, DIPWCF, and other named farriers. Lexington public phone: (859) 233-0371.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-RR-LEX-001",
+      "source_url": "https://roodandriddle.com/lexington/",
+      "source_name": "Rood & Riddle Lexington Hospital",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-15T20:38:58Z",
+      "evidence_excerpt": "Rood & Riddle Equine Hospital sits on 24 acres in the heart of the Bluegrass in Lexington, KY, as a horse referral center. The practice is known and respected worldwide for innovative and highly skilled treatment of horses and is run by 36 shareholders.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-RR-CONTACT-001",
+      "source_url": "https://www.roodandriddle.com/contact",
+      "source_name": "Rood & Riddle General Contact",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-15T20:59:46Z",
+      "evidence_excerpt": "The official contact page footer lists the Lexington location at 2150 Georgetown Road, Lexington, KY 40511, the postal address PO Box 12070, Lexington, KY 40580, and telephone (859) 233-0371. The page provides a contact form but does not publish a general email address.",
+      "fact_or_inference": "direct_fact"
+    }
+  ],
+  "missing_information": [
+    "The official pages do not identify which person controls procurement for the farrier team.",
+    "Specific horseshoe, nail, tool or hoof-care product brands used by the team are not stated.",
+    "No general public email address is published; the official site provides a contact form."
+  ],
+  "conflicts": [],
+  "status": "ready_for_classification"
+}

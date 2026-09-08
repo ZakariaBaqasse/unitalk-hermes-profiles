@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "errors": [],
+  "source_register_version": "1.4.2",
+  "runtime_profile_count": 6,
+  "active_source_count": 13,
+  "live_adapters_enabled": 6,
+  "network_requests": 0
+}

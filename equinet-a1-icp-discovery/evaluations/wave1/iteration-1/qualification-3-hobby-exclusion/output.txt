@@ -1,0 +1,187 @@
+Query: Use equinet-icp-qualification only. Synthetic classification needs 
+review. Evidence EV-X1 explicitly states the person shoes only their own horse 
+as a hobby and does not offer professional Farrier services. Build the full 
+Farrier qualification object, confirm the appropriate exclusion criterion with 
+evidence, and do not calculate confidence or score.
+Initializing agent...
+  ⚠ tirith security scanner enabled but not available — command scanning will use pattern matching only
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+I'll load the required skill first.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     equinet-icp-qualification  0.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now let me load the referenced schema and the build script, along with the ICP configuration.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     equinet-icp-qualification → scripts/build_qualification.py  0.0s
+  ┊ 📚 skill     equinet-icp-qualification → references/qualification-assessment.schema.json  0.0s
+  ┊ 📖 read      equinet-icp-v1.yaml  0.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now I have the full picture. Let me examine the ICP config closely for Farrier exclusion criteria. Key findings:
+
+- farrier.inactive_or_hobbyist (criterion_id) — category: negative, effect: negative_signal, if_confirmed: lower_priority_or_exclude
+- farrier.no_professional_evidence — category: exclusion, effect: exclusion, if_confirmed: excluded — describes: "Candidate cannot be substantiated as professionally active or actively entering the profession."
+
+The user says evidence EV-X1 explicitly states the person "shoes only their own horse as a hobby and does not offer professional Farrier services." This directly confirms both that it IS a hobby (not professional) and that there IS evidence contradicting professional activity. So:
+
+- farrier.professional_activity → contradicted (direct contrary evidence exists)
+- farrier.inactive_or_hobbyist → confirmed (hobby-only, not professional)
+- farrier.no_professional_evidence → not_confirmed (we DO have evidence — it says they're a hobbyist, not that we can't find anything)
+- The actual exclusion trigger here is farrier.inactive_or_hobbyist (effect: negative_signal, if_confirmed: lower_priority_or_exclude), not farrier.no_professional_evidence
+
+Let me check whether the exclusion criterion has effect: exclusion and whether inactive_or_hobbyist truly is the exclusion rule. Looking at lines 239-245:
+
+farrier.no_professional_evidence: category=exclusion, effect=exclusion, description="Candidate cannot be substantiated as professionally active..."
+
+Since EV-X1 provides evidence that the person IS a hobbyist, we HAVE evidence — we CAN substantiate their activity (it's hobby, not professional). So farrier.no_professional_evidence would be not_confirmed (we have evidence, just not of professional activity).
+
+The farrier.inactive_or_hobbyist has if_confirmed: lower_priority_or_exclude — meaning when confirmed it triggers a lower-priority/exclude outcome but isn't an automatic hard exclusion. The skill says "Do not double-count" and the ICP config shows effect: negative_signal — this is not a hard exclusion criterion but a negative signal.
+
+Let me build the full assessment input JSON and run the build
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️  write     /opt/data/profiles/equinet-a1-icp-discovery/tmp/hobbyist-assessment.json  0.1s
+  ┊ review diff
+a/profiles/equinet-a1-icp-discovery/tmp/hobbyist-assessment.json → b/profiles/equinet-a1-icp-discovery/tmp/hobbyist-assessment.json
+@@ -0,0 +1,93 @@
++{
++  "schema_version": "1.0.0",
++  "segment": "farrier",
++  "criterion_assessments": {
++    "farrier.professional_activity": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 explicitly states the person shoes only their own horse as a hobby and does not offer professional Farrier services. This directly contradicts active professional Farrier activity."
++    },
++    "farrier.product_usage_or_influence": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of product purchasing or recommendation influence in a professional context. The person shoes only their own horse for hobby purposes."
++    },
++    "farrier.established_client_base": {
++      "status": "not_confirmed",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 confirms no professional client base exists — the person does not offer professional services to others."
++    },
++    "farrier.regular_business_activity": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 directly contradicts regular professional business activity by confirming the person does not offer professional Farrier services."
++    },
++    "farrier.high_value_service_area": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence available on service area; the person does not operate a professional practice."
++    },
++    "farrier.advanced_specialisation": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of advanced hoof-care specialisation in a professional context."
++    },
++    "farrier.certified_or_experienced": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of certification or professional experience as a Farrier."
++    },
++    "farrier.sport_horse_focus": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of working with sport or competition horses in a professional capacity."
++    },
++    "farrier.multi_farrier_business": {
++      "status": "not_confirmed",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 confirms the person operates alone and does not run a Farrier business of any kind."
++    },
++    "farrier.buying_influence": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of influencing product selection in a professional or commercial context."
++    },
++    "farrier.product_fit": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of professional hoof-care product need aligned with Equinet's range."
++    },
++    "farrier.engagement_signal": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of recent professional engagement such as events, certification or association membership."
++    },
++    "farrier.apprentice_future_potential": {
++      "status": "not_confirmed",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 describes a hobby-based activity, not a professional apprentice or junior entering the profession."
++    },
++    "farrier.inactive_or_hobbyist": {
++      "status": "confirmed",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 directly states the person shoes only their own horse as a hobby and does not offer professional Farrier services. This confirms hobby-only status."
++    },
++    "farrier.no_professional_evidence": {
++      "status": "not_confirmed",
++      "evidence_ids": ["EV-X1"],
++      "notes": "Evidence EV-X1 does exist and provides a conclusive finding — the person is a hobbyist, not a professional. This criterion requires absence of any substantiating evidence, which is not the case here."
+… omitted 15 diff line(s) across 1 additional file(s)/section(s)
+  ┊ 💻 $         uv run skills/equinet-icp-qualification/scripts/build_qualification.py tmp/hobbyist-assessment.json  0.6s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+The build ran successfully. Here is the full qualification result with the appropriate exclusion analysis:
+
+
+
+Farrier Qualification Object — Hobbyist (EV-X1)
+
+Exclusion analysis
+
+The build's exclusion_status is eligible with an empty exclusion_reasons array. Here is why, and what the operative exclusion criterion actually is:
+
+farrier.no_professional_evidence (the hard exclusion, effect: exclusion):
+- Status: not_confirmed. EV-X1 provides evidence — conclusive evidence that the person is a hobbyist who shoes their own horse and does not offer professional services. This criterion requires the absence of any substantiating evidence. Because we have evidence (EV-X1), this criterion is not met.
+- The hard exclusion (effect: exclusion) does not trigger.
+
+farrier.inactive_or_hobbyist (the negative signal, effect: negative_signal):
+- Status: confirmed. EV-X1 directly states: the person shoes only their own horse as a hobby and does not offer professional Farrier services.
+- This triggers if_confirmed: lower_priority_or_exclude per the ICP config.
+- In the build's logic, this is a negative_signal — it does not produce a hard exclusion in the exclusion_reasons array. The exclusion status stays eligible because the hard exclusion criterion (farrier.no_professional_evidence) is not_confirmed.
+
+farrier.professional_activity (the standard qualification gate, effect: required_for_standard_qualification):
+- Status: contradicted. EV-X1 contradicts active professional Farrier activity directly.
+- The required gate for standard qualification has failed (contradicted → the if_unknown: needs_review path does not apply; contradicted is worse).
+- No special pathways apply (no farrier.apprentice_future_potential confirmed).
+
+Overall outcome
+
+Field: Exclusion status
+Value: eligible (no hard exclusion criterion confirmed)
+────────────────────────────────────────
+Field: Hard exclusion (no_professional_evidence)
+Value: not_confirmed — evidence exists, just not of professional work
+────────────────────────────────────────
+Field: Operative negative signal
+Value: farrier.inactive_or_hobbyist — confirmed via EV-X1
+────────────────────────────────────────
+Field: Standard qualification gate
+Value: farrier.professional_activity — contradicted
+────────────────────────────────────────
+Field: Minimum data status
+Value: fail (10 missing minimum fields — expected for this synthetic example)
+
+Key distinction clarified
+
+The appropriate exclusion criterion in play is farrier.inactive_or_hobbyist (effect: negative_signal), not farrier.no_professional_evidence (effect: exclusion). EV-X1 provides evidence rather than an absence of it, so the hard exclusion does not fire. The hobbyist signal confirmed by EV-X1 triggers the lower_priority_or_exclude pathway from the ICP configuration — this candidate should be treated as lower-priority or excluded at the review level, not hard-excluded by the builder.
+
+No confidence or score was calculated per instruction. The full qualification JSON was validated against the schema and written to /opt/data/profiles/equinet-a1-icp-discovery/tmp/hobbyist-assessment.json (input) and produced via the build script (output in terminal above).
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260812_183732_69948b -p equinet-a1-icp-discovery
+
+Session:        20260812_183732_69948b
+Duration:       37s
+Messages:       12 (1 user, 10 tool calls)

@@ -1,0 +1,165 @@
+{
+  "assessment": {
+    "schema_version": "1.0.0",
+    "method_version": "evidence-confidence-1.0.0",
+    "candidate_reference": {
+      "run_id": "SYNTH-INFERENCE-001",
+      "seed_id": "SEED-SYNTH-INFERENCE-FARRIER"
+    },
+    "available_evidence_ids": [
+      "EV-SYNTH-WEBSITE-001",
+      "EV-SYNTH-CONTACT-002"
+    ],
+    "dimensions": {
+      "identity_certainty": {
+        "level": "strong_unique_match",
+        "evidence_ids": [
+          "EV-SYNTH-WEBSITE-001",
+          "EV-SYNTH-CONTACT-002"
+        ],
+        "rationale": "Prospect name and business name match exactly on the official website, with matching phone and city on the contact page. Unambiguous identity resolution."
+      },
+      "source_quality": {
+        "level": "authoritative_primary_business_source",
+        "evidence_ids": [
+          "EV-SYNTH-WEBSITE-001"
+        ],
+        "rationale": "The prospect's own current official business website is the primary retained source for identity, location and stated services. Rank 3 authoritative for facts the business controls and explicitly publishes."
+      },
+      "evidence_directness": {
+        "level": "mixed_direct_and_inferred",
+        "evidence_ids": [
+          "EV-SYNTH-WEBSITE-001"
+        ],
+        "rationale": "Identity, location and contact details are directly stated. However, the mandatory professional-activity criterion is supported only by reasonable inference: the site describes horse-shoeing equipment and tooling but does not explicitly state 'current professional farrier services available' or equivalent direct language."
+      },
+      "corroboration": {
+        "level": "one_strong_source",
+        "evidence_ids": [
+          "EV-SYNTH-WEBSITE-001"
+        ],
+        "rationale": "One current official business website supports the relevant facts. No second independent source was required or sought for the self-controlled claims."
+      },
+      "freshness": {
+        "level": "current_within_claim_window",
+        "evidence_ids": [
+          "EV-SYNTH-WEBSITE-001"
+        ],
+        "rationale": "The current official business website is live, active and presents current information. No stale, archived or contradictory signal detected."
+      },
+      "completeness": {
+        "level": "minimum_review_package_only",
+        "evidence_ids": [
+          "EV-SYNTH-WEBSITE-001",
+          "EV-SYNTH-CONTACT-002"
+        ],
+        "rationale": "Confidence-stage minimum data present: resolved identity, confirmed segment (Farrier), at least one permitted evidence record, qualification criteria, exclusion status, and visible conflicts/unknowns. Wave 2/3 fields (scoring, recommendation, workflow) are absent by design."
+      }
+    },
+    "gates": {
+      "mandatory_claim_inference_only": {
+        "value": true,
+        "evidence_ids": [
+          "EV-SYNTH-WEBSITE-001"
+        ],
+        "rationale": "The mandatory professional-activity claim (current professional farrier activity) is supported only by reasonable inference from the website content. Per evidence-confidence-rules, inference alone cannot confirm a mandatory ICP criterion. The gate caps confidence at 59 (Low)."
+      },
+      "unresolved_identity_conflict": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "No identity conflict exists; the prospect is uniquely resolved by strong matching identifiers."
+      },
+      "critical_evidence_conflict": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "No material evidence conflict exists. All evidence sources are internally consistent."
+      },
+      "minimum_data_failed": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "Confidence-stage minimum data is met: resolved identity, segment classified, permitted evidence record present, qualification criteria populated, exclusion status recorded, conflicts/unknowns visible."
+      },
+      "blocked_source_used": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "No blocked source was used. The only retained evidence comes from the permitted official business website."
+      },
+      "no_evidence": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "Evidence records exist: EV-SYNTH-WEBSITE-001 and EV-SYNTH-CONTACT-002."
+      },
+      "fabricated_or_untraceable_evidence": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "Evidence is traceable to the cited source URLs within the permitted official business website."
+      }
+    },
+    "confidence_stage_missing_fields": []
+  },
+  "confidence": {
+    "level": "low",
+    "score": 59,
+    "method_version": "evidence-confidence-1.0.0",
+    "reasons": [
+      "identity_certainty: strong_unique_match (20/20)",
+      "source_quality: authoritative_primary_business_source (20/20)",
+      "evidence_directness: mixed_direct_and_inferred (8/20)",
+      "corroboration: one_strong_source (12/20)",
+      "freshness: current_within_claim_window (10/10)",
+      "completeness: minimum_review_package_only (7/10)"
+    ],
+    "limitations": [
+      "A mandatory ICP claim supported only by inference cannot exceed Low confidence.",
+      "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+    ]
+  },
+  "audit": {
+    "raw_score": 77,
+    "adjusted_score": 59,
+    "dimension_scores": {
+      "identity_certainty": {
+        "level": "strong_unique_match",
+        "points": 20,
+        "maximum": 20
+      },
+      "source_quality": {
+        "level": "authoritative_primary_business_source",
+        "points": 20,
+        "maximum": 20
+      },
+      "evidence_directness": {
+        "level": "mixed_direct_and_inferred",
+        "points": 8,
+        "maximum": 20
+      },
+      "corroboration": {
+        "level": "one_strong_source",
+        "points": 12,
+        "maximum": 20
+      },
+      "freshness": {
+        "level": "current_within_claim_window",
+        "points": 10,
+        "maximum": 10
+      },
+      "completeness": {
+        "level": "minimum_review_package_only",
+        "points": 7,
+        "maximum": 10
+      }
+    },
+    "applied_caps": [
+      {
+        "gate": "mandatory_claim_inference_only",
+        "maximum_score": 59,
+        "reason": "A mandatory ICP claim supported only by inference cannot exceed Low confidence."
+      }
+    ],
+    "confidence_stage_missing_fields": [],
+    "available_evidence_ids": [
+      "EV-SYNTH-WEBSITE-001",
+      "EV-SYNTH-CONTACT-002"
+    ]
+  }
+}

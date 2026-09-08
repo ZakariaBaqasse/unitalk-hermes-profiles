@@ -1,0 +1,34 @@
+{
+  "scoring": {
+    "status": "blocked",
+    "score": null,
+    "band": null,
+    "model_version": "1.0.0",
+    "components": [],
+    "rationale": null,
+    "block_reason": "Confirmed exclusion criterion: farrier.no_professional_evidence."
+  },
+  "audit": {
+    "raw_band": null,
+    "final_band": null,
+    "applied_band_caps": [],
+    "outcome": "excluded_no_professional_evidence",
+    "review_required": true,
+    "confirmed_positive_criteria": [],
+    "missing_required_gates": []
+  },
+  "explanation": {
+    "summary": "ICP scoring is blocked: Confirmed exclusion criterion: farrier.no_professional_evidence.",
+    "confirmed_criteria": [],
+    "unearned_weighted_criteria": [],
+    "applied_band_rules": [],
+    "outcome": "excluded_no_professional_evidence",
+    "review_required": true,
+    "confidence_interpretation": "ICP scoring is blocked; evidence confidence does not override the exclusion or authorise priority treatment."
+  },
+  "confidence_context": {
+    "level": "high",
+    "score": 90,
+    "method_version": "evidence-confidence-1.0.0"
+  }
+}

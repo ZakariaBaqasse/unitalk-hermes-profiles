@@ -1,0 +1,78 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "recovery_id": "a1-live-staging-recovery-20260816",
+  "status": "controls_implemented_retest_ready",
+  "recorded_at": "2026-08-16T13:06:30Z",
+  "failed_session": {
+    "session_id": "20260816_115815_326ced",
+    "tokens": 987616,
+    "api_calls": 15,
+    "final_artifacts_created": false,
+    "blocked_source_violation": true,
+    "output_truncated": true
+  },
+  "controls_implemented": {
+    "website_blocklist": [
+      "madbarn.com",
+      "yelp.com",
+      "yellowpages.com",
+      "equineprofinder.com",
+      "apify.com",
+      "newhorse.com",
+      "professionalfarriers.com",
+      "mms.professionalfarriers.com",
+      "linkedin.com",
+      "facebook.com",
+      "instagram.com"
+    ],
+    "web_cache_cleared": true,
+    "staged_live_workflow": ["research", "qualification", "scoring", "review_export"],
+    "artifact_gate_required": true,
+    "one_stage_per_model_turn": true,
+    "max_model_iterations_per_stage": 6,
+    "root_max_turns": 6,
+    "environment_max_iterations": 6,
+    "runtime_install_commands_denied": true,
+    "no_official_farrier_website_action": "hold_or_needs_research",
+    "todo_status_is_completion_evidence": false
+  },
+  "quota_modes": {
+    "equinet_pilot_daily": {"warning": 700000, "hard": 1000000},
+    "unitalk_recovery_test_daily": {"warning": 1500000, "hard": 2000000, "active": true}
+  },
+  "staged_initialisation_v1": {
+    "tokens": 176208,
+    "api_calls": 17,
+    "status": "rejected",
+    "reason": "Agent searched for the controller and attempted package installation because the exact runtime command and system-Python compatibility were missing."
+  },
+  "staged_initialisation_v2": {
+    "tokens": 35027,
+    "api_calls": 4,
+    "status": "passed",
+    "research_started": false,
+    "stage": "research",
+    "run_aborted_after_test": true
+  },
+  "improvement": {
+    "token_reduction_vs_failed_session_percent": 96.45,
+    "api_call_reduction_vs_failed_session_percent": 73.33
+  },
+  "daily_test_ledger": {
+    "tokens": 1198851,
+    "api_calls": 36,
+    "status": "pass",
+    "hard": 2000000,
+    "remaining": 801149
+  },
+  "tests": {
+    "blocked_domains_rejected": "passed",
+    "official_sites_allowed": "passed",
+    "missing_artifacts_block_stage_completion": "passed",
+    "ordered_stage_transitions": "passed",
+    "system_python_initialisation": "passed",
+    "actual_profile_staged_initialisation": "passed",
+    "waves1_to_3_and_steps7_to_8": "passed"
+  },
+  "next_action": "Start a fresh staged live run. Do not resume either failed or recovery-initialisation session."
+}

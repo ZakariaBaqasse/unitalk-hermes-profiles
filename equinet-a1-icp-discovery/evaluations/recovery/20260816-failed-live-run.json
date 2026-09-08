@@ -1,0 +1,46 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "incident_type": "failed_live_pilot_execution",
+  "recorded_at": "2026-08-16T12:53:17Z",
+  "session_id": "20260816_115815_326ced",
+  "session_status": "stale_or_abnormally_ended",
+  "last_message": "Response truncated due to output length limit",
+  "usage": {
+    "input_tokens": 979974,
+    "output_tokens": 7642,
+    "total_tokens": 987616,
+    "api_calls": 15,
+    "model": "deepseek-v4-flash",
+    "provider": "openai-api"
+  },
+  "quota_assessment": {
+    "pilot_run_hard": 350000,
+    "over_run_hard": 637616,
+    "multiple_of_run_hard": 2.82,
+    "pilot_daily_hard": 1000000,
+    "daily_hard_used_percent": 98.76
+  },
+  "violations": [
+    "Mad Barn blocked source was opened with web_extract.",
+    "A conditional manual IAPF member directory was used through automated/cached extraction.",
+    "The agent continued after no official Farrier business website was found.",
+    "Todo stages were marked complete without persisted validated artifacts.",
+    "The full workflow was attempted in one model turn.",
+    "No review package, exports or requested CSV were created."
+  ],
+  "invalidated_data": [
+    "Bobby Menker email obtained from Mad Barn",
+    "Any qualification or scoring claims not backed by persisted validated artifacts"
+  ],
+  "external_actions": {
+    "outreach": 0,
+    "crm_writes": 0,
+    "a2_handoffs": 0
+  },
+  "recovery_decision": "Do not resume. Close the stale UI session, clear web cache, apply runtime blocklist and staged execution controls before rerun.",
+  "cache_hash_record": {
+    "madbarn.com-f3bcaa205a.md": "a9d1a4da4dccbe39d8b474d69cbb6d30fec097b16ca7748e87b06d441d83c2d9",
+    "mms.professionalfarriers.com-974ef0828b.md": "96108a9eff8e413b639f0146be2fd4273e37469271ad7b9acdafeeb90025d787",
+    "www.millridge.com-4400e243d8.md": "1ebd24d4527ce4fbb8b38b25831e8d2f368c4f2d66965f125efc7bf4a439eebb"
+  }
+}

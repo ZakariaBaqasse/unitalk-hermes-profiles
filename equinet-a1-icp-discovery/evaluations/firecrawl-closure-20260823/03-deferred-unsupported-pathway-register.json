@@ -1,0 +1,134 @@
+{
+  "register_id": "equinet-a1-deferred-unsupported-pathway-register-20260823",
+  "generated_at": "2026-08-23T19:55:00Z",
+  "pathways": {
+    "blocked_sources": [
+      {
+        "source_id": "pdf.yellow_pages",
+        "name": "Yellow Pages",
+        "reason": "Terms prohibit commercial scraping and lead-list use. Category: blocked_commercial_source."
+      },
+      {
+        "source_id": "pdf.yelp",
+        "name": "Yelp",
+        "reason": "Terms restrict automated and consumer data use for commercial prospecting. Category: blocked_commercial_source."
+      },
+      {
+        "source_id": "pdf.equineprofinder",
+        "name": "EquineProFinder",
+        "reason": "Terms prohibit AI agents, automated extraction and lead-list use without written consent. Category: blocked_commercial_source."
+      },
+      {
+        "source_id": "pdf.ohorse",
+        "name": "O Horse",
+        "reason": "Terms prohibit commercial harvesting of listed contacts; robots block named AI agents. Category: blocked_commercial_source."
+      }
+    ],
+    "manual_only_conditional": [
+      {
+        "source_id": "pdf.professional_farriers_member_directory",
+        "name": "IAPF Member Directory (mms.professionalfarriers.com)",
+        "access_profile": "public_directory_manual",
+        "reason": "Login-gated member data; conditional manual access only. No automated extraction."
+      },
+      {
+        "source_id": "pdf.themhorses",
+        "name": "The Majestic Horses Directory",
+        "access_profile": "public_directory_manual",
+        "reason": "Automation disallowed by robots rules for search-query paths and named AI agents. Human seed selection permitted."
+      },
+      {
+        "source_id": "pdf.horse_council_members",
+        "name": "Horse Council Member Directory",
+        "access_profile": "public_directory_manual",
+        "reason": "Automation terms unverified. Human seed selection permitted; do not crawl or paginate."
+      }
+    ],
+    "integration_pending": [
+      {
+        "source_id": "integration.apify_google_maps_scraper",
+        "name": "Apify Google Maps Scraper",
+        "status": "integration_pending",
+        "reason": "Credential, Actor runtime test, billing controls and audit capture not yet verified."
+      },
+      {
+        "source_id": "integration.google_places_api",
+        "name": "Google Places API",
+        "status": "needs_verification",
+        "reason": "Account, billing, scopes, attribution, caching, storage and downstream-use approval pending."
+      }
+    ],
+    "unavailable_no_licence": [
+      {
+        "source_id": "commercial.clay",
+        "name": "Clay",
+        "reason": "No Equinet licence confirmed."
+      },
+      {
+        "source_id": "commercial.apollo",
+        "name": "Apollo",
+        "reason": "No Equinet licence confirmed."
+      }
+    ],
+    "deferred_adapter_implementation_no_adapter": [
+      {
+        "source_id": "pdf.american_farriers_association",
+        "name": "American Farrier's Association",
+        "smoke_test_status": "partial",
+        "runtime_readiness": "technical_access_preflight_required_no_adapter",
+        "reason": "Approved but HTTP 403 risk in prior smoke test. No adapter implemented; requires live access preflight."
+      },
+      {
+        "source_id": "pdf.professional_farriers_directory",
+        "name": "IAPF Professional Farriers Directory",
+        "smoke_test_status": "partial",
+        "runtime_readiness": "partial_context_only_no_public_directory_adapter",
+        "reason": "Approved, smoke-tested partial. Public pages accessible; no adapter implemented."
+      },
+      {
+        "source_id": "pdf.farrier_industry_association",
+        "name": "Farrier Industry Association",
+        "smoke_test_status": "blocked",
+        "runtime_readiness": "member_search_blocked_recaptcha_public_context_pages_only_no_adapter",
+        "reason": "Member search blocked by reCAPTCHA. No adapter implemented; public context pages only."
+      },
+      {
+        "source_id": "pdf.edss_farriers",
+        "name": "EDSS Farrier Search",
+        "smoke_test_status": "partial",
+        "runtime_readiness": "partial_kentucky_form_submission_unsupported_no_adapter",
+        "reason": "Approved; Kentucky form submission unsupported. No adapter implemented."
+      },
+      {
+        "source_id": "pdf.bwfa_kentucky",
+        "name": "BWFA Kentucky",
+        "smoke_test_status": "partial",
+        "runtime_readiness": "partial_landing_only_low_volume_no_adapter",
+        "reason": "Approved; partial landing-only, low volume. No adapter implemented."
+      },
+      {
+        "source_id": "pdf.equinenow_kentucky_farms",
+        "name": "EquineNow Kentucky Farms",
+        "smoke_test_status": "partial",
+        "runtime_readiness": "partial_landing_only_horse_owner_use_only_no_adapter",
+        "reason": "Approved; partial landing-only, Horse Owner use only. No adapter implemented."
+      }
+    ],
+    "unavailable_crm": [
+      {
+        "source_id": "internal.hubspot",
+        "name": "Equinet HubSpot",
+        "status": "unavailable",
+        "reason": "Connection not established. All duplicate, customer, opportunity, consent and exclusion checks unavailable."
+      }
+    ],
+    "unavailable_twenty": [
+      {
+        "source_id": "internal.twenty",
+        "name": "Twenty",
+        "status": "unavailable",
+        "reason": "Connection not established. No candidate staging or review status available."
+      }
+    ]
+  }
+}

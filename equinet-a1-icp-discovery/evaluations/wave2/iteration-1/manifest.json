@@ -1,0 +1,16 @@
+{
+  "evaluation": "A1 Wave 2 behavioural evaluation",
+  "iteration": 1,
+  "profile": "equinet-a1-icp-discovery",
+  "model": "deepseek-v4-flash",
+  "skills": [
+    "prospect-evidence-and-confidence",
+    "icp-scoring-and-rationale"
+  ],
+  "accepted_wave1_artifacts": "evaluations/wave1/iteration-8/accepted-artifacts",
+  "expected_scenarios": 6,
+  "scenario_directories_present": 6,
+  "technical_validation": "passed_after_fixes",
+  "behavioural_acceptance": "pending_corrected_rerun_grading_and_human_review",
+  "audit_report": "evaluations/wave2/WAVE2-AUDIT.md"
+}

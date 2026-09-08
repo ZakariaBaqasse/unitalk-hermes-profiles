@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "source_package_id": "A1-RP-STEP8-MIXED",
+  "candidate_count": 3,
+  "files": [
+    {
+      "format": "json",
+      "file_name": "mixed-batch.json",
+      "sha256": "0d5e7c362f8d61f39e1d24ac845c680a5b7b9f39516fb9b1bbecbe90faa27fa0",
+      "bytes": 46931
+    },
+    {
+      "format": "markdown",
+      "file_name": "mixed-batch.md",
+      "sha256": "0c0df5e4be5ebdffe9fa5045a3df10c8b402c13d526ab88978b8395488c4e0ea",
+      "bytes": 7077
+    },
+    {
+      "format": "csv",
+      "file_name": "mixed-batch.csv",
+      "sha256": "d1ae0a96094bbb084fd4d5ca500dfbdc2e5e0a9cfe8148cbdb039f4ea13cf91e",
+      "bytes": 8977
+    },
+    {
+      "format": "xlsx",
+      "file_name": "mixed-batch.xlsx",
+      "sha256": "cb41ee9a7cb45ac63b667febbc79c75a243525646a687f4a26210a5a0d96e99f",
+      "bytes": 19222
+    }
+  ],
+  "validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  }
+}

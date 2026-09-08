@@ -1,0 +1,1044 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "A1-RP-STEP8-MIXED",
+  "run_id": "RUN-A1-RP-STEP8-MIXED",
+  "generated_at": "2026-08-15T17:46:29Z",
+  "initiated_by": "Step 8 synthetic suite",
+  "candidates": [
+    {
+      "candidate_id": "A1-SYN-FARRIER-HIGH",
+      "record_kind": "synthetic_test",
+      "research_seed": {
+        "schema_version": "1.0.0",
+        "run_id": "RUN-A1-SYN-FARRIER-HIGH",
+        "seed_id": "SEED-A1-SYN-FARRIER-HIGH",
+        "discovered_at": "2026-08-15T17:46:29Z",
+        "identity_hint": {
+          "display_name": "Alex Morgan / Bluegrass Performance Farriery",
+          "person_name": "Alex Morgan",
+          "organisation_name": "Bluegrass Performance Farriery",
+          "role_title": "Farrier"
+        },
+        "website": "https://bluegrass-farriery.example.test",
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "Kentucky",
+          "city": "Lexington",
+          "postal_code": "40502",
+          "public_address": "100 Synthetic Lane, Lexington, KY 40502"
+        },
+        "public_contacts": [
+          {
+            "contact_type": "email",
+            "value": "alex.morgan@example.com",
+            "label": "Synthetic business email",
+            "evidence_ids": [
+              "EV-SYN-ROLE-001"
+            ]
+          },
+          {
+            "contact_type": "phone",
+            "value": "+1-555-010-8000",
+            "label": "Synthetic business phone",
+            "evidence_ids": [
+              "EV-SYN-ROLE-001"
+            ]
+          }
+        ],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-SYN-PRO-001",
+            "source_url": "https://bluegrass-farriery.example.test",
+            "source_name": "Synthetic Farrier Homepage",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-15T17:46:29Z",
+            "evidence_excerpt": "Bluegrass Performance Farriery provides active professional hoof-care appointments throughout Lexington.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-SYN-SERVICE-001",
+            "source_url": "https://bluegrass-farriery.example.test/services",
+            "source_name": "Synthetic Farrier Services",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-15T17:46:29Z",
+            "evidence_excerpt": "Services include performance shoeing, therapeutic applications and selection of professional horseshoes and hoof-care products.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-SYN-AREA-001",
+            "source_url": "https://bluegrass-farriery.example.test/service-area",
+            "source_name": "Synthetic Service Area",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-15T17:46:29Z",
+            "evidence_excerpt": "The practice serves sport and competition horses in Lexington and the surrounding Kentucky equine community.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-SYN-ROLE-001",
+            "source_url": "https://bluegrass-farriery.example.test/contact",
+            "source_name": "Synthetic Farrier Contact",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-15T17:46:29Z",
+            "evidence_excerpt": "Alex Morgan, Farrier and owner, selects products for the practice. alex.morgan@example.com | +1-555-010-8000.",
+            "fact_or_inference": "direct_fact"
+          }
+        ],
+        "missing_information": [
+          "Exact client-base size is not published."
+        ],
+        "conflicts": [],
+        "status": "ready_for_classification"
+      },
+      "classification_decision": {
+        "schema_version": "1.0.0",
+        "seed_id": "SEED-A1-SYN-FARRIER-HIGH",
+        "segment": "farrier",
+        "prospect_type": "farrier_independent",
+        "identity_type": "person_and_organisation",
+        "classification_status": "confirmed",
+        "evidence_references": [
+          "EV-SYN-PRO-001",
+          "EV-SYN-ROLE-001"
+        ],
+        "rationale": "Synthetic professional Farrier and associated business are explicitly identified.",
+        "unresolved_questions": []
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "criterion_label": "Active professional Farrier activity",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-PRO-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.professional_activity."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.product_usage_or_influence."
+            },
+            {
+              "criterion_id": "farrier.established_client_base",
+              "criterion_label": "Established or broad client base",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Synthetic Step 8 evidence state for farrier.established_client_base."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "criterion_label": "Regular appointments and established business activity",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-PRO-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.regular_business_activity."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "criterion_label": "Serves a high-equine-activity area",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-AREA-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.high_value_service_area."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "criterion_label": "Advanced hoof-care specialisation",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.advanced_specialisation."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "criterion_label": "Certified, experienced or well-established professional",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.certified_or_experienced."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "criterion_label": "Works with sport or competition horses",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-AREA-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.sport_horse_focus."
+            },
+            {
+              "criterion_id": "farrier.multi_farrier_business",
+              "criterion_label": "Multi-Farrier or established Farrier business",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Synthetic Step 8 evidence state for farrier.multi_farrier_business."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "criterion_label": "Influences product selection",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.buying_influence."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "criterion_label": "Strong fit with professional hoof-care products",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.product_fit."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "criterion_label": "Recent professional engagement signal",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ],
+              "notes": "Synthetic Step 8 evidence state for farrier.engagement_signal."
+            },
+            {
+              "criterion_id": "farrier.apprentice_future_potential",
+              "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Synthetic Step 8 evidence state for farrier.apprentice_future_potential."
+            },
+            {
+              "criterion_id": "farrier.inactive_or_hobbyist",
+              "criterion_label": "Inactive or hobby-only Farrier",
+              "category": "negative",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Synthetic Step 8 evidence state for farrier.inactive_or_hobbyist."
+            },
+            {
+              "criterion_id": "farrier.no_professional_evidence",
+              "criterion_label": "No evidence of professional hoof-care activity",
+              "category": "exclusion",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Synthetic Step 8 evidence state for farrier.no_professional_evidence."
+            }
+          ],
+          "minimum_data_status": "pass",
+          "missing_minimum_fields": [],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "gates": {
+            "unresolved_identity_conflict": {
+              "value": false
+            },
+            "critical_evidence_conflict": {
+              "value": false
+            }
+          }
+        },
+        "confidence": {
+          "level": "high",
+          "score": 84,
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "Synthetic direct evidence is internally traceable and sufficient for the controlled test."
+          ],
+          "limitations": [
+            "Synthetic candidate created only for Step 8 validation."
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "scored",
+          "score": 86,
+          "band": "high",
+          "model_version": "1.0.0",
+          "components": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points_awarded": 20,
+              "max_points": 20,
+              "evidence_ids": [
+                "EV-SYN-PRO-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "points_awarded": 15,
+              "max_points": 15,
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-SYN-PRO-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "points_awarded": 8,
+              "max_points": 8,
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-SYN-AREA-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-SYN-AREA-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "points_awarded": 3,
+              "max_points": 3,
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            }
+          ],
+          "rationale": "Numeric ICP score 86/100 from 10 confirmed weighted criteria. Raw band high; final band high.",
+          "block_reason": null
+        },
+        "audit": {
+          "raw_band": "high",
+          "final_band": "high",
+          "applied_band_caps": [],
+          "outcome": "high_priority_farrier",
+          "review_required": true,
+          "confirmed_positive_criteria": [
+            "farrier.professional_activity",
+            "farrier.product_usage_or_influence",
+            "farrier.product_fit",
+            "farrier.regular_business_activity",
+            "farrier.advanced_specialisation",
+            "farrier.high_value_service_area",
+            "farrier.certified_or_experienced",
+            "farrier.sport_horse_focus",
+            "farrier.buying_influence",
+            "farrier.engagement_signal"
+          ],
+          "missing_required_gates": []
+        },
+        "explanation": {
+          "summary": "ICP score 86/100; final band high. 10 weighted criteria earned points. Outcome: high_priority_farrier.",
+          "confirmed_criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points": 20,
+              "evidence_ids": [
+                "EV-SYN-PRO-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "points": 15,
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "points": 10,
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "points": 10,
+              "evidence_ids": [
+                "EV-SYN-PRO-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "points": 8,
+              "evidence_ids": [
+                "EV-SYN-SERVICE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points": 5,
+              "evidence_ids": [
+                "EV-SYN-AREA-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points": 5,
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "points": 5,
+              "evidence_ids": [
+                "EV-SYN-AREA-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "points": 5,
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "points": 3,
+              "evidence_ids": [
+                "EV-SYN-ROLE-001"
+              ]
+            }
+          ],
+          "unearned_weighted_criteria": [
+            "farrier.established_client_base",
+            "farrier.multi_farrier_business"
+          ],
+          "applied_band_rules": [],
+          "outcome": "high_priority_farrier",
+          "review_required": true,
+          "confidence_interpretation": "High commercial fit with High evidence confidence: attractive and well-supported for human review."
+        },
+        "confidence_context": {
+          "level": "high",
+          "score": 84,
+          "method_version": "evidence-confidence-1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "client_provided_file",
+      "model": null,
+      "tools_used": [],
+      "provided_exclusion_file_status": "unavailable"
+    },
+    {
+      "candidate_id": "A1-OWNER-UNKNOWN-001",
+      "record_kind": "synthetic_test",
+      "research_seed": {
+        "run_id": "RUN-OWNER-UNKNOWN-001",
+        "seed_id": "SEED-OWNER-UNKNOWN-001",
+        "discovered_at": "2026-08-14T00:00:00Z",
+        "identity_hint": {
+          "display_name": "Synthetic Horse Farm / Jane Doe",
+          "person_name": "Jane Doe",
+          "organisation_name": "Synthetic Horse Farm LLC",
+          "role_title": "Farm Manager"
+        },
+        "website": "https://synthetic-horse-farm.example.test",
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "KY",
+          "city": "Lexington",
+          "postal_code": null,
+          "public_address": null
+        },
+        "public_contacts": [],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-OWNER-001",
+            "source_url": "https://synthetic-horse-farm.example.test/about",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Professional equine farm operation serving the Lexington area",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-OWNER-002",
+            "source_url": "https://synthetic-horse-farm.example.test/team",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Jane Doe listed as Farm Manager with purchasing responsibilities",
+            "fact_or_inference": "reasonable_inference"
+          },
+          {
+            "evidence_id": "EV-OWNER-003",
+            "source_url": "https://synthetic-horse-farm.example.test/services",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Operation manages multiple horses with professional hoof-care program",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-OWNER-004",
+            "source_url": "https://synthetic-horse-farm.example.test/competition",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Actively competes in show jumping at regional level",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-OWNER-005",
+            "source_url": "https://synthetic-horse-farm.example.test/breeding",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Active breeding program with multiple mares",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-OWNER-006",
+            "source_url": "https://synthetic-horse-farm.example.test/team",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Engages professional trainers, farriers and veterinary support",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-OWNER-007",
+            "source_url": "https://synthetic-horse-farm.example.test/contact",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Farm located in Lexington, Kentucky — central equine industry hub",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-OWNER-008",
+            "source_url": "https://synthetic-horse-farm.example.test/news",
+            "source_name": "Synthetic Horse Farm",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "Recent stable expansion and acquisition of new performance horses",
+            "fact_or_inference": "direct_fact"
+          }
+        ],
+        "missing_information": [
+          "Horse count is not published."
+        ],
+        "conflicts": []
+      },
+      "classification_decision": {
+        "segment": "horse_owner",
+        "prospect_type": "farm",
+        "identity_type": "person_and_organisation"
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "horse_owner.commercial_operation",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-001"
+              ],
+              "notes": "Professional equine farm operation confirmed from business website.",
+              "criterion_label": "Commercial Operation",
+              "category": "fit"
+            },
+            {
+              "criterion_id": "horse_owner.more_than_three_horses",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Horse count is not published or discoverable from permitted sources.",
+              "criterion_label": "More Than Three Horses",
+              "category": "fit"
+            },
+            {
+              "criterion_id": "horse_owner.purchasing_influence",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-002"
+              ],
+              "notes": "Role title 'Farm Manager' indicates purchasing influence.",
+              "criterion_label": "Purchasing Influence",
+              "category": "priority"
+            },
+            {
+              "criterion_id": "horse_owner.product_fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-003"
+              ],
+              "notes": "Operation manages multiple horses with regular hoof-care needs.",
+              "criterion_label": "Product Fit",
+              "category": "fit"
+            },
+            {
+              "criterion_id": "horse_owner.performance_discipline",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-004"
+              ],
+              "notes": "Competes in show jumping events.",
+              "criterion_label": "Performance Discipline",
+              "category": "priority"
+            },
+            {
+              "criterion_id": "horse_owner.breeding_activity",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-005"
+              ],
+              "notes": "Active breeding program confirmed from farm website.",
+              "criterion_label": "Breeding Activity",
+              "category": "priority"
+            },
+            {
+              "criterion_id": "horse_owner.professional_network",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-006"
+              ],
+              "notes": "Works with professional trainers and farriers.",
+              "criterion_label": "Professional Network",
+              "category": "priority"
+            },
+            {
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-007"
+              ],
+              "notes": "Located in Lexington, KY — high-equine-activity area.",
+              "criterion_label": "High Equine Activity Location",
+              "category": "priority"
+            },
+            {
+              "criterion_id": "horse_owner.buying_signal",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-OWNER-008"
+              ],
+              "notes": "Recent stable expansion and acquisition of new horses.",
+              "criterion_label": "Buying Signal",
+              "category": "priority"
+            }
+          ],
+          "minimum_data_status": "pass",
+          "missing_minimum_fields": [],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "gates": {
+            "unresolved_identity_conflict": {
+              "value": false
+            },
+            "critical_evidence_conflict": {
+              "value": false
+            }
+          }
+        },
+        "confidence": {
+          "score": 92,
+          "level": "high",
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "Synthetic evidence is traceable for the controlled test."
+          ],
+          "limitations": [
+            "Horse count remains unknown."
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "scored",
+          "score": 80,
+          "band": "medium",
+          "model_version": "1.0.0",
+          "components": [
+            {
+              "criterion_id": "horse_owner.commercial_operation",
+              "points_awarded": 25,
+              "max_points": 25,
+              "evidence_ids": [
+                "EV-OWNER-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.purchasing_influence",
+              "points_awarded": 15,
+              "max_points": 15,
+              "evidence_ids": [
+                "EV-OWNER-002"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.product_fit",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-OWNER-003"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.performance_discipline",
+              "points_awarded": 8,
+              "max_points": 8,
+              "evidence_ids": [
+                "EV-OWNER-004"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.breeding_activity",
+              "points_awarded": 7,
+              "max_points": 7,
+              "evidence_ids": [
+                "EV-OWNER-005"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.professional_network",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-OWNER-006"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-OWNER-007"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.buying_signal",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-OWNER-008"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            }
+          ],
+          "rationale": "Numeric ICP score 80/100 from 8 confirmed weighted criteria. Raw band high; final band medium. Applied band rule(s): horse_count_unknown_human_review (Horse count is unknown; strong commercial signals trigger review only.)",
+          "block_reason": null
+        },
+        "audit": {
+          "raw_band": "high",
+          "final_band": "medium",
+          "applied_band_caps": [
+            {
+              "maximum_band": "medium",
+              "outcome": "horse_count_unknown_human_review",
+              "reason": "Horse count is unknown; strong commercial signals trigger review only."
+            }
+          ],
+          "outcome": "horse_count_unknown_human_review",
+          "review_required": true,
+          "confirmed_positive_criteria": [
+            "horse_owner.commercial_operation",
+            "horse_owner.purchasing_influence",
+            "horse_owner.product_fit",
+            "horse_owner.performance_discipline",
+            "horse_owner.breeding_activity",
+            "horse_owner.professional_network",
+            "horse_owner.high_equine_activity_location",
+            "horse_owner.buying_signal"
+          ],
+          "missing_required_gates": [
+            "horse_owner.more_than_three_horses"
+          ]
+        },
+        "explanation": {
+          "summary": "ICP score 80/100; final band medium. 8 weighted criteria earned points. Outcome: horse_count_unknown_human_review.",
+          "confirmed_criteria": [
+            {
+              "criterion_id": "horse_owner.commercial_operation",
+              "points": 25,
+              "evidence_ids": [
+                "EV-OWNER-001"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.purchasing_influence",
+              "points": 15,
+              "evidence_ids": [
+                "EV-OWNER-002"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.product_fit",
+              "points": 10,
+              "evidence_ids": [
+                "EV-OWNER-003"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.performance_discipline",
+              "points": 8,
+              "evidence_ids": [
+                "EV-OWNER-004"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.breeding_activity",
+              "points": 7,
+              "evidence_ids": [
+                "EV-OWNER-005"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.professional_network",
+              "points": 5,
+              "evidence_ids": [
+                "EV-OWNER-006"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "points": 5,
+              "evidence_ids": [
+                "EV-OWNER-007"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.buying_signal",
+              "points": 5,
+              "evidence_ids": [
+                "EV-OWNER-008"
+              ]
+            }
+          ],
+          "unearned_weighted_criteria": [
+            "horse_owner.more_than_three_horses"
+          ],
+          "applied_band_rules": [
+            "horse_count_unknown_human_review: maximum medium — Horse count is unknown; strong commercial signals trigger review only."
+          ],
+          "outcome": "horse_count_unknown_human_review",
+          "review_required": true,
+          "confidence_interpretation": "ICP band medium; evidence confidence high. Review both values together."
+        },
+        "confidence_context": {
+          "level": "high",
+          "score": 92,
+          "method_version": "1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "client_provided_file",
+      "model": null,
+      "tools_used": [],
+      "provided_exclusion_file_status": "unavailable"
+    },
+    {
+      "candidate_id": "A1-FARRIER-REJECT-001",
+      "record_kind": "synthetic_test",
+      "research_seed": {
+        "run_id": "RUN-FARRIER-REJECT-001",
+        "seed_id": "SEED-FARRIER-REJECT-001",
+        "discovered_at": "2026-08-14T00:00:00Z",
+        "identity_hint": {
+          "display_name": "Synthetic Unverified Farrier",
+          "person_name": "Synthetic Unverified Farrier",
+          "organisation_name": null
+        },
+        "website": "https://synthetic-unverified-farrier.example.test",
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "KY",
+          "city": "Lexington",
+          "postal_code": null,
+          "public_address": null
+        },
+        "public_contacts": [],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-NO-PRO-001",
+            "source_url": "https://synthetic-unverified-farrier.example.test",
+            "source_name": "Synthetic identity-only page",
+            "source_type": "business_website",
+            "retrieved_at": "2026-08-14T00:00:00Z",
+            "evidence_excerpt": "A name and location are present, but no professional hoof-care activity is stated.",
+            "fact_or_inference": "direct_fact"
+          }
+        ],
+        "missing_information": [
+          "No professional hoof-care activity is evidenced."
+        ],
+        "conflicts": []
+      },
+      "classification_decision": {
+        "segment": "farrier",
+        "prospect_type": "farrier_independent",
+        "identity_type": "person"
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "farrier.no_professional_evidence",
+              "criterion_label": "No evidence of professional hoof-care activity",
+              "category": "exclusion",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-NO-PRO-001"
+              ],
+              "notes": "Synthetic Wave 2 exclusion test."
+            }
+          ],
+          "minimum_data_status": "pass",
+          "missing_minimum_fields": [],
+          "exclusion_status": "excluded",
+          "exclusion_reasons": [
+            "No evidence of professional hoof-care activity"
+          ]
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "gates": {
+            "unresolved_identity_conflict": {
+              "value": false
+            },
+            "critical_evidence_conflict": {
+              "value": false
+            }
+          }
+        },
+        "confidence": {
+          "score": 90,
+          "level": "high",
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "The exclusion evidence is traceable."
+          ],
+          "limitations": [
+            "Synthetic exclusion test candidate."
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "blocked",
+          "score": null,
+          "band": null,
+          "model_version": "1.0.0",
+          "components": [],
+          "rationale": null,
+          "block_reason": "Confirmed exclusion criterion: farrier.no_professional_evidence."
+        },
+        "audit": {
+          "raw_band": null,
+          "final_band": null,
+          "applied_band_caps": [],
+          "outcome": "excluded_no_professional_evidence",
+          "review_required": true,
+          "confirmed_positive_criteria": [],
+          "missing_required_gates": []
+        },
+        "explanation": {
+          "summary": "ICP scoring is blocked: Confirmed exclusion criterion: farrier.no_professional_evidence.",
+          "confirmed_criteria": [],
+          "unearned_weighted_criteria": [],
+          "applied_band_rules": [],
+          "outcome": "excluded_no_professional_evidence",
+          "review_required": true,
+          "confidence_interpretation": "ICP scoring is blocked; evidence confidence does not override the exclusion or authorise priority treatment."
+        },
+        "confidence_context": {
+          "level": "high",
+          "score": 90,
+          "method_version": "evidence-confidence-1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "client_provided_file",
+      "model": null,
+      "tools_used": [],
+      "provided_exclusion_file_status": "unavailable"
+    }
+  ]
+}

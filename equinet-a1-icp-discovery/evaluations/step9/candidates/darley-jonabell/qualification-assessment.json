@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0.0",
+  "segment": "horse_owner",
+  "criterion_assessments": {
+    "horse_owner.commercial_operation": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "notes": "The official page identifies a privately-owned working thoroughbred farm and international breeding/racing operation."
+    },
+    "horse_owner.more_than_three_horses": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "notes": "The current roster explicitly names seven stallions, establishing more than three horses."
+    },
+    "horse_owner.purchasing_influence": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "No named owner, trainer or manager with purchasing responsibility is identified on the retained page."
+    },
+    "horse_owner.product_fit": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "notes": "A working breeding farm managing multiple current stallions has recurring professional hoof-care needs."
+    },
+    "horse_owner.performance_discipline": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "notes": "The page explicitly describes an international thoroughbred breeding and racing operation and names major race winners."
+    },
+    "horse_owner.breeding_activity": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "notes": "The page identifies current stallions and a breeding shed."
+    },
+    "horse_owner.professional_network": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "The global operation is explicit, but the retained page does not state specific professional Farrier or trainer relationships."
+    },
+    "horse_owner.high_equine_activity_location": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "notes": "Jonabell Farm is explicitly located in Lexington, Kentucky."
+    },
+    "horse_owner.buying_signal": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "No recent purchase or expansion signal is directly stated."
+    },
+    "horse_owner.single_horse_recreational": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "No retained evidence confirms this negative or exclusion criterion."
+    },
+    "horse_owner.no_commercial_evidence": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "No retained evidence confirms this negative or exclusion criterion."
+    }
+  },
+  "missing_minimum_fields": []
+}

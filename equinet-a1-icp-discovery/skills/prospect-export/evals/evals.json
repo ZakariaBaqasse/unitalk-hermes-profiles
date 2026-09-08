@@ -1,0 +1,23 @@
+{
+  "skill_name": "prospect-export",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Export the accepted James Holub review package to Markdown, JSON, CSV and Excel.",
+      "expected_output": "Four validated outputs plus a manifest; all values and full source URLs agree across formats.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Export a mixed Farrier and Horse Owner review queue with Accept, Needs Research and Reject recommendations.",
+      "expected_output": "Readable ranked queue, separate evidence and criteria sheets, JSON-array CSV cells and no formula errors.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Attempt to export a review package whose embedded candidate score differs from its component total.",
+      "expected_output": "Export is rejected with the exact candidate validation error and no successful manifest is produced.",
+      "files": []
+    }
+  ]
+}

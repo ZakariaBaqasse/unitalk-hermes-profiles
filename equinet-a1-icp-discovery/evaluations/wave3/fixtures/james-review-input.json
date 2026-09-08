@@ -1,0 +1,754 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "A1-RP-WAVE3-JAMES",
+  "run_id": "RUN-WAVE3-JAMES-001",
+  "generated_at": "2026-08-14T16:40:40Z",
+  "initiated_by": "Séverine",
+  "candidates": [
+    {
+      "candidate_id": "A1-JHOLUB-001",
+      "record_kind": "production",
+      "research_seed": {
+        "schema_version": "1.0.0",
+        "run_id": "RUN-20260812T190824Z-890880",
+        "seed_id": "SEED-JHOLUB-001",
+        "discovered_at": "2026-08-12T19:09:19Z",
+        "discovery_method": "human_website_seed",
+        "discovery_query": null,
+        "segment_hint": "farrier",
+        "identity_hint": {
+          "display_name": "J.T. Holub / James Holub Equine Services",
+          "person_name": "J.T. Holub",
+          "organisation_name": "James Holub Equine Services"
+        },
+        "website": "https://jamesholubequine.com",
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "Kentucky",
+          "city": "Lexington",
+          "postal_code": "40583",
+          "public_address": "P.O. Box 13111, Lexington, KY 40583"
+        },
+        "public_contacts": [
+          {
+            "contact_type": "phone",
+            "value": "440.522.2995",
+            "evidence_ids": [
+              "EV-CONTACT-001"
+            ],
+            "label": "Public business phone"
+          },
+          {
+            "contact_type": "email",
+            "value": "holubfarrierltd@gmail.com",
+            "evidence_ids": [
+              "EV-CONTACT-001"
+            ],
+            "label": "Public business email"
+          }
+        ],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-HOME-001",
+            "source_url": "https://jamesholubequine.com",
+            "source_name": "James Holub Equine Services - Homepage",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-12T19:09:16Z",
+            "evidence_excerpt": "As a professional farrier I've dedicated my career to continuing my education... My preference is to emphasize the basic fundamentals to properly 'balance' the equine digit... I believe it is this emphasis of focusing on the trim and proper shoe placement that allows me to keep most of the horses in my care working to the best of their ability with just four plain shoes.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-TRAVEL-001",
+            "source_url": "https://jamesholubequine.com",
+            "source_name": "James Holub Equine Services - Travel section",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-12T19:09:19Z",
+            "evidence_excerpt": "While I mainly work between Wellington, Fl and Lexington, KY I'm capable of traveling to just about anywhere.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-LAMENESS-001",
+            "source_url": "https://jamesholubequine.com",
+            "source_name": "James Holub Equine Services - Lameness section",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-12T19:09:19Z",
+            "evidence_excerpt": "Your equine athletes work hard. And while I feel the best way to deal with lameness is to do everything possible to prevent it in the first place... My intention is to utilize every aspect of my continued education to get your horse sound as soon as possible so both of you can go back to work.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-GLUE-001",
+            "source_url": "https://jamesholubequine.com",
+            "source_name": "James Holub Equine Services - Glue-On Shoes section",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-12T19:09:19Z",
+            "evidence_excerpt": "I've been successfully applying Polyflex, Sigafoos, and Direct Glue Aluminum shoes for over a decade.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-ABOUT-001",
+            "source_url": "https://jamesholubequine.com/about",
+            "source_name": "James Holub Equine Services - About page",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-12T19:09:19Z",
+            "evidence_excerpt": "After growing up around Thoroughbreds and handling race horses for most of his early life, in 2003 J.T. attended Casey & Son's Farrier School in Resaca, GA. After graduating he served an apprenticeship in Ocala, Florida with a farrier that focused on therapeutic shoeing. Following his apprenticeship J.T. went on to be a licenced track farrier at Presque Isle Downs, Mountaineer Racetrack, and Thistledown for 5 years... J.T. moved to Kentucky to focus on shoeing upper level sport horses... he continues to follow the major show jumping and dressage circuits from Kentucky to Wellington and abroad developing hoofcare solutions for sport horses at the highest levels of competition.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-CONTACT-001",
+            "source_url": "https://jamesholubequine.com/contact",
+            "source_name": "James Holub Equine Services - Contact page",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-12T19:09:19Z",
+            "evidence_excerpt": "Farrier: J.T. Holub | 440.522.2995 | P.O. Box 13111 Lexington, KY 40583 | holubfarrierltd@gmail.com",
+            "fact_or_inference": "direct_fact"
+          }
+        ],
+        "missing_information": [
+          "Explicit horse count or client base size not stated",
+          "Current professional association membership not stated",
+          "Formal certification credential not stated (only farrier school and apprenticeship referenced)",
+          "Pricing or product brand usage not specified"
+        ],
+        "conflicts": [
+          "Person is referred to as J.T. Holub on Contact page; website domain and business title use 'James Holub' — likely same person (J.T. as initials for James T.)"
+        ],
+        "status": "ready_for_classification"
+      },
+      "classification_decision": {
+        "schema_version": "1.0.0",
+        "seed_id": "SEED-JHOLUB-001",
+        "segment": "farrier",
+        "prospect_type": "farrier_independent",
+        "identity_type": "person_and_organisation",
+        "classification_status": "confirmed",
+        "evidence_references": [
+          "EV-HOME-001",
+          "EV-ABOUT-001",
+          "EV-CONTACT-001"
+        ],
+        "rationale": "The website explicitly states 'As a professional farrier' and describes active hoof-care practice including therapeutic shoeing, lameness work, glue-on shoe application, and sport horse focus. About page confirms farrier school graduation, apprenticeship, licensed track farrier experience, and current focus on upper-level sport horses in Kentucky/Wellington circuits. Contact page identifies J.T. Holub as the Farrier with a Lexington KY PO Box. This is a clear professional Farrier, independently operating as James Holub Equine Services.",
+        "unresolved_questions": [
+          "Exact number of years in current independent practice since leaving Hagyard's (date of move not specified beyond '2013')",
+          "Whether J.T. Holub is the full name or James T. Holub — domain and business name say 'James', contact page says 'J.T.'"
+        ]
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "criterion_label": "Active professional Farrier activity",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001"
+              ],
+              "notes": "Website states 'As a professional farrier', describes active hoof-care practice including therapeutic shoeing, lameness evaluation, and glue-on shoe application. About page confirms farrier school (Casey & Son's 2003), apprenticeship, 5 years as licenced track farrier, and current sport horse practice since 2013."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-GLUE-001"
+              ],
+              "notes": "States use of Polyflex, Sigafoos, and Direct Glue Aluminum shoes. As a professional farrier applying shoes and hoof-care products daily, plausibly uses or influences hoof-care product purchasing. Direct evidence of specific product usage (glue-on shoe types) confirms professional product engagement."
+            },
+            {
+              "criterion_id": "farrier.established_client_base",
+              "criterion_label": "Established or broad client base",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Website refers to 'the horses in my care' and mentions following show jumping/dressage circuits with clients, but no explicit count of clients, horses served, or farms/operations served is stated."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "criterion_label": "Regular appointments and established business activity",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-TRAVEL-001",
+                "EV-ABOUT-001"
+              ],
+              "notes": "Describes active professional practice with travel between Wellington FL and Lexington KY, following major show jumping and dressage circuits. References ongoing shoeing of 'upper level sport horses' and 'horses in my care'. Business has current contact page with PO Box and active email/phone."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "criterion_label": "Serves a high-equine-activity area",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-TRAVEL-001",
+                "EV-CONTACT-001"
+              ],
+              "notes": "PO Box in Lexington, KY (heart of Kentucky horse country, high-equine-activity area). Also reports working between Wellington FL (major winter equestrian hub) and Lexington KY (spring/summer/fall hub). Explicitly mentions Tryon and Spruce Meadows as reachable destinations."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "criterion_label": "Advanced hoof-care specialisation",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001"
+              ],
+              "notes": "Specialises in therapeutic shoeing, lameness evaluation and solutions, quarter crack repair, laminitis solutions, and glue-on shoe applications (Polyflex, Sigafoos, Direct Glue Aluminum). Describes work with conformation defects and severe hoof issues."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "criterion_label": "Certified, experienced or well-established professional",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-ABOUT-001"
+              ],
+              "notes": "Graduated Casey & Son's Farrier School (2003), served apprenticeship with therapeutic farrier, held licensed track farrier status at three racetracks for 5 years, worked in podiatry department at Hagyard's Equine Institute. Attended multiple clinics and conferences including NE Association of Equine Practitioner Symposiums and International Hoofcare Summit."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "criterion_label": "Works with sport or competition horses",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-HOME-001"
+              ],
+              "notes": "After 2013 moved to Kentucky to focus on shoeing upper level sport horses. Follows major show jumping and dressage circuits (Kentucky, Wellington, abroad). Homepage references 'Your equine athletes' and focuses on keeping horses 'back in the ring'."
+            },
+            {
+              "criterion_id": "farrier.multi_farrier_business",
+              "criterion_label": "Multi-Farrier or established Farrier business",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "No evidence of multiple Farriers. Contact page lists only J.T. Holub as Farrier. Business name 'James Holub Equine Services' and single-person practice described throughout."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "criterion_label": "Influences product selection",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-GLUE-001",
+                "EV-HOME-001"
+              ],
+              "notes": "As the primary (apparently sole) Farrier who selects and applies hoof-care products (glue-on shoes, shoes, nails) and makes clinical decisions about what products to use for each horse, has direct purchasing influence. Specific mention of selecting between Polyflex, Sigafoos, and Direct Glue Aluminum demonstrates product selection authority."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "criterion_label": "Strong fit with professional hoof-care products",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-GLUE-001"
+              ],
+              "notes": "Professional farrier applying shoes, glue-on attachments, and therapeutic hoof-care solutions daily. Regular professional need for horseshoes, nails, adhesives, and related hoof-care products aligned with Equinet's range."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "criterion_label": "Recent professional engagement signal",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-CONTACT-001"
+              ],
+              "notes": "Currently active with an operational website, current contact page with active email/phone, follows major show jumping and dressage circuits. Website is a Squarespace site (implies active maintenance). Attended NE Association of Equine Practitioner Symposiums and International Hoofcare Summit (dated but shows professional engagement trajectory)."
+            },
+            {
+              "criterion_id": "farrier.apprentice_future_potential",
+              "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Candidate is a fully established professional farrier with ~23 years of experience. Not an apprentice or junior entrant."
+            },
+            {
+              "criterion_id": "farrier.inactive_or_hobbyist",
+              "criterion_label": "Inactive or hobby-only Farrier",
+              "category": "negative",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Confirmed active professional practice with current contact information and described ongoing client activity across multiple competition circuits."
+            },
+            {
+              "criterion_id": "farrier.no_professional_evidence",
+              "criterion_label": "No evidence of professional hoof-care activity",
+              "category": "exclusion",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Strong evidence of professional hoof-care activity present on the official business website."
+            }
+          ],
+          "minimum_data_status": "fail",
+          "missing_minimum_fields": [
+            "candidate_id",
+            "scoring.status",
+            "confidence.level",
+            "confidence.score",
+            "recommendation.next_action",
+            "workflow.stage",
+            "provenance.audit_correlation_id"
+          ],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        },
+        "audit": {
+          "segment": "farrier",
+          "required_gate_statuses": {
+            "farrier.professional_activity": "confirmed"
+          },
+          "special_pathways": [],
+          "criteria_count": 15
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "schema_version": "1.0.0",
+          "method_version": "evidence-confidence-1.0.0",
+          "candidate_reference": {
+            "run_id": "RUN-20260812T190824Z-890880",
+            "seed_id": "SEED-JHOLUB-001"
+          },
+          "available_evidence_ids": [
+            "EV-HOME-001",
+            "EV-ABOUT-001",
+            "EV-TRAVEL-001",
+            "EV-LAMENESS-001",
+            "EV-GLUE-001",
+            "EV-CONTACT-001"
+          ],
+          "dimensions": {
+            "identity_certainty": {
+              "level": "good_multi_field_match",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-CONTACT-001"
+              ],
+              "rationale": "Person and organisation co-located on same official business website. Contact page identifies 'Farrier: J.T. Holub' while domain and business name use 'James Holub Equine Services'. About page consistently uses 'J.T.' throughout. This is a minor resolved name variation (initials vs full first name) on the same authoritative source. No external identity conflict exists."
+            },
+            "source_quality": {
+              "level": "authoritative_primary_business_source",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-TRAVEL-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001",
+                "EV-CONTACT-001"
+              ],
+              "rationale": "All evidence records are pages on the current official business website (jamesholubequine.com). The site is an active Squarespace-hosted site presenting a professional farrier practice with current contact details. Per the approved source register and evidence policy, an official current business website is authoritative for facts the business controls and explicitly publishes. No blocked, unverified, or non-permitted sources are used."
+            },
+            "evidence_directness": {
+              "level": "all_material_claims_direct",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-TRAVEL-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001"
+              ],
+              "rationale": "All material confirmed claims are supported by direct_fact evidence: 'As a professional farrier' (EV-HOME-001), farrier school and career history (EV-ABOUT-001), service areas Wellington/Lexington (EV-TRAVEL-001), lameness evaluation services (EV-LAMENESS-001), specific glue-on shoe product usage (EV-GLUE-001). Purchasing influence is drawn from role-based inference (Professional Farrier = possible_influence_role under policy rules), not inference-only — the policy permits role-based purchasing influence wording. The single unknown criterion (client base) is recorded as unknown, not inferred."
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-TRAVEL-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001",
+                "EV-CONTACT-001"
+              ],
+              "rationale": "All evidence comes from one domain (jamesholubequine.com). Multiple pages on the same business website are not independent sources per the source independence rules. The single official business website is a strong primary source; per the corroboration rules, a current primary business website may stand alone for facts the business controls and explicitly publishes. No second independent source is present, so this is one_strong_source."
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-TRAVEL-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001",
+                "EV-CONTACT-001"
+              ],
+              "rationale": "The official business website is current and operational (Squarespace site with active contact page, email, phone). Per freshness policy, a current official business website does not require a visible publication date for explicit self-controlled facts. No stale, broken, or contradictory signals present. Retrieved 2026-08-12 — well within all applicable claim windows."
+            },
+            "completeness": {
+              "level": "minimum_review_package_only",
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-TRAVEL-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001",
+                "EV-CONTACT-001"
+              ],
+              "rationale": "Confidence-stage minimum is met: resolved identity, confirmed farrier segment, 6 permitted evidence records, qualification criteria object with exclusion status, visible conflicts/unknowns/missing evidence all present. However, this is a confidence-stage assessment only — downstream fields (scoring, recommendation, workflow, final candidate schema fields) are not yet populated, which is expected at this stage per the policy. The evidence package itself is complete for confidence evaluation."
+            }
+          },
+          "gates": {
+            "mandatory_claim_inference_only": {
+              "value": false,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001"
+              ],
+              "rationale": "The mandatory criterion 'farrier.professional_activity' is supported by direct fact evidence (EV-HOME-001: 'As a professional farrier...'; EV-ABOUT-001: farrier school, apprenticeship, track farrier experience). No mandatory claim depends solely on inference."
+            },
+            "unresolved_identity_conflict": {
+              "value": false,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-CONTACT-001"
+              ],
+              "rationale": "The J.T./James name variation is a minor resolved naming convention (initials vs full first name) on the same official business website. The classification confirmed person_and_organisation. No actual identity conflict exists — the about page consistently uses 'J.T.' and the domain uses 'James'. Both refer to the same individual."
+            },
+            "critical_evidence_conflict": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "No material evidence conflicts present. All evidence records are internally consistent and from the same source. The only documented 'conflict' is the J.T./James name variation, which is a naming convention, not a material evidence conflict."
+            },
+            "minimum_data_failed": {
+              "value": false,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001",
+                "EV-CONTACT-001"
+              ],
+              "rationale": "Confidence-stage minimum is satisfied: resolved identity (person_and_organisation on official website), confirmed farrier segment, 6 permitted evidence records with evidence_ids and source URLs, qualification criteria object with exclusion status (eligible), visible conflicts/unknowns/missing evidence documented. Per policy, scoring, recommendation, workflow and export fields are not required at confidence stage."
+            },
+            "blocked_source_used": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "No blocked or unverified sources used. All evidence comes from the official business website (jamesholubequine.com), which is a permitted source under the Approved Source Register."
+            },
+            "no_evidence": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "6 permitted evidence records exist, all with evidence_ids, source URLs, retrieved timestamps, and direct_fact excerpts."
+            },
+            "fabricated_or_untraceable_evidence": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "All evidence is traceable to the official business website jamesholubequine.com (homepage, about, travel, lameness, glue-on shoes, contact pages) with specific excerpts and retrieval dates. No fabricated or untraceable evidence."
+            }
+          },
+          "confidence_stage_missing_fields": []
+        },
+        "confidence": {
+          "level": "high",
+          "score": 84,
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "identity_certainty: good_multi_field_match (15/20)",
+            "source_quality: authoritative_primary_business_source (20/20)",
+            "evidence_directness: all_material_claims_direct (20/20)",
+            "corroboration: one_strong_source (12/20)",
+            "freshness: current_within_claim_window (10/10)",
+            "completeness: minimum_review_package_only (7/10)"
+          ],
+          "limitations": [
+            "No confidence score cap was triggered.",
+            "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+          ]
+        },
+        "audit": {
+          "raw_score": 84,
+          "adjusted_score": 84,
+          "dimension_scores": {
+            "identity_certainty": {
+              "level": "good_multi_field_match",
+              "points": 15,
+              "maximum": 20
+            },
+            "source_quality": {
+              "level": "authoritative_primary_business_source",
+              "points": 20,
+              "maximum": 20
+            },
+            "evidence_directness": {
+              "level": "all_material_claims_direct",
+              "points": 20,
+              "maximum": 20
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "points": 12,
+              "maximum": 20
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "points": 10,
+              "maximum": 10
+            },
+            "completeness": {
+              "level": "minimum_review_package_only",
+              "points": 7,
+              "maximum": 10
+            }
+          },
+          "applied_caps": [],
+          "confidence_stage_missing_fields": [],
+          "available_evidence_ids": [
+            "EV-HOME-001",
+            "EV-ABOUT-001",
+            "EV-TRAVEL-001",
+            "EV-LAMENESS-001",
+            "EV-GLUE-001",
+            "EV-CONTACT-001"
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "scored",
+          "score": 86,
+          "band": "high",
+          "model_version": "1.0.0",
+          "components": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points_awarded": 20,
+              "max_points": 20,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "points_awarded": 15,
+              "max_points": 15,
+              "evidence_ids": [
+                "EV-GLUE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-GLUE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-TRAVEL-001",
+                "EV-ABOUT-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "points_awarded": 8,
+              "max_points": 8,
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-TRAVEL-001",
+                "EV-CONTACT-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-ABOUT-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-HOME-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-GLUE-001",
+                "EV-HOME-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "points_awarded": 3,
+              "max_points": 3,
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-CONTACT-001"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            }
+          ],
+          "rationale": "Numeric ICP score 86/100 from 10 confirmed weighted criteria. Raw band high; final band high.",
+          "block_reason": null
+        },
+        "audit": {
+          "raw_band": "high",
+          "final_band": "high",
+          "applied_band_caps": [],
+          "outcome": "high_priority_farrier",
+          "review_required": true,
+          "confirmed_positive_criteria": [
+            "farrier.professional_activity",
+            "farrier.product_usage_or_influence",
+            "farrier.product_fit",
+            "farrier.regular_business_activity",
+            "farrier.advanced_specialisation",
+            "farrier.high_value_service_area",
+            "farrier.certified_or_experienced",
+            "farrier.sport_horse_focus",
+            "farrier.buying_influence",
+            "farrier.engagement_signal"
+          ],
+          "missing_required_gates": []
+        },
+        "explanation": {
+          "summary": "ICP score 86/100; final band high. 10 weighted criteria earned points. Outcome: high_priority_farrier.",
+          "confirmed_criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points": 20,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-ABOUT-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "points": 15,
+              "evidence_ids": [
+                "EV-GLUE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "points": 10,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-GLUE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "points": 10,
+              "evidence_ids": [
+                "EV-HOME-001",
+                "EV-TRAVEL-001",
+                "EV-ABOUT-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "points": 8,
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-LAMENESS-001",
+                "EV-GLUE-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points": 5,
+              "evidence_ids": [
+                "EV-TRAVEL-001",
+                "EV-CONTACT-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points": 5,
+              "evidence_ids": [
+                "EV-ABOUT-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "points": 5,
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-HOME-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "points": 5,
+              "evidence_ids": [
+                "EV-GLUE-001",
+                "EV-HOME-001"
+              ]
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "points": 3,
+              "evidence_ids": [
+                "EV-ABOUT-001",
+                "EV-CONTACT-001"
+              ]
+            }
+          ],
+          "unearned_weighted_criteria": [
+            "farrier.established_client_base",
+            "farrier.multi_farrier_business"
+          ],
+          "applied_band_rules": [],
+          "outcome": "high_priority_farrier",
+          "review_required": true,
+          "confidence_interpretation": "High commercial fit with High evidence confidence: attractive and well-supported for human review."
+        },
+        "confidence_context": {
+          "level": "high",
+          "score": 84,
+          "method_version": "evidence-confidence-1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "approved_api",
+      "model": "deepseek-v4-flash",
+      "tools_used": [
+        "Exa web_search",
+        "Firecrawl web_extract",
+        "deterministic confidence calculator",
+        "deterministic ICP scorer"
+      ],
+      "provided_exclusion_file_status": "unavailable"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "eval_id": "classification-3-ambiguous",
+  "prompt": "Use prospect-segment-classification only. Classify this synthetic Research Seed: SEED-CLASS-AMBIG. Two public sources mention Alex Smith, one in Kentucky and one in Ohio. There is no matching domain, phone, address or organisation. Return one classification decision object and preserve uncertainty. Do not force a segment or prospect type.",
+  "expected_skill": "prospect-segment-classification"
+}

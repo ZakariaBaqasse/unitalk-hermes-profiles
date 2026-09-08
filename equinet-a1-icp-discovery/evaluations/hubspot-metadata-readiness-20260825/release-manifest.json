@@ -1,0 +1,182 @@
+{
+  "release_id": "equinet-a1-hubspot-metadata-readiness-1.0.0",
+  "profile": "equinet-a1-icp-discovery",
+  "built_at": "2026-08-25T11:47:51Z",
+  "status": "validated_metadata_ready_no_integration",
+  "implementation_authorised_by": "Séverine",
+  "authorisation_scope": "Apply the agreed A1 HubSpot metadata-readiness updates",
+  "previous_release_reference": "evaluations/step10/release-manifest.json",
+  "deployment_status_unchanged": "pilot_ready_no_integration",
+  "changes": [
+    "Preserved five Equinet-supplied HubSpot source snapshots with hashes.",
+    "Recorded object, status, ownership, approval and process metadata.",
+    "Added a draft read-only A1-to-HubSpot field mapping.",
+    "Added workflow and dynamic-list side-effect controls.",
+    "Prevented direct US-state-to-HubSpot-territory mapping.",
+    "Preserved null owner recommendation until assignment rules are approved.",
+    "Distinguished metadata availability from unavailable live record access in A1 outputs."
+  ],
+  "unchanged_business_logic": [
+    "ICP criteria",
+    "ICP scoring weights, thresholds and bands",
+    "Evidence-confidence method",
+    "Approved public-source policy",
+    "Prospect Candidate schema",
+    "Human-review requirement",
+    "Outreach and CRM-write prohibitions"
+  ],
+  "validation": {
+    "metadata_readiness_checks": 52,
+    "metadata_readiness_checks_passed": 52,
+    "regression_suites_passed": [
+      "run_icp_config_tests.py",
+      "run_evidence_confidence_tests.py",
+      "run_icp_scoring_tests.py",
+      "run_wave1_skill_tests.py",
+      "run_wave2_skill_tests.py",
+      "run_wave3_skill_tests.py",
+      "run_step7_tests.py",
+      "validate_step7_runtime_policy.py",
+      "run_source_register_tests.py",
+      "validate_directory_extraction_foundation.py",
+      "validate_directory_extraction_wave1.py",
+      "validate_directory_extraction_wave2.py"
+    ],
+    "deployment_language_findings": [],
+    "external_actions": {
+      "hubspot_reads": 0,
+      "hubspot_writes": 0,
+      "workflow_enrolments": 0,
+      "outreach": 0
+    }
+  },
+  "integration_state": {
+    "hubspot_metadata": "available",
+    "hubspot_connector": "unavailable",
+    "hubspot_record_values": "unavailable",
+    "hubspot_associations": "unverified",
+    "hubspot_writes": "prohibited",
+    "twenty": "unavailable",
+    "a2": "not_triggered",
+    "n8n": "not_implemented"
+  },
+  "changed_artifacts": [
+    {
+      "path": "SOUL.md",
+      "sha256": "21cbfb73201dc4386111b3aa0d9124eec8353e886ddb2de5deeedbabfe81944c",
+      "bytes": 26756
+    },
+    {
+      "path": "configurations/operations/a1-runtime-policy-v1.yaml",
+      "sha256": "62cc8694a3076fe45301c04163e42caee802382cb9330a4d5851c8fe7a9ef2f6",
+      "bytes": 8075
+    },
+    {
+      "path": "configurations/integrations/hubspot/README.md",
+      "sha256": "052808e962a46003503c24b32adbb0355a0402c35b63fb1ef3ec03287c57c9f7",
+      "bytes": 1633
+    },
+    {
+      "path": "configurations/integrations/hubspot/metadata-manifest-v1.json",
+      "sha256": "2ef7039ef4abb7c97f68d0b0eef6161c12fbcc9b82829c85f1c16c6ca1b870bc",
+      "bytes": 3585
+    },
+    {
+      "path": "configurations/integrations/hubspot/object-status-model-v1.yaml",
+      "sha256": "6bb13580342d72b51d76f3a339caf97dbaf833d8d13aab48d13239a5313fa100",
+      "bytes": 2913
+    },
+    {
+      "path": "configurations/integrations/hubspot/ownership-approval-matrix-v1.yaml",
+      "sha256": "10f73e85d45d969ba82a155c6e404688d755edbbe6ad4fa63bdbb736842dd495",
+      "bytes": 1928
+    },
+    {
+      "path": "configurations/integrations/hubspot/a1-field-mapping-v0.1.yaml",
+      "sha256": "04f534baf0141ccbec5e72ccf2eca664375ccf05104fbd2c75a34fcc443c1b2a",
+      "bytes": 9345
+    },
+    {
+      "path": "configurations/integrations/hubspot/process-risk-register-v1.yaml",
+      "sha256": "52a0748fed9386231a894bb55ac3fa600ff7764587b688fe742a6a8f7b7e6aa7",
+      "bytes": 3826
+    },
+    {
+      "path": "configurations/integrations/hubspot/OPEN-ITEMS.md",
+      "sha256": "58a124b0ecc7986cd2ee501cf5519807028725c1f036febecf32d4e9ac042326",
+      "bytes": 2830
+    },
+    {
+      "path": "configurations/integrations/hubspot/source-confirmation-20260825.md",
+      "sha256": "723e96a89264477f6949f8df2be05a95bdfcfd07d019e05bcf59f415b50bab35",
+      "bytes": 1262
+    },
+    {
+      "path": "skills/ranked-prospect-review-package/SKILL.md",
+      "sha256": "9b0ff1cdcffa80eae8d3ca7af6e1d4da8d0b0d3c38a7ff45829b8f2eb0c930d2",
+      "bytes": 7025
+    },
+    {
+      "path": "skills/ranked-prospect-review-package/scripts/build_review_package.py",
+      "sha256": "8ee7944c5a26c1c797d3dae23e3a6569e08e503eec3b0d0e22d082476f42a94e",
+      "bytes": 24710
+    },
+    {
+      "path": "scripts/validate_soul.py",
+      "sha256": "4911427ab47e8870e07cb73811e599eabf2644334990e6b0acf71415831b6491",
+      "bytes": 3856
+    },
+    {
+      "path": "scripts/run_wave3_skill_tests.py",
+      "sha256": "d6915f8d835d90b0c174bccda585eb57421e65bf4d7ee3509dd971f8fd5217bc",
+      "bytes": 15983
+    },
+    {
+      "path": "scripts/validate_hubspot_metadata_readiness.py",
+      "sha256": "63444d4ae0e6ce0b74c5f5925bf9b364f85a0c32fb2d99024fb9c3f27a602c98",
+      "bytes": 10611
+    },
+    {
+      "path": "scripts/build_hubspot_metadata_readiness_release.py",
+      "sha256": "405656be60031f3618dd980a5000c4f6ab084b3303d7357a7048da5963aab514",
+      "bytes": 8998
+    }
+  ],
+  "preserved_artifacts": [
+    {
+      "path": "configurations/icp/equinet-icp-v1.yaml",
+      "sha256": "4d28bc35d11a458015f08903b30f0560f204476016508135fe2d126014f16169",
+      "bytes": 18369
+    },
+    {
+      "path": "configurations/scoring/icp-scoring-model-v1.yaml",
+      "sha256": "2bb426d73971509b7638ccfe55decb428b3fa11d5ce4b8d3bcc05418b6c75841",
+      "bytes": 9198
+    },
+    {
+      "path": "configurations/evidence/evidence-confidence-rules-v1.yaml",
+      "sha256": "5cf2377814ccf3ee635bb279b512778924d2eb42bf1a0a58ec684d90c69c8f80",
+      "bytes": 20530
+    },
+    {
+      "path": "configurations/sources/approved-source-register-v1.yaml",
+      "sha256": "d7edc42354c01efcdfd5bdc8df343a8cd9cc33a5189110d4bd6e6214892b632f",
+      "bytes": 46703
+    },
+    {
+      "path": "skills/a1-prospect-data-contract/references/prospect-candidate.schema.json",
+      "sha256": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de",
+      "bytes": 21575
+    },
+    {
+      "path": "deliverables/step10/A1-V1-OPEN-ITEMS.md",
+      "sha256": "13f2850eee5661f03e3a7c03627317e9705b9583d8684f7b5b178595fcaee091",
+      "bytes": 2475
+    },
+    {
+      "path": "evaluations/step10/release-manifest.json",
+      "sha256": "b2df40670e76ff0b872dd41b95369b519f728fc3fc07a56439b61421d1e5a704",
+      "bytes": 7446
+    }
+  ]
+}

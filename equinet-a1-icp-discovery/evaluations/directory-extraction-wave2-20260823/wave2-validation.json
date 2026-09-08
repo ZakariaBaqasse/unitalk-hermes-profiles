@@ -1,0 +1,129 @@
+{
+  "validation_id": "equinet-a1-directory-wave2-20260823",
+  "status": "passed_with_limitations",
+  "errors": [],
+  "network_activity": {
+    "targeted_profile_requests": 3,
+    "listing_preflight_requests": 3,
+    "bounded_adapter_requests": 3,
+    "firecrawl_requests_total": 9,
+    "browser_discovery_reads": 1
+  },
+  "normalised_listings": 15,
+  "research_seed_contract_errors": [],
+  "audit_chain": {
+    "total_events": 6,
+    "wave2_events": 3,
+    "verification_errors": []
+  },
+  "sources": {
+    "pdf.horseprofinder": {
+      "run_id": "W2-HORSEPRO-20260823",
+      "listing_count": 5,
+      "coverage_status": "partial",
+      "next_cursor": "https://horseprofinder.com/farriers/united-states/kentucky/#offset=5",
+      "stop_reason": "candidate_limit_reached",
+      "adapter_requests": 1,
+      "contacts_found": 0,
+      "external_actions": {
+        "outreach": 0,
+        "crm_writes": 0,
+        "a2_handoffs": 0
+      }
+    },
+    "pdf.newhorse": {
+      "run_id": "W2-NEWHORSE-20260823",
+      "listing_count": 5,
+      "coverage_status": "partial",
+      "next_cursor": "https://www.newhorse.com/page/farrier/b.2001.g.17.html?page=1#offset=5",
+      "stop_reason": "candidate_limit_reached",
+      "adapter_requests": 1,
+      "contacts_found": 1,
+      "external_actions": {
+        "outreach": 0,
+        "crm_writes": 0,
+        "a2_handoffs": 0
+      }
+    },
+    "pdf.mad_barn_directory": {
+      "run_id": "W2-MADBARN-20260823",
+      "listing_count": 5,
+      "coverage_status": "partial",
+      "next_cursor": "https://madbarn.com/service/farrier/location/lexington-kentucky/#offset=5",
+      "stop_reason": "candidate_limit_reached",
+      "adapter_requests": 1,
+      "contacts_found": 0,
+      "external_actions": {
+        "outreach": 0,
+        "crm_writes": 0,
+        "a2_handoffs": 0
+      }
+    }
+  },
+  "profile_tests": {
+    "pdf.horseprofinder": {
+      "file": "horseprofinder-target-profile.json",
+      "content_length": 1766,
+      "error": null
+    },
+    "pdf.newhorse": {
+      "file": "newhorse-target-profile.json",
+      "content_length": 12340,
+      "error": null
+    },
+    "pdf.mad_barn_directory": {
+      "file": "madbarn-target-profile.json",
+      "content_length": 25788,
+      "error": null
+    }
+  },
+  "possible_duplicate_groups": [
+    {
+      "match_key": "kentuckylegendhorseshoeing",
+      "match_type": "normalised_display_name",
+      "review_required": true,
+      "members": [
+        {
+          "listing_id": "DL-5347A54821C9B016",
+          "source_id": "pdf.best_of_lexington_farriers",
+          "display_name": "Kentucky Legend Horseshoeing",
+          "city": "Richmond",
+          "state_region": "Kentucky",
+          "profile_url": null,
+          "public_contacts": [
+            {
+              "contact_type": "phone",
+              "value": "785-226-3628",
+              "label": "organisation_general",
+              "evidence_id": "EV-DIR-84E259192EF91DBE9390"
+            }
+          ]
+        },
+        {
+          "listing_id": "DL-8A1EDEC133E43411",
+          "source_id": "pdf.newhorse",
+          "display_name": "Kentucky legend horseshoeing",
+          "city": "Frankfort",
+          "state_region": "Kentucky",
+          "profile_url": "https://www.newhorse.com/profile/b.2001.r.79424.u.e7f5db.html",
+          "public_contacts": []
+        },
+        {
+          "listing_id": "DL-4F81BC0DB665E9DA",
+          "source_id": "pdf.newhorse",
+          "display_name": "KentuckyLegendHorseshoeing",
+          "city": "Richmond",
+          "state_region": "Kentucky",
+          "profile_url": "https://www.newhorse.com/profile/b.2001.r.46475.u.3bf485.html",
+          "public_contacts": []
+        }
+      ]
+    }
+  ],
+  "decisions": {
+    "pdf.horseprofinder": "approved_for_bounded_pilot_no_profile_contact_in_sample",
+    "pdf.newhorse": "approved_for_bounded_pilot_self_submitted_content_controls",
+    "pdf.mad_barn_directory": "approved_for_bounded_pilot_identity_and_duplicate_review"
+  },
+  "cost_status": "unknown"
+}

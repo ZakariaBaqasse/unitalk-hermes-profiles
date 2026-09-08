@@ -1,0 +1,407 @@
+config_id: equinet-a1-icp
+config_version: 2.0.0
+status: approved_for_production_configuration
+client_approval: authorised_user_current_session_2026-09-03
+owner_role: Unitalk Operations
+applies_to_profile: equinet-a1-icp-discovery
+candidate_schema_version: 1.0.0
+
+approval_record:
+  approved_by: Séverine
+  approver_role: Unitalk Operations
+  approval_scope: A1 ICP Configuration V1 pilot defaults
+  equinet_formal_signoff: not_separately_recorded
+  validated_decisions:
+    - Horse Owner threshold exception uses human review and never automatic qualification
+    - Pilot search defaults to Kentucky with Lexington prioritised; other US prospects are held for later
+    - Active apprentices remain lower-priority future potential and require human review
+    - Previously lost opportunities require human review rather than automatic exclusion
+    - The proposed minimum A1 review package is approved
+
+production_scope_amendment:
+  amendment_id: equinet-a1-international-production-scope-20260903
+  approved_by: authorised_user_current_session
+  approver_role: Equinet or Unitalk authorised user
+  effective_at: 2026-09-03
+  approval_scope: Production discovery in the United States, Australia and New Zealand
+  decisions:
+    - No default country, region or city is permitted.
+    - Country, region or state, and city must be supplied before discovery.
+    - Country and region codes are resolved through deterministic approved mappings and do not need to be supplied by the user.
+    - Missing, ambiguous or inconsistent location values require user clarification before an interactive run and rejection before an unattended run.
+    - A complete and unambiguous user-supplied country, region or state, and city require no additional confirmation.
+
+source_basis:
+  - source: A1 ICP Discovery blueprint
+    scope: Equinet responses on target segments, geography, ICP criteria and exclusions
+    pages: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+  - source: Séverine decision
+    scope: A1 may retain professional contact details found on approved public sources
+  - source: Séverine decision
+    scope: A candidate may represent a person, an organisation, or a linked person and organisation
+
+operating_scope:
+  organisation: Equinet
+  market_type: B2B_or_commercially_oriented
+  country_scope:
+    included_country_codes: [US, AU, NZ]
+    outside_country_action: exclude
+  search_geography:
+    default_country: null
+    default_region: null
+    default_city: null
+    required_user_fields: [country, region, city]
+    derived_fields: [country_code, region_code, country_slug, region_slug, city_slug, location_key]
+    code_resolution: deterministic_approved_mapping_only
+    infer_missing_location: prohibited
+    ambiguous_location_action: ask_user_before_discovery
+    missing_location_action: ask_user_before_discovery
+    autonomous_request_missing_location_action: reject_before_launch
+    confirmation_rule: no_additional_confirmation_when_country_region_and_city_are_complete_and_unambiguous
+    note: >-
+      Production discovery is approved for the United States, Australia and New Zealand.
+      A1 never assumes a default geography. The initiating request must identify country,
+      region or state, and city; A1 resolves country and region codes through approved
+      deterministic mappings and asks for clarification before discovery when the supplied
+      location is missing, ambiguous or internally inconsistent.
+  segment_priority:
+    - segment: farrier
+      priority: primary
+      measure_results_separately: true
+    - segment: horse_owner
+      priority: secondary
+      measure_results_separately: true
+
+shared_rules:
+  confirmed_criterion_requires_evidence: true
+  unknown_is_not_negative: true
+  do_not_infer_missing_facts: true
+  public_professional_contact_retention:
+    allowed: true
+    conditions:
+      - collected from a permitted official website or authoritative public record during Hermes enrichment
+      - plainly published for professional or business use
+      - linked to at least one evidence record
+      - not guessed, generated or obtained by bypassing access restrictions
+  enrichment_source_policy:
+    policy_version: 1.0.0
+    blocked_or_unverifiable_source_action: do_not_confirm_or_score
+  a1_outreach_prohibited: true
+  deep_enrichment_owner: A2
+
+classification_outcomes:
+  - qualified_for_scoring
+  - needs_review
+  - lower_priority
+  - excluded
+
+exclusion_rules:
+  - exclusion_id: global.outside_approved_country_scope
+    label: Outside the approved United States, Australia and New Zealand market scope
+    authority: operating_scope
+    when_confirmed: excluded
+    when_unavailable: needs_review
+  - exclusion_id: global.blocked_or_prohibited_source
+    label: Candidate depends on a blocked, unlawful or prohibited source
+    authority: public_website_enrichment_policy
+    when_confirmed: excluded
+    when_unavailable: needs_review
+
+upstream_crm_boundary:
+  owner: n8n
+  consume_returned_status_only: true
+  repeat_hubspot_lookup: prohibited
+  confirmed_duplicates_expected_in_final_result: false
+  possible_duplicate_action: needs_review
+  failed_or_missing_check_action: hold_and_report
+
+segments:
+  farrier:
+    label: Professional Farrier
+    business_priority: primary
+    target_prospect_types:
+      - farrier_independent
+      - farrier_business
+      - mobile_farrier_service
+      - farrier_multi_practitioner_business
+      - farrier_apprentice
+    standard_qualification_logic: >-
+      A standard qualified Farrier is an active professional Farrier with evidence of current
+      hoof-care work and plausible product usage or purchasing influence. Apprentice or junior
+      Farriers without an active client base follow the future-potential pathway and are not
+      treated as high-priority professional prospects.
+    criteria:
+      - criterion_id: farrier.professional_activity
+        label: Active professional Farrier activity
+        category: fit
+        effect: required_for_standard_qualification
+        provenance: confirmed_by_equinet
+        description: Full-time or part-time professional Farrier with evidence of active hoof-care work.
+        if_unknown: needs_review
+      - criterion_id: farrier.product_usage_or_influence
+        label: Uses or influences the purchase of professional hoof-care products
+        category: fit
+        effect: qualification_support
+        provenance: confirmed_by_equinet
+        description: Evidence of product use, recommendation or purchasing influence in daily professional work.
+        if_unknown: do_not_confirm
+      - criterion_id: farrier.established_client_base
+        label: Established or broad client base
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Serves multiple horse owners, farms, stables or equestrian facilities.
+        if_unknown: neutral
+      - criterion_id: farrier.regular_business_activity
+        label: Regular appointments and established business activity
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Active professional practice rather than occasional or inactive work.
+        if_unknown: neutral
+      - criterion_id: farrier.high_value_service_area
+        label: Serves a high-equine-activity area
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Covers areas with high horse populations, equestrian activity or professional operations.
+        if_unknown: neutral
+      - criterion_id: farrier.advanced_specialisation
+        label: Advanced hoof-care specialisation
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Performance horses, corrective shoeing, therapeutic work, racing or another advanced service.
+        if_unknown: neutral
+      - criterion_id: farrier.certified_or_experienced
+        label: Certified, experienced or well-established professional
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Certification, professional experience or other reliable establishment signal.
+        if_unknown: neutral
+      - criterion_id: farrier.sport_horse_focus
+        label: Works with sport or competition horses
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Show jumping, dressage, eventing, racing, western performance or similar disciplines.
+        if_unknown: neutral
+      - criterion_id: farrier.multi_farrier_business
+        label: Multi-Farrier or established Farrier business
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Multi-practitioner operation or business serving large professional operations.
+        if_unknown: neutral
+      - criterion_id: farrier.buying_influence
+        label: Influences product selection
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Recommends or decides which horseshoes, nails, tools or hoof-care products are used.
+        if_unknown: neutral
+      - criterion_id: farrier.product_fit
+        label: Strong fit with professional hoof-care products
+        category: fit
+        effect: qualification_support
+        provenance: confirmed_by_equinet
+        description: Regular professional need for products aligned with Equinet's hoof-care range.
+        if_unknown: neutral
+      - criterion_id: farrier.engagement_signal
+        label: Recent professional engagement signal
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Recent event attendance, certification, competition, association membership or active professional presence.
+        if_unknown: neutral
+      - criterion_id: farrier.apprentice_future_potential
+        label: Apprentice or junior Farrier actively entering the profession
+        category: priority
+        effect: future_potential_pathway
+        provenance: confirmed_by_equinet
+        description: Future-customer potential supported by active training, certification or professional-entry evidence.
+        if_unknown: neutral
+      - criterion_id: farrier.inactive_or_hobbyist
+        label: Inactive or hobby-only Farrier
+        category: negative
+        effect: negative_signal
+        provenance: confirmed_by_equinet
+        description: No evidence of an active professional client-serving practice.
+        if_confirmed: lower_priority_or_exclude
+      - criterion_id: farrier.no_professional_evidence
+        label: No evidence of professional hoof-care activity
+        category: exclusion
+        effect: exclusion
+        provenance: confirmed_by_equinet
+        description: Candidate cannot be substantiated as professionally active or actively entering the profession.
+        if_confirmed: excluded
+    special_pathways:
+      apprentice_or_junior:
+        entry_criterion: farrier.apprentice_future_potential
+        default_outcome: lower_priority
+        high_priority_allowed: false
+        human_review_required: true
+      professional_part_time:
+        default_outcome: qualified_for_scoring
+        condition: Active professional work is evidenced; part-time status alone is not a negative signal.
+
+  horse_owner:
+    label: Professional or Commercial Horse Owner
+    business_priority: secondary
+    target_prospect_types:
+      - horse_owner_professional
+      - farm
+      - breeding_farm
+      - boarding_stable
+      - training_stable
+      - equestrian_centre
+      - competition_yard
+      - trainer_or_stable_manager
+      - other_equine_business
+    standard_qualification_logic: >-
+      A standard qualified Horse Owner is professionally or commercially oriented and manages
+      more than three horses, or demonstrates strong commercial purchasing influence that requires
+      human review when the horse-count threshold is not evidenced.
+    horse_count_rule:
+      operator: greater_than
+      value: 3
+      provenance: confirmed_by_equinet
+      if_count_unknown: needs_review_if_other_commercial_signals_exist
+      if_count_at_or_below_threshold: lower_priority_and_needs_review
+      exception_policy: approved_for_v1_human_review
+    criteria:
+      - criterion_id: horse_owner.commercial_operation
+        label: Professional or commercial equine operation
+        category: fit
+        effect: required_for_standard_qualification
+        provenance: confirmed_by_equinet
+        description: Professional owner, farm, breeder, stable, training operation, equestrian centre or competition yard.
+        if_unknown: needs_review
+      - criterion_id: horse_owner.more_than_three_horses
+        label: Manages more than three horses
+        category: fit
+        effect: required_for_standard_qualification
+        provenance: confirmed_by_equinet
+        description: Evidence that the owner or operation manages more than three horses.
+        if_unknown: needs_review_if_other_commercial_signals_exist
+      - criterion_id: horse_owner.purchasing_influence
+        label: Influences hoof-care purchasing decisions
+        category: fit
+        effect: qualification_support
+        provenance: confirmed_by_equinet
+        description: Owner, trainer or manager has professional purchasing or product-selection influence.
+        if_unknown: neutral
+      - criterion_id: horse_owner.product_fit
+        label: Regular need for hoof-care products or services
+        category: fit
+        effect: qualification_support
+        provenance: confirmed_by_equinet
+        description: Operation has recurring hoof-care requirements relevant to Equinet products.
+        if_unknown: neutral
+      - criterion_id: horse_owner.performance_discipline
+        label: Performance or competition discipline
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Show jumping, dressage, eventing, racing, western performance or another competitive discipline.
+        if_unknown: neutral
+      - criterion_id: horse_owner.breeding_activity
+        label: Active breeding operation
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Breeder or breeding farm managing multiple horses.
+        if_unknown: neutral
+      - criterion_id: horse_owner.professional_network
+        label: Works with professional equine stakeholders
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Works with trainers, professional riders, Farriers or other equine professionals.
+        if_unknown: neutral
+      - criterion_id: horse_owner.high_equine_activity_location
+        label: Located in a high-equine-activity area
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Region has a strong horse population or professional equestrian ecosystem.
+        if_unknown: neutral
+      - criterion_id: horse_owner.buying_signal
+        label: Recent buying or expansion signal
+        category: priority
+        effect: priority_signal
+        provenance: confirmed_by_equinet
+        description: Recent competition, horse sale, acquisition, stable expansion or engagement with equine services.
+        if_unknown: neutral
+      - criterion_id: horse_owner.single_horse_recreational
+        label: Single-horse recreational owner without commercial involvement
+        category: negative
+        effect: negative_signal
+        provenance: confirmed_by_equinet
+        description: Casual recreational ownership with no evidence of professional activity or purchasing influence.
+        if_confirmed: lower_priority_or_exclude
+      - criterion_id: horse_owner.no_commercial_evidence
+        label: No evidence of professional or commercial orientation
+        category: exclusion
+        effect: exclusion
+        provenance: confirmed_by_equinet
+        description: Candidate cannot be substantiated as a B2B or commercially relevant Horse Owner prospect.
+        if_confirmed: excluded
+    special_pathways:
+      threshold_exception_review:
+        trigger: >-
+          Horse count is unknown or at or below three, but strong professional-operation,
+          purchasing-influence or commercial signals are evidenced.
+        default_outcome: needs_review
+        automatic_qualification_allowed: false
+        status: approved_by_severine_for_v1
+
+minimum_review_requirements:
+  status: approved_by_severine_for_v1
+  required_paths:
+    - schema_version
+    - candidate_id
+    - run_id
+    - segment
+    - prospect_type
+    - identity.display_name
+    - location.country_code
+    - location.state_region
+    - location.geography_status
+    - source_evidence
+    - qualification.criteria
+    - qualification.minimum_data_status
+    - qualification.exclusion_status
+    - scoring.status
+    - confidence.level
+    - confidence.score
+    - recommendation.next_action
+    - workflow.stage
+    - provenance.audit_correlation_id
+  structural_rules:
+    - identity must contain a person, an organisation, or both
+    - at least one approved or conditional source-evidence record is required
+    - at least one fit criterion must be confirmed for qualified_for_scoring
+    - every confirmed criterion must reference evidence
+    - public contact details are optional but must reference evidence when present
+    - location must include a confirmed country, region or state, and city and must be inside the approved US, Australia or New Zealand scope
+    - batch duplicate check must be completed before review
+    - HubSpot and Twenty duplicate checks may be unavailable in the no-integration V1 but must say so explicitly
+    - scoring and confidence must be present before the real-prospect review queue
+    - excluded candidates cannot be recommended for A2
+  optional_but_desired_paths:
+    - identity.organisation.website
+    - identity.organisation.domain
+    - identity.person.role_title
+    - location.city
+    - public_contacts
+    - recommendation.suggested_territory
+
+scoring_boundary:
+  weights_defined_here: false
+  score_bands_defined_here: false
+  qualification_threshold_defined_here: false
+  reason: >-
+    This configuration defines business criteria and their effects. Numeric weights, bands and
+    thresholds belong to the separate deterministic scoring configuration and script.

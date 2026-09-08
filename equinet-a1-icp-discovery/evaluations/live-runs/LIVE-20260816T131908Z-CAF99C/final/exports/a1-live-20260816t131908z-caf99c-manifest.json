@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "source_package_id": "A1-RP-LIVE-20260816T131908Z-CAF99C",
+  "candidate_count": 1,
+  "files": [
+    {
+      "format": "json",
+      "file_name": "a1-live-20260816t131908z-caf99c.json",
+      "sha256": "7c3bfafc080acb6f1c1736b3937438cd3b1836f7c45fe81487b57bf9054db14b",
+      "bytes": 20110
+    },
+    {
+      "format": "markdown",
+      "file_name": "a1-live-20260816t131908z-caf99c.md",
+      "sha256": "79116ea22448970133e11af3478c349da123670089987b8b06f9197a1abb4c06",
+      "bytes": 3147
+    },
+    {
+      "format": "csv",
+      "file_name": "a1-live-20260816t131908z-caf99c.csv",
+      "sha256": "e9a660f7b508d3ad3888b049a596eca9ef340df579b14e15789dcd03b38d3f99",
+      "bytes": 4495
+    },
+    {
+      "format": "xlsx",
+      "file_name": "a1-live-20260816t131908z-caf99c.xlsx",
+      "sha256": "ee1d82a4af3f530a10b1d1d3449e5841b91ce046da068683d8062d06ac4f2593",
+      "bytes": 16093
+    }
+  ],
+  "validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  }
+}

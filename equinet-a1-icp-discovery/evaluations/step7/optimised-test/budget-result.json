@@ -1,0 +1,16 @@
+{
+  "status": "warning",
+  "scope": "candidate",
+  "candidate_count": 1,
+  "total_tokens": 41379,
+  "token_warning": 105000,
+  "token_hard": 150000,
+  "api_calls": 5,
+  "api_call_warning": 5,
+  "api_call_hard": 6,
+  "reasons": [
+    "api_call_warning_limit"
+  ],
+  "model": "deepseek-v4-flash",
+  "provider": "openai-api"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "source_package_id": "A1-RP-STEP8-DUPLICATES",
+  "candidate_count": 2,
+  "files": [
+    {
+      "format": "json",
+      "file_name": "duplicate-batch.json",
+      "sha256": "c813f10d39863086cd4a19b415fa5dd9d6f00845dabd71ad79deb81834a431fb",
+      "bytes": 41620
+    },
+    {
+      "format": "markdown",
+      "file_name": "duplicate-batch.md",
+      "sha256": "94343f858ba987bb21a1df1499b541fd979509041957199843fd3dcf61026cfd",
+      "bytes": 5487
+    },
+    {
+      "format": "csv",
+      "file_name": "duplicate-batch.csv",
+      "sha256": "310b93f49e4ed3056de3b30738c3ab24ce7118dea52a161a70c52e32cf751280",
+      "bytes": 7456
+    },
+    {
+      "format": "xlsx",
+      "file_name": "duplicate-batch.xlsx",
+      "sha256": "d43eb40365ad50b65c5ceb37150de0c2720152fe2704db9cdad396876042060b",
+      "bytes": 16635
+    }
+  ],
+  "validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  }
+}

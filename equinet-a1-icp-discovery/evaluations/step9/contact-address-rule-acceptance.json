@@ -1,0 +1,44 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "decision": "approved_research_contact_and_address_rule_v1_1",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-15T21:16:43Z",
+  "reason": "Every candidate official website should be checked for About/Team/Services and Contact/Location pages so published business contacts and full address are retained before review.",
+  "changes": {
+    "public_prospect_research_version": "1.1.0",
+    "runtime_policy_version": "1.1.0",
+    "max_successful_page_reads_per_candidate": 4,
+    "max_total_tool_calls_per_candidate": 10,
+    "required_page_checks": [
+      "about_team_or_services_when_available",
+      "contact_location_or_find_us_when_available"
+    ],
+    "required_contact_fields_when_published": [
+      "public_email",
+      "public_phone",
+      "postal_code",
+      "full_address"
+    ],
+    "missing_fields": "record_not_publicly_published",
+    "form_placeholder_as_contact": false,
+    "third_party_contact_attribution": "prohibited",
+    "maximum_targeted_retry_for_missing_expected_page": 1
+  },
+  "schema_change_required": false,
+  "canonical_mapping": {
+    "full_address": "location.public_address",
+    "postal_code": "location.postal_code",
+    "contacts": "public_contacts[]"
+  },
+  "tests": {
+    "same_domain_contact_and_address": "passed",
+    "form_placeholder_rejection": "passed",
+    "third_party_contact_rejection": "passed",
+    "wave1": "passed",
+    "wave2": "passed",
+    "wave3": "passed",
+    "step7": "passed",
+    "step8": "passed",
+    "step9_exports": "passed"
+  }
+}

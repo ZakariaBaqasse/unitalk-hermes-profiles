@@ -1,0 +1,19 @@
+**Pipeline result — all passed.**
+
+| Field | Value |
+|---|---|
+| **Status** | passed |
+| **Candidate count** | 1 |
+| **Recommendations** | accept: 1, needs_research: 0, reject: 0 |
+| **Integration states** | HubSpot: unavailable, Twenty: unavailable, A2: not triggered |
+| **Human decisions pending** | true (0 authorised A2 handoffs) |
+| **Export validation** | review_package: passed, prospect_candidates: passed, json_round_trip: passed, csv_consistency: passed, xlsx_consistency: passed, xlsx_formula_errors: passed |
+
+**Created files** (under `evaluations/step7/optimised-test/exports/`):
+
+1. `optimised-review.json`
+2. `optimised-review.md`
+3. `optimised-review.csv`
+4. `optimised-review.xlsx`
+
+No outreach, CRM writes or A2 handoff performed.

@@ -1,0 +1,43 @@
+{
+  "contract_version": "a1.discovery-result.v1",
+  "run_id": "A1-PEOPLE-FIXTURE-001",
+  "status": "discovery_complete",
+  "summary": {"returned": 4},
+  "leads": [
+    {
+      "lead_fingerprint": "fixture:both-names",
+      "business_name": "Alpha Forge LLC",
+      "name": "Jane Doe",
+      "phone": "859-555-0100",
+      "email": "jane@example.com",
+      "country": "US",
+      "segment_hint": "farrier",
+      "source_urls": ["https://directory.example/alpha"]
+    },
+    {
+      "lead_fingerprint": "fixture:name-only",
+      "name": "John Smith",
+      "phone": "859-555-0101",
+      "email": "john@example.com",
+      "country": "US",
+      "segment_hint": "farrier",
+      "source_urls": ["https://directory.example/john"]
+    },
+    {
+      "lead_fingerprint": "fixture:business-only",
+      "business_name": "Beta Equine Centre",
+      "phone": "859-555-0102",
+      "email": "office@example.com",
+      "country": "US",
+      "segment_hint": "horse_owner",
+      "source_urls": ["https://directory.example/beta"]
+    },
+    {
+      "lead_fingerprint": "fixture:neither",
+      "phone": "859-555-0103",
+      "country": "US",
+      "segment_hint": "farrier",
+      "source_urls": ["https://directory.example/missing"]
+    }
+  ]
+}

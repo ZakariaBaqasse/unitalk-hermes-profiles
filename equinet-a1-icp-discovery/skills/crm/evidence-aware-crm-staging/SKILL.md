@@ -1,0 +1,257 @@
+---
+name: evidence-aware-crm-staging
+description: Stage Equinet Companies and optional linked People.
+version: 4.1.0
+status: production_validated
+---
+
+# Equinet A1 Twenty Company and Person Staging
+
+Use immediately after a compact `a1.discovery-result.v1` result is persisted. This is the mandatory post-discovery path: every lead must receive one terminal Company disposition and, when `name` is present, one terminal linked-Person disposition before the discovery ticket can be consumed.
+
+## Scope
+
+- One Twenty Company per lead with `business_name or name`.
+- One optional linked Person only when the immutable n8n lead has a non-empty `name`.
+- When `name` is absent or blank, stage only the Company: set `person_required: false`, keep `person_payload: null`, and place validated public phone/email on the Company. Never substitute `business_name` as a Person name.
+- Company is staged and reconciled first; Person is staged second with the verified Company UUID as `companyId`.
+- Phone/email are written exclusively to Person when one is expected, otherwise to Company.
+- Person names are never split or guessed: complete `name` goes to `name.firstName`, with `name.lastName` set to an empty string.
+- One human-review queue; both website-routing lanes converge on entity-aware Twenty staging.
+- No-website and failed-enrichment leads remain stageable with explicit null score, band and confidence values; verified website leads may carry validated enrichment and deterministic scoring overlays.
+- New Companies start as `DISCOVERED`.
+- Restaging must preserve existing `DISCOVERED`, `HELD`, `ELIGIBLE` or `REJECTED` reviewer status.
+- Never create Opportunities, Tasks, messages, campaigns or outreach.
+
+The Company path has cited live production evidence. The linked-Person extension is contract- and deterministic-mock-tested; do not claim a live Person write/read-back until a cited execution artifact exists.
+
+## Two-lane enrichment overlay extension
+
+The approved target design routes the immutable n8n result by exact `lead_fingerprint` before staging:
+
+```text
+no website candidate → stage unscored Company
+website candidate → verify official site → cited enrichment → classification → qualification → confidence → deterministic score → stage enriched Company
+```
+
+A website candidate is discovery context, not a verified official domain. If official-site verification completes but classification, qualification, confidence or scoring cannot complete, retain the verified official URL in an unscored overlay and stage it into Company `domainName`; score, band, outcome and confidence remain null. If verification itself fails, fall back to unscored Company staging without `domainName`. Never use numeric zero as a synonym for not scored.
+
+The direct REST worker supports a validated `a1.twenty-company-overlays.v2` file through `--overlays`. It validates exact fingerprint coverage, numeric ranges, Select values and both live field manifests before preparing any write. The routing/overlay design is in `references/two-lane-enrichment-staging.md`; verified contracts are in `configurations/crm/twenty-company-field-manifest-v1.json` and `configurations/crm/twenty-person-field-manifest-v1.json`. Both processing lanes retain duplicate and soft-delete controls for each expected entity.
+
+## Preferred execution path: deterministic REST worker
+
+Normal A1 staging must use `scripts/stage_twenty_rest.py`. The script reads the persisted discovery result locally, prepares every Company payload, performs Twenty duplicate preflight, creates or updates Companies, reads every write back, reconciles it, and emits a complete staging index. Raw phones and Company payloads stay outside model context; stdout contains only aggregate counts and artifact paths.
+
+Required environment:
+
+- `TWENTY_API_KEY` — secret API key with Company and People read/create/update permission;
+- `TWENTY_BASE_URL` — optional; defaults to `https://api.twenty.com` and must be set for self-hosted Twenty;
+- `TWENTY_REQUEST_DELAY` — optional minimum delay between requests; defaults to `0.7` seconds to stay below Twenty's documented 100 requests/minute limit.
+
+Store `TWENTY_API_KEY` in the Equinet runtime/container environment or profile `.env`; never put it in `config.yaml`, a skill file, a command argument, or an audit artifact. Restart the owning Hermes process after changing its environment.
+
+Before a live batch, run the read-only capability probe:
+
+```text
+python3 skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_rest.py --check-connection
+```
+
+The probe validates authentication plus the exact fingerprint, composite-domain, and Company-name REST filter forms used by staging. It does not create or update anything and emits no Company rows.
+
+Run:
+
+```text
+python3 skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_rest.py \
+  --input <lane-discovery-result.json> \
+  --overlays <lane-overlays.json> \
+  --field-manifest configurations/crm/twenty-company-field-manifest-v1.json \
+  --person-field-manifest configurations/crm/twenty-person-field-manifest-v1.json \
+  --output-dir <new-empty-staging-directory>
+```
+
+`--overlays` is required for the two-lane production path. Omitting it retains legacy unscored behavior only for backward-compatible recovery runs.
+
+The output directory must be new or empty. It receives `batch.json`, phone validation, a batch-level soft-deleted Company scan summary, item-scoped lookup/write/read-back artifacts, `dispositions.json`, and `staging-index.json`. Exact string filters are JSON-quoted before they enter Twenty's REST filter DSL, so commas and business/professional suffixes cannot become stray filter tokens. Exact fingerprint or domain matches found among soft-deleted Companies are held as `possible_match` without an automatic restore, delete, update, or create. Do not consume the discovery ticket unless `staging-index.json.complete` is true. The worker never retries writes automatically; an ambiguous transport outcome remains item-scoped `sync_failed` with `write_outcome_uncertain: true`.
+
+This direct REST path replaces model-mediated Twenty MCP calls for normal A1 staging. It calls `/rest/companies` and `/rest/people` with GET, POST, or UUID-scoped PATCH. It strips the MCP-only `position` directive before Company creates and preserves reviewer-controlled Company `discoveryStatus` on updates. Person writes occur only after verified Company read-back; uncertain Person writes are never retried automatically.
+
+Operational procedure and failure recovery: `references/direct-rest-worker-operations.md`. Live Twenty API serialization and compatibility evidence: `references/twenty-live-write-compatibility.md`.
+
+## Deterministic mapping helper (manual diagnostics only)
+
+Use PATH-selected `python3`; do not invoke an absolute interpreter path from cron.
+
+### 1. Prepare the batch
+
+```text
+python3 skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_company.py prepare-batch \
+  --input <discovery-result.json> --output <batch.json>
+```
+
+Every input fingerprint becomes either:
+
+- `ready` with a Company payload and lookup plan; or
+- `blocked_missing_company_name` with no invented identity.
+
+### 2. Preflight and decide
+
+For each ready item, execute the emitted `find_many_companies` lookups through Twenty MCP. Save raw responses and run `normalize-find` so matching always uses normalized `result.records` (CLI syntax: `normalize-find --response <raw-response.json> --output <normalized.json>`). Supply arrays named `fingerprint_matches`, `domain_matches`, and `possible_matches` to:
+
+```text
+python3 skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_company.py decide \
+  --plan <plan.json> --matches <matches.json> --output <decision.json>
+```
+
+Outcomes:
+
+- `create` → execute emitted `create_many_companies` arguments;
+- `update` → execute emitted UUID-scoped `update_one_company` arguments;
+- `blocked` → write no CRM record and persist `possible_match`.
+
+Never use `update_many_companies` for A1 restaging.
+
+### Audit artifact layout and safe concurrency
+
+For a manually partitioned slice, retain artifacts inside each item directory using stable names:
+
+- `raw-fingerprint.json`, `raw-domain.json` when applicable, and `raw-possible_name_location.json` for every executed lookup;
+- normalized lookup outputs plus `matches.json` and `decision.json`;
+- `raw-create.json` or `raw-update.json` before extracting an ID;
+- `raw-readback.json`, normalized `readback.json`, and `reconciliation.json` (or a precise reconciliation-error artifact).
+
+It is safe to execute independent read-only duplicate lookups concurrently. Create operations may also run concurrently **only after every item in that concurrent set has a completed, persisted preflight and a deterministic `create` decision**. Never mix a speculative write into that phase, and never retry a create because an artifact write or reconciliation step later fails.
+
+### 3. Write-response handling, read-back and reconcile
+
+For `create`, invoke `create_many_companies` through the Twenty MCP wrapper with the exact `decision.json.mcp_arguments`. For `update`, invoke `update_one_company` with the exact emitted Company ID and arguments. Do not reconstruct, omit, merge or manually alter fields from the deterministic decision. Persist the actual raw MCP response as `raw-create.json` or `raw-update.json` before extracting any value or deriving a disposition.
+
+The live `create_many_companies` response may contain a `result` array with only `{id}` values rather than a full Company record. Require exactly one returned Company ID. Then execute `find_one_company` with that ID and `select: ["*"]`, persist the actual response as `raw-readback.json`, normalize it with `normalize-record`, and reconcile it with the original plan and decision.
+
+A create or update becomes an uncertain write as soon as its Twenty MCP call is attempted. If the response is lost, malformed, rejected after an ambiguous transport failure, or cannot be persisted, record the precise `sync_failed` state and never blindly retry the write. Keep failures item-specific; one item's uncertain result must not block independent items whose completed preflights and deterministic decisions are intact.
+
+Before a write, validate the **actual emitted plan** against the live Twenty API constraints; do not assume the helper version is already compliant. The helper normalises unambiguous US, Australian and New Zealand public phone values to canonical E.164 using the confirmed country and canonicalises already-plus-prefixed values. It omits masked, extended, ambiguous or unsupported values rather than guessing. The original public value remains in the immutable discovery artifact; only the API-safe form may appear in the Twenty write plan. If a prepared plan still contains a formatted phone, do not invoke `create_many_companies`/`update_one_company` and do not manually mutate its payload in a cron run: preserve the plan and decision artifacts, record the terminal disposition as `sync_failed` with a `deterministic_staging_payload_rejected_prewrite` reason, then repair and test the helper separately. This prevents ambiguous remote writes and makes the compatibility regression auditable.
+
+**Phone regression guard.** Before rejecting or submitting any ready item, run the deterministic raw-file validator below. It returns aggregate/non-sensitive counts only and confirms whether the emitted plans contain canonical E.164 phone values. The persisted plan is authoritative.
+
+```text
+python3 skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_company.py validate-batch-phones \
+  --batch <batch.json> --output <phone-validation.json>
+```
+
+Proceed with duplicate preflight and direct Twenty staging only when its `status` is `valid`. If it reports masking characters or invalid values in a raw persisted plan, record `sync_failed` with `deterministic_staging_payload_rejected_prewrite` and do not write that item. Never repair or reinterpret a malformed phone inside a cron run; repair and test the deterministic helper separately.
+
+After create/update, execute `find_one_company` with `select: ["*"]`, normalize that response with `normalize-record`, then reconcile. Twenty may store a written E.164 US phone as `primaryPhoneNumber` without the country prefix plus a separate `primaryPhoneCallingCode: "+1"`; the helper reconciles their canonical combination against the emitted E.164 value. Treat an unverified read-back mismatch as `sync_failed` and do not retry the create. In particular, record the literal expected and returned values: URL serialization may remove a trailing slash, which must be treated as a reconciliation compatibility issue until the deterministic normalizer is tested and versioned to accept that equivalence.
+
+```text
+python3 skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_company.py reconcile \
+  --plan <plan.json> --decision <decision.json> \
+  --company-id <id> --readback <company.json> --output <reconciliation.json>
+```
+
+A lead is `staged` only after verified read-back. Preserve uncertain writes as `sync_failed`; never blindly retry a create whose remote outcome is unknown.
+
+### 4. Finalize the batch
+
+Build a dispositions document with one terminal outcome per input fingerprint, then:
+
+```text
+python3 skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_company.py finalize-batch \
+  --batch <batch.json> --dispositions <dispositions.json> \
+  --output <staging-index.json>
+```
+
+Allowed dispositions are `company_staged_person_staged`, `company_staged_no_person_required`, `company_staged_person_possible_match`, `company_staged_person_sync_failed`, `company_possible_match`, `company_sync_failed`, and `blocked_missing_company_name`. The complete entity-aware staging index is the only valid consumed artifact for the discovery ticket.
+
+### Corrective runs after a pre-write abort
+
+If a terminal staging index proves `write_attempted: false` but the discovery result is valid, do **not** alter the original index or rerun discovery. Create a separately named remediation batch linked to the immutable result and prior index. Repeat every preflight whose raw/normalized lookup and deterministic decision artifacts are incomplete; then stage only through the normal write, read-back and reconciliation path. Never retry an uncertain create. See `references/corrective-staging-after-prewrite-abort.md`.
+
+## Diagnosing incorrect Company identity
+
+When a staged Company has a person's name or another wrong identity, determine the responsible layer from immutable artifacts before changing Twenty:
+
+1. Compare the direct source's explicit person and Company labels with the persisted n8n discovery lead (`name`, `person_name`, `business_name`).
+2. Inspect the staging `plan.json`. The deterministic mapper intentionally sets Company `name` from `business_name || name` and creates the Person from immutable `name` when present.
+3. Inspect Twenty `readback.json` and reconciliation. If the plan and read-back agree, Twenty serialization succeeded; the upstream discovery/extraction record was wrong rather than the CRM write dropping a field.
+4. A source excerpt merely occurring on the page is not semantic evidence for `business_name`. A person heading must not validate a Company claim when a distinct labelled `Company` value exists.
+5. Correct future extraction at the source/detail-enrichment layer. For already staged records, perform fresh read-only duplicate preflight using the corrected Company identity and corroborating location/domain before any UUID-scoped update. If the corrected identity matches an existing Company or remains ambiguous, hold for human reconciliation; never blindly rename, merge, recreate, or relink a Person.
+
+## Current Company mapping and contract discipline
+
+Use only API names and option values verified in `configurations/crm/twenty-company-field-manifest-v1.json`:
+
+- identity/contact: `name`, `domainName`, `address`, `phone`, `email`, `sourceUrl`;
+- geography/classification: `country`, `city`, `state`, `segment` when exactly mappable;
+- discovery: `discoveryStatus`, `discoverySourceNotes`, `discoveryFingerprint`;
+- assessment: `qualificationStatus`, `icpScoreStatus`, `icpScore`, `icpBand`, `icpOutcome`, `evidenceConfidenceScore`, `evidenceConfidenceLevel`.
+
+Never derive an API name from a UI label. Refresh live object/field metadata and version the manifest when a field is added, renamed, retyped or its Select options change. Treat `domainName` and `sourceUrl` as structured `LINKS`, `phone` as `PHONES`, `email` as `EMAILS`, and `address` as `ADDRESS`; do not send plain strings. A valid publicly displayed professional email is written as `email.primaryEmail` with `additionalEmails: []`; invalid, masked or absent email is omitted rather than guessed. `sourceUrl` is acquisition provenance only: use the first valid n8n `source_urls[]` entry (the directory/source where the lead was discovered), never the verified official website. Set its `primaryLinkLabel` deterministically to the lowercase source hostname with one leading `www.` removed (for example `madbarn.com`), never a generic label such as `A1 source`. The verified official website belongs only in `domainName`. If no acquisition source URL is present, omit `sourceUrl` rather than substituting another URL. `createdAt`, `updatedAt` and `deletedAt` are system-managed and must not appear in writes. Select values are exact API enums, not display labels.
+
+The live `country` Select supports United States, Australia and New Zealand. The current live `city` and `state` Select fields remain limited to Lexington and Kentucky; other city/region values must remain in the structured address and discovery notes and must not be forced into unsupported Select options. A later live Twenty metadata migration may add country-neutral text fields, after which the manifest and deterministic mapper must be versioned together.
+
+The dedicated Company fields are authoritative for filtering and reporting, including the `email` field for public professional email. Run ID, website/enrichment status, prospect type, method versions, limitations and artifact references remain in compact `discoverySourceNotes`; email, numeric score, band, outcome and confidence values are not duplicated there. A weaker `NOT_SCORED` overlay must never clear an existing valid scored assessment or its assessment provenance. No-site records omit `domainName` and remain stageable.
+
+Authoritative mapping: `references/twenty-company-mapping.yaml`. Live API response and phone-compatibility notes: `references/twenty-live-write-compatibility.md`. The tested Twenty terminal-slash read-back equivalence and its non-retry reconciliation procedure are documented in `references/twenty-url-trailing-slash-reconciliation.md`.
+
+## Runtime capability gate and failure audit
+
+Before processing, confirm that `TWENTY_API_KEY` is available to the script process and `TWENTY_BASE_URL` resolves to the intended workspace. The direct worker performs the first read-only Company lookup itself and persists the actual HTTP status and body before any decision or write. Secret redaction of model-visible E.164 values is not a staging dependency because the worker never sends lead rows through model context.
+
+For every batch, retain the worker's raw preflight, decision, write and read-back artifacts. Never reconstruct a raw response from a rendered summary. If the script cannot persist the actual API response, keep that item as `sync_failed` and do not represent reconstructed content as evidence.
+
+## Reporting a direct REST capability failure
+
+If `TWENTY_API_KEY` is unavailable, the base URL is unreachable, or a read-only REST preflight fails before any write attempt, record the concrete environment, transport, authentication, or HTTP failure class and preserve the completed plan and preflight artifacts. Do not attribute the failure to n8n discovery, duplicate matching, phone validation, or a Twenty API rejection unless evidence from that layer proves it.
+
+A `sync_failed` disposition must state whether duplicate preflight completed, whether a deterministic create/update decision was reached, and whether `write_attempted` is false. Preserve the immutable discovery result and staging artifacts for a later corrective staging run; do not rerun discovery or imply that any Company was created.
+
+### HTTP 400 failure classification
+
+When analysing a completed batch, inspect the item-scoped raw response before grouping failures. Do not collapse all HTTP 400 responses into a generic CRM error:
+
+- A create response explicitly reporting a duplicate entry is a definite rejected write (`write_attempted: true`, `write_outcome_uncertain: false`). Do not retry it. Use the post-run **read-only** fingerprint/name reconciliation procedure to identify a compatible existing Company; if it cannot be resolved one-to-one, retain `needs_operator_reconciliation`.
+- A duplicate-preflight response reporting an invalid `filter` is a **pre-write query-construction failure** (`write_attempted: false`). Preserve its raw error. Do not manually alter a Company payload or retry in a cron run. Repair filter serialization/escaping in the deterministic helper, add a regression test for the observed name syntax, and only then run a separately named corrective batch linked to the immutable discovery result.
+
+Report these categories separately, including their count, whether any remote write was attempted, and the exact artifact reference. This makes an API duplicate constraint distinguishable from a malformed lookup query and prevents unsafe retries.
+
+## Allowed Twenty operations
+
+The direct worker may use only Company and linked-Person operations:
+
+- `GET /rest/companies` and `GET /rest/people` for duplicate preflight;
+- UUID-scoped GET for read-back;
+- `POST /rest/companies` followed, when required, by `POST /rest/people`;
+- UUID-scoped PATCH for deterministic updates and verified Company-contact migration.
+
+Never call Opportunities, Tasks, messages, campaigns, outreach, or HubSpot write endpoints.
+
+## Post-run verification of pre-existing fingerprint matches
+
+Use this only after a completed batch has reported pre-existing exact fingerprint matches but did not retain sufficient raw preflight/read-back artifacts to establish whether the matches are the intended Companies. This is a **read-only reconciliation**, not a restaging retry.
+
+1. Take the immutable discovery result's `lead_fingerprint` values and query `GET /rest/companies` with a `discoveryFingerprint.in` filter, a limit covering the batch, and pagination when the workspace response indicates another page.
+2. For each returned Company, verify exactly one matching fingerprint, the expected Company name, and available corroborating public fields (address, phone, domain, or source URL). Do not treat a fingerprint alone as complete identity verification when names conflict.
+3. Compare the Company's `createdAt` with the discovery run's `started_at`. When all matches predate the discovery run and names/fingerprints agree one-to-one, state that the Companies existed before this run; do not describe them as newly staged.
+4. Persist a compact read-only verification manifest under the batch artifact directory. Include counts for retrieved leads, matching Companies, unmatched leads, multiple matches, the method, Company IDs, fingerprints, names, timestamps, and explicit no-write boundary.
+5. If any candidate is absent, multiply matched, or has a conflicting name, retain it as `needs_operator_reconciliation`; do not update, merge, delete, or recreate a Company.
+
+This check may correct a prior `sync_failed` interpretation in the human report, but it must not mutate the original staging index or repeat any Twenty write.
+
+## Entity-state and artifact invariants
+
+- Derive `person_required` only from the immutable source `name`; never infer it from contact fields or website evidence.
+- A lead expecting a Person is terminal only when `person_disposition` is `staged`, `possible_match`, `sync_failed`, or `blocked_by_company`. If Company staging fails or is held, record `blocked_by_company` rather than `not_required`.
+- `company_staged_person_sync_failed` may still carry a verified Person ID and relation when the remaining failure is Company-contact migration. Preserve that verified evidence instead of downgrading the relation.
+- Count `company_coverage.verified_ids` only for Company-staged states; a soft-deleted or ambiguous Company ID is not a verified staged ID.
+- Persist `artifact_reference` for every terminal outcome, including `blocked_missing_company_name`. Successful entity writes also require dedicated Company/Person reconciliation artifact paths.
+- Validate generated lane and combined indexes against their JSON Schemas in addition to unit-testing state transitions; schema validation catches null or missing artifact references that control-flow tests can miss.
+
+## Completion checks
+
+- Every returned fingerprint appears exactly once in the staging index.
+- Every Company-staged item has a Company ID and Company reconciliation artifact.
+- Every lead with `name` has Person status `staged`, `possible_match`, `sync_failed`, or `blocked_by_company`; a staged Person has a Person ID, verified `companyId` relation and Person reconciliation artifact.
+- Existing reviewer status was not reset by restaging.
+- Phone/email appear on only the required destination; verified Person staging includes migration of pre-existing Company copies.
+- No Twenty object outside Company and its optional linked Person was written.
+- HubSpot remained read-only; no A2 or outreach action occurred.

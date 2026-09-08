@@ -1,0 +1,176 @@
+{
+  "schema_version": "a1.twenty-company-field-manifest.v1",
+  "retrieved_at": "2026-09-02T20:57:59Z",
+  "source": "live_twenty_metadata",
+  "object": {
+    "name_singular": "company",
+    "name_plural": "companies",
+    "label_singular": "Company",
+    "label_plural": "Companies"
+  },
+  "fields": {
+    "address": {
+      "label": "Address",
+      "type": "ADDRESS",
+      "writable": true,
+      "nullable": true
+    },
+    "city": {
+      "label": "City",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["LEXINGTON"]
+    },
+    "country": {
+      "label": "Country",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["US", "AUSTRALIA", "NEW_ZEALAND"]
+    },
+    "createdAt": {
+      "label": "Creation date",
+      "type": "DATE_TIME",
+      "writable": false
+    },
+    "deletedAt": {
+      "label": "Deleted at",
+      "type": "DATE_TIME",
+      "writable": false
+    },
+    "discoveryFingerprint": {
+      "label": "Discovery Fingerprint",
+      "type": "TEXT",
+      "writable": true,
+      "nullable": true
+    },
+    "discoverySourceNotes": {
+      "label": "Discovery Source Notes",
+      "type": "TEXT",
+      "writable": true,
+      "nullable": true
+    },
+    "discoveryStatus": {
+      "label": "Discovery Status",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["ELIGIBLE", "DISCOVERED", "HELD", "REJECTED"]
+    },
+    "domainName": {
+      "label": "Domain Name",
+      "type": "LINKS",
+      "writable": true,
+      "nullable": true,
+      "max_number_of_values": 1
+    },
+    "email": {
+      "label": "Email",
+      "type": "EMAILS",
+      "writable": true,
+      "nullable": true,
+      "max_number_of_values": 10
+    },
+    "evidenceConfidenceLevel": {
+      "label": "Evidence Confidence Level",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["HIGH", "MEDIUM", "LOW"]
+    },
+    "evidenceConfidenceScore": {
+      "label": "Evidence Confidence Score",
+      "type": "NUMBER",
+      "writable": true,
+      "nullable": true,
+      "number_type": "number",
+      "decimals": 0
+    },
+    "icpBand": {
+      "label": "ICP Band",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["HIGH", "MEDIUM", "LOW", "UNQUALIFIED"]
+    },
+    "icpOutcome": {
+      "label": "ICP Outcome",
+      "type": "TEXT",
+      "writable": true,
+      "nullable": true
+    },
+    "icpScore": {
+      "label": "ICP Score",
+      "type": "NUMBER",
+      "writable": true,
+      "nullable": true,
+      "number_type": "number",
+      "decimals": 0
+    },
+    "icpScoreStatus": {
+      "label": "ICP Score Status",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["NOT_SCORED", "SCORED", "BLOCKED"]
+    },
+    "name": {
+      "label": "Name",
+      "type": "TEXT",
+      "writable": true,
+      "nullable": true
+    },
+    "phone": {
+      "label": "Phone",
+      "type": "PHONES",
+      "writable": true,
+      "nullable": true,
+      "max_number_of_values": 10
+    },
+    "qualificationStatus": {
+      "label": "Qualification status",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["ELIGIBLE", "EXCLUDED", "NEEDS_REVIEW", "NOT_CHECKED"]
+    },
+    "segment": {
+      "label": "Segment",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["FARRIER", "HORSE_OWNER"]
+    },
+    "sourceUrl": {
+      "label": "Source URL",
+      "type": "LINKS",
+      "writable": true,
+      "nullable": true,
+      "max_number_of_values": 10
+    },
+    "state": {
+      "label": "State",
+      "type": "SELECT",
+      "writable": true,
+      "nullable": true,
+      "options": ["KENTUCKY"]
+    },
+    "updatedAt": {
+      "label": "Last update",
+      "type": "DATE_TIME",
+      "writable": false
+    }
+  },
+  "contract_notes": [
+    "The live label is Address and the API name is address.",
+    "Creation date, Last update, and Deleted at are system-managed and must not be sent in Company create or update payloads.",
+    "Discovery Source Notes is a TEXT field in the live workspace.",
+    "Use exact uppercase select option API values from this manifest.",
+    "Score and confidence number fields are nullable whole-number fields.",
+    "Email is a nullable EMAILS composite; write primaryEmail plus additionalEmails, never a plain string.",
+    "Only a verified official business website may populate domainName.",
+    "Company phone and email are conditionally owned: write them only when no linked Person is expected; when a Person is expected, contacts belong exclusively to that Person.",
+    "If an existing Company has phone or email and a linked Person is successfully reconciled, clear the Company copies only through a verified contact-migration update."
+  ]
+}

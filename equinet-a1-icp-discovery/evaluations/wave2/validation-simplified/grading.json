@@ -1,0 +1,209 @@
+{
+  "evaluation": "A1 Wave 2 simplified behavioural validation",
+  "profile": "equinet-a1-icp-discovery",
+  "model": "deepseek-v4-flash",
+  "scenarios_passed": 6,
+  "scenarios_total": 6,
+  "overall_passed": true,
+  "decision": "approved_for_a1_v1_pilot",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-14T16:25:31Z",
+  "promotion_applied": true,
+  "scenarios": [
+    {
+      "scenario": "Official business website — James Holub confidence",
+      "skill": "prospect-evidence-and-confidence",
+      "source_output": "evaluations/wave2/iteration-1/confidence-james/output.txt",
+      "assertions": [
+        {
+          "text": "Existing behavioural output is present",
+          "passed": true,
+          "evidence": "Iteration 1 output retained."
+        },
+        {
+          "text": "Confidence is 84 / High",
+          "passed": true,
+          "evidence": "Observed 84 / high."
+        },
+        {
+          "text": "One strong official source is not capped",
+          "passed": true,
+          "evidence": "No confidence cap applied."
+        },
+        {
+          "text": "Single-source limitation remains visible",
+          "passed": true,
+          "evidence": "Limitation is included in the confidence object."
+        }
+      ],
+      "passed": true,
+      "limitation": "Relies on one official business source; externally controlled claims still require targeted verification."
+    },
+    {
+      "scenario": "Mandatory claim supported by inference only",
+      "skill": "prospect-evidence-and-confidence",
+      "source_output": "evaluations/wave2/iteration-1/confidence-inference-cap/output.txt",
+      "assertions": [
+        {
+          "text": "Existing behavioural output is present",
+          "passed": true,
+          "evidence": "Iteration 1 output retained."
+        },
+        {
+          "text": "Deterministic wrapper succeeds",
+          "passed": true,
+          "evidence": "Exit code 0."
+        },
+        {
+          "text": "Confidence is capped at 59 / Low",
+          "passed": true,
+          "evidence": "Observed 59 / low."
+        },
+        {
+          "text": "Inference-only gate is recorded",
+          "passed": true,
+          "evidence": "mandatory_claim_inference_only=true."
+        }
+      ],
+      "passed": true,
+      "limitation": "Synthetic case used to verify the approved mandatory-claim confidence cap."
+    },
+    {
+      "scenario": "Blocked source invalidates confidence",
+      "skill": "prospect-evidence-and-confidence",
+      "source_output": "evaluations/wave2/iteration-1/confidence-blocked-source/output.txt",
+      "assertions": [
+        {
+          "text": "Existing behavioural output is present",
+          "passed": true,
+          "evidence": "Iteration 1 output retained."
+        },
+        {
+          "text": "Wrapper rejects the assessment",
+          "passed": true,
+          "evidence": "Exit code 1."
+        },
+        {
+          "text": "Exact blocked-source error is returned",
+          "passed": true,
+          "evidence": "INVALID: Invalid confidence assessment: A blocked source supports a retained or confirmed claim."
+        },
+        {
+          "text": "No confidence package is produced",
+          "passed": true,
+          "evidence": "Only the rejection error was returned."
+        }
+      ],
+      "passed": true,
+      "limitation": "Synthetic Yellow Pages case; no blocked source is accepted as retained evidence."
+    },
+    {
+      "scenario": "James Holub deterministic ICP scoring and rationale",
+      "skill": "icp-scoring-and-rationale",
+      "source_output": "evaluations/wave2/iteration-1/scoring-james/output.txt",
+      "assertions": [
+        {
+          "text": "Existing behavioural output is present",
+          "passed": true,
+          "evidence": "Iteration 1 output retained."
+        },
+        {
+          "text": "Score is 86 / High",
+          "passed": true,
+          "evidence": "Observed 86 / high."
+        },
+        {
+          "text": "Outcome is high_priority_farrier",
+          "passed": true,
+          "evidence": "high_priority_farrier"
+        },
+        {
+          "text": "Components sum to the numeric score",
+          "passed": true,
+          "evidence": "Component total 86."
+        },
+        {
+          "text": "Confidence remains separate and visible",
+          "passed": true,
+          "evidence": "Confidence context is 84 / High."
+        }
+      ],
+      "passed": true,
+      "limitation": "The result requires human review and does not authorise outreach or CRM action."
+    },
+    {
+      "scenario": "Horse Owner with unknown horse count",
+      "skill": "icp-scoring-and-rationale",
+      "source_output": "evaluations/wave2/iteration-1/scoring-owner-unknown-count/output.txt",
+      "assertions": [
+        {
+          "text": "Existing behavioural output is present",
+          "passed": true,
+          "evidence": "Iteration 1 output retained."
+        },
+        {
+          "text": "Deterministic wrapper succeeds",
+          "passed": true,
+          "evidence": "Exit code 0."
+        },
+        {
+          "text": "Numeric score remains 80",
+          "passed": true,
+          "evidence": "Observed 80."
+        },
+        {
+          "text": "Raw High is capped to final Medium",
+          "passed": true,
+          "evidence": "Raw high; final medium."
+        },
+        {
+          "text": "Review outcome is preserved",
+          "passed": true,
+          "evidence": "horse_count_unknown_human_review"
+        }
+      ],
+      "passed": true,
+      "limitation": "Synthetic case; the unknown horse count is intentionally not inferred."
+    },
+    {
+      "scenario": "Farrier with confirmed no professional evidence",
+      "skill": "icp-scoring-and-rationale",
+      "source_output": "evaluations/wave2/validation-simplified/scoring-farrier-exclusion/output.txt",
+      "assertions": [
+        {
+          "text": "Corrected behavioural rerun completed",
+          "passed": true,
+          "evidence": "One-shot profile run completed with wrapper exit code 0."
+        },
+        {
+          "text": "Scoring is blocked with no score or band",
+          "passed": true,
+          "evidence": "status=blocked; score=null; band=null."
+        },
+        {
+          "text": "Specific exclusion outcome is preserved",
+          "passed": true,
+          "evidence": "excluded_no_professional_evidence"
+        },
+        {
+          "text": "No schema failure is invented",
+          "passed": true,
+          "evidence": "The report states no wrapper error and does not claim a schema failure."
+        },
+        {
+          "text": "No external action occurred",
+          "passed": true,
+          "evidence": "Report confirms no outreach, CRM write or A2 handoff."
+        }
+      ],
+      "passed": true,
+      "limitation": "Corrected scenario rerun through the actual equinet-a1-icp-discovery profile."
+    }
+  ],
+  "corroboration": {
+    "inference_wrapper_exit_code": 0,
+    "blocked_source_wrapper_exit_code": 1,
+    "blocked_source_error": "INVALID: Invalid confidence assessment: A blocked source supports a retained or confirmed claim.",
+    "owner_scoring_wrapper_exit_code": 0
+  }
+}

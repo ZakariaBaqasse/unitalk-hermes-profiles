@@ -1,0 +1,23 @@
+{
+  "skill_name": "prospect-segment-classification",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Classify a self-employed Lexington professional who provides corrective and therapeutic shoeing through their own business website.",
+      "expected_output": "Confirmed farrier classification with an allowed Farrier prospect type, linked evidence and no ICP score.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Classify a Lexington breeding farm whose official website states that it manages broodmares and sells professional breeding services.",
+      "expected_output": "Confirmed horse_owner segment with breeding_farm type and organisation identity.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Classify a person called Alex Smith found in two states with no domain, phone or organisation match.",
+      "expected_output": "Needs-review decision with unresolved identity, evidence references and no forced segment/type.",
+      "files": []
+    }
+  ]
+}

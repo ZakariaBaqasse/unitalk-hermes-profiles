@@ -1,0 +1,26 @@
+Built-in toolsets (cli):
+  ✓ enabled  web  🔍 Web Search & Scraping
+  ✗ disabled  browser  🌐 Browser Automation
+  ✓ enabled  terminal  💻 Terminal & Processes
+  ✓ enabled  file  📁 File Operations
+  ✓ enabled  code_execution  ⚡ Code Execution
+  ✗ disabled  vision  👁️  Vision / Image Analysis
+  ✗ disabled  video  🎬 Video Analysis
+  ✗ disabled  image_gen  🎨 Image Generation
+  ✗ disabled  video_gen  🎬 Video Generation
+  ✗ disabled  bfl  🎬 BFL FLUX 3 Video
+  ✗ disabled  x_search  🐦 X (Twitter) Search
+  ✗ disabled  tts  🔊 Text-to-Speech
+  ✗ disabled  stt  🎙️ Speech-to-Text
+  ✓ enabled  skills  📚 Skills
+  ✓ enabled  todo  📋 Task Planning
+  ✗ disabled  memory  💾 Memory
+  ✗ disabled  context_engine  🧩 Context Engine
+  ✗ disabled  session_search  🔎 Session Search
+  ✓ enabled  clarify  ❓ Clarifying Questions
+  ✗ disabled  delegation  👥 Task Delegation
+  ✗ disabled  cronjob  ⏰ Cron Jobs
+  ✗ disabled  homeassistant  🏠 Home Assistant
+  ✗ disabled  spotify  🎵 Spotify
+  ✗ disabled  yuanbao  🤖 Yuanbao
+  ✗ disabled  computer_use  🖱️  Computer Use (macOS/Windows/Linux)

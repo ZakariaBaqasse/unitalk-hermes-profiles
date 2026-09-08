@@ -1,0 +1,4 @@
+{
+  "prompt": "Use public-prospect-research. Autonomously find at most 1 professional Farrier Research Seed in Lexington, Kentucky. Start with approved web_search, then retain evidence only from the prospect's verified official public business website. Use web_search and web_extract only, no browser. Respect the plan budget: maximum 6 search queries, 3 page reads and 10 total tool calls. Run validate_research_seed.py. Return one valid seed or explicitly return no valid seed if the evidence standard cannot be met. Stop before classification, qualification, confidence or scoring.",
+  "expected_skill": "public-prospect-research"
+}

@@ -1,0 +1,74 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 9,
+  "completed_at": "2026-08-15T20:44:29Z",
+  "status": "approved_step9_real_prospect_pilot",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-16T11:26:10Z",
+  "acceptance_record": "evaluations/step9/acceptance-record.json",
+  "requested_candidates": 3,
+  "review_ready_candidates": 2,
+  "held_for_more_research": 1,
+  "recommendations": {
+    "accept": 2,
+    "needs_research": 0,
+    "reject": 0
+  },
+  "held_seed": {
+    "name": "Kentucky Horseshoeing School",
+    "status": "needs_research",
+    "included_in_csv": false
+  },
+  "behavioural_usage": {
+    "model": "deepseek-v4-flash",
+    "provider": "openai-api",
+    "tokens": 33107,
+    "api_calls": 4,
+    "quota_status": "pass"
+  },
+  "exports": {
+    "json": "passed",
+    "markdown": "passed",
+    "csv": "passed",
+    "xlsx": "passed",
+    "formula_errors": "none"
+  },
+  "csv_attachment": "/opt/data/.hermes/desktop-attachments/Equinet_A1_Step9_Real_Prospects.csv",
+  "correction": {
+    "full_address_column_added": true,
+    "rood_phone_and_address_added": true,
+    "rood_email": "not_publicly_published_contact_form_only",
+    "darley_phone_email_and_address_added": true
+  },
+  "research_rule_evolution": {
+    "approved_by": "Séverine",
+    "approved_at": "2026-08-15T21:16:43Z",
+    "public_prospect_research_version": "1.2.0",
+    "runtime_policy_version": "1.2.0",
+    "successful_page_reads_per_candidate": 4,
+    "about_team_services_check": "required_when_available",
+    "contact_location_check": "required_when_available",
+    "full_address_and_contacts": "retain_when_publicly_published",
+    "form_placeholders": "prohibited_as_contacts",
+    "third_party_contact_attribution": "prohibited"
+  },
+  "named_contact_rule": {
+    "approved_by": "Séverine",
+    "approved_at": "2026-08-16T11:04:45Z",
+    "primary_named_contact_maximum": 1,
+    "secondary_named_contact_maximum": 1,
+    "organisation_general_contact": "retained_when_published",
+    "associated_people_added": false,
+    "contact_availability_changes_score": false,
+    "contact_absence_penalty": false,
+    "deep_enrichment_owner": "A2"
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "review_artifact": "evaluations/step9/STEP9-VALIDATION-REVIEW.md",
+  "approval_applied": true
+}

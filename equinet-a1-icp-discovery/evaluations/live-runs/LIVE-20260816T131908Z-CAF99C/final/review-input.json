@@ -1,0 +1,582 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "A1-RP-LIVE-20260816T131908Z-CAF99C",
+  "run_id": "LIVE-20260816T131908Z-CAF99C",
+  "generated_at": "2026-08-16T14:04:20Z",
+  "initiated_by": "Staged A1 live pilot",
+  "candidates": [
+    {
+      "candidate_id": "A1-KEENE-RIDGE-FARM",
+      "record_kind": "production",
+      "research_seed": {
+        "schema_version": "1.0.0",
+        "run_id": "RUN-20260816T132904Z-DC866757",
+        "seed_id": "SEED-KEENERIDGE-FARM-001",
+        "discovered_at": "2026-08-16T13:40:00Z",
+        "discovery_method": "approved_web_search",
+        "discovery_query": "boarding stable Lexington Kentucky official website",
+        "segment_hint": "horse_owner",
+        "identity_hint": {
+          "display_name": "Keene Ridge Farm",
+          "person_name": "Ann Bakhaus",
+          "organisation_name": "Keene Ridge Farm",
+          "role_title": "Owner"
+        },
+        "website": "https://www.keeneridgefarm.com/",
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "Kentucky",
+          "city": "Lexington",
+          "postal_code": "40510",
+          "public_address": "4630 Bosworth Ln, Lexington, KY 40510"
+        },
+        "public_contacts": [
+          {
+            "contact_type": "email",
+            "value": "keeneridgefarm@gmail.com",
+            "label": "Organisation general contact",
+            "evidence_ids": [
+              "EV-001"
+            ]
+          }
+        ],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-001",
+            "source_url": "https://www.keeneridgefarm.com/",
+            "source_name": "Keene Ridge Farm official website",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-16T13:59:00Z",
+            "evidence_excerpt": "Contact section: 4630 Bosworth Ln, Lexington, KY 40510. Email: keeneridgefarm@gmail.com. Contact form available. Operating hours listed (Mon-Fri).",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-002",
+            "source_url": "https://www.keeneridgefarm.com/",
+            "source_name": "Keene Ridge Farm official website",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-16T13:59:00Z",
+            "evidence_excerpt": "About Us: Keene Ridge Farm is nestled in the heart of Central Kentucky on 170 rolling acres near Keeneland off Bosworth Rd. Owner Ann Bakhaus transitioned from thoroughbred breeding to a full boarding farm. Multiple barns (Barn A, B, C), 75'x100' indoor arena, 100'x200' outdoor arena, covered round pen, lunging ring, over 20 large fields and paddocks. Full board $775, pasture board $450, mare retirement $450. Services: boarding, retirement, horseback riding lessons, workshops/clinics.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-003",
+            "source_url": "https://www.keeneridgefarm.com/",
+            "source_name": "Keene Ridge Farm official website",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-16T13:59:00Z",
+            "evidence_excerpt": "Mission Statement: 'Our Mission at Keene Ridge Farm is to give the highest quality care to our horses.' Boarding options published with full pricing details. Multiple barns with 12'x12' stalls. 'We schedule routine blacksmith and vet when needed.' Testimonials from boarders since 2020.",
+            "fact_or_inference": "direct_fact"
+          }
+        ],
+        "missing_information": [
+          "Explicit horse count not published on the website",
+          "Phone number not publicly published (contact via form or email only)",
+          "No named farrier or hoof-care provider mentioned",
+          "Exact number of boarders not stated"
+        ],
+        "conflicts": [],
+        "status": "ready_for_classification"
+      },
+      "classification_decision": {
+        "schema_version": "1.0.0",
+        "seed_id": "SEED-KEENERIDGE-FARM-001",
+        "segment": "horse_owner",
+        "prospect_type": "boarding_stable",
+        "identity_type": "person_and_organisation",
+        "classification_status": "confirmed",
+        "evidence_references": [
+          "EV-001",
+          "EV-002",
+          "EV-003"
+        ],
+        "rationale": "Keene Ridge Farm is a professional boarding and retirement facility on 170 acres in Lexington, KY. Owner Ann Bakhaus operates multiple barns (A, B, C) with full board at $775, pasture board at $450, and mare retirement at $450. The facility includes indoor/outdoor arenas, 20+ fields, and offers boarding, retirement, riding lessons and clinics. Blacksmith and vet services are scheduled routinely. The operation serves multiple horses clearly exceeding 3 head, across multiple disciplines and breeds (Thoroughbreds, Shires, Paints, Warmbloods, etc.). The official website self-presents as the farm's own site with owner name, full address, contact email, detailed pricing and services, and boarder testimonials.",
+        "unresolved_questions": [
+          "Exact horse count not explicitly published on the website",
+          "Phone number not publicly published (contact via email or form only)",
+          "No named farrier or hoof-care provider mentioned on the site"
+        ]
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "horse_owner.commercial_operation",
+              "criterion_label": "Professional or commercial equine operation",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ],
+              "notes": "Professional boarding and retirement facility on 170 acres with multiple barns. Owner Ann Bakhaus operates full-time with published pricing ($775 full board, $450 pasture board). Mission statement: 'give the highest quality care to our horses.' Services: boarding, retirement, riding lessons, workshops/clinics."
+            },
+            {
+              "criterion_id": "horse_owner.more_than_three_horses",
+              "criterion_label": "Manages more than three horses",
+              "category": "fit",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Horse count not explicitly published. However, facility has multiple barns (A, B, C), 20+ fields and paddocks, boarders since 2020, multiple breeds housed. Strong commercial signals clearly indicate >3 horses but the exact count is not stated on the website. This will trigger the threshold exception review pathway."
+            },
+            {
+              "criterion_id": "horse_owner.purchasing_influence",
+              "criterion_label": "Influences hoof-care purchasing decisions",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "notes": "The farm schedules routine blacksmith and vet when needed. As the boarding facility operator, Ann Bakhaus influences which farrier and hoof-care services are used for boarder horses. The boarding agreement states: 'We schedule routine blacksmith and vet when needed. (If you use anyone other than the farm blacksmith or vet, you must schedule them yourself and be there to meet them).'"
+            },
+            {
+              "criterion_id": "horse_owner.product_fit",
+              "criterion_label": "Regular need for hoof-care products or services",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "notes": "Professional boarding operation with routine blacksmith scheduling, hoof trimming included in mare retirement 'Spa Day' service. Regular need for horseshoes, nails, and hoof-care products for multiple horses across multiple disciplines."
+            },
+            {
+              "criterion_id": "horse_owner.performance_discipline",
+              "criterion_label": "Performance or competition discipline",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ],
+              "notes": "Facility has jumps in both indoor and outdoor arenas, offers riding lessons, serves multiple disciplines. Boarders include hunters, jumpers, dressage riders. Breeds include Thoroughbreds, Warmbloods, Oldenburgs — sport and performance horse disciplines."
+            },
+            {
+              "criterion_id": "horse_owner.breeding_activity",
+              "criterion_label": "Active breeding operation",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Farm was originally a Thoroughbred breeding operation but transitioned to a full boarding farm. No evidence of current breeding activity."
+            },
+            {
+              "criterion_id": "horse_owner.professional_network",
+              "criterion_label": "Works with professional equine stakeholders",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "notes": "Works with professional farriers (farm blacksmith), veterinarians, riding instructors, and hosts workshops/clinics. Serves riders of all ages, levels, and disciplines."
+            },
+            {
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "criterion_label": "Located in a high-equine-activity area",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "notes": "Located in Lexington, Kentucky — the heart of Central Kentucky's horse country, near Keeneland racecourse. One of the highest equine-activity regions in the United States."
+            },
+            {
+              "criterion_id": "horse_owner.buying_signal",
+              "criterion_label": "Recent buying or expansion signal",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "No recent buying, expansion, or acquisition signals found on the website beyond continued operation. The farm appears established rather than recently expanded."
+            },
+            {
+              "criterion_id": "horse_owner.single_horse_recreational",
+              "criterion_label": "Single-horse recreational owner without commercial involvement",
+              "category": "negative",
+              "status": "not_confirmed",
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "notes": "The operation is a professional boarding facility with multiple horses, multiple barns, full-time staff, published commercial pricing — clearly not a single-horse recreational setup."
+            },
+            {
+              "criterion_id": "horse_owner.no_commercial_evidence",
+              "criterion_label": "No evidence of professional or commercial orientation",
+              "category": "exclusion",
+              "status": "not_confirmed",
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ],
+              "notes": "Strong commercial evidence: published pricing, multiple barns, 170-acre facility, professional website with boarding services, owner operator, blacksmith/vet scheduling, boarder testimonials."
+            }
+          ],
+          "minimum_data_status": "pass",
+          "missing_minimum_fields": [],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        },
+        "audit": {
+          "segment": "horse_owner",
+          "required_gate_statuses": {
+            "horse_owner.commercial_operation": "confirmed",
+            "horse_owner.more_than_three_horses": "unknown"
+          },
+          "special_pathways": [],
+          "criteria_count": 11
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "schema_version": "1.0.0",
+          "method_version": "evidence-confidence-1.0.0",
+          "candidate_reference": {
+            "run_id": "RUN-20260816T132904Z-DC866757",
+            "seed_id": "SEED-KEENERIDGE-FARM-001"
+          },
+          "available_evidence_ids": [
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ],
+          "dimensions": {
+            "identity_certainty": {
+              "level": "strong_unique_match",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002"
+              ],
+              "rationale": "Official website domain (keeneridgefarm.com) matches business name. Owner Ann Bakhaus is explicitly named on the About page. Full address (4630 Bosworth Ln, Lexington, KY 40510) and email (keeneridgefarm@gmail.com) all align. No naming conflicts or variations."
+            },
+            "source_quality": {
+              "level": "authoritative_primary_business_source",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "All evidence is from the candidate's current official business website (rank 3 — primary_business_source). The site is actively maintained (Wix platform, current pricing, operating hours, current boarder testimonials). No blocked, secondary or directory sources used."
+            },
+            "evidence_directness": {
+              "level": "mostly_direct",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "Business name, owner name, full address, contact email, pricing ($775/$450), services (boarding, retirement, lessons), facilities (170 acres, multiple barns, arenas), and blacksmith scheduling policy are all direct facts. Horse count is unknown (not stated), which is the one material uncertainty."
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "All evidence comes from one authoritative primary source (the official website). While three evidence IDs capture different pages/sections, they are on the same domain (keeneridgefarm.com) and are not independent sources per the independence rules."
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002"
+              ],
+              "rationale": "Current active website with current pricing ($775 full board), current operating hours (Mon-Fri listed), current boarder testimonials (since 2020), and current contact details. No visible publication date required for explicit self-controlled facts on a current official business website."
+            },
+            "completeness": {
+              "level": "minimum_review_package_only",
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "Identity is resolved, segment is classified and confirmed, qualification assessment covers all 11 criteria, exclusion status is eligible. However, horse count is unknown (one material gap) and phone is not publicly published."
+            }
+          },
+          "gates": {
+            "mandatory_claim_inference_only": {
+              "value": false,
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "All mandatory claims for Horse Owner qualification (commercial_operation) are direct facts. Horse count is unknown (not inferred from photos/acreage), and the threshold exception pathway handles this explicitly."
+            },
+            "unresolved_identity_conflict": {
+              "value": false,
+              "evidence_ids": [
+                "EV-001",
+                "EV-002"
+              ],
+              "rationale": "Identity is fully resolved: Ann Bakhaus is the named owner of Keene Ridge Farm at 4630 Bosworth Ln, Lexington, KY 40510. No naming conflicts or variations."
+            },
+            "critical_evidence_conflict": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "No evidence conflicts exist. All official website content is internally consistent. No contradictory sources."
+            },
+            "minimum_data_failed": {
+              "value": false,
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "Confidence-stage minimum data is met: resolved identity, confirmed segment, at least one permitted evidence record, qualification criteria object, exclusion status, visible unknowns. Scoring/confidence/recommendation/export fields not required yet."
+            },
+            "blocked_source_used": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "No blocked sources used. All evidence is from the candidate's current official business website (permitted primary source)."
+            },
+            "no_evidence": {
+              "value": false,
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "Three evidence records from the official website support the candidate."
+            },
+            "fabricated_or_untraceable_evidence": {
+              "value": false,
+              "evidence_ids": [
+                "EV-001",
+                "EV-002",
+                "EV-003"
+              ],
+              "rationale": "All evidence is traceable to the live official website https://www.keeneridgefarm.com/ which was successfully read and verified."
+            }
+          },
+          "confidence_stage_missing_fields": []
+        },
+        "confidence": {
+          "level": "high",
+          "score": 84,
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "identity_certainty: strong_unique_match (20/20)",
+            "source_quality: authoritative_primary_business_source (20/20)",
+            "evidence_directness: mostly_direct (15/20)",
+            "corroboration: one_strong_source (12/20)",
+            "freshness: current_within_claim_window (10/10)",
+            "completeness: minimum_review_package_only (7/10)"
+          ],
+          "limitations": [
+            "No confidence score cap was triggered.",
+            "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+          ]
+        },
+        "audit": {
+          "raw_score": 84,
+          "adjusted_score": 84,
+          "dimension_scores": {
+            "identity_certainty": {
+              "level": "strong_unique_match",
+              "points": 20,
+              "maximum": 20
+            },
+            "source_quality": {
+              "level": "authoritative_primary_business_source",
+              "points": 20,
+              "maximum": 20
+            },
+            "evidence_directness": {
+              "level": "mostly_direct",
+              "points": 15,
+              "maximum": 20
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "points": 12,
+              "maximum": 20
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "points": 10,
+              "maximum": 10
+            },
+            "completeness": {
+              "level": "minimum_review_package_only",
+              "points": 7,
+              "maximum": 10
+            }
+          },
+          "applied_caps": [],
+          "confidence_stage_missing_fields": [],
+          "available_evidence_ids": [
+            "EV-001",
+            "EV-002",
+            "EV-003"
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "scored",
+          "score": 68,
+          "band": "medium",
+          "model_version": "1.0.0",
+          "components": [
+            {
+              "criterion_id": "horse_owner.commercial_operation",
+              "points_awarded": 25,
+              "max_points": 25,
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.purchasing_influence",
+              "points_awarded": 15,
+              "max_points": 15,
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.product_fit",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.performance_discipline",
+              "points_awarded": 8,
+              "max_points": 8,
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.professional_network",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-003"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-002"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            }
+          ],
+          "rationale": "Numeric ICP score 68/100 from 6 confirmed weighted criteria. Raw band medium; final band medium. Applied band rule(s): horse_count_unknown_human_review (Horse count is unknown; strong commercial signals trigger review only.)",
+          "block_reason": null
+        },
+        "audit": {
+          "raw_band": "medium",
+          "final_band": "medium",
+          "applied_band_caps": [
+            {
+              "maximum_band": "medium",
+              "outcome": "horse_count_unknown_human_review",
+              "reason": "Horse count is unknown; strong commercial signals trigger review only."
+            }
+          ],
+          "outcome": "horse_count_unknown_human_review",
+          "review_required": true,
+          "confirmed_positive_criteria": [
+            "horse_owner.commercial_operation",
+            "horse_owner.purchasing_influence",
+            "horse_owner.product_fit",
+            "horse_owner.performance_discipline",
+            "horse_owner.professional_network",
+            "horse_owner.high_equine_activity_location"
+          ],
+          "missing_required_gates": [
+            "horse_owner.more_than_three_horses"
+          ]
+        },
+        "explanation": {
+          "summary": "ICP score 68/100; final band medium. 6 weighted criteria earned points. Outcome: horse_count_unknown_human_review.",
+          "confirmed_criteria": [
+            {
+              "criterion_id": "horse_owner.commercial_operation",
+              "points": 25,
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.purchasing_influence",
+              "points": 15,
+              "evidence_ids": [
+                "EV-003"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.product_fit",
+              "points": 10,
+              "evidence_ids": [
+                "EV-003"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.performance_discipline",
+              "points": 8,
+              "evidence_ids": [
+                "EV-002",
+                "EV-003"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.professional_network",
+              "points": 5,
+              "evidence_ids": [
+                "EV-003"
+              ]
+            },
+            {
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "points": 5,
+              "evidence_ids": [
+                "EV-002"
+              ]
+            }
+          ],
+          "unearned_weighted_criteria": [
+            "horse_owner.more_than_three_horses",
+            "horse_owner.breeding_activity",
+            "horse_owner.buying_signal"
+          ],
+          "applied_band_rules": [
+            "horse_count_unknown_human_review: maximum medium — Horse count is unknown; strong commercial signals trigger review only."
+          ],
+          "outcome": "horse_count_unknown_human_review",
+          "review_required": true,
+          "confidence_interpretation": "ICP band medium; evidence confidence high. Review both values together."
+        },
+        "confidence_context": {
+          "level": "high",
+          "score": 84,
+          "method_version": "evidence-confidence-1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "approved_api",
+      "model": "deepseek-v4-flash",
+      "tools_used": [
+        "Exa web_search",
+        "Firecrawl web_extract",
+        "deterministic qualification",
+        "deterministic confidence",
+        "deterministic scoring"
+      ],
+      "provided_exclusion_file_status": "unavailable"
+    }
+  ]
+}

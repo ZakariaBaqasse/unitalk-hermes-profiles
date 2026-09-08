@@ -1,0 +1,13 @@
+{
+  "evaluation": "A1 Wave 1 targeted behavioural retest",
+  "iteration": 2,
+  "profile": "equinet-a1-icp-discovery",
+  "model": "deepseek-v4-flash",
+  "changes": [
+    "Added deterministic Research Seed source-permission validation",
+    "Prohibited directory/social/discovery URLs as retained evidence",
+    "Clarified no_professional_evidence semantics",
+    "Required existing runtime without package installation",
+    "Clarified full-candidate minimum-data handling"
+  ]
+}

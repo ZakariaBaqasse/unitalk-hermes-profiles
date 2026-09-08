@@ -1,0 +1,70 @@
+model:
+  provider: openai-api
+  default: gpt-5.6-sol
+web:
+  search_backend: exa
+  extract_backend: exa
+tts:
+  provider: openai
+  openai:
+    model: tts
+    voice: nova
+    base_url: https://llmgateway.unitalk.ai/v1
+stt:
+  provider: openai
+  openai:
+    model: gpt-4o-mini-transcribe
+    base_url: https://llmgateway.unitalk.ai/v1
+    api_key: sk-EvxhgJihbKWELsEPRHB0Xg
+security:
+  redact_secrets: false
+cron:
+  model: gpt-5.6-terra
+  model_provider: openai-api
+_config_version: 33
+mcp_servers:
+  n8n:
+    n8n-mcp:
+      type: http
+      url: https://n8n.unitalk.unitalk.ai/mcp-server/http
+      headers:
+        Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDM3NDk3NC1mYzY0LTRmYjItYWQ4Mi0wNjE0ZmJlNDkzNzYiLCJpc3MiOiJuOG4iLCJhdWQiOiJtY3Atc2VydmVyLWFwaSIsImp0aSI6ImZlNGIwYTVhLTMyNzMtNDViYi1iM2M4LTY2YTIwNzQzZmEzNiIsImlhdCI6MTc4Nzg1MTI1Mn0.YmkvWdidewNScAZ2WJnjx3b4MjbEGbnN8PdXytKblbs
+    type: http
+    url: https://n8n.unitalk.unitalk.ai/mcp-server/http
+    headers:
+      Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzZDM3NDk3NC1mYzY0LTRmYjItYWQ4Mi0wNjE0ZmJlNDkzNzYiLCJpc3MiOiJuOG4iLCJhdWQiOiJtY3Atc2VydmVyLWFwaSIsImp0aSI6ImZlNGIwYTVhLTMyNzMtNDViYi1iM2M4LTY2YTIwNzQzZmEzNiIsImlhdCI6MTc4Nzg1MTI1Mn0.YmkvWdidewNScAZ2WJnjx3b4MjbEGbnN8PdXytKblbs
+  twenty:
+    url: https://twenty.mkema-com.unitalk.ai/mcp
+    headers:
+      Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjIxOTE4OGQwLWM0NGMtNDc0MC1hODYyLTlhOTJlMDMwNGI2MCJ9.eyJzdWIiOiJiZTk0YmE5OC0xMzY5LTQzNDctYWIwYi0wN2Y2OTdiODFiNzQiLCJ0eXBlIjoiQVBJX0tFWSIsIndvcmtzcGFjZUlkIjoiYmU5NGJhOTgtMTM2OS00MzQ3LWFiMGItMDdmNjk3YjgxYjc0IiwiaWF0IjoxNzg4MTgzNjM4LCJleHAiOjQ5NDE3ODM2MzcsImp0aSI6IjJhNjQwNjNiLTNkYzAtNDIzOS04NGQ0LWU2NmNmYWQyMTAyNiJ9.Vprrle-1JV2lOKSXp-mNNOyQCrw7rcWd3q6OikvyT4LnJ0U1QjioF8-qLF9IxAVVr9_9ytr0HbDGhdngz3AWiQ
+plugins:
+  enabled:
+    - twenty-company-artifact-bridge
+  disabled: []
+  entries:
+    twenty-company-artifact-bridge:
+      allow_tool_override: false
+email:
+  enabled: false
+
+# ── Fallback Model ────────────────────────────────────────────────────
+# Automatic provider failover when primary is unavailable.
+# Uncomment and configure to enable. Triggers on rate limits (429),
+# overload (529), service errors (503), or connection failures.
+#
+# Supported providers:
+#   openrouter   (OPENROUTER_API_KEY)  — routes to any model
+#   openai-codex (OAuth — hermes auth) — OpenAI Codex
+#   nous         (OAuth — hermes auth) — Nous Portal
+#   zai          (ZAI_API_KEY)         — Z.AI / GLM
+#   kimi-coding  (KIMI_API_KEY)        — Kimi / Moonshot
+#   kimi-coding-cn (KIMI_CN_API_KEY)   — Kimi / Moonshot (China)
+#   minimax      (MINIMAX_API_KEY)     — MiniMax
+#   minimax-cn   (MINIMAX_CN_API_KEY)  — MiniMax (China)
+#   bedrock      (AWS IAM / boto3)     — AWS Bedrock (Converse API)
+#
+# For custom OpenAI-compatible endpoints, add base_url and key_env.
+#
+# fallback_model:
+#   provider: openrouter
+#   model: anthropic/claude-sonnet-4

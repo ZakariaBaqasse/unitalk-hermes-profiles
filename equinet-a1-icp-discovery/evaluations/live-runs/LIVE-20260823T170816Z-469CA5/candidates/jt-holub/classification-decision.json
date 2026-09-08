@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "seed_id": "SEED-JTHOLUB-LEX",
+  "segment": "farrier",
+  "prospect_type": "farrier_independent",
+  "identity_type": "person_and_organisation",
+  "classification_status": "confirmed",
+  "evidence_references": [
+    "EV-JTHOLUB-OFFICIAL-SITE",
+    "EV-JTHOLUB-OFFICIAL-ABOUT",
+    "EV-JTHOLUB-OFFICIAL-CONTACT",
+    "EV-JTHOLUB-MADBARN-DIR"
+  ],
+  "rationale": "J.T. Holub operates as an independent professional farrier under James Holub Equine Services in Lexington, KY. Official website jamesholubequine.com confirms active farriery since 2003 (farrier school), licensed track farrier experience, and current focus on upper-level sport horses (show jumping, dressage). Contact page lists J.T. Holub directly as the farrier with phone and PO Box in Lexington KY 40583. Segment: farrier. Prospect type: farrier_independent (solo practitioner serving professional sport horse clients). Identity: person_and_organisation (J.T. Holub as the individual farrier; James Holub Equine Services as the operating business).",
+  "unresolved_questions": [
+    "Which specific Equinet products would be most relevant for sport horse farriery?",
+    "Is certification with AFA / APF current? (APF credential visible on Mad Barn listing but not AOI number on official site)",
+    "Service area is Lexington-Wellington FL corridor; primary purchasing location unclear",
+    "Email discrepancy between official site (holubfarrierltd@gmail.com) and Mad Barn (jtholub.fep@gmail.com)"
+  ]
+}

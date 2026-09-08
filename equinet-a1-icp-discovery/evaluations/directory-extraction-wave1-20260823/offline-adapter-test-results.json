@@ -1,0 +1,141 @@
+{
+  "test_suite": "equinet-a1-wave1-adapters-offline",
+  "source_artifacts": "evaluations/source-smoke-20260819",
+  "network_requests": 0,
+  "status": "passed",
+  "passed": 26,
+  "failed": 0,
+  "error": null,
+  "results": [
+    {
+      "name": "pdf.farrieriq returns five bounded listings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.farrieriq has expected coverage status",
+      "passed": true,
+      "detail": "partial"
+    },
+    {
+      "name": "pdf.farrieriq listings validate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.farrieriq audit has no external actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.hast_farriers returns five bounded listings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.hast_farriers has expected coverage status",
+      "passed": true,
+      "detail": "partial"
+    },
+    {
+      "name": "pdf.hast_farriers listings validate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.hast_farriers audit has no external actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.best_of_lexington_farriers returns five bounded listings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.best_of_lexington_farriers has expected coverage status",
+      "passed": true,
+      "detail": "completed"
+    },
+    {
+      "name": "pdf.best_of_lexington_farriers listings validate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.best_of_lexington_farriers audit has no external actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FarrierIQ preserves Kentucky cities",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FarrierIQ preserves service evidence",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FarrierIQ candidate cap remains partial",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FarrierIQ individual profile yields one record",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FarrierIQ individual profile exposes address and service fields",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FarrierIQ placeholder 555 contact is not retained",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FarrierIQ suspected placeholder profile is held for review",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HAST starts with the expected public working-Farrier list",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HAST retains only public professional contacts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HAST candidate cap remains partial",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Best of Lexington extracts exactly the five directory cards",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Best of Lexington preserves five public business phones",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Best of Lexington excludes claim and reCAPTCHA links",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "offline Wave 1 audit contains three hash-linked events",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

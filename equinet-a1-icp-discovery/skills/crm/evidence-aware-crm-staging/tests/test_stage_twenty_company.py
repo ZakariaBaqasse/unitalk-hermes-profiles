@@ -1,0 +1,431 @@
+import importlib.util
+import json
+import unittest
+from pathlib import Path
+
+SCRIPT = Path(__file__).parents[1] / "scripts" / "stage_twenty_company.py"
+
+
+def load_module():
+    spec = importlib.util.spec_from_file_location("stage_twenty_company", SCRIPT)
+    module = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(module)
+    return module
+
+
+class TwentyCompanyStagingTests(unittest.TestCase):
+    def test_maps_no_site_discovery_lead_to_company(self):
+        module = load_module()
+        source = {
+            "contract_version": "a1.discovery-result.v1",
+            "run_id": "RUN-001",
+            "leads": [{
+                "lead_fingerprint": "fp-001",
+                "business_name": "Alpha Farrier",
+                "city": "Lexington",
+                "state": "KY",
+                "country": "US",
+                "address": "Lexington, KY",
+                "phone": "+1 859 555 0100",
+                "email": "alpha@example.com",
+                "segment_hint": "farrier",
+                "source_urls": ["https://directory.example/alpha"],
+            }],
+        }
+        plan = module.prepare_plan(source, lead_id="fp-001")
+        payload = plan["company_payload"]
+        self.assertEqual(payload["name"], "Alpha Farrier")
+        self.assertEqual(payload["discoveryFingerprint"], "fp-001")
+        self.assertEqual(payload["discoveryStatus"], "DISCOVERED")
+        self.assertEqual(payload["segment"], "FARRIER")
+        self.assertEqual(payload["city"], "LEXINGTON")
+        self.assertEqual(payload["state"], "KENTUCKY")
+        self.assertNotIn("domainName", payload)
+        self.assertEqual(payload["phone"]["primaryPhoneNumber"], "+18595550100")
+        self.assertEqual(payload["email"], {"primaryEmail": "alpha@example.com", "additionalEmails": []})
+        self.assertNotIn("alpha@example.com", payload["discoverySourceNotes"])
+        self.assertEqual(plan["website_status"], "NONE_FOUND")
+
+    def test_raw_discovery_website_is_never_promoted_without_overlay(self):
+        module = load_module()
+        source = {
+            "contract_version": "a1.discovery-result.v1",
+            "run_id": "RUN-CANDIDATE",
+            "leads": [{
+                "lead_fingerprint": "domain:candidate.example",
+                "business_name": "Candidate Website",
+                "website": "https://candidate.example",
+                "source_urls": ["https://directory.example/item"],
+            }],
+        }
+        plan = module.prepare_plan(source, lead_id="domain:candidate.example")
+        self.assertNotIn("domainName", plan["company_payload"])
+        self.assertEqual(plan["website_status"], "UNVERIFIED")
+        self.assertEqual(plan["company_payload"]["sourceUrl"]["primaryLinkUrl"], "https://directory.example/item")
+        self.assertEqual(plan["company_payload"]["sourceUrl"]["primaryLinkLabel"], "directory.example")
+
+    def test_source_link_label_uses_normalized_hostname(self):
+        module = load_module()
+        self.assertEqual(module.source_link_label("https://WWW.MadBarn.com/articles/hoof-care"), "madbarn.com")
+        self.assertEqual(module.source_link_label("https://subdomain.example.org/path"), "subdomain.example.org")
+
+    def test_maps_candidate_with_verified_website(self):
+        module = load_module()
+        candidate = {
+            "schema_version": "1.0.0",
+            "candidate_id": "A1-ALPHA-001",
+            "run_id": "RUN-001",
+            "segment": "farrier",
+            "identity": {
+                "display_name": "Alpha Farrier",
+                "organisation": {"name": "Alpha Farrier", "website": "https://alpha.example", "domain": "alpha.example"},
+                "person": None,
+                "aliases": [],
+            },
+            "location": {"country_code": "US", "state_region": "Kentucky", "city": "Lexington", "postal_code": "40502", "public_address": "1 Main St", "geography_status": "in_scope", "geography_rule_version": "1"},
+            "public_contacts": [
+                {"contact_type": "phone", "value": "+1 859 555 0100", "label": "Business", "evidence_ids": ["EV-1"]},
+                {"contact_type": "email", "value": "Info@Alpha.Example", "label": "Business", "evidence_ids": ["EV-1"]}
+            ],
+            "source_evidence": [{"source_url": "https://directory.example/alpha", "source_name": "Directory", "evidence_id": "EV-1"}],
+            "scoring": {"status": "scored", "score": 72, "band": "medium"},
+            "confidence": {"score": 81, "level": "high"},
+        }
+        plan = module.prepare_plan(candidate)
+        payload = plan["company_payload"]
+        self.assertEqual(payload["domainName"]["primaryLinkUrl"], "https://alpha.example")
+        self.assertEqual(payload["sourceUrl"]["primaryLinkUrl"], "https://directory.example/alpha")
+        self.assertEqual(payload["sourceUrl"]["primaryLinkLabel"], "directory.example")
+        self.assertEqual(payload["email"], {"primaryEmail": "Info@alpha.example", "additionalEmails": []})
+        self.assertEqual(plan["website_status"], "VERIFIED")
+        self.assertEqual(payload["icpScore"], 72)
+        self.assertNotIn('"score":72', payload["discoverySourceNotes"])
+        self.assertEqual(payload["phone"]["primaryPhoneNumber"], "+18595550100")
+
+    def test_normalizes_formatted_us_phone_and_omits_unsafe_values(self):
+        module = load_module()
+        self.assertEqual(module.e164_phone("(254) 595-2700", "US"), "+1" + "2545952700")
+        self.assertEqual(module.e164_phone("+1 859 555 0100", "United States"), "+1" + "8595550100")
+        self.assertIsNone(module.e164_phone("+185****0100", "US"))
+        self.assertIsNone(module.e164_phone("859-555-0100 ext. 7", "US"))
+        self.assertIsNone(module.e164_phone("020 7946 0018", "United Kingdom"))
+
+    def test_normalizes_approved_australia_and_new_zealand_values(self):
+        module = load_module()
+        self.assertEqual(module.country_value("AU"), "AUSTRALIA")
+        self.assertEqual(module.country_value("AUS"), "AUSTRALIA")
+        self.assertEqual(module.country_value("NZ"), "NEW_ZEALAND")
+        self.assertEqual(module.country_value("NZL"), "NEW_ZEALAND")
+        self.assertEqual(module.e164_phone("03 9123 4567", "AU"), "+61" + "391234567")
+        self.assertEqual(module.e164_phone("09 123 4567", "NZ"), "+64" + "91234567")
+        self.assertIsNone(module.city_value("Melbourne"))
+        self.assertIsNone(module.state_value("Victoria"))
+
+    def test_validates_public_professional_email(self):
+        module = load_module()
+        self.assertEqual(module.public_email("Info@MadBarn.COM"), "Info@madbarn.com")
+        self.assertEqual(module.public_email("farrier+sales@example.org"), "farrier+sales@example.org")
+        self.assertIsNone(module.public_email("masked***@example.org"))
+        self.assertIsNone(module.public_email("not-an-email"))
+
+    def test_decision_is_idempotent_and_blocks_ambiguity(self):
+        module = load_module()
+        plan = {"company_payload": {"name": "Alpha", "position": "first", "discoveryFingerprint": "fp-1"}, "lookup_plan": {"domain": None}}
+        create = module.decide_action(plan, {"fingerprint_matches": [], "domain_matches": [], "possible_matches": []})
+        self.assertEqual(create["action"], "create")
+        self.assertEqual(create["mcp_tool"], "create_many_companies")
+
+        update = module.decide_action(plan, {"fingerprint_matches": [{"id": "company-1"}], "domain_matches": [], "possible_matches": []})
+        self.assertEqual(update["action"], "update")
+        self.assertEqual(update["mcp_tool"], "update_one_company")
+        self.assertEqual(update["mcp_arguments"]["id"], "company-1")
+        self.assertNotIn("discoveryStatus", update["mcp_arguments"])
+        self.assertEqual(update["readback"]["mcp_tool"], "find_one_company")
+
+        blocked = module.decide_action(plan, {"fingerprint_matches": [{"id": "a"}, {"id": "b"}], "domain_matches": [], "possible_matches": []})
+        self.assertEqual(blocked["action"], "blocked")
+        self.assertIsNone(blocked["mcp_tool"])
+
+    def test_reconcile_requires_matching_readback(self):
+        module = load_module()
+        plan = {"input_sha256": "abc", "source": {"run_id": "RUN-1", "candidate_id": None}, "company_payload": {"name": "Alpha", "position": "first", "discoveryFingerprint": "fp-1", "discoveryStatus": "DISCOVERED"}}
+        decision = {"action": "create"}
+        manifest = module.reconcile(plan, decision, "company-1", {"id": "company-1", "name": "Alpha", "discoveryFingerprint": "fp-1", "discoveryStatus": "DISCOVERED"}, "2026-08-31T12:00:00Z")
+        self.assertEqual(manifest["verification_status"], "verified")
+        phone_plan = {"input_sha256": "phone", "source": {"run_id": "RUN-1", "candidate_id": None}, "company_payload": {"name": "Alpha", "position": "first", "discoveryFingerprint": "fp-phone", "discoveryStatus": "DISCOVERED", "phone": {"primaryPhoneNumber": "+18595550100", "additionalPhones": []}}}
+        phone_readback = {"id": "company-phone", "name": "Alpha", "discoveryFingerprint": "fp-phone", "discoveryStatus": "DISCOVERED", "phone": {"primaryPhoneNumber": "8595550100", "primaryPhoneCallingCode": "+1", "additionalPhones": []}}
+        self.assertEqual(module.reconcile(phone_plan, decision, "company-phone", phone_readback, "2026-08-31T12:00:00Z")["verification_status"], "verified")
+        link_plan = {"input_sha256": "link", "source": {"run_id": "RUN-1", "candidate_id": None}, "company_payload": {"name": "Alpha", "position": "first", "discoveryFingerprint": "fp-link", "discoveryStatus": "DISCOVERED", "sourceUrl": {"primaryLinkUrl": "https://alpha.example/services/", "primaryLinkLabel": "alpha.example", "secondaryLinks": []}}}
+        link_readback = {"id": "company-link", "name": "Alpha", "discoveryFingerprint": "fp-link", "discoveryStatus": "DISCOVERED", "sourceUrl": {"primaryLinkUrl": "https://alpha.example/services", "primaryLinkLabel": "alpha.example", "secondaryLinks": []}}
+        self.assertEqual(module.reconcile(link_plan, decision, "company-link", link_readback, "2026-08-31T12:00:00Z")["verification_status"], "verified")
+        changed_link = {**link_readback, "sourceUrl": {**link_readback["sourceUrl"], "primaryLinkUrl": "https://alpha.example/other"}}
+        with self.assertRaisesRegex(ValueError, "read-back mismatch"):
+            module.reconcile(link_plan, decision, "company-link", changed_link, "2026-08-31T12:00:00Z")
+        with self.assertRaisesRegex(ValueError, "read-back mismatch"):
+            module.reconcile(plan, decision, "company-1", {"id": "company-1", "name": "Wrong", "discoveryFingerprint": "fp-1", "discoveryStatus": "DISCOVERED"}, "2026-08-31T12:00:00Z")
+
+    def test_normalizes_live_twenty_find_response(self):
+        module = load_module()
+        response = {
+            "result": json.dumps({
+                "success": True,
+                "result": {"records": [{"id": "company-1", "name": "Alpha"}], "count": "1", "hasNextPage": False},
+            })
+        }
+        self.assertEqual(module.normalize_find_response(response), [{"id": "company-1", "name": "Alpha"}])
+        one = {"result": json.dumps({"success": True, "result": {"id": "company-1", "name": "Alpha"}})}
+        self.assertEqual(module.normalize_record_response(one), {"id": "company-1", "name": "Alpha"})
+
+    def test_batch_preparation_and_terminal_index(self):
+        module = load_module()
+        source = {
+            "contract_version": "a1.discovery-result.v1",
+            "run_id": "RUN-001",
+            "leads": [
+                {"lead_fingerprint": "fp-1", "business_name": "Alpha", "country": "US", "segment_hint": "farrier"},
+                {"lead_fingerprint": "fp-2", "country": "US", "segment_hint": "farrier"},
+            ],
+        }
+        batch = module.prepare_batch(source)
+        self.assertEqual(batch["total"], 2)
+        self.assertEqual(batch["items"][0]["status"], "ready")
+        self.assertEqual(batch["items"][1]["status"], "blocked_missing_company_name")
+        index = module.finalize_batch(
+            batch,
+            [
+                {"lead_fingerprint": "fp-1", "status": "company_staged_no_person_required", "company_id": "company-1", "person_required": False, "person_id": None, "company_reconciliation_artifact": "reconciliation/fp-1.json", "artifact_reference": "reconciliation/fp-1.json"},
+                {"lead_fingerprint": "fp-2", "status": "blocked_missing_company_name", "person_required": False, "person_id": None, "artifact_reference": None},
+            ],
+        )
+        self.assertTrue(index["complete"])
+        self.assertEqual(index["counts"], {"blocked_missing_company_name": 1, "company_staged_no_person_required": 1})
+
+    def test_scored_overlay_maps_dedicated_fields_and_verified_domain(self):
+        module = load_module()
+        source = {
+            "contract_version": "a1.discovery-result.v1",
+            "run_id": "RUN-OVERLAY",
+            "leads": [{
+                "lead_fingerprint": "domain:alpha.example",
+                "business_name": "Alpha",
+                "website": "https://candidate.example",
+                "source_urls": ["https://directory.example/alpha"],
+                "country": "US",
+                "segment_hint": "farrier",
+            }],
+        }
+        overlay = {
+            "schema_version": module.OVERLAYS_SCHEMA,
+            "run_id": "RUN-OVERLAY",
+            "source_sha256": module.sha256_json(source),
+            "overlays": [{
+                "schema_version": module.OVERLAY_SCHEMA,
+                "lead_fingerprint": "domain:alpha.example",
+                "website_status": "verified",
+                "enrichment_status": "completed",
+                "official_website_url": "https://alpha.example",
+                "qualification_status": "ELIGIBLE",
+                "icp_score_status": "SCORED",
+                "icp_score": 0,
+                "icp_band": "UNQUALIFIED",
+                "icp_outcome": "unqualified_farrier",
+                "evidence_confidence_score": 81,
+                "evidence_confidence_level": "HIGH",
+                "notes": {"scoring_model_version": "1.0.0"},
+            }],
+        }
+        batch = module.prepare_batch(source, overlay)
+        payload = batch["items"][0]["plan"]["company_payload"]
+        self.assertEqual(payload["domainName"]["primaryLinkUrl"], "https://alpha.example")
+        self.assertEqual(payload["sourceUrl"]["primaryLinkUrl"], "https://directory.example/alpha")
+        self.assertEqual(payload["sourceUrl"]["primaryLinkLabel"], "directory.example")
+        self.assertEqual(payload["qualificationStatus"], "ELIGIBLE")
+        self.assertEqual(payload["icpScoreStatus"], "SCORED")
+        self.assertEqual(payload["icpScore"], 0)
+        self.assertEqual(payload["icpBand"], "UNQUALIFIED")
+        self.assertEqual(payload["evidenceConfidenceScore"], 81)
+        self.assertEqual(payload["evidenceConfidenceLevel"], "HIGH")
+        self.assertNotIn("candidate.example", payload["domainName"]["primaryLinkUrl"])
+
+        bad = json.loads(json.dumps(overlay))
+        bad["source_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "source_sha256"):
+            module.prepare_batch(source, bad)
+
+    def test_unscored_overlay_does_not_clear_existing_score_on_update(self):
+        module = load_module()
+        plan = {
+            "company_payload": {
+                "name": "Alpha",
+                "position": "first",
+                "discoveryStatus": "DISCOVERED",
+                "discoveryFingerprint": "fp-1",
+                "qualificationStatus": "NOT_CHECKED",
+                "icpScoreStatus": "NOT_SCORED",
+            }
+        }
+        existing = {
+            "id": "company-1",
+            "icpScoreStatus": "SCORED",
+            "icpScore": 75,
+            "icpBand": "HIGH",
+            "icpOutcome": "high_priority_farrier",
+            "evidenceConfidenceScore": 82,
+            "evidenceConfidenceLevel": "HIGH",
+            "discoverySourceNotes": json.dumps({"scoring_model_version": "1.0.0", "a1_run_id": "OLD"}),
+        }
+        decision = module.decide_action(plan, {
+            "fingerprint_matches": [existing],
+            "domain_matches": [],
+            "possible_matches": [],
+        })
+        self.assertEqual(decision["action"], "update")
+        for field in module.SCORING_FIELDS:
+            self.assertNotIn(field, decision["mcp_arguments"])
+        merged_notes = json.loads(decision["mcp_arguments"]["discoverySourceNotes"])
+        self.assertEqual(merged_notes["scoring_model_version"], "1.0.0")
+        self.assertTrue(merged_notes["assessment_preserved_on_update"])
+
+    def test_verified_unscored_overlay_maps_domain_without_score(self):
+        module = load_module()
+        source = {
+            "contract_version": "a1.discovery-result.v1",
+            "run_id": "RUN-VERIFIED-UNSCORED",
+            "leads": [{
+                "lead_fingerprint": "place:verified",
+                "business_name": "Verified Association",
+                "website": "http://candidate.example/",
+                "source_urls": ["https://directory.example/verified"],
+                "country": "US",
+            }],
+        }
+        overlays = {
+            "schema_version": module.OVERLAYS_SCHEMA,
+            "run_id": "RUN-VERIFIED-UNSCORED",
+            "source_sha256": module.sha256_json(source),
+            "overlays": [{
+                "schema_version": module.OVERLAY_SCHEMA,
+                "lead_fingerprint": "place:verified",
+                "website_status": "verified",
+                "enrichment_status": "completed",
+                "official_website_url": "https://official.example/",
+                "qualification_status": "NOT_CHECKED",
+                "icp_score_status": "NOT_SCORED",
+                "icp_score": None,
+                "icp_band": None,
+                "icp_outcome": None,
+                "evidence_confidence_score": None,
+                "evidence_confidence_level": None,
+                "notes": {"fallback_reason": "verified_site_unscored_missing_pipeline_inputs"},
+            }],
+        }
+
+        batch = module.prepare_batch(source, overlays)
+
+        payload = batch["items"][0]["plan"]["company_payload"]
+        self.assertEqual(payload["domainName"]["primaryLinkUrl"], "https://official.example/")
+        self.assertEqual(payload["icpScoreStatus"], "NOT_SCORED")
+        self.assertNotIn("icpScore", payload)
+
+    def test_inconsistent_existing_score_blocks_unscored_update(self):
+        module = load_module()
+        plan = {"company_payload": {
+            "name": "Alpha", "position": "first", "discoveryStatus": "DISCOVERED",
+            "discoveryFingerprint": "fp-1", "qualificationStatus": "NOT_CHECKED",
+            "icpScoreStatus": "NOT_SCORED", "discoverySourceNotes": "{}",
+        }}
+        decision = module.decide_action(plan, {
+            "fingerprint_matches": [{"id": "company-1", "icpScoreStatus": "SCORED", "icpScore": 75}],
+            "domain_matches": [], "possible_matches": [],
+        })
+        self.assertEqual(decision["action"], "blocked")
+        self.assertEqual(decision["reason"], "existing_scoring_state_inconsistent")
+
+    def test_raw_batch_phone_validation_reports_aggregates_only(self):
+        module = load_module()
+        source = {
+            "contract_version": "a1.discovery-result.v1",
+            "run_id": "RUN-001",
+            "leads": [
+                {"lead_fingerprint": "fp-1", "business_name": "Alpha", "country": "US", "phone": "859-555-0100"},
+                {"lead_fingerprint": "fp-2", "business_name": "Beta", "country": "US"},
+            ],
+        }
+        valid = module.validate_batch_phones(module.prepare_batch(source))
+        self.assertEqual(valid["status"], "valid")
+        self.assertEqual(valid["phone_value_count"], 1)
+        self.assertEqual(valid["masked_phone_value_count"], 0)
+        self.assertEqual(valid["valid_e164_phone_value_count"], 1)
+        self.assertEqual(valid["invalid_phone_value_count"], 0)
+
+        invalid_batch = module.prepare_batch(source)
+        invalid_batch["items"][0]["plan"]["company_payload"]["phone"]["primaryPhoneNumber"] = "+185****0100"
+        invalid = module.validate_batch_phones(invalid_batch)
+        self.assertEqual(invalid["status"], "invalid")
+        self.assertEqual(invalid["masked_phone_value_count"], 1)
+        self.assertEqual(invalid["invalid_phone_value_count"], 1)
+    def test_name_matrix_and_exclusive_contact_routing(self):
+        module = load_module()
+        cases = [
+            ({"business_name": "Alpha Forge", "name": "Jane Doe"}, "Alpha Forge", True, "person"),
+            ({"name": "Jane Doe"}, "Jane Doe", True, "person"),
+            ({"business_name": "Alpha Forge"}, "Alpha Forge", False, "company"),
+        ]
+        for index, (fields, company_name, person_required, destination) in enumerate(cases):
+            lead = {
+                "lead_fingerprint": f"fp-{index}", "country": "US",
+                "phone": "859-555-0100", "email": "jane@example.com", **fields,
+            }
+            source = {"contract_version": "a1.discovery-result.v1", "run_id": "RUN-MATRIX", "leads": [lead]}
+            plan = module.prepare_plan(source, lead_id=f"fp-{index}")
+            self.assertEqual(plan["company_payload"]["name"], company_name)
+            self.assertEqual(plan["person_required"], person_required)
+            self.assertEqual(plan["contact_destination"], destination)
+            if person_required:
+                self.assertEqual(plan["person_payload"]["name"], {"firstName": "Jane Doe", "lastName": ""})
+                self.assertIn("phones", plan["person_payload"])
+                self.assertIn("emails", plan["person_payload"])
+                self.assertNotIn("phone", plan["company_payload"])
+                self.assertNotIn("email", plan["company_payload"])
+            else:
+                self.assertIsNone(plan["person_payload"])
+                self.assertIn("phone", plan["company_payload"])
+                self.assertIn("email", plan["company_payload"])
+
+        missing = {"contract_version": "a1.discovery-result.v1", "run_id": "RUN-MATRIX", "leads": [{"lead_fingerprint": "fp-missing"}]}
+        batch = module.prepare_batch(missing)
+        self.assertEqual(batch["items"][0]["status"], "blocked_missing_company_name")
+
+    def test_person_duplicate_precedence_and_relation_reconciliation(self):
+        module = load_module()
+        payload = {
+            "name": {"firstName": "Jane Doe", "lastName": ""},
+            "emails": {"primaryEmail": "jane@example.com", "additionalEmails": []},
+            "phones": {"primaryPhoneNumber": "+18595550100", "additionalPhones": []},
+            "companyId": None,
+        }
+        records = [{
+            "id": "person-1", "companyId": "company-1",
+            "name": {"firstName": "Different Name", "lastName": ""},
+            "emails": {"primaryEmail": "jane@example.com", "additionalEmails": []},
+        }]
+        decision = module.decide_person_action(payload, "company-1", records)
+        self.assertEqual(decision["action"], "update")
+        self.assertEqual(decision["reason"], "exact_company_email_match")
+        ambiguous = module.decide_person_action(payload, "company-1", records + [{**records[0], "id": "person-2"}])
+        self.assertEqual(ambiguous["action"], "blocked")
+        self.assertEqual(ambiguous["reason"], "multiple_company_email_matches")
+        plan = {"input_sha256": "abc", "source": {"run_id": "RUN", "lead_fingerprint": "fp"}}
+        readback = {
+            "id": "person-1", "companyId": "company-1",
+            "name": {"firstName": "Jane Doe", "lastName": ""},
+            "emails": {"primaryEmail": "jane@example.com", "additionalEmails": []},
+            "phones": {"primaryPhoneNumber": "8595550100", "primaryPhoneCallingCode": "+1", "additionalPhones": []},
+        }
+        manifest = module.reconcile_person(plan, {**decision, "payload": {**payload, "companyId": "company-1"}}, "person-1", "company-1", readback)
+        self.assertEqual(manifest["relation_status"], "verified")
+
+
+if __name__ == "__main__":
+    unittest.main()

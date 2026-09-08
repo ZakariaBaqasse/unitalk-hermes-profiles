@@ -1,0 +1,173 @@
+{
+  "assessment": {
+    "schema_version": "1.0.0",
+    "method_version": "evidence-confidence-1.0.0",
+    "candidate_reference": {
+      "run_id": "RUN-20260815T203653Z-28F8CD90",
+      "seed_id": "SEED-DARLEY-JONABELL-001"
+    },
+    "available_evidence_ids": [
+      "EV-DARLEY-JONABELL-001",
+      "EV-DARLEY-CONTACT-001"
+    ],
+    "dimensions": {
+      "identity_certainty": {
+        "level": "strong_unique_match",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "The organisation identity and official domain are unambiguous."
+      },
+      "source_quality": {
+        "level": "authoritative_primary_business_source",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "All retained evidence comes from the organisation's current official business website."
+      },
+      "evidence_directness": {
+        "level": "mostly_direct",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "Material identity, operation and location claims are direct; any role-based commercial conclusion remains explicit in the qualification notes."
+      },
+      "corroboration": {
+        "level": "one_strong_source",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "The retained pages belong to one official business domain and are counted as one strong source."
+      },
+      "freshness": {
+        "level": "current_within_claim_window",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "The official site presents current teams, operations or current roster information."
+      },
+      "completeness": {
+        "level": "minimum_review_package_only",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "The confidence-stage minimum is met; CRM checks and named procurement contacts remain unavailable or unknown."
+      }
+    },
+    "gates": {
+      "mandatory_claim_inference_only": {
+        "value": false,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "Mandatory segment claims are directly supported by the official website."
+      },
+      "unresolved_identity_conflict": {
+        "value": false,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "No material identity conflict is present."
+      },
+      "critical_evidence_conflict": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "No contradictory retained evidence is present."
+      },
+      "minimum_data_failed": {
+        "value": false,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "The confidence-stage minimum evidence package is present."
+      },
+      "blocked_source_used": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "No blocked source is retained."
+      },
+      "no_evidence": {
+        "value": false,
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001",
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "Permitted official-source evidence is present."
+      },
+      "fabricated_or_untraceable_evidence": {
+        "value": false,
+        "evidence_ids": [],
+        "rationale": "Every retained evidence item has an official URL and excerpt."
+      }
+    },
+    "confidence_stage_missing_fields": []
+  },
+  "confidence": {
+    "level": "high",
+    "score": 84,
+    "method_version": "evidence-confidence-1.0.0",
+    "reasons": [
+      "identity_certainty: strong_unique_match (20/20)",
+      "source_quality: authoritative_primary_business_source (20/20)",
+      "evidence_directness: mostly_direct (15/20)",
+      "corroboration: one_strong_source (12/20)",
+      "freshness: current_within_claim_window (10/10)",
+      "completeness: minimum_review_package_only (7/10)"
+    ],
+    "limitations": [
+      "No confidence score cap was triggered.",
+      "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+    ]
+  },
+  "audit": {
+    "raw_score": 84,
+    "adjusted_score": 84,
+    "dimension_scores": {
+      "identity_certainty": {
+        "level": "strong_unique_match",
+        "points": 20,
+        "maximum": 20
+      },
+      "source_quality": {
+        "level": "authoritative_primary_business_source",
+        "points": 20,
+        "maximum": 20
+      },
+      "evidence_directness": {
+        "level": "mostly_direct",
+        "points": 15,
+        "maximum": 20
+      },
+      "corroboration": {
+        "level": "one_strong_source",
+        "points": 12,
+        "maximum": 20
+      },
+      "freshness": {
+        "level": "current_within_claim_window",
+        "points": 10,
+        "maximum": 10
+      },
+      "completeness": {
+        "level": "minimum_review_package_only",
+        "points": 7,
+        "maximum": 10
+      }
+    },
+    "applied_caps": [],
+    "confidence_stage_missing_fields": [],
+    "available_evidence_ids": [
+      "EV-DARLEY-JONABELL-001",
+      "EV-DARLEY-CONTACT-001"
+    ]
+  }
+}

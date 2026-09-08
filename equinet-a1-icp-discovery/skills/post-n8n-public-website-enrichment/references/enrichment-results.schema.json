@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/website-enrichment-results/v1",
+  "title": "Equinet A1 Hermes Website Enrichment Results",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "results"],
+  "properties": {
+    "schema_version": {"const": "a1.website-enrichment-results.v1"},
+    "results": {"type": "array", "items": {"$ref": "#/$defs/result"}}
+  },
+  "$defs": {
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lead_id", "status", "research_method", "website_status", "official_website_url",
+        "evidence", "missing_information", "conflicts"
+      ],
+      "properties": {
+        "lead_id": {"type": "string", "minLength": 1, "description": "Set exactly to the source lead_fingerprint from a1.discovery-result.v1."},
+        "status": {"const": "completed"},
+        "research_method": {"const": "hermes_approved_web_tools"},
+        "website_status": {"enum": ["verified", "none_found"]},
+        "official_website_url": {"type": ["string", "null"], "format": "uri", "pattern": "^https?://"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+        "missing_information": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "conflicts": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "classification_decision": {"type": "object"},
+        "qualification_assessment": {"type": "object"},
+        "confidence_assessment": {"type": "object"}
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "website_status": {"const": "verified"},
+            "official_website_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+            "evidence": {"minItems": 1}
+          },
+          "required": ["website_status", "official_website_url", "evidence"]
+        },
+        {
+          "properties": {
+            "website_status": {"const": "none_found"},
+            "official_website_url": {"const": null},
+            "evidence": {"maxItems": 0},
+            "missing_information": {"contains": {"const": "official_business_website_not_found"}}
+          },
+          "required": ["website_status", "official_website_url", "evidence", "missing_information"]
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id", "source_url", "source_name", "source_type", "retrieved_at",
+        "retrieval_tool", "evidence_excerpt", "claim", "fact_or_inference"
+      ],
+      "properties": {
+        "evidence_id": {"type": "string", "pattern": "^EV-[A-Z0-9_-]{3,50}$"},
+        "source_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+        "source_name": {"type": "string", "minLength": 1},
+        "source_type": {"const": "official_business_website"},
+        "retrieved_at": {"type": "string", "format": "date-time"},
+        "retrieval_tool": {"const": "web_extract"},
+        "evidence_excerpt": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "claim": {"type": "string", "minLength": 1, "maxLength": 2000},
+        "fact_or_inference": {"enum": ["direct_fact", "reasonable_inference", "contradictory_evidence"]}
+      }
+    }
+  }
+}

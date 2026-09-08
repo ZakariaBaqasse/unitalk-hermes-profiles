@@ -1,0 +1,169 @@
+{
+  "segment": "farrier",
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "criterion_label": "Active professional Farrier activity",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-SITE",
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-CONTACT"
+        ],
+        "notes": "Official website confirms J.T. Holub operates as a professional farrier under James Holub Equine Services. About page details farrier training (Casey & Son's 2003), 5 years as licensed track farrier, and current active practice following major show jumping and dressage circuits."
+      },
+      {
+        "criterion_id": "farrier.product_usage_or_influence",
+        "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ],
+        "notes": "Experience with glue-on shoes (Polyflex, Sigafoos, Direct Glue Aluminum), therapeutic shoeing for laminitis, quarter crack repair, lameness evaluation. These confirm use of professional hoof-care products in daily practice."
+      },
+      {
+        "criterion_id": "farrier.established_client_base",
+        "criterion_label": "Established or broad client base",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-SITE"
+        ],
+        "notes": "Works with multiple clients across Lexington, KY and Wellington, FL. Previously worked at Hagyard's Equine Institute podiatry department. Follows major competition circuits (show jumping, dressage) servicing multiple sport horse clients."
+      },
+      {
+        "criterion_id": "farrier.regular_business_activity",
+        "criterion_label": "Regular appointments and established business activity",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-CONTACT"
+        ],
+        "notes": "Currently active \u2014 publishes contact page for new client inquiries. Active professional practice from KY to FL. Works at major competition venues (Spruce Meadows, Tryon, Wellington). Contact page is current and published for business."
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "criterion_label": "Serves a high-equine-activity area",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-SITE",
+          "EV-JTHOLUB-MADBARN-DIR"
+        ],
+        "notes": "Lexington, KY is a major equine hub (Thoroughbred breeding capital, Kentucky Horse Park, major equestrian events). Also serves Wellington, FL \u2014 the premier winter equestrian destination in the US."
+      },
+      {
+        "criterion_id": "farrier.advanced_specialisation",
+        "criterion_label": "Advanced hoof-care specialisation",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ],
+        "notes": "Specialises in upper-level sport horses, therapeutic shoeing, laminitis solutions, quarter crack repair, lameness evaluation, glue-on shoes. Worked in podiatry department at Hagyard's Equine Institute \u2014 an advanced referral-level practice."
+      },
+      {
+        "criterion_id": "farrier.certified_or_experienced",
+        "criterion_label": "Certified, experienced or well-established professional",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-MADBARN-DIR"
+        ],
+        "notes": "APF (Accredited Professional Farrier) per Mad Barn listing. Over 20 years experience (farrier school 2003). Licensed track farrier. Experience at Hagyard's Equine Institute. Mad Barn directory lists APF credential."
+      },
+      {
+        "criterion_id": "farrier.sport_horse_focus",
+        "criterion_label": "Works with sport or competition horses",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ],
+        "notes": "Explicitly states focus on upper-level sport horses. Follows major show jumping and dressage circuits from Kentucky to Wellington and abroad. Licensed track farrier experience at multiple racetracks."
+      },
+      {
+        "criterion_id": "farrier.multi_farrier_business",
+        "criterion_label": "Multi-Farrier or established Farrier business",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "No evidence of multi-practitioner operation. Official site presents J.T. Holub as the sole farrier. Book keeping is handled separately (Mary Fasciana), but only one farrier is listed."
+      },
+      {
+        "criterion_id": "farrier.buying_influence",
+        "criterion_label": "Influences product selection",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ],
+        "notes": "As the sole practising farrier selecting tools, shoes, glue-on products, and therapeutic materials, J.T. Holub directly influences product purchasing decisions. Evidence of using specific product types (glue-on shoes, therapeutic materials) supports this."
+      },
+      {
+        "criterion_id": "farrier.product_fit",
+        "criterion_label": "Strong fit with professional hoof-care products",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-SITE"
+        ],
+        "notes": "Regular professional need for horseshoes, nails, hoof-care products, glue-on shoe materials, and therapeutic equipment. Sport horse focus (jumpers, dressage) aligns with Equinet's performance hoof-care product range."
+      },
+      {
+        "criterion_id": "farrier.engagement_signal",
+        "criterion_label": "Recent professional engagement signal",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-JTHOLUB-OFFICIAL-ABOUT"
+        ],
+        "notes": "Current professional engagement: follows major competition circuits, attends clinics/conferences (International Hoofcare Summit, Northeast Association of Equine Practitioner Symposiums), maintains official website with active contact page."
+      },
+      {
+        "criterion_id": "farrier.apprentice_future_potential",
+        "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "J.T. Holub is an established professional farrier, not an apprentice or junior. No evidence of apprentice status."
+      },
+      {
+        "criterion_id": "farrier.inactive_or_hobbyist",
+        "criterion_label": "Inactive or hobby-only Farrier",
+        "category": "negative",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Affirmative evidence of active professional practice. Inactive/hobbyist label is contradicted by available evidence."
+      },
+      {
+        "criterion_id": "farrier.no_professional_evidence",
+        "criterion_label": "No evidence of professional hoof-care activity",
+        "category": "exclusion",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Substantial evidence of professional farrier activity exists. This exclusion criterion is not triggered."
+      }
+    ],
+    "minimum_data_status": "fail",
+    "missing_minimum_fields": [
+      "candidate_id",
+      "identity.display_name",
+      "location.country_code",
+      "location.state_region",
+      "location.geography_status",
+      "source_evidence",
+      "provenance.audit_correlation_id"
+    ],
+    "exclusion_status": "eligible",
+    "exclusion_reasons": []
+  }
+}

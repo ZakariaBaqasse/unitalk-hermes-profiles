@@ -1,0 +1,9 @@
+
+  Primary:   deepseek-v4-flash  (via openai-api)
+
+  Fallback chain (1 entry):
+    1. Gemini 3.6 Flash  (via openai-api)
+
+  Tried in order when the primary fails (rate-limit, 5xx, connection errors).
+  Docs: https://hermes-agent.nousresearch.com/docs/user-guide/features/fallback-providers
+

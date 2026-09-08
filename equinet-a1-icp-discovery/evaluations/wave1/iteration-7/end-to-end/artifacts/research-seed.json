@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260812-WAVE1-001",
+  "seed_id": "SEED-JHOLUB-001",
+  "discovered_at": "2026-08-12T12:00:00Z",
+  "discovery_method": "human_website_seed",
+  "discovery_query": null,
+  "segment_hint": "farrier",
+  "identity_hint": {
+    "display_name": "J.T. Holub / James Holub Equine Services",
+    "person_name": "J.T. Holub",
+    "organisation_name": "James Holub Equine Services"
+  },
+  "website": "https://jamesholubequine.com",
+  "location_hint": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "public_contacts": [
+    {
+      "contact_type": "phone",
+      "value": "440.522.2995",
+      "evidence_ids": ["EV-CONTACT-001"]
+    },
+    {
+      "contact_type": "email",
+      "value": "holubfarrierltd@gmail.com",
+      "evidence_ids": ["EV-CONTACT-001"]
+    }
+  ],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-HOME-001",
+      "source_url": "https://jamesholubequine.com",
+      "source_name": "James Holub Equine Services - Homepage",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-12T12:00:00Z",
+      "evidence_excerpt": "As a professional farrier I've dedicated my career to continuing my education... My preference is to emphasize the basic fundamentals to properly 'balance' the equine digit... I believe it is this emphasis of focusing on the trim and proper shoe placement that allows me to keep most of the horses in my care working to the best of their ability with just four plain shoes.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-TRAVEL-001",
+      "source_url": "https://jamesholubequine.com",
+      "source_name": "James Holub Equine Services - Travel section",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-12T12:00:00Z",
+      "evidence_excerpt": "While I mainly work between Wellington, Fl and Lexington, KY I'm capable of traveling to just about anywhere.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-LAMENESS-001",
+      "source_url": "https://jamesholubequine.com",
+      "source_name": "James Holub Equine Services - Lameness section",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-12T12:00:00Z",
+      "evidence_excerpt": "Your equine athletes work hard. And while I feel the best way to deal with lameness is to do everything possible to prevent it in the first place... My intention is to utilize every aspect of my continued education to get your horse sound as soon as possible so both of you can go back to work.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-GLUE-001",
+      "source_url": "https://jamesholubequine.com",
+      "source_name": "James Holub Equine Services - Glue-On Shoes section",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-12T12:00:00Z",
+      "evidence_excerpt": "I've been successfully applying Polyflex, Sigafoos, and Direct Glue Aluminum shoes for over a decade.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-ABOUT-001",
+      "source_url": "https://jamesholubequine.com/about",
+      "source_name": "James Holub Equine Services - About page",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-12T12:00:00Z",
+      "evidence_excerpt": "After growing up around Thoroughbreds and handling race horses for most of his early life, in 2003 J.T. attended Casey & Son's Farrier School in Resaca, GA. After graduating he served an apprenticeship in Ocala, Florida with a farrier that focused on therapeutic shoeing. Following his apprenticeship J.T. went on to be a licenced track farrier at Presque Isle Downs, Mountaineer Racetrack, and Thistledown for 5 years... J.T. moved to Kentucky to focus on shoeing upper level sport horses... he continues to follow the major show jumping and dressage circuits from Kentucky to Wellington and abroad developing hoofcare solutions for sport horses at the highest levels of competition.",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-CONTACT-001",
+      "source_url": "https://jamesholubequine.com/contact",
+      "source_name": "James Holub Equine Services - Contact page",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-12T12:00:00Z",
+      "evidence_excerpt": "Farrier: J.T. Holub | 440.522.2995 | P.O. Box 13111 Lexington, KY 40583 | holubfarrierltd@gmail.com",
+      "fact_or_inference": "direct_fact"
+    }
+  ],
+  "missing_information": [
+    "Explicit horse count or client base size not stated",
+    "Current professional association membership not stated",
+    "Formal certification credential not stated (only farrier school and apprenticeship referenced)",
+    "Pricing or product brand usage not specified"
+  ],
+  "conflicts": [
+    "Person is referred to as J.T. Holub on Contact page; website domain and business title use 'James Holub' — likely same person (J.T. as initials for James T.)"
+  ],
+  "status": "ready_for_classification"
+}

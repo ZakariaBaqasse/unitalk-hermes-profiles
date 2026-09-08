@@ -1,0 +1,1014 @@
+registry_id: equinet-a1-approved-source-register
+registry_version: 2.0.0
+status: approved_for_request_bounded_production_discovery
+applies_to_profile: equinet-a1-icp-discovery
+owner_role: Unitalk Operations
+verified_at: 2026-09-02T17:47:44Z
+candidate_schema_version: 1.0.0
+icp_config_version: 2.0.0
+
+approval_record:
+  approved_by: Séverine
+  approver_role: Unitalk Operations
+  approval_scope: A1 V1 bounded directory scraping and approved public-source research model, including standard bounded Mad Barn access
+  equinet_formal_signoff: confirmed_to_unitalk_by_severine_2026-08-19
+  approved_rules:
+    - The twelve named public directories in this register may be scraped within the approved request-level candidate ceiling and source-specific access conditions.
+    - Google Maps may be scraped only through the approved Apify Google Maps Actor and authorised Unitalk account.
+    - A1 verifies material retained claims from the prospect's own public business website or another permitted source whenever directory evidence is insufficient.
+    - Scraping must stop on terms or robots conflict, access controls, CAPTCHA, login, 403, 429 or unexpected sensitive data; no technical control may be bypassed.
+    - No separate per-source candidate cap or per-source daily candidate cap applies; each source may supply up to the remaining discovery target. The total request ceiling, concurrency 1 and all access-stop controls remain mandatory.
+    - Public listing data does not create consent or authorise outreach. Twenty Company plus optional linked Person review staging is governed separately by the runtime policy and requires duplicate preflight and read-back reconciliation.
+
+source_policy_amendments:
+  - amendment_id: equinet-a1-source-amendment-2026-08-23
+    approved_by: Séverine
+    approver_role: Unitalk Operations
+    requested_scope:
+      - pdf.themhorses
+      - pdf.equineprofinder
+      - pdf.horse_council_members
+      - pdf.ohorse
+    business_approval: approved_for_a1_relevance_assessment
+    effective_at: 2026-08-23T14:10:40Z
+    source_rights_decisions:
+      pdf.themhorses: conditional_manual_only_due_to_robots_restrictions
+      pdf.equineprofinder: blocked_without_prior_written_consent
+      pdf.horse_council_members: conditional_manual_only_pending_automation_terms
+      pdf.ohorse: blocked_for_commercial_prospect_collection
+    automation_decision: No requested source was added to active_source_ids because current terms, robots rules or unverified automation rights prevent bounded automated extraction.
+  - amendment_id: equinet-a1-source-volume-order-20260902
+    approved_by: authorised_user_current_session
+    approver_role: Equinet or Unitalk authorised user
+    effective_at: 2026-09-02T17:47:44Z
+    change_type: source_volume_and_priority
+    changes:
+      per_source_candidate_cap: removed
+      per_source_daily_candidate_cap: removed
+      source_request_limit: remaining_discovery_target
+      farrier_priority:
+        - pdf.mad_barn_directory
+        - integration.apify_google_maps_scraper
+        - pdf.farrieriq
+        - pdf.newhorse
+        - pdf.best_of_lexington_farriers
+        - pdf.horseprofinder
+      horse_owner_priority:
+        - integration.apify_google_maps_scraper
+        - pdf.horseprofinder
+    safeguards_retained:
+      - maximum 200 requested candidates per discovery run
+      - concurrency 1 per source
+      - immediate stop on access, terms, robots, CAPTCHA, login, 403, 429, rate-limit or sensitive-data conflict
+      - no outreach and no HubSpot writes
+    implementation_note: Workflow code must be updated and validated separately before this policy change is operational.
+  - amendment_id: equinet-a1-international-production-scope-20260903
+    approved_by: authorised_user_current_session
+    approver_role: Equinet or Unitalk authorised user
+    effective_at: 2026-09-03
+    change_type: geography_and_production_authorisation
+    changes:
+      approved_market_country_codes: [US, AU, NZ]
+      default_location: null
+      required_user_location_fields: [country, region, city]
+      derived_location_fields: [country_code, region_code, country_slug, region_slug, city_slug, location_key]
+      source_capability_filter_required: true
+      unsupported_source_action: skip_before_network_access
+      production_status: active
+      full_two_lane_execution_required_for_acceptance: false
+    safeguards_retained:
+      - maximum 200 requested candidates per discovery run
+      - concurrency 1 per source
+      - immediate stop on access, terms, robots, CAPTCHA, login, 403, 429, rate-limit or sensitive-data conflict
+      - no outreach and no HubSpot writes
+      - Twenty Company plus optional linked Person review staging with duplicate preflight and read-back reconciliation
+
+production_geography_capabilities:
+  approved_market_country_codes: [US, AU, NZ]
+  capability_rule: A source is invoked only when both market policy and its verified technical route support the requested location.
+  sources:
+    pdf.mad_barn_directory:
+      country_codes: [US]
+      route_type: verified_city_region_slug
+      requires_region: true
+      requires_city: true
+    integration.apify_google_maps_scraper:
+      country_codes: [US, AU, NZ]
+      route_type: provider_location_query
+      requires_region: true
+      requires_city: true
+    pdf.farrieriq:
+      country_codes: [US]
+      route_type: verified_region_slug
+      requires_region: true
+      requires_city: true
+    pdf.newhorse:
+      country_codes: [US]
+      route_type: explicit_opaque_geography_id
+      verified_mappings:
+        US|KY: '17'
+      requires_region: true
+      requires_city: true
+    pdf.best_of_lexington_farriers:
+      country_codes: [US]
+      route_type: fixed_location
+      verified_location_keys: [US|KY|lexington]
+    pdf.horseprofinder:
+      country_codes: [US]
+      route_type: explicit_verified_country_region_city_path
+      verified_location_keys: [US|KY|lexington]
+  expansion_rule: Add a country, route or opaque geography identifier only after source-specific verification; never infer or guess it.
+
+runtime_acceptance_records:
+  - acceptance_id: equinet-a1-production-20260903
+    approved_by: authorised_user_current_session
+    approved_at: 2026-09-03
+    scope: production_discovery_and_company_review_staging
+    workflow_id: 3tBw9IHcr4knwM4H
+    execution_id: '1215'
+    application_run_id: A1-20260902182623-B0A7B5
+    evidence:
+      - runtime/n8n-poll-tickets/A1-20260902182623-B0A7B5.json
+      - runtime/n8n-poll-tickets/two-lane-v1/final-staging-index.json
+    full_two_lane_execution_required_for_acceptance: false
+    limitations:
+      - The cited run exercised the no-website lane; this does not block the authorised production status.
+      - Production acceptance does not create outreach consent or contractual acceptance.
+  - acceptance_id: equinet-a1-directory-wave1-20260823
+    approved_by: Séverine
+    approved_at: 2026-08-23T15:34:39Z
+    scope: bounded_pilot_directory_adapters
+    sources:
+      - pdf.farrieriq
+      - pdf.hast_farriers
+      - pdf.best_of_lexington_farriers
+    acceptance_reference: evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md
+    limitations:
+      - FarrierIQ is approved despite suspected synthetic directory records; 555 contacts must be discarded and official-site verification is mandatory.
+      - HAST is a legacy static HTTP source; freshness and material claims require secure-source corroboration.
+      - Best of Lexington contains five visible results; directory claims require corroboration when material.
+  - acceptance_id: equinet-a1-directory-wave2-20260823
+    approved_by: Séverine
+    approved_at: 2026-08-23T16:17:37Z
+    scope: bounded_pilot_directory_adapters
+    sources:
+      - pdf.horseprofinder
+      - pdf.newhorse
+      - pdf.mad_barn_directory
+    acceptance_reference: evaluations/directory-extraction-wave2-20260823/WAVE2-ACCEPTANCE-RECORD.md
+    limitations:
+      - HorseProFinder may be used for discovery, but sampled profiles expose no public contact or official website and require official-site research.
+      - NewHorse contains self-submitted content and requires current-activity, claim and duplicate verification.
+      - Mad Barn requires official-site corroboration and identity reconciliation before candidate creation.
+
+status_definitions:
+  approved: May be used under the stated access profile and restrictions.
+  conditional: May be used only under the stated conditions; automation is not implied.
+  needs_verification: Do not use as evidence until the missing URL, access, relevance or terms question is resolved.
+  blocked: Do not use for A1 prospect discovery.
+  unavailable: Named source or page is currently unavailable.
+
+access_profiles:
+  public_business_website:
+    manual_access: approved
+    assisted_page_read: conditional_low_volume
+    automated_extraction: blocked_without_site_permission_or_approved_api
+    allowed_data:
+      - public business identity
+      - professional role and business type
+      - public business location
+      - publicly displayed professional contact details
+      - professional services, disciplines and specialisations
+      - dated public activity and business claims
+    rules:
+      - Check the individual site's terms, robots controls and technical restrictions before assisted extraction.
+      - Stop if access is blocked, login-gated or rate-limited.
+      - Do not bypass CAPTCHAs, paywalls, login controls or technical restrictions.
+      - Preserve the page URL, retrieval date and exact evidence excerpt.
+  public_directory_manual:
+    manual_access: human_seed_selection_only
+    assisted_page_read: blocked_without_source_specific_permission
+    automated_extraction: blocked_pending_terms_or_approved_api
+    allowed_data:
+      - human-supplied public listing name
+      - human-supplied public profile or business URL
+      - human-supplied public location used only to identify the correct business
+    rules:
+      - A human may use a public directory to select a small seed list when the source permits ordinary public browsing.
+      - A1 must not crawl, paginate, bulk-download or automatically extract the directory.
+      - A1 must verify retained facts from the prospect's own website or another permitted source.
+      - Do not access member-only or login-gated data without an authorised account and approved purpose.
+      - Directory content is not retained as high-priority evidence unless source-specific permission is recorded.
+  public_directory_bounded_scraping:
+    manual_access: approved
+    assisted_page_read: approved_low_volume
+    automated_extraction: approved_request_bounded_production
+    allowed_data:
+      - public business or professional listing identity
+      - public profile or business URL
+      - public business location and service area
+      - publicly displayed professional contact details
+      - public professional services, disciplines, memberships and specialisations
+    rules:
+      - Use only the named source URLs recorded as approved in this register.
+      - Use the minimum necessary fields and preserve source URL, retrieval timestamp and evidence excerpt.
+      - Apply the request-level candidate ceiling and concurrency 1. No separate per-source run or daily candidate cap applies.
+      - Stop on terms or robots conflict, CAPTCHA, login, 403, 429, rate limiting or access-control challenge.
+      - Do not bypass technical controls, collect private data or infer personal contact details.
+      - Treat directory facts as discovery or medium-strength evidence unless the source is authoritative for the specific claim.
+      - Verify material ICP claims through the prospect's official website or another permitted source when directory evidence is insufficient, ambiguous or conflicting.
+  apify_google_maps_bounded_scraping:
+    manual_access: approved
+    assisted_page_read: approved_via_apify_actor
+    automated_extraction: approved_request_bounded_production_via_authorised_apify_account
+    allowed_data:
+      - public business name and category
+      - public business address, service area and location
+      - public business website and phone
+      - Google Maps listing URL and place identifier when returned
+    rules:
+      - Use only the approved Apify Google Maps Actor through the authorised Unitalk account.
+      - Apply the request-level candidate ceiling and concurrency 1. No separate per-source run or daily candidate cap applies.
+      - Record the Actor, run ID, input, retrieval timestamp, returned source URLs, cost and result count.
+      - Minimise retained Google Maps fields and use the business website as the preferred evidence source for material ICP claims.
+      - Stop on access, terms, robots, CAPTCHA, rate-limit or unexpected sensitive-data conflict.
+      - Do not bypass technical controls, create outreach consent or write to HubSpot.
+  blocked_commercial_source:
+    manual_access: blocked_for_a1_lead_list
+    assisted_page_read: blocked
+    automated_extraction: blocked
+    allowed_data: []
+    rules:
+      - Do not use the source to build or enrich an Equinet prospect list.
+      - Re-enable only after an official API licence or written permission covers the exact commercial use.
+  official_api_pending:
+    manual_access: discovery_only
+    assisted_page_read: blocked_pending_integration_design
+    automated_extraction: official_api_only_after_approval
+    allowed_data: []
+    rules:
+      - Confirm account owner, billing, scopes, attribution, field-use and storage restrictions before activation.
+      - Add only the fields explicitly permitted by the approved API design.
+      - Test with non-production data and record costs before production use.
+  official_registry_manual:
+    manual_access: conditional
+    assisted_page_read: blocked_pending_terms_review
+    automated_extraction: official_api_or_written_permission_only
+    allowed_data:
+      - publicly searchable registration or membership facts
+      - public horse, owner, farm, breeder, competition or affiliate information exposed by the official service
+    rules:
+      - Use only the fields made public by the official search interface.
+      - Do not infer ownership, commercial status or current activity from registration alone.
+      - Do not automate without an official API, licence or written permission.
+  platform_discovery_only:
+    manual_access: conditional
+    assisted_page_read: blocked_without_platform_permission
+    automated_extraction: official_api_or_written_permission_only
+    allowed_data:
+      - discovery of a public business or professional profile
+      - profile URL
+      - manually observed public business facts when permitted
+    rules:
+      - Never use unauthorised scraping, browser extensions, bots or account automation.
+      - Prefer the prospect's own website or an official directory as retained evidence.
+      - Do not treat a search result snippet or platform recommendation as authoritative evidence.
+  search_index_discovery_only:
+    manual_access: approved
+    assisted_page_read: approved_search_tool_only
+    automated_extraction: approved_search_api_only
+    allowed_data:
+      - discovery query results
+      - destination URLs
+    rules:
+      - A search result is a discovery aid, not the final evidence source.
+      - Open and cite the destination page that supports each retained fact.
+      - Do not scrape search result pages directly.
+  internal_authoritative:
+    manual_access: authorised_users_only
+    assisted_page_read: approved_connector_only
+    automated_extraction: approved_read_only_connector_only
+    allowed_data:
+      - records and exclusions within the user's source-system permissions
+    rules:
+      - Source-system permissions remain authoritative.
+      - A1 must not claim a check passed when the connection is unavailable.
+      - Writes require a separate authorised action and are outside this register.
+  client_authorised_file:
+    manual_access: conditional
+    assisted_page_read: conditional
+    automated_extraction: conditional
+    allowed_data:
+      - data explicitly supplied or approved by Equinet for A1
+    rules:
+      - Record file owner, purpose, date, access boundary and permitted reuse.
+      - Do not reuse a file outside its approved purpose.
+  unavailable_no_licence:
+    manual_access: unavailable
+    assisted_page_read: unavailable
+    automated_extraction: unavailable
+    allowed_data: []
+    rules:
+      - Do not use until an account, licence, data rights and approved access method are confirmed.
+
+terms_references:
+  google_maps_terms:
+    url: https://cloud.google.com/maps-platform/terms
+    verified_rule: No scraping or extraction of Google Maps content for storage outside approved services.
+  yelp_terms:
+    url: https://terms.yelp.com/tos/en_us/20260101_en_us
+    verified_rule: Automated scraping and data extraction are prohibited unless expressly permitted.
+  linkedin_user_agreement:
+    url: https://www.linkedin.com/legal/user-agreement
+    verified_rule: Scraping, copying profiles and unauthorised automated access are prohibited.
+  meta_automated_data_collection:
+    url: https://www.facebook.com/legal/automated_data_collection_terms
+    verified_rule: Automated collection requires Meta's express written permission or explicit authorisation.
+  yellow_pages_terms:
+    url: https://www.yellowpages.com/about/legal/terms-conditions
+    verified_rule: Use is limited to individual non-commercial informational purposes and data mining or scraping is prohibited without express consent.
+  equineprofinder_terms:
+    url: https://equineprofinder.com/terms-of-service
+    verified_rule: Automated tools, AI agents, extraction and use of platform content to build a lead list are prohibited without prior written consent.
+  themhorses_terms_and_robots:
+    url: https://www.themhorses.com/terms
+    robots_url: https://www.themhorses.com/robots.txt
+    verified_rule: Public browsing is available, but robots rules disallow search-query paths and named AI user agents; automated A1 extraction is not authorised without written permission.
+  horse_council_public_directory_access:
+    url: https://horsecouncil.org/horse-industry-directory/
+    directory_url: https://members.horsecouncil.org/atlas/directory/search
+    robots_url: https://members.horsecouncil.org/robots.txt
+    verified_rule: A public directory search route exists, but automated commercial extraction terms have not been verified; permit human seed selection only pending written permission or an approved API.
+  ohorse_terms_and_robots:
+    url: https://www.ohorse.com/terms/
+    robots_url: https://www.ohorse.com/robots.txt
+    verified_rule: Terms limit copying to personal non-commercial purposes and prohibit harvesting or commercial use of contact data; robots rules block named AI agents.
+  mad_barn_terms:
+    url: https://madbarn.com/terms-and-conditions
+    verified_rule: The content licence is limited to personal non-commercial purposes; commercial copying or distribution is not authorised.
+  apify_dpa:
+    url: https://docs.apify.com/legal/data-processing-addendum
+    verified_rule: The customer remains responsible for ensuring its instructions and processing comply with applicable data-protection law.
+
+shared_evidence_rules:
+  search_results_are_discovery_only: true
+  confirmed_fact_requires_destination_source: true
+  low_or_medium_directory_evidence_requires_corroboration_for:
+    - horse count
+    - client base size
+    - purchasing influence
+    - active customer status
+    - high-priority classification
+  public_professional_contacts_may_be_retained: true
+  personal_or_private_contact_inference_prohibited: true
+  no_outreach_authorisation_created_by_publication: true
+  access_control_bypass_prohibited: true
+  tracking_parameters_to_remove:
+    - utm_source
+    - utm_medium
+    - utm_campaign
+    - utm_term
+    - utm_content
+  review_frequency_days: 90
+
+automation_volume_policy:
+  active_for_v1_sources: true
+  active_source_ids:
+    - pdf.american_farriers_association
+    - pdf.professional_farriers_directory
+    - pdf.farrier_industry_association
+    - pdf.farrieriq
+    - pdf.horseprofinder
+    - pdf.edss_farriers
+    - pdf.bwfa_kentucky
+    - pdf.mad_barn_directory
+    - pdf.equinenow_kentucky_farms
+    - pdf.newhorse
+    - pdf.hast_farriers
+    - pdf.best_of_lexington_farriers
+    - integration.apify_google_maps_scraper
+  activation_gate: >-
+    Equinet confirmed these named sources for bounded A1 scraping through Unitalk on 17 August 2026.
+    Approval remains subject to current source terms, robots controls, technical access restrictions, privacy rules
+    and the authorised Unitalk or Apify account scope.
+  default_limits_after_approval:
+    max_candidates_per_source_per_run: null
+    max_candidates_per_source_per_day: null
+    source_request_limit: remaining_discovery_target
+    maximum_total_requested_candidates: 200
+    concurrency_per_source: 1
+  discovery_priority:
+    farrier:
+      - pdf.mad_barn_directory
+      - integration.apify_google_maps_scraper
+      - pdf.farrieriq
+      - pdf.newhorse
+      - pdf.best_of_lexington_farriers
+      - pdf.horseprofinder
+    horse_owner:
+      - integration.apify_google_maps_scraper
+      - pdf.horseprofinder
+    source_request_limit: remaining_discovery_target
+    stop_when: globally_new_leads_reach_discovery_target
+    note: Mad Barn is not currently enabled by its adapter for horse_owner runs.
+  stop_immediately_on:
+    - HTTP 403
+    - HTTP 429
+    - CAPTCHA or bot challenge
+    - login or paywall requirement
+    - robots or terms conflict
+    - unexpected personal or sensitive data
+    - permission expiry or revocation
+  required_permission_record:
+    - permission type and evidence reference
+    - authorised purpose
+    - authorised fields
+    - authorised access method
+    - effective and expiry dates
+    - volume and rate limits
+    - redistribution restrictions
+    - approver or account owner
+
+sources:
+  - source_id: general.google_search
+    name: Google Search
+    category: search_engine
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.google.com/
+    provenance: confirmed_by_equinet
+    register_status: approved
+    access_profile: search_index_discovery_only
+    availability_status: available
+    evidence_strength: discovery_only
+    terms_reference: null
+    verification_method: policy_review
+    notes: Use Unitalk's approved search tool or an approved search API; cite destination pages, not Google snippets.
+
+  - source_id: general.google_maps
+    name: Google Maps
+    category: map_and_business_listing_platform
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.google.com/maps
+    provenance: confirmed_by_equinet
+    register_status: approved
+    access_profile: apify_google_maps_bounded_scraping
+    availability_status: available
+    evidence_strength: discovery_only
+    terms_reference: google_maps_terms
+    verification_method: official_terms_review
+    notes: Request-bounded discovery is approved only through the authorised Apify Google Maps Actor. No separate per-source run or daily candidate cap applies; the remaining discovery target, total request ceiling and concurrency-1 rule control volume. Prefer the discovered business website for material retained evidence. Direct Google Maps scraping and unapproved Actors remain prohibited.
+
+  - source_id: general.facebook_public
+    name: Public Facebook business pages
+    category: public_social_platform
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.facebook.com/
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: platform_discovery_only
+    availability_status: available
+    evidence_strength: low_to_medium
+    terms_reference: meta_automated_data_collection
+    verification_method: official_terms_review
+    notes: Manual public-page discovery only unless Meta expressly authorises an automated method.
+
+  - source_id: general.instagram_public
+    name: Public Instagram professional profiles
+    category: public_social_platform
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.instagram.com/
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: platform_discovery_only
+    availability_status: available
+    evidence_strength: low_to_medium
+    terms_reference: meta_automated_data_collection
+    verification_method: official_terms_review
+    notes: Manual public-profile discovery only unless Meta expressly authorises an automated method.
+
+  - source_id: general.linkedin_public
+    name: Public LinkedIn profiles and company pages
+    category: professional_social_platform
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.linkedin.com/
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: platform_discovery_only
+    availability_status: available_no_sales_navigator_licence
+    evidence_strength: low_to_medium
+    terms_reference: linkedin_user_agreement
+    verification_method: official_terms_review
+    notes: No Sales Navigator licence. Manual public discovery only; no scraping or account automation.
+
+  - source_id: general.public_business_websites
+    name: Farm, stable, Farrier and equine business websites
+    category: public_business_website_family
+    segments: [farrier, horse_owner]
+    canonical_url: null
+    provenance: confirmed_by_equinet
+    register_status: approved
+    access_profile: public_business_website
+    availability_status: per_site
+    evidence_strength: high_for_self_published_business_facts
+    terms_reference: null
+    verification_method: per_site_review
+    notes: Preferred primary source for services, location, professional contacts and stated specialisations; self-published scale claims may require corroboration.
+
+  - source_id: general.local_regional_directories
+    name: Local and regional Farrier, horse council and equestrian business directories
+    category: public_directory_family
+    segments: [farrier, horse_owner]
+    canonical_url: null
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: public_directory_manual
+    availability_status: per_site
+    evidence_strength: medium
+    terms_reference: null
+    verification_method: per_site_review
+    notes: Each new directory must be added or logged with its URL and access conditions before use as retained evidence.
+
+  - source_id: official.usef_search
+    name: US Equestrian / USEF Search
+    category: official_registry
+    segments: [horse_owner]
+    canonical_url: https://www.usef.org/search
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: official_registry_manual
+    availability_status: available_search_service
+    evidence_strength: high_for_registration_facts
+    terms_reference: null
+    verification_method: official_search_discovery
+    notes: Useful for horse, person, farm, competition and official records; exact data-use terms and automation rights remain to be confirmed.
+
+  - source_id: official.ushja_affiliates
+    name: USHJA Affiliates and public directories
+    category: official_association_directory
+    segments: [horse_owner]
+    canonical_url: https://www.ushja.org/membership/affiliates
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: official_registry_manual
+    availability_status: available
+    evidence_strength: high_for_affiliation_facts
+    terms_reference: null
+    verification_method: web_search_and_public_page
+    notes: Use for public affiliate, academy, instructor or organisation facts exposed by USHJA; do not access member-account data without authorisation.
+
+  - source_id: official.jockey_club_registry
+    name: The Jockey Club Registry
+    category: official_registry
+    segments: [horse_owner]
+    canonical_url: https://registry.jockeyclub.com/
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: official_registry_manual
+    availability_status: available_with_service_specific_access
+    evidence_strength: high_for_registry_facts
+    terms_reference: null
+    verification_method: official_site_search
+    notes: Registration or breeder evidence does not by itself prove current commercial purchasing influence. Paid or login services require an authorised account.
+
+  - source_id: family.breed_registries
+    name: Breed registries
+    category: official_registry_family
+    segments: [horse_owner]
+    canonical_url: null
+    provenance: confirmed_by_equinet
+    register_status: needs_verification
+    access_profile: official_registry_manual
+    availability_status: exact_registries_not_supplied
+    evidence_strength: unassessed
+    terms_reference: null
+    verification_method: pending_client_list
+    notes: Equinet must identify the exact breed registries or Unitalk must propose them individually before use.
+
+  - source_id: family.public_event_entries
+    name: Public event and competition entries
+    category: event_data_family
+    segments: [farrier, horse_owner]
+    canonical_url: null
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: public_directory_manual
+    availability_status: per_event_platform
+    evidence_strength: medium_to_high_for_dated_participation
+    terms_reference: null
+    verification_method: per_site_review
+    notes: Use only public entries; participation proves dated activity, not ownership scale or purchasing influence.
+
+  - source_id: family.public_sale_records
+    name: Public horse sale records
+    category: sale_record_family
+    segments: [horse_owner]
+    canonical_url: null
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: public_directory_manual
+    availability_status: per_sale_platform
+    evidence_strength: medium_to_high_for_dated_sale_activity
+    terms_reference: null
+    verification_method: per_site_review
+    notes: Use only public sale records and respect platform terms; sale participation does not automatically establish current ownership.
+
+  - source_id: pdf.yellow_pages
+    name: Yellow Pages
+    category: public_business_directory
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.yellowpages.com/
+    original_pdf_url: https://www.yellowpages.com/
+    provenance: confirmed_by_equinet_pdf_link
+    register_status: blocked
+    access_profile: blocked_commercial_source
+    availability_status: accessible_but_terms_restrict_commercial_use_and_scraping
+    evidence_strength: unavailable_for_a1
+    terms_reference: yellow_pages_terms
+    verification_method: official_terms_review
+    notes: Do not use Yellow Pages to build the Equinet lead list. Re-enable only under an official API licence or express written permission covering commercial prospect research.
+
+  - source_id: pdf.yelp
+    name: Yelp
+    category: public_business_directory
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.yelp.com/
+    original_pdf_url: http://yelp.com/
+    provenance: confirmed_by_equinet_pdf_link
+    register_status: blocked
+    access_profile: blocked_commercial_source
+    availability_status: accessible_manually_but_terms_restrict_automated_and_consumer_use
+    evidence_strength: unavailable_for_a1
+    terms_reference: yelp_terms
+    verification_method: curl_403_and_official_terms
+    notes: Do not use Yelp to build or enrich the Equinet lead list. Re-enable only after an approved Yelp API use case or written permission covers storage and commercial prospect research.
+
+  - source_id: pdf.american_farriers_association
+    name: American Farrier's Association directory
+    category: professional_association_directory
+    segments: [farrier]
+    canonical_url: https://americanfarriers.org/search/newsearch.asp
+    original_pdf_url: https://americanfarriers.org/search/newsearch.asp
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: approved_subject_to_live_technical_access_preflight
+    evidence_strength: high_for_membership_or_directory_facts
+    terms_reference: null
+    runtime_readiness: technical_access_preflight_required_no_adapter
+    verification_method: equinet_confirmation_and_prior_curl_403
+    notes: Approved for bounded scraping under the register limits. The site previously returned HTTP 403 to automated fetches; stop if that control remains and do not bypass anti-bot protection.
+
+  - source_id: pdf.professional_farriers_directory
+    name: International Association of Professional Farriers
+    category: professional_association_directory
+    segments: [farrier]
+    canonical_url: https://professionalfarriers.com/
+    original_pdf_url: https://professionalfarriers.com/
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: high_for_association_and_accreditation_facts
+    terms_reference: null
+    runtime_readiness: partial_context_only_no_public_directory_adapter
+    verification_method: web_extract
+    notes: Approved for bounded scraping of public pages and listings under the register limits. Member-only or login-gated data remains outside scope.
+
+  - source_id: pdf.professional_farriers_member_directory
+    name: International Association of Professional Farriers Member Directory
+    category: professional_association_directory
+    segments: [farrier]
+    canonical_url: https://mms.professionalfarriers.com/
+    original_pdf_url: https://mms.professionalfarriers.com/
+    provenance: confirmed_by_equinet_pdf_link
+    register_status: conditional
+    access_profile: public_directory_manual
+    availability_status: accessible_public_home_access_depth_unknown
+    evidence_strength: high_for_membership_facts
+    terms_reference: null
+    verification_method: web_extract
+    notes: Do not access login-gated member data without an authorised account and confirmed purpose.
+
+  - source_id: pdf.farrier_industry_association
+    name: Farrier Industry Association
+    category: industry_association
+    segments: [farrier]
+    canonical_url: https://www.farrierindustry.org/
+    original_pdf_url: https://www.farrierindustry.org/
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: medium
+    terms_reference: null
+    runtime_readiness: member_search_blocked_recaptcha_public_context_pages_only_no_adapter
+    verification_method: web_extract
+    notes: Approved for bounded scraping of public directory or member listings under the register limits. Preserve uncertainty where a listing does not establish an individual Farrier prospect.
+
+  - source_id: pdf.farrieriq
+    name: FarrierIQ
+    category: farrier_software_platform
+    segments: [farrier]
+    canonical_url: https://farrieriq.com/directory
+    original_pdf_url: https://farrieriq.com/
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: public_directory_confirmed_by_equinet
+    evidence_strength: medium
+    terms_reference: null
+    verification_method: equinet_confirmation_and_canonical_directory_url
+    runtime_readiness: production_validated_with_data_quality_controls
+    adapter_version: 1.1.0
+    adapter_acceptance_reference: evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md
+    notes: Approved for bounded scraping of public directory listings under the register limits. Preserve listing URLs and verify material ICP claims through the Farrier's official business website when available.
+
+  - source_id: pdf.equineprofinder
+    name: EquineProFinder
+    category: equine_professional_directory
+    segments: [farrier, horse_owner]
+    canonical_url: https://equineprofinder.com/
+    original_pdf_url: https://equineprofinder.com/?utm_source=chatgpt.com
+    provenance: confirmed_by_equinet_pdf_link_and_severine_clean_url_decision; business_relevance_reapproved_by_severine_2026-08-23
+    business_approval_status: approved_for_relevance_assessment_not_source_rights
+    register_status: blocked
+    access_profile: blocked_commercial_source
+    availability_status: accessible_but_terms_prohibit_ai_agents_extraction_and_lead_lists
+    evidence_strength: unavailable_for_a1
+    terms_reference: equineprofinder_terms
+    verification_method: official_terms_review
+    notes: Tracking parameter removed as instructed by Séverine. Séverine reconfirmed business interest on 23 August 2026, but the official terms still prohibit AI agents, automated extraction and lead-list use without prior written consent. Do not use for A1 prospect discovery until that consent is recorded.
+
+  - source_id: pdf.horseprofinder
+    name: HorseProFinder
+    category: equine_professional_directory
+    segments: [farrier, horse_owner]
+    canonical_url: https://horseprofinder.com/
+    original_pdf_url: https://horseprofinder.com/
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: medium
+    terms_reference: null
+    verification_method: web_extract
+    runtime_readiness: production_validated_no_profile_contact_and_freshness_warning
+    adapter_version: 1.0.0
+    adapter_acceptance_reference: evaluations/directory-extraction-wave2-20260823/WAVE2-ACCEPTANCE-RECORD.md
+    notes: Approved for bounded scraping of public listings under the register limits; stop on terms, robots or technical-access conflict.
+
+  - source_id: pdf.edss_farriers
+    name: EDSS Farrier Search
+    category: farrier_directory
+    segments: [farrier]
+    canonical_url: https://edss.co/farriers
+    original_pdf_url: https://edss.co/farriers
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: medium
+    terms_reference: null
+    runtime_readiness: partial_kentucky_form_submission_unsupported_no_adapter
+    verification_method: web_extract
+    notes: Public state-based search approved for bounded scraping under the register limits; preserve the public listing URL and state context.
+
+  - source_id: pdf.bwfa_kentucky
+    name: Brotherhood of Working Farriers Association — Kentucky
+    category: professional_association_directory
+    segments: [farrier]
+    canonical_url: https://www.bwfa.net/kentucky
+    original_pdf_url: https://www.bwfa.net/kentucky
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: high_for_listed_membership_facts
+    terms_reference: null
+    runtime_readiness: partial_landing_only_low_volume_no_adapter
+    verification_method: web_extract
+    notes: Strong Kentucky relevance; approved for bounded scraping of public listed-membership facts under the register limits.
+
+  - source_id: pdf.mad_barn_directory
+    name: Mad Barn Equine Business Directory
+    category: equine_business_directory
+    segments: [farrier]
+    canonical_url: https://madbarn.com/directory
+    original_pdf_url: https://madbarn.com/directory
+    provenance: confirmed_by_equinet_for_standard_bounded_scraping_2026-08-19
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: medium
+    terms_reference: mad_barn_terms
+    verification_method: equinet_confirmation_and_official_terms_review
+    runtime_readiness: production_validated_with_identity_reconciliation
+    adapter_version: 1.0.0
+    adapter_acceptance_reference: evaluations/directory-extraction-wave2-20260823/WAVE2-ACCEPTANCE-RECORD.md
+    notes: Equinet approved this source for A1 request-bounded scraping. Mad Barn is the first Farrier discovery source and may supply the full remaining discovery target. Concurrency 1 and all terms, robots and technical-access stop controls remain authoritative.
+
+  - source_id: pdf.horse_council_members
+    name: Horse Council Member Directory
+    category: equine_member_directory
+    segments: [horse_owner]
+    canonical_url: https://members.horsecouncil.org/atlas/directory/search
+    original_pdf_url: https://members.horsecouncil.org/
+    provenance: confirmed_by_equinet_pdf_link; public_directory_route_verified_and_business_relevance_reapproved_by_severine_2026-08-23
+    business_approval_status: approved_for_manual_public_seed_selection
+    register_status: conditional
+    access_profile: public_directory_manual
+    availability_status: public_search_route_accessible_automation_terms_unverified
+    evidence_strength: discovery_only_until_official_site_verification
+    terms_reference: horse_council_public_directory_access
+    verification_method: live_browser_public_directory_and_robots_review
+    notes: The supplied root URL is the member-platform host, while the public Horse Industry Directory search is /atlas/directory/search. Human selection of a small public seed is permitted. Do not automate, crawl or paginate until written permission, an approved API or verified automation terms are recorded.
+
+  - source_id: pdf.equinenow_kentucky_farms
+    name: EquineNow Kentucky Farms
+    category: equine_business_directory
+    segments: [horse_owner]
+    canonical_url: https://www.equinenow.com/kentuckyfarms.htm
+    original_pdf_url: https://www.equinenow.com/kentuckyfarms.htm
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: medium
+    terms_reference: null
+    runtime_readiness: partial_landing_only_horse_owner_use_only_no_adapter
+    verification_method: web_extract
+    notes: Approved for bounded scraping under the register limits. Strong Kentucky relevance; corroborate self-submitted farm claims with the farm website when available.
+
+  - source_id: pdf.newhorse
+    name: NewHorse
+    category: equine_business_directory
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.newhorse.com/
+    original_pdf_url: https://www.newhorse.com/profile
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17_with_unitalk_url_correction
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: base_site_and_individual_profiles_available_original_generic_url_404
+    evidence_strength: medium
+    terms_reference: null
+    verification_method: web_search_and_http_404_check
+    runtime_readiness: production_validated_with_self_submitted_content_controls
+    adapter_version: 1.0.0
+    adapter_acceptance_reference: evaluations/directory-extraction-wave2-20260823/WAVE2-ACCEPTANCE-RECORD.md
+    notes: Approved for bounded scraping under the register limits. The supplied generic /profile URL is obsolete; use the directory base and individual public profile URLs returned by the live directory.
+
+  - source_id: pdf.ohorse
+    name: O Horse
+    category: equine_business_directory
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.ohorse.com/
+    original_pdf_url: https://www.ohorse.com/
+    provenance: confirmed_by_equinet_pdf_link; business_relevance_reapproved_by_severine_2026-08-23
+    business_approval_status: approved_for_relevance_assessment_not_source_rights
+    register_status: blocked
+    access_profile: blocked_commercial_source
+    availability_status: accessible_but_terms_prohibit_commercial_contact_harvesting_and_robots_block_ai_agents
+    evidence_strength: unavailable_for_a1
+    terms_reference: ohorse_terms_and_robots
+    verification_method: live_browser_official_terms_and_robots_review
+    notes: The directory is relevant to US Farrier and Horse Owner discovery, but its terms prohibit commercial harvesting or use of listed contacts and its robots rules block named AI agents. Do not use for A1 prospect discovery without written permission covering the intended commercial use.
+
+  - source_id: pdf.hast_farriers
+    name: HAST Farrier Directory
+    category: farrier_directory
+    segments: [farrier]
+    canonical_url: http://www.hast.net/farriers.htm
+    original_pdf_url: http://www.hast.net/farriers.htm
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible_legacy_http
+    security_status: legacy_http_only
+    evidence_strength: low_to_medium
+    terms_reference: null
+    verification_method: web_extract
+    runtime_readiness: production_validated_with_freshness_warning
+    adapter_version: 1.1.0
+    adapter_acceptance_reference: evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md
+    notes: Approved for bounded scraping under the register limits. Legacy non-HTTPS source; do not submit credentials or personal data, and corroborate all material facts with a secure source.
+
+  - source_id: pdf.best_of_lexington_farriers
+    name: Best of Lexington — Farriers
+    category: local_business_directory
+    segments: [farrier]
+    canonical_url: https://www.bestoflexingtonkentucky.com/farrier/kentucky
+    original_pdf_url: https://www.bestoflexingtonkentucky.com/farrier/kentucky?utm_source=chatgpt.com
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17_and_severine_clean_url_decision
+    register_status: approved
+    access_profile: public_directory_bounded_scraping
+    availability_status: accessible
+    evidence_strength: medium
+    terms_reference: null
+    verification_method: web_extract
+    runtime_readiness: production_validated_low_volume
+    adapter_version: 1.1.0
+    adapter_acceptance_reference: evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md
+    notes: Approved for bounded scraping under the register limits. Tracking parameter removed as instructed by Séverine. Strong Lexington relevance; corroborate material directory claims with the business website.
+
+  - source_id: pdf.themhorses
+    name: The Majestic Horses Directory
+    category: equine_business_directory
+    segments: [horse_owner]
+    canonical_url: https://www.themhorses.com/
+    original_pdf_url: https://www.themhorses.com/
+    provenance: confirmed_by_equinet_pdf_link; business_relevance_reapproved_by_severine_2026-08-23
+    business_approval_status: approved_for_manual_public_seed_selection
+    register_status: conditional
+    access_profile: public_directory_manual
+    availability_status: public_directory_accessible_search_and_ai_automation_disallowed_by_robots
+    evidence_strength: discovery_only_until_official_site_verification
+    terms_reference: themhorses_terms_and_robots
+    verification_method: live_browser_official_terms_and_robots_review
+    notes: Worldwide directory with public US business listings. Human selection of a small United States seed is permitted, but automated A1 extraction is not authorised because robots rules disallow search-query paths and named AI user agents. Written permission is required before activation.
+
+  - source_id: internal.hubspot
+    name: Equinet HubSpot
+    category: authoritative_crm
+    segments: [farrier, horse_owner]
+    canonical_url: null
+    provenance: confirmed_by_equinet
+    register_status: approved
+    access_profile: internal_authoritative
+    availability_status: integration_pending
+    evidence_strength: authoritative_for_crm_status_and_exclusions
+    terms_reference: null
+    verification_method: pending_connection
+    notes: Source of truth for duplicates, customers, opportunities, partners, distributors, opt-outs and CRM exclusions. A1 V1 must mark this check unavailable until connected.
+
+  - source_id: internal.client_authorised_files
+    name: Equinet-authorised internal lists and files
+    category: internal_file_family
+    segments: [farrier, horse_owner]
+    canonical_url: null
+    provenance: confirmed_by_equinet
+    register_status: conditional
+    access_profile: client_authorised_file
+    availability_status: no_files_supplied_yet
+    evidence_strength: depends_on_file_owner_and_freshness
+    terms_reference: null
+    verification_method: per_file_authorisation
+    notes: Includes approved CRM exports, spreadsheets, event lists and exclusion files only after purpose and permissions are recorded.
+
+  - source_id: integration.apify_google_maps_scraper
+    name: Apify Google Maps Scraper Actors
+    category: third_party_scraper
+    segments: [farrier, horse_owner]
+    canonical_url: https://apify.com/compass/crawler-google-places
+    provenance: confirmed_by_equinet_for_bounded_scraping_2026-08-17
+    register_status: approved
+    access_profile: apify_google_maps_bounded_scraping
+    availability_status: authorised_account_and_actor_runtime_verified
+    runtime_integration_required: true
+    runtime_integration_requirement: authorised_unitalk_apify_connection_verified
+    runtime_readiness: production_validated_via_authorised_apify_account
+    evidence_strength: discovery_only
+    terms_reference: apify_dpa
+    verification_method: equinet_confirmation_google_terms_apify_actor_and_apify_dpa_review
+    notes: Approved for request-bounded Google Maps discovery through the authorised Unitalk Apify account only. Google Maps is second in the Farrier sequence and first in the current Horse Owner sequence. No separate per-source run or daily candidate cap applies; concurrency 1, cost logging and all platform and technical-access controls remain mandatory.
+
+  - source_id: integration.google_places_api
+    name: Google Places API
+    category: official_api
+    segments: [farrier, horse_owner]
+    canonical_url: https://developers.google.com/maps/documentation/places/web-service
+    provenance: proposed_by_unitalk_as_official_option
+    register_status: needs_verification
+    access_profile: official_api_pending
+    availability_status: integration_account_billing_scopes_storage_and_attribution_review_pending
+    evidence_strength: discovery_only_until_field_use_is_approved
+    terms_reference: google_maps_terms
+    verification_method: official_terms_and_service_specific_terms_review
+    notes: Preferred programmatic Google option. Confirm permitted fields, attribution, caching, durable storage, costs and downstream CRM use before activation. Prefer using Place ID and business website discovery, then retain evidence from the business website.
+
+  - source_id: commercial.clay
+    name: Clay
+    category: commercial_data_platform
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.clay.com/
+    provenance: named_in_blueprint_but_confirmed_unavailable
+    register_status: unavailable
+    access_profile: unavailable_no_licence
+    availability_status: no_equinet_licence
+    evidence_strength: unavailable
+    terms_reference: null
+    verification_method: equinet_response
+    notes: Do not use unless Equinet later confirms an account, credits, scopes and authorised actions.
+
+  - source_id: commercial.apollo
+    name: Apollo
+    category: commercial_data_platform
+    segments: [farrier, horse_owner]
+    canonical_url: https://www.apollo.io/
+    provenance: named_in_blueprint_but_confirmed_unavailable
+    register_status: unavailable
+    access_profile: unavailable_no_licence
+    availability_status: no_equinet_licence
+    evidence_strength: unavailable
+    terms_reference: null
+    verification_method: equinet_response
+    notes: Do not use unless Equinet later confirms an account, credits, scopes and authorised actions.

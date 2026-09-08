@@ -1,0 +1,7 @@
+Run initialised. Here is the summary:
+
+- **Run ID:** `LIVE-20260816T130609Z-EF0956`
+- **Current stage:** `research`
+- **Next instruction:** Complete research only — persist and validate Research Seeds, then stop the turn.
+
+Say **"Continue A1 run"** when you're ready to execute Stage 1 (Research) for one Farrier in Lexington, Kentucky.

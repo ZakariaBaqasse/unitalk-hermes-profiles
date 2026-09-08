@@ -1,0 +1,120 @@
+{
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "criterion_label": "Professional or commercial equine operation",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "The official page identifies a privately-owned working thoroughbred farm and international breeding/racing operation."
+      },
+      {
+        "criterion_id": "horse_owner.more_than_three_horses",
+        "criterion_label": "Manages more than three horses",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "The current roster explicitly names seven stallions, establishing more than three horses."
+      },
+      {
+        "criterion_id": "horse_owner.purchasing_influence",
+        "criterion_label": "Influences hoof-care purchasing decisions",
+        "category": "fit",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No named owner, trainer or manager with purchasing responsibility is identified on the retained page."
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "criterion_label": "Regular need for hoof-care products or services",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "A working breeding farm managing multiple current stallions has recurring professional hoof-care needs."
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "criterion_label": "Performance or competition discipline",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "The page explicitly describes an international thoroughbred breeding and racing operation and names major race winners."
+      },
+      {
+        "criterion_id": "horse_owner.breeding_activity",
+        "criterion_label": "Active breeding operation",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "The page identifies current stallions and a breeding shed."
+      },
+      {
+        "criterion_id": "horse_owner.professional_network",
+        "criterion_label": "Works with professional equine stakeholders",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "The global operation is explicit, but the retained page does not state specific professional Farrier or trainer relationships."
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "criterion_label": "Located in a high-equine-activity area",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "notes": "Jonabell Farm is explicitly located in Lexington, Kentucky."
+      },
+      {
+        "criterion_id": "horse_owner.buying_signal",
+        "criterion_label": "Recent buying or expansion signal",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No recent purchase or expansion signal is directly stated."
+      },
+      {
+        "criterion_id": "horse_owner.single_horse_recreational",
+        "criterion_label": "Single-horse recreational owner without commercial involvement",
+        "category": "negative",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "No retained evidence confirms this negative or exclusion criterion."
+      },
+      {
+        "criterion_id": "horse_owner.no_commercial_evidence",
+        "criterion_label": "No evidence of professional or commercial orientation",
+        "category": "exclusion",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "No retained evidence confirms this negative or exclusion criterion."
+      }
+    ],
+    "minimum_data_status": "pass",
+    "missing_minimum_fields": [],
+    "exclusion_status": "eligible",
+    "exclusion_reasons": []
+  },
+  "audit": {
+    "segment": "horse_owner",
+    "required_gate_statuses": {
+      "horse_owner.commercial_operation": "confirmed",
+      "horse_owner.more_than_three_horses": "confirmed"
+    },
+    "special_pathways": [],
+    "criteria_count": 11
+  }
+}

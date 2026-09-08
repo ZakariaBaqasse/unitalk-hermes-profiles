@@ -1,0 +1,70 @@
+{
+  "run_id": "RUN-20260816T132904Z-DC866757",
+  "stage": "research",
+  "substage": "complete",
+  "completed_at": "2026-08-16T13:44:30Z",
+  "search_plan": "plans/search-plan.json",
+  "queries_executed": [
+    "professional farrier Lexington Kentucky",
+    "therapeutic farrier Lexington Kentucky",
+    "corrective shoeing Kentucky",
+    "sport horse farrier Lexington Kentucky",
+    "competition horse farrier Lexington Kentucky",
+    "horse farm Lexington Kentucky",
+    "breeding farm Lexington Kentucky",
+    "boarding stable Lexington Kentucky",
+    "horse training facility Lexington Kentucky",
+    "equestrian center Lexington Kentucky"
+  ],
+  "total_search_queries": 10,
+  "farrier_candidates": {
+    "shortlisted": [],
+    "held_candidates": [
+      {"name": "Chris Beymer", "reason": "Industry articles only; no official business website found"},
+      {"name": "Bobby Menker / Bobby Menker Horseshoeing", "reason": "Blocked directory (Mad Barn) and conditional directory only; no standalone business website"},
+      {"name": "Sam Zalesky, CJF", "reason": "Industry articles only; no independent business website found"},
+      {"name": "Colby Tipton", "reason": "Industry video reference only; no independent business website found"},
+      {"name": "Chad Scott", "reason": "Industry magazine article only; no independent business website found"},
+      {"name": "Mick Maynard / Maynard Farriers", "reason": "Blocked directory (Mad Barn); no standalone business website found"},
+      {"name": "Safe Harbor Farrier Service", "reason": "Conditional directory (NewHorse) only; no standalone business website found"}
+    ],
+    "status": "no_valid_seeds_produced",
+    "policy_note": "no_official_farrier_website_action = hold_or_needs_research. All 7 candidates held pending human-supplied directory seeds or approved additional sources."
+  },
+  "horse_owner_candidates": {
+    "shortlisted": [
+      {
+        "seed_id": "SEED-KEENERIDGE-FARM-001",
+        "candidate_name": "Keene Ridge Farm",
+        "segment_hint": "horse_owner",
+        "official_website": "https://www.keeneridgefarm.com/",
+        "discovery_query": "boarding stable Lexington Kentucky official website",
+        "page_checks_completed": {
+          "about_team_services": true,
+          "contact_location": true
+        },
+        "retained_contacts": {
+          "organisation_email": "keeneridgefarm@gmail.com",
+          "primary_named_contact": "Ann Bakhaus — Owner",
+          "phone": "not publicly published"
+        },
+        "address": "4630 Bosworth Ln, Lexington, KY 40510",
+        "public_contacts_count": 1,
+        "source_urls": ["https://www.keeneridgefarm.com/"],
+        "notes": "Full care boarding and retirement facility on 170 acres. Multiple barns (A, B, C). Full board $775, pasture board $450. Indoor/outdoor arenas, 20+ fields. Commercial operation with >3 horses. Blacksmith and vet scheduled routinely."
+      }
+    ],
+    "status": "1_valid_seed_ready_for_classification"
+  },
+  "blocked_sources_encountered_and_rejected": [
+    {"source": "Mad Barn (madbarn.com)", "status": "blocked", "reason": "blocked_commercial_source"},
+    {"source": "Yellow Pages (yellowpages.com)", "status": "blocked", "reason": "blocked_commercial_source"},
+    {"source": "Yelp (yelp.com)", "status": "blocked", "reason": "blocked_commercial_source"},
+    {"source": "EquineProFinder (equineprofinder.com)", "status": "blocked", "reason": "blocked_commercial_source"}
+  ],
+  "total_page_reads": 1,
+  "total_tool_calls_used": 4,
+  "model_calls_used": 12,
+  "max_allowed_total_tool_calls": 30,
+  "research_gate_result": "PASS — 1 validated Research Seed produced (Keene Ridge Farm). Farrier segment: 0 seeds, 7 held. Research stage complete."
+}

@@ -1,0 +1,151 @@
+{
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "criterion_label": "Active professional Farrier activity",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-KYLEGEND-NEWHORSE-DIR"
+        ],
+        "notes": "NewHorse directory confirms David Schell operates Kentucky Legend Horseshoeing as an active professional farrier service in Richmond, KY (serving Lexington, Louisville, Danville). Self-described 'Professional Farrier service'. No standalone website."
+      },
+      {
+        "criterion_id": "farrier.product_usage_or_influence",
+        "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+        "category": "fit",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Services include cold shoeing, glue-on shoes, therapeutic shoeing, and natural barefoot trimming, which imply product usage, but specific product details not directly evidenced."
+      },
+      {
+        "criterion_id": "farrier.established_client_base",
+        "criterion_label": "Established or broad client base",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Claims 'best farrier service 2yrs in a row in the Lexington area' but no independent verification of client base size."
+      },
+      {
+        "criterion_id": "farrier.regular_business_activity",
+        "criterion_label": "Regular appointments and established business activity",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Active directory listing with phone contact suggests current availability, but no appointment-scheduling or current-work evidence."
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "criterion_label": "Serves a high-equine-activity area",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": [
+          "EV-KYLEGEND-NEWHORSE-DIR"
+        ],
+        "notes": "Serves Lexington, Louisville, Danville area — all high-equine-activity areas in Kentucky. Richmond, KY base is in Madison County (horse country)."
+      },
+      {
+        "criterion_id": "farrier.advanced_specialisation",
+        "criterion_label": "Advanced hoof-care specialisation",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Service list includes corrective, lameness, therapeutic shoeing and natural barefoot trimming — some specialisation indicated, but no certification or advanced-training evidence."
+      },
+      {
+        "criterion_id": "farrier.certified_or_experienced",
+        "criterion_label": "Certified, experienced or well-established professional",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "No professional certification, association membership, or experience-duration evidence available from directory sources."
+      },
+      {
+        "criterion_id": "farrier.sport_horse_focus",
+        "criterion_label": "Works with sport or competition horses",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Services include 'gaited horses', 'reining & ranch horses' — some performance focus, but not explicitly positioned as sport-horse specialist."
+      },
+      {
+        "criterion_id": "farrier.multi_farrier_business",
+        "criterion_label": "Multi-Farrier or established Farrier business",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Kentucky Legend Horseshoeing appears to be a single-practitioner operation (David Schell)."
+      },
+      {
+        "criterion_id": "farrier.buying_influence",
+        "criterion_label": "Influences product selection",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "As a practising farrier, product purchasing influence is plausible but not directly evidenced."
+      },
+      {
+        "criterion_id": "farrier.product_fit",
+        "criterion_label": "Strong fit with professional hoof-care products",
+        "category": "fit",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Professional farrier role implies regular product needs but specific product fit not evidenced."
+      },
+      {
+        "criterion_id": "farrier.engagement_signal",
+        "criterion_label": "Recent professional engagement signal",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Claims 'best farrier service 2yrs in a row in the Lexington area' (self-reported on NewHorse) — could indicate engagement but not independently verified."
+      },
+      {
+        "criterion_id": "farrier.apprentice_future_potential",
+        "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "David Schell presents as an established independent farrier, not an apprentice."
+      },
+      {
+        "criterion_id": "farrier.inactive_or_hobbyist",
+        "criterion_label": "Inactive or hobby-only Farrier",
+        "category": "negative",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Active directory listing with service catalogue suggests current professional activity."
+      },
+      {
+        "criterion_id": "farrier.no_professional_evidence",
+        "criterion_label": "No evidence of professional hoof-care activity",
+        "category": "exclusion",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Evidence of professional farrier activity exists via NewHorse directory listing."
+      }
+    ],
+    "minimum_data_status": "fail",
+    "missing_minimum_fields": [
+      "candidate_id",
+      "identity.display_name",
+      "location.country_code",
+      "location.state_region",
+      "location.geography_status",
+      "source_evidence",
+      "provenance.audit_correlation_id"
+    ],
+    "exclusion_status": "eligible",
+    "exclusion_reasons": []
+  },
+  "audit": {
+    "segment": "farrier",
+    "required_gate_statuses": {
+      "farrier.professional_activity": "confirmed"
+    },
+    "special_pathways": [],
+    "criteria_count": 15
+  }
+}

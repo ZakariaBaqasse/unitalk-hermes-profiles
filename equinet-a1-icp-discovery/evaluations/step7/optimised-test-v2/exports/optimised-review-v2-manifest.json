@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "source_package_id": "A1-RP-WAVE3-JAMES",
+  "candidate_count": 1,
+  "files": [
+    {
+      "format": "json",
+      "file_name": "optimised-review-v2.json",
+      "sha256": "6315d74721b690ee26701f1dfeb557108c34fc72e526e1efb9cf3725fef84358",
+      "bytes": 27479
+    },
+    {
+      "format": "markdown",
+      "file_name": "optimised-review-v2.md",
+      "sha256": "709a91557b106e83a41c7d1199e1c027378092ebbcae47805c57d22156e2d13a",
+      "bytes": 4157
+    },
+    {
+      "format": "csv",
+      "file_name": "optimised-review-v2.csv",
+      "sha256": "ab14cc39247685c48a0e3b74140b3becdf2f2a44a102a9f21a7d78c576695ced",
+      "bytes": 5584
+    },
+    {
+      "format": "xlsx",
+      "file_name": "optimised-review-v2.xlsx",
+      "sha256": "568eb6f844a385048c6835aeacf30f79753922f8940f73e46d5372b3cc06a24b",
+      "bytes": 17707
+    }
+  ],
+  "validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  }
+}

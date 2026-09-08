@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "seed_id": "SEED-RR-PODIATRY-001",
+  "segment": "farrier",
+  "prospect_type": "farrier_multi_practitioner_business",
+  "identity_type": "person_and_organisation",
+  "classification_status": "confirmed",
+  "evidence_references": [
+    "EV-RR-TEAM-001",
+    "EV-RR-LEX-001"
+  ],
+  "rationale": "The official Lexington Podiatry page identifies a dedicated multi-practitioner Farrier team within Rood & Riddle Equine Hospital and names Manfred Eckert as Co-Founder/Farrier. He is retained as the single primary named contact; this does not change scoring or establish procurement authority.",
+  "unresolved_questions": [
+    "The public pages do not identify the procurement decision-maker for the Farrier team."
+  ]
+}

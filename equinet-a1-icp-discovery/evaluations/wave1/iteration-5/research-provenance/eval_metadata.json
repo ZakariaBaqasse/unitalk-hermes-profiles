@@ -1,0 +1,4 @@
+{
+  "prompt": "Use public-prospect-research. The user directly supplied the official website https://jamesholubequine.com. Verify it as one possible professional Farrier seed for Lexington, Kentucky. Record discovery_method as human_website_seed. Use web_extract only, maximum 3 page reads and 10 total tool calls, no browser. Retain evidence only from this site. Run validate_research_seed.py and return the valid seed. Stop before classification, qualification, confidence or scoring.",
+  "expected_skill": "public-prospect-research"
+}

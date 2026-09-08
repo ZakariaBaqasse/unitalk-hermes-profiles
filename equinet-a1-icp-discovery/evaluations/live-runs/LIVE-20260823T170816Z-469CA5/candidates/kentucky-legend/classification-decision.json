@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "seed_id": "SEED-KY-LEGEND-SCHELL",
+  "segment": "farrier",
+  "prospect_type": "farrier_independent",
+  "identity_type": "person_and_organisation",
+  "classification_status": "needs_review",
+  "evidence_references": [
+    "EV-KYLEGEND-NEWHORSE-DIR"
+  ],
+  "rationale": "David Schell operates as Kentucky Legend Horseshoeing, a professional farrier service based in Richmond, KY (serving Lexington, Louisville, Danville area). Evidence from NewHorse directory shows active listing with David Schell named, two phone numbers, and extensive service catalogue. No standalone official website exists. Additionally, a duplicate group was flagged in Wave 2 validation: two NewHorse profiles (Frankfort and Richmond) plus a Best of Lexington listing all match the same normalised business name and phone. Classification is needs_review pending human resolution of the duplicate group and decision on whether directory-only evidence is sufficient.",
+  "unresolved_questions": [
+    "Duplicate group: three cross-source listings match the same business \u2014 which is the canonical record?",
+    "NewHorse profiles in both Frankfort (DL-8A1EDEC133E43411) and Richmond (DL-4F81BC0DB665E9DA) \u2014 same person?",
+    "No standalone official website \u2014 is NewHorse directory evidence sufficient?",
+    "No email address publicly published \u2014 only phone contact available",
+    "No certification or association membership verified",
+    "Best of Lexington listing had phone 785-226-3628 matching Richmond profile \u2014 cross-source consistency"
+  ]
+}

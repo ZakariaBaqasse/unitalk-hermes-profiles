@@ -1,0 +1,42 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 7,
+  "review_completed_at": "2026-08-15T16:51:21Z",
+  "status": "approved_for_a1_v1_pilot",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-15T17:30:08Z",
+  "acceptance_record": "evaluations/step7/acceptance-record.json",
+  "primary_model": "deepseek-v4-flash",
+  "fallback_model": "Gemini 3.6 Flash",
+  "fallback_route_test": "passed",
+  "runtime_policy_validation": "passed",
+  "tool_allowlist_validation": "passed",
+  "regressions": {
+    "wave1": "passed",
+    "wave2": "passed",
+    "wave3": "passed",
+    "step7": "passed"
+  },
+  "optimisation": {
+    "historical_tokens": 496941,
+    "selected_tokens": 41379,
+    "token_reduction_percent": 91.67,
+    "historical_api_calls": 12,
+    "selected_api_calls": 5,
+    "api_call_reduction_percent": 58.33,
+    "selected_budget_status": "warning"
+  },
+  "tool_context": {
+    "before_tools": 30,
+    "after_tools": 14,
+    "before_schema_bytes": 58887,
+    "after_schema_bytes": 27043
+  },
+  "daily_ledger_2026_08_15": {
+    "tokens": 117019,
+    "api_calls": 14,
+    "status": "pass"
+  },
+  "review_artifact": "evaluations/step7/STEP7-VALIDATION-REVIEW.md",
+  "promotion_applied": true
+}

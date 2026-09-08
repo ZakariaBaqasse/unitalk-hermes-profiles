@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "method_version": "evidence-confidence-1.0.0",
+  "candidate_reference": {
+    "run_id": "RUN-20260823T170830Z-2D1439AF",
+    "seed_id": "SEED-JTHOLUB-LEX"
+  },
+  "available_evidence_ids": [
+    "EV-JTHOLUB-OFFICIAL-SITE",
+    "EV-JTHOLUB-OFFICIAL-CONTACT",
+    "EV-JTHOLUB-OFFICIAL-ABOUT",
+    "EV-JTHOLUB-MADBARN-DIR"
+  ],
+  "dimensions": {
+    "identity_certainty": {
+      "level": "strong_unique_match",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE", "EV-JTHOLUB-OFFICIAL-CONTACT", "EV-JTHOLUB-MADBARN-DIR"],
+      "rationale": "Official website jamesholubequine.com references J.T. Holub as the named farrier with phone 440.522.2995 and PO Box 13111 Lexington KY 40583. Mad Barn directory confirms J.T. Holub, APF at same location. Person and organisation both identified without ambiguity."
+    },
+    "source_quality": {
+      "level": "authoritative_primary_business_source",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE", "EV-JTHOLUB-OFFICIAL-CONTACT", "EV-JTHOLUB-OFFICIAL-ABOUT"],
+      "rationale": "Primary evidence from the candidate's current official business website (jamesholubequine.com), including home, about and contact pages. This is an authoritative primary business source for self-controlled facts."
+    },
+    "evidence_directness": {
+      "level": "all_material_claims_direct",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE", "EV-JTHOLUB-OFFICIAL-ABOUT", "EV-JTHOLUB-OFFICIAL-CONTACT"],
+      "rationale": "All material ICP claims (professional activity, services, specialisation, location, contact) are directly stated on the official website or supporting directory. No inference-only mandatory criteria."
+    },
+    "corroboration": {
+      "level": "two_or_more_independent_sources",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE", "EV-JTHOLUB-OFFICIAL-CONTACT", "EV-JTHOLUB-OFFICIAL-ABOUT", "EV-JTHOLUB-MADBARN-DIR"],
+      "rationale": "Official business website (primary) and Mad Barn Equine Directory (independent approved directory) both confirm the identity, location and credential. These are independent sources controlled by different organisations."
+    },
+    "freshness": {
+      "level": "current_within_claim_window",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE", "EV-JTHOLUB-OFFICIAL-CONTACT", "EV-JTHOLUB-MADBARN-DIR"],
+      "rationale": "Official website retrieved 2026-08-23 with current active contact page and service description. Mad Barn directory retrieved 2026-08-23 with current listing. Both within the 365-day freshness window for professional activity claims."
+    },
+    "completeness": {
+      "level": "partial_noncritical_gaps",
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE", "EV-JTHOLUB-OFFICIAL-ABOUT"],
+      "rationale": "Confidence-stage minimum data is met: identity resolved, segment confirmed, qualification criteria and exclusion status present. Gaps are non-critical: specific Equinet product fit, exact horse count, and full team size not evidenced."
+    }
+  },
+  "gates": {
+    "mandatory_claim_inference_only": {
+      "value": false,
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-ABOUT"],
+      "rationale": "Mandatory criterion farrier.professional_activity is directly confirmed by official website — not inference-based."
+    },
+    "unresolved_identity_conflict": {
+      "value": false,
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-CONTACT", "EV-JTHOLUB-MADBARN-DIR"],
+      "rationale": "Identity is resolved. Minor email discrepancy between primary and directory contact does not create identity conflict."
+    },
+    "critical_evidence_conflict": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "No contradictory evidence among sources. Location, phone, organisation and person name are consistent across official site and directory."
+    },
+    "minimum_data_failed": {
+      "value": false,
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE", "EV-JTHOLUB-OFFICIAL-ABOUT"],
+      "rationale": "Confidence-stage minimum data is satisfied: resolved identity, confirmed segment, at least one permitted evidence record, qualification criteria, exclusion status, and visible conflicts."
+    },
+    "blocked_source_used": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "All evidence sources are approved and accessible. No blocked or conditional sources were used."
+    },
+    "no_evidence": {
+      "value": false,
+      "evidence_ids": ["EV-JTHOLUB-OFFICIAL-SITE"],
+      "rationale": "Four evidence records available from permitted sources."
+    },
+    "fabricated_or_untraceable_evidence": {
+      "value": false,
+      "evidence_ids": [],
+      "rationale": "All evidence is traceable to live, publicly accessible URLs verified during research."
+    }
+  },
+  "confidence_stage_missing_fields": []
+}

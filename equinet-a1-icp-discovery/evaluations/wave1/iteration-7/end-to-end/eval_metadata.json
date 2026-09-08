@@ -1,0 +1,8 @@
+{
+  "prompt": "Run the A1 Wave 1 chain only. The user supplied the official business website https://jamesholubequine.com. First use public-prospect-research to create and validate one Research Seed with discovery_method human_website_seed and unique evidence_ids, using web_extract only with at most 3 page reads. Then use prospect-segment-classification to produce and validate the Classification Decision using those evidence_ids. Then use equinet-icp-qualification to produce the full Farrier qualification object with every criterion, preserving unsupported claims as unknown and listing full-candidate minimum fields that remain absent. Use existing runtime scripts, do not install packages, and do not calculate confidence or ICP score. Return the three validated objects and a concise handoff summary.",
+  "expected_skills": [
+    "public-prospect-research",
+    "prospect-segment-classification",
+    "equinet-icp-qualification"
+  ]
+}

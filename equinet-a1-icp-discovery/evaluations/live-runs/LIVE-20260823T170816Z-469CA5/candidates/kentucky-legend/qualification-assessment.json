@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0.0",
+  "segment": "farrier",
+  "criterion_assessments": {
+    "farrier.professional_activity": {
+      "status": "confirmed",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "notes": "NewHorse directory confirms David Schell operates Kentucky Legend Horseshoeing as an active professional farrier service in Richmond, KY (serving Lexington, Louisville, Danville). Self-described 'Professional Farrier service'. No standalone website."
+    },
+    "farrier.product_usage_or_influence": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "Services include cold shoeing, glue-on shoes, therapeutic shoeing, and natural barefoot trimming, which imply product usage, but specific product details not directly evidenced."
+    },
+    "farrier.established_client_base": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "Claims 'best farrier service 2yrs in a row in the Lexington area' but no independent verification of client base size."
+    },
+    "farrier.regular_business_activity": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "Active directory listing with phone contact suggests current availability, but no appointment-scheduling or current-work evidence."
+    },
+    "farrier.high_value_service_area": {
+      "status": "confirmed",
+      "evidence_ids": ["EV-KYLEGEND-NEWHORSE-DIR"],
+      "notes": "Serves Lexington, Louisville, Danville area — all high-equine-activity areas in Kentucky. Richmond, KY base is in Madison County (horse country)."
+    },
+    "farrier.advanced_specialisation": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "Service list includes corrective, lameness, therapeutic shoeing and natural barefoot trimming — some specialisation indicated, but no certification or advanced-training evidence."
+    },
+    "farrier.certified_or_experienced": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "No professional certification, association membership, or experience-duration evidence available from directory sources."
+    },
+    "farrier.sport_horse_focus": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "Services include 'gaited horses', 'reining & ranch horses' — some performance focus, but not explicitly positioned as sport-horse specialist."
+    },
+    "farrier.multi_farrier_business": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "Kentucky Legend Horseshoeing appears to be a single-practitioner operation (David Schell)."
+    },
+    "farrier.buying_influence": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "As a practising farrier, product purchasing influence is plausible but not directly evidenced."
+    },
+    "farrier.product_fit": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "Professional farrier role implies regular product needs but specific product fit not evidenced."
+    },
+    "farrier.engagement_signal": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "Claims 'best farrier service 2yrs in a row in the Lexington area' (self-reported on NewHorse) — could indicate engagement but not independently verified."
+    },
+    "farrier.apprentice_future_potential": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "David Schell presents as an established independent farrier, not an apprentice."
+    },
+    "farrier.inactive_or_hobbyist": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "Active directory listing with service catalogue suggests current professional activity."
+    },
+    "farrier.no_professional_evidence": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "Evidence of professional farrier activity exists via NewHorse directory listing."
+    }
+  },
+  "missing_minimum_fields": [
+    "candidate_id",
+    "identity.display_name",
+    "location.country_code",
+    "location.state_region",
+    "location.geography_status",
+    "source_evidence",
+    "provenance.audit_correlation_id"
+  ]
+}

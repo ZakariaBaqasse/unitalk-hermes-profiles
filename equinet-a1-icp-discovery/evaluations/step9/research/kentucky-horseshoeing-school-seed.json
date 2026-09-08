@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260815T203652Z-4B969F6F",
+  "seed_id": "SEED-KHS-001",
+  "discovered_at": "2026-08-15T20:38:58Z",
+  "discovery_method": "approved_web_search",
+  "discovery_query": "Kentucky professional farrier official business website podiatry horseshoeing school Lexington Richmond",
+  "segment_hint": "farrier",
+  "identity_hint": {
+    "display_name": "Kentucky Horseshoeing School",
+    "person_name": null,
+    "organisation_name": "Kentucky Horseshoeing School"
+  },
+  "website": "https://khs.edu",
+  "location_hint": {
+    "country_code": null,
+    "state_region": null,
+    "city": null,
+    "postal_code": null,
+    "public_address": null
+  },
+  "public_contacts": [],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-KHS-HOME-001",
+      "source_url": "https://khs.edu",
+      "source_name": "Kentucky Horseshoeing School Homepage",
+      "source_type": "public_business_website",
+      "retrieved_at": "2026-08-15T20:38:58Z",
+      "evidence_excerpt": "Kentucky Horseshoeing School describes itself as a destination for aspiring farriers seeking comprehensive education and hands-on experience. The site states that all 2026 classes are full and applications are being accepted for 2027 programs.",
+      "fact_or_inference": "direct_fact"
+    }
+  ],
+  "missing_information": [
+    "The retained official page does not establish an active client-serving Farrier practice.",
+    "The retained official page does not provide a verified Kentucky/Lexington address.",
+    "No named purchasing decision-maker or public professional contact was established within the page-read budget."
+  ],
+  "conflicts": [],
+  "status": "needs_research"
+}

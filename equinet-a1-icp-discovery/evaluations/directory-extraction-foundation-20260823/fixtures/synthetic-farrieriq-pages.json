@@ -1,0 +1,73 @@
+{
+  "pages": {
+    "https://farrieriq.com/directory/kentucky": {
+      "listings": [
+        {
+          "source_listing_id": "synthetic-bluegrass-hoof-care",
+          "source_listing_url": "https://farrieriq.com/directory/synthetic-bluegrass-hoof-care-lexington-ky",
+          "profile_url": "https://farrieriq.com/directory/synthetic-bluegrass-hoof-care-lexington-ky",
+          "display_name": "Synthetic Bluegrass Hoof Care",
+          "organisation_name": "Synthetic Bluegrass Hoof Care",
+          "candidate_type_hint": "organisation",
+          "services": ["Corrective Trimming", "Therapeutic Shoeing"],
+          "location": {"country_code": "US", "state_region": "Kentucky", "city": "Lexington", "postal_code": null, "public_address": null, "service_area": "Lexington area"},
+          "public_contacts": [],
+          "official_website": "https://example.org/bluegrass-hoof-care",
+          "source_claims": ["Provides corrective trimming"],
+          "evidence_excerpt": "Synthetic Bluegrass Hoof Care — Lexington, KY — Corrective Trimming."
+        },
+        {
+          "source_listing_id": "synthetic-capital-farrier",
+          "source_listing_url": "https://farrieriq.com/directory/synthetic-capital-farrier-frankfort-ky",
+          "profile_url": "https://farrieriq.com/directory/synthetic-capital-farrier-frankfort-ky",
+          "display_name": "Synthetic Capital Farrier",
+          "person_name": "Alex Example",
+          "organisation_name": "Synthetic Capital Farrier",
+          "candidate_type_hint": "person_and_organisation",
+          "services": ["Performance Shoeing"],
+          "location": {"country_code": "US", "state_region": "Kentucky", "city": "Frankfort", "postal_code": null, "public_address": null, "service_area": null},
+          "public_contacts": [{"contact_type": "phone", "value": "+1-555-010-1001", "label": "organisation_general"}],
+          "official_website": null,
+          "source_claims": [],
+          "evidence_excerpt": "Synthetic Capital Farrier — Frankfort, KY."
+        }
+      ],
+      "next_url": "https://farrieriq.com/directory/kentucky?page=2",
+      "terminal": false
+    },
+    "https://farrieriq.com/directory/kentucky?page=2": {
+      "listings": [
+        {
+          "source_listing_id": "synthetic-bluegrass-hoof-care",
+          "source_listing_url": "https://farrieriq.com/directory/synthetic-bluegrass-hoof-care-lexington-ky",
+          "profile_url": "https://farrieriq.com/directory/synthetic-bluegrass-hoof-care-lexington-ky",
+          "display_name": "Synthetic Bluegrass Hoof Care",
+          "organisation_name": "Synthetic Bluegrass Hoof Care",
+          "candidate_type_hint": "organisation",
+          "services": ["Corrective Trimming"],
+          "location": {"country_code": "US", "state_region": "Kentucky", "city": "Lexington", "postal_code": null, "public_address": null, "service_area": null},
+          "public_contacts": [],
+          "official_website": "https://example.org/bluegrass-hoof-care",
+          "source_claims": [],
+          "evidence_excerpt": "Duplicate synthetic listing."
+        },
+        {
+          "source_listing_id": "synthetic-paris-forge",
+          "source_listing_url": "https://farrieriq.com/directory/synthetic-paris-forge-paris-ky",
+          "profile_url": "https://farrieriq.com/directory/synthetic-paris-forge-paris-ky",
+          "display_name": "Synthetic Paris Forge",
+          "organisation_name": "Synthetic Paris Forge",
+          "candidate_type_hint": "organisation",
+          "services": ["Custom Forge Work"],
+          "location": {"country_code": "US", "state_region": "Kentucky", "city": "Paris", "postal_code": null, "public_address": null, "service_area": null},
+          "public_contacts": [],
+          "official_website": null,
+          "source_claims": ["Offers custom forge work"],
+          "evidence_excerpt": "Synthetic Paris Forge — Paris, KY."
+        }
+      ],
+      "next_url": null,
+      "terminal": true
+    }
+  }
+}

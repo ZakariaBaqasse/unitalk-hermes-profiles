@@ -1,0 +1,14 @@
+{
+  "segment": "farrier",
+  "max_candidates": 2,
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "requested_source_ids": [
+    "general.google_search",
+    "general.public_business_websites"
+  ],
+  "focus": "professional active official business website -James Holub"
+}

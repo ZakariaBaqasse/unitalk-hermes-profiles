@@ -1,0 +1,38 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 8,
+  "approver": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "decision": "approved_for_a1_v1_pilot",
+  "approved_at": "2026-08-15T18:03:32Z",
+  "approved_scope": [
+    "qualified Farrier Accept pathway",
+    "unknown-count Horse Owner Needs Research pathway",
+    "excluded Farrier Reject pathway",
+    "possible batch duplicate Needs Research pathway",
+    "synthetic data and action boundaries",
+    "cross-format JSON, Markdown, CSV and Excel consistency",
+    "Step 8 behavioural run within runtime quotas"
+  ],
+  "test_basis": {
+    "logical_scenarios": 4,
+    "batches": 2,
+    "synthetic_records": 5,
+    "behavioural_tokens": 42560,
+    "behavioural_api_calls": 5,
+    "quota_status": "pass",
+    "wave1_regression": "passed",
+    "wave2_regression": "passed",
+    "wave3_regression": "passed",
+    "step7_regression": "passed",
+    "step8_suite": "passed"
+  },
+  "external_actions": {
+    "web_research": 0,
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "next_step": "Step 9 small real-prospect run with approved public sources and human review"
+}

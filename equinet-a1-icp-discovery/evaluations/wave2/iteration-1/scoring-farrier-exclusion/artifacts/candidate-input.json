@@ -1,0 +1,27 @@
+{
+  "segment": "farrier",
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "farrier.no_professional_evidence",
+        "criterion_label": "No evidence of professional hoof-care activity",
+        "category": "exclusion",
+        "status": "confirmed",
+        "evidence_ids": ["EV-NO-PRO-001"],
+        "notes": "Synthetic Wave 2 exclusion test."
+      }
+    ],
+    "minimum_data_status": "pass",
+    "missing_minimum_fields": [],
+    "exclusion_status": "excluded",
+    "exclusion_reasons": ["No evidence of professional hoof-care activity"]
+  },
+  "confidence": {
+    "level": "high",
+    "score": 90,
+    "method_version": "evidence-confidence-1.0.0",
+    "reasons": ["Synthetic evidence package is internally traceable."],
+    "limitations": ["Synthetic test candidate."]
+  }
+}

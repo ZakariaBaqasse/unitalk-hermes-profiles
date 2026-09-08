@@ -1,0 +1,145 @@
+{
+  "segment": "farrier",
+  "qualification": {
+    "icp_config_version": "1.0.0",
+    "criteria": [
+      {
+        "criterion_id": "farrier.professional_activity",
+        "criterion_label": "Active professional Farrier activity",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": ["EV-HOME-001", "EV-ABOUT-001"],
+        "notes": "Website states 'As a professional farrier', describes active hoof-care practice including therapeutic shoeing, lameness evaluation, and glue-on shoe application. About page confirms farrier school (Casey & Son's 2003), apprenticeship, 5 years as licenced track farrier, and current sport horse practice since 2013."
+      },
+      {
+        "criterion_id": "farrier.product_usage_or_influence",
+        "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": ["EV-GLUE-001"],
+        "notes": "States use of Polyflex, Sigafoos, and Direct Glue Aluminum shoes. As a professional farrier applying shoes and hoof-care products daily, plausibly uses or influences hoof-care product purchasing. Direct evidence of specific product usage (glue-on shoe types) confirms professional product engagement."
+      },
+      {
+        "criterion_id": "farrier.established_client_base",
+        "criterion_label": "Established or broad client base",
+        "category": "priority",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Website refers to 'the horses in my care' and mentions following show jumping/dressage circuits with clients, but no explicit count of clients, horses served, or farms/operations served is stated."
+      },
+      {
+        "criterion_id": "farrier.regular_business_activity",
+        "criterion_label": "Regular appointments and established business activity",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": ["EV-HOME-001", "EV-TRAVEL-001", "EV-ABOUT-001"],
+        "notes": "Describes active professional practice with travel between Wellington FL and Lexington KY, following major show jumping and dressage circuits. References ongoing shoeing of 'upper level sport horses' and 'horses in my care'. Business has current contact page with PO Box and active email/phone."
+      },
+      {
+        "criterion_id": "farrier.high_value_service_area",
+        "criterion_label": "Serves a high-equine-activity area",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": ["EV-TRAVEL-001", "EV-CONTACT-001"],
+        "notes": "PO Box in Lexington, KY (heart of Kentucky horse country, high-equine-activity area). Also reports working between Wellington FL (major winter equestrian hub) and Lexington KY (spring/summer/fall hub). Explicitly mentions Tryon and Spruce Meadows as reachable destinations."
+      },
+      {
+        "criterion_id": "farrier.advanced_specialisation",
+        "criterion_label": "Advanced hoof-care specialisation",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": ["EV-ABOUT-001", "EV-LAMENESS-001", "EV-GLUE-001"],
+        "notes": "Specialises in therapeutic shoeing, lameness evaluation and solutions, quarter crack repair, laminitis solutions, and glue-on shoe applications (Polyflex, Sigafoos, Direct Glue Aluminum). Describes work with conformation defects and severe hoof issues."
+      },
+      {
+        "criterion_id": "farrier.certified_or_experienced",
+        "criterion_label": "Certified, experienced or well-established professional",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": ["EV-ABOUT-001"],
+        "notes": "Graduated Casey & Son's Farrier School (2003), served apprenticeship with therapeutic farrier, held licensed track farrier status at three racetracks for 5 years, worked in podiatry department at Hagyard's Equine Institute. Attended multiple clinics and conferences including NE Association of Equine Practitioner Symposiums and International Hoofcare Summit."
+      },
+      {
+        "criterion_id": "farrier.sport_horse_focus",
+        "criterion_label": "Works with sport or competition horses",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": ["EV-ABOUT-001", "EV-HOME-001"],
+        "notes": "After 2013 moved to Kentucky to focus on shoeing upper level sport horses. Follows major show jumping and dressage circuits (Kentucky, Wellington, abroad). Homepage references 'Your equine athletes' and focuses on keeping horses 'back in the ring'."
+      },
+      {
+        "criterion_id": "farrier.multi_farrier_business",
+        "criterion_label": "Multi-Farrier or established Farrier business",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "No evidence of multiple Farriers. Contact page lists only J.T. Holub as Farrier. Business name 'James Holub Equine Services' and single-person practice described throughout."
+      },
+      {
+        "criterion_id": "farrier.buying_influence",
+        "criterion_label": "Influences product selection",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": ["EV-GLUE-001", "EV-HOME-001"],
+        "notes": "As the primary (apparently sole) Farrier who selects and applies hoof-care products (glue-on shoes, shoes, nails) and makes clinical decisions about what products to use for each horse, has direct purchasing influence. Specific mention of selecting between Polyflex, Sigafoos, and Direct Glue Aluminum demonstrates product selection authority."
+      },
+      {
+        "criterion_id": "farrier.product_fit",
+        "criterion_label": "Strong fit with professional hoof-care products",
+        "category": "fit",
+        "status": "confirmed",
+        "evidence_ids": ["EV-HOME-001", "EV-GLUE-001"],
+        "notes": "Professional farrier applying shoes, glue-on attachments, and therapeutic hoof-care solutions daily. Regular professional need for horseshoes, nails, adhesives, and related hoof-care products aligned with Equinet's range."
+      },
+      {
+        "criterion_id": "farrier.engagement_signal",
+        "criterion_label": "Recent professional engagement signal",
+        "category": "priority",
+        "status": "confirmed",
+        "evidence_ids": ["EV-ABOUT-001", "EV-CONTACT-001"],
+        "notes": "Currently active with an operational website, current contact page with active email/phone, follows major show jumping and dressage circuits. Website is a Squarespace site (implies active maintenance). Attended NE Association of Equine Practitioner Symposiums and International Hoofcare Summit (dated but shows professional engagement trajectory)."
+      },
+      {
+        "criterion_id": "farrier.apprentice_future_potential",
+        "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+        "category": "priority",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Candidate is a fully established professional farrier with ~23 years of experience. Not an apprentice or junior entrant."
+      },
+      {
+        "criterion_id": "farrier.inactive_or_hobbyist",
+        "criterion_label": "Inactive or hobby-only Farrier",
+        "category": "negative",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Confirmed active professional practice with current contact information and described ongoing client activity across multiple competition circuits."
+      },
+      {
+        "criterion_id": "farrier.no_professional_evidence",
+        "criterion_label": "No evidence of professional hoof-care activity",
+        "category": "exclusion",
+        "status": "not_confirmed",
+        "evidence_ids": [],
+        "notes": "Strong evidence of professional hoof-care activity present on the official business website."
+      }
+    ],
+    "minimum_data_status": "fail",
+    "missing_minimum_fields": [
+      "candidate_id",
+      "scoring.status",
+      "confidence.level",
+      "confidence.score",
+      "recommendation.next_action",
+      "workflow.stage",
+      "provenance.audit_correlation_id"
+    ],
+    "exclusion_status": "eligible",
+    "exclusion_reasons": []
+  },
+  "confidence": {
+    "level": "high",
+    "score": 84,
+    "method_version": "evidence-confidence-1.0.0"
+  }
+}

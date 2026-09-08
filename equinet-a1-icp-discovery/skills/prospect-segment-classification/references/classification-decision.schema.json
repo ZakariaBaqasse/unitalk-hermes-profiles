@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/classification-decision/1.0.0",
+  "title": "Equinet A1 Segment Classification Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "seed_id", "segment", "prospect_type", "identity_type",
+    "classification_status", "evidence_references", "rationale", "unresolved_questions"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "seed_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{2,199}$"},
+    "segment": {"type": ["string", "null"], "enum": ["farrier", "horse_owner", null]},
+    "prospect_type": {
+      "type": ["string", "null"],
+      "enum": [
+        "farrier_independent", "farrier_business", "mobile_farrier_service",
+        "farrier_multi_practitioner_business", "farrier_apprentice",
+        "horse_owner_professional", "farm", "breeding_farm", "boarding_stable",
+        "training_stable", "equestrian_centre", "competition_yard",
+        "trainer_or_stable_manager", "other_equine_business", null
+      ]
+    },
+    "identity_type": {"type": "string", "enum": ["person", "organisation", "person_and_organisation", "unresolved"]},
+    "classification_status": {"type": "string", "enum": ["confirmed", "needs_review", "out_of_scope", "blocked"]},
+    "evidence_references": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "rationale": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "unresolved_questions": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"classification_status": {"const": "confirmed"}}, "required": ["classification_status"]},
+      "then": {
+        "properties": {
+          "segment": {"type": "string", "enum": ["farrier", "horse_owner"]},
+          "prospect_type": {"type": "string"},
+          "identity_type": {"enum": ["person", "organisation", "person_and_organisation"]},
+          "evidence_references": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"segment": {"const": "farrier"}}, "required": ["segment"]},
+      "then": {"properties": {"prospect_type": {"enum": ["farrier_independent", "farrier_business", "mobile_farrier_service", "farrier_multi_practitioner_business", "farrier_apprentice"]}}}
+    },
+    {
+      "if": {"properties": {"segment": {"const": "horse_owner"}}, "required": ["segment"]},
+      "then": {"properties": {"prospect_type": {"enum": ["horse_owner_professional", "farm", "breeding_farm", "boarding_stable", "training_stable", "equestrian_centre", "competition_yard", "trainer_or_stable_manager", "other_equine_business"]}}}
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "evaluation": "A1 Wave 1 behavioural evaluation",
+  "iteration": 1,
+  "profile": "equinet-a1-icp-discovery",
+  "model": "deepseek-v4-flash",
+  "search_backend": "exa",
+  "extract_backend": "firecrawl",
+  "scope": [
+    "public-prospect-research",
+    "prospect-segment-classification",
+    "equinet-icp-qualification"
+  ],
+  "notes": "Live model/tool evaluation. No HubSpot, Twenty, outreach, confidence calculation or ICP scoring should occur."
+}

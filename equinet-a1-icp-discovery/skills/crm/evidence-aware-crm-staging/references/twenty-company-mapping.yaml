@@ -1,0 +1,41 @@
+mapping_version: 4.0.0
+object: companies
+mode: company_plus_optional_linked_person
+live_field_manifest: configurations/crm/twenty-company-field-manifest-v1.json
+company_name_rule: business_name or name
+idempotency:
+  primary: discoveryFingerprint
+  fallback: verified domainName.primaryLinkUrl
+  ambiguous_name_location: block_for_review
+sequence:
+  - preflight_company
+  - create_or_update_company
+  - read_back_and_reconcile_company
+  - if_name_present_stage_linked_person
+contact_ownership:
+  when_name_present: person_only
+  when_name_absent: company
+  migration: after_verified_person_reconciliation_clear_existing_company_phone_and_email_with_verified_patch
+fields:
+  name: business_name or name
+  domainName: verified official website link object; omit when unavailable
+  address: public/discovery address components without inference
+  phone: public professional phone only when name is absent
+  email: public professional email only when name is absent
+  country: US, AUSTRALIA, or NEW_ZEALAND when exactly mappable
+  city: LEXINGTON when exactly mappable
+  state: KENTUCKY when exactly mappable
+  sourceUrl: first valid n8n acquisition source URL; never the verified official website
+  segment: FARRIER or HORSE_OWNER
+  qualificationStatus: ELIGIBLE, EXCLUDED, NEEDS_REVIEW, or NOT_CHECKED
+  icpScoreStatus: NOT_SCORED, SCORED, or BLOCKED
+  icpScore: nullable whole number from 0 to 100
+  icpBand: nullable HIGH, MEDIUM, LOW, or UNQUALIFIED
+  icpOutcome: nullable deterministic scoring outcome
+  evidenceConfidenceScore: nullable whole number from 0 to 100
+  evidenceConfidenceLevel: nullable HIGH, MEDIUM, or LOW
+  discoverySourceNotes: compact JSON audit metadata
+  discoveryFingerprint: unchanged n8n lead fingerprint
+system_managed_fields: [createdAt, updatedAt, deletedAt]
+prohibited_objects: [opportunities, tasks, messages, message_campaigns]
+prohibited_actions: [delete, outreach, automatic_a2_handoff, hubspot_write]

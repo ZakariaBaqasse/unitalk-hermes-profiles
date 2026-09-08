@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0.0",
+  "seed_id": "SEED-JHOLUB-001",
+  "segment": "farrier",
+  "prospect_type": "farrier_independent",
+  "identity_type": "linked_person_organisation",
+  "classification_status": "confirmed",
+  "evidence_references": ["EV-HOME-001", "EV-ABOUT-001", "EV-CONTACT-001"],
+  "rationale": "The website explicitly states 'As a professional farrier' and describes active hoof-care practice including therapeutic shoeing, lameness work, glue-on shoe application, and sport horse focus. About page confirms farrier school graduation, apprenticeship, licensed track farrier experience, and current focus on upper-level sport horses in Kentucky/Wellington circuits. Contact page identifies J.T. Holub as the Farrier with a Lexington KY PO Box. This is a clear professional Farrier, independently operating as James Holub Equine Services.",
+  "unresolved_questions": [
+    "Exact number of years in current independent practice since leaving Hagyard's (date of move not specified beyond '2013')",
+    "Whether J.T. Holub is the full name or James T. Holub — domain and business name say 'James', contact page says 'J.T.'"
+  ]
+}

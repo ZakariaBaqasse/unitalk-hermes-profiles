@@ -1,0 +1,19 @@
+{
+  "segment": "farrier",
+  "max_candidates": 1,
+  "geography": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington"
+  },
+  "requested_source_ids": [
+    "general.public_business_websites"
+  ],
+  "human_seeds": [
+    {
+      "source_id": "general.public_business_websites",
+      "name": "James Holub Equine Services",
+      "url": "https://jamesholubequine.com"
+    }
+  ]
+}

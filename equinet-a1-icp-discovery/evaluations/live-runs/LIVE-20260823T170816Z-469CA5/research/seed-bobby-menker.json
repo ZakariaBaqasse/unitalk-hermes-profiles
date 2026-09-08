@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "RUN-20260823T170830Z-2D1439AF",
+  "seed_id": "SEED-BOBBY-MENKER-LEX",
+  "discovered_at": "2026-08-23T17:09:00Z",
+  "discovery_method": "approved_directory_scrape",
+  "discovery_query": "Mad Barn directory \u2014 Lexington, KY farrier listings (validated Wave 2 run W2-MADBARN-20260823)",
+  "segment_hint": "farrier",
+  "identity_hint": {
+    "display_name": "Bobby Menker, CJF, APF-I",
+    "person_name": "Bobby Menker",
+    "organisation_name": "Bobby Menker Horseshoeing",
+    "role_title": "CJF, APF-I (Certified Journeyman Farrier, Accredited Professional Farrier - Instructor)"
+  },
+  "website": null,
+  "location_hint": {
+    "country_code": "US",
+    "state_region": "Kentucky",
+    "city": "Lexington",
+    "postal_code": "40511",
+    "public_address": "Lexington, KY 40511"
+  },
+  "public_contacts": [
+    {
+      "contact_type": "phone",
+      "value": "(419) 722-3536",
+      "label": "Primary named contact \u2014 Bobby Menker \u2014 Farrier",
+      "evidence_ids": [
+        "EV-BOBBY-MADBARN-DIR",
+        "EV-BOBBY-PROFFARR-DIR"
+      ]
+    },
+    {
+      "contact_type": "email",
+      "value": "bmhifarrier@gmail.com",
+      "label": "Primary named contact \u2014 Bobby Menker \u2014 Farrier",
+      "evidence_ids": [
+        "EV-BOBBY-MADBARN-DIR"
+      ]
+    }
+  ],
+  "source_candidates": [
+    {
+      "evidence_id": "EV-BOBBY-MADBARN-DIR",
+      "source_url": "https://madbarn.com/directory/bobby-menker-cjf-apf-i/",
+      "source_name": "Mad Barn Equine Directory (approved bounded directory)",
+      "source_type": "public_directory_bounded_scraping",
+      "retrieved_at": "2026-08-23T16:11:31Z",
+      "evidence_excerpt": "Bobby Menker, CJF, APF-I \u2014 Farrier \u2014 Lexington, KY \u2014 Company: Bobby Menker Horseshoeing \u2014 Phone: (419) 722-3536 \u2014 Email: bmhifarrier@gmail.com \u2014 Address: Lexington, KY 40511",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-BOBBY-PROFFARR-DIR",
+      "source_url": "https://madbarn.com/directory/bobby-menker-cjf-apf-i/",
+      "source_name": "Mad Barn Equine Directory (approved bounded directory)",
+      "source_type": "public_directory_bounded_scraping",
+      "retrieved_at": "2026-08-23T17:08:50Z",
+      "evidence_excerpt": "Mad Barn listing confirms phone (419) 722-3536 for Bobby Menker Horseshoeing",
+      "fact_or_inference": "direct_fact"
+    },
+    {
+      "evidence_id": "EV-BOBBY-NO-STANDALONE-SITE",
+      "source_url": "https://madbarn.com/directory/bobby-menker-cjf-apf-i/",
+      "source_name": "Web search \u2014 no standalone website found for Bobby Menker Horseshoeing",
+      "source_type": "public_directory_bounded_scraping",
+      "retrieved_at": "2026-08-23T17:09:00Z",
+      "evidence_excerpt": "No standalone official business website discovered for Bobby Menker Horseshoeing. Mad Barn directory listing serves as primary public professional profile. Associated directories include professionalfarriers.com (conditional/blocked access).",
+      "fact_or_inference": "reasonable_inference"
+    }
+  ],
+  "missing_information": [
+    "No official standalone business website found",
+    "No About/Team/Contact page checks on a standalone site (no official site exists)",
+    "Postal code 40511 from directory listing, not verified on official site",
+    "Full street address not publicly published (city/state/ZIP only)",
+    "Professionalfarriers.com member profile (mms.professionalfarriers.com) is behind conditional access \u2014 not used as evidence",
+    "Year started as farrier: 1979 per professionalfarriers.com (conditional source, not retained)",
+    "NO_STANDALONE_WEBSITE: No official business website found. Mad Barn directory listing is primary public profile. Status downgraded to needs_research until a website or human review decision."
+  ],
+  "conflicts": [
+    "Mad Barn lists Lexington KY 40511; professionalfarriers.com member profile lists Georgetown KY 40324 \u2014 possible location discrepancy or multiple service locations"
+  ],
+  "status": "needs_research"
+}

@@ -1,0 +1,8 @@
+model:
+  provider: openai-api
+  default: deepseek-v4-flash
+  provider_name: litellm-unitalk
+_config_version: 33
+web:
+  search_backend: exa
+  extract_backend: firecrawl

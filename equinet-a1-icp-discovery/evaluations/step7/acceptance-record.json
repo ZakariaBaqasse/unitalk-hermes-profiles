@@ -1,0 +1,32 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 7,
+  "approver": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "decision": "approved_for_a1_v1_pilot",
+  "approved_at": "2026-08-15T17:30:08Z",
+  "approved_scope": [
+    "deepseek-v4-flash primary route via Unitalk Gateway",
+    "Gemini 3.6 Flash fallback route via Unitalk Gateway",
+    "minimal default tool allowlist and conditional tools",
+    "provisional pilot token, call, candidate and concurrency quotas",
+    "deterministic usage and daily ledger controls",
+    "optimised combined review/export execution path"
+  ],
+  "test_basis": {
+    "runtime_policy": "passed",
+    "fallback_route": "passed",
+    "step7_suite": "passed",
+    "wave1_regression": "passed",
+    "wave2_regression": "passed",
+    "wave3_regression": "passed",
+    "selected_optimised_run": "41379 tokens / 5 API calls / warning"
+  },
+  "limitations": [
+    "Cumulative token hard stops remain post-run until enforced by Unitalk Gateway or n8n.",
+    "Gemini processing region remains pending gateway confirmation.",
+    "Retention, administrator visibility and named Equinet reviewers remain pending.",
+    "USD cost conversion is deferred."
+  ],
+  "next_step": "Step 8 representative synthetic profile tests"
+}

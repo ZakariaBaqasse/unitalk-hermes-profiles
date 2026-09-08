@@ -1,0 +1,52 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 10,
+  "release_id": "equinet-a1-v1-no-integration-1.0.1",
+  "approver": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "decision": "pilot_ready_no_integration",
+  "approved_at": "2026-08-16T11:42:29Z",
+  "approved_scope": "Controlled manual A1 V1 pilot without HubSpot, Twenty, A2 or n8n integration",
+  "validated": {
+    "eight_versioned_packages": true,
+    "authoritative_file_hashes": true,
+    "wave1_to_step8_regressions": true,
+    "step9_exact_no_web_replay": true,
+    "real_prospect_quality_review": true,
+    "named_contact_non_scoring_rule": true,
+    "contact_and_full_address_exports": true,
+    "quota_and_action_boundaries": true,
+    "manual_runbook": true,
+    "open_items_register": true
+  },
+  "quota_policy_update": {
+    "approved_at": "2026-08-16T14:31:41Z",
+    "token_hard_stops_local": false,
+    "token_monitoring_warning": 1000000,
+    "token_escalation": 3000000,
+    "technical_loop_circuit_breaker": 50,
+    "economic_hard_stop": "Unitalk Gateway prepaid balance",
+    "optimisation": "continue without blocking pilot"
+  },
+  "post_freeze_functional_validation": {
+    "run_id": "LIVE-20260816T131908Z-CAF99C",
+    "candidate": "Keene Ridge Farm",
+    "result": "accepted_for_profile_functional_validation",
+    "score": 68,
+    "band": "medium",
+    "confidence": 84,
+    "recommendation": "needs_research",
+    "csv_created": true,
+    "external_actions": 0,
+    "usage_status": "warning_for_optimisation_not_blocking"
+  },
+  "limitations": [
+    "HubSpot is unavailable.",
+    "Twenty is unavailable.",
+    "A2 handoff is not triggered.",
+    "n8n is not implemented.",
+    "No outreach or external write is authorised.",
+    "Formal Equinet production and contractual acceptance remain pending."
+  ],
+  "next_step": "Step 11 integrations when accounts, scopes, mappings and approvals are available"
+}

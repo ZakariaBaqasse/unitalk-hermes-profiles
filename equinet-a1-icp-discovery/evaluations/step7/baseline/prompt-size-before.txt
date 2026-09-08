@@ -1,0 +1,43 @@
+Prompt-size breakdown (platform=cli, model=deepseek-v4-flash)
+
+  System prompt total :   32,989 B  (32.2 KB, 32,883 chars)
+
+  Major blocks:
+    skills index       :    1,036 B  (1.0 KB)
+    memory             :        0 B  (0.0 KB)
+    user profile       :        0 B  (0.0 KB)
+
+  Prompt tiers:
+    stable (identity/guidance/skills)   :   30,907 B  (30.2 KB)
+    context (AGENTS.md/cwd files)       :    1,992 B  (1.9 KB)
+    volatile (memory/profile/timestamp) :       86 B  (0.1 KB)
+
+  Tool schemas         :   58,887 B  (57.5 KB, 30 tools)
+
+  Toolsets by size (tool-schema JSON, largest first):
+    toolset                tools      schema
+    cronjob                    1     7,348 B  (7.2 KB)
+    terminal                   2     6,882 B  (6.7 KB)
+    session_search             1     6,457 B  (6.3 KB)
+    browser                   10     6,427 B  (6.3 KB)
+    delegation                 1     5,953 B  (5.8 KB)
+    file                       4     5,922 B  (5.8 KB)
+    skills                     3     5,651 B  (5.5 KB)
+    code_execution             1     2,864 B  (2.8 KB)
+    memory                     1     2,833 B  (2.8 KB)
+    clarify                    1     2,414 B  (2.4 KB)
+    web                        2     1,910 B  (1.9 KB)
+    tts                        1     1,868 B  (1.8 KB)
+    todo                       1     1,372 B  (1.3 KB)
+    vision                     1       926 B  (0.9 KB)
+
+  Skills by size (SKILL.md on-disk = read cost; index cost = attributed always-on bytes, largest first):
+    skill                          SKILL.md  index cost
+    public-prospect-research        8,422 B        92 B
+    equinet-icp-qualification       6,511 B        93 B
+    prospect-evidence-and-confi…    5,614 B       100 B
+    icp-scoring-and-rationale       5,102 B        93 B
+    prospect-segment-classifica…    4,948 B        99 B
+    ranked-prospect-review-pack…    4,878 B        98 B
+    prospect-export                 3,643 B        83 B
+    a1-prospect-data-contract       1,857 B        93 B

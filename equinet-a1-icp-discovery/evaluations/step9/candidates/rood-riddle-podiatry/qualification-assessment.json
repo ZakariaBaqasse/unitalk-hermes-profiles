@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "segment": "farrier",
+  "criterion_assessments": {
+    "farrier.professional_activity": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001"
+      ],
+      "notes": "The official Podiatry team page has a dedicated Farriers section with multiple current named Farriers."
+    },
+    "farrier.product_usage_or_influence": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001"
+      ],
+      "notes": "A current multi-practitioner Farrier team necessarily uses professional hoof-care products; this is a role-based product-usage conclusion, not a claim of procurement authority."
+    },
+    "farrier.established_client_base": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "The official pages describe a worldwide referral center but do not quantify Farrier-team clients."
+    },
+    "farrier.regular_business_activity": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001",
+        "EV-RR-LEX-001"
+      ],
+      "notes": "The official hospital and current team pages show an established active Lexington operation."
+    },
+    "farrier.high_value_service_area": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-LEX-001"
+      ],
+      "notes": "The hospital is explicitly located in the heart of the Bluegrass in Lexington, Kentucky."
+    },
+    "farrier.advanced_specialisation": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001"
+      ],
+      "notes": "The dedicated Equine Podiatry team is an explicit advanced hoof-care specialisation."
+    },
+    "farrier.certified_or_experienced": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001"
+      ],
+      "notes": "The official team page lists CJF, NZCF and DIPWCF credentials among current team members."
+    },
+    "farrier.sport_horse_focus": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "The retained pages state all breeds and disciplines rather than a specific sport-horse focus."
+    },
+    "farrier.multi_farrier_business": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001"
+      ],
+      "notes": "The official page lists multiple Farriers in the Lexington team."
+    },
+    "farrier.buying_influence": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "No named procurement or product-selection decision-maker is identified."
+    },
+    "farrier.product_fit": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001"
+      ],
+      "notes": "A dedicated professional Farrier/Podiatry team has recurring hoof-care product requirements."
+    },
+    "farrier.engagement_signal": {
+      "status": "confirmed",
+      "evidence_ids": [
+        "EV-RR-TEAM-001",
+        "EV-RR-LEX-001"
+      ],
+      "notes": "The current official site presents active team and hospital operations."
+    },
+    "farrier.apprentice_future_potential": {
+      "status": "unknown",
+      "evidence_ids": [],
+      "notes": "The retained public evidence does not establish this criterion."
+    },
+    "farrier.inactive_or_hobbyist": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "No retained evidence confirms this negative or exclusion criterion."
+    },
+    "farrier.no_professional_evidence": {
+      "status": "not_confirmed",
+      "evidence_ids": [],
+      "notes": "No retained evidence confirms this negative or exclusion criterion."
+    }
+  },
+  "missing_minimum_fields": []
+}

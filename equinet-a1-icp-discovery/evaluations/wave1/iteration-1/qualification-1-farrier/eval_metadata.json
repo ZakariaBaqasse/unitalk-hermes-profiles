@@ -1,0 +1,5 @@
+{
+  "eval_id": "qualification-1-farrier",
+  "prompt": "Use equinet-icp-qualification only. Synthetic confirmed classification: segment farrier, type farrier_business, linked person and organisation. Evidence EV-F1 from the official website confirms active professional Farrier services, therapeutic shoeing, Lexington location, and Owner/Professional Farrier role. Build the full qualification object with every Farrier criterion. Keep unsupported criteria unknown. Do not calculate confidence or ICP score.",
+  "expected_skill": "equinet-icp-qualification"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "source_package_id": "A1-RP-STEP9-REAL-PILOT",
+  "candidate_count": 2,
+  "files": [
+    {
+      "format": "json",
+      "file_name": "a1-v1-reference-replay.json",
+      "sha256": "52478bb32921807bfe12fb5fa7bea880643ad6177be665fbfe5e8c81932b2fd9",
+      "bytes": 39141
+    },
+    {
+      "format": "markdown",
+      "file_name": "a1-v1-reference-replay.md",
+      "sha256": "f869d0b10919381013732f7f1c2a13ce8038a84e7dc4e676f12b51c4e75b84fe",
+      "bytes": 6374
+    },
+    {
+      "format": "csv",
+      "file_name": "a1-v1-reference-replay.csv",
+      "sha256": "d7208010c0c5b6456b59e59bc970376c450f85ba00008e065439033063decb61",
+      "bytes": 8180
+    },
+    {
+      "format": "xlsx",
+      "file_name": "a1-v1-reference-replay.xlsx",
+      "sha256": "974732020cbb923acac04287cdfd554f26e70f600bd35349e39520abbcc38691",
+      "bytes": 19377
+    }
+  ],
+  "validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  }
+}

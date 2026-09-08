@@ -1,0 +1,236 @@
+{
+  "test_suite": "equinet-a1-wave2-adapters-offline",
+  "test_mode": "saved_live_payloads_no_network",
+  "network_requests": 0,
+  "status": "passed",
+  "passed": 45,
+  "failed": 0,
+  "error": null,
+  "results": [
+    {
+      "name": "pdf.horseprofinder returns five bounded Kentucky listings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder candidate cap remains partial",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder listings validate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder audit records no external actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse returns five bounded Kentucky listings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse candidate cap remains partial",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse listings validate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse audit records no external actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory returns five bounded Kentucky listings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory candidate cap remains partial",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory listings validate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory audit records no external actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory listing maps to A1 Research Seed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HorseProFinder retains Kentucky path geography",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HorseProFinder retains profile URLs and categories",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NewHorse retains Kentucky listing cities",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NewHorse retains the server page-two cursor after internal offsets",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Mad Barn returns Lexington profile links",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Mad Barn separates street address from city",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder targeted profile yields one record",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.horseprofinder targeted profile validates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse targeted profile yields one record",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.newhorse targeted profile validates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory targeted profile yields one record",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pdf.mad_barn_directory targeted profile validates",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HorseProFinder profile exposes category and URL geography but no invented contact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NewHorse profile exposes a public phone and bounded specialties",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NewHorse excludes contact-form labels from specialties",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Mad Barn profile exposes public phone, email and Lexington address",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Wave 2 offline audit has three events",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Wave 2 offline audit hash chain validates",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

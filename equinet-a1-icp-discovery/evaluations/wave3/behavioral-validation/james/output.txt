@@ -1,0 +1,47 @@
+Here is the concise report:
+
+---
+
+## James Holub Behavioural Validation — Report
+
+| Field | Value |
+|---|---|
+| **Candidate count** | 1 |
+| **Recommendation** | `accept` (Accept for human review) |
+| **ICP score** | 86 / high band |
+| **Confidence score** | 84 / high level |
+| **Human decision state** | `pending` |
+| **HubSpot** | `unavailable` — not connected for A1 V1 |
+| **Twenty** | `unavailable` — not connected for A1 V1 |
+| **Batch duplicate** | `no_match` |
+| **A2 handoff** | `not_authorised` — blocked by missing human approval, HubSpot and Twenty |
+| **Integration status** | hubspot=unavailable, twenty=unavailable, a2=not_triggered |
+
+### Files created
+
+`/opt/data/profiles/equinet-a1-icp-discovery/evaluations/wave3/behavioral-validation/james/review-package.json` (27,479 bytes)
+
+`/opt/data/profiles/equinet-a1-icp-discovery/evaluations/wave3/behavioral-validation/james/exports/`:
+- `james-holub-behavioural.json` (27,479 B)
+- `james-holub-behavioural.md` (4,157 B)
+- `james-holub-behavioural.csv` (5,584 B)
+- `james-holub-behavioural.xlsx` (17,707 B)
+- `james-holub-behavioural-manifest.json` (1,115 B)
+
+### Validation results
+
+| Validation | Result |
+|---|---|
+| Review package schema | passed |
+| Prospect Candidate schema | passed |
+| JSON round-trip | passed |
+| CSV consistency | passed |
+| XLSX consistency | passed |
+| XLSX formula/errors | passed |
+
+### Side-effect check
+
+- **Outreach**: No
+- **CRM write** (HubSpot / Twenty): No
+- **A2 handoff triggered**: No
+- **Candidate evidence, score, confidence, recommendation rule, integration state altered**: No — all values preserved exactly from the input fixture (score 86, confidence 84, high/high bands, unavailable integration states).

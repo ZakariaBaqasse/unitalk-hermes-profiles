@@ -1,0 +1,97 @@
+policy_id: equinet-a1-public-website-enrichment
+policy_version: 1.4.0
+status: production_active
+applies_to_profile: equinet-a1-icp-discovery
+scope: post_n8n_website_candidate_lane_before_twenty_staging
+
+input_boundary:
+  required_contract: a1.discovery-result.v1
+  discovery_owner: n8n
+  trust_source_policy_attestation: true
+  repeat_discovery: prohibited
+  repeat_source_deduplication: prohibited
+  repeat_hubspot_check: prohibited
+
+allowed_research:
+  discovery_tool: web_search
+  evidence_tool: web_extract
+  search_results_are_evidence: false
+  primary_source_types:
+    - official_business_website
+    - official_government_record
+    - official_registry_or_association
+  blocked_domains_file: configurations/sources/a1-web-blocklist.txt
+
+website_requirement:
+  official_business_website: preferred_not_mandatory
+  no_site_completion:
+    allowed: true
+    website_status: none_found
+    official_website_url: null
+    retained_evidence_required: false
+    required_missing_information_marker: official_business_website_not_found
+    required_conflict_marker: none
+    restrictions:
+      - n8n_discovery_fields_remain_context_not_evidence
+      - no_site_completion_must_not_confirm_classification_or_qualification_criteria
+      - no_site_completion_must_not_calculate_confidence_or_icp_score
+      - no_site_completion_routes_to_unscored_company_staging_and_human_review
+  verified_site_unscored_completion:
+    allowed: true
+    website_status: verified
+    enrichment_status: completed
+    official_website_url: required
+    retained_evidence_required: true
+    qualification_status: NOT_CHECKED
+    icp_score_status: NOT_SCORED
+    score_band_outcome_confidence: null
+    restrictions:
+      - official_url_requires_accepted_destination_page_evidence
+      - missing_pipeline_inputs_must_not_be_invented
+      - verified_domain_may_stage_without_numeric_score
+
+retained_evidence_requirements:
+  destination_page_required: true
+  exact_source_url_required: true
+  retrieval_timestamp_required: true
+  exact_excerpt_required: true
+  explicit_claim_required: true
+  evidence_id_required: true
+  classify_fact_or_inference: true
+  permitted_fact_states: [direct_fact, reasonable_inference, contradictory_evidence, unknown]
+  unknowns_must_remain_unknown: true
+
+contact_policy:
+  public_professional_contacts_only: true
+  private_contact_inference: prohibited
+  form_placeholder_as_contact: prohibited
+  third_party_contact_attribution: prohibited
+  public_information_creates_consent: false
+
+stop_conditions:
+  - captcha_or_bot_challenge
+  - login_required
+  - paywall
+  - http_403
+  - http_429
+  - robots_conflict
+  - terms_conflict
+  - unexpected_sensitive_data
+  - unverifiable_official_domain
+
+prohibited_actions:
+  - outreach
+  - hubspot_read_or_write
+  - twenty_write
+  - automatic_a2_handoff
+  - access_control_bypass
+
+handoff:
+  classification_skill: prospect-segment-classification
+  qualification_skill: equinet-icp-qualification
+  confidence_skill: prospect-evidence-and-confidence
+  scoring_skill: icp-scoring-and-rationale
+  no_site_or_terminal_item_failure: unscored_company_staging
+  website_verified_but_unscored: unscored_company_staging_with_verified_domain
+  website_verified_and_scored: enriched_company_staging
+  human_review_required: true

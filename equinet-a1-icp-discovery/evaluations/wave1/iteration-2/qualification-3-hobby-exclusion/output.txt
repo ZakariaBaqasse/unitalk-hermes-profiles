@@ -1,0 +1,256 @@
+Query: Use equinet-icp-qualification only. Synthetic classification needs 
+review. Evidence EV-X1 explicitly states the person shoes only their own horse 
+as a hobby and does not offer professional Farrier services. Build the full 
+Farrier qualification object. Confirm farrier.inactive_or_hobbyist and 
+farrier.no_professional_evidence because the evidence establishes no 
+professional activity. Set exclusion_status accordingly. Use the existing 
+profile runtime and do not install packages. Do not calculate confidence or 
+score.
+Initializing agent...
+  ⚠ tirith security scanner enabled but not available — command scanning will use pattern matching only
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+I'll load the equinet-icp-qualification skill first, then examine the relevant configuration files and schema.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     equinet-icp-qualification  0.0s
+  ┊ 📖 read      qualification-assessment.schema.json  0.1s [File not found: qualification-assessment.sche...]
+  ┊ 📖 read      equinet-icp-v1.yaml  0.1s [File not found: equinet-icp-v1.yaml]
+  ┊ 📖 read      prospect-candidate.schema.json  0.1s [error]
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+The files referenced in the skill aren't at those paths. Let me find where the configurations and skill files actually live under
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔎 find      equinet-icp-v1.yaml  0.2s
+  ┊ 🔎 find      prospect-candidate.schema.json  0.2s
+  ┊ 🔎 find      qualification-assessment.schema.json  0.2s
+  ┊ 🔎 find      build_qualification.py  0.2s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Good — they're all under the profile home. Let me load them.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 read      equinet-icp-v1.yaml  0.1s
+  ┊ 📖 read      qualification-assessment.schema.json  0.1s
+  ┊ 📖 read      prospect-candidate.schema.json  0.1s
+  ┊ 📖 read      build_qualification.py  0.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now I have the full picture. Let me examine the script's dependencies and create the assessment input JSON. The script uses yaml (PyYAML) and jsonschema. Let me check what's available in the profile
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 $         /opt/data/profiles/equinet-a1-icp-discovery/.venv/bin/python -c " import sys print(sys.executable) sys.path[:3] import yaml; print('yaml', yaml.__version__) from jsonschema import Draft202012Validator; print('jsonschema ok') "  1.0s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Good — both dependencies are available. Now I'll create the assessment input JSON. Per the requirements:
+
+- Segment: farrier
+- Evidence EV-X1: explicitly says the person shoes only their own horse as a hobby and does not offer professional Farrier services
+- farrier.inactive_or_hobbyist: confirmed (direct evidence of hobby-only activity)
+- farrier.no_professional_evidence: confirmed (direct evidence establishes no professional activity)
+- farrier.professional_activity: contradicted (direct evidence that they do NOT shoe others professionally)
+
+I need to build a complete assessment object covering all 16 Farrier criteria. Let me construct
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ ✍️  write     /opt/data/profiles/equinet-a1-icp-discovery/tmp/farrier_hobbyist_assessment.json  0.1s
+  ┊ review diff
+a/profiles/equinet-a1-icp-discovery/tmp/farrier_hobbyist_assessment.json → b/profiles/equinet-a1-icp-discovery/tmp/farrier_hobbyist_assessment.json
+@@ -0,0 +1,93 @@
++{
++  "schema_version": "1.0.0",
++  "segment": "farrier",
++  "criterion_assessments": {
++    "farrier.professional_activity": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 explicitly states the person shoes only their own horse as a hobby and does not offer professional Farrier services. No professional hoof-care work is performed for clients."
++    },
++    "farrier.product_usage_or_influence": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "Personal hobby-level shoeing of own horse does not constitute professional product usage or purchasing influence in a B2B or commercial context."
++    },
++    "farrier.established_client_base": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "No client base exists; the person does not serve horse owners, farms, stables or equestrian facilities professionally."
++    },
++    "farrier.regular_business_activity": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "No regular professional practice or business activity is evidenced — the hobby-level shoeing of one horse is not a business."
++    },
++    "farrier.high_value_service_area": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of a professional service area. The person may have a physical location but does not provide professional Farrier services in any service area."
++    },
++    "farrier.advanced_specialisation": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "No advanced hoof-care specialisation is evidenced; the person shoes only their own horse at a hobby level."
++    },
++    "farrier.certified_or_experienced": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of certification or professional experience. The person may have informal experience with their own horse but no professional credentials are established."
++    },
++    "farrier.sport_horse_focus": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence that the person works with sport or competition horses in a professional capacity."
++    },
++    "farrier.multi_farrier_business": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "Not a multi-Farrier or established Farrier business — the person is a hobbyist shoeing only their own horse."
++    },
++    "farrier.buying_influence": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "No professional buying influence over hoof-care products; personal purchase decisions for one horse are not B2B purchasing influence."
++    },
++    "farrier.product_fit": {
++      "status": "contradicted",
++      "evidence_ids": ["EV-X1"],
++      "notes": "Personal hobby-level hoof care for one horse does not represent a regular professional need for Equinet's product range in a B2B context."
++    },
++    "farrier.engagement_signal": {
++      "status": "unknown",
++      "evidence_ids": [],
++      "notes": "No evidence of recent professional engagement such as event attendance, certification, competition, association membership or active professional presence."
++    },
++    "farrier.apprentice_future_potential": {
++      "status": "not_confirmed",
++      "evidence_ids": [],
++      "notes": "No evidence that the person is an apprentice or junior Farrier actively training to enter the profession. The evidence establishes hobby-level activity, not professional entry."
++    },
++    "farrier.inactive_or_hobbyist": {
++      "status": "confirmed",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 directly states the person shoes only their own horse as a hobby with no professional Farrier services. This establishes hobby-only activity with no professional client-serving practice."
++    },
++    "farrier.no_professional_evidence": {
++      "status": "confirmed",
++      "evidence_ids": ["EV-X1"],
++      "notes": "EV-X1 explicitly establishes that the person does not offer professional Farrier services. No evidence of any professional hoof-care activity exists — the evidence directly shows non-professional status."
+… omitted 15 diff line(s) across 1 additional file(s)/section(s)
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now run the build script with the assessment input.
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 💻 $         .venv/bin/python skills/equinet-icp-qualification/scripts/build_qualification.py tmp/farrier_hobbyist_assessment.json  0.4s [exit 1]
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+The assessment input schema doesn't allow a notes top-level field. Let me remove it
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔧 patch     /opt/data/profiles/equinet-a1-icp-discovery/tmp/farrier_hobbyist_assessment.json  0.1s
+  ┊ review diff
+a//opt/data/profiles/equinet-a1-icp-discovery/tmp/farrier_hobbyist_assessment.json → b//opt/data/profiles/equinet-a1-icp-discovery/tmp/farrier_hobbyist_assessment.json
+@@ -88,6 +88,5 @@
+     "confidence",
+     "duplicate_check",
+     "provenance"
+-  ],
+-  "notes": "Synthetic test case. Classification is synthetic — needs review. No confidence or ICP score calculated per instructions."
++  ]
+ }
+  ┊ 💻 $         .venv/bin/python skills/equinet-icp-qualification/scripts/build_qualification.py tmp/farrier_hobbyist_assessment.json  0.4s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+The qualification object built successfully. Let me also confirm the assessment JSON still validates against the input schema by direct re-verification.
+
+Here is the complete qualification result and analysis:
+
+
+
+Farrier Qualification Object — Synthetic Hobbyist Case
+
+Config Version: 1.0.0
+Segment: farrier
+Classification: synthetic — needs review (as instructed)
+
+Exclusion Status: excluded
+
+The builder returned exclusion_status: excluded with one exclusion reason: "No evidence of professional hoof-care activity".
+
+This is driven by farrier.no_professional_evidence being confirmed with EV-X1 as evidence.
+
+Key Criterion Statuses
+
+Criterion: farrier.professional_activity
+Status: contradicted
+Evidence: EV-X1
+Rationale: Explicitly states no professional Farrier services
+────────────────────────────────────────
+Criterion: farrier.inactive_or_hobbyist
+Status: confirmed
+Evidence: EV-X1
+Rationale: Direct evidence of hobby-only shoeing of own horse
+────────────────────────────────────────
+Criterion: farrier.no_professional_evidence
+Status: confirmed
+Evidence: EV-X1
+Rationale: Direct evidence establishes absence of any professional hoof-care
+  activity
+────────────────────────────────────────
+Criterion: farrier.apprentice_future_potential
+Status: not_confirmed
+Evidence: —
+Rationale: Hobby activity is not professional-entry training
+────────────────────────────────────────
+Criterion: All other priority criteria
+Status: contradicted/unknown
+Evidence: EV-X1 or none
+Rationale: No professional business, clients, or influence
+────────────────────────────────────────
+Criterion: farrier.product_usage_or_influence
+Status: contradicted
+Evidence: EV-X1
+Rationale: Personal hobby use ≠ B2B/commercial product influence
+────────────────────────────────────────
+Criterion: farrier.product_fit
+Status: contradicted
+Evidence: EV-X1
+Rationale: Single-horse hobby care is not professional product need
+
+15 of 15 criteria assessed
+
+Every Farrier criterion from the ICP config has an assessment entry. All entries carry the correct criterion_id, label, and category as defined in equinet-icp-v1.yaml v1.0.0.
+
+Minimum Data: fail
+
+9 minimum-review fields are missing (candidate_id, run_id, identity, location, source_evidence, scoring, confidence, duplicate_check, provenance) — appropriate for a synthetic test that explicitly omits classification, scoring and confidence.
+
+Audit Summary
+
+- required_gate_statuses: farrier.professional_activity = contradicted — the required-for-standard-qualification gate fails
+- special_pathways: none triggered (no apprentice/junior pathway — hobbyist status is not an active professional entry)
+- criteria_count: 15
+
+Why both inactive_or_hobbyist and no_professional_evidence are confirmed
+
+Per the skill's rules:
+- farrier.inactive_or_hobbyist (negative signal, if_confirmed: lower_priority_or_exclude): EV-X1 directly establishes hobby-only activity — the person shoes only their own horse recreationally, has no clients, and performs no professional practice.
+- farrier.no_professional_evidence (exclusion, if_confirmed: excluded): EV-X1 explicitly establishes no professional services are offered. This is not "absence of evidence" — it is direct evidence of non-professional status. Both meanings are independently supported by the same direct fact.
+
+Confidence and Score: not calculated
+
+As instructed. These would require the separate deterministic scripts (calculate_candidate_confidence.py and calculate_icp_score.py).
+
+Validated Output
+
+The output was validated against the Prospect Candidate Schema qualification definition via Draft202012Validator and passed.
+
+Assessment input file saved: /opt/data/profiles/equinet-a1-icp-discovery/tmp/farrier_hobbyist_assessment.json
+Output produced by: build_qualification.py (published above)
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260812_184755_9f6b11 -p equinet-a1-icp-discovery
+
+Session:        20260812_184755_9f6b11
+Duration:       1m 5s
+Messages:       28 (1 user, 26 tool calls)

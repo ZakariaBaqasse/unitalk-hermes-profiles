@@ -1,0 +1,1771 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "A1-RP-LIVE-20260823-469CA5",
+  "run_id": "LIVE-20260823T170816Z-469CA5",
+  "generated_at": "2026-08-23T17:21:34Z",
+  "initiated_by": "A1 Business Reviewer",
+  "candidates": [
+    {
+      "candidate_id": "A1-JTHOLUB-LEX-001",
+      "record_kind": "production",
+      "research_seed": {
+        "schema_version": "1.0.0",
+        "run_id": "RUN-20260823T170830Z-2D1439AF",
+        "seed_id": "SEED-JTHOLUB-LEX",
+        "discovered_at": "2026-08-23T17:09:15Z",
+        "discovery_method": "approved_directory_scrape",
+        "discovery_query": "Mad Barn directory \u2014 Lexington, KY farrier listings (validated Wave 2 run W2-MADBARN-20260823); verified via official website jamesholubequine.com",
+        "segment_hint": "farrier",
+        "identity_hint": {
+          "display_name": "J.T. Holub, APF / James Holub Equine Services",
+          "person_name": "J.T. Holub",
+          "organisation_name": "James Holub Equine Services",
+          "role_title": "APF (Accredited Professional Farrier)"
+        },
+        "website": "https://jamesholubequine.com",
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "Kentucky",
+          "city": "Lexington",
+          "postal_code": "40583",
+          "public_address": "P.O. Box 13111, Lexington, KY 40583"
+        },
+        "public_contacts": [
+          {
+            "contact_type": "phone",
+            "value": "440.522.2995",
+            "label": "Primary named contact \u2014 J.T. Holub \u2014 Farrier",
+            "evidence_ids": [
+              "EV-JTHOLUB-OFFICIAL-CONTACT",
+              "EV-JTHOLUB-MADBARN-DIR"
+            ]
+          },
+          {
+            "contact_type": "email",
+            "value": "holubfarrierltd@gmail.com",
+            "label": "Primary named contact \u2014 J.T. Holub \u2014 Farrier",
+            "evidence_ids": [
+              "EV-JTHOLUB-OFFICIAL-CONTACT"
+            ]
+          },
+          {
+            "contact_type": "email",
+            "value": "jtholub.fep@gmail.com",
+            "label": "Organisation general contact",
+            "evidence_ids": [
+              "EV-JTHOLUB-MADBARN-DIR"
+            ]
+          }
+        ],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-JTHOLUB-OFFICIAL-SITE",
+            "source_url": "https://jamesholubequine.com/",
+            "source_name": "James Holub Equine Services (official business website)",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-23T17:08:50Z",
+            "evidence_excerpt": "James Holub Equine Services \u2014 World Class Farriery \u2014 Works between Wellington, FL and Lexington, KY. Homepage states professional farrier services for sport horses (show jumping, dressage).",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-JTHOLUB-OFFICIAL-CONTACT",
+            "source_url": "https://jamesholubequine.com/contact-us",
+            "source_name": "James Holub Equine Services (official business website \u2014 Contact page)",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-23T17:09:00Z",
+            "evidence_excerpt": "Contact page: Farrier: J.T. Holub \u2014 440.522.2995 \u2014 P.O. Box 13111 Lexington, KY 40583 \u2014 holubfarrierltd@gmail.com",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-JTHOLUB-OFFICIAL-ABOUT",
+            "source_url": "https://jamesholubequine.com/about",
+            "source_name": "James Holub Equine Services (official business website \u2014 About page)",
+            "source_type": "public_business_website",
+            "retrieved_at": "2026-08-23T17:09:05Z",
+            "evidence_excerpt": "J.T. Holub attended Casey & Son's Farrier School in 2003. Licensed track farrier at Presque Isle Downs, Mountaineer Racetrack, and Thistledown for 5 years. Moved to Kentucky in 2013 focusing on upper level sport horses. Worked in podiatry department at Hagyard's Equine Institute. Follows major show jumping and dressage circuits.",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-JTHOLUB-MADBARN-DIR",
+            "source_url": "https://madbarn.com/directory/j-t-holub-apf/",
+            "source_name": "Mad Barn Equine Directory (approved bounded directory)",
+            "source_type": "public_directory_bounded_scraping",
+            "retrieved_at": "2026-08-23T16:11:31Z",
+            "evidence_excerpt": "J. T. Holub, APF \u2014 Farrier \u2014 Lexington, KY 40583 \u2014 Phone: (440) 522-2995 \u2014 Email: jtholub.fep@gmail.com",
+            "fact_or_inference": "direct_fact"
+          }
+        ],
+        "missing_information": [
+          "Services page not explicitly listed on official site (inferred from About page: sport horse specialty, therapeutic shoeing, glue-on shoes)",
+          "Postal code is a P.O. Box only",
+          "No AFA certification number visible on official site",
+          "No explicit horse count or team size published",
+          "No Facebook/Instagram/LinkedIn professional profiles retained"
+        ],
+        "conflicts": [
+          "Mad Barn listing email: jtholub.fep@gmail.com; official website contact email: holubfarrierltd@gmail.com \u2014 may be separate professional inboxes"
+        ],
+        "status": "ready_for_classification"
+      },
+      "classification_decision": {
+        "schema_version": "1.0.0",
+        "seed_id": "SEED-JTHOLUB-LEX",
+        "segment": "farrier",
+        "prospect_type": "farrier_independent",
+        "identity_type": "person_and_organisation",
+        "classification_status": "confirmed",
+        "evidence_references": [
+          "EV-JTHOLUB-OFFICIAL-SITE",
+          "EV-JTHOLUB-OFFICIAL-ABOUT",
+          "EV-JTHOLUB-OFFICIAL-CONTACT",
+          "EV-JTHOLUB-MADBARN-DIR"
+        ],
+        "rationale": "J.T. Holub operates as an independent professional farrier under James Holub Equine Services in Lexington, KY. Official website jamesholubequine.com confirms active farriery since 2003 (farrier school), licensed track farrier experience, and current focus on upper-level sport horses (show jumping, dressage). Contact page lists J.T. Holub directly as the farrier with phone and PO Box in Lexington KY 40583. Segment: farrier. Prospect type: farrier_independent (solo practitioner serving professional sport horse clients). Identity: person_and_organisation (J.T. Holub as the individual farrier; James Holub Equine Services as the operating business).",
+        "unresolved_questions": [
+          "Which specific Equinet products would be most relevant for sport horse farriery?",
+          "Is certification with AFA / APF current? (APF credential visible on Mad Barn listing but not AOI number on official site)",
+          "Service area is Lexington-Wellington FL corridor; primary purchasing location unclear",
+          "Email discrepancy between official site (holubfarrierltd@gmail.com) and Mad Barn (jtholub.fep@gmail.com)"
+        ]
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "criterion_label": "Active professional Farrier activity",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-CONTACT"
+              ],
+              "notes": "Official website confirms J.T. Holub operates as a professional farrier under James Holub Equine Services. About page details farrier training (Casey & Son's 2003), 5 years as licensed track farrier, and current active practice following major show jumping and dressage circuits."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Experience with glue-on shoes (Polyflex, Sigafoos, Direct Glue Aluminum), therapeutic shoeing for laminitis, quarter crack repair, lameness evaluation. These confirm use of professional hoof-care products in daily practice."
+            },
+            {
+              "criterion_id": "farrier.established_client_base",
+              "criterion_label": "Established or broad client base",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-SITE"
+              ],
+              "notes": "Works with multiple clients across Lexington, KY and Wellington, FL. Previously worked at Hagyard's Equine Institute podiatry department. Follows major competition circuits (show jumping, dressage) servicing multiple sport horse clients."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "criterion_label": "Regular appointments and established business activity",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-CONTACT"
+              ],
+              "notes": "Currently active \u2014 publishes contact page for new client inquiries. Active professional practice from KY to FL. Works at major competition venues (Spruce Meadows, Tryon, Wellington). Contact page is current and published for business."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "criterion_label": "Serves a high-equine-activity area",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "notes": "Lexington, KY is a major equine hub (Thoroughbred breeding capital, Kentucky Horse Park, major equestrian events). Also serves Wellington, FL \u2014 the premier winter equestrian destination in the US."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "criterion_label": "Advanced hoof-care specialisation",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Specialises in upper-level sport horses, therapeutic shoeing, laminitis solutions, quarter crack repair, lameness evaluation, glue-on shoes. Worked in podiatry department at Hagyard's Equine Institute \u2014 an advanced referral-level practice."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "criterion_label": "Certified, experienced or well-established professional",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "notes": "APF (Accredited Professional Farrier) per Mad Barn listing. Over 20 years experience (farrier school 2003). Licensed track farrier. Experience at Hagyard's Equine Institute. Mad Barn directory lists APF credential."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "criterion_label": "Works with sport or competition horses",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Explicitly states focus on upper-level sport horses. Follows major show jumping and dressage circuits from Kentucky to Wellington and abroad. Licensed track farrier experience at multiple racetracks."
+            },
+            {
+              "criterion_id": "farrier.multi_farrier_business",
+              "criterion_label": "Multi-Farrier or established Farrier business",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "No evidence of multi-practitioner operation. Official site presents J.T. Holub as the sole farrier. Book keeping is handled separately (Mary Fasciana), but only one farrier is listed."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "criterion_label": "Influences product selection",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "As the sole practising farrier selecting tools, shoes, glue-on products, and therapeutic materials, J.T. Holub directly influences product purchasing decisions. Evidence of using specific product types (glue-on shoes, therapeutic materials) supports this."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "criterion_label": "Strong fit with professional hoof-care products",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-SITE"
+              ],
+              "notes": "Regular professional need for horseshoes, nails, hoof-care products, glue-on shoe materials, and therapeutic equipment. Sport horse focus (jumpers, dressage) aligns with Equinet's performance hoof-care product range."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "criterion_label": "Recent professional engagement signal",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Current professional engagement: follows major competition circuits, attends clinics/conferences (International Hoofcare Summit, Northeast Association of Equine Practitioner Symposiums), maintains official website with active contact page."
+            },
+            {
+              "criterion_id": "farrier.apprentice_future_potential",
+              "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "J.T. Holub is an established professional farrier, not an apprentice or junior. No evidence of apprentice status."
+            },
+            {
+              "criterion_id": "farrier.inactive_or_hobbyist",
+              "criterion_label": "Inactive or hobby-only Farrier",
+              "category": "negative",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Affirmative evidence of active professional practice. Inactive/hobbyist label is contradicted by available evidence."
+            },
+            {
+              "criterion_id": "farrier.no_professional_evidence",
+              "criterion_label": "No evidence of professional hoof-care activity",
+              "category": "exclusion",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Substantial evidence of professional farrier activity exists. This exclusion criterion is not triggered."
+            }
+          ],
+          "minimum_data_status": "fail",
+          "missing_minimum_fields": [
+            "candidate_id",
+            "identity.display_name",
+            "location.country_code",
+            "location.state_region",
+            "location.geography_status",
+            "source_evidence",
+            "provenance.audit_correlation_id"
+          ],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        },
+        "audit": {
+          "segment": "farrier",
+          "required_gate_statuses": {
+            "farrier.professional_activity": "confirmed"
+          },
+          "special_pathways": [],
+          "criteria_count": 15
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "schema_version": "1.0.0",
+          "method_version": "evidence-confidence-1.0.0",
+          "candidate_reference": {
+            "run_id": "RUN-20260823T170830Z-2D1439AF",
+            "seed_id": "SEED-JTHOLUB-LEX"
+          },
+          "available_evidence_ids": [
+            "EV-JTHOLUB-OFFICIAL-SITE",
+            "EV-JTHOLUB-OFFICIAL-CONTACT",
+            "EV-JTHOLUB-OFFICIAL-ABOUT",
+            "EV-JTHOLUB-MADBARN-DIR"
+          ],
+          "dimensions": {
+            "identity_certainty": {
+              "level": "strong_unique_match",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-CONTACT",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "rationale": "Official website jamesholubequine.com references J.T. Holub as the named farrier with phone 440.522.2995 and PO Box 13111 Lexington KY 40583. Mad Barn directory confirms J.T. Holub, APF at same location. Person and organisation both identified without ambiguity."
+            },
+            "source_quality": {
+              "level": "authoritative_primary_business_source",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-CONTACT",
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "rationale": "Primary evidence from the candidate's current official business website (jamesholubequine.com), including home, about and contact pages. This is an authoritative primary business source for self-controlled facts."
+            },
+            "evidence_directness": {
+              "level": "all_material_claims_direct",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-CONTACT"
+              ],
+              "rationale": "All material ICP claims (professional activity, services, specialisation, location, contact) are directly stated on the official website or supporting directory. No inference-only mandatory criteria."
+            },
+            "corroboration": {
+              "level": "two_or_more_independent_sources",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-CONTACT",
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "rationale": "Official business website (primary) and Mad Barn Equine Directory (independent approved directory) both confirm the identity, location and credential. These are independent sources controlled by different organisations."
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-CONTACT",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "rationale": "Official website retrieved 2026-08-23 with current active contact page and service description. Mad Barn directory retrieved 2026-08-23 with current listing. Both within the 365-day freshness window for professional activity claims."
+            },
+            "completeness": {
+              "level": "partial_noncritical_gaps",
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "rationale": "Confidence-stage minimum data is met: identity resolved, segment confirmed, qualification criteria and exclusion status present. Gaps are non-critical: specific Equinet product fit, exact horse count, and full team size not evidenced."
+            }
+          },
+          "gates": {
+            "mandatory_claim_inference_only": {
+              "value": false,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "rationale": "Mandatory criterion farrier.professional_activity is directly confirmed by official website \u2014 not inference-based."
+            },
+            "unresolved_identity_conflict": {
+              "value": false,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-CONTACT",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "rationale": "Identity is resolved. Minor email discrepancy between primary and directory contact does not create identity conflict."
+            },
+            "critical_evidence_conflict": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "No contradictory evidence among sources. Location, phone, organisation and person name are consistent across official site and directory."
+            },
+            "minimum_data_failed": {
+              "value": false,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "rationale": "Confidence-stage minimum data is satisfied: resolved identity, confirmed segment, at least one permitted evidence record, qualification criteria, exclusion status, and visible conflicts."
+            },
+            "blocked_source_used": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "All evidence sources are approved and accessible. No blocked or conditional sources were used."
+            },
+            "no_evidence": {
+              "value": false,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE"
+              ],
+              "rationale": "Four evidence records available from permitted sources."
+            },
+            "fabricated_or_untraceable_evidence": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "All evidence is traceable to live, publicly accessible URLs verified during research."
+            }
+          },
+          "confidence_stage_missing_fields": []
+        },
+        "confidence": {
+          "level": "high",
+          "score": 93,
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "identity_certainty: strong_unique_match (20/20)",
+            "source_quality: authoritative_primary_business_source (20/20)",
+            "evidence_directness: all_material_claims_direct (20/20)",
+            "corroboration: two_or_more_independent_sources (20/20)",
+            "freshness: current_within_claim_window (10/10)",
+            "completeness: partial_noncritical_gaps (3/10)"
+          ],
+          "limitations": [
+            "No confidence score cap was triggered."
+          ]
+        },
+        "audit": {
+          "raw_score": 93,
+          "adjusted_score": 93,
+          "dimension_scores": {
+            "identity_certainty": {
+              "level": "strong_unique_match",
+              "points": 20,
+              "maximum": 20
+            },
+            "source_quality": {
+              "level": "authoritative_primary_business_source",
+              "points": 20,
+              "maximum": 20
+            },
+            "evidence_directness": {
+              "level": "all_material_claims_direct",
+              "points": 20,
+              "maximum": 20
+            },
+            "corroboration": {
+              "level": "two_or_more_independent_sources",
+              "points": 20,
+              "maximum": 20
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "points": 10,
+              "maximum": 10
+            },
+            "completeness": {
+              "level": "partial_noncritical_gaps",
+              "points": 3,
+              "maximum": 10
+            }
+          },
+          "applied_caps": [],
+          "confidence_stage_missing_fields": [],
+          "available_evidence_ids": [
+            "EV-JTHOLUB-OFFICIAL-SITE",
+            "EV-JTHOLUB-OFFICIAL-CONTACT",
+            "EV-JTHOLUB-OFFICIAL-ABOUT",
+            "EV-JTHOLUB-MADBARN-DIR"
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "scored",
+          "score": 96,
+          "band": "high",
+          "model_version": "1.0.0",
+          "components": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points_awarded": 20,
+              "max_points": 20,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-CONTACT"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "points_awarded": 15,
+              "max_points": 15,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-SITE"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.established_client_base",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-SITE"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "points_awarded": 10,
+              "max_points": 10,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-CONTACT"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "points_awarded": 8,
+              "max_points": 8,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "points_awarded": 3,
+              "max_points": 3,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            }
+          ],
+          "rationale": "Numeric ICP score 96/100 from 11 confirmed weighted criteria. Raw band high; final band high.",
+          "block_reason": null
+        },
+        "audit": {
+          "raw_band": "high",
+          "final_band": "high",
+          "applied_band_caps": [],
+          "outcome": "high_priority_farrier",
+          "review_required": true,
+          "confirmed_positive_criteria": [
+            "farrier.professional_activity",
+            "farrier.product_usage_or_influence",
+            "farrier.product_fit",
+            "farrier.established_client_base",
+            "farrier.regular_business_activity",
+            "farrier.advanced_specialisation",
+            "farrier.high_value_service_area",
+            "farrier.certified_or_experienced",
+            "farrier.sport_horse_focus",
+            "farrier.buying_influence",
+            "farrier.engagement_signal"
+          ],
+          "missing_required_gates": []
+        },
+        "explanation": {
+          "summary": "ICP score 96/100; final band high. 11 weighted criteria earned points. Outcome: high_priority_farrier.",
+          "confirmed_criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points": 20,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-CONTACT"
+              ]
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "points": 15,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ]
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "points": 10,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-SITE"
+              ]
+            },
+            {
+              "criterion_id": "farrier.established_client_base",
+              "points": 10,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-SITE"
+              ]
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "points": 10,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-OFFICIAL-CONTACT"
+              ]
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "points": 8,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ]
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-SITE",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ]
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT",
+                "EV-JTHOLUB-MADBARN-DIR"
+              ]
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ]
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "points": 5,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ]
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "points": 3,
+              "evidence_ids": [
+                "EV-JTHOLUB-OFFICIAL-ABOUT"
+              ]
+            }
+          ],
+          "unearned_weighted_criteria": [
+            "farrier.multi_farrier_business"
+          ],
+          "applied_band_rules": [],
+          "outcome": "high_priority_farrier",
+          "review_required": true,
+          "confidence_interpretation": "High commercial fit with High evidence confidence: attractive and well-supported for human review."
+        },
+        "confidence_context": {
+          "level": "high",
+          "score": 93,
+          "method_version": "evidence-confidence-1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "approved_search_tool",
+      "model": "deepseek-v4-flash",
+      "tools_used": [
+        "web_search",
+        "web_extract",
+        "terminal",
+        "execute_code",
+        "read_file",
+        "write_file"
+      ]
+    },
+    {
+      "candidate_id": "A1-BOBBY-MENKER-002",
+      "record_kind": "production",
+      "research_seed": {
+        "schema_version": "1.0.0",
+        "run_id": "RUN-20260823T170830Z-2D1439AF",
+        "seed_id": "SEED-BOBBY-MENKER-LEX",
+        "discovered_at": "2026-08-23T17:09:00Z",
+        "discovery_method": "approved_directory_scrape",
+        "discovery_query": "Mad Barn directory \u2014 Lexington, KY farrier listings (validated Wave 2 run W2-MADBARN-20260823)",
+        "segment_hint": "farrier",
+        "identity_hint": {
+          "display_name": "Bobby Menker, CJF, APF-I",
+          "person_name": "Bobby Menker",
+          "organisation_name": "Bobby Menker Horseshoeing",
+          "role_title": "CJF, APF-I (Certified Journeyman Farrier, Accredited Professional Farrier - Instructor)"
+        },
+        "website": null,
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "Kentucky",
+          "city": "Lexington",
+          "postal_code": "40511",
+          "public_address": "Lexington, KY 40511"
+        },
+        "public_contacts": [
+          {
+            "contact_type": "phone",
+            "value": "(419) 722-3536",
+            "label": "Primary named contact \u2014 Bobby Menker \u2014 Farrier",
+            "evidence_ids": [
+              "EV-BOBBY-MADBARN-DIR",
+              "EV-BOBBY-PROFFARR-DIR"
+            ]
+          },
+          {
+            "contact_type": "email",
+            "value": "bmhifarrier@gmail.com",
+            "label": "Primary named contact \u2014 Bobby Menker \u2014 Farrier",
+            "evidence_ids": [
+              "EV-BOBBY-MADBARN-DIR"
+            ]
+          }
+        ],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-BOBBY-MADBARN-DIR",
+            "source_url": "https://madbarn.com/directory/bobby-menker-cjf-apf-i/",
+            "source_name": "Mad Barn Equine Directory (approved bounded directory)",
+            "source_type": "public_directory_bounded_scraping",
+            "retrieved_at": "2026-08-23T16:11:31Z",
+            "evidence_excerpt": "Bobby Menker, CJF, APF-I \u2014 Farrier \u2014 Lexington, KY \u2014 Company: Bobby Menker Horseshoeing \u2014 Phone: (419) 722-3536 \u2014 Email: bmhifarrier@gmail.com \u2014 Address: Lexington, KY 40511",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-BOBBY-PROFFARR-DIR",
+            "source_url": "https://madbarn.com/directory/bobby-menker-cjf-apf-i/",
+            "source_name": "Mad Barn Equine Directory (approved bounded directory)",
+            "source_type": "public_directory_bounded_scraping",
+            "retrieved_at": "2026-08-23T17:08:50Z",
+            "evidence_excerpt": "Mad Barn listing confirms phone (419) 722-3536 for Bobby Menker Horseshoeing",
+            "fact_or_inference": "direct_fact"
+          },
+          {
+            "evidence_id": "EV-BOBBY-NO-STANDALONE-SITE",
+            "source_url": "https://madbarn.com/directory/bobby-menker-cjf-apf-i/",
+            "source_name": "Web search \u2014 no standalone website found for Bobby Menker Horseshoeing",
+            "source_type": "public_directory_bounded_scraping",
+            "retrieved_at": "2026-08-23T17:09:00Z",
+            "evidence_excerpt": "No standalone official business website discovered for Bobby Menker Horseshoeing. Mad Barn directory listing serves as primary public professional profile. Associated directories include professionalfarriers.com (conditional/blocked access).",
+            "fact_or_inference": "reasonable_inference"
+          }
+        ],
+        "missing_information": [
+          "No official standalone business website found",
+          "No About/Team/Contact page checks on a standalone site (no official site exists)",
+          "Postal code 40511 from directory listing, not verified on official site",
+          "Full street address not publicly published (city/state/ZIP only)",
+          "Professionalfarriers.com member profile (mms.professionalfarriers.com) is behind conditional access \u2014 not used as evidence",
+          "Year started as farrier: 1979 per professionalfarriers.com (conditional source, not retained)",
+          "NO_STANDALONE_WEBSITE: No official business website found. Mad Barn directory listing is primary public profile. Status downgraded to needs_research until a website or human review decision."
+        ],
+        "conflicts": [
+          "Mad Barn lists Lexington KY 40511; professionalfarriers.com member profile lists Georgetown KY 40324 \u2014 possible location discrepancy or multiple service locations"
+        ],
+        "status": "needs_research"
+      },
+      "classification_decision": {
+        "schema_version": "1.0.0",
+        "seed_id": "SEED-BOBBY-MENKER-LEX",
+        "segment": "farrier",
+        "prospect_type": "farrier_independent",
+        "identity_type": "person_and_organisation",
+        "classification_status": "needs_review",
+        "evidence_references": [
+          "EV-BOBBY-MADBARN-DIR"
+        ],
+        "rationale": "Bobby Menker is a highly experienced farrier (CJF, APF-I credentials) operating Bobby Menker Horseshoeing in Lexington, KY. Evidence from Mad Barn directory shows active professional farrier listing, company name, phone, email, and address. However, no standalone official business website exists to independently verify the business identity, services, or current activity. The Mad Barn directory listing is the primary public profile. Classification is needs_review pending human decision on whether the directory evidence is sufficient to proceed without an official site.",
+        "unresolved_questions": [
+          "No standalone official business website \u2014 is Mad Barn directory listing sufficient to proceed?",
+          "Location discrepancy: Mad Barn lists Lexington 40511; professionalfarriers.com (conditional/blocked) lists Georgetown 40324 \u2014 which is the primary service area?",
+          "Year started 1979 per conditional source \u2014 is there current active professional evidence beyond directory presence?",
+          "Bobby Menker Horseshoeing \u2014 does this include apprentices or multi-practitioner support?"
+        ]
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "criterion_label": "Active professional Farrier activity",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "notes": "Mad Barn directory confirms Bobby Menker as active professional farrier with CJF and APF-I credentials. Directory listing: Bobby Menker Horseshoeing, Lexington KY. No standalone website to independently verify current activity, but directory presence with professional certification titles confirms professional farrier status."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+              "category": "fit",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "No evidence of specific products used or recommended. CJF/APF-I certification implies broad professional tool use, but specific product details not available from directory sources."
+            },
+            {
+              "criterion_id": "farrier.established_client_base",
+              "criterion_label": "Established or broad client base",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "No evidence of client base size. Professional certifications suggest established practice but no direct source confirms client count or breadth."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "criterion_label": "Regular appointments and established business activity",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Directory listing is current but provides no evidence of current booking activity, appointment schedule, or active client work."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "criterion_label": "Serves a high-equine-activity area",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "notes": "Lexington, KY is a major equine hub. Location confirmed by Mad Barn directory listing."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "criterion_label": "Advanced hoof-care specialisation",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "CJF and APF-I credentials suggest advanced capability, but specific specialisation areas not detailed in available directory evidence."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "criterion_label": "Certified, experienced or well-established professional",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "notes": "CJF (Certified Journeyman Farrier) and APF-I (Accredited Professional Farrier - Instructor) credentials are visible in the Mad Barn directory listing title. These are recognised professional certifications."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "criterion_label": "Works with sport or competition horses",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "No evidence of specific sport horse focus from directory sources. CJF/APF-I certification is broad and not exclusive to sport horses."
+            },
+            {
+              "criterion_id": "farrier.multi_farrier_business",
+              "criterion_label": "Multi-Farrier or established Farrier business",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Business name 'Bobby Menker Horseshoeing' suggests single-practitioner operation."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "criterion_label": "Influences product selection",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "As a practising farrier, product purchasing influence is plausible but not directly evidenced from directory sources."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "criterion_label": "Strong fit with professional hoof-care products",
+              "category": "fit",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Professional farrier role implies regular product needs but specific product fit not evidenced."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "criterion_label": "Recent professional engagement signal",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "No evidence of recent events, conferences, or professional engagement beyond directory listing."
+            },
+            {
+              "criterion_id": "farrier.apprentice_future_potential",
+              "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Bobby Menker is an established professional farrier with CJF and APF-I, not an apprentice."
+            },
+            {
+              "criterion_id": "farrier.inactive_or_hobbyist",
+              "criterion_label": "Inactive or hobby-only Farrier",
+              "category": "negative",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Directory presence with professional credentials suggests active professional practice."
+            },
+            {
+              "criterion_id": "farrier.no_professional_evidence",
+              "criterion_label": "No evidence of professional hoof-care activity",
+              "category": "exclusion",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Evidence of professional farrier activity exists via Mad Barn directory listing with CJF/APF-I credentials."
+            }
+          ],
+          "minimum_data_status": "fail",
+          "missing_minimum_fields": [
+            "candidate_id",
+            "identity.display_name",
+            "location.country_code",
+            "location.state_region",
+            "location.geography_status",
+            "source_evidence",
+            "provenance.audit_correlation_id"
+          ],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        },
+        "audit": {
+          "segment": "farrier",
+          "required_gate_statuses": {
+            "farrier.professional_activity": "confirmed"
+          },
+          "special_pathways": [],
+          "criteria_count": 15
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "schema_version": "1.0.0",
+          "method_version": "evidence-confidence-1.0.0",
+          "candidate_reference": {
+            "run_id": "RUN-20260823T170830Z-2D1439AF",
+            "seed_id": "SEED-BOBBY-MENKER-LEX"
+          },
+          "available_evidence_ids": [
+            "EV-BOBBY-MADBARN-DIR",
+            "EV-BOBBY-PROFFARR-DIR",
+            "EV-BOBBY-NO-STANDALONE-SITE"
+          ],
+          "dimensions": {
+            "identity_certainty": {
+              "level": "good_multi_field_match",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Identity is resolved at directory level: Bobby Menker, CJF, APF-I, Bobby Menker Horseshoeing, Lexington KY, phone and email on Mad Barn. Person and organisation both present. No standalone website for stronger verification. Location discrepancy (Lexington vs Georgetown per conditional source) adds minor ambiguity."
+            },
+            "source_quality": {
+              "level": "permitted_primary_plus_directory",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Mad Barn directory is an approved bounded directory but is not a primary business website. No standalone website exists. Directory provides contact info and professional titles but less authoritative than an official site."
+            },
+            "evidence_directness": {
+              "level": "mixed_direct_and_inferred",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Direct facts: directory confirms active farrier listing with name, organisation, certifications (CJF, APF-I), location, phone, email. Inferred: current activity level, client base, specialisation not directly stated."
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Single permitted approved directory source (Mad Barn). Second source (professionalfarriers.com) is conditional/blocked and cannot be used. No independent corroboration."
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Mad Barn directory retrieved 2026-08-23 with current active listing. Within the 365-day freshness window."
+            },
+            "completeness": {
+              "level": "partial_noncritical_gaps",
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Confidence-stage minimum data met: identity resolved sufficiently, segment confirmed as needs_review, at least one permitted evidence record, qualification criteria present. Gaps: no standalone website, no current activity evidence, location discrepancy noted."
+            }
+          },
+          "gates": {
+            "mandatory_claim_inference_only": {
+              "value": false,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Mandatory criterion farrier.professional_activity is directly confirmed by directory listing with professional certification titles and business name."
+            },
+            "unresolved_identity_conflict": {
+              "value": false,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Identity is sufficiently resolved. Minor location discrepancy (Lexington vs Georgetown) flagged in conflicts but does not prevent identity resolution."
+            },
+            "critical_evidence_conflict": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "No contradictory evidence among permitted sources. Professionalfarriers.com discrepancy noted but that source is not used as evidence."
+            },
+            "minimum_data_failed": {
+              "value": false,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Confidence-stage minimum data satisfied: resolved identity, segment state (needs_review), at least one permitted evidence record, qualification criteria, exclusion status, visible conflicts."
+            },
+            "blocked_source_used": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "Only approved directory sources used. Professionalfarriers.com (conditional) was not used as evidence."
+            },
+            "no_evidence": {
+              "value": false,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "rationale": "Permitted evidence exists from Mad Barn directory."
+            },
+            "fabricated_or_untraceable_evidence": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "All evidence is traceable to live, accessible URLs verified during research."
+            }
+          },
+          "confidence_stage_missing_fields": []
+        },
+        "confidence": {
+          "level": "medium",
+          "score": 63,
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "identity_certainty: good_multi_field_match (15/20)",
+            "source_quality: permitted_primary_plus_directory (15/20)",
+            "evidence_directness: mixed_direct_and_inferred (8/20)",
+            "corroboration: one_strong_source (12/20)",
+            "freshness: current_within_claim_window (10/10)",
+            "completeness: partial_noncritical_gaps (3/10)"
+          ],
+          "limitations": [
+            "No confidence score cap was triggered.",
+            "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+          ]
+        },
+        "audit": {
+          "raw_score": 63,
+          "adjusted_score": 63,
+          "dimension_scores": {
+            "identity_certainty": {
+              "level": "good_multi_field_match",
+              "points": 15,
+              "maximum": 20
+            },
+            "source_quality": {
+              "level": "permitted_primary_plus_directory",
+              "points": 15,
+              "maximum": 20
+            },
+            "evidence_directness": {
+              "level": "mixed_direct_and_inferred",
+              "points": 8,
+              "maximum": 20
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "points": 12,
+              "maximum": 20
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "points": 10,
+              "maximum": 10
+            },
+            "completeness": {
+              "level": "partial_noncritical_gaps",
+              "points": 3,
+              "maximum": 10
+            }
+          },
+          "applied_caps": [],
+          "confidence_stage_missing_fields": [],
+          "available_evidence_ids": [
+            "EV-BOBBY-MADBARN-DIR",
+            "EV-BOBBY-PROFFARR-DIR",
+            "EV-BOBBY-NO-STANDALONE-SITE"
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "scored",
+          "score": 30,
+          "band": "low",
+          "model_version": "1.0.0",
+          "components": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points_awarded": 20,
+              "max_points": 20,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            }
+          ],
+          "rationale": "Numeric ICP score 30/100 from 3 confirmed weighted criteria. Raw band low; final band low.",
+          "block_reason": null
+        },
+        "audit": {
+          "raw_band": "low",
+          "final_band": "low",
+          "applied_band_caps": [],
+          "outcome": "lower_priority_farrier",
+          "review_required": true,
+          "confirmed_positive_criteria": [
+            "farrier.professional_activity",
+            "farrier.high_value_service_area",
+            "farrier.certified_or_experienced"
+          ],
+          "missing_required_gates": []
+        },
+        "explanation": {
+          "summary": "ICP score 30/100; final band low. 3 weighted criteria earned points. Outcome: lower_priority_farrier.",
+          "confirmed_criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points": 20,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ]
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points": 5,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ]
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "points": 5,
+              "evidence_ids": [
+                "EV-BOBBY-MADBARN-DIR"
+              ]
+            }
+          ],
+          "unearned_weighted_criteria": [
+            "farrier.product_usage_or_influence",
+            "farrier.product_fit",
+            "farrier.established_client_base",
+            "farrier.regular_business_activity",
+            "farrier.advanced_specialisation",
+            "farrier.sport_horse_focus",
+            "farrier.buying_influence",
+            "farrier.multi_farrier_business",
+            "farrier.engagement_signal"
+          ],
+          "applied_band_rules": [],
+          "outcome": "lower_priority_farrier",
+          "review_required": true,
+          "confidence_interpretation": "ICP band low; evidence confidence medium. Review both values together."
+        },
+        "confidence_context": {
+          "level": "medium",
+          "score": 63,
+          "method_version": "evidence-confidence-1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "approved_search_tool",
+      "model": "deepseek-v4-flash",
+      "tools_used": [
+        "web_search",
+        "web_extract",
+        "terminal",
+        "execute_code",
+        "read_file",
+        "write_file"
+      ]
+    },
+    {
+      "candidate_id": "A1-KY-LEGEND-003",
+      "record_kind": "production",
+      "research_seed": {
+        "schema_version": "1.0.0",
+        "run_id": "RUN-20260823T170830Z-2D1439AF",
+        "seed_id": "SEED-KY-LEGEND-SCHELL",
+        "discovered_at": "2026-08-23T17:09:15Z",
+        "discovery_method": "approved_directory_scrape",
+        "discovery_query": "NewHorse directory \u2014 Kentucky farrier listings (validated Wave 2 run W2-NEWHORSE-20260823); cross-referenced with Best of Lexington directory (Wave 1)",
+        "segment_hint": "farrier",
+        "identity_hint": {
+          "display_name": "Kentucky Legend Horseshoeing",
+          "person_name": "David Schell",
+          "organisation_name": "Kentucky Legend Horseshoeing",
+          "role_title": "Farrier / Owner"
+        },
+        "website": null,
+        "location_hint": {
+          "country_code": "US",
+          "state_region": "Kentucky",
+          "city": "Richmond",
+          "postal_code": null,
+          "public_address": "Richmond, Kentucky"
+        },
+        "public_contacts": [
+          {
+            "contact_type": "phone",
+            "value": "785-226-3628",
+            "label": "Primary named contact \u2014 David Schell \u2014 Farrier/Owner",
+            "evidence_ids": [
+              "EV-KYLEGEND-NEWHORSE-DIR"
+            ]
+          },
+          {
+            "contact_type": "phone",
+            "value": "+1 (859) 536-7054",
+            "label": "Primary named contact \u2014 David Schell \u2014 Farrier/Owner",
+            "evidence_ids": [
+              "EV-KYLEGEND-NEWHORSE-DIR"
+            ]
+          }
+        ],
+        "source_candidates": [
+          {
+            "evidence_id": "EV-KYLEGEND-NEWHORSE-DIR",
+            "source_url": "https://www.newhorse.com/profile/b.2001.r.46475.u.3bf485.html",
+            "source_name": "NewHorse Farrier Directory (approved bounded directory \u2014 Wave 2)",
+            "source_type": "public_directory_bounded_scraping",
+            "retrieved_at": "2026-08-23T16:11:14Z",
+            "evidence_excerpt": "KentuckyLegendHorseshoeing \u2014 Richmond, KY \u2014 Professional Farrier service \u2014 David Schell \u2014 Phone: 785-226-3628 \u2014 Also: +1 (859) 536-7054 \u2014 Services: All Breeds & Disciplines, Cold Shoeing, Corrective & Lameness Shoeing, Draft Horses, Gaited Horses, Glue On Shoes, Handmade Shoes, Hoof Trimming, Natural Barefoot Trimming, Therapeutic Shoeing",
+            "fact_or_inference": "direct_fact"
+          }
+        ],
+        "missing_information": [
+          "No official standalone business website found",
+          "No About/Team/Contact page checks on a standalone site (no official site exists)",
+          "No email address publicly published",
+          "No postal code or full street address published",
+          "Service area listed as Lexington, Louisville, Danville area (per NewHorse description text) \u2014 not formally confirmed",
+          "No certification/association membership verified from authoritative source",
+          "Cross-source duplicate group identified in Wave 2 validation \u2014 possible same business listed under different names (Kentucky legend horseshoeing Frankfort vs KentuckyLegendHorseshoeing Richmond)",
+          "NO_STANDALONE_WEBSITE: No official business website found. NewHorse directory profile is primary public profile. Status downgraded to needs_research until a website or human review decision."
+        ],
+        "conflicts": [
+          "Two NewHorse profiles found: one in Frankfort, KY (listing ID DL-8A1EDEC133E43411) and one in Richmond, KY (listing ID DL-4F81BC0DB665E9DA) \u2014 may be same person/business serving multiple areas",
+          "Best of Lexington listing lists Richmond KY with phone 785-226-3628 \u2014 matches the Richmond NewHorse listing",
+          "Duplicate group flagged in Wave 2 validation (match_key: kentuckylegendhorseshoeing) \u2014 review required",
+          "Duplicate group flagged in Wave 2 validation (match_key: kentuckylegendhorseshoeing). Two NewHorse profiles exist: Frankfort listing (DL-8A1EDEC133E43411) and Richmond listing (DL-4F81BC0DB665E9DA). Also Best of Lexington listing (cross-source match)."
+        ],
+        "status": "needs_research"
+      },
+      "classification_decision": {
+        "schema_version": "1.0.0",
+        "seed_id": "SEED-KY-LEGEND-SCHELL",
+        "segment": "farrier",
+        "prospect_type": "farrier_independent",
+        "identity_type": "person_and_organisation",
+        "classification_status": "needs_review",
+        "evidence_references": [
+          "EV-KYLEGEND-NEWHORSE-DIR"
+        ],
+        "rationale": "David Schell operates as Kentucky Legend Horseshoeing, a professional farrier service based in Richmond, KY (serving Lexington, Louisville, Danville area). Evidence from NewHorse directory shows active listing with David Schell named, two phone numbers, and extensive service catalogue. No standalone official website exists. Additionally, a duplicate group was flagged in Wave 2 validation: two NewHorse profiles (Frankfort and Richmond) plus a Best of Lexington listing all match the same normalised business name and phone. Classification is needs_review pending human resolution of the duplicate group and decision on whether directory-only evidence is sufficient.",
+        "unresolved_questions": [
+          "Duplicate group: three cross-source listings match the same business \u2014 which is the canonical record?",
+          "NewHorse profiles in both Frankfort (DL-8A1EDEC133E43411) and Richmond (DL-4F81BC0DB665E9DA) \u2014 same person?",
+          "No standalone official website \u2014 is NewHorse directory evidence sufficient?",
+          "No email address publicly published \u2014 only phone contact available",
+          "No certification or association membership verified",
+          "Best of Lexington listing had phone 785-226-3628 matching Richmond profile \u2014 cross-source consistency"
+        ]
+      },
+      "qualification_package": {
+        "qualification": {
+          "icp_config_version": "1.0.0",
+          "criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "criterion_label": "Active professional Farrier activity",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "notes": "NewHorse directory confirms David Schell operates Kentucky Legend Horseshoeing as an active professional farrier service in Richmond, KY (serving Lexington, Louisville, Danville). Self-described 'Professional Farrier service'. No standalone website."
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+              "category": "fit",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Services include cold shoeing, glue-on shoes, therapeutic shoeing, and natural barefoot trimming, which imply product usage, but specific product details not directly evidenced."
+            },
+            {
+              "criterion_id": "farrier.established_client_base",
+              "criterion_label": "Established or broad client base",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Claims 'best farrier service 2yrs in a row in the Lexington area' but no independent verification of client base size."
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "criterion_label": "Regular appointments and established business activity",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Active directory listing with phone contact suggests current availability, but no appointment-scheduling or current-work evidence."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "criterion_label": "Serves a high-equine-activity area",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "notes": "Serves Lexington, Louisville, Danville area \u2014 all high-equine-activity areas in Kentucky. Richmond, KY base is in Madison County (horse country)."
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "criterion_label": "Advanced hoof-care specialisation",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Service list includes corrective, lameness, therapeutic shoeing and natural barefoot trimming \u2014 some specialisation indicated, but no certification or advanced-training evidence."
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "criterion_label": "Certified, experienced or well-established professional",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "No professional certification, association membership, or experience-duration evidence available from directory sources."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "criterion_label": "Works with sport or competition horses",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Services include 'gaited horses', 'reining & ranch horses' \u2014 some performance focus, but not explicitly positioned as sport-horse specialist."
+            },
+            {
+              "criterion_id": "farrier.multi_farrier_business",
+              "criterion_label": "Multi-Farrier or established Farrier business",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Kentucky Legend Horseshoeing appears to be a single-practitioner operation (David Schell)."
+            },
+            {
+              "criterion_id": "farrier.buying_influence",
+              "criterion_label": "Influences product selection",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "As a practising farrier, product purchasing influence is plausible but not directly evidenced."
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "criterion_label": "Strong fit with professional hoof-care products",
+              "category": "fit",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Professional farrier role implies regular product needs but specific product fit not evidenced."
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "criterion_label": "Recent professional engagement signal",
+              "category": "priority",
+              "status": "unknown",
+              "evidence_ids": [],
+              "notes": "Claims 'best farrier service 2yrs in a row in the Lexington area' (self-reported on NewHorse) \u2014 could indicate engagement but not independently verified."
+            },
+            {
+              "criterion_id": "farrier.apprentice_future_potential",
+              "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+              "category": "priority",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "David Schell presents as an established independent farrier, not an apprentice."
+            },
+            {
+              "criterion_id": "farrier.inactive_or_hobbyist",
+              "criterion_label": "Inactive or hobby-only Farrier",
+              "category": "negative",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Active directory listing with service catalogue suggests current professional activity."
+            },
+            {
+              "criterion_id": "farrier.no_professional_evidence",
+              "criterion_label": "No evidence of professional hoof-care activity",
+              "category": "exclusion",
+              "status": "not_confirmed",
+              "evidence_ids": [],
+              "notes": "Evidence of professional farrier activity exists via NewHorse directory listing."
+            }
+          ],
+          "minimum_data_status": "fail",
+          "missing_minimum_fields": [
+            "candidate_id",
+            "identity.display_name",
+            "location.country_code",
+            "location.state_region",
+            "location.geography_status",
+            "source_evidence",
+            "provenance.audit_correlation_id"
+          ],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        },
+        "audit": {
+          "segment": "farrier",
+          "required_gate_statuses": {
+            "farrier.professional_activity": "confirmed"
+          },
+          "special_pathways": [],
+          "criteria_count": 15
+        }
+      },
+      "confidence_package": {
+        "assessment": {
+          "schema_version": "1.0.0",
+          "method_version": "evidence-confidence-1.0.0",
+          "candidate_reference": {
+            "run_id": "RUN-20260823T170830Z-2D1439AF",
+            "seed_id": "SEED-KY-LEGEND-SCHELL"
+          },
+          "available_evidence_ids": [
+            "EV-KYLEGEND-NEWHORSE-DIR"
+          ],
+          "dimensions": {
+            "identity_certainty": {
+              "level": "good_multi_field_match",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "NewHorse directory identifies David Schell as the farrier/owner of Kentucky Legend Horseshoeing in Richmond, KY, with two phone numbers. Cross-source match with Best of Lexington directory (same phone 785-226-3628) adds consistency. Duplicate group with Frankfort listing needs review but identity is sufficiently resolved for the Richmond base."
+            },
+            "source_quality": {
+              "level": "permitted_primary_plus_directory",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "NewHorse is an approved bounded directory with self-submitted content. No standalone website exists. Directory provides service listing and contact info but has known self-submitted content limitations."
+            },
+            "evidence_directness": {
+              "level": "mixed_direct_and_inferred",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "Direct facts: directory confirms active farrier listing, David Schell, Kentucky Legend Horseshoeing, Richmond KY, two phone numbers, extensive service catalogue. Inferred: current activity level, professional certifications, client base."
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "Single permitted approved directory source (NewHorse). Best of Lexington cross-source was removed due to source-register restrictions. No independent corroboration from a verified official website."
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "NewHorse directory retrieved 2026-08-23 with photos dating from 2020-2023, suggesting ongoing maintenance. Within the 365-day freshness window."
+            },
+            "completeness": {
+              "level": "partial_noncritical_gaps",
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "Confidence-stage minimum data satisfied: resolved identity, segment state (needs_review), at least one permitted evidence record, qualification criteria, exclusion status, visible conflicts. Gaps: no standalone website, no email, no certification, duplicate group unresolved."
+            }
+          },
+          "gates": {
+            "mandatory_claim_inference_only": {
+              "value": false,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "Mandatory criterion farrier.professional_activity is directly confirmed by directory listing describing 'Professional Farrier service'."
+            },
+            "unresolved_identity_conflict": {
+              "value": false,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "Identity is sufficiently resolved at the Richmond base. Duplicate group with Frankfort listing flagged as conflict but does not make the Richmond identity unresolvable."
+            },
+            "critical_evidence_conflict": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "No contradictory evidence. Cross-source matches (Best of Lexington phone) actually reinforce consistency."
+            },
+            "minimum_data_failed": {
+              "value": false,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "Confidence-stage minimum data satisfied: resolved identity, segment state (needs_review), permitted evidence record, qualification criteria, exclusion status, visible conflicts."
+            },
+            "blocked_source_used": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "Only approved directory source used. Best of Lexington cross-reference not retained as evidence."
+            },
+            "no_evidence": {
+              "value": false,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "rationale": "Permitted evidence exists from NewHorse directory."
+            },
+            "fabricated_or_untraceable_evidence": {
+              "value": false,
+              "evidence_ids": [],
+              "rationale": "Evidence is traceable to live, accessible URL verified during research."
+            }
+          },
+          "confidence_stage_missing_fields": []
+        },
+        "confidence": {
+          "level": "medium",
+          "score": 63,
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "identity_certainty: good_multi_field_match (15/20)",
+            "source_quality: permitted_primary_plus_directory (15/20)",
+            "evidence_directness: mixed_direct_and_inferred (8/20)",
+            "corroboration: one_strong_source (12/20)",
+            "freshness: current_within_claim_window (10/10)",
+            "completeness: partial_noncritical_gaps (3/10)"
+          ],
+          "limitations": [
+            "No confidence score cap was triggered.",
+            "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+          ]
+        },
+        "audit": {
+          "raw_score": 63,
+          "adjusted_score": 63,
+          "dimension_scores": {
+            "identity_certainty": {
+              "level": "good_multi_field_match",
+              "points": 15,
+              "maximum": 20
+            },
+            "source_quality": {
+              "level": "permitted_primary_plus_directory",
+              "points": 15,
+              "maximum": 20
+            },
+            "evidence_directness": {
+              "level": "mixed_direct_and_inferred",
+              "points": 8,
+              "maximum": 20
+            },
+            "corroboration": {
+              "level": "one_strong_source",
+              "points": 12,
+              "maximum": 20
+            },
+            "freshness": {
+              "level": "current_within_claim_window",
+              "points": 10,
+              "maximum": 10
+            },
+            "completeness": {
+              "level": "partial_noncritical_gaps",
+              "points": 3,
+              "maximum": 10
+            }
+          },
+          "applied_caps": [],
+          "confidence_stage_missing_fields": [],
+          "available_evidence_ids": [
+            "EV-KYLEGEND-NEWHORSE-DIR"
+          ]
+        }
+      },
+      "scoring_package": {
+        "scoring": {
+          "status": "scored",
+          "score": 25,
+          "band": "low",
+          "model_version": "1.0.0",
+          "components": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points_awarded": 20,
+              "max_points": 20,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points_awarded": 5,
+              "max_points": 5,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ],
+              "notes": "Full V1 weight awarded for confirmed criterion."
+            }
+          ],
+          "rationale": "Numeric ICP score 25/100 from 2 confirmed weighted criteria. Raw band low; final band low.",
+          "block_reason": null
+        },
+        "audit": {
+          "raw_band": "low",
+          "final_band": "low",
+          "applied_band_caps": [],
+          "outcome": "lower_priority_farrier",
+          "review_required": true,
+          "confirmed_positive_criteria": [
+            "farrier.professional_activity",
+            "farrier.high_value_service_area"
+          ],
+          "missing_required_gates": []
+        },
+        "explanation": {
+          "summary": "ICP score 25/100; final band low. 2 weighted criteria earned points. Outcome: lower_priority_farrier.",
+          "confirmed_criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points": 20,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ]
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "points": 5,
+              "evidence_ids": [
+                "EV-KYLEGEND-NEWHORSE-DIR"
+              ]
+            }
+          ],
+          "unearned_weighted_criteria": [
+            "farrier.product_usage_or_influence",
+            "farrier.product_fit",
+            "farrier.established_client_base",
+            "farrier.regular_business_activity",
+            "farrier.advanced_specialisation",
+            "farrier.certified_or_experienced",
+            "farrier.sport_horse_focus",
+            "farrier.buying_influence",
+            "farrier.multi_farrier_business",
+            "farrier.engagement_signal"
+          ],
+          "applied_band_rules": [],
+          "outcome": "lower_priority_farrier",
+          "review_required": true,
+          "confidence_interpretation": "ICP band low; evidence confidence medium. Review both values together."
+        },
+        "confidence_context": {
+          "level": "medium",
+          "score": 63,
+          "method_version": "evidence-confidence-1.0.0"
+        }
+      },
+      "source_policy_status": "approved",
+      "access_method": "approved_search_tool",
+      "model": "deepseek-v4-flash",
+      "tools_used": [
+        "web_search",
+        "web_extract",
+        "terminal",
+        "execute_code",
+        "read_file",
+        "write_file"
+      ]
+    }
+  ]
+}

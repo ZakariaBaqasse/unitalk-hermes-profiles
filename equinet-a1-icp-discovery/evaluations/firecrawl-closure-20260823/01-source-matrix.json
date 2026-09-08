@@ -1,0 +1,153 @@
+{
+  "matrix_id": "equinet-a1-firecrawl-closure-source-matrix-20260823",
+  "generated_at": "2026-08-23T18:48:00Z",
+  "source_register_version": "1.4.3",
+  "total_approved_bounded_directory_sources": 12,
+  "notes": "These are the 12 approved bounded-directory sources (excluding integration.apify_google_maps_scraper which is integration_pending). Smoke test column reports the historical Firecrawl test result for all 12 pathways. 6 completed, 5 partial, 1 blocked. 6 have validated adapters, 6 have no adapter.",
+  "sources": [
+    {
+      "source_id": "pdf.farrieriq",
+      "name": "FarrierIQ",
+      "segment": "farrier",
+      "adapter_version": "1.1.0",
+      "smoke_test_status": "completed",
+      "adapter_status": "validated_for_bounded_pilot",
+      "adapter_coverage_status": "partial",
+      "runtime_readiness": "validated_for_bounded_pilot_with_data_quality_controls",
+      "accepted_limitations": "555 placeholder contacts must be discarded; official-site verification mandatory",
+      "acceptance_reference": "evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md"
+    },
+    {
+      "source_id": "pdf.hast_farriers",
+      "name": "HAST Farrier Directory",
+      "segment": "farrier",
+      "adapter_version": "1.1.0",
+      "smoke_test_status": "completed",
+      "adapter_status": "validated_for_bounded_pilot",
+      "adapter_coverage_status": "partial",
+      "runtime_readiness": "validated_for_bounded_pilot_with_freshness_warning",
+      "accepted_limitations": "Legacy HTTP source; freshness and material claims require secure-source corroboration",
+      "acceptance_reference": "evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md"
+    },
+    {
+      "source_id": "pdf.best_of_lexington_farriers",
+      "name": "Best of Lexington \u2014 Farriers",
+      "segment": "farrier",
+      "adapter_version": "1.1.0",
+      "smoke_test_status": "completed",
+      "adapter_status": "validated_for_bounded_pilot",
+      "adapter_coverage_status": "complete_snapshot",
+      "runtime_readiness": "validated_for_bounded_pilot_low_volume",
+      "accepted_limitations": "Five results in snapshot; corroborate material claims with business website",
+      "acceptance_reference": "evaluations/directory-extraction-wave1-20260823/WAVE1-ACCEPTANCE-RECORD.md"
+    },
+    {
+      "source_id": "pdf.horseprofinder",
+      "name": "HorseProFinder",
+      "segment": "farrier, horse_owner",
+      "adapter_version": "1.0.0",
+      "smoke_test_status": "completed",
+      "adapter_status": "validated_for_bounded_pilot",
+      "adapter_coverage_status": "partial",
+      "runtime_readiness": "validated_for_bounded_pilot_no_profile_contact_and_freshness_warning",
+      "accepted_limitations": "No public contact or official website on sampled profiles; use as discovery-only",
+      "acceptance_reference": "evaluations/directory-extraction-wave2-20260823/WAVE2-ACCEPTANCE-RECORD.md"
+    },
+    {
+      "source_id": "pdf.newhorse",
+      "name": "NewHorse",
+      "segment": "farrier, horse_owner",
+      "adapter_version": "1.0.0",
+      "smoke_test_status": "completed",
+      "adapter_status": "validated_for_bounded_pilot",
+      "adapter_coverage_status": "partial",
+      "runtime_readiness": "validated_for_bounded_pilot_with_self_submitted_content_controls",
+      "accepted_limitations": "Self-submitted content; current-activity, claim and duplicate verification mandatory",
+      "acceptance_reference": "evaluations/directory-extraction-wave2-20260823/WAVE2-ACCEPTANCE-RECORD.md"
+    },
+    {
+      "source_id": "pdf.mad_barn_directory",
+      "name": "Mad Barn Equine Business Directory",
+      "segment": "farrier, horse_owner",
+      "adapter_version": "1.0.0",
+      "smoke_test_status": "completed",
+      "adapter_status": "validated_for_bounded_pilot",
+      "adapter_coverage_status": "partial",
+      "runtime_readiness": "validated_for_bounded_pilot_with_identity_reconciliation",
+      "accepted_limitations": "Official-site corroboration and identity reconciliation mandatory before candidate creation",
+      "acceptance_reference": "evaluations/directory-extraction-wave2-20260823/WAVE2-ACCEPTANCE-RECORD.md"
+    },
+    {
+      "source_id": "pdf.american_farriers_association",
+      "name": "American Farrier's Association Directory",
+      "segment": "farrier",
+      "adapter_version": null,
+      "smoke_test_status": "partial",
+      "adapter_status": "no_adapter",
+      "adapter_coverage_status": "not_applicable",
+      "runtime_readiness": "technical_access_preflight_required_no_adapter",
+      "accepted_limitations": "Previously returned HTTP 403 in smoke test; no adapter implemented. Stop if anti-bot control remains.",
+      "acceptance_reference": null
+    },
+    {
+      "source_id": "pdf.professional_farriers_directory",
+      "name": "International Association of Professional Farriers",
+      "segment": "farrier",
+      "adapter_version": null,
+      "smoke_test_status": "partial",
+      "adapter_status": "no_adapter",
+      "adapter_coverage_status": "not_applicable",
+      "runtime_readiness": "partial_context_only_no_public_directory_adapter",
+      "accepted_limitations": "Approved for bounded scraping; no adapter implemented. Member-only data remains conditional.",
+      "acceptance_reference": null
+    },
+    {
+      "source_id": "pdf.farrier_industry_association",
+      "name": "Farrier Industry Association",
+      "segment": "farrier",
+      "adapter_version": null,
+      "smoke_test_status": "blocked",
+      "adapter_status": "no_adapter",
+      "adapter_coverage_status": "not_applicable",
+      "runtime_readiness": "member_search_blocked_recaptcha_public_context_pages_only_no_adapter",
+      "accepted_limitations": "Approved for bounded scraping; no adapter implemented.",
+      "acceptance_reference": null
+    },
+    {
+      "source_id": "pdf.edss_farriers",
+      "name": "EDSS Farrier Search",
+      "segment": "farrier",
+      "adapter_version": null,
+      "smoke_test_status": "partial",
+      "adapter_status": "no_adapter",
+      "adapter_coverage_status": "not_applicable",
+      "runtime_readiness": "partial_kentucky_form_submission_unsupported_no_adapter",
+      "accepted_limitations": "Approved for bounded scraping; no adapter implemented.",
+      "acceptance_reference": null
+    },
+    {
+      "source_id": "pdf.bwfa_kentucky",
+      "name": "Brotherhood of Working Farriers Association \u2014 Kentucky",
+      "segment": "farrier",
+      "adapter_version": null,
+      "smoke_test_status": "partial",
+      "adapter_status": "no_adapter",
+      "adapter_coverage_status": "not_applicable",
+      "runtime_readiness": "partial_landing_only_low_volume_no_adapter",
+      "accepted_limitations": "Approved for bounded scraping; no adapter implemented. Strong Kentucky relevance.",
+      "acceptance_reference": null
+    },
+    {
+      "source_id": "pdf.equinenow_kentucky_farms",
+      "name": "EquineNow Kentucky Farms",
+      "segment": "horse_owner",
+      "adapter_version": null,
+      "smoke_test_status": "partial",
+      "adapter_status": "no_adapter",
+      "adapter_coverage_status": "not_applicable",
+      "runtime_readiness": "partial_landing_only_horse_owner_use_only_no_adapter",
+      "accepted_limitations": "Approved for bounded scraping; no adapter implemented. Corroborate self-submitted claims.",
+      "acceptance_reference": null
+    }
+  ]
+}

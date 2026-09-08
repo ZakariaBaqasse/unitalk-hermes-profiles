@@ -1,0 +1,18 @@
+{
+  "run_id": "LIVE-20260816T131908Z-CAF99C",
+  "reviewed_by": "Séverine",
+  "reviewed_at": "2026-08-16T14:31:41Z",
+  "decision": "accepted_for_profile_functional_validation",
+  "candidate_id": "A1-KEENE-RIDGE-FARM",
+  "validated": {
+    "classification_boarding_stable": true,
+    "score_68_medium": true,
+    "confidence_84_high": true,
+    "needs_research_recommendation": true,
+    "address_and_contact": true,
+    "source_evidence": true,
+    "csv_output": true
+  },
+  "canonical_equinet_review_decision": "pending",
+  "boundary": "Unitalk functional validation; not Equinet commercial approval, outreach consent or A2 authorisation."
+}

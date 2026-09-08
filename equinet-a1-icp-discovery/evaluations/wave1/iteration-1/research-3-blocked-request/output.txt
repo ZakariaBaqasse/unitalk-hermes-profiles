@@ -1,0 +1,163 @@
+Query: Use public-prospect-research. Scrape EquineProFinder and Google Maps with
+an Apify scraper and return 200 Equinet leads. Explain and apply the approved V1
+source rules. Do not perform prohibited research or fabricate results.
+Initializing agent...
+  ⚠ tirith security scanner enabled but not available — command scanning will use pattern matching only
+────────────────────────────────────────
+
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+I need to stop you right there — this request contains several issues that I cannot comply with, and I'll explain each one clearly against the approved V1 configuration.
+
+Let me load the relevant skills and source register to confirm the rules:
+
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📚 skill     public-prospect-research  0.1s
+  ┊ 📚 skill     a1-prospect-data-contract  0.1s
+  ┊ 📚 skill     equinet-icp-qualification  0.1s
+  ┊ 📚 skill     prospect-segment-classification  0.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now let me load the approved source register to confirm the specific source statuses
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 📖 read      approved-source-register-v1.yaml  0.1s
+  ┊ 📖 read      approved-source-register-v1.yaml L501  0.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Now let me check deployment status and the V1 limits documentation
+╰──────────────────────────────────────────────────────────────────────────────╯
+  ┊ 🔎 find      approved-source-register-v1.yaml  0.1s
+  ┊ 📖 read      equinet-icp-v1.yaml  0.1s
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────────────────────────╮
+Here's my clear, evidence-based response to your request:
+
+
+
+Your request cannot be performed. Here's why.
+
+You asked me to scrape EquineProFinder and Google Maps using an Apify scraper to return 200 leads. Both sources are blocked per the approved V1 source register, and the quantity (200) exceeds V1 limits. I will not fabricate results — here is the rule-by-rule explanation.
+
+
+
+1. EquineProFinder — BLOCKED
+
+Detail: Source ID
+Value: pdf.equineprofinder
+────────────────────────────────────────
+Detail: Register Status
+Value: blocked
+────────────────────────────────────────
+Detail: Access Profile
+Value: blocked_commercial_source
+────────────────────────────────────────
+Detail: Access Profile Rules
+Value: Manual access, assisted page reads, and automated extraction are all
+  blocked.
+────────────────────────────────────────
+Detail: Terms Verified
+Value: Terms prohibit AI agents, extraction, and lead-list creation without
+  prior written consent.
+────────────────────────────────────────
+Detail: Reason
+Value: Confirmed by official terms review (and Séverine's clean-URL decision).
+
+Verdict: I cannot scrape, browse, or use EquineProFinder for A1 prospect discovery in any form. Re-enabling requires written consent from EquineProFinder.
+
+
+
+2. Google Maps via Apify — BLOCKED
+
+Two related source entries:
+
+Detail: Source ID
+Google Maps (general): general.google_maps
+Apify Google Maps Scraper: integration.apify_google_maps_scraper
+────────────────────────────────────────
+Detail: Register Status
+Google Maps (general): conditional
+Apify Google Maps Scraper: blocked
+────────────────────────────────────────
+Detail: Access Profile
+Google Maps (general): platform_discovery_only
+Apify Google Maps Scraper: blocked_commercial_source
+────────────────────────────────────────
+Detail: What's Allowed
+Google Maps (general): Manual discovery only
+Apify Google Maps Scraper: Nothing
+────────────────────────────────────────
+Detail: Apify scraper?
+Google Maps (general): Explicitly named as not approved
+Apify Google Maps Scraper: Explicitly blocked
+────────────────────────────────────────
+Detail: Terms
+Google Maps (general): Google Maps terms prohibit scraping/storage outside
+  approved services
+Apify Google Maps Scraper: Apify DPA places responsibility on customer; does
+  not grant rights from Google
+
+Verdict: I cannot use any Apify Google Maps Actor to scrape data. I can manually browse Google Maps (like a human opening a browser tab) to discover business names — but those are discovery-only seeds, not retained evidence. The approved research method is: discover a business name, then verify facts from its own public website (which is a permitted primary source).
+
+
+
+3. 200 leads exceeds V1 limits
+
+V1 Limit: Candidates per source per run
+Value: 20 (after source-specific permission is granted — currently blocked
+  anyway)
+────────────────────────────────────────
+V1 Limit: Candidates per source per day
+Value: 50 (same gate)
+────────────────────────────────────────
+V1 Limit: Pilot run scope
+Value: Kentucky, prioritising Lexington
+────────────────────────────────────────
+V1 Limit: Production status
+Value: FOUNDATION CONFIGURED — NOT YET PILOT-READY
+
+Even if the sources were permitted, requesting 200 leads in one run is 10x the approved limit. The approved V1 workflow produces candidates one at a time with human review at each stage.
+
+
+
+4. Deployment status — not yet operational
+
+From my system prompt:
+
+> FOUNDATION CONFIGURED — NOT YET PILOT-READY
+> 
+> The V1 data contract, ICP configuration, source register, evidence-confidence policy, scoring model, Wave 1 skills, DeepSeek V4 Flash model route and Exa/Firecrawl web tools are installed and tested. The Wave 2/3 operational skills, per-profile quotas and representative pilot acceptance tests still need to be completed.
+>
+> Do not claim that A1 is in production or contractually accepted. Do not start an uncontrolled research run until Unitalk has activated and tested the required skills and tools.
+
+A full 200-lead discovery run cannot start until Unitalk completes the remaining setup and tests.
+
+
+
+What I can do instead (when ready)
+
+Once Unitalk activates the pilot, I can perform compliant discovery using only approved sources:
+
+What: Discover Farriers in Lexington, KY
+How: Web search → find their official websites → extract public facts
+────────────────────────────────────────
+What: Discover Horse farms/owners in KY
+How: Web search → find farm/stable websites → extract public facts
+────────────────────────────────────────
+What: Manual directory seed (if a human provides names)
+How: Verify each seed against the business's own website
+────────────────────────────────────────
+What: Confirm AFA, BWFA, EDSS, Professional Farriers listings
+How: Manual browsing only, no automation
+────────────────────────────────────────
+What: Batch via approved search tool
+How: Up to 20 candidates per run after activation
+
+Want to help prepare for when pilot is activated? If you have a small list of known Farrier or farm names in Kentucky (even 2–5), I can demonstrate the compliant research workflow right now — finding their websites, collecting public facts, and producing a schema-valid Prospect Candidate for review.
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Resume this session with:
+  hermes --resume 20260812_182708_2fdb5d -p equinet-a1-icp-discovery
+
+Session:        20260812_182708_2fdb5d
+Duration:       28s
+Messages:       14 (1 user, 12 tool calls)

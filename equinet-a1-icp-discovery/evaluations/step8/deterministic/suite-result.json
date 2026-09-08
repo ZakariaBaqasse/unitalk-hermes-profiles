@@ -1,0 +1,161 @@
+{
+  "status": "passed",
+  "suite": "Equinet A1 Step 8 representative synthetic tests",
+  "logical_scenarios": 4,
+  "batches": 2,
+  "synthetic_records": 5,
+  "mixed_summary": {
+    "total": 3,
+    "accept": 1,
+    "needs_research": 1,
+    "reject": 1,
+    "farrier": 2,
+    "horse_owner": 1
+  },
+  "duplicate_summary": {
+    "total": 2,
+    "accept": 0,
+    "needs_research": 2,
+    "reject": 0,
+    "farrier": 2,
+    "horse_owner": 0
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "regressions": [
+    {
+      "script": "run_wave1_skill_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL WAVE 1 SKILL TESTS PASSED"
+    },
+    {
+      "script": "run_wave2_skill_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL WAVE 2 SKILL TESTS PASSED"
+    },
+    {
+      "script": "run_wave3_skill_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL WAVE 3 SKILL TESTS PASSED"
+    },
+    {
+      "script": "run_step7_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL STEP 7 TESTS PASSED"
+    }
+  ],
+  "checks": [
+    {
+      "check": "Step 7 runtime policy remains valid",
+      "passed": true
+    },
+    {
+      "check": "Wave 1–3 and Step 7 regression suites pass",
+      "passed": true
+    },
+    {
+      "check": "mixed batch summary is exactly 1 Accept, 1 Needs Research, 1 Reject",
+      "passed": true
+    },
+    {
+      "check": "mixed batch deterministic ranking is Accept, Needs Research, Reject",
+      "passed": true
+    },
+    {
+      "check": "qualified synthetic Farrier ranks first",
+      "passed": true
+    },
+    {
+      "check": "qualified Farrier preserves 86 / High",
+      "passed": true
+    },
+    {
+      "check": "qualified Farrier preserves 84 / High confidence",
+      "passed": true
+    },
+    {
+      "check": "qualified Farrier preserves full public address",
+      "passed": true
+    },
+    {
+      "check": "qualified Farrier preserves published email and phone",
+      "passed": true
+    },
+    {
+      "check": "unknown-count synthetic Horse Owner ranks second",
+      "passed": true
+    },
+    {
+      "check": "unknown-count Horse Owner preserves 80 / Medium",
+      "passed": true
+    },
+    {
+      "check": "unknown-count Horse Owner review pathway is preserved",
+      "passed": true
+    },
+    {
+      "check": "Horse Owner count remains unknown",
+      "passed": true
+    },
+    {
+      "check": "excluded synthetic Farrier ranks last",
+      "passed": true
+    },
+    {
+      "check": "excluded Farrier scoring is blocked",
+      "passed": true
+    },
+    {
+      "check": "excluded Farrier has null score and band",
+      "passed": true
+    },
+    {
+      "check": "duplicate batch returns two Needs Research recommendations",
+      "passed": true
+    },
+    {
+      "check": "both duplicate candidates show possible_match",
+      "passed": true
+    },
+    {
+      "check": "possible duplicates are not accepted or rejected automatically",
+      "passed": true
+    },
+    {
+      "check": "all five records are synthetic and preserve every action boundary",
+      "passed": true
+    },
+    {
+      "check": "mixed batch integration states remain unavailable/not triggered",
+      "passed": true
+    },
+    {
+      "check": "duplicate batch integration states remain unavailable/not triggered",
+      "passed": true
+    },
+    {
+      "check": "mixed batch JSON/CSV/XLSX validations pass",
+      "passed": true
+    },
+    {
+      "check": "duplicate batch JSON/CSV/XLSX validations pass",
+      "passed": true
+    },
+    {
+      "check": "both batches create JSON, Markdown, CSV and Excel",
+      "passed": true
+    }
+  ],
+  "artifacts": {
+    "mixed": "evaluations/step8/deterministic/mixed-batch",
+    "duplicates": "evaluations/step8/deterministic/duplicate-batch"
+  }
+}

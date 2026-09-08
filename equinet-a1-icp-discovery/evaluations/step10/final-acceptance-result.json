@@ -1,0 +1,130 @@
+{
+  "status": "passed",
+  "release_id": "equinet-a1-v1-no-integration-1.0.1",
+  "target_status": "pilot_ready_no_integration",
+  "regressions": [
+    {
+      "script": "run_wave1_skill_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL WAVE 1 SKILL TESTS PASSED"
+    },
+    {
+      "script": "run_wave2_skill_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL WAVE 2 SKILL TESTS PASSED"
+    },
+    {
+      "script": "run_wave3_skill_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL WAVE 3 SKILL TESTS PASSED"
+    },
+    {
+      "script": "run_step7_tests.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "ALL STEP 7 TESTS PASSED"
+    },
+    {
+      "script": "run_step8_synthetic_suite.py",
+      "passed": true,
+      "exit_code": 0,
+      "last_line": "}"
+    }
+  ],
+  "checks": [
+    {
+      "check": "Wave 1–3 and Step 7–8 regression suites pass",
+      "passed": true
+    },
+    {
+      "check": "release manifest builds",
+      "passed": true
+    },
+    {
+      "check": "release status is pilot_ready_no_integration",
+      "passed": true
+    },
+    {
+      "check": "all eight installed packages are frozen",
+      "passed": true
+    },
+    {
+      "check": "every installed package has versioned pilot validation metadata",
+      "passed": true
+    },
+    {
+      "check": "Step 9 reference replay completes without Web access",
+      "passed": true
+    },
+    {
+      "check": "reference replay canonical JSON exactly matches approved Step 9 package",
+      "passed": true
+    },
+    {
+      "check": "named contacts do not change approved ICP scores",
+      "passed": true
+    },
+    {
+      "check": "Rood primary named contact is preserved",
+      "passed": true
+    },
+    {
+      "check": "Darley primary named contact is preserved",
+      "passed": true
+    },
+    {
+      "check": "Darley primary direct contact details are labelled",
+      "passed": true
+    },
+    {
+      "check": "A1 V1 does not add associated_people",
+      "passed": true
+    },
+    {
+      "check": "all canonical human decisions remain pending",
+      "passed": true
+    },
+    {
+      "check": "integration states remain no-integration",
+      "passed": true
+    },
+    {
+      "check": "no A2 handoff is authorised",
+      "passed": true
+    },
+    {
+      "check": "reference replay exports all validate",
+      "passed": true
+    }
+  ],
+  "reference_candidates": [
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "score": 80,
+      "band": "high",
+      "confidence": 84
+    },
+    {
+      "candidate_id": "A1-DARLEY-JONABELL-001",
+      "score": 75,
+      "band": "high",
+      "confidence": 84
+    }
+  ],
+  "integration_state": {
+    "hubspot": "unavailable",
+    "twenty": "unavailable",
+    "a2": "not_triggered"
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "release_manifest": "evaluations/step10/release-manifest.json",
+  "reference_replay": "evaluations/step10/reference-replay"
+}

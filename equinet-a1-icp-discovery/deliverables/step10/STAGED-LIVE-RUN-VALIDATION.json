@@ -1,0 +1,57 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "run_id": "LIVE-20260816T131908Z-CAF99C",
+  "recorded_at": "2026-08-16T14:10:00Z",
+  "functional_result": "passed",
+  "operational_quota_result": "usage_warning_accepted_for_pilot",
+  "stage_gate": {
+    "status": "complete",
+    "completed_stages": ["research", "qualification", "scoring", "review_export"]
+  },
+  "candidate_result": {
+    "candidate_id": "A1-KEENE-RIDGE-FARM",
+    "display_name": "Keene Ridge Farm",
+    "segment": "horse_owner",
+    "prospect_type": "boarding_stable",
+    "score": 68,
+    "band": "medium",
+    "confidence": 84,
+    "recommendation": "needs_research",
+    "human_decision": "pending"
+  },
+  "exports": {
+    "json": "passed",
+    "markdown": "passed",
+    "csv": "passed",
+    "xlsx": "passed",
+    "csv_path": "/opt/data/.hermes/desktop-attachments/Equinet_A1_Staged_Pilot_Test.csv"
+  },
+  "external_actions": {
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "staged_session_usage": {
+    "tokens": 2818553,
+    "api_calls": 72,
+    "research_and_initialisation_tokens": 829365,
+    "qualification_confidence_tokens": 1891729,
+    "scoring_tokens": 28217,
+    "review_export_tokens": 69242
+  },
+  "quota_assessment": {
+    "local_token_hard_stop": null,
+    "run_warning": 1000000,
+    "run_escalation": 3000000,
+    "run_status": "warning",
+    "maximum_calls_in_one_turn": 40,
+    "technical_circuit_breaker_per_turn": 50,
+    "daily_test_total_including_recovery": 4017404,
+    "daily_warning": 5000000,
+    "daily_local_hard_stop": null,
+    "status": "pass"
+  },
+  "finding": "The profile is functionally valid. Research and Qualification/Confidence remain optimisation targets because they reread substantial context. Deterministic scoring and review/export scripts are efficient. Usage is monitored and escalated rather than blocked by low local token limits.",
+  "next_action": "Profile restored to pilot_ready_no_integration. Continue optimisation without blocking the controlled pilot."
+}

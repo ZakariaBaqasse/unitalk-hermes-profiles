@@ -1,0 +1,12 @@
+# Equinet A1 automated web access blocklist
+# Approved bounded-source domains are intentionally absent; source-specific preflight and volume controls still apply.
+yelp.com
+yellowpages.com
+equineprofinder.com
+themhorses.com
+members.horsecouncil.org
+ohorse.com
+mms.professionalfarriers.com
+linkedin.com
+facebook.com
+instagram.com

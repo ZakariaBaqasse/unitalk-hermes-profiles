@@ -1,0 +1,34 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "checkpoint": "wave3",
+  "approver": "Séverine",
+  "approver_role": "Unitalk operations lead for the Equinet deployment",
+  "decision": "approved_for_a1_v1_pilot",
+  "approved_at": "2026-08-14T16:58:28Z",
+  "skills": [
+    {
+      "name": "ranked-prospect-review-package",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot"
+    },
+    {
+      "name": "prospect-export",
+      "version": "1.0.0",
+      "status": "validated_for_a1_v1_pilot"
+    }
+  ],
+  "basis": {
+    "business_design": "approved",
+    "technical_regression_suite": "passed",
+    "controlled_behavioural_validation": "passed",
+    "cross_format_exports": "passed"
+  },
+  "scope": "Unitalk approval for the controlled A1 V1 pilot",
+  "limitations": [
+    "This is not Equinet production acceptance.",
+    "No candidate is approved on Equinet's behalf.",
+    "No outreach, HubSpot write, Twenty write or A2 handoff is authorised.",
+    "Step 7 model, tools, permissions and quota audit remains pending."
+  ],
+  "review_artifact": "evaluations/wave3/WAVE3-VALIDATION-REVIEW.md"
+}

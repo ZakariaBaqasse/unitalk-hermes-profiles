@@ -1,0 +1,52 @@
+{
+  "profile": "equinet-a1-icp-discovery",
+  "step": 8,
+  "completed_at": "2026-08-15T17:53:14Z",
+  "status": "approved_for_a1_v1_pilot",
+  "approved_by": "Séverine",
+  "approved_at": "2026-08-15T18:03:32Z",
+  "acceptance_record": "evaluations/step8/acceptance-record.json",
+  "model": "deepseek-v4-flash",
+  "provider": "openai-api",
+  "logical_scenarios": 4,
+  "batches": 2,
+  "synthetic_records": 5,
+  "mixed_summary": {
+    "total": 3,
+    "accept": 1,
+    "needs_research": 1,
+    "reject": 1,
+    "farrier": 2,
+    "horse_owner": 1
+  },
+  "duplicate_summary": {
+    "total": 2,
+    "accept": 0,
+    "needs_research": 2,
+    "reject": 0,
+    "farrier": 2,
+    "horse_owner": 0
+  },
+  "behavioural_usage": {
+    "tokens": 42560,
+    "api_calls": 5,
+    "quota_status": "pass"
+  },
+  "external_actions": {
+    "web_research": 0,
+    "outreach": 0,
+    "hubspot_writes": 0,
+    "twenty_writes": 0,
+    "a2_handoffs": 0
+  },
+  "regressions": {
+    "wave1": "passed",
+    "wave2": "passed",
+    "wave3": "passed",
+    "step7": "passed",
+    "step8": "passed"
+  },
+  "fixture_correction": "Unrelated example.com domains were replaced with distinct example.test domains; deliberate duplicate fixtures retain shared domain/contact.",
+  "review_artifact": "evaluations/step8/STEP8-VALIDATION-REVIEW.md",
+  "approval_applied": true
+}

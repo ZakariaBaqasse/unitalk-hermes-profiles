@@ -1,0 +1,37 @@
+Command completed successfully. Summary:
+
+```json
+{
+  "status": "passed",
+  "package_id": "A1-RP-STEP9-REAL-PILOT",
+  "candidate_count": 2,
+  "recommendations": {
+    "accept": 2,
+    "needs_research": 0,
+    "reject": 0
+  },
+  "integration_status": {
+    "hubspot": "unavailable",
+    "twenty": "unavailable",
+    "a2": "not_triggered"
+  },
+  "human_decisions_pending": true,
+  "a2_handoffs_authorised": 0,
+  "export_validation": {
+    "review_package": "passed",
+    "prospect_candidates": "passed",
+    "json_round_trip": "passed",
+    "csv_consistency": "passed",
+    "xlsx_consistency": "passed",
+    "xlsx_formula_errors": "passed"
+  },
+  "files": [
+    "step9-real-prospects.json",
+    "step9-real-prospects.md",
+    "step9-real-prospects.csv",
+    "step9-real-prospects.xlsx"
+  ]
+}
+```
+
+No outreach, HubSpot write, Twenty write or A2 handoff occurred. All four export files (JSON, Markdown, CSV, XLSX) passed validation. Two real prospects recommended as "accept" awaiting human decision.

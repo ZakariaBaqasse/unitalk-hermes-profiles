@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/export-manifest/1.0.0",
+  "title": "Equinet A1 Export Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_package_id", "candidate_count", "files", "validation"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "source_package_id": {"type": "string"},
+    "candidate_count": {"type": "integer", "minimum": 1},
+    "files": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["format", "file_name", "sha256", "bytes"],
+        "properties": {
+          "format": {"type": "string", "enum": ["json", "markdown", "csv", "xlsx"]},
+          "file_name": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "bytes": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["review_package", "prospect_candidates", "json_round_trip", "csv_consistency", "xlsx_consistency", "xlsx_formula_errors"],
+      "properties": {
+        "review_package": {"const": "passed"},
+        "prospect_candidates": {"const": "passed"},
+        "json_round_trip": {"const": "passed"},
+        "csv_consistency": {"const": "passed"},
+        "xlsx_consistency": {"const": "passed"},
+        "xlsx_formula_errors": {"const": "passed"}
+      }
+    }
+  }
+}

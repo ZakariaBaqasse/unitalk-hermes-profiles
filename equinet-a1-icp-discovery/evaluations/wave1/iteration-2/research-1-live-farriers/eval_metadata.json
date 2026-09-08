@@ -1,0 +1,4 @@
+{
+  "prompt": "Use public-prospect-research. Find up to 2 professional Farrier candidate seeds in Lexington, Kentucky. Use approved search and retain evidence only from permitted destination sources. Do not retain blocked sources, conditional directory pages, LinkedIn, social platforms, Google Maps or search snippets as evidence. Run the deterministic Research Seed validator for every seed and return only valid seeds. Stop before classification, qualification, confidence or scoring.",
+  "expected_skill": "public-prospect-research"
+}

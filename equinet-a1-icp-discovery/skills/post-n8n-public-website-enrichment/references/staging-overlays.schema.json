@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/twenty-company-overlays/v2",
+  "title": "Equinet A1 Twenty Company Overlays",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "source_sha256", "overlays"],
+  "properties": {
+    "schema_version": {"const": "a1.twenty-company-overlays.v2"},
+    "run_id": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "overlays": {"type": "array", "items": {"$ref": "#/$defs/overlay"}}
+  },
+  "$defs": {
+    "nullableScore": {"type": ["integer", "null"], "minimum": 0, "maximum": 100},
+    "overlay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version", "lead_fingerprint", "website_status", "enrichment_status",
+        "official_website_url", "qualification_status", "icp_score_status", "icp_score",
+        "icp_band", "icp_outcome", "evidence_confidence_score",
+        "evidence_confidence_level", "notes"
+      ],
+      "properties": {
+        "schema_version": {"const": "a1.twenty-company-overlay.v2"},
+        "lead_fingerprint": {"type": "string", "minLength": 1},
+        "website_status": {"enum": ["verified", "none_found", "unverified", "blocked", "error"]},
+        "enrichment_status": {"enum": ["not_required_no_website", "completed", "failed", "blocked"]},
+        "official_website_url": {"type": ["string", "null"], "format": "uri"},
+        "qualification_status": {"enum": ["ELIGIBLE", "EXCLUDED", "NEEDS_REVIEW", "NOT_CHECKED"]},
+        "icp_score_status": {"enum": ["NOT_SCORED", "SCORED", "BLOCKED"]},
+        "icp_score": {"$ref": "#/$defs/nullableScore"},
+        "icp_band": {"enum": ["HIGH", "MEDIUM", "LOW", "UNQUALIFIED", null]},
+        "icp_outcome": {"type": ["string", "null"]},
+        "evidence_confidence_score": {"$ref": "#/$defs/nullableScore"},
+        "evidence_confidence_level": {"enum": ["HIGH", "MEDIUM", "LOW", null]},
+        "notes": {"type": "object"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"icp_score_status": {"const": "SCORED"}}},
+          "then": {
+            "properties": {
+              "website_status": {"const": "verified"},
+              "official_website_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+              "qualification_status": {"enum": ["ELIGIBLE", "EXCLUDED", "NEEDS_REVIEW"]},
+              "icp_score": {"type": "integer", "minimum": 0, "maximum": 100},
+              "icp_band": {"enum": ["HIGH", "MEDIUM", "LOW", "UNQUALIFIED"]},
+              "icp_outcome": {"type": "string", "minLength": 1},
+              "evidence_confidence_score": {"type": "integer", "minimum": 0, "maximum": 100},
+              "evidence_confidence_level": {"enum": ["HIGH", "MEDIUM", "LOW"]}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"icp_score_status": {"const": "NOT_SCORED"}}},
+          "then": {
+            "properties": {
+              "qualification_status": {"const": "NOT_CHECKED"},
+              "icp_score": {"type": "null"},
+              "icp_band": {"type": "null"},
+              "icp_outcome": {"type": "null"},
+              "evidence_confidence_score": {"type": "null"},
+              "evidence_confidence_level": {"type": "null"}
+            },
+            "allOf": [
+              {
+                "if": {"properties": {"website_status": {"const": "verified"}}, "required": ["website_status"]},
+                "then": {
+                  "properties": {
+                    "enrichment_status": {"const": "completed"},
+                    "official_website_url": {"type": "string", "format": "uri", "pattern": "^https?://"}
+                  }
+                },
+                "else": {"properties": {"official_website_url": {"type": "null"}}}
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
