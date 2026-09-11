@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/qualification-assessment/1.0.0",
+  "title": "Equinet A1 Qualification Assessment Input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "segment", "criterion_assessments", "missing_minimum_fields"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "segment": {"type": "string", "enum": ["farrier", "horse_owner"]},
+    "criterion_assessments": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["status", "evidence_ids", "notes"],
+        "properties": {
+          "status": {"type": "string", "enum": ["confirmed", "not_confirmed", "unknown", "contradicted"]},
+          "evidence_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "notes": {"type": ["string", "null"], "maxLength": 1000}
+        }
+      }
+    },
+    "missing_minimum_fields": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  }
+}

@@ -1,0 +1,413 @@
+#!/usr/bin/env python3
+"""Durable v2 post-n8n website enrichment state machine (no web/CRM I/O)."""
+from __future__ import annotations
+
+import argparse, copy, fcntl, hashlib, json, os, re, subprocess, sys, uuid
+from contextlib import contextmanager
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any
+from urllib.parse import urlparse
+
+try:
+    from jsonschema import Draft202012Validator, FormatChecker
+except ImportError:
+    Draft202012Validator = None
+    FormatChecker = None
+
+STATE_SCHEMA = "a1.website-enrichment-state.v2"
+LEGACY_STATE_SCHEMA = "a1.website-enrichment-state.v1"
+HANDOFF_SCHEMA = "a1.discovery-result.v1"
+BATCH_SCHEMA = "a1.website-enrichment-batch.v2"
+RESULTS_SCHEMA = "a1.website-enrichment-research-results.v2"
+ASSESSMENTS_SCHEMA = "a1.website-enrichment-assessment-submissions.v2"
+FALLBACK_SCHEMA = "a1.website-enrichment-explicit-fallback.v2"
+SUMMARY_SCHEMA = "a1.website-enrichment-summary.v2"
+PIPELINE_KEYS = ("classification_decision", "qualification_assessment", "confidence_assessment")
+RESEARCH_STATES = {"research_pending", "researching"}
+ASSESSMENT_STATES = {"assessment_pending", "assessing", "ready_to_score", "scoring", "operator_repair"}
+TERMINAL_STATES = {"scored", "terminal_none_found", "terminal_verification_failed", "terminal_assessment_failed", "terminal_out_of_scope"}
+STATE_SCHEMA_PATH = Path(__file__).resolve().parents[1] / "references" / "enrichment-state-v2.schema.json"
+EVIDENCE_ID = re.compile(r"^EV-[A-Z0-9_-]{3,50}$")
+FAILURE_CODE = re.compile(r"^[a-z][a-z0-9_]{2,63}$")
+PROFILE_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_PIPELINE_PYTHON = PROFILE_ROOT / ".venv" / "bin" / "python"
+
+
+def canonical_sha256(value: Any) -> str:
+    return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def parse_time(value: Any, field: str = "timestamp") -> datetime:
+    if not isinstance(value, str) or not value:
+        raise ValueError(f"{field} must be an ISO-8601 timestamp with timezone")
+    try:
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(f"{field} must be an ISO-8601 timestamp with timezone") from exc
+    if parsed.tzinfo is None:
+        raise ValueError(f"{field} must include a timezone")
+    return parsed.astimezone(timezone.utc)
+
+
+def _http_url(value: Any, field: str) -> str:
+    if not isinstance(value, str): raise ValueError(f"{field} must be an HTTP(S) URL")
+    parsed = urlparse(value)
+    if parsed.scheme not in {"http", "https"} or not parsed.hostname: raise ValueError(f"{field} must be an HTTP(S) URL")
+    return value
+
+
+def _host(value: str) -> str:
+    host = (urlparse(value).hostname or "").lower().rstrip(".")
+    return host[4:] if host.startswith("www.") else host
+
+
+def _same_site(source: str, official: str) -> bool:
+    a, b = _host(source), _host(official)
+    return a == b or a.endswith("." + b)
+
+
+def initialize_state(handoff: dict[str, Any], max_retries: int = 2) -> dict[str, Any]:
+    if handoff.get("contract_version", handoff.get("schema_version")) != HANDOFF_SCHEMA:
+        raise ValueError(f"Expected {HANDOFF_SCHEMA}")
+    run_id = handoff.get("run_id") or (handoff.get("run") or {}).get("run_id")
+    if not isinstance(run_id, str) or not run_id.strip(): raise ValueError("Handoff run_id is required")
+    leads = handoff.get("leads")
+    if not isinstance(leads, list): raise ValueError("Handoff leads must be an array")
+    if not isinstance(max_retries, int) or max_retries < 0: raise ValueError("max_retries must be non-negative")
+    records = {}
+    for lead in leads:
+        if not isinstance(lead, dict): raise ValueError("Every lead must be an object")
+        lead_id = lead.get("lead_fingerprint", lead.get("lead_id"))
+        if not isinstance(lead_id, str) or not lead_id.strip(): raise ValueError("Every lead requires lead_fingerprint")
+        if lead_id in records: raise ValueError(f"Duplicate lead identifier: {lead_id}")
+        records[lead_id] = {"lead": copy.deepcopy(lead), "state": "research_pending", "revision": 0, "claim": None,
+                            "research_attempts": 0, "assessment_attempts": 0, "failure_history": [],
+                            "enrichment": None, "pipeline_inputs": {}, "artifacts": {}, "terminal": None}
+    return {"schema_version": STATE_SCHEMA, "source_contract_version": HANDOFF_SCHEMA,
+            "source_sha256": canonical_sha256(handoff), "run": {"run_id": run_id},
+            "discovery_result": {k: copy.deepcopy(v) for k, v in handoff.items() if k != "leads"},
+            "max_retries": max_retries, "leads": records}
+
+
+def _validate_state(state: dict[str, Any]) -> None:
+    if state.get("schema_version") != STATE_SCHEMA:
+        if state.get("schema_version") == LEGACY_STATE_SCHEMA: raise ValueError("v1 state is read-only; migrate with migrate_state_v1_to_v2.py")
+        raise ValueError(f"Expected state schema_version {STATE_SCHEMA}")
+    schema = json.loads(STATE_SCHEMA_PATH.read_text(encoding="utf-8"))
+    if schema.get("$id") != STATE_SCHEMA:
+        raise ValueError("State schema file has an unexpected contract version")
+    if Draft202012Validator is None:
+        raise RuntimeError("jsonschema is required to validate enrichment state v2")
+    errors = sorted(Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(state), key=lambda error: list(error.absolute_path))
+    if errors:
+        error = errors[0]; path = "/" + "/".join(str(part) for part in error.absolute_path)
+        raise ValueError(f"State schema validation failed at {path}: {error.message}")
+    source_sha = state.get("source_sha256")
+    records = state["leads"]
+    source_leads = []
+    for lead_id, rec in records.items():
+        lead = rec.get("lead")
+        if not isinstance(lead, dict): raise ValueError(f"State lead {lead_id} is not an object")
+        fingerprint = lead.get("lead_fingerprint", lead.get("lead_id"))
+        if fingerprint != lead_id: raise ValueError(f"State key/fingerprint mismatch for {lead_id}")
+        source_leads.append(copy.deepcopy(lead))
+        if rec.get("state") not in RESEARCH_STATES | ASSESSMENT_STATES | TERMINAL_STATES: raise ValueError(f"Invalid state for {lead_id}")
+        if rec.get("state") in TERMINAL_STATES and rec.get("claim") is not None: raise ValueError(f"Terminal lead {lead_id} cannot be claimed")
+        enrichment = rec.get("enrichment") if isinstance(rec.get("enrichment"), dict) else {}
+        if enrichment.get("website_status") == "verified" and rec.get("state") in {"research_pending", "researching", "terminal_none_found", "terminal_verification_failed"}:
+            raise ValueError(f"Verified evidence conflicts with state for {lead_id}")
+    reconstructed = copy.deepcopy(state.get("discovery_result") or {})
+    reconstructed["leads"] = source_leads
+    if canonical_sha256(reconstructed) != source_sha:
+        raise ValueError("State source_sha256 or exact source fingerprint coverage is invalid")
+
+
+def _clear_expired(record: dict[str, Any], now: str) -> None:
+    claim = record.get("claim")
+    if isinstance(claim, dict) and parse_time(claim.get("expires_at"), "claim.expires_at") <= parse_time(now):
+        if record.get("state") == "researching": record["state"] = "research_pending"
+        elif record.get("state") == "assessing": record["state"] = "assessment_pending"
+        elif record.get("state") == "scoring": record["state"] = "ready_to_score"
+        record["claim"] = None
+        record["revision"] += 1
+
+
+def claim_lead(state: dict[str, Any], lead_id: str, owner: str, lease_seconds: int, expected_revision: int, now: str | None = None, purpose: str | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+    _validate_state(state)
+    if lead_id not in state["leads"]: raise ValueError(f"Unknown lead_id: {lead_id}")
+    if not isinstance(owner, str) or not owner.strip(): raise ValueError("owner is required")
+    if not isinstance(lease_seconds, int) or lease_seconds < 1 or lease_seconds > 86400: raise ValueError("lease_seconds must be 1..86400")
+    timestamp = now or utc_now(); parsed = parse_time(timestamp)
+    updated = copy.deepcopy(state); rec = updated["leads"][lead_id]; _clear_expired(rec, timestamp)
+    if rec["revision"] != expected_revision: raise ValueError(f"revision_conflict:{lead_id}:expected={expected_revision}:actual={rec['revision']}")
+    if rec.get("claim") is not None: raise ValueError(f"claim_contention:{lead_id}")
+    state_name = rec["state"]
+    allowed = {"research_pending": "researching", "assessment_pending": "assessing", "ready_to_score": "scoring"}
+    if state_name not in allowed: raise ValueError(f"Lead {lead_id} is not claimable from {state_name}")
+    if purpose and purpose != allowed[state_name].removesuffix("ing"): raise ValueError("claim purpose does not match lead state")
+    lease = {"owner": owner.strip(), "lease_id": str(uuid.uuid4()), "claimed_at": timestamp,
+             "expires_at": (parsed + timedelta(seconds=lease_seconds)).replace(microsecond=0).isoformat().replace("+00:00", "Z")}
+    rec["state"] = allowed[state_name]; rec["claim"] = lease; rec["revision"] += 1
+    return updated, {**lease, "lead_id": lead_id, "revision": rec["revision"], "state": rec["state"]}
+
+
+def _require_claim(rec: dict[str, Any], owner: str, lease_id: str, expected_revision: int, now: str) -> None:
+    _clear_expired(rec, now)
+    if rec["revision"] != expected_revision: raise ValueError(f"revision_conflict:expected={expected_revision}:actual={rec['revision']}")
+    claim = rec.get("claim")
+    if not isinstance(claim, dict) or claim.get("owner") != owner or claim.get("lease_id") != lease_id: raise ValueError("lease_conflict")
+
+
+def next_batch(state: dict[str, Any], batch_size: int, now: str | None = None) -> dict[str, Any]:
+    _validate_state(state)
+    if batch_size < 1: raise ValueError("batch_size must be positive")
+    timestamp = now or utc_now(); work=[]
+    for lead_id, original in state["leads"].items():
+        rec=copy.deepcopy(original); _clear_expired(rec, timestamp)
+        if rec["state"] in {"research_pending", "assessment_pending", "ready_to_score"}:
+            work.append({"lead_id": lead_id, "state": rec["state"], "revision": rec["revision"], "lead": copy.deepcopy(rec["lead"])})
+        if len(work) == batch_size: break
+    return {"schema_version": BATCH_SCHEMA, "run_id": state["run"]["run_id"], "items": work, "lead_rows_emitted": False}
+
+
+def _validate_research(result: dict[str, Any]) -> None:
+    if result.get("research_method") != "hermes_approved_web_tools": raise ValueError("research_method must be hermes_approved_web_tools")
+    if any(k in result for k in PIPELINE_KEYS): raise ValueError("Research submissions cannot contain assessment inputs")
+    for field in ("missing_information", "conflicts"):
+        if not isinstance(result.get(field), list) or not all(isinstance(x, str) and x.strip() for x in result[field]): raise ValueError(f"{field} must be strings")
+    status=result.get("website_status"); evidence=result.get("evidence")
+    if status == "none_found":
+        if result.get("official_website_url") is not None or evidence != [] or "official_business_website_not_found" not in result["missing_information"]: raise ValueError("Invalid none_found research result")
+        return
+    if status != "verified": raise ValueError("website_status must be verified or none_found")
+    official=_http_url(result.get("official_website_url"), "official_website_url")
+    if not isinstance(evidence, list) or not evidence: raise ValueError("Verified result requires evidence")
+    ids=set()
+    for item in evidence:
+        if not isinstance(item, dict) or not EVIDENCE_ID.fullmatch(str(item.get("evidence_id", ""))): raise ValueError("Invalid evidence record")
+        if item["evidence_id"] in ids: raise ValueError("Duplicate evidence_id")
+        ids.add(item["evidence_id"])
+        source=_http_url(item.get("source_url"), "source_url")
+        if not _same_site(source, official) or item.get("source_type") != "official_business_website" or item.get("retrieval_tool") != "web_extract": raise ValueError("Evidence must be a destination citation on the official site")
+        parse_time(item.get("retrieved_at"), "retrieved_at")
+        for field in ("source_name", "evidence_excerpt", "claim"):
+            if not isinstance(item.get(field), str) or not item[field].strip(): raise ValueError(f"Evidence {field} is required")
+        if item.get("fact_or_inference") not in {"direct_fact", "reasonable_inference", "contradictory_evidence"}: raise ValueError("Invalid fact_or_inference")
+
+
+def apply_results(state: dict[str, Any], payload: dict[str, Any], owner: str, lease_id: str, expected_revision: int, now: str | None = None) -> dict[str, Any]:
+    _validate_state(state)
+    if payload.get("schema_version") != RESULTS_SCHEMA or not isinstance(payload.get("results"), list) or len(payload["results"]) != 1: raise ValueError(f"Expected one-result {RESULTS_SCHEMA}")
+    result=payload["results"][0]; lead_id=result.get("lead_id")
+    if lead_id not in state["leads"]: raise ValueError(f"Unknown lead_id: {lead_id}")
+    _validate_research(result); timestamp=now or utc_now(); updated=copy.deepcopy(state); rec=updated["leads"][lead_id]
+    _require_claim(rec, owner, lease_id, expected_revision, timestamp)
+    if rec["state"] != "researching": raise ValueError("Research result requires researching state")
+    rec["research_attempts"] += 1
+    rec["enrichment"] = copy.deepcopy(result)
+    rec["pipeline_inputs"] = {}; rec["claim"] = None; rec["revision"] += 1
+    if result["website_status"] == "none_found":
+        rec["state"]="terminal_none_found"; rec["terminal"]={"outcome":"none_found","at":timestamp}
+    else: rec["state"]="assessment_pending"
+    return updated
+
+
+def _assessment_evidence_ids(value: Any) -> set[str]:
+    found=set()
+    def walk(v: Any):
+        if isinstance(v, dict):
+            for k,x in v.items():
+                if k in {"evidence_ids", "evidence_references", "available_evidence_ids"} and isinstance(x,list): found.update(i for i in x if isinstance(i,str))
+                else: walk(x)
+        elif isinstance(v,list):
+            for x in v: walk(x)
+    walk(value); return found
+
+
+def submit_assessment(state: dict[str, Any], payload: dict[str, Any], owner: str, lease_id: str, expected_revision: int, now: str | None = None) -> dict[str, Any]:
+    _validate_state(state)
+    if payload.get("schema_version") != ASSESSMENTS_SCHEMA or not isinstance(payload.get("submissions"), list) or len(payload["submissions"]) != 1: raise ValueError(f"Expected one submission in {ASSESSMENTS_SCHEMA}")
+    sub=payload["submissions"][0]; lead_id=sub.get("lead_id")
+    if lead_id not in state["leads"]: raise ValueError(f"Unknown lead_id: {lead_id}")
+    timestamp=now or utc_now(); updated=copy.deepcopy(state); rec=updated["leads"][lead_id]; _require_claim(rec,owner,lease_id,expected_revision,timestamp)
+    if rec["state"] != "assessing" or (rec.get("enrichment") or {}).get("website_status") != "verified": raise ValueError("Assessment requires accepted verified research")
+    classification=sub.get("classification_decision")
+    if not isinstance(classification,dict) or classification.get("seed_id") != lead_id: raise ValueError("classification_decision.seed_id must match lead")
+    evidence_ids={x["evidence_id"] for x in rec["enrichment"]["evidence"]}
+    unknown=_assessment_evidence_ids(sub)-evidence_ids
+    if unknown: raise ValueError(f"Assessment references unknown evidence IDs: {sorted(unknown)}")
+    is_oos=classification.get("classification_status") == "out_of_scope"
+    if is_oos:
+        if sub.get("qualification_assessment") is not None or sub.get("confidence_assessment") is not None: raise ValueError("out_of_scope submission must not fabricate downstream assessments")
+        rec["pipeline_inputs"]={"classification_decision":copy.deepcopy(classification)}
+        rec["state"]="terminal_out_of_scope"; rec["terminal"]={"outcome":"out_of_scope","at":timestamp,"failure_code":None}
+    else:
+        for key in PIPELINE_KEYS:
+            if not isinstance(sub.get(key),dict): raise ValueError(f"{key} is required")
+        rec["pipeline_inputs"]={k:copy.deepcopy(sub[k]) for k in PIPELINE_KEYS}
+        rec["state"]="ready_to_score"
+    rec["assessment_attempts"] += 1; rec["claim"]=None; rec["revision"] += 1
+    return updated
+
+
+def record_failure(state: dict[str, Any], lead_id: str, failure_code: str, message: str, attempted_at: str, retryable: bool, owner: str, lease_id: str, expected_revision: int) -> dict[str, Any]:
+    _validate_state(state); parse_time(attempted_at,"attempted_at")
+    if not FAILURE_CODE.fullmatch(failure_code): raise ValueError("failure_code must be structured snake_case")
+    if not isinstance(message,str) or not message.strip(): raise ValueError("message is required")
+    updated=copy.deepcopy(state); rec=updated["leads"].get(lead_id)
+    if rec is None: raise ValueError(f"Unknown lead_id: {lead_id}")
+    _require_claim(rec,owner,lease_id,expected_revision,attempted_at)
+    stage="research" if rec["state"]=="researching" else "assessment" if rec["state"] in {"assessing","scoring"} else None
+    if stage is None: raise ValueError("Claim is not in a failure-recordable state")
+    counter=stage+"_attempts"; rec[counter]+=1
+    rec["failure_history"].append({"stage":stage,"failure_code":failure_code,"message":message,"attempted_at":attempted_at,"retryable":retryable})
+    exhausted=rec[counter] > updated["max_retries"]
+    rec["claim"]=None; rec["revision"]+=1
+    if stage=="research" and (not retryable or exhausted):
+        rec["state"]="terminal_verification_failed"; rec["terminal"]={"outcome":"verification_failed","failure_code":failure_code,"attempted_at":attempted_at,"attempts":rec[counter],"retries_exhausted":exhausted or not retryable}
+    else: rec["state"]="research_pending" if stage=="research" else ("ready_to_score" if rec.get("pipeline_inputs") else "assessment_pending")
+    return updated
+
+
+def explicit_fallback(state: dict[str, Any], payload: dict[str, Any], expected_revision: int) -> dict[str, Any]:
+    _validate_state(state)
+    if payload.get("schema_version") != FALLBACK_SCHEMA: raise ValueError(f"Expected {FALLBACK_SCHEMA}")
+    lead_id=payload.get("lead_id"); rec=state["leads"].get(lead_id)
+    if rec is None: raise ValueError(f"Unknown lead_id: {lead_id}")
+    if rec["revision"] != expected_revision: raise ValueError(f"revision_conflict:{lead_id}")
+    if rec.get("claim") is not None: raise ValueError("Cannot fallback a claimed lead")
+    if (rec.get("enrichment") or {}).get("website_status") != "verified" or rec["state"] not in {"assessment_pending","ready_to_score"}: raise ValueError("Explicit assessment fallback requires verified nonterminal lead")
+    code=payload.get("failure_code"); attempted_at=payload.get("attempted_at"); attempts=payload.get("attempts")
+    if not FAILURE_CODE.fullmatch(str(code or "")): raise ValueError("failure_code must be structured snake_case")
+    parse_time(attempted_at,"attempted_at")
+    if not isinstance(attempts,int) or attempts <= state["max_retries"] or payload.get("retries_exhausted") is not True: raise ValueError("Explicit fallback requires attempts beyond max_retries and retries_exhausted=true")
+    updated=copy.deepcopy(state); out=updated["leads"][lead_id]; out["assessment_attempts"]=max(out["assessment_attempts"],attempts)
+    out["state"]="terminal_assessment_failed"; out["terminal"]={"outcome":"assessment_failed","failure_code":code,"attempted_at":attempted_at,"attempts":attempts,"retries_exhausted":True}
+    out["revision"]+=1; return updated
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    value=json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value,dict): raise ValueError("JSON document must be an object")
+    return value
+
+
+def load_state(path: Path) -> dict[str, Any]:
+    value=load_json(path); _validate_state(value); return value
+
+
+def save_state(path: Path, state: dict[str, Any]) -> None:
+    _validate_state(state); path.parent.mkdir(parents=True,exist_ok=True); tmp=path.with_name(f".{path.name}.tmp.{os.getpid()}")
+    with tmp.open("w",encoding="utf-8") as h: h.write(json.dumps(state,indent=2,ensure_ascii=False)+"\n"); h.flush(); os.fsync(h.fileno())
+    os.replace(tmp,path)
+
+
+@contextmanager
+def state_lock(path: Path):
+    path.parent.mkdir(parents=True,exist_ok=True)
+    with path.with_name(path.name+".lock").open("a+") as h:
+        fcntl.flock(h.fileno(),fcntl.LOCK_EX)
+        try: yield
+        finally: fcntl.flock(h.fileno(),fcntl.LOCK_UN)
+
+
+def _write_json(path: Path, value: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True,exist_ok=True); path.write_text(json.dumps(value,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+
+
+def _run(command: list[str]) -> None:
+    result=subprocess.run(command,text=True,capture_output=True)
+    if result.returncode: raise RuntimeError((result.stderr or result.stdout or "wrapper_failed").strip()[:500])
+
+
+def score_claimed(state: dict[str, Any], lead_id: str, output_dir: Path, python_executable: Path, owner: str, lease_id: str, expected_revision: int, now: str | None=None) -> dict[str, Any]:
+    timestamp=now or utc_now(); updated=copy.deepcopy(state); rec=updated["leads"][lead_id]; _require_claim(rec,owner,lease_id,expected_revision,timestamp)
+    if rec["state"]!="scoring" or any(k not in rec.get("pipeline_inputs",{}) for k in PIPELINE_KEYS): raise ValueError("Scoring requires all three pipeline inputs")
+    profile=Path(__file__).resolve().parents[3]; scripts={"classification":profile/"skills/prospect-segment-classification/scripts/validate_classification.py","qualification":profile/"skills/equinet-icp-qualification/scripts/build_qualification.py","confidence":profile/"skills/prospect-evidence-and-confidence/scripts/build_confidence_package.py","scoring":profile/"skills/icp-scoring-and-rationale/scripts/build_scoring_package.py"}
+    directory=output_dir/re.sub(r"[^A-Za-z0-9_.-]","_",lead_id); inputs=rec["pipeline_inputs"]
+    cp=directory/"classification-decision.json"; qi=directory/"qualification-assessment.json"; qo=directory/"qualification-package.json"; ci=directory/"confidence-assessment.json"; co=directory/"confidence-package.json"; si=directory/"scoring-input.json"; so=directory/"scoring-package.json"
+    _write_json(cp,inputs["classification_decision"]); _write_json(qi,inputs["qualification_assessment"]); _write_json(ci,inputs["confidence_assessment"])
+    py=str(python_executable); _run([py,str(scripts["classification"]),str(cp)]); _run([py,str(scripts["qualification"]),str(qi),"--output",str(qo)]); _run([py,str(scripts["confidence"]),str(ci),"--output",str(co)])
+    _write_json(si,{"segment":inputs["classification_decision"]["segment"],"qualification":load_json(qo)["qualification"],"confidence":load_json(co)["confidence"]}); _run([py,str(scripts["scoring"]),str(si),"--output",str(so)])
+    rec["artifacts"]={"classification_decision":str(cp),"qualification_assessment":str(qi),"qualification_package":str(qo),"confidence_assessment":str(ci),"confidence_package":str(co),"scoring_input":str(si),"scoring_package":str(so)}
+    rec["state"]="scored"; rec["terminal"]={"outcome":"scored","at":timestamp}; rec["claim"]=None; rec["revision"]+=1; return updated
+
+
+def state_summary(state: dict[str, Any]) -> dict[str, Any]:
+    _validate_state(state); counts={}
+    for rec in state["leads"].values(): counts[rec["state"]]=counts.get(rec["state"],0)+1
+    nonterminal=sum(v for k,v in counts.items() if k not in TERMINAL_STATES)
+    action="research_pending" if counts.get("research_pending") or counts.get("researching") else "assessment_pending" if counts.get("assessment_pending") or counts.get("assessing") else "run_ready" if counts.get("ready_to_score") or counts.get("scoring") else "build_overlays" if nonterminal==0 else "operator_repair"
+    return {"schema_version":SUMMARY_SCHEMA,"run_id":state["run"]["run_id"],"total":len(state["leads"]),"counts":dict(sorted(counts.items())),"terminal_count":len(state["leads"])-nonterminal,"terminal":nonterminal==0,"next_action":action,"lead_rows_emitted":False}
+
+
+def build_parser():
+    p=argparse.ArgumentParser(description=__doc__); s=p.add_subparsers(dest="command",required=True)
+    x=s.add_parser("init"); x.add_argument("handoff",type=Path); x.add_argument("--state",required=True,type=Path); x.add_argument("--max-retries",type=int,default=2)
+    x=s.add_parser("next"); x.add_argument("--state",required=True,type=Path); x.add_argument("--batch-size",required=True,type=int)
+    x=s.add_parser("claim"); x.add_argument("--state",required=True,type=Path); x.add_argument("--lead-id",required=True); x.add_argument("--owner",required=True); x.add_argument("--lease-seconds",type=int,default=900); x.add_argument("--expected-revision",required=True,type=int); x.add_argument("--now")
+    for command,argname in (("accept","results"),("submit-assessment","submission")):
+        x=s.add_parser(command); x.add_argument("--state",required=True,type=Path); x.add_argument("--"+argname,required=True,type=Path); x.add_argument("--owner",required=True); x.add_argument("--lease-id",required=True); x.add_argument("--expected-revision",required=True,type=int); x.add_argument("--now")
+    x=s.add_parser("fail"); x.add_argument("--state",required=True,type=Path); x.add_argument("--lead-id",required=True); x.add_argument("--failure-code",required=True); x.add_argument("--error",required=True); x.add_argument("--attempted-at",required=True); x.add_argument("--retryable",action="store_true"); x.add_argument("--owner",required=True); x.add_argument("--lease-id",required=True); x.add_argument("--expected-revision",required=True,type=int)
+    x=s.add_parser("fallback"); x.add_argument("--state",required=True,type=Path); x.add_argument("--submission",required=True,type=Path); x.add_argument("--expected-revision",required=True,type=int)
+    x=s.add_parser("run-ready"); x.add_argument("--state",required=True,type=Path); x.add_argument("--output-dir",required=True,type=Path); x.add_argument("--python",type=Path,default=DEFAULT_PIPELINE_PYTHON); x.add_argument("--lead-id"); x.add_argument("--owner",default=f"run-ready:{os.getpid()}"); x.add_argument("--lease-seconds",type=int,default=900)
+    x=s.add_parser("summary"); x.add_argument("--state",required=True,type=Path)
+    return p
+
+
+def main() -> int:
+    args=build_parser().parse_args()
+    try:
+        if args.command=="init":
+            with state_lock(args.state):
+                if args.state.exists(): raise ValueError("State already exists")
+                state=initialize_state(load_json(args.handoff),args.max_retries); save_state(args.state,state)
+            out={"state":str(args.state),"lead_count":len(state["leads"])}
+        elif args.command=="next": out=next_batch(load_state(args.state),args.batch_size)
+        elif args.command=="summary": out=state_summary(load_state(args.state))
+        elif args.command=="claim":
+            with state_lock(args.state): state,claim=claim_lead(load_state(args.state),args.lead_id,args.owner,args.lease_seconds,args.expected_revision,args.now); save_state(args.state,state)
+            out={"state":str(args.state),"claim":claim,"lead_rows_emitted":False}
+        elif args.command in {"accept","submit-assessment","fail","fallback"}:
+            with state_lock(args.state):
+                state=load_state(args.state)
+                if args.command=="accept": state=apply_results(state,load_json(args.results),args.owner,args.lease_id,args.expected_revision,args.now)
+                elif args.command=="submit-assessment": state=submit_assessment(state,load_json(args.submission),args.owner,args.lease_id,args.expected_revision,args.now)
+                elif args.command=="fail": state=record_failure(state,args.lead_id,args.failure_code,args.error,args.attempted_at,args.retryable,args.owner,args.lease_id,args.expected_revision)
+                else: state=explicit_fallback(state,load_json(args.submission),args.expected_revision)
+                save_state(args.state,state)
+            out={"state":str(args.state),"status":"accepted","lead_rows_emitted":False}
+        else:
+            report={"scored_count":0,"failed_count":0,"skipped_count":0,"errors":[]}
+            state=load_state(args.state); targets=[args.lead_id] if args.lead_id else list(state["leads"])
+            for lead_id in targets:
+                try:
+                    with state_lock(args.state):
+                        state=load_state(args.state); rec=state["leads"].get(lead_id)
+                        if not rec or rec["state"]!="ready_to_score": report["skipped_count"]+=1; continue
+                        state,claim=claim_lead(state,lead_id,args.owner,args.lease_seconds,rec["revision"]); save_state(args.state,state)
+                    scored=score_claimed(state,lead_id,args.output_dir,args.python,args.owner,claim["lease_id"],claim["revision"])
+                    with state_lock(args.state):
+                        current=load_state(args.state)
+                        if current["leads"][lead_id]["revision"]!=claim["revision"]: raise ValueError("revision_conflict_during_scoring")
+                        current["leads"][lead_id]=scored["leads"][lead_id]; save_state(args.state,current)
+                    report["scored_count"]+=1
+                except Exception as exc:
+                    report["failed_count"]+=1; report["errors"].append({"error_class":type(exc).__name__,"failure_code":"scoring_wrapper_failed"})
+                    try:
+                        with state_lock(args.state):
+                            current=load_state(args.state); rec=current["leads"].get(lead_id)
+                            if rec and rec.get("state")=="scoring" and (rec.get("claim") or {}).get("owner")==args.owner:
+                                rec["assessment_attempts"]+=1; rec["failure_history"].append({"stage":"scoring","failure_code":"scoring_wrapper_failed","message":str(exc)[:500],"attempted_at":utc_now(),"retryable":True}); rec["state"]="ready_to_score"; rec["claim"]=None; rec["revision"]+=1; save_state(args.state,current)
+                    except Exception: pass
+            out={**report,"lead_rows_emitted":False}
+        print(json.dumps(out,indent=2,ensure_ascii=False)); return 0
+    except Exception as exc:
+        print(json.dumps({"status":"error","error_class":type(exc).__name__,"error":str(exc),"lead_rows_emitted":False}),file=sys.stderr); return 1
+
+if __name__=="__main__": raise SystemExit(main())

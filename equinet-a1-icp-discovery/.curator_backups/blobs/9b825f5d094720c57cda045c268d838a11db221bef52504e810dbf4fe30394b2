@@ -1,0 +1,177 @@
+{
+  "candidate_id": "synthetic-ho-001",
+  "run_id": "synthetic-test-20260814",
+  "schema_version": "1.0.0",
+  "segment": "horse_owner",
+  "prospect_type": "farm",
+  "identity": {
+    "display_name": "Synthetic Horse Farm (Unknown Count)",
+    "person": {
+      "name": "Jane Doe",
+      "role_title": "Farm Manager"
+    },
+    "organisation": {
+      "name": "Synthetic Horse Farm LLC",
+      "website": "https://example.com/synthetic-farm"
+    }
+  },
+  "location": {
+    "country_code": "US",
+    "state_region": "KY",
+    "city": "Lexington",
+    "geography_status": "in_pilot_scope"
+  },
+  "qualification": {
+    "status": "qualified",
+    "exclusion_status": "none",
+    "minimum_data_status": "complete",
+    "criteria": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "status": "confirmed",
+        "evidence_ids": ["ev-001"],
+        "notes": "Professional equine farm operation confirmed from business website."
+      },
+      {
+        "criterion_id": "horse_owner.more_than_three_horses",
+        "status": "unknown",
+        "evidence_ids": [],
+        "notes": "Horse count is not published or discoverable from permitted sources."
+      },
+      {
+        "criterion_id": "horse_owner.purchasing_influence",
+        "status": "confirmed",
+        "evidence_ids": ["ev-002"],
+        "notes": "Role title 'Farm Manager' indicates purchasing influence."
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "status": "confirmed",
+        "evidence_ids": ["ev-003"],
+        "notes": "Operation manages multiple horses with regular hoof-care needs."
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "status": "confirmed",
+        "evidence_ids": ["ev-004"],
+        "notes": "Competes in show jumping events."
+      },
+      {
+        "criterion_id": "horse_owner.breeding_activity",
+        "status": "confirmed",
+        "evidence_ids": ["ev-005"],
+        "notes": "Active breeding program confirmed from farm website."
+      },
+      {
+        "criterion_id": "horse_owner.professional_network",
+        "status": "confirmed",
+        "evidence_ids": ["ev-006"],
+        "notes": "Works with professional trainers and farriers."
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "status": "confirmed",
+        "evidence_ids": ["ev-007"],
+        "notes": "Located in Lexington, KY — high-equine-activity area."
+      },
+      {
+        "criterion_id": "horse_owner.buying_signal",
+        "status": "confirmed",
+        "evidence_ids": ["ev-008"],
+        "notes": "Recent stable expansion and acquisition of new horses."
+      }
+    ]
+  },
+  "confidence": {
+    "score": 92,
+    "level": "high",
+    "method_version": "1.0.0"
+  },
+  "source_evidence": [
+    {
+      "evidence_id": "ev-001",
+      "source_url": "https://example.com/synthetic-farm/about",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Professional equine farm operation serving the Lexington area",
+      "classification": "direct_fact"
+    },
+    {
+      "evidence_id": "ev-002",
+      "source_url": "https://example.com/synthetic-farm/team",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Jane Doe listed as Farm Manager with purchasing responsibilities",
+      "classification": "reasonable_inference"
+    },
+    {
+      "evidence_id": "ev-003",
+      "source_url": "https://example.com/synthetic-farm/services",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Operation manages multiple horses with professional hoof-care program",
+      "classification": "direct_fact"
+    },
+    {
+      "evidence_id": "ev-004",
+      "source_url": "https://example.com/synthetic-farm/competition",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Actively competes in show jumping at regional level",
+      "classification": "direct_fact"
+    },
+    {
+      "evidence_id": "ev-005",
+      "source_url": "https://example.com/synthetic-farm/breeding",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Active breeding program with multiple mares",
+      "classification": "direct_fact"
+    },
+    {
+      "evidence_id": "ev-006",
+      "source_url": "https://example.com/synthetic-farm/team",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Engages professional trainers, farriers and veterinary support",
+      "classification": "direct_fact"
+    },
+    {
+      "evidence_id": "ev-007",
+      "source_url": "https://example.com/synthetic-farm/contact",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Farm located in Lexington, Kentucky — central equine industry hub",
+      "classification": "direct_fact"
+    },
+    {
+      "evidence_id": "ev-008",
+      "source_url": "https://example.com/synthetic-farm/news",
+      "source_type": "business_website",
+      "source_status": "approved",
+      "retrieval_date": "2026-08-14",
+      "claim": "Recent stable expansion and acquisition of new performance horses",
+      "classification": "direct_fact"
+    }
+  ],
+  "recommendation": {
+    "next_action": "review",
+    "suggested_territory": "KY"
+  },
+  "workflow": {
+    "stage": "scoring",
+    "status": "draft"
+  },
+  "provenance": {
+    "audit_correlation_id": "synthetic-test-20260814-ho-001",
+    "scoring_version": "1.0.0",
+    "confidence_version": "1.0.0"
+  }
+}

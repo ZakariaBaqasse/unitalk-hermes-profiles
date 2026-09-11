@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/website-routing-index/v1",
+  "title": "Equinet A1 Website Routing Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "source_sha256", "complete", "total", "counts", "routes", "artifacts"],
+  "properties": {
+    "schema_version": {"const": "a1.website-routing-index.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "complete": {"const": true},
+    "total": {"type": "integer", "minimum": 1, "maximum": 200},
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["no_website", "website_candidate"],
+      "properties": {
+        "no_website": {"type": "integer", "minimum": 0},
+        "website_candidate": {"type": "integer", "minimum": 0}
+      }
+    },
+    "routes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["lead_fingerprint", "lane", "website_candidate", "candidate_status"],
+        "properties": {
+          "lead_fingerprint": {"type": "string", "minLength": 1},
+          "lane": {"enum": ["no_website", "website_candidate"]},
+          "website_candidate": {"type": ["string", "null"]},
+          "candidate_status": {"enum": ["absent", "candidate", "invalid"]}
+        }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["no_website_discovery_result", "website_candidate_discovery_result", "no_website_overlays"],
+      "properties": {
+        "no_website_discovery_result": {"type": "string", "minLength": 1},
+        "website_candidate_discovery_result": {"type": "string", "minLength": 1},
+        "no_website_overlays": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

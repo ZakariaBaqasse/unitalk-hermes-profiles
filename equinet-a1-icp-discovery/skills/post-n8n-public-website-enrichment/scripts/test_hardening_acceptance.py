@@ -1,0 +1,276 @@
+#!/usr/bin/env python3
+"""Offline acceptance tests for A1 enrichment hardening; no network or CRM writes."""
+from __future__ import annotations
+
+import copy
+import hashlib
+import importlib.util
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+PROFILE = HERE.parents[2]
+
+
+def load(name: str, path: Path):
+    spec = importlib.util.spec_from_file_location(name, path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+# Load from a context where neither the sibling directory nor
+# manage_enrichment is pre-seeded. route_and_overlay must bootstrap its own
+# sibling import when executed through importlib.
+while str(HERE) in sys.path:
+    sys.path.remove(str(HERE))
+sys.modules.pop("manage_enrichment", None)
+r = load("route_and_overlay_acceptance", HERE / "route_and_overlay.py")
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
+import manage_enrichment as m
+migration = load("migrate_state_acceptance", HERE / "migrate_state_v1_to_v2.py")
+crm = load("stage_twenty_company_acceptance", PROFILE / "skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_company.py")
+rest = load("stage_twenty_rest_acceptance", PROFILE / "skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_rest.py")
+poll = load("poll_ticket_acceptance", PROFILE / "skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py")
+
+HANDOFF = {
+    "contract_version": "a1.discovery-result.v1",
+    "run_id": "run-acceptance",
+    "leads": [{"lead_fingerprint": "lead-1", "business_name": "Safe Test", "website": "https://example.test"}],
+}
+EVIDENCE = {
+    "evidence_id": "EV-TEST1", "source_url": "https://example.test/about",
+    "source_name": "Official", "source_type": "official_business_website",
+    "retrieved_at": "2026-09-10T00:00:00Z", "retrieval_tool": "web_extract",
+    "evidence_excerpt": "Professional farrier services.",
+    "claim": "Professional farrier services are offered.", "fact_or_inference": "direct_fact",
+}
+RESEARCH = {
+    "schema_version": m.RESULTS_SCHEMA,
+    "results": [{
+        "lead_id": "lead-1", "research_method": "hermes_approved_web_tools",
+        "website_status": "verified", "official_website_url": "https://example.test",
+        "evidence": [EVIDENCE], "missing_information": [], "conflicts": [],
+    }],
+}
+
+
+def researched():
+    state = m.initialize_state(copy.deepcopy(HANDOFF), max_retries=1)
+    state, claim = m.claim_lead(state, "lead-1", "researcher", 60, 0, "2026-09-10T00:00:00Z")
+    return m.apply_results(state, copy.deepcopy(RESEARCH), "researcher", claim["lease_id"], claim["revision"], "2026-09-10T00:00:01Z")
+
+
+def valid_assessment():
+    dimensions = ("identity_certainty", "source_quality", "evidence_directness", "corroboration", "freshness", "completeness")
+    gates = ("mandatory_claim_inference_only", "unresolved_identity_conflict", "critical_evidence_conflict", "minimum_data_failed", "blocked_source_used", "no_evidence", "fabricated_or_untraceable_evidence")
+    return {
+        "schema_version": m.ASSESSMENTS_SCHEMA,
+        "submissions": [{
+            "lead_id": "lead-1",
+            "classification_decision": {
+                "schema_version": "1.0.0", "seed_id": "lead-1", "segment": "farrier",
+                "prospect_type": "farrier_business", "identity_type": "organisation",
+                "classification_status": "confirmed", "evidence_references": ["EV-TEST1"],
+                "rationale": "Official-site evidence identifies a professional farrier business.",
+                "unresolved_questions": [],
+            },
+            "qualification_assessment": {
+                "schema_version": "1.0.0", "segment": "farrier",
+                "criterion_assessments": {}, "missing_minimum_fields": [],
+            },
+            "confidence_assessment": {
+                "schema_version": "1.0.0", "method_version": "evidence-confidence-1.0.0",
+                "candidate_reference": {"run_id": "run-acceptance", "seed_id": "lead-1"},
+                "available_evidence_ids": ["EV-TEST1"],
+                "dimensions": {name: {"level": "test_level", "evidence_ids": ["EV-TEST1"], "rationale": "Test evidence."} for name in dimensions},
+                "gates": {name: {"value": False, "evidence_ids": [], "rationale": "No gate."} for name in gates},
+                "confidence_stage_missing_fields": [],
+            },
+        }],
+    }
+
+
+def fallback_overlay():
+    state = researched()
+    record = state["leads"]["lead-1"]
+    record["assessment_attempts"] = 2
+    record["failure_history"] = [
+        {"stage": "assessment", "failure_code": "assessment_schema_failure", "message": "first failure", "attempted_at": "2026-09-10T00:01:00Z", "retryable": True},
+        {"stage": "assessment", "failure_code": "assessment_schema_failure", "message": "second failure", "attempted_at": "2026-09-10T00:02:00Z", "retryable": True},
+    ]
+    fallback = {
+        "schema_version": m.FALLBACK_SCHEMA, "lead_id": "lead-1",
+        "failure_code": "assessment_schema_failure", "attempted_at": "2026-09-10T00:02:00Z",
+        "attempts": 2, "retries_exhausted": True,
+    }
+    state = m.explicit_fallback(state, fallback, state["leads"]["lead-1"]["revision"])
+    return r.build_website_overlays(copy.deepcopy(HANDOFF), state)["overlays"][0]
+
+
+class HardeningAcceptance(unittest.TestCase):
+    def test_importlib_route_import_and_strict_init_schema(self):
+        self.assertEqual(r.OVERLAYS_SCHEMA, "a1.twenty-company-overlays.v2")
+        state = m.initialize_state(copy.deepcopy(HANDOFF))
+        m._validate_state(state)
+        broken = copy.deepcopy(state)
+        broken["unexpected"] = True
+        with self.assertRaisesRegex(ValueError, "schema validation"):
+            m._validate_state(broken)
+        empty = copy.deepcopy(HANDOFF)
+        empty["leads"] = []
+        with self.assertRaisesRegex(ValueError, "non-empty array"):
+            m.initialize_state(empty)
+
+    def test_migration_validates_against_v2_state_schema(self):
+        old = {
+            "schema_version": migration.V1, "source_contract_version": m.HANDOFF_SCHEMA,
+            "source_sha256": m.canonical_sha256(HANDOFF), "run": {"run_id": HANDOFF["run_id"]},
+            "discovery_result": {"contract_version": m.HANDOFF_SCHEMA, "run_id": HANDOFF["run_id"]},
+            "max_retries": 1,
+            "leads": {"lead-1": {"lead": HANDOFF["leads"][0], "status": "pending", "attempts": 0,
+                "failure_history": [], "enrichment": None, "pipeline_inputs": {}, "artifacts": {}}},
+        }
+        migrated = migration.migrate(old, "2026-09-10T00:00:00Z")
+        m._validate_state(migrated)
+        self.assertEqual(migrated["leads"]["lead-1"]["state"], "research_pending")
+
+    def test_expired_lease_reclaims_revision_advertised_by_next_batch(self):
+        state = m.initialize_state(copy.deepcopy(HANDOFF))
+        state, first = m.claim_lead(state, "lead-1", "worker-1", 1, 0, "2026-09-10T00:00:00Z")
+        batch = m.next_batch(state, 1, now="2026-09-10T00:00:02Z", phase="research")
+        advertised = batch["items"][0]["revision"]
+        reclaimed, second = m.claim_lead(state, "lead-1", "worker-2", 60, advertised, "2026-09-10T00:00:02Z")
+        self.assertEqual(advertised, first["revision"] + 1)
+        self.assertEqual(second["owner"], "worker-2")
+        self.assertEqual(reclaimed["leads"]["lead-1"]["state"], "researching")
+
+    def test_assessment_submission_validates_all_three_component_schemas(self):
+        state = researched()
+        state, claim = m.claim_lead(state, "lead-1", "assessor", 60, state["leads"]["lead-1"]["revision"], "2026-09-10T00:01:00Z")
+        mutations = (
+            ("classification decision", lambda sub: sub["submissions"][0]["classification_decision"].__setitem__("unexpected", True)),
+            ("qualification assessment", lambda sub: sub["submissions"][0]["qualification_assessment"].__setitem__("unexpected", True)),
+            ("confidence assessment", lambda sub: sub["submissions"][0]["confidence_assessment"].__setitem__("unexpected", True)),
+        )
+        for label, mutate in mutations:
+            submission = valid_assessment()
+            mutate(submission)
+            with self.subTest(label=label), self.assertRaisesRegex(ValueError, label):
+                m.submit_assessment(state, submission, "assessor", claim["lease_id"], claim["revision"], "2026-09-10T00:01:01Z")
+        accepted = m.submit_assessment(state, valid_assessment(), "assessor", claim["lease_id"], claim["revision"], "2026-09-10T00:01:01Z")
+        self.assertEqual(accepted["leads"]["lead-1"]["state"], "ready_to_score")
+
+    def test_verified_not_scored_explicit_fallback_passes_both_validators(self):
+        overlay = fallback_overlay()
+        r.validate_overlay(overlay)
+        crm.validate_overlay(overlay, "lead-1")
+        rest.reject_unexplained_verified_unscored({"overlays": [overlay]})
+
+    def test_unexplained_verified_not_scored_fails_all_admission_gates(self):
+        overlay = fallback_overlay()
+        overlay["notes"].pop("outcome_provenance")
+        with self.assertRaises(ValueError):
+            r.validate_overlay(overlay)
+        with self.assertRaises(ValueError):
+            crm.validate_overlay(overlay, "lead-1")
+        with self.assertRaises(ValueError):
+            rest.reject_unexplained_verified_unscored({"overlays": [overlay]})
+
+    def test_no_site_and_scored_overlay_paths(self):
+        no_site_source = {
+            "contract_version": "a1.discovery-result.v1", "run_id": "run-no-site",
+            "leads": [{"lead_fingerprint": "no-site", "business_name": "No Site"}],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            routed = r.route_discovery(no_site_source, Path(directory))
+            self.assertEqual(routed["counts"], {"no_website": 1, "website_candidate": 0})
+            overlays = json.loads((Path(directory) / "no-website-overlays.json").read_text())
+            batch = crm.prepare_batch(json.loads((Path(directory) / "no-website-discovery-result.json").read_text()), overlays)
+            payload = batch["items"][0]["plan"]["company_payload"]
+            self.assertEqual(payload["icpScoreStatus"], "NOT_SCORED")
+            self.assertNotIn("domainName", payload)
+        scored = {
+            "schema_version": r.OVERLAY_SCHEMA, "lead_fingerprint": "lead-1",
+            "website_status": "verified", "enrichment_status": "completed",
+            "official_website_url": "https://example.test", "qualification_status": "ELIGIBLE",
+            "icp_score_status": "SCORED", "icp_score": 0, "icp_band": "UNQUALIFIED",
+            "icp_outcome": "unqualified_farrier", "evidence_confidence_score": 80,
+            "evidence_confidence_level": "HIGH", "notes": {},
+        }
+        r.validate_overlay(scored)
+        crm.validate_overlay(scored, "lead-1")
+
+    def test_provenance_survives_merge_schema_and_poll_ticket_gate(self):
+        from jsonschema import Draft202012Validator
+        source = copy.deepcopy(HANDOFF)
+        website_lane = r.subset_discovery(source, source["leads"], "website_candidate")
+        provenance = {
+            "schema_version": "a1.website-overlay-provenance.v1",
+            "source_sha256": r.sha256_json(website_lane), "overlay_count": 1,
+            "verified_unscored_count": 1,
+            "explicit_exhausted_assessment_failure_count": 1,
+            "unexplained_verified_unscored_count": 0,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            company_rec = root / "company.json"
+            company_rec.write_text(json.dumps({"verification_status": "verified", "twenty_company_id": "company-1"}))
+            disposition_artifact = root / "disposition.json"
+            disposition_artifact.write_text("{}")
+            item = {
+                "lead_fingerprint": "lead-1", "status": "company_staged_no_person_required",
+                "company_id": "company-1", "person_required": False, "person_id": None,
+                "company_disposition": "staged", "person_disposition": "not_required",
+                "relation_status": "not_required", "operation": "create", "company_operation": "create",
+                "person_operation": None, "reason": "verified", "duplicate_preflight_completed": True,
+                "person_duplicate_preflight_completed": False, "write_attempted": True,
+                "write_outcome_uncertain": False, "company_reconciliation_artifact": str(company_rec),
+                "person_reconciliation_artifact": None, "relation_reconciliation_artifact": None,
+                "artifact_reference": str(disposition_artifact),
+            }
+            lane = {
+                "schema_version": r.STAGING_INDEX_SCHEMA, "run_id": source["run_id"],
+                "input_sha256": "a" * 64, "website_overlay_provenance": provenance,
+                "complete": True, "total": 1,
+                "counts": {"company_staged_no_person_required": 1}, "dispositions": [item],
+            }
+            lane_schema = json.loads((PROFILE / "skills/crm/evidence-aware-crm-staging/references/staging-index.schema.json").read_text())
+            Draft202012Validator(lane_schema).validate(lane)
+            combined = r.merge_indexes(source, None, lane)
+            self.assertEqual(combined["lane_indexes"]["website_candidate"]["website_overlay_provenance"], provenance)
+            combined_schema = json.loads((PROFILE / "skills/post-n8n-public-website-enrichment/references/combined-staging-index.schema.json").read_text())
+            Draft202012Validator(combined_schema).validate(combined)
+
+            result_path = root / "result.json"
+            result_path.write_text(json.dumps(source))
+            ticket = poll.new_ticket(ticket_id="ticket", workflow_id="workflow", execution_id="execution",
+                application_run_id=source["run_id"], deadline_at="2026-09-10T01:00:00Z",
+                now="2026-09-10T00:00:00Z", configuration_snapshot={"status": "test"},
+                monitor_identity="offline-test", monitor_budget=5)
+            ticket = poll.observe(ticket, "success", now="2026-09-10T00:00:01Z")
+            ticket, _ = poll.claim_result(ticket, now="2026-09-10T00:00:02Z")
+            ticket = poll.mark_retrieved(ticket, result_sha256=hashlib.sha256(result_path.read_bytes()).hexdigest(),
+                artifact_reference=str(result_path), now="2026-09-10T00:00:03Z")
+            combined_path = root / "combined.json"
+            combined_path.write_text(json.dumps(combined))
+            consumed = poll.mark_consumed(ticket, artifact_reference=str(combined_path), now="2026-09-10T00:00:04Z")
+            self.assertIsNotNone(consumed["consumed_at"])
+
+            broken = copy.deepcopy(combined)
+            broken_provenance = broken["lane_indexes"]["website_candidate"]["website_overlay_provenance"]
+            broken_provenance["unexplained_verified_unscored_count"] = 1
+            broken_path = root / "broken.json"
+            broken_path.write_text(json.dumps(broken))
+            with self.assertRaisesRegex(ValueError, "unexplained website overlay provenance"):
+                poll.mark_consumed(ticket, artifact_reference=str(broken_path), now="2026-09-10T00:00:04Z")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

@@ -1,0 +1,23 @@
+{
+  "skill_name": "prospect-evidence-and-confidence",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Assess evidence confidence for the accepted James Holub Wave 1 artifacts. Use the official business website as one strong primary source and do not cap it merely because it is a single source.",
+      "expected_output": "A rich evidence-linked assessment and deterministic High/Medium/Low confidence object with no ICP score.",
+      "files": ["evaluations/wave1/iteration-8/accepted-artifacts/research-seed.json", "evaluations/wave1/iteration-8/accepted-artifacts/classification-decision.json", "evaluations/wave1/iteration-8/accepted-artifacts/qualification-output.json"]
+    },
+    {
+      "id": 2,
+      "prompt": "Assess a candidate whose mandatory professional-activity claim is inference-only.",
+      "expected_output": "Confidence is capped at 59/Low with the inference-only gate and limitation shown.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Assess a candidate whose evidence relies on a blocked source.",
+      "expected_output": "The deterministic wrapper rejects the assessment rather than returning a confidence score.",
+      "files": []
+    }
+  ]
+}

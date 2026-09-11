@@ -1,0 +1,150 @@
+---
+name: icp-scoring-and-rationale
+description: Use after post-n8n enrichment has produced a qualification object and confidence package to calculate the approved Equinet ICP score, apply segment gates/band caps and explain the result. Always invokes the deterministic model; never researches, deduplicates, edits weights or treats score as action permission.
+compatibility: Requires accepted post-n8n evidence, ICP Scoring Model 1.1.0, ICP Configuration 2.0.0, Prospect Candidate Schema V1, Qualification Object and confidence package.
+metadata:
+  version: 1.1.0
+  status: production_validated
+---
+
+# ICP Scoring and Rationale
+
+Use this skill after the post-n8n enrichment, classification, qualification and confidence stages. It calculates commercial fit and explains the result; it does not perform research, repeat discovery/deduplication or change evidence.
+
+## Authoritative dependencies
+
+Resolve from the active profile home:
+
+```text
+configurations/scoring/icp-scoring-model-v1.yaml
+configurations/icp/equinet-icp-v1.yaml
+skills/a1-prospect-data-contract/references/prospect-candidate.schema.json
+scripts/calculate_icp_score.py
+skills/icp-scoring-and-rationale/references/scoring-package.schema.json
+```
+
+Use:
+
+```text
+/opt/hermes/.venv/bin/python skills/icp-scoring-and-rationale/scripts/build_scoring_package.py <candidate.json>
+```
+
+Do not install packages during execution.
+
+## Input
+
+Require:
+
+- confirmed segment;
+- complete Qualification Object for that segment;
+- evidence IDs for every confirmed criterion;
+- exclusion status;
+- confidence object when already calculated.
+
+The full Wave 3 review package is not required yet.
+n8n lead fields and search snippets are not scoring evidence. Consume the unchanged qualification and confidence outputs generated from accepted Hermes website citations; never reconstruct criteria from the n8n handoff.
+
+## Deterministic workflow
+
+1. Preserve the qualification object unchanged.
+2. Call the approved deterministic scoring calculator.
+3. Validate the returned `scoring` object against the Prospect Candidate Schema.
+4. Preserve numeric score, components, raw band, final band, applied band rules and outcome.
+5. Build a plain-English explanation from deterministic output only.
+6. If the wrapper fails, quote the exact returned error; never invent or infer a schema failure.
+7. If scoring is blocked, report `score: null`, `band: null`, the exact block reason and exclusion outcome; confidence cannot override the block.
+8. Show confidence beside a scored ICP result without changing either result.
+9. Hand the scoring package to the Wave 3 review-package skill.
+
+## Points
+
+- `confirmed` criterion with evidence → full configured weight;
+- `unknown`, `not_confirmed`, `contradicted` → zero points;
+- missing data is never guessed;
+- confirmed exclusions block scoring;
+- related Farrier product-usage and buying-influence criteria both score only when distinct facts support both.
+
+Never assign partial points in V1.
+
+## Numeric score and final band
+
+The numeric score always equals the sum of evidence-backed components.
+
+Special rules cap the final band/outcome without changing the numeric score. Example:
+
+```text
+Numeric score: 80
+Raw band: High
+Horse count: unknown
+Final band: Medium
+Outcome: horse_count_unknown_human_review
+```
+
+Do not describe a capped candidate as High priority even when the numeric score falls in the High range.
+
+## Farrier pathways
+
+- professional activity missing → maximum Low, needs review;
+- active apprentice → maximum Low, future-potential review;
+- inactive/hobbyist → maximum Unqualified;
+- no professional evidence → scoring blocked/excluded.
+
+## Horse Owner pathways
+
+- commercial operation missing → maximum Unqualified;
+- horse count unknown + at least two strong commercial signals → maximum Medium, review only;
+- horse count at/below three + at least two strong signals → maximum Low, exception review;
+- insufficient strong signals → maximum Unqualified;
+- single-horse recreational → Unqualified;
+- no commercial evidence → scoring blocked/excluded.
+
+## Rationale requirements
+
+Explain:
+
+- numeric score and final band;
+- confirmed criteria and points;
+- weighted criteria that earned no points;
+- any gate or band cap;
+- deterministic outcome;
+- confidence context and material limitations.
+
+Use evidence IDs beside scored criteria. Do not create a new claim in the rationale.
+
+## Confidence interaction
+
+Confidence never changes the numeric ICP score.
+
+- High ICP + High confidence → attractive and well-supported candidate.
+- High ICP + Low confidence → potentially attractive but not validated as priority.
+- Low ICP + High confidence → well-documented candidate with weak commercial fit.
+
+## Boundaries
+
+Never:
+
+- change weights, thresholds, bands or components;
+- award points without confirmed evidence;
+- remove a band cap;
+- override an exclusion;
+- contact the prospect;
+- authorise or perform outreach;
+- create/update HubSpot or Twenty;
+- approve A2 handoff;
+- present score as consent or permission.
+- research, discover, merge or deduplicate leads.
+
+## Output
+
+Return:
+
+- schema-compatible `scoring` object;
+- deterministic scoring audit;
+- confirmed scored criteria;
+- unearned weighted criteria;
+- applied band rules;
+- outcome and review requirement;
+- confidence context;
+- concise human-readable summary.
+
+The scoring object is authoritative. The prose explanation must match it exactly.

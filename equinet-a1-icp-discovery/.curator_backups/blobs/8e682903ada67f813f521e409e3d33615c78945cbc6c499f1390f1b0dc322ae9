@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+import unittest
+import stage_twenty_rest as rest
+
+class OverlayAdmissionTests(unittest.TestCase):
+    def test_rejects_unexplained_verified_unscored(self):
+        value={"overlays":[{"website_status":"verified","enrichment_status":"completed","icp_score_status":"NOT_SCORED","notes":{}}]}
+        with self.assertRaisesRegex(ValueError,"explicit exhausted"): rest.reject_unexplained_verified_unscored(value)
+    def test_accepts_explicit_exhausted_failure(self):
+        value={"overlays":[{"website_status":"verified","enrichment_status":"failed","icp_score_status":"NOT_SCORED","notes":{"outcome_provenance":{"outcome":"assessment_failed","failure_code":"assessment_schema_failure","retries_exhausted":True}}}]}
+        rest.reject_unexplained_verified_unscored(value)
+    def test_no_site_unchanged(self):
+        rest.reject_unexplained_verified_unscored({"overlays":[{"website_status":"unverified","enrichment_status":"not_required_no_website","icp_score_status":"NOT_SCORED","notes":{"fallback_reason":"website_candidate_not_provided"}}]})
+
+if __name__=="__main__": unittest.main(verbosity=2)

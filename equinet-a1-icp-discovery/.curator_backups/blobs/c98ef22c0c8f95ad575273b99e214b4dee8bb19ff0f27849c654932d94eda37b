@@ -1,0 +1,236 @@
+from __future__ import annotations
+
+import copy
+import importlib.util
+import json
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+SKILL = Path(__file__).resolve().parents[1]
+PROFILE = SKILL.parents[1]
+SCRIPT = SKILL / "scripts" / "manage_enrichment.py"
+PYTHON = PROFILE / ".venv" / "bin" / "python"
+FIXTURE = PROFILE / "evaluations" / "step9" / "candidates" / "rood-riddle-podiatry"
+
+
+def load_module():
+    spec = importlib.util.spec_from_file_location("manage_enrichment_tests", SCRIPT)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+m = load_module()
+HANDOFF = {
+    "contract_version": "a1.discovery-result.v1",
+    "run_id": "RUN-V2",
+    "leads": [{"lead_fingerprint": "lead-1", "business_name": "Alpha Farrier", "website": "https://alpha.example"}],
+}
+EVIDENCE = {
+    "evidence_id": "EV-ALPHA1",
+    "source_url": "https://alpha.example/services",
+    "source_name": "Alpha services",
+    "source_type": "official_business_website",
+    "retrieved_at": "2026-09-10T00:00:00Z",
+    "retrieval_tool": "web_extract",
+    "evidence_excerpt": "Professional hoof-care services.",
+    "claim": "Alpha offers professional hoof-care services.",
+    "fact_or_inference": "direct_fact",
+}
+
+
+def verified_research(evidence=None):
+    return {
+        "schema_version": m.RESULTS_SCHEMA,
+        "results": [{
+            "lead_id": "lead-1",
+            "research_method": "hermes_approved_web_tools",
+            "website_status": "verified",
+            "official_website_url": "https://alpha.example",
+            "evidence": copy.deepcopy(evidence if evidence is not None else [EVIDENCE]),
+            "missing_information": [],
+            "conflicts": [],
+        }],
+    }
+
+
+def accept_research(state=None, *, max_retries=1):
+    state = state or m.initialize_state(copy.deepcopy(HANDOFF), max_retries=max_retries)
+    state, claim = m.claim_lead(state, "lead-1", "researcher", 60, state["leads"]["lead-1"]["revision"], "2026-09-10T00:00:00Z")
+    return m.apply_results(state, verified_research(), "researcher", claim["lease_id"], claim["revision"], "2026-09-10T00:00:01Z")
+
+
+def valid_assessment(run_id="RUN-V2"):
+    dimensions = ("identity_certainty", "source_quality", "evidence_directness", "corroboration", "freshness", "completeness")
+    gates = ("mandatory_claim_inference_only", "unresolved_identity_conflict", "critical_evidence_conflict", "minimum_data_failed", "blocked_source_used", "no_evidence", "fabricated_or_untraceable_evidence")
+    return {
+        "schema_version": m.ASSESSMENTS_SCHEMA,
+        "submissions": [{
+            "lead_id": "lead-1",
+            "classification_decision": {
+                "schema_version": "1.0.0", "seed_id": "lead-1", "segment": "farrier",
+                "prospect_type": "farrier_business", "identity_type": "organisation",
+                "classification_status": "confirmed", "evidence_references": ["EV-ALPHA1"],
+                "rationale": "Official-site evidence identifies a professional farrier business.",
+                "unresolved_questions": [],
+            },
+            "qualification_assessment": {
+                "schema_version": "1.0.0", "segment": "farrier",
+                "criterion_assessments": {}, "missing_minimum_fields": [],
+            },
+            "confidence_assessment": {
+                "schema_version": "1.0.0", "method_version": "evidence-confidence-1.0.0",
+                "candidate_reference": {"run_id": run_id, "seed_id": "lead-1"},
+                "available_evidence_ids": ["EV-ALPHA1"],
+                "dimensions": {name: {"level": "test_level", "evidence_ids": ["EV-ALPHA1"], "rationale": "Test evidence."} for name in dimensions},
+                "gates": {name: {"value": False, "evidence_ids": [], "rationale": "No gate."} for name in gates},
+                "confidence_stage_missing_fields": [],
+            },
+        }],
+    }
+
+
+class EnrichmentStateV2Tests(unittest.TestCase):
+    def test_default_pipeline_python_is_profile_local(self):
+        self.assertEqual(m.DEFAULT_PIPELINE_PYTHON, PYTHON)
+        completed = subprocess.run([str(PYTHON), "-c", "import yaml, jsonschema"], capture_output=True, text=True)
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+
+    def test_initialization_is_strict_v2_and_preserves_source(self):
+        state = m.initialize_state(copy.deepcopy(HANDOFF), max_retries=2)
+        self.assertEqual(state["schema_version"], m.STATE_SCHEMA)
+        self.assertEqual(state["leads"]["lead-1"]["state"], "research_pending")
+        self.assertEqual(state["leads"]["lead-1"]["revision"], 0)
+        self.assertIsNone(state["leads"]["lead-1"]["enrichment"])
+        self.assertEqual(state["source_sha256"], m.canonical_sha256(HANDOFF))
+        broken = copy.deepcopy(state)
+        broken["unexpected"] = True
+        with self.assertRaisesRegex(ValueError, "schema validation"):
+            m._validate_state(broken)
+        with self.assertRaisesRegex(ValueError, "non-empty array"):
+            m.initialize_state({**HANDOFF, "leads": []})
+
+    def test_claim_is_required_and_expired_claim_advertises_reclaim_revision(self):
+        state = m.initialize_state(copy.deepcopy(HANDOFF))
+        with self.assertRaises(TypeError):
+            m.apply_results(state, verified_research())
+        state, claim = m.claim_lead(state, "lead-1", "worker-1", 1, 0, "2026-09-10T00:00:00Z")
+        with self.assertRaisesRegex(ValueError, "claim_contention"):
+            m.claim_lead(state, "lead-1", "worker-2", 60, claim["revision"], "2026-09-10T00:00:00Z")
+        batch = m.next_batch(state, 1, now="2026-09-10T00:00:02Z", phase="research")
+        self.assertEqual(batch["items"][0]["revision"], claim["revision"] + 1)
+        reclaimed, new_claim = m.claim_lead(state, "lead-1", "worker-2", 60, batch["items"][0]["revision"], "2026-09-10T00:00:02Z")
+        self.assertEqual(new_claim["owner"], "worker-2")
+        self.assertEqual(reclaimed["leads"]["lead-1"]["state"], "researching")
+
+    def test_verified_research_is_nonterminal_assessment_pending(self):
+        state = accept_research()
+        self.assertEqual(state["leads"]["lead-1"]["state"], "assessment_pending")
+        summary = m.state_summary(state)
+        self.assertFalse(summary["terminal"])
+        self.assertEqual(summary["next_action"], "assessment_pending")
+
+    def test_none_found_is_terminal_without_evidence_or_assessment(self):
+        state = m.initialize_state(copy.deepcopy(HANDOFF))
+        state, claim = m.claim_lead(state, "lead-1", "researcher", 60, 0, "2026-09-10T00:00:00Z")
+        payload = {"schema_version": m.RESULTS_SCHEMA, "results": [{
+            "lead_id": "lead-1", "research_method": "hermes_approved_web_tools",
+            "website_status": "none_found", "official_website_url": None, "evidence": [],
+            "missing_information": ["official_business_website_not_found"], "conflicts": [],
+        }]}
+        state = m.apply_results(state, payload, "researcher", claim["lease_id"], claim["revision"], "2026-09-10T00:00:01Z")
+        self.assertEqual(state["leads"]["lead-1"]["state"], "terminal_none_found")
+        self.assertTrue(m.state_summary(state)["terminal"])
+        invalid = copy.deepcopy(payload)
+        invalid["results"][0]["classification_decision"] = {}
+        fresh = m.initialize_state(copy.deepcopy(HANDOFF))
+        fresh, fresh_claim = m.claim_lead(fresh, "lead-1", "researcher", 60, 0, "2026-09-10T00:00:00Z")
+        with self.assertRaisesRegex(ValueError, "schema validation|cannot contain"):
+            m.apply_results(fresh, invalid, "researcher", fresh_claim["lease_id"], fresh_claim["revision"], "2026-09-10T00:00:01Z")
+
+    def test_verified_research_requires_destination_evidence(self):
+        state = m.initialize_state(copy.deepcopy(HANDOFF))
+        state, claim = m.claim_lead(state, "lead-1", "researcher", 60, 0, "2026-09-10T00:00:00Z")
+        empty = verified_research([])
+        with self.assertRaisesRegex(ValueError, "schema validation|requires evidence"):
+            m.apply_results(state, empty, "researcher", claim["lease_id"], claim["revision"], "2026-09-10T00:00:01Z")
+        bad = copy.deepcopy(EVIDENCE)
+        bad["retrieval_tool"] = "web_search"
+        with self.assertRaisesRegex(ValueError, "schema validation|destination citation"):
+            m.apply_results(state, verified_research([bad]), "researcher", claim["lease_id"], claim["revision"], "2026-09-10T00:00:01Z")
+        bad = copy.deepcopy(EVIDENCE)
+        bad["source_url"] = "https://directory.example/alpha"
+        with self.assertRaisesRegex(ValueError, "schema validation|destination citation"):
+            m.apply_results(state, verified_research([bad]), "researcher", claim["lease_id"], claim["revision"], "2026-09-10T00:00:01Z")
+
+    def test_assessment_is_separate_validated_and_preserves_evidence(self):
+        state = accept_research()
+        accepted_evidence = copy.deepcopy(state["leads"]["lead-1"]["enrichment"])
+        state, claim = m.claim_lead(state, "lead-1", "assessor", 60, state["leads"]["lead-1"]["revision"], "2026-09-10T00:01:00Z")
+        invalid = valid_assessment()
+        invalid["submissions"][0]["classification_decision"]["unexpected"] = True
+        with self.assertRaisesRegex(ValueError, "classification decision"):
+            m.submit_assessment(state, invalid, "assessor", claim["lease_id"], claim["revision"], "2026-09-10T00:01:01Z")
+        accepted = m.submit_assessment(state, valid_assessment(), "assessor", claim["lease_id"], claim["revision"], "2026-09-10T00:01:01Z")
+        self.assertEqual(accepted["leads"]["lead-1"]["state"], "ready_to_score")
+        self.assertEqual(accepted_evidence, accepted["leads"]["lead-1"]["enrichment"])
+
+    def test_out_of_scope_requires_accepted_evidence(self):
+        state = accept_research()
+        state, claim = m.claim_lead(state, "lead-1", "assessor", 60, state["leads"]["lead-1"]["revision"], "2026-09-10T00:01:00Z")
+        submission = {"schema_version": m.ASSESSMENTS_SCHEMA, "submissions": [{
+            "lead_id": "lead-1",
+            "classification_decision": {
+                "schema_version": "1.0.0", "seed_id": "lead-1", "segment": None,
+                "prospect_type": None, "identity_type": "organisation",
+                "classification_status": "out_of_scope", "evidence_references": ["EV-ALPHA1"],
+                "rationale": "Official evidence places the organisation outside approved segments.",
+                "unresolved_questions": [],
+            },
+            "qualification_assessment": None, "confidence_assessment": None,
+        }]}
+        accepted = m.submit_assessment(state, submission, "assessor", claim["lease_id"], claim["revision"], "2026-09-10T00:01:01Z")
+        self.assertEqual(accepted["leads"]["lead-1"]["state"], "terminal_out_of_scope")
+
+    def test_retry_budget_is_claimed_and_bounded(self):
+        state = m.initialize_state(copy.deepcopy(HANDOFF), max_retries=1)
+        state, claim = m.claim_lead(state, "lead-1", "worker", 60, 0, "2026-09-10T00:00:00Z")
+        state = m.record_failure(state, "lead-1", "http_429", "rate limited", "2026-09-10T00:00:01Z", True, "worker", claim["lease_id"], claim["revision"])
+        self.assertEqual(state["leads"]["lead-1"]["state"], "research_pending")
+        state, claim = m.claim_lead(state, "lead-1", "worker", 60, state["leads"]["lead-1"]["revision"], "2026-09-10T00:00:02Z")
+        state = m.record_failure(state, "lead-1", "http_429", "rate limited again", "2026-09-10T00:00:03Z", True, "worker", claim["lease_id"], claim["revision"])
+        self.assertEqual(state["leads"]["lead-1"]["state"], "terminal_verification_failed")
+        self.assertTrue(state["leads"]["lead-1"]["terminal"]["retries_exhausted"])
+
+    def test_explicit_fallback_requires_persisted_failure_history(self):
+        state = accept_research(max_retries=1)
+        fallback = {
+            "schema_version": m.FALLBACK_SCHEMA, "lead_id": "lead-1",
+            "failure_code": "assessment_schema_failure", "attempted_at": "2026-09-10T00:02:00Z",
+            "attempts": 2, "retries_exhausted": True,
+        }
+        with self.assertRaisesRegex(ValueError, "failure history"):
+            m.explicit_fallback(state, fallback, state["leads"]["lead-1"]["revision"])
+        record = state["leads"]["lead-1"]
+        record["assessment_attempts"] = 2
+        record["failure_history"] = [
+            {"stage": "assessment", "failure_code": "assessment_schema_failure", "message": "first", "attempted_at": "2026-09-10T00:01:00Z", "retryable": True},
+            {"stage": "assessment", "failure_code": "assessment_schema_failure", "message": "second", "attempted_at": "2026-09-10T00:02:00Z", "retryable": True},
+        ]
+        accepted = m.explicit_fallback(state, fallback, record["revision"])
+        self.assertEqual(accepted["leads"]["lead-1"]["state"], "terminal_assessment_failed")
+
+    def test_source_tampering_is_rejected(self):
+        state = m.initialize_state(copy.deepcopy(HANDOFF))
+        state["leads"]["lead-1"]["lead"]["business_name"] = "Tampered"
+        with self.assertRaisesRegex(ValueError, "source_sha256"):
+            m._validate_state(state)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

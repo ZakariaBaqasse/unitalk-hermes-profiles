@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+"""Migrate a1.website-enrichment-state.v1 to a separate v2 artifact only."""
+from __future__ import annotations
+import argparse, copy, json, os, sys
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+from manage_enrichment import _validate_state
+
+V1="a1.website-enrichment-state.v1"; V2="a1.website-enrichment-state.v2"
+PIPELINE_KEYS=("classification_decision","qualification_assessment","confidence_assessment")
+
+def now(): return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00","Z")
+def load(path: Path) -> dict[str,Any]:
+    value=json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value,dict): raise ValueError("state must be an object")
+    return value
+
+def migrate(source: dict[str,Any], migrated_at: str|None=None) -> dict[str,Any]:
+    if source.get("schema_version")!=V1: raise ValueError(f"Expected {V1}")
+    if not isinstance(source.get("leads"),dict): raise ValueError("v1 leads must be an object")
+    stamp=migrated_at or now(); target=copy.deepcopy(source); target["schema_version"]=V2
+    target["migration"]={"from_schema_version":V1,"migrated_at":stamp,"source_state_preserved":True,"crm_or_n8n_touched":False}
+    for lead_id, old in source["leads"].items():
+        if not isinstance(old,dict): raise ValueError(f"Invalid v1 record: {lead_id}")
+        enrichment=copy.deepcopy(old.get("enrichment")); inputs=copy.deepcopy(old.get("pipeline_inputs") or {})
+        old_status=old.get("status"); website=(enrichment or {}).get("website_status")
+        if old_status=="scored": state="scored"; terminal={"outcome":"scored","at":stamp}
+        elif old_status=="completed" and website=="none_found": state="terminal_none_found"; terminal={"outcome":"none_found","at":stamp}
+        elif old_status=="completed" and website=="verified" and all(k in inputs for k in PIPELINE_KEYS): state="ready_to_score"; terminal=None
+        elif old_status=="completed" and website=="verified": state="assessment_pending"; terminal=None
+        elif old_status=="failed" and website=="verified":
+            state="terminal_assessment_failed"; terminal={"outcome":"assessment_failed","failure_code":"legacy_assessment_failure","attempted_at":stamp,"attempts":max(int(old.get("attempts",0)),int(source.get("max_retries",2))+1),"retries_exhausted":True}
+        elif old_status=="failed":
+            state="terminal_verification_failed"; terminal={"outcome":"verification_failed","failure_code":"legacy_verification_failure","attempted_at":stamp,"attempts":int(old.get("attempts",0)),"retries_exhausted":True}
+        elif old_status=="pending": state="research_pending"; terminal=None
+        else: raise ValueError(f"Unsupported v1 status for {lead_id}: {old_status!r}")
+        target["leads"][lead_id]={"lead":copy.deepcopy(old.get("lead")),"state":state,"revision":0,"claim":None,
+          "research_attempts":int(old.get("attempts",0)) if website!="verified" else 1,
+          "assessment_attempts":int(old.get("attempts",0)) if website=="verified" else 0,
+          "failure_history":copy.deepcopy(old.get("failure_history") or []),"enrichment":enrichment,
+          "pipeline_inputs":inputs,"artifacts":copy.deepcopy(old.get("artifacts") or {}),"terminal":terminal,
+          "migration":{"legacy_status":old_status}}
+    _validate_state(target)
+    return target
+
+def atomic(path:Path,value:dict[str,Any]):
+    path.parent.mkdir(parents=True,exist_ok=True); tmp=path.with_name(f".{path.name}.tmp.{os.getpid()}")
+    with tmp.open("w",encoding="utf-8") as h: h.write(json.dumps(value,indent=2,ensure_ascii=False)+"\n"); h.flush(); os.fsync(h.fileno())
+    os.replace(tmp,path)
+def main():
+    p=argparse.ArgumentParser(description=__doc__); p.add_argument("--input",required=True,type=Path); p.add_argument("--output",required=True,type=Path); p.add_argument("--migrated-at"); a=p.parse_args()
+    try:
+        if a.input.resolve()==a.output.resolve(): raise ValueError("Migration output must be a separate path; in-place mutation is forbidden")
+        if a.output.exists(): raise ValueError("Migration output already exists")
+        result=migrate(load(a.input),a.migrated_at); atomic(a.output,result)
+        print(json.dumps({"schema_version":V2,"lead_count":len(result["leads"]),"output":str(a.output),"crm_or_n8n_touched":False,"lead_rows_emitted":False},sort_keys=True)); return 0
+    except Exception as exc:
+        print(json.dumps({"status":"error","error_class":type(exc).__name__,"error":str(exc),"lead_rows_emitted":False}),file=sys.stderr); return 1
+if __name__=="__main__": raise SystemExit(main())

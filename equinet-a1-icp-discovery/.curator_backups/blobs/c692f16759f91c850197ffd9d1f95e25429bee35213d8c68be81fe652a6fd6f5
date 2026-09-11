@@ -1,0 +1,715 @@
+#!/usr/bin/env python3
+"""Route n8n leads and build deterministic Twenty enrichment overlays."""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import hashlib
+import json
+import os
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+from urllib.parse import urlparse
+
+from manage_enrichment import state_summary
+
+DISCOVERY_SCHEMA = "a1.discovery-result.v1"
+ROUTING_SCHEMA = "a1.website-routing-index.v1"
+OVERLAYS_SCHEMA = "a1.twenty-company-overlays.v2"
+OVERLAY_SCHEMA = "a1.twenty-company-overlay.v2"
+COMBINED_INDEX_SCHEMA = "a1.twenty-entity-staging-index.v3"
+STAGING_INDEX_SCHEMA = "a1.twenty-entity-staging-index.v2"
+TERMINAL_DISPOSITIONS = {
+    "company_staged_person_staged", "company_staged_no_person_required",
+    "company_staged_person_possible_match", "company_staged_person_sync_failed",
+    "company_possible_match", "company_sync_failed", "blocked_missing_company_name",
+}
+QUALIFICATION_VALUES = {"ELIGIBLE", "EXCLUDED", "NEEDS_REVIEW", "NOT_CHECKED"}
+SCORE_STATUS_VALUES = {"NOT_SCORED", "SCORED", "BLOCKED"}
+BAND_VALUES = {"HIGH", "MEDIUM", "LOW", "UNQUALIFIED"}
+CONFIDENCE_VALUES = {"HIGH", "MEDIUM", "LOW"}
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def canonical_json(value: Any) -> str:
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def sha256_json(value: Any) -> str:
+    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
+
+
+def require_text(value: Any, field: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field} must be a non-empty string")
+    return value.strip()
+
+
+def optional_text(value: Any) -> str | None:
+    return value.strip() if isinstance(value, str) and value.strip() else None
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError(f"{path} must contain a JSON object")
+    return value
+
+
+def atomic_json(path: Path, value: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rendered = json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    temporary = path.with_name(f".{path.name}.tmp.{os.getpid()}")
+    with temporary.open("w", encoding="utf-8") as handle:
+        os.chmod(temporary, 0o600)
+        handle.write(rendered)
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(temporary, path)
+
+
+def website_candidate(lead: dict[str, Any]) -> tuple[str | None, str]:
+    raw = optional_text(lead.get("website") or lead.get("official_website_url") or lead.get("domain"))
+    if not raw:
+        return None, "absent"
+    candidate = raw if "://" in raw else "https://" + raw
+    try:
+        parsed = urlparse(candidate)
+        valid_port = parsed.port is None or 1 <= parsed.port <= 65535
+    except ValueError:
+        return raw, "invalid"
+    if (
+        parsed.scheme not in {"http", "https"}
+        or not parsed.hostname
+        or parsed.username is not None
+        or parsed.password is not None
+        or not valid_port
+    ):
+        return raw, "invalid"
+    return candidate, "candidate"
+
+
+def validate_discovery(data: dict[str, Any]) -> tuple[str, list[dict[str, Any]]]:
+    if data.get("contract_version") != DISCOVERY_SCHEMA:
+        raise ValueError(f"Expected contract_version {DISCOVERY_SCHEMA}")
+    run_id = require_text(data.get("run_id"), "run_id")
+    leads = data.get("leads")
+    if not isinstance(leads, list) or not leads:
+        raise ValueError("Discovery result requires a non-empty leads array")
+    fingerprints: list[str] = []
+    for lead in leads:
+        if not isinstance(lead, dict):
+            raise ValueError("Every lead must be an object")
+        fingerprints.append(require_text(lead.get("lead_fingerprint"), "lead_fingerprint"))
+    if len(fingerprints) != len(set(fingerprints)):
+        raise ValueError("Discovery result contains duplicate lead_fingerprint values")
+    return run_id, leads
+
+
+def subset_discovery(source: dict[str, Any], leads: list[dict[str, Any]], lane: str) -> dict[str, Any]:
+    result = copy.deepcopy(source)
+    result["leads"] = copy.deepcopy(leads)
+    result["routing_lane"] = lane
+    summary = result.get("summary")
+    if isinstance(summary, dict):
+        summary["original_returned"] = summary.get("returned")
+        summary["returned"] = len(leads)
+    return result
+
+
+def not_scored_overlay(
+    fingerprint: str,
+    *,
+    website_status: str,
+    enrichment_status: str,
+    reason: str | None = None,
+    official_website_url: str | None = None,
+    missing_information: list[str] | None = None,
+    artifact_references: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    return {
+        "schema_version": OVERLAY_SCHEMA,
+        "lead_fingerprint": fingerprint,
+        "website_status": website_status,
+        "enrichment_status": enrichment_status,
+        "official_website_url": official_website_url,
+        "qualification_status": "NOT_CHECKED",
+        "icp_score_status": "NOT_SCORED",
+        "icp_score": None,
+        "icp_band": None,
+        "icp_outcome": None,
+        "evidence_confidence_score": None,
+        "evidence_confidence_level": None,
+        "notes": {
+            "fallback_reason": reason,
+            "scoring_model_version": None,
+            "confidence_method_version": None,
+            "icp_configuration_version": None,
+            "missing_information": (
+                list(missing_information)
+                if isinstance(missing_information, list)
+                else (["official_business_website_not_found"] if website_status == "none_found" else [])
+            ),
+            "limitations": [],
+            "artifact_references": copy.deepcopy(artifact_references) if isinstance(artifact_references, dict) else {},
+        },
+    }
+
+
+def route_discovery(source: dict[str, Any], output_dir: Path) -> dict[str, Any]:
+    run_id, leads = validate_discovery(source)
+    no_website: list[dict[str, Any]] = []
+    website: list[dict[str, Any]] = []
+    routes: list[dict[str, Any]] = []
+    no_site_overlays: list[dict[str, Any]] = []
+    for lead in leads:
+        fingerprint = lead["lead_fingerprint"]
+        candidate, status = website_candidate(lead)
+        lane = "website_candidate" if status == "candidate" else "no_website"
+        (no_website if lane == "no_website" else website).append(lead)
+        routes.append({
+            "lead_fingerprint": fingerprint,
+            "lane": lane,
+            "website_candidate": candidate,
+            "candidate_status": status,
+        })
+        if lane == "no_website":
+            no_site_overlays.append(not_scored_overlay(
+                fingerprint,
+                website_status="unverified" if status == "absent" else "error",
+                enrichment_status="not_required_no_website" if status == "absent" else "failed",
+                reason="website_candidate_not_provided" if status == "absent" else "invalid_website_candidate",
+                missing_information=["website_candidate_not_provided"] if status == "absent" else [],
+            ))
+    output_dir.mkdir(parents=True, exist_ok=True)
+    os.chmod(output_dir, 0o700)
+    source_hash = sha256_json(source)
+    no_site_path = output_dir / "no-website-discovery-result.json"
+    website_path = output_dir / "website-candidate-discovery-result.json"
+    overlays_path = output_dir / "no-website-overlays.json"
+    no_site_subset = subset_discovery(source, no_website, "no_website")
+    website_subset = subset_discovery(source, website, "website_candidate")
+    atomic_json(no_site_path, no_site_subset)
+    atomic_json(website_path, website_subset)
+    atomic_json(overlays_path, {
+        "schema_version": OVERLAYS_SCHEMA,
+        "run_id": run_id,
+        "source_sha256": sha256_json(no_site_subset),
+        "overlays": no_site_overlays,
+    })
+    index = {
+        "schema_version": ROUTING_SCHEMA,
+        "run_id": run_id,
+        "source_sha256": source_hash,
+        "complete": True,
+        "total": len(leads),
+        "counts": {"no_website": len(no_website), "website_candidate": len(website)},
+        "routes": routes,
+        "artifacts": {
+            "no_website_discovery_result": str(no_site_path),
+            "website_candidate_discovery_result": str(website_path),
+            "no_website_overlays": str(overlays_path),
+        },
+    }
+    atomic_json(output_dir / "routing-index.json", index)
+    return index
+
+
+def validate_overlay(overlay: dict[str, Any]) -> None:
+    if overlay.get("schema_version") != OVERLAY_SCHEMA:
+        raise ValueError("Invalid overlay schema_version")
+    require_text(overlay.get("lead_fingerprint"), "lead_fingerprint")
+    website_status = overlay.get("website_status")
+    enrichment_status = overlay.get("enrichment_status")
+    if website_status not in {"verified", "none_found", "unverified", "blocked", "error"}:
+        raise ValueError(f"Invalid website_status: {website_status!r}")
+    if enrichment_status not in {"not_required_no_website", "completed", "failed", "blocked"}:
+        raise ValueError(f"Invalid enrichment_status: {enrichment_status!r}")
+    official_url = overlay.get("official_website_url")
+    if official_url is not None:
+        if not isinstance(official_url, str):
+            raise ValueError("official_website_url must be an absolute HTTP(S) URL")
+        parsed_official = urlparse(official_url)
+        try:
+            valid_port = parsed_official.port is None or 1 <= parsed_official.port <= 65535
+        except ValueError:
+            valid_port = False
+        if (
+            parsed_official.scheme not in {"http", "https"}
+            or not parsed_official.hostname
+            or parsed_official.username is not None
+            or parsed_official.password is not None
+            or not valid_port
+        ):
+            raise ValueError("official_website_url must be an absolute HTTP(S) URL")
+    if not isinstance(overlay.get("notes"), dict):
+        raise ValueError("overlay notes must be an object")
+    qualification = overlay.get("qualification_status")
+    score_status = overlay.get("icp_score_status")
+    if qualification not in QUALIFICATION_VALUES:
+        raise ValueError(f"Invalid qualification_status: {qualification!r}")
+    if score_status not in SCORE_STATUS_VALUES:
+        raise ValueError(f"Invalid icp_score_status: {score_status!r}")
+    score = overlay.get("icp_score")
+    band = overlay.get("icp_band")
+    confidence_score = overlay.get("evidence_confidence_score")
+    confidence_level = overlay.get("evidence_confidence_level")
+    if score_status == "SCORED":
+        if website_status != "verified" or official_url is None:
+            raise ValueError("SCORED overlay requires a verified official website")
+        if qualification == "NOT_CHECKED":
+            raise ValueError("SCORED overlay requires an assessed qualification_status")
+        if not isinstance(score, int) or isinstance(score, bool) or not 0 <= score <= 100:
+            raise ValueError("SCORED overlay requires integer icp_score from 0 to 100")
+        if band not in BAND_VALUES:
+            raise ValueError("SCORED overlay requires a valid icp_band")
+        if not optional_text(overlay.get("icp_outcome")):
+            raise ValueError("SCORED overlay requires icp_outcome")
+        if not isinstance(confidence_score, int) or isinstance(confidence_score, bool) or not 0 <= confidence_score <= 100:
+            raise ValueError("SCORED overlay requires integer evidence_confidence_score from 0 to 100")
+        if confidence_level not in CONFIDENCE_VALUES:
+            raise ValueError("SCORED overlay requires a valid evidence_confidence_level")
+        if not optional_text(overlay.get("official_website_url")):
+            raise ValueError("SCORED overlay requires official_website_url")
+    elif score_status == "NOT_SCORED":
+        if qualification != "NOT_CHECKED":
+            raise ValueError("NOT_SCORED overlay requires qualification_status NOT_CHECKED")
+        if website_status == "verified":
+            provenance = overlay.get("notes", {}).get("outcome_provenance")
+            if official_url is None or enrichment_status != "failed":
+                raise ValueError("verified NOT_SCORED overlay requires explicit exhausted assessment failure")
+            if not isinstance(provenance, dict) or provenance.get("outcome") != "assessment_failed" or provenance.get("retries_exhausted") is not True or not optional_text(provenance.get("failure_code")):
+                raise ValueError("verified NOT_SCORED overlay lacks allowed explicit failure provenance")
+        elif official_url is not None:
+            raise ValueError("non-verified NOT_SCORED overlay must not publish an official website")
+        if any(value is not None for value in (score, band, overlay.get("icp_outcome"), confidence_score, confidence_level)):
+            raise ValueError("NOT_SCORED overlay requires null score, band, outcome, and confidence")
+    else:
+        if score is not None or band is not None:
+            raise ValueError("BLOCKED overlay requires null score and band")
+        if not optional_text(overlay.get("icp_outcome")):
+            raise ValueError("BLOCKED overlay requires icp_outcome")
+        if (confidence_score is None) != (confidence_level is None):
+            raise ValueError("BLOCKED overlay confidence score and level must be both present or both null")
+        if confidence_score is not None:
+            if not isinstance(confidence_score, int) or isinstance(confidence_score, bool) or not 0 <= confidence_score <= 100:
+                raise ValueError("BLOCKED overlay confidence score must be integer 0..100")
+            if confidence_level not in CONFIDENCE_VALUES:
+                raise ValueError("BLOCKED overlay requires a valid confidence level")
+
+
+def build_website_overlays(discovery: dict[str, Any], state: dict[str, Any]) -> dict[str, Any]:
+    run_id, leads = validate_discovery(discovery)
+    if state.get("schema_version") != "a1.website-enrichment-state.v2":
+        if state.get("schema_version") == "a1.website-enrichment-state.v1":
+            raise ValueError("v1 enrichment state is read-only; migrate to a separate v2 artifact")
+        raise ValueError("Expected a1.website-enrichment-state.v2")
+    summary = state_summary(state)
+    if summary.get("terminal") is not True:
+        raise ValueError(f"Enrichment state is not terminal: {summary.get('next_action')}")
+    if state.get("run", {}).get("run_id") != run_id:
+        raise ValueError("Enrichment state run_id differs from discovery result")
+    state_source_sha = state.get("source_sha256")
+    if state_source_sha is not None and state_source_sha != sha256_json(discovery):
+        raise ValueError("Enrichment state source_sha256 differs from discovery result")
+    overlays: list[dict[str, Any]] = []
+    for lead in leads:
+        fingerprint = lead["lead_fingerprint"]
+        record = state.get("leads", {}).get(fingerprint)
+        if not isinstance(record, dict):
+            raise ValueError(f"Missing enrichment state for {fingerprint}")
+        status = record.get("state")
+        enrichment = record.get("enrichment") if isinstance(record.get("enrichment"), dict) else {}
+        if status == "scored":
+            artifacts = record.get("artifacts") if isinstance(record.get("artifacts"), dict) else {}
+            qualification_package = load_json(Path(require_text(artifacts.get("qualification_package"), "qualification_package")))
+            confidence_package = load_json(Path(require_text(artifacts.get("confidence_package"), "confidence_package")))
+            scoring_package = load_json(Path(require_text(artifacts.get("scoring_package"), "scoring_package")))
+            qualification = qualification_package.get("qualification")
+            confidence = confidence_package.get("confidence")
+            scoring = scoring_package.get("scoring")
+            audit = scoring_package.get("audit")
+            if not all(isinstance(value, dict) for value in (qualification, confidence, scoring, audit)):
+                raise ValueError(f"Incomplete scoring artifacts for {fingerprint}")
+            score_status = str(scoring.get("status") or "").upper()
+            overlay = {
+                "schema_version": OVERLAY_SCHEMA,
+                "lead_fingerprint": fingerprint,
+                "website_status": "verified",
+                "enrichment_status": "completed",
+                "official_website_url": enrichment.get("official_website_url"),
+                "qualification_status": str(qualification.get("exclusion_status") or "not_checked").upper(),
+                "icp_score_status": score_status,
+                "icp_score": scoring.get("score"),
+                "icp_band": str(scoring.get("band")).upper() if scoring.get("band") is not None else None,
+                "icp_outcome": audit.get("outcome") or scoring.get("block_reason"),
+                "evidence_confidence_score": confidence.get("score"),
+                "evidence_confidence_level": str(confidence.get("level")).upper() if confidence.get("level") is not None else None,
+                "notes": {
+                    "fallback_reason": None,
+                    "scoring_model_version": scoring.get("model_version"),
+                    "confidence_method_version": confidence.get("method_version"),
+                    "icp_configuration_version": qualification.get("icp_config_version"),
+                    "missing_information": enrichment.get("missing_information", []),
+                    "limitations": confidence.get("limitations", []),
+                    "artifact_references": copy.deepcopy(artifacts),
+                },
+            }
+        elif status == "terminal_assessment_failed" and enrichment.get("website_status") == "verified":
+            terminal = record.get("terminal") if isinstance(record.get("terminal"), dict) else {}
+            if terminal.get("retries_exhausted") is not True or not optional_text(terminal.get("failure_code")):
+                raise ValueError(f"Lead {fingerprint} has unexplained assessment failure provenance")
+            overlay = not_scored_overlay(
+                fingerprint,
+                website_status="verified",
+                enrichment_status="failed",
+                reason=terminal["failure_code"],
+                official_website_url=require_text(enrichment.get("official_website_url"), "official_website_url"),
+                missing_information=enrichment.get("missing_information", []),
+                artifact_references=record.get("artifacts") if isinstance(record.get("artifacts"), dict) else {},
+            )
+            overlay["notes"]["outcome_provenance"] = {
+                "outcome": "assessment_failed", "failure_code": terminal["failure_code"],
+                "attempted_at": terminal.get("attempted_at"), "attempts": terminal.get("attempts"),
+                "retries_exhausted": True,
+            }
+        elif status == "terminal_out_of_scope" and enrichment.get("website_status") == "verified":
+            overlay = not_scored_overlay(
+                fingerprint, website_status="verified", enrichment_status="completed",
+                reason="evidence_backed_out_of_scope",
+                official_website_url=require_text(enrichment.get("official_website_url"), "official_website_url"),
+                missing_information=enrichment.get("missing_information", []),
+            )
+            overlay["qualification_status"] = "EXCLUDED"
+            overlay["icp_score_status"] = "BLOCKED"
+            overlay["icp_outcome"] = "out_of_scope"
+            overlay["notes"]["outcome_provenance"] = {"outcome": "out_of_scope", "evidence_backed": True}
+        elif status == "terminal_none_found" and enrichment.get("website_status") == "none_found":
+            overlay = not_scored_overlay(fingerprint, website_status="none_found", enrichment_status="failed", reason="official_website_not_found")
+            overlay["notes"]["outcome_provenance"] = {"outcome": "none_found"}
+        elif status == "terminal_verification_failed":
+            terminal = record.get("terminal") if isinstance(record.get("terminal"), dict) else {}
+            reason = optional_text(terminal.get("failure_code")) or "website_verification_failed"
+            overlay = not_scored_overlay(fingerprint, website_status="error", enrichment_status="failed", reason=reason)
+            overlay["notes"]["outcome_provenance"] = {"outcome": "verification_failed", "failure_code": reason}
+        else:
+            raise ValueError(f"Lead {fingerprint} is not terminal for website overlay generation: {status!r}")
+        validate_overlay(overlay)
+        overlays.append(overlay)
+    return {
+        "schema_version": OVERLAYS_SCHEMA,
+        "run_id": run_id,
+        "source_sha256": sha256_json(discovery),
+        "overlays": overlays,
+    }
+
+
+def load_staging_index(path: Path | None) -> dict[str, Any] | None:
+    if path is None:
+        return None
+    value = load_json(path)
+    if value.get("schema_version") != STAGING_INDEX_SCHEMA or value.get("complete") is not True:
+        raise ValueError(f"Incomplete or invalid staging index: {path}")
+    return value
+
+
+def merge_indexes(discovery: dict[str, Any], no_site: dict[str, Any] | None, website: dict[str, Any] | None) -> dict[str, Any]:
+    run_id, leads = validate_discovery(discovery)
+    expected = [lead["lead_fingerprint"] for lead in leads]
+    expected_people = {
+        lead["lead_fingerprint"]: bool(optional_text(lead.get("name")))
+        for lead in leads
+    }
+    expected_lanes = {"no_website": set(), "website_candidate": set()}
+    for lead in leads:
+        _candidate, status = website_candidate(lead)
+        lane = "website_candidate" if status == "candidate" else "no_website"
+        expected_lanes[lane].add(lead["lead_fingerprint"])
+    by_id: dict[str, dict[str, Any]] = {}
+    lane_indexes: dict[str, Any] = {}
+    for lane, index in (("no_website", no_site), ("website_candidate", website)):
+        expected_lane = expected_lanes[lane]
+        if index is None:
+            if expected_lane:
+                raise ValueError(f"Missing {lane} staging index for non-empty lane")
+            lane_indexes[lane] = None
+            continue
+        if not expected_lane:
+            raise ValueError(f"Unexpected {lane} staging index for empty lane")
+        if index.get("run_id") != run_id:
+            raise ValueError(f"{lane} staging index run_id mismatch")
+        dispositions = index.get("dispositions")
+        if not isinstance(dispositions, list):
+            raise ValueError(f"{lane} staging index dispositions must be an array")
+        lane_fingerprints = [
+            require_text(item.get("lead_fingerprint"), "lead_fingerprint")
+            for item in dispositions if isinstance(item, dict)
+        ]
+        if len(lane_fingerprints) != len(dispositions) or len(set(lane_fingerprints)) != len(lane_fingerprints):
+            raise ValueError(f"{lane} staging index contains invalid or duplicate fingerprints")
+        if set(lane_fingerprints) != expected_lane:
+            raise ValueError(f"{lane} staging index does not match routed lane fingerprints")
+        lane_counts: dict[str, int] = {}
+        for item in dispositions:
+            status = item.get("status")
+            lane_counts[status] = lane_counts.get(status, 0) + 1
+        if index.get("total") != len(dispositions) or index.get("counts") != dict(sorted(lane_counts.items())):
+            raise ValueError(f"{lane} staging index totals do not match dispositions")
+        lane_indexes[lane] = {
+            "schema_version": index.get("schema_version"),
+            "sha256": sha256_json(index),
+            "complete": True,
+            "total": index.get("total"),
+            "counts": index.get("counts"),
+            "website_overlay_provenance": copy.deepcopy(index.get("website_overlay_provenance")) if lane == "website_candidate" else None,
+        }
+        if lane == "website_candidate":
+            provenance = index.get("website_overlay_provenance")
+            if not isinstance(provenance, dict) or provenance.get("unexplained_verified_unscored_count") != 0:
+                raise ValueError("website staging index lacks clean overlay provenance")
+            if provenance.get("verified_unscored_count") != provenance.get("explicit_exhausted_assessment_failure_count"):
+                raise ValueError("website staging index contains unexplained verified unscored records")
+        for item in dispositions:
+            fingerprint = require_text(item.get("lead_fingerprint"), "lead_fingerprint")
+            if fingerprint in by_id:
+                raise ValueError(f"Duplicate disposition across lanes: {fingerprint}")
+            if item.get("status") not in TERMINAL_DISPOSITIONS:
+                raise ValueError(f"Non-terminal disposition for {fingerprint}")
+            status = item.get("status")
+            if item.get("person_required") is not expected_people[fingerprint]:
+                raise ValueError(f"Person expectation mismatch for {fingerprint}")
+            if status.startswith("company_staged_"):
+                require_text(item.get("company_id"), "company_id")
+                require_text(item.get("company_reconciliation_artifact"), "company_reconciliation_artifact")
+            if item.get("person_required"):
+                if item.get("person_disposition") == "staged":
+                    require_text(item.get("person_id"), "person_id")
+                    require_text(item.get("person_reconciliation_artifact"), "person_reconciliation_artifact")
+                    require_text(item.get("relation_reconciliation_artifact"), "relation_reconciliation_artifact")
+                    if item.get("relation_status") != "verified":
+                        raise ValueError(f"Person relation is not verified for {fingerprint}")
+                elif status == "company_staged_person_staged":
+                    raise ValueError(f"Person staging status mismatch for {fingerprint}")
+                elif status in {"company_possible_match", "company_sync_failed"}:
+                    if item.get("person_disposition") != "blocked_by_company":
+                        raise ValueError(f"Person must be terminally blocked by Company for {fingerprint}")
+                elif status not in {"company_staged_person_possible_match", "company_staged_person_sync_failed"}:
+                    raise ValueError(f"Person-required lead is not terminal for {fingerprint}")
+            elif status == "company_staged_person_staged":
+                raise ValueError(f"Unexpected Person staging for {fingerprint}")
+            if not optional_text(item.get("reason")):
+                raise ValueError(f"Non-staged disposition for {fingerprint} requires a reason")
+            merged_item = copy.deepcopy(item)
+            merged_item["lane"] = lane
+            by_id[fingerprint] = merged_item
+    if set(by_id) != set(expected):
+        missing = sorted(set(expected) - set(by_id))
+        extra = sorted(set(by_id) - set(expected))
+        raise ValueError(f"Combined staging coverage mismatch; missing={missing}, extra={extra}")
+    counts: dict[str, int] = {}
+    for item in by_id.values():
+        counts[item["status"]] = counts.get(item["status"], 0) + 1
+    person_expected = sum(1 for item in by_id.values() if item.get("person_required") is True)
+    person_terminal = sum(
+        1 for item in by_id.values()
+        if item.get("person_required") is True
+        and item.get("person_disposition") in {"staged", "possible_match", "sync_failed", "blocked_by_company"}
+    )
+    return {
+        "schema_version": COMBINED_INDEX_SCHEMA,
+        "run_id": run_id,
+        "source_contract_version": DISCOVERY_SCHEMA,
+        "source_sha256": sha256_json(discovery),
+        "complete": True,
+        "total": len(expected),
+        "counts": dict(sorted(counts.items())),
+        "company_coverage": {
+            "expected": len(expected),
+            "terminal": len(by_id),
+            "verified_ids": sum(
+                1 for item in by_id.values()
+                if str(item.get("status")).startswith("company_staged_")
+                and optional_text(item.get("company_id"))
+            ),
+        },
+        "person_coverage": {
+            "expected": person_expected,
+            "terminal": person_terminal,
+            "verified_relations": sum(1 for item in by_id.values() if item.get("relation_status") == "verified"),
+        },
+        "dispositions": [by_id[fingerprint] for fingerprint in expected],
+        "lane_indexes": lane_indexes,
+    }
+
+
+def processing_next_action(discovery: dict[str, Any], work_dir: Path) -> dict[str, Any]:
+    run_id, _ = validate_discovery(discovery)
+    routing_path = work_dir / "routing-index.json"
+    if not routing_path.is_file():
+        action = "route_result"
+    else:
+        routing = load_json(routing_path)
+        if routing.get("schema_version") != ROUTING_SCHEMA or routing.get("run_id") != run_id or routing.get("complete") is not True:
+            raise ValueError("Routing index is invalid or belongs to another run")
+        counts = routing.get("counts") if isinstance(routing.get("counts"), dict) else {}
+        no_site_count = int(counts.get("no_website", 0))
+        website_count = int(counts.get("website_candidate", 0))
+        no_site_dir = work_dir / "staging-no-website"
+        no_site_index = no_site_dir / "staging-index.json"
+        website_dir = work_dir / "staging-website"
+        website_index = website_dir / "staging-index.json"
+        state_path = work_dir / "enrichment-state.json"
+        overlays_path = work_dir / "website-overlays.json"
+        final_path = work_dir / "final-staging-index.json"
+        if final_path.is_file():
+            final = load_json(final_path)
+            if (
+                final.get("schema_version") != COMBINED_INDEX_SCHEMA
+                or final.get("complete") is not True
+                or final.get("run_id") != run_id
+                or final.get("source_sha256") != sha256_json(discovery)
+            ):
+                raise ValueError("Final staging index is invalid")
+            action = "complete"
+        elif no_site_count and not no_site_index.is_file():
+            action = "operator_recovery_no_website_staging" if no_site_dir.exists() and any(no_site_dir.iterdir()) else "stage_no_website"
+        elif website_count == 0:
+            action = "merge_indexes"
+        elif not state_path.is_file():
+            action = "init_enrichment"
+        else:
+            state = load_json(state_path)
+            if state.get("run", {}).get("run_id") != run_id:
+                raise ValueError("Enrichment state belongs to another run")
+            summary = state_summary(state)
+            summary_action = summary["next_action"]
+            if summary_action == "research_pending":
+                action = "research_enrichment_batch"
+            elif summary_action == "assessment_pending":
+                action = "assessment_enrichment_batch"
+            elif summary_action == "run_ready":
+                action = "run_ready_scoring"
+            elif summary_action == "operator_repair":
+                action = "operator_repair_enrichment_state"
+            elif summary_action != "build_overlays":
+                raise ValueError(f"Unsupported enrichment next action: {summary_action}")
+            elif not overlays_path.is_file():
+                action = "build_website_overlays"
+            elif not website_index.is_file():
+                action = "operator_recovery_website_staging" if website_dir.exists() and any(website_dir.iterdir()) else "stage_website"
+            else:
+                action = "merge_indexes"
+    return {
+        "schema_version": "a1.two-lane-next-action.v1",
+        "run_id": run_id,
+        "next_action": action,
+        "work_dir": str(work_dir),
+        "lead_rows_emitted": False,
+    }
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    commands = parser.add_subparsers(dest="command", required=True)
+    route = commands.add_parser("route")
+    route.add_argument("--input", required=True, type=Path)
+    route.add_argument("--output-dir", required=True, type=Path)
+    overlays = commands.add_parser("build-website-overlays")
+    overlays.add_argument("--input", required=True, type=Path)
+    overlays.add_argument("--state", required=True, type=Path)
+    overlays.add_argument("--output", required=True, type=Path)
+    validate = commands.add_parser("validate-overlays")
+    validate.add_argument("--input", required=True, type=Path)
+    validate.add_argument("--source", required=True, type=Path)
+    merge = commands.add_parser("merge-indexes")
+    merge.add_argument("--input", required=True, type=Path)
+    merge.add_argument("--no-website-index", type=Path)
+    merge.add_argument("--website-index", type=Path)
+    merge.add_argument("--output", required=True, type=Path)
+    next_action = commands.add_parser("next-action")
+    next_action.add_argument("--input", required=True, type=Path)
+    next_action.add_argument("--work-dir", required=True, type=Path)
+    return parser
+
+
+def main() -> int:
+    args = build_parser().parse_args()
+    try:
+        if args.command == "route":
+            result = route_discovery(load_json(args.input), args.output_dir)
+            output = {
+                "schema_version": result["schema_version"],
+                "run_id": result["run_id"],
+                "complete": result["complete"],
+                "total": result["total"],
+                "counts": result["counts"],
+                "routing_index": str(args.output_dir / "routing-index.json"),
+                "lead_rows_emitted": False,
+            }
+        elif args.command == "build-website-overlays":
+            result = build_website_overlays(load_json(args.input), load_json(args.state))
+            atomic_json(args.output, result)
+            output = {
+                "schema_version": result["schema_version"],
+                "run_id": result["run_id"],
+                "overlay_count": len(result["overlays"]),
+                "output": str(args.output),
+                "lead_rows_emitted": False,
+            }
+        elif args.command == "validate-overlays":
+            value = load_json(args.input)
+            source = load_json(args.source)
+            run_id, leads = validate_discovery(source)
+            if value.get("schema_version") != OVERLAYS_SCHEMA or not isinstance(value.get("overlays"), list):
+                raise ValueError(f"Expected {OVERLAYS_SCHEMA}")
+            if value.get("run_id") != run_id:
+                raise ValueError("Overlay run_id differs from discovery result")
+            if value.get("source_sha256") != sha256_json(source):
+                raise ValueError("Overlay source_sha256 differs from discovery result")
+            seen: set[str] = set()
+            for overlay in value["overlays"]:
+                if not isinstance(overlay, dict):
+                    raise ValueError("Every overlay must be an object")
+                validate_overlay(overlay)
+                fingerprint = overlay["lead_fingerprint"]
+                if fingerprint in seen:
+                    raise ValueError(f"Duplicate overlay: {fingerprint}")
+                seen.add(fingerprint)
+            expected = {lead["lead_fingerprint"] for lead in leads}
+            if seen != expected:
+                raise ValueError("Overlay fingerprint coverage differs from discovery result")
+            result = {"valid": True, "overlay_count": len(seen), "run_id": value.get("run_id")}
+            output = result
+        elif args.command == "merge-indexes":
+            result = merge_indexes(
+                load_json(args.input),
+                load_staging_index(args.no_website_index),
+                load_staging_index(args.website_index),
+            )
+            atomic_json(args.output, result)
+            output = {
+                "schema_version": result["schema_version"],
+                "run_id": result["run_id"],
+                "complete": result["complete"],
+                "total": result["total"],
+                "counts": result["counts"],
+                "output": str(args.output),
+                "lead_rows_emitted": False,
+            }
+        else:
+            output = processing_next_action(load_json(args.input), args.work_dir)
+        print(json.dumps(output, ensure_ascii=False, sort_keys=True))
+        return 0
+    except Exception as exc:
+        print(json.dumps({"status": "error", "error_class": type(exc).__name__, "error": str(exc)}, sort_keys=True), file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

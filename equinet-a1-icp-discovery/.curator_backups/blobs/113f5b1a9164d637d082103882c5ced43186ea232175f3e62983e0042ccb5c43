@@ -1,0 +1,1171 @@
+#!/usr/bin/env python3
+"""Build and reconcile deterministic Twenty Company and Person staging operations.
+
+This script never calls Twenty. Hermes executes the emitted MCP lookup/write
+operations, then feeds normalized results back to ``decide`` and ``reconcile``.
+"""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import hashlib
+import json
+import os
+import re
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+from urllib.parse import urlparse
+
+PLAN_SCHEMA = "a1.twenty-company-person-staging-plan.v2"
+DECISION_SCHEMA = "a1.twenty-company-staging-decision.v1"
+PERSON_DECISION_SCHEMA = "a1.twenty-person-staging-decision.v1"
+MATCH_SCHEMA = "a1.twenty-company-match-set.v1"
+MANIFEST_SCHEMA = "a1.twenty-company-reconciliation.v2"
+PERSON_MANIFEST_SCHEMA = "a1.twenty-person-reconciliation.v1"
+BATCH_SCHEMA = "a1.twenty-company-person-staging-batch.v2"
+INDEX_SCHEMA = "a1.twenty-entity-staging-index.v2"
+OVERLAYS_SCHEMA = "a1.twenty-company-overlays.v2"
+OVERLAY_SCHEMA = "a1.twenty-company-overlay.v2"
+TERMINAL_DISPOSITIONS = {
+    "company_staged_person_staged",
+    "company_staged_no_person_required",
+    "company_staged_person_possible_match",
+    "company_staged_person_sync_failed",
+    "company_possible_match",
+    "company_sync_failed",
+    "blocked_missing_company_name",
+}
+QUALIFICATION_VALUES = {"ELIGIBLE", "EXCLUDED", "NEEDS_REVIEW", "NOT_CHECKED"}
+SCORE_STATUS_VALUES = {"NOT_SCORED", "SCORED", "BLOCKED"}
+BAND_VALUES = {"HIGH", "MEDIUM", "LOW", "UNQUALIFIED"}
+CONFIDENCE_VALUES = {"HIGH", "MEDIUM", "LOW"}
+SCORING_FIELDS = {
+    "qualificationStatus", "icpScoreStatus", "icpScore", "icpBand",
+    "icpOutcome", "evidenceConfidenceScore", "evidenceConfidenceLevel",
+}
+
+
+def canonical_json(value: Any) -> str:
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def sha256_json(value: Any) -> str:
+    return hashlib.sha256(canonical_json(value).encode("utf-8")).hexdigest()
+
+
+def require_text(value: Any, field: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field} must be a non-empty string")
+    return value.strip()
+
+
+def optional_text(value: Any) -> str | None:
+    return value.strip() if isinstance(value, str) and value.strip() else None
+
+
+def http_url(value: Any) -> str | None:
+    value = optional_text(value)
+    if not value:
+        return None
+    if "://" not in value:
+        value = "https://" + value
+    parsed = urlparse(value)
+    return value if parsed.scheme in {"http", "https"} and parsed.netloc else None
+
+
+def link_value(url: str, label: str) -> dict[str, Any]:
+    return {"primaryLinkLabel": label, "primaryLinkUrl": url, "secondaryLinks": []}
+
+
+def source_link_label(url: str) -> str:
+    """Return a compact, deterministic hostname for Twenty's link pill."""
+    parsed = urlparse(url)
+    hostname = (parsed.hostname or "").strip().lower().rstrip(".")
+    if hostname.startswith("www."):
+        hostname = hostname[4:]
+    if not hostname:
+        raise ValueError("Source URL requires a hostname")
+    return hostname
+
+
+def country_value(value: Any) -> str | None:
+    text = (optional_text(value) or "").upper().replace(" ", "_")
+    aliases = {
+        "USA": "US",
+        "UNITED_STATES": "US",
+        "UNITED_STATES_OF_AMERICA": "US",
+        "AU": "AUSTRALIA",
+        "AUS": "AUSTRALIA",
+        "NZ": "NEW_ZEALAND",
+        "NZL": "NEW_ZEALAND",
+    }
+    text = aliases.get(text, text)
+    return text if text in {"US", "AUSTRALIA", "NEW_ZEALAND"} else None
+
+
+def city_value(value: Any) -> str | None:
+    # The live Twenty field is currently a SELECT with only LEXINGTON.
+    # Other cities remain preserved in the structured address and discovery
+    # notes until the live field is migrated to text or its options expand.
+    text = (optional_text(value) or "").upper()
+    return "LEXINGTON" if text == "LEXINGTON" else None
+
+
+def state_value(value: Any) -> str | None:
+    # The live Twenty field is currently a SELECT with only KENTUCKY.
+    # Other regions remain preserved in the structured address and notes.
+    text = (optional_text(value) or "").upper()
+    return "KENTUCKY" if text in {"KY", "KENTUCKY"} else None
+
+
+def first_contact(contacts: Any, kind: str) -> str | None:
+    if not isinstance(contacts, list):
+        return None
+    for item in contacts:
+        if isinstance(item, dict) and item.get("contact_type") == kind:
+            value = optional_text(item.get("value"))
+            if value:
+                return value
+    return None
+
+
+def e164_phone(value: Any, country: Any) -> str | None:
+    """Return a conservative API-safe E.164 phone value, or omit it.
+
+    The original publicly displayed number remains in the discovery artifact.
+    This mapper is only for the Twenty payload, so it must not guess a country
+    code or treat masked or extended values as diallable numbers.
+    """
+    text = optional_text(value)
+    if not text or re.search(r"(?:ext\.?|x|#)\s*\d", text, flags=re.IGNORECASE):
+        return None
+    digits = "".join(character for character in text if character.isdigit())
+    if text.startswith("+"):
+        return f"+{digits}" if 8 <= len(digits) <= 15 and not digits.startswith("0") else None
+    if country_value(country) == "US":
+        if len(digits) == 10:
+            return f"+1{digits}"
+        if len(digits) == 11 and digits.startswith("1"):
+            return f"+{digits}"
+    if country_value(country) == "AUSTRALIA":
+        if len(digits) == 10 and digits.startswith("0"):
+            return f"+61{digits[1:]}"
+        if len(digits) == 11 and digits.startswith("61"):
+            return f"+{digits}"
+    if country_value(country) == "NEW_ZEALAND":
+        if 9 <= len(digits) <= 10 and digits.startswith("0"):
+            return f"+64{digits[1:]}"
+        if 10 <= len(digits) <= 11 and digits.startswith("64"):
+            return f"+{digits}"
+    return None
+
+
+def public_email(value: Any) -> str | None:
+    """Return one API-safe public professional email or omit it."""
+    text = optional_text(value)
+    if not text or len(text) > 254 or any(char.isspace() for char in text) or "*" in text:
+        return None
+    if text.count("@") != 1:
+        return None
+    local, domain = text.rsplit("@", 1)
+    if not local or len(local) > 64 or not re.fullmatch(r"[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+", local):
+        return None
+    domain = domain.lower().rstrip(".")
+    labels = domain.split(".")
+    if len(labels) < 2 or any(
+        not re.fullmatch(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?", label)
+        for label in labels
+    ):
+        return None
+    return f"{local}@{domain}"
+
+
+def validate_overlay(overlay: dict[str, Any], fingerprint: str) -> None:
+    if overlay.get("schema_version") != OVERLAY_SCHEMA:
+        raise ValueError(f"Overlay for {fingerprint} has invalid schema_version")
+    if require_text(overlay.get("lead_fingerprint"), "overlay.lead_fingerprint") != fingerprint:
+        raise ValueError(f"Overlay fingerprint mismatch for {fingerprint}")
+    website_status = overlay.get("website_status")
+    enrichment_status = overlay.get("enrichment_status")
+    if website_status not in {"verified", "none_found", "unverified", "blocked", "error"}:
+        raise ValueError(f"Invalid website_status for {fingerprint}")
+    if enrichment_status not in {"not_required_no_website", "completed", "failed", "blocked"}:
+        raise ValueError(f"Invalid enrichment_status for {fingerprint}")
+    if not isinstance(overlay.get("notes"), dict):
+        raise ValueError(f"Overlay notes for {fingerprint} must be an object")
+    qualification = overlay.get("qualification_status")
+    score_status = overlay.get("icp_score_status")
+    if qualification not in QUALIFICATION_VALUES:
+        raise ValueError(f"Invalid qualification_status for {fingerprint}")
+    if score_status not in SCORE_STATUS_VALUES:
+        raise ValueError(f"Invalid icp_score_status for {fingerprint}")
+    score = overlay.get("icp_score")
+    band = overlay.get("icp_band")
+    outcome = overlay.get("icp_outcome")
+    confidence_score = overlay.get("evidence_confidence_score")
+    confidence_level = overlay.get("evidence_confidence_level")
+    if score_status == "SCORED":
+        if website_status != "verified":
+            raise ValueError(f"SCORED overlay for {fingerprint} requires website_status verified")
+        if qualification == "NOT_CHECKED":
+            raise ValueError(f"SCORED overlay for {fingerprint} requires assessed qualification")
+        if not isinstance(score, int) or isinstance(score, bool) or not 0 <= score <= 100:
+            raise ValueError(f"SCORED overlay for {fingerprint} requires integer score 0..100")
+        if band not in BAND_VALUES or not optional_text(outcome):
+            raise ValueError(f"SCORED overlay for {fingerprint} requires band and outcome")
+        if not isinstance(confidence_score, int) or isinstance(confidence_score, bool) or not 0 <= confidence_score <= 100:
+            raise ValueError(f"SCORED overlay for {fingerprint} requires integer confidence 0..100")
+        if confidence_level not in CONFIDENCE_VALUES:
+            raise ValueError(f"SCORED overlay for {fingerprint} requires confidence level")
+        official = optional_text(overlay.get("official_website_url"))
+        parsed = urlparse(official or "")
+        try:
+            valid_port = parsed.port is None or 1 <= parsed.port <= 65535
+        except ValueError:
+            valid_port = False
+        if (
+            not official
+            or parsed.scheme not in {"http", "https"}
+            or not parsed.hostname
+            or parsed.username is not None
+            or parsed.password is not None
+            or not valid_port
+        ):
+            raise ValueError(f"SCORED overlay for {fingerprint} requires verified official website")
+    elif score_status == "NOT_SCORED":
+        if qualification != "NOT_CHECKED":
+            raise ValueError(f"NOT_SCORED overlay for {fingerprint} requires qualification_status NOT_CHECKED")
+        official = optional_text(overlay.get("official_website_url"))
+        if website_status == "verified":
+            provenance = overlay.get("notes", {}).get("outcome_provenance")
+            if enrichment_status != "failed" or not isinstance(provenance, dict) or provenance.get("outcome") != "assessment_failed" or provenance.get("retries_exhausted") is not True or not optional_text(provenance.get("failure_code")):
+                raise ValueError(f"verified NOT_SCORED overlay for {fingerprint} lacks allowed explicit failure provenance")
+            parsed = urlparse(official or "")
+            try:
+                valid_port = parsed.port is None or 1 <= parsed.port <= 65535
+            except ValueError:
+                valid_port = False
+            if (
+                not official
+                or enrichment_status != "failed"
+                or parsed.scheme not in {"http", "https"}
+                or not parsed.hostname
+                or parsed.username is not None
+                or parsed.password is not None
+                or not valid_port
+            ):
+                raise ValueError(f"verified NOT_SCORED overlay for {fingerprint} requires a completed verified official website")
+        elif official is not None:
+            raise ValueError(f"non-verified NOT_SCORED overlay for {fingerprint} must not publish an official website")
+        if any(value is not None for value in (score, band, outcome, confidence_score, confidence_level)):
+            raise ValueError(f"NOT_SCORED overlay for {fingerprint} requires null score fields")
+    elif score is not None or band is not None or not optional_text(outcome):
+        raise ValueError(f"BLOCKED overlay for {fingerprint} requires null score/band and an outcome")
+    elif (confidence_score is None) != (confidence_level is None):
+        raise ValueError(f"BLOCKED overlay for {fingerprint} requires paired confidence values")
+    elif confidence_score is not None and (
+        not isinstance(confidence_score, int)
+        or isinstance(confidence_score, bool)
+        or not 0 <= confidence_score <= 100
+        or confidence_level not in CONFIDENCE_VALUES
+    ):
+        raise ValueError(f"BLOCKED overlay for {fingerprint} has invalid confidence")
+
+
+def overlay_map(
+    document: dict[str, Any] | None,
+    run_id: str,
+    fingerprints: list[str],
+    source_sha256: str,
+) -> dict[str, dict[str, Any]]:
+    if document is None:
+        return {}
+    if document.get("schema_version") != OVERLAYS_SCHEMA:
+        raise ValueError(f"Expected overlays schema_version {OVERLAYS_SCHEMA}")
+    if require_text(document.get("run_id"), "overlays.run_id") != run_id:
+        raise ValueError("Overlay run_id differs from discovery result")
+    if require_text(document.get("source_sha256"), "overlays.source_sha256") != source_sha256:
+        raise ValueError("Overlay source_sha256 differs from discovery result")
+    overlays = document.get("overlays")
+    if not isinstance(overlays, list):
+        raise ValueError("overlays must be an array")
+    result: dict[str, dict[str, Any]] = {}
+    for overlay in overlays:
+        if not isinstance(overlay, dict):
+            raise ValueError("Every overlay must be an object")
+        fingerprint = require_text(overlay.get("lead_fingerprint"), "overlay.lead_fingerprint")
+        if fingerprint in result:
+            raise ValueError(f"Duplicate overlay for {fingerprint}")
+        validate_overlay(overlay, fingerprint)
+        result[fingerprint] = overlay
+    if set(result) != set(fingerprints):
+        missing = sorted(set(fingerprints) - set(result))
+        extra = sorted(set(result) - set(fingerprints))
+        raise ValueError(f"Overlay coverage mismatch; missing={missing}, extra={extra}")
+    return result
+
+
+def _source_from_discovery(data: dict[str, Any], lead_id: str | None, overlay: dict[str, Any] | None = None) -> dict[str, Any]:
+    run_id = require_text(data.get("run_id"), "run_id")
+    leads = data.get("leads")
+    if not isinstance(leads, list) or not leads:
+        raise ValueError("a1.discovery-result.v1 requires a non-empty leads array")
+    if lead_id is None:
+        if len(leads) != 1:
+            raise ValueError("--lead-id is required when the discovery result contains multiple leads")
+        lead = leads[0]
+    else:
+        matches = [lead for lead in leads if isinstance(lead, dict) and lead.get("lead_fingerprint") == lead_id]
+        if len(matches) != 1:
+            raise ValueError(f"Expected exactly one lead with lead_fingerprint {lead_id!r}")
+        lead = matches[0]
+    fingerprint = require_text(lead.get("lead_fingerprint"), "lead_fingerprint")
+    candidate_website = http_url(lead.get("official_website_url") or lead.get("website") or lead.get("domain"))
+    if overlay is not None:
+        validate_overlay(overlay, fingerprint)
+        website = http_url(overlay.get("official_website_url"))
+        website_status = optional_text(overlay.get("website_status")) or "unverified"
+        enrichment_status = optional_text(overlay.get("enrichment_status")) or "failed"
+        qualification_status = overlay.get("qualification_status")
+        score_status = overlay.get("icp_score_status")
+        score = overlay.get("icp_score")
+        band = overlay.get("icp_band")
+        outcome = overlay.get("icp_outcome")
+        confidence_score = overlay.get("evidence_confidence_score")
+        confidence_level = overlay.get("evidence_confidence_level")
+        overlay_notes = overlay.get("notes") if isinstance(overlay.get("notes"), dict) else {}
+    else:
+        # Discovery URLs are candidate destinations only. Without a validated
+        # overlay, they must never populate Twenty's authoritative domain field.
+        website = None
+        website_status = "unverified" if candidate_website else "none_found"
+        enrichment_status = "legacy_unscored"
+        qualification_status = "NOT_CHECKED"
+        score_status = "NOT_SCORED"
+        score = band = outcome = confidence_score = confidence_level = None
+        overlay_notes = {}
+    sources = lead.get("source_urls") if isinstance(lead.get("source_urls"), list) else []
+    source_url = next((http_url(value) for value in sources if http_url(value)), None)
+    return {
+        "kind": "discovery_lead",
+        "raw": lead,
+        "run_id": run_id,
+        "candidate_id": None,
+        "fingerprint": fingerprint,
+        "company_name": require_text(lead.get("business_name") or lead.get("name"), "business_name or name"),
+        "business_name": optional_text(lead.get("business_name")),
+        "person_name": optional_text(lead.get("name")),
+        "person_job_title": optional_text(lead.get("job_title") or lead.get("jobTitle") or lead.get("role_title")),
+        "candidate_website": candidate_website,
+        "website": website,
+        "website_status": website_status,
+        "enrichment_status": enrichment_status,
+        "overlay_notes": overlay_notes,
+        # Twenty Source URL is acquisition provenance: the directory/source
+        # where n8n found the lead. Official-site verification belongs only in
+        # domainName and must never replace the discovery source.
+        "source_url": source_url,
+        "segment": optional_text(lead.get("segment_hint")),
+        "country": optional_text(lead.get("country") or data.get("request", {}).get("location", {}).get("country_code")),
+        "city": optional_text(lead.get("city")),
+        "state": optional_text(lead.get("state")),
+        "postal_code": optional_text(lead.get("postal_code")),
+        "address": optional_text(lead.get("address")),
+        "phone": optional_text(lead.get("phone") or lead.get("phone_number")),
+        "email": optional_text(lead.get("email")),
+        "qualification_status": qualification_status,
+        "score_status": score_status,
+        "score": score,
+        "band": band,
+        "outcome": outcome,
+        "confidence_score": confidence_score,
+        "confidence_level": confidence_level,
+    }
+
+
+def _source_from_candidate(data: dict[str, Any]) -> dict[str, Any]:
+    identity = data.get("identity") if isinstance(data.get("identity"), dict) else {}
+    organisation = identity.get("organisation") if isinstance(identity.get("organisation"), dict) else {}
+    person = identity.get("person") if isinstance(identity.get("person"), dict) else {}
+    location = data.get("location") if isinstance(data.get("location"), dict) else {}
+    scoring = data.get("scoring") if isinstance(data.get("scoring"), dict) else {}
+    confidence = data.get("confidence") if isinstance(data.get("confidence"), dict) else {}
+    qualification = data.get("qualification") if isinstance(data.get("qualification"), dict) else {}
+    evidence = data.get("source_evidence") if isinstance(data.get("source_evidence"), list) else []
+    source_url = next((http_url(item.get("source_url")) for item in evidence if isinstance(item, dict) and http_url(item.get("source_url"))), None)
+    website = http_url(organisation.get("website") or organisation.get("domain"))
+    candidate_id = require_text(data.get("candidate_id"), "candidate_id")
+    return {
+        "kind": "prospect_candidate",
+        "raw": data,
+        "run_id": require_text(data.get("run_id"), "run_id"),
+        "candidate_id": candidate_id,
+        "fingerprint": optional_text(data.get("discovery_fingerprint")) or candidate_id,
+        "company_name": require_text(organisation.get("name") or identity.get("display_name"), "identity.display_name"),
+        "business_name": optional_text(organisation.get("name")),
+        "person_name": optional_text(person.get("full_name")),
+        "person_job_title": optional_text(person.get("role_title")),
+        "candidate_website": website,
+        "website": website,
+        "website_status": "verified" if website else "none_found",
+        "enrichment_status": "completed" if website else "not_required_no_website",
+        "overlay_notes": {},
+        # Legacy Prospect Candidate input has no separate acquisition-source
+        # field, so retain the first source_evidence URL without replacing it
+        # with the organisation website.
+        "source_url": source_url,
+        "segment": optional_text(data.get("segment")),
+        "country": optional_text(location.get("country_code")),
+        "city": optional_text(location.get("city")),
+        "state": optional_text(location.get("state_region")),
+        "postal_code": optional_text(location.get("postal_code")),
+        "address": optional_text(location.get("public_address")),
+        "phone": first_contact(data.get("public_contacts"), "phone"),
+        "email": first_contact(data.get("public_contacts"), "email"),
+        "qualification_status": optional_text(qualification.get("exclusion_status")) or "not_checked",
+        "score_status": optional_text(scoring.get("status")) or "not_scored",
+        "score": scoring.get("score"),
+        "band": scoring.get("band"),
+        "outcome": optional_text(scoring.get("outcome")) or optional_text(scoring.get("block_reason")),
+        "confidence_score": confidence.get("score"),
+        "confidence_level": confidence.get("level"),
+    }
+
+
+def normalize_source(data: dict[str, Any], lead_id: str | None = None, overlay: dict[str, Any] | None = None) -> dict[str, Any]:
+    if data.get("contract_version") == "a1.discovery-result.v1":
+        return _source_from_discovery(data, lead_id, overlay)
+    if data.get("schema_version") in {"1.0.0", "1.1.0"} and data.get("candidate_id"):
+        if lead_id is not None or overlay is not None:
+            raise ValueError("--lead-id and overlays are only valid for a1.discovery-result.v1 input")
+        return _source_from_candidate(data)
+    raise ValueError("Input must be a1.discovery-result.v1 or Prospect Candidate schema_version 1.0.0/1.1.0")
+
+
+def build_company_payload(source: dict[str, Any]) -> tuple[dict[str, Any], str]:
+    website = source["website"]
+    website_status = optional_text(source.get("website_status")) or ("verified" if website else "none_found")
+    qualification_status = str(source.get("qualification_status") or "NOT_CHECKED").upper()
+    score_status = str(source.get("score_status") or "NOT_SCORED").upper()
+    band = str(source.get("band")).upper() if source.get("band") is not None else None
+    confidence_level = str(source.get("confidence_level")).upper() if source.get("confidence_level") is not None else None
+    if qualification_status not in QUALIFICATION_VALUES:
+        raise ValueError(f"Invalid qualification status: {qualification_status}")
+    if score_status not in SCORE_STATUS_VALUES:
+        raise ValueError(f"Invalid score status: {score_status}")
+    if score_status == "SCORED":
+        if not isinstance(source.get("score"), int) or isinstance(source.get("score"), bool) or not 0 <= source["score"] <= 100:
+            raise ValueError("Scored source requires integer score 0..100")
+        if band not in BAND_VALUES or confidence_level not in CONFIDENCE_VALUES:
+            raise ValueError("Scored source requires valid band and confidence level")
+        if not isinstance(source.get("confidence_score"), int) or isinstance(source.get("confidence_score"), bool) or not 0 <= source["confidence_score"] <= 100:
+            raise ValueError("Scored source requires integer confidence score 0..100")
+    notes = {
+        "schema_version": "a1.discovery-source-notes.v2",
+        "a1_candidate_id": source["candidate_id"],
+        "a1_run_id": source["run_id"],
+        "website_candidate": source.get("candidate_website"),
+        "website_status": website_status,
+        "enrichment_status": source.get("enrichment_status"),
+        "score_status": score_status,
+        **(source.get("overlay_notes") if isinstance(source.get("overlay_notes"), dict) else {}),
+    }
+    payload: dict[str, Any] = {
+        "name": source["company_name"],
+        "position": "first",
+        "discoveryStatus": "DISCOVERED",
+        "discoveryFingerprint": source["fingerprint"],
+        "discoverySourceNotes": canonical_json(notes),
+        "qualificationStatus": qualification_status,
+        "icpScoreStatus": score_status,
+    }
+    if score_status == "SCORED":
+        payload.update({
+            "icpScore": source["score"],
+            "icpBand": band,
+            "icpOutcome": source["outcome"],
+            "evidenceConfidenceScore": source["confidence_score"],
+            "evidenceConfidenceLevel": confidence_level,
+        })
+    elif score_status == "BLOCKED":
+        payload["icpOutcome"] = source["outcome"]
+        if source.get("confidence_score") is not None:
+            payload["evidenceConfidenceScore"] = source["confidence_score"]
+            payload["evidenceConfidenceLevel"] = confidence_level
+    segment = (source["segment"] or "").upper()
+    if segment in {"FARRIER", "HORSE_OWNER"}:
+        payload["segment"] = segment
+    country = country_value(source["country"])
+    city = city_value(source["city"])
+    state = state_value(source["state"])
+    if country:
+        payload["country"] = country
+    if city:
+        payload["city"] = city
+    if state:
+        payload["state"] = state
+    address = {key: value for key, value in {
+        "addressStreet1": source["address"],
+        "addressCity": source["city"],
+        "addressPostcode": source["postal_code"],
+        "addressState": source["state"],
+        "addressCountry": source["country"],
+    }.items() if value}
+    if address:
+        payload["address"] = address
+    # Public contact details belong exclusively to the linked Person whenever
+    # the immutable n8n result supplies a person name. Company contact fields
+    # are used only when no Person is expected.
+    if not source.get("person_name"):
+        phone = e164_phone(source["phone"], source["country"])
+        if phone:
+            payload["phone"] = {"primaryPhoneNumber": phone, "additionalPhones": []}
+        email = public_email(source["email"])
+        if email:
+            payload["email"] = {"primaryEmail": email, "additionalEmails": []}
+    if website:
+        payload["domainName"] = link_value(website, "Official website")
+    if source["source_url"]:
+        payload["sourceUrl"] = link_value(
+            source["source_url"],
+            source_link_label(source["source_url"]),
+        )
+    return payload, website_status.upper()
+
+
+def build_person_payload(source: dict[str, Any]) -> dict[str, Any] | None:
+    """Build an unsplit FULL_NAME payload without guessing name components."""
+    name = optional_text(source.get("person_name"))
+    if not name:
+        return None
+    payload: dict[str, Any] = {
+        "name": {"firstName": name, "lastName": ""},
+        # Filled only after the Company write/read-back has been verified.
+        "companyId": None,
+    }
+    phone = e164_phone(source.get("phone"), source.get("country"))
+    if phone:
+        payload["phones"] = {"primaryPhoneNumber": phone, "additionalPhones": []}
+    email = public_email(source.get("email"))
+    if email:
+        payload["emails"] = {"primaryEmail": email, "additionalEmails": []}
+    job_title = optional_text(source.get("person_job_title"))
+    if job_title:
+        payload["jobTitle"] = job_title
+    return payload
+
+
+def prepare_plan(data: dict[str, Any], lead_id: str | None = None, overlay: dict[str, Any] | None = None) -> dict[str, Any]:
+    source = normalize_source(data, lead_id, overlay)
+    payload, website_status = build_company_payload(source)
+    person_payload = build_person_payload(source)
+    select = [
+        "id", "name", "domainName", "discoveryFingerprint", "discoveryStatus",
+        "qualificationStatus", "icpScoreStatus", "icpScore", "icpBand",
+        "icpOutcome", "evidenceConfidenceScore", "evidenceConfidenceLevel",
+    ]
+    fingerprint_query = {"select": select, "limit": 2, "discoveryFingerprint": {"eq": source["fingerprint"]}}
+    domain_query = None
+    if source["website"]:
+        domain_query = {"select": select, "limit": 2, "domainName": {"primaryLinkUrl": {"eq": source["website"]}}}
+    possible_filters: list[dict[str, Any]] = [{"name": {"eq": source["company_name"]}}]
+    city = city_value(source["city"])
+    state = state_value(source["state"])
+    if city:
+        possible_filters.append({"city": {"eq": city}})
+    if state:
+        possible_filters.append({"state": {"eq": state}})
+    return {
+        "schema_version": PLAN_SCHEMA,
+        "input_sha256": sha256_json({"source": data, "overlay": overlay}),
+        "source": {"kind": source["kind"], "run_id": source["run_id"], "candidate_id": source["candidate_id"], "lead_fingerprint": source["fingerprint"]},
+        "website_status": website_status,
+        "person_required": person_payload is not None,
+        "contact_destination": "person" if person_payload is not None else "company",
+        "expected_entity_count": 2 if person_payload is not None else 1,
+        "company_payload": payload,
+        "person_payload": person_payload,
+        "lookup_plan": {
+            "fingerprint": {"mcp_tool": "find_many_companies", "arguments": fingerprint_query},
+            "domain": {"mcp_tool": "find_many_companies", "arguments": domain_query} if domain_query else None,
+            "possible_name_location": {"mcp_tool": "find_many_companies", "arguments": {"select": select, "limit": 3, "and": possible_filters}},
+        },
+        "person_duplicate_strategy": [
+            "companyId_plus_exact_email",
+            "companyId_plus_exact_phone",
+            "companyId_plus_exact_normalized_full_name",
+            "soft_deleted_people_scan",
+            "ambiguity_hold_no_write",
+        ] if person_payload is not None else [],
+    }
+
+
+def prepare_batch(data: dict[str, Any], overlays: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Prepare every discovery lead and preserve missing-name blocks structurally."""
+    if data.get("contract_version") != "a1.discovery-result.v1":
+        raise ValueError("Batch preparation requires a1.discovery-result.v1")
+    leads = data.get("leads")
+    if not isinstance(leads, list) or not leads:
+        raise ValueError("a1.discovery-result.v1 requires a non-empty leads array")
+    run_id = require_text(data.get("run_id"), "run_id")
+    fingerprints = [require_text(lead.get("lead_fingerprint"), "lead_fingerprint") for lead in leads if isinstance(lead, dict)]
+    if len(fingerprints) != len(leads) or len(set(fingerprints)) != len(fingerprints):
+        raise ValueError("Discovery leads require unique lead_fingerprint values")
+    overlays_by_id = overlay_map(overlays, run_id, fingerprints, sha256_json(data))
+    overlay_provenance = {
+        "verified_unscored_count": 0,
+        "explicit_exhausted_assessment_failure_count": 0,
+        "unexplained_verified_unscored_count": 0,
+    }
+    for overlay in overlays_by_id.values():
+        if overlay.get("website_status") == "verified" and overlay.get("icp_score_status") == "NOT_SCORED":
+            overlay_provenance["verified_unscored_count"] += 1
+            provenance = (overlay.get("notes") or {}).get("outcome_provenance")
+            explicit = (
+                isinstance(provenance, dict)
+                and provenance.get("outcome") == "assessment_failed"
+                and provenance.get("retries_exhausted") is True
+                and bool(optional_text(provenance.get("failure_code")))
+            )
+            if explicit:
+                overlay_provenance["explicit_exhausted_assessment_failure_count"] += 1
+            else:
+                overlay_provenance["unexplained_verified_unscored_count"] += 1
+    items: list[dict[str, Any]] = []
+    for lead in leads:
+        if not isinstance(lead, dict):
+            raise ValueError("Every discovery lead must be an object")
+        fingerprint = require_text(lead.get("lead_fingerprint"), "lead_fingerprint")
+        if not optional_text(lead.get("business_name") or lead.get("name")):
+            items.append({"lead_fingerprint": fingerprint, "status": "blocked_missing_company_name", "plan": None})
+            continue
+        items.append({
+            "lead_fingerprint": fingerprint,
+            "status": "ready",
+            "plan": prepare_plan(data, fingerprint, overlays_by_id.get(fingerprint)),
+        })
+    return {
+        "schema_version": BATCH_SCHEMA,
+        "run_id": run_id,
+        "input_sha256": sha256_json({"source": data, "overlays": overlays}),
+        "website_overlay_provenance": overlay_provenance,
+        "total": len(items),
+        "items": items,
+    }
+
+
+def validate_batch_phones(batch: dict[str, Any]) -> dict[str, Any]:
+    """Validate raw persisted batch phone payloads without emitting phone data.
+
+    Tool and chat renderers can redact public phone numbers. This validator must
+    therefore read the batch JSON locally and return aggregate counts only, so
+    a redacted display can never create a false pre-write rejection.
+    """
+    if batch.get("schema_version") != BATCH_SCHEMA:
+        raise ValueError(f"Expected batch schema_version {BATCH_SCHEMA}")
+    items = batch.get("items")
+    if not isinstance(items, list):
+        raise ValueError("batch.items must be an array")
+    phone_values = masked_values = valid_e164_values = invalid_values = 0
+    for item in items:
+        if not isinstance(item, dict) or item.get("status") != "ready":
+            continue
+        plan = item.get("plan")
+        company_payload = plan.get("company_payload") if isinstance(plan, dict) else None
+        person_payload = plan.get("person_payload") if isinstance(plan, dict) else None
+        phone = None
+        if isinstance(person_payload, dict):
+            phone = person_payload.get("phones")
+        elif isinstance(company_payload, dict):
+            phone = company_payload.get("phone")
+        value = phone.get("primaryPhoneNumber") if isinstance(phone, dict) else None
+        if value is None:
+            continue
+        phone_values += 1
+        if not isinstance(value, str) or "*" in value:
+            masked_values += 1
+        if isinstance(value, str) and re.fullmatch(r"\+[1-9]\d{7,14}", value):
+            valid_e164_values += 1
+        else:
+            invalid_values += 1
+    return {
+        "schema_version": "a1.twenty-entity-staging-phone-validation.v2",
+        "run_id": batch.get("run_id"),
+        "input_sha256": batch.get("input_sha256"),
+        "phone_value_count": phone_values,
+        "masked_phone_value_count": masked_values,
+        "valid_e164_phone_value_count": valid_e164_values,
+        "invalid_phone_value_count": invalid_values,
+        "status": "valid" if masked_values == 0 and invalid_values == 0 else "invalid",
+    }
+
+
+def _unwrap_mcp_response(response: dict[str, Any]) -> Any:
+    value: Any = response
+    if isinstance(value.get("result"), str):
+        try:
+            value = json.loads(value["result"])
+        except json.JSONDecodeError as exc:
+            raise ValueError("Twenty MCP result is not valid JSON") from exc
+    if isinstance(value, dict) and isinstance(value.get("result"), dict):
+        value = value["result"]
+    return value
+
+
+def normalize_find_response(response: dict[str, Any]) -> list[dict[str, Any]]:
+    """Normalize Twenty MCP wrapper/direct responses to a records array."""
+    value = _unwrap_mcp_response(response)
+    records = value.get("records") if isinstance(value, dict) else None
+    if not isinstance(records, list) or not all(isinstance(item, dict) for item in records):
+        raise ValueError("Twenty response does not contain result.records")
+    return records
+
+
+def normalize_record_response(response: dict[str, Any]) -> dict[str, Any]:
+    """Normalize create/update/find-one responses to one Company object."""
+    value = _unwrap_mcp_response(response)
+    if isinstance(value, dict) and isinstance(value.get("record"), dict):
+        value = value["record"]
+    if isinstance(value, dict) and isinstance(value.get("records"), list) and len(value["records"]) == 1:
+        value = value["records"][0]
+    if not isinstance(value, dict) or not optional_text(value.get("id")):
+        raise ValueError("Twenty response does not contain one Company record with an id")
+    return value
+
+
+def _matches(value: Any, field: str) -> list[dict[str, Any]]:
+    if not isinstance(value, list) or not all(isinstance(item, dict) for item in value):
+        raise ValueError(f"{field} must be an array of objects")
+    return value
+
+
+def normalized_person_name(value: Any) -> str:
+    if isinstance(value, dict):
+        first = optional_text(value.get("firstName")) or ""
+        last = optional_text(value.get("lastName")) or ""
+        return " ".join((first + " " + last).split()).casefold()
+    return " ".join((optional_text(value) or "").split()).casefold()
+
+
+def person_company_id(record: dict[str, Any]) -> str | None:
+    direct = optional_text(record.get("companyId"))
+    if direct:
+        return direct
+    company = record.get("company")
+    return optional_text(company.get("id")) if isinstance(company, dict) else None
+
+
+def person_email(record: dict[str, Any]) -> str | None:
+    emails = record.get("emails")
+    return optional_text(emails.get("primaryEmail")) if isinstance(emails, dict) else None
+
+
+def person_phone(record: dict[str, Any]) -> str | None:
+    phones = record.get("phones")
+    if not isinstance(phones, dict):
+        return None
+    number = optional_text(phones.get("primaryPhoneNumber")) or ""
+    calling_code = optional_text(phones.get("primaryPhoneCallingCode")) or ""
+    if number.startswith("+"):
+        return number
+    return calling_code + number if number else None
+
+
+def decide_person_action(person_payload: dict[str, Any], company_id: str, records: list[dict[str, Any]]) -> dict[str, Any]:
+    """Match People within one verified Company using approved precedence."""
+    company_id = require_text(company_id, "company_id")
+    expected = copy.deepcopy(person_payload)
+    expected["companyId"] = company_id
+    same_company = [record for record in records if person_company_id(record) == company_id]
+    emails = expected.get("emails") if isinstance(expected.get("emails"), dict) else {}
+    phones = expected.get("phones") if isinstance(expected.get("phones"), dict) else {}
+    email = optional_text(emails.get("primaryEmail"))
+    phone = optional_text(phones.get("primaryPhoneNumber"))
+    name = normalized_person_name(expected.get("name"))
+    ordered = [
+        ("company_email", [record for record in same_company if email and (person_email(record) or "").casefold() == email.casefold()]),
+        ("company_phone", [record for record in same_company if phone and person_phone(record) == phone]),
+        ("company_normalized_full_name", [record for record in same_company if name and normalized_person_name(record.get("name")) == name]),
+    ]
+    for reason, matched in ordered:
+        if len(matched) > 1:
+            return {
+                "schema_version": PERSON_DECISION_SCHEMA, "action": "blocked",
+                "reason": f"multiple_{reason}_matches", "person_id": None,
+                "matches": matched, "payload": None,
+            }
+        if len(matched) == 1:
+            person_id = require_text(matched[0].get("id"), "person_id")
+            return {
+                "schema_version": PERSON_DECISION_SCHEMA, "action": "update",
+                "reason": f"exact_{reason}_match", "person_id": person_id,
+                "matches": matched, "payload": expected,
+            }
+    return {
+        "schema_version": PERSON_DECISION_SCHEMA, "action": "create",
+        "reason": "no_existing_person_match", "person_id": None,
+        "matches": [], "payload": expected,
+    }
+
+
+def _inconsistent_existing_score(record: dict[str, Any], incoming: dict[str, Any]) -> bool:
+    """Reject destructive updates when an existing SCORED tuple is incomplete."""
+    if incoming.get("icpScoreStatus") != "NOT_SCORED" or record.get("icpScoreStatus") != "SCORED":
+        return False
+    score = record.get("icpScore")
+    confidence = record.get("evidenceConfidenceScore")
+    return not (
+        isinstance(score, int) and not isinstance(score, bool) and 0 <= score <= 100
+        and record.get("icpBand") in BAND_VALUES
+        and bool(optional_text(record.get("icpOutcome")))
+        and isinstance(confidence, int) and not isinstance(confidence, bool) and 0 <= confidence <= 100
+        and record.get("evidenceConfidenceLevel") in CONFIDENCE_VALUES
+    )
+
+
+def decide_action(plan: dict[str, Any], matches: dict[str, Any]) -> dict[str, Any]:
+    payload = plan.get("company_payload")
+    if not isinstance(payload, dict):
+        raise ValueError("plan.company_payload must be an object")
+    fingerprint = require_text(payload.get("discoveryFingerprint"), "discoveryFingerprint")
+    fp = _matches(matches.get("fingerprint_matches", []), "fingerprint_matches")
+    domain = _matches(matches.get("domain_matches", []), "domain_matches")
+    possible = _matches(matches.get("possible_matches", []), "possible_matches")
+    if len(fp) > 1:
+        return _blocked("multiple_fingerprint_matches", fp)
+    if len(fp) == 1:
+        if _inconsistent_existing_score(fp[0], payload):
+            return _blocked("existing_scoring_state_inconsistent", fp)
+        return _update(payload, {"discoveryFingerprint": {"eq": fingerprint}}, fp[0])
+    if len(domain) > 1:
+        return _blocked("multiple_domain_matches", domain)
+    if len(domain) == 1:
+        website = payload.get("domainName", {}).get("primaryLinkUrl")
+        if _inconsistent_existing_score(domain[0], payload):
+            return _blocked("existing_scoring_state_inconsistent", domain)
+        return _update(payload, {"domainName": {"primaryLinkUrl": {"eq": website}}}, domain[0])
+    if possible:
+        return _blocked("possible_name_location_match", possible)
+    return {
+        "schema_version": DECISION_SCHEMA,
+        "action": "create",
+        "reason": "no_existing_company_match",
+        "company_id": None,
+        "mcp_tool": "create_many_companies",
+        "mcp_arguments": {"records": [payload]},
+        "readback": {"mcp_tool": "find_one_company", "arguments": {"id": None, "select": ["*"]}},
+    }
+
+
+def _blocked(reason: str, records: list[dict[str, Any]]) -> dict[str, Any]:
+    return {"schema_version": DECISION_SCHEMA, "action": "blocked", "reason": reason, "company_id": None, "matches": records, "mcp_tool": None, "mcp_arguments": None}
+
+
+def _merge_preserved_notes(existing_value: Any, incoming_value: Any) -> str:
+    """Keep prior assessment provenance while recording the newer discovery pass."""
+    try:
+        existing = json.loads(existing_value) if isinstance(existing_value, str) else {}
+        incoming = json.loads(incoming_value) if isinstance(incoming_value, str) else {}
+    except json.JSONDecodeError as exc:
+        raise ValueError("existing scored Company has unparseable discoverySourceNotes") from exc
+    if not isinstance(existing, dict) or not isinstance(incoming, dict):
+        raise ValueError("existing scored Company has non-object discoverySourceNotes")
+    merged = copy.deepcopy(existing)
+    merged["latest_a1_run_id"] = incoming.get("a1_run_id")
+    merged["latest_website_candidate"] = incoming.get("website_candidate")
+    merged["latest_enrichment_status"] = incoming.get("enrichment_status")
+    merged["assessment_preserved_on_update"] = True
+    return json.dumps(merged, separators=(",", ":"), sort_keys=True)
+
+
+def _update(payload: dict[str, Any], filter_value: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
+    company_id = optional_text(record.get("id"))
+    if not company_id:
+        raise ValueError("Matched Company requires an id")
+    # Reviewer-owned discoveryStatus is intentionally preserved during restaging.
+    data = {key: value for key, value in payload.items() if key not in {"position", "discoveryStatus"}}
+    # A weaker/unscored rediscovery must not erase a previously scored Company.
+    if payload.get("icpScoreStatus") == "NOT_SCORED" and record.get("icpScoreStatus") == "SCORED":
+        for key in SCORING_FIELDS:
+            data.pop(key, None)
+        data["discoverySourceNotes"] = _merge_preserved_notes(
+            record.get("discoverySourceNotes"), payload.get("discoverySourceNotes")
+        )
+    return {
+        "schema_version": DECISION_SCHEMA,
+        "action": "update",
+        "reason": "exact_existing_company_match",
+        "company_id": company_id,
+        "mcp_tool": "update_one_company",
+        "mcp_arguments": {"id": company_id, **data},
+        "readback": {"mcp_tool": "find_one_company", "arguments": {"id": company_id, "select": ["*"]}},
+    }
+
+
+def _equivalent_twenty_link_url(actual: Any, expected: Any) -> bool:
+    """Accept only Twenty's observed trailing-slash URL serialization.
+
+    This is deliberately narrower than general URL normalisation: scheme, host,
+    path, query, and fragment must remain identical. Only one terminal slash may
+    differ, because Twenty removes that slash from Company link read-backs.
+    """
+    if not isinstance(actual, str) or not isinstance(expected, str):
+        return False
+    if not (actual.startswith(("http://", "https://")) and expected.startswith(("http://", "https://"))):
+        return False
+    return actual.rstrip("/") == expected.rstrip("/")
+
+
+def _contains(actual: Any, expected: Any, path: str = "record") -> list[str]:
+    if isinstance(expected, dict):
+        if not isinstance(actual, dict):
+            return [f"{path} expected object"]
+        # Twenty stores the national number and calling code separately on
+        # read-back, even when the write payload supplied E.164.
+        if path.endswith((".phone", ".phones")) and isinstance(expected.get("primaryPhoneNumber"), str):
+            calling_code = optional_text(actual.get("primaryPhoneCallingCode")) or ""
+            national_number = optional_text(actual.get("primaryPhoneNumber")) or ""
+            if calling_code + national_number != expected["primaryPhoneNumber"]:
+                return [f"{path}.primaryPhoneNumber expected {expected['primaryPhoneNumber']!r}, got {(calling_code + national_number)!r}"]
+            if actual.get("additionalPhones") != expected.get("additionalPhones", []):
+                return [f"{path}.additionalPhones expected {expected.get('additionalPhones', [])!r}, got {actual.get('additionalPhones')!r}"]
+            return []
+        errors: list[str] = []
+        for key, value in expected.items():
+            if key == "position":
+                continue
+            if key not in actual:
+                errors.append(f"{path}.{key} missing")
+            else:
+                errors.extend(_contains(actual[key], value, f"{path}.{key}"))
+        return errors
+    if actual != expected:
+        if path.endswith(".primaryLinkUrl") and _equivalent_twenty_link_url(actual, expected):
+            return []
+        if path.endswith(".discoverySourceNotes") and isinstance(actual, str) and isinstance(expected, str):
+            try:
+                if json.loads(actual) == json.loads(expected):
+                    return []
+            except json.JSONDecodeError:
+                pass
+        return [f"{path} expected {expected!r}, got {actual!r}"]
+    return []
+
+
+def reconcile(plan: dict[str, Any], decision: dict[str, Any], company_id: str, readback: dict[str, Any], recorded_at: str | None = None) -> dict[str, Any]:
+    if decision.get("action") not in {"create", "update"}:
+        raise ValueError("Only successful create/update decisions can be reconciled")
+    company_id = require_text(company_id, "company_id")
+    if readback.get("id") != company_id:
+        raise ValueError("read-back mismatch: Company id differs")
+    expected = plan.get("company_payload") if decision["action"] == "create" else {
+        key: value for key, value in decision.get("mcp_arguments", {}).items() if key != "id"
+    }
+    errors = _contains(readback, expected)
+    if errors:
+        raise ValueError("read-back mismatch: " + "; ".join(errors))
+    recorded_at = recorded_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    return {
+        "schema_version": MANIFEST_SCHEMA,
+        "input_sha256": plan.get("input_sha256"),
+        "run_id": plan.get("source", {}).get("run_id"),
+        "candidate_id": plan.get("source", {}).get("candidate_id"),
+        "lead_fingerprint": plan.get("source", {}).get("lead_fingerprint") or plan.get("company_payload", {}).get("discoveryFingerprint"),
+        "twenty_company_id": company_id,
+        "operation": decision["action"],
+        "disposition": "staged",
+        "duplicate_preflight_result": decision.get("reason"),
+        "verification_status": "verified",
+        "recorded_at": recorded_at,
+    }
+
+
+def reconcile_person(
+    plan: dict[str, Any], decision: dict[str, Any], person_id: str,
+    company_id: str, readback: dict[str, Any], recorded_at: str | None = None,
+) -> dict[str, Any]:
+    if decision.get("action") not in {"create", "update"}:
+        raise ValueError("Only successful Person create/update decisions can be reconciled")
+    person_id = require_text(person_id, "person_id")
+    company_id = require_text(company_id, "company_id")
+    if readback.get("id") != person_id:
+        raise ValueError("read-back mismatch: Person id differs")
+    if person_company_id(readback) != company_id:
+        raise ValueError("read-back mismatch: Person companyId relation differs")
+    expected = copy.deepcopy(decision.get("payload"))
+    if not isinstance(expected, dict):
+        raise ValueError("Person decision payload is missing")
+    expected_without_relation = {key: value for key, value in expected.items() if key != "companyId"}
+    errors = _contains(readback, expected_without_relation, "person")
+    if errors:
+        raise ValueError("read-back mismatch: " + "; ".join(errors))
+    recorded_at = recorded_at or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    return {
+        "schema_version": PERSON_MANIFEST_SCHEMA,
+        "input_sha256": plan.get("input_sha256"),
+        "run_id": plan.get("source", {}).get("run_id"),
+        "lead_fingerprint": plan.get("source", {}).get("lead_fingerprint"),
+        "twenty_company_id": company_id,
+        "twenty_person_id": person_id,
+        "operation": decision["action"],
+        "duplicate_preflight_result": decision.get("reason"),
+        "relation_status": "verified",
+        "verification_status": "verified",
+        "recorded_at": recorded_at,
+    }
+
+
+def finalize_batch(batch: dict[str, Any], dispositions: list[dict[str, Any]]) -> dict[str, Any]:
+    if batch.get("schema_version") != BATCH_SCHEMA:
+        raise ValueError(f"Expected batch schema_version {BATCH_SCHEMA}")
+    expected = [item.get("lead_fingerprint") for item in batch.get("items", [])]
+    if not expected or any(not isinstance(value, str) or not value for value in expected):
+        raise ValueError("Batch items require lead_fingerprint")
+    plan_by_id = {
+        item.get("lead_fingerprint"): item.get("plan")
+        for item in batch.get("items", []) if isinstance(item, dict)
+    }
+    by_id: dict[str, dict[str, Any]] = {}
+    for item in dispositions:
+        fingerprint = require_text(item.get("lead_fingerprint"), "lead_fingerprint")
+        if fingerprint in by_id:
+            raise ValueError(f"Duplicate disposition for {fingerprint}")
+        status = item.get("status")
+        if status not in TERMINAL_DISPOSITIONS:
+            raise ValueError(f"Invalid terminal disposition for {fingerprint}: {status!r}")
+        plan = plan_by_id.get(fingerprint)
+        person_required = bool(plan.get("person_required")) if isinstance(plan, dict) else False
+        if item.get("person_required") is not person_required:
+            raise ValueError(f"Person expectation mismatch for {fingerprint}")
+        if status.startswith("company_staged_"):
+            require_text(item.get("company_id"), "company_id")
+            require_text(item.get("company_reconciliation_artifact"), "company_reconciliation_artifact")
+        if person_required:
+            person_disposition = item.get("person_disposition")
+            if person_disposition not in {"staged", "possible_match", "sync_failed", "blocked_by_company"}:
+                raise ValueError(f"Expected terminal Person disposition for {fingerprint}")
+            expected_statuses = {
+                "possible_match": {"company_staged_person_possible_match"},
+                "sync_failed": {"company_staged_person_sync_failed"},
+                "staged": {"company_staged_person_staged", "company_staged_person_sync_failed"},
+            }
+            if person_disposition in expected_statuses and status not in expected_statuses[person_disposition]:
+                raise ValueError(f"Person disposition/status mismatch for {fingerprint}")
+            if person_disposition == "staged":
+                require_text(item.get("person_id"), "person_id")
+                require_text(item.get("person_reconciliation_artifact"), "person_reconciliation_artifact")
+                require_text(item.get("relation_reconciliation_artifact"), "relation_reconciliation_artifact")
+                if item.get("relation_status") != "verified":
+                    raise ValueError(f"Expected verified Person relation for {fingerprint}")
+            elif person_disposition == "blocked_by_company" and status not in {"company_possible_match", "company_sync_failed"}:
+                raise ValueError(f"Person blocked-by-Company status mismatch for {fingerprint}")
+            elif status in {"company_possible_match", "company_sync_failed"} and person_disposition != "blocked_by_company":
+                raise ValueError(f"Person must be blocked by Company for {fingerprint}")
+        elif status not in {"company_staged_no_person_required", "company_possible_match", "company_sync_failed", "blocked_missing_company_name"} or item.get("person_id") is not None:
+            raise ValueError(f"Unexpected Person for {fingerprint}")
+        by_id[fingerprint] = item
+    if set(by_id) != set(expected):
+        missing = sorted(set(expected) - set(by_id))
+        extra = sorted(set(by_id) - set(expected))
+        raise ValueError(f"Disposition coverage mismatch; missing={missing}, extra={extra}")
+    counts: dict[str, int] = {}
+    for item in by_id.values():
+        counts[item["status"]] = counts.get(item["status"], 0) + 1
+    return {
+        "schema_version": INDEX_SCHEMA,
+        "run_id": batch.get("run_id"),
+        "input_sha256": batch.get("input_sha256"),
+        "complete": True,
+        "total": len(expected),
+        "counts": dict(sorted(counts.items())),
+        "dispositions": [by_id[fingerprint] for fingerprint in expected],
+    }
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    with path.open(encoding="utf-8") as handle:
+        value = json.load(handle)
+    if not isinstance(value, dict):
+        raise ValueError(f"{path} must contain a JSON object")
+    return value
+
+
+def write_json(path: Path | None, value: dict[str, Any]) -> None:
+    rendered = json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    if path is None:
+        print(rendered, end="")
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp = path.with_name(path.name + f".tmp.{os.getpid()}")
+    temp.write_text(rendered, encoding="utf-8")
+    os.replace(temp, path)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    sub = parser.add_subparsers(dest="command", required=True)
+    prepare = sub.add_parser("prepare", help="Map an A1 input to a Twenty Company payload and read-only lookup plan")
+    prepare.add_argument("--input", required=True, type=Path)
+    prepare.add_argument("--lead-id")
+    prepare.add_argument("--output", type=Path)
+    batch = sub.add_parser("prepare-batch", help="Prepare every discovery lead and structure missing-name blocks")
+    batch.add_argument("--input", required=True, type=Path)
+    batch.add_argument("--overlays", type=Path)
+    batch.add_argument("--output", type=Path)
+    validate_phones = sub.add_parser("validate-batch-phones", help="Validate raw batch phone payloads and emit only aggregate counts")
+    validate_phones.add_argument("--batch", required=True, type=Path)
+    validate_phones.add_argument("--output", type=Path)
+    normalize = sub.add_parser("normalize-find", help="Normalize a raw Twenty find response to a records array")
+    normalize.add_argument("--response", required=True, type=Path)
+    normalize.add_argument("--output", type=Path)
+    normalize_one = sub.add_parser("normalize-record", help="Normalize a raw create/update/find-one response")
+    normalize_one.add_argument("--response", required=True, type=Path)
+    normalize_one.add_argument("--output", type=Path)
+    decide = sub.add_parser("decide", help="Choose create, update, or blocked from normalized lookup results")
+    decide.add_argument("--plan", required=True, type=Path)
+    decide.add_argument("--matches", required=True, type=Path)
+    decide.add_argument("--output", type=Path)
+    rec = sub.add_parser("reconcile", help="Verify Twenty read-back and create a reconciliation manifest")
+    rec.add_argument("--plan", required=True, type=Path)
+    rec.add_argument("--decision", required=True, type=Path)
+    rec.add_argument("--company-id", required=True)
+    rec.add_argument("--readback", required=True, type=Path)
+    rec.add_argument("--recorded-at")
+    rec.add_argument("--output", type=Path)
+    final = sub.add_parser("finalize-batch", help="Validate terminal coverage and build the staging index")
+    final.add_argument("--batch", required=True, type=Path)
+    final.add_argument("--dispositions", required=True, type=Path)
+    final.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    try:
+        if args.command == "prepare":
+            result = prepare_plan(load_json(args.input), args.lead_id)
+        elif args.command == "prepare-batch":
+            result = prepare_batch(load_json(args.input), load_json(args.overlays) if args.overlays else None)
+        elif args.command == "validate-batch-phones":
+            result = validate_batch_phones(load_json(args.batch))
+        elif args.command == "normalize-find":
+            result = {"schema_version": MATCH_SCHEMA, "records": normalize_find_response(load_json(args.response))}
+        elif args.command == "normalize-record":
+            result = normalize_record_response(load_json(args.response))
+        elif args.command == "decide":
+            result = decide_action(load_json(args.plan), load_json(args.matches))
+        elif args.command == "reconcile":
+            result = reconcile(load_json(args.plan), load_json(args.decision), args.company_id, load_json(args.readback), args.recorded_at)
+        else:
+            dispositions_value = load_json(args.dispositions)
+            dispositions = dispositions_value.get("dispositions")
+            if not isinstance(dispositions, list):
+                raise ValueError("dispositions file must contain a dispositions array")
+            result = finalize_batch(load_json(args.batch), dispositions)
+        write_json(args.output, result)
+        return 0
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        print(json.dumps({"status": "error", "error": str(exc)}), file=os.sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -1,0 +1,23 @@
+{
+  "skill_name": "equinet-icp-qualification",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Qualify a professional Lexington Farrier whose official website confirms active services, therapeutic shoeing and an Owner/Farrier role.",
+      "expected_output": "A complete Farrier qualification object with every configured criterion present, confirmed claims tied to evidence, and no numeric score.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Qualify a commercial Lexington breeding farm whose horse count is unknown but whose business website confirms breeding services and a Farm Manager.",
+      "expected_output": "Horse Owner qualification with commercial-operation evidence, unknown horse-count criterion preserved, no automatic qualification and no invented horse count.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Qualify a social profile with no professional Farrier evidence and a confirmed hobby-only description.",
+      "expected_output": "Exclusion criterion confirmed with evidence, exclusion_status excluded, and no score or outreach action.",
+      "files": []
+    }
+  ]
+}

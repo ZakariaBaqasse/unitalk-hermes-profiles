@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""Offline verification runner for A1 enrichment hardening. No network or CRM calls."""
+from __future__ import annotations
+import json, subprocess, sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+modified = [
+    ROOT / "skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py",
+    ROOT / "skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py",
+    ROOT / "skills/post-n8n-public-website-enrichment/scripts/migrate_state_v1_to_v2.py",
+    ROOT / "skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py",
+    ROOT / "skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_company.py",
+    ROOT / "skills/crm/evidence-aware-crm-staging/scripts/stage_twenty_rest.py",
+]
+commands = [
+    [sys.executable, "-m", "py_compile", *map(str, modified)],
+    [sys.executable, str(ROOT / "skills/post-n8n-public-website-enrichment/scripts/test_enrichment_state_v2.py")],
+    [sys.executable, str(ROOT / "skills/post-n8n-public-website-enrichment/scripts/test_migrate_state_v1_to_v2.py")],
+]
+for directory in [
+    ROOT / "skills/post-n8n-public-website-enrichment/tests",
+    ROOT / "skills/system-operations/equinet-n8n-discovery-control/tests",
+    ROOT / "skills/crm/evidence-aware-crm-staging/tests",
+    ROOT / "skills/prospect-segment-classification/tests",
+    ROOT / "skills/equinet-icp-qualification/tests",
+    ROOT / "skills/prospect-evidence-and-confidence/tests",
+    ROOT / "skills/icp-scoring-and-rationale/tests",
+    ROOT / "skills/a1-prospect-data-contract/tests",
+]:
+    if directory.is_dir():
+        commands.append([sys.executable, "-m", "unittest", "discover", "-v", "-s", str(directory), "-p", "test_*.py"])
+
+results=[]
+failed=False
+for command in commands:
+    run=subprocess.run(command,cwd=ROOT,text=True,capture_output=True,check=False)
+    results.append({"command":" ".join(command),"exit_code":run.returncode,"stdout_tail":run.stdout[-4000:],"stderr_tail":run.stderr[-4000:]})
+    failed = failed or run.returncode != 0
+
+schema_count=0
+schema_errors=[]
+try:
+    from jsonschema import Draft202012Validator
+    for path in sorted(ROOT.glob("skills/**/references/*.schema.json")):
+        try:
+            Draft202012Validator.check_schema(json.loads(path.read_text(encoding="utf-8")))
+            schema_count += 1
+        except Exception as exc:
+            schema_errors.append({"path":str(path),"error":str(exc)})
+except Exception as exc:
+    schema_errors.append({"path":"jsonschema_import","error":str(exc)})
+failed = failed or bool(schema_errors)
+
+print(json.dumps({"status":"failed" if failed else "passed","commands":results,"json_schemas_validated":schema_count,"schema_errors":schema_errors,"external_writes_performed":False},indent=2))
+raise SystemExit(1 if failed else 0)

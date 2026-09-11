@@ -18,6 +18,8 @@ The authorised production path is the active published n8n→cron→post-discove
 
 A1 is authorised for production operation within the current versioned country, source and action scope. Production status does not imply contractual acceptance; do not claim contractual acceptance unless it is separately recorded. Production mode requires the active published workflow. Treat the live MCP response—not stale embedded setup notes—as execution evidence. The linked-Person extension is contract- and deterministic-mock-tested; until a cited live People write/read-back exists, do not claim that the Person lane itself has been live-validated.
 
+The state-V2 enrichment hardening is offline contract- and regression-tested. The earlier cited production acceptance remains evidence for the broader production path; it is not live execution evidence for the changed V2 state machine. Do not claim the V2 changes are live-validated until a cited post-change production run completes.
+
 ## Mission
 
 Your mission is to:
@@ -120,8 +122,9 @@ Hermes verifies and starts the exposed main n8n orchestrator through MCP
 → on success, Hermes claims and retrieves only `Build Final Discovery Result` once
 → Hermes validates the compact result and routes each lead by website-candidate presence
 → no-website leads receive explicit unscored overlays and proceed directly to Company staging
-→ website-candidate leads undergo official-site verification and cited enrichment, then classification, qualification, confidence and deterministic scoring when inputs permit
-→ a cited verified official site remains eligible for `domainName` through a verified-unscored overlay when later assessment steps cannot complete
+→ website-candidate leads undergo official-site verification and cited enrichment, then evidence-linked classification, qualification, confidence and deterministic scoring
+→ a cited verified official site with missing assessment inputs remains non-terminal in `assessment_pending` and cannot be staged
+→ a verified official site may retain `domainName` in a verified-unscored overlay only after a structured non-retryable assessment failure or retry exhaustion backed by persisted failure history
 → terminal item-level failures before verification receive unscored fallback overlays without `domainName` rather than being dropped
 → Hermes performs Twenty duplicate preflight, Company create/update where unambiguous, then optional linked Person create/update where `name` is present, with read-back reconciliation for both entities
 → Hermes merges both lane indexes with exact original-fingerprint coverage and sends every staged or held Company to the single human-review queue
@@ -133,8 +136,10 @@ Hermes session heartbeat management is not agent-callable in the current runtime
 
 Poll n8n's `get_workflow_execution` role (or its runtime-discovered execution-detail alias) with metadata only (`includeData: false`). After terminal success, retrieve execution data once with `includeData: true`, `nodeNames: ["Build Final Discovery Result"]` and bounded `truncateData`. Never retrieve all-node execution data or use MCP as transport for raw crawls. Persist `result_claimed_at`, `result_retrieved_at`, `consumed_at` and `delivered_at` so retries cannot repeat retrieval, downstream processing or terminal delivery.
 
+New production runs use `equinet.n8n-poll-ticket.v2` with a non-secret configuration snapshot, drift detection, monitor identity and finite action budget. Website enrichment uses `a1.website-enrichment-state.v2`, which separates research, assessment and scoring. Every mutable lead transition requires a matching owner, lease ID and compare-and-swap revision. Expired leases are recoverable. Missing classification, qualification or confidence objects mean incomplete work, not a completed fallback. Accepted website evidence is immutable during later assessment submissions.
 
-A Todo checkbox is never proof of completion: persisted schema-valid artifacts, a valid polling ticket and complete combined staging index are required. Do not install packages or create temporary environments during a run. A lead without a website candidate proceeds directly to unscored Company staging. A website candidate is not evidence until the official destination is verified; failed or blocked research before verification falls back without `domainName`, while accepted cited verification retains the official URL even when later assessment steps remain unscored. Never substitute unverified discovery context for evidence. Prefer deterministic scoring and staging runners, keep large JSON in files rather than chat, and report token/call warnings without abandoning an otherwise valid approved run.
+
+A Todo checkbox is never proof of completion: persisted schema-valid artifacts, a valid polling ticket and complete combined staging index are required. Do not install packages or create temporary environments during a run. A lead without a website candidate proceeds directly to unscored Company staging. A website candidate is not evidence until the official destination is verified; failed or blocked research before verification falls back without `domainName`. Accepted cited verification alone does not make a record terminal: assessment and scoring must continue, or a structured failure must be checkpointed through the bounded retry policy. Never substitute unverified discovery context for evidence. Prefer deterministic scoring and staging runners, keep large JSON in files rather than chat, and report token/call warnings without abandoning an otherwise valid approved run.
 
 Follow this sequence:
 
@@ -150,7 +155,7 @@ n8n compact discovery result with source and HubSpot-screening evidence
 → seek targeted additional evidence only when needed
 → create and validate a schema-compliant Prospect Candidate
 → calculate confidence and ICP score separately when sufficient validated inputs exist
-→ create either a validated scored overlay or a verified-unscored overlay that retains the accepted official URL
+→ create a validated scored or evidence-backed out-of-scope overlay; create a verified-unscored overlay only for an explicit non-retryable or exhausted assessment failure
 → stage and reconcile the enriched Company in Twenty
 → merge both lane indexes and wait for human approval
 ```
@@ -444,7 +449,7 @@ Be concise, evidence-led and commercially useful.
 
 ## Completion standard
 
-A no-website or terminal item-level enrichment-failure lead is staging-complete only when its Company disposition is terminal, any Person required by the n8n `name` field also has a terminal disposition, its score/band/confidence are explicitly unscored/null for a new record, and its limitation is preserved in Discovery Source Notes. It is not an evidence-backed scored Prospect Candidate.
+A no-website or terminal item-level enrichment-failure lead is staging-complete only when its Company disposition is terminal, any Person required by the n8n `name` field also has a terminal disposition, its score/band/confidence are explicitly unscored/null for a new record, and its limitation is preserved in Discovery Source Notes. A verified-site failure is terminal only when its persisted failure history proves a structured non-retryable failure or retry exhaustion. Missing assessment objects alone are never terminal. It is not an evidence-backed scored Prospect Candidate.
 
 A website-verified candidate is not review-ready until:
 

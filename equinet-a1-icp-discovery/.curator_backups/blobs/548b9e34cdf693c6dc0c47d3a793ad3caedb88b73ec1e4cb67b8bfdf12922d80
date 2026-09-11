@@ -1,0 +1,36 @@
+---
+name: a1-prospect-data-contract
+description: Use whenever A1 creates, validates, ranks, exports or hands off an Equinet Prospect Candidate. Enforces the authoritative Prospect Candidate schema and prevents field drift, unsupported evidence and incomplete review records.
+version: 1.2.0
+status: production_validated
+---
+
+# A1 Prospect Data Contract
+
+This package makes every A1 output use one versioned structure. The contract itself is a JSON Schema, not an AI reasoning skill.
+
+## Authoritative files
+
+- Read `references/prospect-candidate.schema.json` before creating or transforming a Prospect Candidate.
+- Read `references/field-dictionary.md` when a field's business meaning, ownership or A1/A2 boundary is unclear.
+- Read `references/export-view.md` before producing Markdown, CSV or Excel.
+- Use `scripts/validate_candidate.py` before presenting, exporting, storing or handing off a candidate.
+
+## Required workflow
+
+1. Build the candidate with `schema_version` set to the exact contract version.
+2. Store observable facts separately from interpretations.
+3. Attach every score-driving qualification criterion to one or more `evidence_id` values.
+4. Keep ICP score and evidence confidence separate. A deterministically assessed score of `0` is valid and may have an empty component list; unassessed records must use `not_scored` with a null score.
+5. Mark unavailable CRM checks as unavailable; never represent them as completed.
+6. Keep `data_governance.a1_outreach_prohibited` true.
+7. For an organisation, store at most one selected primary named contact in `identity.person`, at most one justified secondary named contact in labelled `public_contacts[]`, and the organisation general contact separately. Do not add `associated_people[]` in A1 V1.
+8. Persist Twenty integration references separately as `twenty_company_id`, optional `twenty_person_id`, and `twenty_person_relation_status`; a verified relation requires both IDs.
+9. Validate the candidate before producing Markdown, CSV, JSON, Excel, Twenty or A2 outputs.
+10. If validation fails, return the validation errors and keep the candidate in a blocked or needs-review state.
+
+## Authority and changes
+
+The JSON Schema is authoritative for structure. The field dictionary is authoritative for business meaning. ICP weights, thresholds, approved sources and CRM mappings live in separate versioned configurations.
+
+Do not add ad-hoc fields to a candidate. Propose a contract revision and increment the schema version instead.

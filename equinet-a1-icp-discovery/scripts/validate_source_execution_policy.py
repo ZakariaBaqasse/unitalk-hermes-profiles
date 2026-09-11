@@ -60,12 +60,18 @@ def main() -> int:
     staging = json.loads(STAGING_INDEX.read_text(encoding="utf-8"))
 
     require("registry_version: 2.0.0" in source, "source registry version must be 2.0.0", errors)
-    require("policy_version: 4.2.0" in runtime, "runtime policy version must be 4.2.0", errors)
-    require("verified_official_site_without_scoring_inputs: stage_domain_with_explicit_not_scored_assessment" in runtime, "runtime policy must retain verified domains for unscored staging", errors)
+    require("policy_version: 4.3.0" in runtime, "runtime policy version must be 4.3.0", errors)
+    require("verified_official_site_without_assessment_inputs: assessment_pending_block_staging" in runtime,
+            "runtime must keep verified records with missing assessments non-terminal", errors)
+    require("automatic_missing_pipeline_input_fallback: prohibited" in runtime,
+            "runtime must prohibit automatic missing-input fallback", errors)
     require("config_version: 2.0.0" in icp, "ICP configuration version must be 2.0.0", errors)
     require("model_version: 1.1.0" in scoring, "scoring model version must be 1.1.0", errors)
-    require("policy_version: 1.4.0" in enrichment, "website enrichment policy version must be 1.4.0", errors)
-    require("website_verified_but_unscored: unscored_company_staging_with_verified_domain" in enrichment, "website enrichment handoff must retain verified unscored domains", errors)
+    require("policy_version: 1.5.0" in enrichment, "website enrichment policy version must be 1.5.0", errors)
+    require("website_verified_missing_assessments: block_staging_and_continue_assessment" in enrichment,
+            "website enrichment handoff must block missing assessments", errors)
+    require("persisted_failure_history: required" in enrichment,
+            "verified-unscored fallback must require persisted failure history", errors)
     require("status: production_active_e2e_validated" in runtime, "runtime must be production active", errors)
     require("status: approved_for_production_configuration" in icp, "ICP configuration must be production approved", errors)
     require("status: approved_for_request_bounded_production_discovery" in source, "source register must be production approved", errors)
@@ -117,7 +123,8 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print("PASS: A1 ICP 2.0.0, source policy 2.0.0, enrichment policy 1.4.0, scoring 1.1.0 and runtime policy 4.2.0 are consistent.")
+    print("PASS: A1 ICP 2.0.0, source policy 2.0.0, enrichment policy 1.5.0, scoring 1.1.0 and runtime policy 4.3.0 are consistent.")
+    print("PASS: verified records with missing assessments remain non-terminal; verified-unscored fallback requires persisted failure provenance.")
     print("PASS: Company plus optional linked Person staging policy and verified field manifest are enabled.")
     print("PASS: production countries are US, Australia and New Zealand with no location defaults.")
     print("PASS: country, region and city are mandatory; codes resolve deterministically.")

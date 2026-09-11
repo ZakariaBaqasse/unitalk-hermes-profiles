@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/twenty-entity-staging-index/3.0.0",
+  "title": "Equinet A1 Combined Two-Lane Twenty Entity Staging Index",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "source_contract_version", "source_sha256", "complete", "total", "counts", "company_coverage", "person_coverage", "dispositions", "lane_indexes"],
+  "properties": {
+    "schema_version": {"const": "a1.twenty-entity-staging-index.v3"},
+    "run_id": {"type": "string", "minLength": 1},
+    "source_contract_version": {"const": "a1.discovery-result.v1"},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "complete": {"const": true},
+    "total": {"type": "integer", "minimum": 1},
+    "counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+    "company_coverage": {"type": "object", "required": ["expected", "terminal", "verified_ids"], "properties": {"expected": {"type": "integer"}, "terminal": {"type": "integer"}, "verified_ids": {"type": "integer"}}},
+    "person_coverage": {"type": "object", "required": ["expected", "terminal", "verified_relations"], "properties": {"expected": {"type": "integer"}, "terminal": {"type": "integer"}, "verified_relations": {"type": "integer"}}},
+    "dispositions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["lead_fingerprint", "lane", "status", "company_id", "person_required", "person_id", "person_disposition", "relation_status", "reason", "company_reconciliation_artifact", "person_reconciliation_artifact", "relation_reconciliation_artifact", "artifact_reference"],
+        "properties": {
+          "lead_fingerprint": {"type": "string", "minLength": 1},
+          "lane": {"enum": ["no_website", "website_candidate"]},
+          "status": {"enum": ["company_staged_person_staged", "company_staged_no_person_required", "company_staged_person_possible_match", "company_staged_person_sync_failed", "company_possible_match", "company_sync_failed", "blocked_missing_company_name"]},
+          "company_id": {"type": ["string", "null"]},
+          "person_required": {"type": "boolean"},
+          "person_id": {"type": ["string", "null"]},
+          "person_disposition": {"enum": ["staged", "not_required", "possible_match", "sync_failed", "blocked_by_company"]},
+          "relation_status": {"enum": ["verified", "not_required", "unverified"]},
+          "reason": {"type": "string", "minLength": 1},
+          "company_reconciliation_artifact": {"type": ["string", "null"]},
+          "person_reconciliation_artifact": {"type": ["string", "null"]},
+          "relation_reconciliation_artifact": {"type": ["string", "null"]},
+          "artifact_reference": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "lane_indexes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["no_website", "website_candidate"],
+      "properties": {
+        "no_website": {"anyOf": [{"$ref": "#/$defs/laneIndex"}, {"type": "null"}]},
+        "website_candidate": {"anyOf": [{"$ref": "#/$defs/laneIndex"}, {"type": "null"}]}
+      }
+    }
+  },
+  "$defs": {
+    "laneIndex": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "sha256", "complete", "total", "counts"],
+      "properties": {
+        "schema_version": {"const": "a1.twenty-entity-staging-index.v2"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "complete": {"const": true},
+        "total": {"type": "integer", "minimum": 1},
+        "counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "website_overlay_provenance": {
+          "anyOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["verified_unscored_count", "explicit_exhausted_assessment_failure_count", "unexplained_verified_unscored_count"],
+              "properties": {
+                "verified_unscored_count": {"type": "integer", "minimum": 0},
+                "explicit_exhausted_assessment_failure_count": {"type": "integer", "minimum": 0},
+                "unexplained_verified_unscored_count": {"const": 0}
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

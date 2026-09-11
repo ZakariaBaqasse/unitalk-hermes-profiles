@@ -1,5 +1,5 @@
 policy_id: equinet-a1-public-website-enrichment
-policy_version: 1.4.0
+policy_version: 1.5.0
 status: production_active
 applies_to_profile: equinet-a1-icp-discovery
 scope: post_n8n_website_candidate_lane_before_twenty_staging
@@ -36,19 +36,55 @@ website_requirement:
       - no_site_completion_must_not_confirm_classification_or_qualification_criteria
       - no_site_completion_must_not_calculate_confidence_or_icp_score
       - no_site_completion_routes_to_unscored_company_staging_and_human_review
-  verified_site_unscored_completion:
+  verified_site_assessment_state:
+    website_status: verified
+    retained_evidence_required: true
+    missing_assessment_inputs_state: assessment_pending
+    missing_assessment_inputs_are_terminal: false
+    missing_assessment_inputs_may_stage: false
+    restrictions:
+      - official_url_requires_accepted_destination_page_evidence
+      - research_results_must_not_embed_assessment_inputs
+      - assessment_inputs_must_be_submitted_through_the_separate_v2_contract
+      - missing_pipeline_inputs_must_not_be_invented
+      - automatic_verified_site_unscored_missing_pipeline_inputs_fallback_is_prohibited
+  verified_site_unscored_failure_completion:
     allowed: true
     website_status: verified
-    enrichment_status: completed
+    enrichment_status: failed
+    terminal_state: terminal_assessment_failed
     official_website_url: required
     retained_evidence_required: true
     qualification_status: NOT_CHECKED
     icp_score_status: NOT_SCORED
     score_band_outcome_confidence: null
+    required_provenance:
+      outcome: assessment_failed
+      structured_failure_code: required
+      persisted_failure_history: required
+      attempts_match_persisted_state: true
+      retries_exhausted_or_non_retryable: true
     restrictions:
-      - official_url_requires_accepted_destination_page_evidence
-      - missing_pipeline_inputs_must_not_be_invented
-      - verified_domain_may_stage_without_numeric_score
+      - omission_of_assessment_inputs_is_not_a_failure_record
+      - accepted_research_evidence_must_be_preserved
+      - weaker_unscored_rediscovery_must_not_clear_existing_scored_crm_fields
+
+state_and_concurrency:
+  state_contract: a1.website-enrichment-state.v2
+  research_contract: a1.website-enrichment-research-results.v2
+  assessment_contract: a1.website-enrichment-assessment-submissions.v2
+  explicit_fallback_contract: a1.website-enrichment-explicit-fallback.v2
+  phases: [research, assessment, scoring]
+  per_lead_claim_required: true
+  claim_fields: [owner, lease_id, claimed_at, expires_at]
+  compare_and_swap_revision_required: true
+  expired_claim_recovery_allowed: true
+  accepted_research_evidence_is_immutable_during_assessment: true
+  v1_migration:
+    separate_output_required: true
+    in_place_mutation: prohibited
+    rerun_n8n: prohibited
+    repeat_uncertain_twenty_write: prohibited
 
 retained_evidence_requirements:
   destination_page_required: true
@@ -91,7 +127,9 @@ handoff:
   qualification_skill: equinet-icp-qualification
   confidence_skill: prospect-evidence-and-confidence
   scoring_skill: icp-scoring-and-rationale
-  no_site_or_terminal_item_failure: unscored_company_staging
-  website_verified_but_unscored: unscored_company_staging_with_verified_domain
+  no_site_or_terminal_preverification_failure: unscored_company_staging_without_domain
+  website_verified_missing_assessments: block_staging_and_continue_assessment
+  website_verified_explicit_exhausted_assessment_failure: unscored_company_staging_with_verified_domain
   website_verified_and_scored: enriched_company_staging
+  website_overlay_provenance_required: true
   human_review_required: true

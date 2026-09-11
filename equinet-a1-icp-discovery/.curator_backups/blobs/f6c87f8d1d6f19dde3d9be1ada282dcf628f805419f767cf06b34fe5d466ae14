@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/twenty-company-person-staging-plan/2.0.0",
+  "title": "Equinet A1 Twenty Company and Person Staging Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "input_sha256", "source", "website_status", "person_required", "contact_destination", "expected_entity_count", "company_payload", "person_payload", "lookup_plan", "person_duplicate_strategy"],
+  "properties": {
+    "schema_version": {"const": "a1.twenty-company-person-staging-plan.v2"},
+    "input_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "run_id", "candidate_id", "lead_fingerprint"],
+      "properties": {
+        "kind": {"enum": ["discovery_lead", "prospect_candidate"]},
+        "run_id": {"type": "string", "minLength": 1},
+        "candidate_id": {"type": ["string", "null"]},
+        "lead_fingerprint": {"type": "string", "minLength": 1}
+      }
+    },
+    "website_status": {"enum": ["VERIFIED", "NONE_FOUND", "UNVERIFIED", "BLOCKED", "ERROR"]},
+    "person_required": {"type": "boolean"},
+    "contact_destination": {"enum": ["company", "person"]},
+    "expected_entity_count": {"enum": [1, 2]},
+    "company_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "position", "discoveryStatus", "discoveryFingerprint", "discoverySourceNotes", "qualificationStatus", "icpScoreStatus"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "position": {"const": "first"},
+        "domainName": {"$ref": "#/$defs/link"},
+        "address": {"type": "object"},
+        "phone": {"$ref": "#/$defs/phone"},
+        "email": {"$ref": "#/$defs/email"},
+        "country": {"enum": ["US", "AUSTRALIA", "NEW_ZEALAND"]},
+        "city": {"const": "LEXINGTON"},
+        "state": {"const": "KENTUCKY"},
+        "sourceUrl": {"$ref": "#/$defs/link"},
+        "segment": {"enum": ["FARRIER", "HORSE_OWNER"]},
+        "qualificationStatus": {"enum": ["ELIGIBLE", "EXCLUDED", "NEEDS_REVIEW", "NOT_CHECKED"]},
+        "icpScoreStatus": {"enum": ["NOT_SCORED", "SCORED", "BLOCKED"]},
+        "icpScore": {"type": "integer", "minimum": 0, "maximum": 100},
+        "icpBand": {"enum": ["HIGH", "MEDIUM", "LOW", "UNQUALIFIED"]},
+        "icpOutcome": {"type": "string", "minLength": 1},
+        "evidenceConfidenceScore": {"type": "integer", "minimum": 0, "maximum": 100},
+        "evidenceConfidenceLevel": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+        "discoveryStatus": {"const": "DISCOVERED"},
+        "discoverySourceNotes": {"type": "string", "minLength": 1},
+        "discoveryFingerprint": {"type": "string", "minLength": 1}
+      }
+    },
+    "person_payload": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "companyId"],
+          "properties": {
+            "name": {"$ref": "#/$defs/fullName"},
+            "phones": {"$ref": "#/$defs/phone"},
+            "emails": {"$ref": "#/$defs/email"},
+            "companyId": {"type": "null"},
+            "jobTitle": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    },
+    "lookup_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fingerprint", "domain", "possible_name_location"],
+      "properties": {
+        "fingerprint": {"$ref": "#/$defs/lookup"},
+        "domain": {"anyOf": [{"$ref": "#/$defs/lookup"}, {"type": "null"}]},
+        "possible_name_location": {"$ref": "#/$defs/lookup"}
+      }
+    },
+    "person_duplicate_strategy": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"person_required": {"const": true}}, "required": ["person_required"]},
+      "then": {
+        "properties": {
+          "contact_destination": {"const": "person"},
+          "expected_entity_count": {"const": 2},
+          "person_payload": {"type": "object"},
+          "company_payload": {"not": {"anyOf": [{"required": ["phone"]}, {"required": ["email"]}]}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"person_required": {"const": false}}, "required": ["person_required"]},
+      "then": {
+        "properties": {
+          "contact_destination": {"const": "company"},
+          "expected_entity_count": {"const": 1},
+          "person_payload": {"type": "null"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "fullName": {"type": "object", "additionalProperties": false, "required": ["firstName", "lastName"], "properties": {"firstName": {"type": "string", "minLength": 1}, "lastName": {"const": ""}}},
+    "link": {"type": "object", "additionalProperties": false, "required": ["primaryLinkLabel", "primaryLinkUrl", "secondaryLinks"], "properties": {"primaryLinkLabel": {"type": "string"}, "primaryLinkUrl": {"type": "string", "format": "uri"}, "secondaryLinks": {"type": "array"}}},
+    "email": {"type": "object", "additionalProperties": false, "required": ["primaryEmail", "additionalEmails"], "properties": {"primaryEmail": {"type": "string", "format": "email"}, "additionalEmails": {"type": "array", "maxItems": 0}}},
+    "phone": {"type": "object", "additionalProperties": false, "required": ["primaryPhoneNumber", "additionalPhones"], "properties": {"primaryPhoneNumber": {"type": "string", "pattern": "^\\+[1-9][0-9]{7,14}$"}, "additionalPhones": {"type": "array", "maxItems": 0}}},
+    "lookup": {"type": "object", "additionalProperties": false, "required": ["mcp_tool", "arguments"], "properties": {"mcp_tool": {"const": "find_many_companies"}, "arguments": {"type": "object"}}}
+  }
+}

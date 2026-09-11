@@ -1,0 +1,1612 @@
+{
+  "name": "A1 - Equinet Discovery Orchestrator - Directories and Google Maps-v2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "a1-discovery-start",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "50157ed5-1221-4b01-a085-7bec3f149b39",
+      "name": "Start A1 Discovery",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -3536,
+        1616
+      ],
+      "webhookId": "e889b5ff-e139-4f2a-ac6a-923c72fdda4b"
+    },
+    {
+      "parameters": {
+        "jsCode": "const source =\n  $json.body ?? $json;\n\nconst now =\n  new Date();\n\nconst requestedCount =\n  Number(\n    source.requested_count ??\n    source.target_count ??\n    10\n  );\n\nconst overfetchFactor =\n  Number(\n    source.overfetch_factor ??\n    1\n  );\n\nif (\n  !Number.isInteger(requestedCount) ||\n  requestedCount < 1 ||\n  requestedCount > 200\n) {\n  throw new Error(\n    'requested_count must be an integer between 1 and 200'\n  );\n}\n\nif (\n  !Number.isFinite(overfetchFactor) ||\n  overfetchFactor < 1\n) {\n  throw new Error(\n    'overfetch_factor must be a number greater than or equal to 1'\n  );\n}\n\nconst discoveryTarget =\n  Math.min(\n    200,\n    Math.ceil(\n      requestedCount *\n      overfetchFactor\n    )\n  );\n\nconst segment = String(\n  source.segment ?? 'farrier'\n).trim().toLowerCase();\n\nif (\n  ![\n    'farrier',\n    'horse_owner'\n  ].includes(segment)\n) {\n  throw new Error(\n    'segment must be farrier or horse_owner'\n  );\n}\n\nfunction clean(value) {\n  return value == null\n    ? ''\n    : String(value)\n        .normalize('NFKC')\n        .trim()\n        .replace(/\\s+/g, ' ');\n}\n\nfunction slug(value) {\n  return clean(value)\n    .toLowerCase()\n    .normalize('NFKD')\n    .replace(\n      /[\\u0300-\\u036f]/g,\n      ''\n    )\n    .replace(\n      /[^a-z0-9]+/g,\n      '-'\n    )\n    .replace(\n      /^-|-$/g,\n      ''\n    );\n}\n\nconst rawLocation =\n  source.location;\n\nif (\n  !rawLocation ||\n  typeof rawLocation !== 'object' ||\n  Array.isArray(rawLocation)\n) {\n  throw new Error(\n    'location must be an object'\n  );\n}\n\nconst city =\n  clean(rawLocation.city);\n\nconst region =\n  clean(\n    rawLocation.region ||\n    rawLocation.state ||\n    rawLocation.state_region\n  );\n\nconst regionCode =\n  clean(\n    rawLocation.region_code ||\n    rawLocation.state_code\n  ).toUpperCase();\n\nconst country =\n  clean(rawLocation.country);\n\nconst countryCode =\n  clean(\n    rawLocation.country_code\n  ).toUpperCase();\n\nif (!city) {\n  throw new Error(\n    'location.city is required'\n  );\n}\n\nif (!country) {\n  throw new Error(\n    'location.country is required'\n  );\n}\n\nif (\n  !/^[A-Z]{2}$/.test(\n    countryCode\n  )\n) {\n  throw new Error(\n    'location.country_code must be a two-letter ISO country code'\n  );\n}\n\nif (\n  regionCode &&\n  !/^[A-Z0-9-]{1,12}$/.test(\n    regionCode\n  )\n) {\n  throw new Error(\n    'location.region_code/state_code contains invalid characters'\n  );\n}\n\n/*\n * Current US directory adapters require a region\n * and stable region code.\n */\nif (!region || !regionCode) {\n  throw new Error(\n    'US discovery requires location.region and location.region_code/state_code'\n  );\n}\n\nconst cityAliases = [\n  ...new Set(\n    (\n      Array.isArray(\n        rawLocation.city_aliases\n      )\n        ? rawLocation.city_aliases\n        : []\n    )\n      .map(clean)\n      .filter(Boolean)\n  )\n];\n\nconst citySlug =\n  slug(city);\n\nconst regionSlug =\n  slug(region);\n\nconst countrySlug =\n  slug(country);\n\nif (\n  !citySlug ||\n  !regionSlug ||\n  !countrySlug\n) {\n  throw new Error(\n    'The supplied location could not be converted to canonical slugs'\n  );\n}\n\nconst location = {\n  city,\n  city_slug:\n    citySlug,\n\n  city_aliases:\n    cityAliases,\n\n  region,\n  region_code:\n    regionCode,\n\n  region_slug:\n    regionSlug,\n\n  /*\n   * Compatibility aliases for existing\n   * directory records.\n   */\n  state:\n    region,\n\n  state_code:\n    regionCode,\n\n  country,\n  country_code:\n    countryCode,\n\n  country_slug:\n    countrySlug,\n\n  location_display:\n    [\n      city,\n      region,\n      country\n    ]\n      .filter(Boolean)\n      .join(', ')\n};\n\nconst locationKey = [\n  countryCode,\n  regionCode ||\n    regionSlug ||\n    '*',\n  citySlug\n].join('|');\n\nconst focus = [\n  ...new Set(\n    (\n      Array.isArray(source.focus)\n        ? source.focus\n        : []\n    )\n      .map(\n        value =>\n          String(value)\n            .trim()\n            .toLowerCase()\n      )\n      .filter(Boolean)\n  )\n].sort();\n\nconst expectedPolicyVersion =\n  source.source_policy_version || \"2.0.0\";\n\n\nconst sourcePolicyVersion =\n  expectedPolicyVersion;\n\nconst sourceScopeKey = [\n  sourcePolicyVersion,\n  segment,\n  locationKey,\n  `focus:${focus.join(',')}`\n].join('|');\n\nconst stamp =\n  now\n    .toISOString()\n    .replace(\n      /[-:.TZ]/g,\n      ''\n    )\n    .slice(0, 14);\n\nconst suffix =\n  Math.random()\n    .toString(36)\n    .slice(2, 8)\n    .toUpperCase();\n\nconst runId = String(\n  source.run_id ||\n  `A1-${stamp}-${suffix}`\n).trim();\n\nif (\n  !runId ||\n  runId.length > 160 ||\n  !/^[A-Za-z0-9._:-]+$/.test(\n    runId\n  )\n) {\n  throw new Error(\n    'run_id contains invalid characters or is too long'\n  );\n}\n\nreturn [{\n  json: {\n    run_id:\n      runId,\n\n    requested_count:\n      requestedCount,\n\n    discovery_target:\n      discoveryTarget,\n\n    overfetch_factor:\n      overfetchFactor,\n\n    segment,\n\n    location,\n\n    location_key:\n      locationKey,\n\n    source_scope_key:\n      sourceScopeKey,\n\n    focus,\n\n    source_policy_version:\n      sourcePolicyVersion,\n\n    runtime_policy_version:\n      '3.2.0',\n\n    created_at:\n      now.toISOString()\n  }\n}];"
+      },
+      "id": "ab22bed2-5f2a-4f26-9e2a-4cf0be9b6356",
+      "name": "Normalize and Validate Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3296,
+        1616
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { run_id: $json.run_id, status: 'accepted', requested_count: $json.requested_count, discovery_target: $json.discovery_target, location: $json.location,\nlocation_key: $json.location_key,\nsource_scope_key: $json.source_scope_key, } }}",
+        "options": {
+          "responseCode": 202
+        }
+      },
+      "id": "124cc062-2b9a-4e3e-abb4-463cf6d1b1d5",
+      "name": "Return Accepted Run",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -3056,
+        1616
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "CREATE TABLE IF NOT EXISTS a1_runs (\n  run_id text PRIMARY KEY,\n  status text NOT NULL,\n  segment text NOT NULL,\n  location jsonb NOT NULL,\n  location_key text,\n  source_scope_key text,\n  focus jsonb NOT NULL DEFAULT '[]'::jsonb,\n  requested_count integer NOT NULL,\n  discovery_target integer NOT NULL,\n  unique_leads_found integer NOT NULL DEFAULT 0,\n  source_policy_version text NOT NULL,\n  created_at timestamptz NOT NULL DEFAULT now(),\n  updated_at timestamptz NOT NULL DEFAULT now()\n);\nALTER TABLE a1_runs ADD COLUMN IF NOT EXISTS location_key text;\nALTER TABLE a1_runs ADD COLUMN IF NOT EXISTS source_scope_key text;\n\nCREATE TABLE IF NOT EXISTS a1_source_state (\n  run_id text NOT NULL REFERENCES a1_runs(run_id) ON DELETE CASCADE,\n  source_id text NOT NULL,\n  status text NOT NULL DEFAULT 'pending',\n  cursor jsonb NOT NULL DEFAULT '{}'::jsonb,\n  records_returned integer NOT NULL DEFAULT 0,\n  last_error text,\n  updated_at timestamptz NOT NULL DEFAULT now(),\n  PRIMARY KEY (run_id, source_id)\n);\n\nCREATE TABLE IF NOT EXISTS a1_source_cursors (\n  source_scope_key text NOT NULL,\n  segment text NOT NULL,\n  location_key text NOT NULL,\n  source_id text NOT NULL,\n  status text NOT NULL DEFAULT 'pending',\n  cursor jsonb NOT NULL DEFAULT '{}'::jsonb,\n  records_returned integer NOT NULL DEFAULT 0,\n  last_run_id text,\n  last_error text,\n  updated_at timestamptz NOT NULL DEFAULT now(),\n  PRIMARY KEY (source_scope_key, source_id)\n);\n\nCREATE TABLE IF NOT EXISTS a1_raw_leads (\n  run_id text NOT NULL REFERENCES a1_runs(run_id) ON DELETE CASCADE,\n  lead_fingerprint text NOT NULL,\n  payload jsonb NOT NULL,\n  status text NOT NULL DEFAULT 'discovered',\n  hubspot_match jsonb,\n  hubspot_checked_at timestamptz,\n  created_at timestamptz NOT NULL DEFAULT now(),\n  updated_at timestamptz NOT NULL DEFAULT now(),\n  PRIMARY KEY (run_id, lead_fingerprint)\n);\n\nCREATE TABLE IF NOT EXISTS a1_lead_sources (\n  run_id text NOT NULL REFERENCES a1_runs(run_id) ON DELETE CASCADE,\n  lead_fingerprint text NOT NULL,\n  source_id text NOT NULL,\n  source_record_id text NOT NULL,\n  source_url text,\n  payload jsonb NOT NULL,\n  discovered_at timestamptz NOT NULL DEFAULT now(),\n  PRIMARY KEY (run_id, lead_fingerprint, source_id, source_record_id)\n);\n\nCREATE TABLE IF NOT EXISTS a1_lead_ledger (\n  lead_fingerprint text PRIMARY KEY,\n  canonical_payload jsonb NOT NULL,\n  first_seen_at timestamptz NOT NULL DEFAULT now(),\n  last_seen_at timestamptz NOT NULL DEFAULT now()\n);\n\nCREATE TABLE IF NOT EXISTS a1_lead_identity_keys (\n  identity_key text PRIMARY KEY,\n  lead_fingerprint text NOT NULL,\n  created_at timestamptz NOT NULL DEFAULT now(),\n  updated_at timestamptz NOT NULL DEFAULT now()\n);\nCREATE INDEX IF NOT EXISTS a1_lead_identity_fingerprint_idx\n  ON a1_lead_identity_keys(lead_fingerprint);\n\nCREATE TABLE IF NOT EXISTS a1_source_consumed_records (\n  source_scope_key text NOT NULL,\n  source_id text NOT NULL,\n  source_record_id text NOT NULL,\n  lead_fingerprint text NOT NULL,\n  first_seen_run_id text NOT NULL,\n  first_seen_at timestamptz NOT NULL DEFAULT now(),\n  last_seen_at timestamptz NOT NULL DEFAULT now(),\n  PRIMARY KEY (source_scope_key, source_id, source_record_id)\n);\n\nCREATE INDEX IF NOT EXISTS\n  a1_source_consumed_fingerprint_idx\nON a1_source_consumed_records (\n  lead_fingerprint\n);\n\nINSERT INTO a1_lead_identity_keys (identity_key, lead_fingerprint)\nSELECT lead_fingerprint, lead_fingerprint\nFROM a1_lead_ledger\nON CONFLICT (identity_key) DO NOTHING;\n\nSELECT 1 AS schema_ready;",
+        "options": {}
+      },
+      "id": "81e0b542-efac-4946-93c8-a463e60645cb",
+      "name": "Ensure Discovery Tables",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -2832,
+        1728
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "id": "ecaececf-27da-402d-95b8-ee014cc532b9",
+      "name": "Merge Request and Schema",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -2576,
+        1616
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH attempted AS (\n  INSERT INTO a1_runs (\n    run_id,\n    status,\n    segment,\n    location,\n    location_key,\n    source_scope_key,\n    focus,\n    requested_count,\n    discovery_target,\n    source_policy_version,\n    created_at,\n    updated_at\n  ) VALUES (\n    $1,\n    'discovering',\n    $2,\n    $3::jsonb,\n    $4,\n    $5,\n    $6::jsonb,\n    $7,\n    $8,\n    $9,\n    now(),\n    now()\n  )\n  ON CONFLICT (run_id)\n  DO NOTHING\n  RETURNING *\n),\nstored AS (\n  SELECT *\n  FROM attempted\n\n  UNION ALL\n\n  SELECT existing.*\n  FROM a1_runs existing\n  WHERE existing.run_id = $1\n\n  LIMIT 1\n)\nSELECT\n  stored.*,\n\n  (\n    stored.segment = $2\n    AND stored.location_key = $4\n    AND stored.source_scope_key = $5\n    AND stored.focus = $6::jsonb\n    AND stored.requested_count = $7\n    AND stored.discovery_target = $8\n    AND stored.source_policy_version = $9\n  ) AS resume_scope_valid,\n\n  jsonb_build_object(\n    'stored_segment',\n      stored.segment,\n    'requested_segment',\n      $2,\n\n    'stored_location_key',\n      stored.location_key,\n    'requested_location_key',\n      $4,\n\n    'stored_source_scope_key',\n      stored.source_scope_key,\n    'requested_source_scope_key',\n      $5,\n\n    'stored_requested_count',\n      stored.requested_count,\n    'requested_requested_count',\n      $7,\n\n    'stored_discovery_target',\n      stored.discovery_target,\n    'requested_discovery_target',\n      $8,\n\n    'stored_source_policy_version',\n      stored.source_policy_version,\n    'requested_source_policy_version',\n      $9\n  ) AS resume_scope_comparison\n\nFROM stored;",
+        "options": {
+          "queryReplacement": "={{ [\n  $json.run_id,\n  $json.segment,\n  JSON.stringify($json.location),\n  $json.location_key,\n  $json.source_scope_key,\n  JSON.stringify($json.focus),\n  $json.requested_count,\n  $json.discovery_target,\n  $json.source_policy_version\n] }}"
+        }
+      },
+      "id": "b5aab5ce-b3b8-439f-a6b1-edec9d02d89a",
+      "name": "Create or Resume Run",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -2336,
+        1616
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const run = $json;\n\nconst farrierSources = [\n  { order: 1, id: 'pdf.mad_barn_directory', name: 'Mad Barn', type: 'directory', supportMultipleLocations:true },\n  { order: 2, id: 'integration.apify_google_maps_scraper', name: 'Google Maps via Apify', type: 'google_maps', supportMultipleLocations:true },\n  { order: 3, id: 'pdf.farrieriq', name: 'FarrierIQ', type: 'directory', supportMultipleLocations:true  },\n  { order: 4, id: 'pdf.newhorse', name: 'NewHorse', type: 'directory', supportMultipleLocations:true  },\n  { order: 5, id: 'pdf.horseprofinder', name: 'HorseProFinder', type: 'directory',supportMultipleLocations:true },\n  { order: 6, id: 'pdf.best_of_lexington_farriers', name: 'Best of Lexington', type: 'directory', supportMultipleLocations:false }\n];\n\n// The six tested directory adapters are Farrier-focused. Replace this plan\n// with approved Horse Owner adapters before enabling horse_owner runs.\nif (run.segment === 'horse_owner') {\n  const horseOwnerSources = [\n    { order: 1, id: 'integration.apify_google_maps_scraper', name: 'Google Maps via Apify', type: 'google_maps', supportMultipleLocations:true },\n  { order: 2, id: 'pdf.horseprofinder', name: 'HorseProFinder', type: 'directory', supportMultipleLocations:true }\n                            ]\n  return horseOwnerSources.slice(-2).map(source=>({\n     json: {\n    ...run,\n    source_order: source.order,\n    source_id: source.id,\n    source_name: source.name,\n    source_type: source.type,\n  }\n  }))\n}\n\nif(run.location.country_code.toLowerCase() !== \"US\" && run.location.state.toLowerCase() !== \"kentucky\"){\n\n  return farrierSources.slice(0,5).map(source =>({json:{\n    ...run,\n    source_order: source.order,\n    source_id: source.id,\n    source_name: source.name,\n    source_type: source.type,\n  }}))\n}\n\nreturn farrierSources.map(source => ({\n  json: {\n    ...run,\n    source_order: source.order,\n    source_id: source.id,\n    source_name: source.name,\n    source_type: source.type,\n  }\n}));"
+      },
+      "id": "6c9e60bf-c90a-4423-a0c6-0ab15ebd31ff",
+      "name": "Build Ordered Source Plan",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1888,
+        1616
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c7c8b8b3-412f-4941-b0d5-18b4dc56e318",
+      "name": "Loop Over Sources",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1456,
+        1616
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  r.run_id,\n  r.status AS run_status,\n  r.segment,\n  r.location,\n  r.location_key,\n  r.source_scope_key,\n  r.focus,\n  r.requested_count,\n  r.discovery_target,\n  r.unique_leads_found,\n  r.source_policy_version,\n  $2::text AS source_id,\n  $3::text AS source_name,\n  $4::text AS source_type,\n  $5::integer AS source_order,\n  $6::jsonb AS source_location_config,\n  GREATEST(r.discovery_target - r.unique_leads_found, 0) AS max_results,\n  COALESCE(c.cursor, '{}'::jsonb) AS cursor,\n  COALESCE(c.status, 'pending') AS source_status\nFROM a1_runs r\nLEFT JOIN a1_source_cursors c\n  ON c.source_scope_key = r.source_scope_key\n AND c.source_id = $2\nWHERE r.run_id = $1;",
+        "options": {
+          "queryReplacement": "={{ [ $json.run_id, $json.source_id, $json.source_name, $json.source_type, $json.source_order, JSON.stringify(\n  $json.source_location_config || {}\n)] }}"
+        }
+      },
+      "id": "f53793d0-6ce3-4c0a-af67-cc2f50c9f77d",
+      "name": "Load Run Progress",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -432,
+        1712
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item =\n  $json || {};\n\nconst discoveryTarget =\n  Number(\n    item.discovery_target || 0\n  );\n\nconst uniqueLeadsFound =\n  Number(\n    item.unique_leads_found || 0\n  );\n\nconst remainingTarget =\n  Math.max(\n    0,\n    discoveryTarget -\n    uniqueLeadsFound\n  );\n\nconst sourceStatus =\n  String(\n    item.source_status ||\n    'pending'\n  ).toLowerCase();\n\nconst sourceFinished = [\n  'completed',\n  'exhausted'\n].includes(sourceStatus);\n\nconst targetReached =\n  remainingTarget <= 0;\n\nconst shouldRun =\n  !targetReached &&\n  !sourceFinished &&\n  remainingTarget > 0;\n\nreturn [{\n  json: {\n    ...item,\n\n    remaining_target:\n      remainingTarget,\n\n    max_results:\n      remainingTarget,\n\n    maximum_results:\n      remainingTarget,\n\n    previous_position:\n      item.cursor || {},\n\n    target_reached:\n      targetReached,\n\n    source_finished:\n      sourceFinished,\n\n    should_run:\n      shouldRun\n  }\n}];"
+      },
+      "id": "3f22a707-f172-4ffc-89ff-ac89d4a4b742",
+      "name": "Decide Whether to Run Source",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -192,
+        1712
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9269fd8a-0d87-4b05-b431-df0f4c198205",
+              "leftValue": "={{ $json.should_run }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "02e21bf5-b0d1-4f44-9ec9-0e0c867b4b5b",
+      "name": "Run This Source?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        48,
+        1712
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const context =\n  $('Decide Whether to Run Source')\n    .item.json;\n\nconst response =\n  $json.body ?? $json;\n\nconst rawRecords =\n  Array.isArray(response.records)\n    ? response.records\n    : [];\n\nfunction text(value) {\n  return value == null\n    ? ''\n    : String(value).trim();\n}\n\nfunction domain(value) {\n  const raw =\n    text(value).toLowerCase();\n\n  if (!raw) {\n    return '';\n  }\n\n  try {\n\n    return raw\n      .toLowerCase()\n      .replace(/^www\\./, '')\n      .replace(/\\.$/, '');\n  } catch {\n    return '';\n  }\n}\n\nfunction phone(value) {\n  return text(value)\n    .replace(/\\D/g, '');\n}\n\nfunction slug(value) {\n  return text(value)\n    .toLowerCase()\n    .normalize('NFKD')\n    .replace(\n      /[\\u0300-\\u036f]/g,\n      ''\n    )\n    .replace(\n      /[^a-z0-9]+/g,\n      '-'\n    )\n    .replace(\n      /^-|-$/g,\n      ''\n    );\n}\n\nfunction unique(values) {\n  return [\n    ...new Set(\n      values.filter(Boolean)\n    )\n  ];\n}\n\nfunction isPlainObject(value) {\n  return (\n    value !== null &&\n    typeof value === 'object' &&\n    !Array.isArray(value)\n  );\n}\n\nfunction isEmptyObject(value) {\n  return (\n    isPlainObject(value) &&\n    Object.keys(value).length === 0\n  );\n}\n\nlet adapterStatus = String(\n  response.status ||\n  (\n    response.source_exhausted\n      ? 'completed'\n      : 'partial'\n  )\n).toLowerCase();\n\nlet adapterError =\n  response.error || null;\n\nconst sourceWarnings =\n  Array.isArray(response.warnings)\n    ? response.warnings\n    : [];\n\nconst sourceExhausted =\n  Boolean(\n    response.source_exhausted\n  );\n\nconst responseLocationKey =\n  text(response.location_key);\n\nconst responseScopeKey =\n  text(\n    response.source_scope_key\n  );\n\nif (\n  responseLocationKey &&\n  responseLocationKey !==\n    context.location_key\n) {\n  adapterStatus =\n    'failed';\n\n  adapterError = {\n    code:\n      'SOURCE_LOCATION_MISMATCH',\n\n    message:\n      `${context.source_id} returned ` +\n      `location_key=${responseLocationKey}; ` +\n      `expected ${context.location_key}.`,\n\n    retryable:\n      false,\n\n    stage:\n      'adapter_contract'\n  };\n}\n\nif (\n  !adapterError &&\n  responseScopeKey &&\n  responseScopeKey !==\n    context.source_scope_key\n) {\n  adapterStatus =\n    'failed';\n\n  adapterError = {\n    code:\n      'SOURCE_SCOPE_MISMATCH',\n\n    message:\n      `${context.source_id} returned a different ` +\n      `source_scope_key.`,\n\n    retryable:\n      false,\n\n    stage:\n      'adapter_contract'\n  };\n}\n\nconst rawNextCursor =\n  response.next_position ??\n  response.next_cursor ??\n  {};\n\nlet nextCursor =\n  isPlainObject(rawNextCursor)\n    ? rawNextCursor\n    : {};\n\nif (\n  !adapterError &&\n  !isPlainObject(rawNextCursor)\n) {\n  adapterStatus =\n    'failed';\n\n  adapterError = {\n    code:\n      'SOURCE_CURSOR_INVALID',\n\n    message:\n      `${context.source_id} returned a cursor that is not an object.`,\n\n    retryable:\n      false,\n\n    stage:\n      'adapter_contract'\n  };\n}\n\nconst successfulStatus =\n  [\n    'completed',\n    'partial'\n  ].includes(adapterStatus);\n\nif (\n  !adapterError &&\n  successfulStatus &&\n  isEmptyObject(nextCursor)\n) {\n  adapterStatus =\n    'failed';\n\n  adapterError = {\n    code:\n      'SOURCE_CURSOR_MISSING',\n\n    message:\n      `${context.source_id} returned a successful result without a terminal or continuation cursor.`,\n\n    retryable:\n      false,\n\n    stage:\n      'adapter_contract'\n  };\n}\n\nif (\n  !adapterError &&\n  successfulStatus &&\n  !isEmptyObject(nextCursor)\n) {\n  const cursorSourceId =\n    text(nextCursor.source_id);\n\n  const cursorSegment =\n    text(nextCursor.segment);\n\n  const cursorLocationKey =\n    text(nextCursor.location_key);\n\n  const cursorScopeKey =\n    text(\n      nextCursor.scope_key ||\n      nextCursor.source_scope_key\n    );\n\n  if (\n    cursorSourceId &&\n    cursorSourceId !==\n      context.source_id\n  ) {\n    adapterStatus =\n      'failed';\n\n    adapterError = {\n      code:\n        'SOURCE_CURSOR_SOURCE_MISMATCH',\n\n      message:\n        'Returned cursor belongs to another source.',\n\n      retryable:\n        false,\n\n      stage:\n        'adapter_contract'\n    };\n  } else if (\n    cursorSegment &&\n    cursorSegment !==\n      context.segment\n  ) {\n    adapterStatus =\n      'failed';\n\n    adapterError = {\n      code:\n        'SOURCE_CURSOR_SEGMENT_MISMATCH',\n\n      message:\n        'Returned cursor belongs to another segment.',\n\n      retryable:\n        false,\n\n      stage:\n        'adapter_contract'\n    };\n  } else if (\n    cursorLocationKey &&\n    cursorLocationKey !==\n      context.location_key\n  ) {\n    adapterStatus =\n      'failed';\n\n    adapterError = {\n      code:\n        'SOURCE_CURSOR_LOCATION_MISMATCH',\n\n      message:\n        'Returned cursor belongs to another location.',\n\n      retryable:\n        false,\n\n      stage:\n        'adapter_contract'\n    };\n  } \n\n  if (!adapterError) {\n    nextCursor = {\n      ...nextCursor,\n\n      source_id:\n        context.source_id,\n\n      segment:\n        context.segment,\n\n      location_key:\n        context.location_key,\n\n      scope_key:\n        context.source_scope_key,\n\n      source_exhausted:\n        sourceExhausted\n    };\n  }\n}\n\nlet records =\n  rawRecords\n    .map(record => {\n      const name =\n        text(\n          record.business_name ||\n          record.name\n        );\n\n      const websiteDomain =\n        domain(record.website);\n\n      const normalizedPhone =\n        phone(record.phone);\n\n      const placeId =\n        text(\n          record.google_place_id ||\n          record.place_id\n        );\n\n      const addressKey =\n        slug(\n          [\n            record.address,\n            record.city,\n            record.region,\n            record.state,\n            record.postal_code,\n            record.country,\n            record.country_code\n          ]\n            .filter(Boolean)\n            .join(' ')\n        );\n\n      const sourceRecordId =\n        text(\n          record.source_record_id ||\n          record.id\n        );\n\n      if (!sourceRecordId) {\n        return null;\n      }\n\n      const identityKeys =\n        unique([\n          placeId\n            ? `place:${placeId}`\n            : '',\n\n          websiteDomain\n            ? `domain:${websiteDomain}`\n            : '',\n\n          normalizedPhone\n            ? `phone:${normalizedPhone}`\n            : '',\n\n          name && addressKey\n            ? (\n                `name-address:` +\n                `${slug(name)}:` +\n                `${addressKey}`\n              )\n            : '',\n\n          `source:${context.source_id}:` +\n          `${sourceRecordId}`\n        ]);\n\n      const fingerprint =\n        identityKeys[0];\n\n      return {\n        lead_fingerprint:\n          fingerprint,\n\n        identity_keys:\n          identityKeys,\n\n        source_record_id:\n          sourceRecordId,\n\n        source_url:\n          text(\n            record.source_url ||\n            record.listing_url\n          ),\n\n        name:\n          text(record.name),\n\n        business_name:\n          text(\n            record.business_name ||\n            record.name\n          ),\n\n        person_name:\n          text(record.person_name),\n\n        entity_type:\n          text(record.entity_type),\n\n        segment_hint:\n          text(\n            record.segment_hint ||\n            context.segment\n          ),\n\n        website:\n          text(record.website),\n\n        phone:\n          text(record.phone),\n\n        email:\n          text(record.email),\n\n        address:\n          text(record.address),\n\n        city:\n          text(record.city),\n\n        region:\n          text(\n            record.region ||\n            record.state\n          ),\n\n        region_code:\n          text(\n            record.region_code ||\n            record.state_code\n          ),\n\n        state:\n          text(\n            record.state ||\n            record.region\n          ),\n\n        state_code:\n          text(\n            record.state_code ||\n            record.region_code\n          ),\n\n        postal_code:\n          text(record.postal_code),\n\n        country:\n          text(\n            record.country ||\n            context.location?.country\n          ),\n\n        country_code:\n          text(\n            record.country_code ||\n            context.location?.country_code\n          ),\n\n        google_place_id:\n          placeId,\n\n        source_notes:\n          Array.isArray(\n            record.source_notes\n          )\n            ? record.source_notes\n            : [],\n\n        raw:\n          record\n      };\n    })\n    .filter(Boolean);\n\nif (\n  rawRecords.length >\n  Number(context.max_results || 0)\n) {\n  adapterStatus =\n    'failed';\n\n  adapterError = {\n    code:\n      'SOURCE_RESULT_LIMIT_EXCEEDED',\n\n    message:\n      `${context.source_id} returned ` +\n      `${rawRecords.length} records for ` +\n      `max_results=${context.max_results}.`,\n\n    retryable:\n      false,\n\n    stage:\n      'adapter_contract'\n  };\n\n  records = [];\n}\n\nif (adapterError) {\n  /*\n   * The persistence SQL also protects the old\n   * cursor, but keeping it here makes the item\n   * contract explicit.\n   */\n  nextCursor =\n    context.cursor || {};\n} else if (\n  [\n    'completed',\n    'partial'\n  ].includes(adapterStatus)\n) {\n  adapterStatus =\n    sourceExhausted\n      ? 'exhausted'\n      : 'partial';\n}\n\nreturn [{\n  json: {\n    ...context,\n\n    adapter_status:\n      adapterStatus,\n\n    source_exhausted:\n      sourceExhausted,\n\n    next_cursor:\n      nextCursor,\n\n    adapter_error:\n      adapterError,\n\n    adapter_warnings:\n      sourceWarnings,\n\n    records\n  }\n}];"
+      },
+      "id": "2b871e9b-f603-461d-ac13-3c10e49aebb4",
+      "name": "Normalize Adapter Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1024,
+        1632
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH RECURSIVE existing_run_count AS (\n  SELECT\n    COUNT(*)::integer AS lead_count\n  FROM a1_raw_leads\n  WHERE run_id = $1\n),\nincoming AS (\n  SELECT value AS item, ordinality::bigint AS ordinal\n  FROM jsonb_array_elements($3::jsonb) WITH ORDINALITY AS rows(value, ordinality)\n  WHERE COALESCE(value->>'lead_fingerprint', '') <> ''\n),\nincoming_keys AS (\n  SELECT DISTINCT\n    i.ordinal,\n    key.value AS identity_key\n  FROM incoming i\n  CROSS JOIN LATERAL jsonb_array_elements_text(\n    CASE\n      WHEN jsonb_typeof(i.item->'identity_keys') = 'array'\n        THEN i.item->'identity_keys'\n      ELSE jsonb_build_array(i.item->>'lead_fingerprint')\n    END\n  ) AS key(value)\n  WHERE COALESCE(key.value, '') <> ''\n),\n\nidentity_match AS (\n  SELECT DISTINCT\n    k.ordinal,\n    a.lead_fingerprint\n  FROM incoming_keys k\n  JOIN a1_lead_identity_keys a\n    ON a.identity_key = k.identity_key\n),\n\nconsumed_match AS (\n  SELECT DISTINCT\n    i.ordinal,\n    consumed.lead_fingerprint\n  FROM incoming i\n  JOIN a1_source_consumed_records consumed\n    ON consumed.source_scope_key = $11\n   AND consumed.source_id = $2\n   AND consumed.source_record_id = i.item->>'source_record_id'\n  WHERE COALESCE(i.item->>'source_record_id', '') <> ''\n),\n\nbatch_identity_edges AS (\n  SELECT DISTINCT\n    left_key.ordinal AS from_ordinal,\n    right_key.ordinal AS to_ordinal\n  FROM incoming_keys left_key\n  JOIN incoming_keys right_key\n    ON right_key.identity_key = left_key.identity_key\n),\n\nordinal_closure (\n  root_ordinal,\n  member_ordinal\n) AS (\n  SELECT\n    ordinal,\n    ordinal\n  FROM incoming\n\n  UNION\n\n  SELECT\n    closure.root_ordinal,\n    edge.to_ordinal\n  FROM ordinal_closure closure\n  JOIN batch_identity_edges edge\n    ON edge.from_ordinal = closure.member_ordinal\n),\n\ncanonical_candidates AS (\n  -- Prefer an existing global alias.\n  SELECT\n    closure.root_ordinal AS ordinal,\n    matched.lead_fingerprint,\n    0 AS candidate_priority\n  FROM ordinal_closure closure\n  JOIN identity_match matched\n    ON matched.ordinal = closure.member_ordinal\n\n  UNION ALL\n\n  -- Then prefer an existing consumed-source identity.\n  SELECT\n    closure.root_ordinal AS ordinal,\n    consumed.lead_fingerprint,\n    1 AS candidate_priority\n  FROM ordinal_closure closure\n  JOIN consumed_match consumed\n    ON consumed.ordinal = closure.member_ordinal\n\n  UNION ALL\n\n  -- Otherwise choose one stable fingerprint from the connected batch.\n  SELECT\n    closure.root_ordinal AS ordinal,\n    member.item->>'lead_fingerprint' AS lead_fingerprint,\n    2 AS candidate_priority\n  FROM ordinal_closure closure\n  JOIN incoming member\n    ON member.ordinal = closure.member_ordinal\n),\n\nalias_match AS (\n  SELECT DISTINCT ON (ordinal)\n    ordinal,\n    lead_fingerprint\n  FROM canonical_candidates\n  WHERE COALESCE(lead_fingerprint, '') <> ''\n  ORDER BY\n    ordinal,\n    candidate_priority,\n    lead_fingerprint\n),\nresolved_incoming AS (\n  SELECT\n    jsonb_set(\n      i.item,\n      '{lead_fingerprint}',\n      to_jsonb(COALESCE(a.lead_fingerprint, i.item->>'lead_fingerprint')),\n      true\n    ) AS item,\n    i.ordinal\n  FROM incoming i\n  LEFT JOIN alias_match a ON a.ordinal = i.ordinal\n),\ncanonical_incoming AS (\n  SELECT DISTINCT ON (item->>'lead_fingerprint') item\n  FROM resolved_incoming\n  ORDER BY\n    item->>'lead_fingerprint',\n    (NULLIF(item->>'website', '') IS NOT NULL) DESC,\n    (NULLIF(item->>'phone', '') IS NOT NULL) DESC,\n    (NULLIF(item->>'address', '') IS NOT NULL) DESC,\n    (NULLIF(item->>'business_name', '') IS NOT NULL) DESC,\n    ordinal ASC\n),\nsource_incoming AS (\n  SELECT DISTINCT ON (\n    item->>'lead_fingerprint',\n    COALESCE(NULLIF(item->>'source_record_id', ''), item->>'lead_fingerprint')\n  ) item\n  FROM resolved_incoming\n  ORDER BY\n    item->>'lead_fingerprint',\n    COALESCE(NULLIF(item->>'source_record_id', ''), item->>'lead_fingerprint'),\n    ordinal DESC\n),\n  consumed_source_incoming AS (\n  SELECT DISTINCT ON (item->>'source_record_id')\n    item\n  FROM source_incoming\n  WHERE COALESCE(item->>'source_record_id', '') <> ''\n  ORDER BY\n    item->>'source_record_id',\n    item->>'lead_fingerprint'\n),\nnew_global AS (\n  INSERT INTO a1_lead_ledger (\n    lead_fingerprint, canonical_payload, first_seen_at, last_seen_at\n  )\n  SELECT item->>'lead_fingerprint', item, now(), now()\n  FROM canonical_incoming\n  ON CONFLICT (lead_fingerprint) DO NOTHING\n  RETURNING lead_fingerprint\n),\nledger_refresh AS (\n  UPDATE a1_lead_ledger ledger\n  SET\n    canonical_payload = ledger.canonical_payload || incoming.item,\n    last_seen_at = now()\n  FROM canonical_incoming incoming\n  WHERE ledger.lead_fingerprint = incoming.item->>'lead_fingerprint'\n  RETURNING ledger.lead_fingerprint\n),\nalias_rows AS (\n  SELECT DISTINCT\n    key.value AS identity_key,\n    item.item->>'lead_fingerprint' AS lead_fingerprint\n  FROM resolved_incoming item\n  CROSS JOIN LATERAL jsonb_array_elements_text(\n    CASE\n      WHEN jsonb_typeof(item.item->'identity_keys') = 'array'\n        THEN item.item->'identity_keys'\n      ELSE jsonb_build_array(item.item->>'lead_fingerprint')\n    END\n  ) AS key(value)\n  WHERE\n    COALESCE(key.value, '') <> ''\n    AND COALESCE(item.item->>'lead_fingerprint', '') <> ''\n),\n\ncanonical_alias_rows AS (\n  SELECT\n    identity_key,\n    MIN(lead_fingerprint) AS lead_fingerprint\n  FROM alias_rows\n  GROUP BY identity_key\n),\n\nalias_upsert AS (\n  INSERT INTO a1_lead_identity_keys (\n    identity_key,\n    lead_fingerprint,\n    created_at,\n    updated_at\n  )\n  SELECT\n    identity_key,\n    lead_fingerprint,\n    now(),\n    now()\n  FROM canonical_alias_rows\n  ON CONFLICT (identity_key) DO UPDATE SET\n    updated_at = now()\n  RETURNING identity_key\n),\nrun_lead_upsert AS (\n  INSERT INTO a1_raw_leads (\n    run_id, lead_fingerprint, payload, status, created_at, updated_at\n  )\n  SELECT\n    $1,\n    incoming.item->>'lead_fingerprint',\n    incoming.item,\n    'discovered',\n    now(),\n    now()\n  FROM canonical_incoming incoming\n  WHERE EXISTS (\n    SELECT 1 FROM new_global n\n    WHERE n.lead_fingerprint = incoming.item->>'lead_fingerprint'\n  ) OR EXISTS (\n    SELECT 1 FROM a1_raw_leads current_run\n    WHERE current_run.run_id = $1\n      AND current_run.lead_fingerprint = incoming.item->>'lead_fingerprint'\n  )\n  ON CONFLICT (run_id, lead_fingerprint) DO UPDATE SET\n    payload = a1_raw_leads.payload || EXCLUDED.payload,\n    updated_at = now()\n  RETURNING lead_fingerprint\n),\nsource_insert AS (\n  INSERT INTO a1_lead_sources (\n    run_id, lead_fingerprint, source_id, source_record_id,\n    source_url, payload, discovered_at\n  )\n  SELECT\n    $1,\n    item->>'lead_fingerprint',\n    $2,\n    COALESCE(NULLIF(item->>'source_record_id', ''), item->>'lead_fingerprint'),\n    NULLIF(item->>'source_url', ''),\n    item,\n    now()\n  FROM source_incoming\n  ON CONFLICT (run_id, lead_fingerprint, source_id, source_record_id) DO UPDATE SET\n    source_url = EXCLUDED.source_url,\n    payload = EXCLUDED.payload\n  RETURNING lead_fingerprint\n),\nconsumed_source_upsert AS (\n  INSERT INTO a1_source_consumed_records (\n    source_scope_key, source_id, source_record_id, lead_fingerprint,\n    first_seen_run_id, first_seen_at, last_seen_at\n  )\n  SELECT\n    $11,\n    $2,\n    item->>'source_record_id',\n    item->>'lead_fingerprint',\n    $1,\n    now(),\n    now()\n  FROM consumed_source_incoming\n  ON CONFLICT (source_scope_key, source_id, source_record_id) DO UPDATE SET\n    last_seen_at = now()\n  RETURNING source_record_id\n),\nrun_state_upsert AS (\n  INSERT INTO a1_source_state (\n    run_id, source_id, status, cursor, records_returned, last_error, updated_at\n  ) VALUES (\n    $1, $2, $4, $5::jsonb, $6, $7, now()\n  )\n  ON CONFLICT (run_id, source_id) DO UPDATE SET\n    status = EXCLUDED.status,\n    cursor = EXCLUDED.cursor,\n    records_returned = COALESCE(a1_source_state.records_returned, 0) + EXCLUDED.records_returned,\n    last_error = EXCLUDED.last_error,\n    updated_at = now()\n  RETURNING source_id\n),\nglobal_cursor_upsert AS (\n  INSERT INTO a1_source_cursors (\n    source_scope_key, segment, location_key, source_id, status, cursor,\n    records_returned, last_run_id, last_error, updated_at\n  ) VALUES (\n    $11, $9, $10, $2, $4,\n    $5::jsonb,\n    $6, $1, $7, now()\n  )\n  ON CONFLICT (source_scope_key, source_id) DO UPDATE SET\n    status = CASE\n      WHEN EXCLUDED.status IN ('failed', 'blocked')\n        THEN a1_source_cursors.status\n      ELSE EXCLUDED.status\n    END,\n    cursor = CASE\n      WHEN EXCLUDED.status IN ('failed', 'blocked')\n        THEN a1_source_cursors.cursor\n      WHEN EXCLUDED.status = 'exhausted'\n        THEN EXCLUDED.cursor\n      ELSE EXCLUDED.cursor\n    END,\n    records_returned = COALESCE(a1_source_cursors.records_returned, 0) + EXCLUDED.records_returned,\n    last_run_id = EXCLUDED.last_run_id,\n    last_error = EXCLUDED.last_error,\n    updated_at = now()\n  RETURNING source_id\n),\nupdated_run AS (\n  UPDATE a1_runs\n  SET\n    unique_leads_found =\n  (\n    SELECT lead_count\n    FROM existing_run_count\n  )\n  +\n  (\n    SELECT COUNT(*)::integer\n    FROM new_global\n  ),\n    updated_at = now()\n  WHERE run_id = $1\n  RETURNING run_id, status, requested_count, discovery_target, unique_leads_found\n)\nSELECT\n  updated_run.*,\n  $2::text AS source_id,\n  $4::text AS source_status,\n  $6::integer AS records_returned,\n  (SELECT COUNT(*) FROM new_global)::integer AS globally_new_records\nFROM updated_run;",
+        "options": {
+          "queryReplacement": "={{ [ $json.run_id, $json.source_id, JSON.stringify($json.records), $json.adapter_status, JSON.stringify($json.next_cursor || {}), $json.records.length, $json.adapter_error ? JSON.stringify($json.adapter_error) : null, $json.source_exhausted, $json.segment, $json.location_key, $json.source_scope_key ] }}"
+        }
+      },
+      "id": "5e435141-2db1-4c12-999f-f2d0ad135de7",
+      "name": "Persist Source Results",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1264,
+        1632
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { ...$json, skipped: true } }];"
+      },
+      "id": "07c03c1f-a81c-414f-b1b4-f11b4401ba49",
+      "name": "Skip Completed or Unneeded Source",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        1856
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length) throw new Error('No source items reached the loop completion output');\nreturn [{ json: { run_id: items[0].json.run_id } }];"
+      },
+      "id": "cc8182a3-765c-4764-9f12-9cb07ed750f3",
+      "name": "Collapse Completed Source Loop",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH counts AS (\n  SELECT\n    COUNT(*)::integer AS discovered_count,\n    (COUNT(*) FILTER (\n      WHERE status = 'eligible'\n    ))::integer AS eligible_count,\n    (COUNT(*) FILTER (\n      WHERE status = 'possible_duplicate'\n    ))::integer AS possible_duplicate_count,\n    (COUNT(*) FILTER (\n      WHERE status = 'hubspot_duplicate'\n    ))::integer AS duplicate_count,\n    (COUNT(*) FILTER (\n      WHERE status = 'hubspot_check_failed'\n    ))::integer AS failure_count\n  FROM a1_raw_leads\n  WHERE run_id = $1\n),\nupdated AS (\n  UPDATE a1_runs r\n  SET\n    status = CASE\n      WHEN c.eligible_count >= r.requested_count\n        THEN 'discovery_complete'\n      WHEN c.discovered_count > 0\n        THEN 'discovery_partial'\n      ELSE 'discovery_failed'\n    END,\n    unique_leads_found = c.discovered_count,\n    updated_at = now()\n  FROM counts c\n  WHERE r.run_id = $1\n  RETURNING r.*\n)\nSELECT\n  u.run_id,\n  u.status,\n  c.discovered_count,\n  c.eligible_count,\n  c.possible_duplicate_count,\n  c.duplicate_count,\n  c.failure_count\nFROM updated u\nCROSS JOIN counts c;",
+        "options": {
+          "queryReplacement": "={{ [ $json.run_id ] }}"
+        }
+      },
+      "id": "ae4eb15c-a850-43e2-9947-faca102532a3",
+      "name": "Finalize Discovery Stage",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        208,
+        0
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.source_id}}",
+                    "rightValue": "pdf.mad_barn_directory",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "dd2581a5-847b-458a-9db0-ae0821854a63"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "8298c070-6af3-4279-bc2b-dfca9cdc3eac",
+                    "leftValue": "={{ $json.source_id}}",
+                    "rightValue": "pdf.best_of_lexington_farriers",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "634064e7-89d8-4021-9a40-b303aaa51dea",
+                    "leftValue": "={{ $json.source_id }}",
+                    "rightValue": "pdf.farrieriq",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "cb0128f6-8faf-49c5-9c75-ca38e8da7cd4",
+                    "leftValue": "={{ $json.source_id }}",
+                    "rightValue": "pdf.horseprofinder",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "1ecee859-c8a7-425f-9090-ebb18e6a955a",
+                    "leftValue": "={{ $json.source_id }}",
+                    "rightValue": "pdf.newhorse",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "236fc7ad-82d3-4a51-badc-d7c661bd3072",
+                    "leftValue": "={{ $json.source_id }}",
+                    "rightValue": "integration.apify_google_maps_scraper",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        352,
+        1584
+      ],
+      "id": "78fbdf81-b6ef-4cca-ae41-aed24a15bc1e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH candidates AS (\n  SELECT\n    run_id,\n    lead_fingerprint,\n    payload,\n    false AS control_only\n  FROM a1_raw_leads\n  WHERE run_id = $1\n    AND status IN ('discovered', 'hubspot_check_failed')\n  ORDER BY lead_fingerprint\n)\nSELECT *\nFROM candidates\n\nUNION ALL\n\nSELECT\n  $1::text AS run_id,\n  NULL::text AS lead_fingerprint,\n  '{}'::jsonb AS payload,\n  true AS control_only\nWHERE NOT EXISTS (SELECT 1 FROM candidates);",
+        "options": {
+          "queryReplacement": "={{ [ $json.run_id ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -912,
+        480
+      ],
+      "id": "e70be0be-18f5-4349-a2ea-f1f93ea9cf99",
+      "name": "Load Candidates for HubSpot",
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -704,
+        480
+      ],
+      "id": "8feba1c0-f676-4f10-8b2f-1ea5280ec38c",
+      "name": "Loop Over HubSpot Candidates"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "1c568a43-2ab4-46d9-ad2b-bb1a1044392d",
+              "leftValue": "={{ $json.control_only }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "41a4cdf7-d036-4188-9a5d-b20fbe932536",
+              "leftValue": "={{ !!$json.lead_fingerprint }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -496,
+        688
+      ],
+      "id": "c5813ceb-fc83-4b16-b19b-70e2a589d431",
+      "name": "Has HubSpot Candidate?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const payload = $json.payload ?? {};\n\nfunction text(value) {\n  return value == null\n    ? ''\n    : String(value)\n        .normalize('NFKC')\n        .trim()\n        .replace(/\\s+/g, ' ');\n}\n\nfunction splitHttpUrl(\n  value,\n  defaultScheme = 'https'\n) {\n  let candidate =\n    text(value)\n      .replace(/^[<(\"'`]+/, '')\n      .replace(/[>)\"'`,.;]+$/, '');\n\n  if (!candidate) {\n    return null;\n  }\n\n  if (!/^https?:\\/\\//i.test(candidate)) {\n    candidate =\n      `${defaultScheme}://${candidate}`;\n  }\n\n  const match =\n    candidate.match(\n      /^(https?):\\/\\/([^/?#\\s]+)([/?#][^\\s]*)?$/i\n    );\n\n  if (\n    !match ||\n    match[2].includes('@')\n  ) {\n    return null;\n  }\n\n  const authority =\n    match[2];\n\n  const authorityMatch =\n    authority.match(\n      /^([^:]+)(?::([0-9]{1,5}))?$/\n    );\n\n  if (!authorityMatch) {\n    return null;\n  }\n\n  const hostname =\n    authorityMatch[1]\n      .toLowerCase()\n      .replace(/\\.$/, '');\n\n  const port =\n    authorityMatch[2] || '';\n\n  /*\n   * Keep the current no-nonstandard-port control.\n   */\n  if (\n    port &&\n    !['80', '443'].includes(port)\n  ) {\n    return null;\n  }\n\n  if (\n    hostname.length > 253 ||\n    !hostname.includes('.') ||\n    hostname.includes('..')\n  ) {\n    return null;\n  }\n\n  const labels =\n    hostname.split('.');\n\n  const validLabels =\n    labels.every(label =>\n      /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i\n        .test(label)\n    );\n\n  if (!validLabels) {\n    return null;\n  }\n\n  const topLevelDomain =\n    labels[labels.length - 1];\n\n  if (\n    !/^(?:[a-z]{2,63}|xn--[a-z0-9-]{2,59})$/i\n      .test(topLevelDomain)\n  ) {\n    return null;\n  }\n\n  let suffix =\n    match[3] || '/';\n\n  /*\n   * Remove fragments without using URL().\n   */\n  const hashIndex =\n    suffix.indexOf('#');\n\n  if (hashIndex >= 0) {\n    suffix =\n      suffix.slice(0, hashIndex);\n  }\n\n  if (!suffix) {\n    suffix = '/';\n  }\n\n  if (suffix.startsWith('?')) {\n    suffix =\n      `/${suffix}`;\n  }\n\n  return {\n    scheme:\n      match[1].toLowerCase(),\n\n    hostname,\n\n    port,\n\n    suffix\n  };\n}\n\n\nfunction canonicalDomain(value) {\n  const parsed =\n    splitHttpUrl(\n      value,\n      'https'\n    );\n\n  if (!parsed) {\n    return '';\n  }\n\n  return parsed.hostname\n    .replace(/^www\\./, '');\n}\n\nfunction normalizedName(value) {\n  return text(value)\n    .toLocaleLowerCase('en-US');\n}\n\n/*\n * This uses payload.name exactly as requested.\n *\n * If your adapters reliably put the person's name in\n * payload.person_name, use:\n *\n * const contactName =\n *   text(payload.person_name || payload.name);\n */\nconst contactName =\n  text(payload.name);\n\nreturn [{\n  json: {\n    run_id: $json.run_id,\n\n    lead_fingerprint: $json.lead_fingerprint,\n\n    payload,\n\n    hubspot_domain:\n      canonicalDomain(payload.website),\n\n    hubspot_contact_name:\n      contactName,\n\n    hubspot_contact_name_key:\n      normalizedName(contactName),\n\n    business_name:\n      text(\n        payload.business_name ||\n        payload.name\n      )\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -288,
+        592
+      ],
+      "id": "c8ef2ef2-ec14-455c-ae6a-bd1818c6d676",
+      "name": "Prepare HubSpot Lookup"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: $json }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -288,
+        784
+      ],
+      "id": "a8358271-9dd0-4a9b-b7b2-2de9cd5150c3",
+      "name": "Skip Empty HubSpot Candidate"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f2e29327-e8ec-4a6e-9664-fcaf10cfcedd",
+              "leftValue": "={{ !!$json.hubspot_domain }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        208,
+        608
+      ],
+      "id": "a5fbf55d-d60c-4ba0-a7d8-7914f0d72759",
+      "name": "Has Company Domain?"
+    },
+    {
+      "parameters": {
+        "authentication": "appToken",
+        "resource": "company",
+        "operation": "searchByDomain",
+        "domain": "={{ $json.hubspot_domain }}",
+        "limit": 5,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.2,
+      "position": [
+        464,
+        352
+      ],
+      "id": "32098506-8147-4eb6-8089-8f162b476581",
+      "name": "Search HubSpot Company by Domain",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "hubspotAppToken": {
+          "id": "pk2VdxNyO0N9cYpY",
+          "name": "HubSpot account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const context = $('Prepare HubSpot Lookup').item.json;\nconst rows = $input.all().map(item => item.json ?? {});\n\nconst errorRow = rows.find(row =>\n  row.error ||\n  Number(row.statusCode || 0) >= 400 ||\n  row.message?.toLowerCase?.().includes('error')\n);\nconst matches = rows.filter(row =>\n  !row.error &&\n  (row.id || row.companyId) &&\n  Object.keys(row).length > 0\n);\n\nreturn [{\n  json: {\n    ...context,\n    hubspot_search_error: errorRow\n      ? String(errorRow.error?.message || errorRow.error || errorRow.message || 'HubSpot search failed')\n      : null,\n    hubspot_matches: matches\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        288
+      ],
+      "id": "dd555c35-b76f-4455-a01f-7ee231d32d6a",
+      "name": "Summarize HubSpot Company Search"
+    },
+    {
+      "parameters": {
+        "jsCode": "const matches = Array.isArray($json.hubspot_matches)\n  ? $json.hubspot_matches\n  : [];\n\nconst error = $json.hubspot_search_error || null;\n\nfunction propertyValue(row, name) {\n  const value = row?.properties?.[name];\n\n  if (value && typeof value === 'object' && 'value' in value) {\n    return value.value;\n  }\n\n  return value ?? null;\n}\n\nif (error) {\n  return [{\n    json: {\n      ...$json,\n      lead_status: 'hubspot_check_failed',\n      search_method: 'company_domain',\n      domain_available: true,\n      hubspot_match: {\n        status: 'check_failed',\n        checked_key: `domain:${$json.hubspot_domain}`,\n        error\n      }\n    }\n  }];\n}\n\nif (matches.length > 0) {\n  const first = matches[0];\n\n  return [{\n    json: {\n      ...$json,\n      lead_status: 'hubspot_duplicate',\n      search_method: 'company_domain',\n      domain_available: true,\n      hubspot_match: {\n        status: 'clear_duplicate',\n        object_type: 'company',\n        object_id: String(first.id || first.companyId),\n        match_key: `domain:${$json.hubspot_domain}`,\n        matched_property: 'domain',\n        confidence: 1,\n        company_name:\n          propertyValue(first, 'name') ||\n          first.name ||\n          null,\n        match_count: matches.length,\n        multiple_hubspot_records: matches.length > 1\n      }\n    }\n  }];\n}\n\nreturn [{\n  json: {\n    ...$json,\n    lead_status: 'eligible',\n    search_method: 'company_domain',\n    domain_available: true,\n    hubspot_match: {\n      status: 'no_match',\n      checked_key: `domain:${$json.hubspot_domain}`,\n      matched_property: null,\n      confidence: 0\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1008,
+        288
+      ],
+      "id": "976da4af-ad14-41bd-94fe-6d6256ca6226",
+      "name": "Classify HubSpot Domain Match"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE a1_raw_leads\nSET\n  status = $3,\n  hubspot_match = $4::jsonb,\n  hubspot_checked_at = now(),\n  updated_at = now()\nWHERE run_id = $1\n  AND lead_fingerprint = $2\nRETURNING\n  run_id,\n  lead_fingerprint,\n  status,\n  hubspot_match,\n  hubspot_checked_at;",
+        "options": {
+          "queryReplacement": "={{ [\n  $json.run_id,\n  $json.lead_fingerprint,\n  $json.lead_status,\n  JSON.stringify($json.hubspot_match)\n] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2384,
+        624
+      ],
+      "id": "0b344e03-2791-4d6f-802a-4327cf336551",
+      "name": "Persist HubSpot Decision",
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2592,
+        624
+      ],
+      "id": "ee27f2f7-d5de-429e-b718-9464327602d4",
+      "name": "Wait",
+      "webhookId": "72637089-b33d-46a2-93fd-6408e534f898"
+    },
+    {
+      "parameters": {
+        "jsCode": "const runId =\n  $('Collapse Completed Source Loop').first().json.run_id;\n\nreturn [{\n  json: {\n    run_id: runId\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -496,
+        384
+      ],
+      "id": "60a8181e-b398-49b7-8a63-71858507fe9a",
+      "name": "Collapse HubSpot Loop"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH run_row AS (\n  SELECT *\n  FROM a1_runs\n  WHERE run_id = $1\n),\ncounts AS (\n  SELECT\n    COUNT(*)::integer AS discovered_unique_count,\n\n    (COUNT(*) FILTER (\n      WHERE status = 'eligible'\n    ))::integer AS eligible_count,\n\n    (COUNT(*) FILTER (\n      WHERE status = 'possible_duplicate'\n    ))::integer AS possible_duplicate_count,\n\n    (COUNT(*) FILTER (\n      WHERE status = 'hubspot_duplicate'\n    ))::integer AS hubspot_duplicate_count,\n\n    (COUNT(*) FILTER (\n      WHERE status = 'hubspot_check_failed'\n    ))::integer AS hubspot_failure_count,\n\n    (COUNT(*) FILTER (\n  WHERE CASE\n    WHEN hubspot_match ? 'domain_available'\n      THEN (hubspot_match->>'domain_available')::boolean\n\n    /* Backward compatibility for older run rows. */\n    WHEN hubspot_match->>'status' = 'not_checked_no_domain'\n      THEN false\n\n    ELSE COALESCE(\n      BTRIM(payload->>'website'),\n      ''\n    ) <> ''\n  END = false\n))::integer AS no_domain_count,\n\n(COUNT(*) FILTER (\n  WHERE hubspot_match->>'search_method' =\n    'contact_name_query_exact_postfilter'\n))::integer AS contact_name_check_count,\n\n(COUNT(*) FILTER (\n  WHERE hubspot_match->>'status' =\n    'not_checked_no_lookup_key'\n))::integer AS no_lookup_key_count,\n\n(COUNT(*) FILTER (\n  WHERE hubspot_match->>'status' = 'possible_match'\n    AND hubspot_match->>'object_type' = 'contact'\n))::integer AS contact_name_possible_match_count\n\n  FROM a1_raw_leads\n  WHERE run_id = $1\n),\nselected_leads AS (\n  SELECT l.*\n  FROM a1_raw_leads l\n  CROSS JOIN run_row r\n  WHERE l.run_id = $1\nAND l.status IN (\n  'eligible',\n  'possible_duplicate',\n  'hubspot_check_failed'\n)\n  ORDER BY\n    CASE\n  WHEN l.status = 'eligible' THEN 0\n  WHEN l.status = 'possible_duplicate' THEN 1\n  ELSE 2\nEND,\n    l.created_at,\n    l.lead_fingerprint\n  LIMIT (SELECT requested_count FROM run_row)\n),\nlead_result AS (\n  SELECT COALESCE(\n    jsonb_agg(\n      jsonb_strip_nulls(\n        jsonb_build_object(\n          'lead_fingerprint', l.lead_fingerprint,\n          'status', l.status,\n          'business_name',\n            NULLIF(l.payload->>'business_name', ''),\n          'name',\n            NULLIF(l.payload->>'name', ''),\n          'website',\n            NULLIF(l.payload->>'website', ''),\n          'phone',\n            NULLIF(l.payload->>'phone', ''),\n           'email',\n            NULLIF(l.payload->>'email', ''),\n          'address',\n            NULLIF(l.payload->>'address', ''),\n          'city',\n            NULLIF(l.payload->>'city', ''),\n           'region',\n            NULLIF(l.payload->>'region', ''),\n           'region_code',\n            NULLIF(l.payload->>'region_code', ''),\n          'state',\n            NULLIF(l.payload->>'state', ''),\n           'state_code',\n            NULLIF(l.payload->>'state_code', ''),\n          'postal_code',\n            NULLIF(l.payload->>'postal_code', ''),\n          'country',\n            NULLIF(l.payload->>'country', ''),\n          'country_code',\n            NULLIF(l.payload->>'country_code', ''),\n          'google_place_id',\n            NULLIF(l.payload->>'google_place_id', ''),\n          'segment_hint',\n            NULLIF(l.payload->>'segment_hint', ''),\n          'hubspot_check',\n            l.hubspot_match,\n          'source_ids',\n            COALESCE((\n              SELECT jsonb_agg(\n                DISTINCT s.source_id\n                ORDER BY s.source_id\n              )\n              FROM a1_lead_sources s\n              WHERE s.run_id = l.run_id\n                AND s.lead_fingerprint = l.lead_fingerprint\n            ), '[]'::jsonb),\n          'source_urls',\n            COALESCE((\n              SELECT jsonb_agg(\n                DISTINCT s.source_url\n                ORDER BY s.source_url\n              )\n              FILTER (WHERE s.source_url IS NOT NULL)\n              FROM a1_lead_sources s\n              WHERE s.run_id = l.run_id\n                AND s.lead_fingerprint = l.lead_fingerprint\n            ), '[]'::jsonb)\n        )\n      )\n      ORDER BY\n        CASE WHEN l.status = 'eligible' THEN 0 ELSE 1 END,\n        l.created_at,\n        l.lead_fingerprint\n    ),\n    '[]'::jsonb\n  ) AS leads\n  FROM selected_leads l\n),\nsource_result AS (\n  SELECT COALESCE(\n    jsonb_agg(\n      jsonb_strip_nulls(\n        jsonb_build_object(\n          'source_id', s.source_id,\n          'status', s.status,\n          'records_returned', s.records_returned,\n          'cursor', s.cursor,\n          'error', s.last_error\n        )\n      )\n      ORDER BY s.source_id\n    ),\n    '[]'::jsonb\n  ) AS sources\n  FROM a1_source_state s\n  WHERE s.run_id = $1\n),\nwarning_result AS (\n  SELECT to_jsonb(\n    array_remove(\n      ARRAY[\n        CASE\n          WHEN c.hubspot_failure_count > 0\n          THEN format(\n            '%s candidate(s) could not be checked against HubSpot.',\n            c.hubspot_failure_count\n          )\n        END,\n        CASE\n          WHEN c.no_domain_count > 0\n          THEN format(\n            '%s candidate(s) had no company domain and received only a partial HubSpot check.',\n            c.no_domain_count\n          )\n        END,\n        CASE\n          WHEN c.possible_duplicate_count > 0\n          THEN format(\n            '%s possible duplicate(s) require manual review.',\n            c.possible_duplicate_count\n          )\n        END\n      ]::text[],\n      NULL\n    )\n  ) AS warnings\n  FROM counts c\n)\nSELECT\n  'a1.discovery-result.v1' AS contract_version,\n  r.run_id,\n  r.status,\n\n  jsonb_build_object(\n  'segment',\n    r.segment,\n\n  'location',\n    r.location,\n\n  'location_key',\n    r.location_key,\n\n  'source_scope_key',\n    r.source_scope_key,\n\n  'requested_count',\n    r.requested_count,\n\n  'discovery_target',\n    r.discovery_target\n) AS request,\n\n  jsonb_build_object(\n    'registry_id', 'equinet-a1-approved-source-register',\n    'registry_version', r.source_policy_version\n  ) AS source_policy,\n\n  jsonb_build_object(\n    'discovered_unique', c.discovered_unique_count,\n    'eligible', c.eligible_count,\n    'returned', jsonb_array_length(l.leads),\n    'hubspot_duplicates_removed', c.hubspot_duplicate_count,\n    'possible_duplicates', c.possible_duplicate_count,\n    'hubspot_check_failures', c.hubspot_failure_count,\n    'without_domain', c.no_domain_count,\n'contact_name_checks',\n  c.contact_name_check_count,\n\n'contact_name_possible_matches',\n  c.contact_name_possible_match_count,\n\n'without_hubspot_lookup_key',\n  c.no_lookup_key_count\n  ) AS summary,\n\n  l.leads,\n  s.sources,\n  w.warnings,\n\n  r.created_at AS started_at,\n  r.updated_at AS finished_at\n\nFROM run_row r\nCROSS JOIN counts c\nCROSS JOIN lead_result l\nCROSS JOIN source_result s\nCROSS JOIN warning_result w;",
+        "options": {
+          "queryReplacement": "={{ [ $json.run_id ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        416,
+        0
+      ],
+      "id": "c1a63c2e-43d2-4186-a96e-dc4eab2b1d11",
+      "name": "Build Final Discovery Result",
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e4b33bd3-279e-4e38-9a11-cursorstop0001",
+              "leftValue": "={{ $json.target_reached }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "75d59aa1-862a-44d7-a84b-90758596b0bf",
+      "name": "Discovery Target Reached?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -64,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "DJPSxhiT9O9M8ibn",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/DJPSxhiT9O9M8ibn",
+          "cachedResultName": "A1 - Source Adapter - Mad Barn-v2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        960
+      ],
+      "id": "ce092d3f-920c-4305-8e7a-3e7508541555",
+      "name": "Call 'A1 - Source Adapter - Mad Barn-v2'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "o0vO4ua6ofsYAyKW",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/o0vO4ua6ofsYAyKW",
+          "cachedResultName": "A1 - Source Adapter - Best of Lexington-v2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        1184
+      ],
+      "id": "4ff8b5de-bd52-40af-9a6b-d1cd49adbc92",
+      "name": "Call 'A1 - Source Adapter - Best of Lexington-v2'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "5g8rt8CQGeyBvDzA",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/5g8rt8CQGeyBvDzA",
+          "cachedResultName": "A1 - Source Adapter - FarrierIQ-v2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        656,
+        1424
+      ],
+      "id": "f2ff63bc-d8c0-475b-8ce6-0d1b242af8b3",
+      "name": "Call 'A1 - Source Adapter - FarrierIQ-v2'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "Sk0u50x81uRNXd9N",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/Sk0u50x81uRNXd9N",
+          "cachedResultName": "A1 - Source Adapter - HorseProFinder-v2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        1648
+      ],
+      "id": "4bf456c3-613d-4a30-b6d6-d9e23d7dc044",
+      "name": "Call 'A1 - Source Adapter - HorseProFinder-v2'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "l1b0RzzJNob1ZhBl",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/l1b0RzzJNob1ZhBl",
+          "cachedResultName": "A1 - Source Adapter - NewHorse-v2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        1904
+      ],
+      "id": "3e44cfef-d04c-4154-95a9-30bdb9662cdc",
+      "name": "Call 'A1 - Source Adapter - NewHorse-v2'"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "1FhslP72OuipCR5S",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/1FhslP72OuipCR5S",
+          "cachedResultName": "A1 - Source Adapter - Google Maps via Apify-v2"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "mode": "each",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        640,
+        2224
+      ],
+      "id": "ab1bba56-a10f-45a4-82ad-4f50cc9047ff",
+      "name": "Call 'A1 - Source Adapter - Google Maps via Apify-v2'"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item =\n  $json || {};\n\nif (\n  item.resume_scope_valid !== true\n) {\n  throw new Error(\n    `run_id ${item.run_id || 'unknown'} already ` +\n    `exists with a different immutable request scope: ` +\n    `${JSON.stringify(\n      item.resume_scope_comparison || {}\n    )}`\n  );\n}\n\nreturn [{\n  json: item\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2128,
+        1616
+      ],
+      "id": "2ab12323-6e4e-4300-8fd8-f79b8c31a86d",
+      "name": "Validate Stored Run Scope"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c0d7fd36-f1b7-4c56-a0eb-ab3a24e03c79",
+              "leftValue": "={{ !!$json.hubspot_contact_name_key }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        688,
+        672
+      ],
+      "id": "9b238ba1-4241-4d8f-82d5-66557a46bcf2",
+      "name": "Has Contact Name?"
+    },
+    {
+      "parameters": {
+        "authentication": "appToken",
+        "operation": "search",
+        "filterGroupsUi": {
+          "filterGroupsValues": []
+        },
+        "additionalFields": {
+          "query": "={{ $json.hubspot_contact_name }}"
+        }
+      },
+      "type": "n8n-nodes-base.hubspot",
+      "typeVersion": 2.2,
+      "position": [
+        944,
+        512
+      ],
+      "id": "8ca849cf-3d93-4524-a68c-e59edfe81e02",
+      "name": "Search contacts",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "hubspotAppToken": {
+          "id": "pk2VdxNyO0N9cYpY",
+          "name": "HubSpot account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const context =\n  $('Prepare HubSpot Lookup')\n    .item.json;\n\nconst inputRows =\n  $input\n    .all()\n    .map(item => item.json ?? {});\n\nconst errorRow =\n  inputRows.find(row =>\n    row.error ||\n    Number(row.statusCode || 0) >= 400 ||\n    (\n      !row.id &&\n      typeof row.message === 'string' &&\n      /error|unauthori[sz]ed|rate limit/i\n        .test(row.message)\n    )\n  );\n\n/*\n * Native HubSpot Search normally emits one item per\n * contact. The results handling also tolerates a raw\n * HubSpot Search API envelope.\n */\nconst rows =\n  inputRows.flatMap(row =>\n    Array.isArray(row.results)\n      ? row.results\n      : [row]\n  );\n\nfunction propertyValue(row, name) {\n  const value =\n    row?.properties?.[name];\n\n  if (\n    value &&\n    typeof value === 'object' &&\n    'value' in value\n  ) {\n    return value.value;\n  }\n\n  return value ??\n    row?.[name] ??\n    null;\n}\n\nfunction normalizedName(value) {\n  return value == null\n    ? ''\n    : String(value)\n        .normalize('NFKC')\n        .trim()\n        .replace(/\\s+/g, ' ')\n        .toLocaleLowerCase('en-US');\n}\n\nconst queryRows =\n  rows.filter(row =>\n    !row.error &&\n    (row.id || row.contactId) &&\n    Object.keys(row).length > 0\n  );\n\nconst exactMatches =\n  queryRows.filter(row => {\n    const fullName = [\n      propertyValue(row, 'firstname'),\n      propertyValue(row, 'lastname')\n    ]\n      .filter(Boolean)\n      .join(' ');\n\n    return (\n      normalizedName(fullName) ===\n      context.hubspot_contact_name_key\n    );\n  });\n\nreturn [{\n  json: {\n    ...context,\n\n    hubspot_search_error:\n      errorRow\n        ? String(\n            errorRow.error?.message ||\n            errorRow.error ||\n            errorRow.message ||\n            'HubSpot Contact search failed'\n          )\n        : null,\n\n    hubspot_query_result_count:\n      queryRows.length,\n\n    hubspot_matches:\n      exactMatches\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        512
+      ],
+      "id": "721f30d7-ccc2-4404-8e41-56b00ff1d007",
+      "name": "Summarize HubSpot Contact Search"
+    },
+    {
+      "parameters": {
+        "jsCode": "const matches =\n  Array.isArray($json.hubspot_matches)\n    ? $json.hubspot_matches\n    : [];\n\nconst error =\n  $json.hubspot_search_error ||\n  null;\n\nfunction propertyValue(row, name) {\n  const value =\n    row?.properties?.[name];\n\n  if (\n    value &&\n    typeof value === 'object' &&\n    'value' in value\n  ) {\n    return value.value;\n  }\n\n  return value ??\n    row?.[name] ??\n    null;\n}\n\nconst checkedKey =\n  `contact_name:${$json.hubspot_contact_name_key}`;\n\nif (error) {\n  return [{\n    json: {\n      ...$json,\n\n      lead_status:\n        'hubspot_check_failed',\n\n      hubspot_match: {\n        status:\n          'check_failed',\n\n        object_type:\n          'contact',\n\n        search_method:\n          'contact_name_query_exact_postfilter',\n\n        domain_available:\n          false,\n\n        checked_key:\n          checkedKey,\n\n        checked_name:\n          $json.hubspot_contact_name,\n\n        error\n      }\n    }\n  }];\n}\n\nif (matches.length > 0) {\n  const matchedContacts =\n    matches.map(row => ({\n      object_id:\n        String(\n          row.id ||\n          row.contactId\n        ),\n\n      full_name: [\n        propertyValue(row, 'firstname'),\n        propertyValue(row, 'lastname')\n      ]\n        .filter(Boolean)\n        .join(' '),\n\n      company:\n        propertyValue(row, 'company') ||\n        null,\n\n      city:\n        propertyValue(row, 'city') ||\n        null,\n\n      region:\n        propertyValue(row, 'state') ||\n        null,\n\n      country:\n        propertyValue(row, 'country') ||\n        null\n    }));\n\n  return [{\n    json: {\n      ...$json,\n\n      /*\n       * Name alone is not strong enough for an\n       * automatic duplicate decision.\n       */\n      lead_status:\n        'possible_duplicate',\n\n      hubspot_match: {\n        status:\n          'possible_match',\n\n        object_type:\n          'contact',\n\n        search_method:\n          'contact_name_query_exact_postfilter',\n\n        domain_available:\n          false,\n\n        checked_key:\n          checkedKey,\n\n        checked_name:\n          $json.hubspot_contact_name,\n\n        matched_property:\n          'firstname+lastname',\n\n        match_strength:\n          'exact_normalized_full_name_only',\n\n        object_id:\n          matchedContacts[0].object_id,\n\n        object_ids:\n          matchedContacts.map(\n            contact => contact.object_id\n          ),\n\n        matched_contacts:\n          matchedContacts,\n\n        match_count:\n          matchedContacts.length,\n\n        query_result_count:\n          Number(\n            $json.hubspot_query_result_count ||\n            0\n          ),\n\n        multiple_hubspot_records:\n          matchedContacts.length > 1,\n\n        requires_human_review:\n          true\n      }\n    }\n  }];\n}\n\nreturn [{\n  json: {\n    ...$json,\n\n    lead_status:\n      'eligible',\n\n    hubspot_match: {\n      status:\n        'no_match',\n\n      object_type:\n        'contact',\n\n      search_method:\n        'contact_name_query_exact_postfilter',\n\n      domain_available:\n        false,\n\n      checked_key:\n        checkedKey,\n\n      checked_name:\n        $json.hubspot_contact_name,\n\n      matched_property:\n        null,\n\n      query_result_count:\n        Number(\n          $json.hubspot_query_result_count ||\n          0\n        )\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1568,
+        512
+      ],
+      "id": "f39052fa-392f-468b-85d2-a1f30f221094",
+      "name": "Classify HubSpot Contact Name Match"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    ...$json,\n\n    /*\n     * Use the existing review-held status so this\n     * candidate is not silently treated as screened.\n     */\n    lead_status:\n      'possible_duplicate',\n\n    hubspot_match: {\n      status:\n        'not_checked_no_lookup_key',\n\n      search_method:\n        'none',\n\n      domain_available:\n        false,\n\n      checked_key:\n        null,\n\n      matched_property:\n        null,\n\n      requires_human_review:\n        true,\n\n      warning:\n        'The candidate has neither a usable company domain nor a Contact name, so HubSpot could not be checked.'\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1136,
+        656
+      ],
+      "id": "7255f6ad-727a-4b7c-bb6b-4882c43ed53c",
+      "name": "Build No-Lookup-Key HubSpot Decision"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Start A1 Discovery": {
+      "main": [
+        [
+          {
+            "node": "Normalize and Validate Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize and Validate Request": {
+      "main": [
+        [
+          {
+            "node": "Return Accepted Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return Accepted Run": {
+      "main": [
+        [
+          {
+            "node": "Ensure Discovery Tables",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Request and Schema",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ensure Discovery Tables": {
+      "main": [
+        [
+          {
+            "node": "Merge Request and Schema",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Request and Schema": {
+      "main": [
+        [
+          {
+            "node": "Create or Resume Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create or Resume Run": {
+      "main": [
+        [
+          {
+            "node": "Validate Stored Run Scope",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Ordered Source Plan": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Sources": {
+      "main": [
+        [
+          {
+            "node": "Collapse Completed Source Loop",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Load Run Progress",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Run Progress": {
+      "main": [
+        [
+          {
+            "node": "Decide Whether to Run Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decide Whether to Run Source": {
+      "main": [
+        [
+          {
+            "node": "Discovery Target Reached?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run This Source?": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Skip Completed or Unneeded Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Adapter Response": {
+      "main": [
+        [
+          {
+            "node": "Persist Source Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Persist Source Results": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Skip Completed or Unneeded Source": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collapse Completed Source Loop": {
+      "main": [
+        [
+          {
+            "node": "Load Candidates for HubSpot",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finalize Discovery Stage": {
+      "main": [
+        [
+          {
+            "node": "Build Final Discovery Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Call 'A1 - Source Adapter - Mad Barn-v2'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'A1 - Source Adapter - Best of Lexington-v2'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'A1 - Source Adapter - FarrierIQ-v2'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'A1 - Source Adapter - HorseProFinder-v2'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'A1 - Source Adapter - NewHorse-v2'",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call 'A1 - Source Adapter - Google Maps via Apify-v2'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Candidates for HubSpot": {
+      "main": [
+        [
+          {
+            "node": "Loop Over HubSpot Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over HubSpot Candidates": {
+      "main": [
+        [
+          {
+            "node": "Collapse HubSpot Loop",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Has HubSpot Candidate?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has HubSpot Candidate?": {
+      "main": [
+        [
+          {
+            "node": "Prepare HubSpot Lookup",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Skip Empty HubSpot Candidate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Skip Empty HubSpot Candidate": {
+      "main": [
+        [
+          {
+            "node": "Loop Over HubSpot Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare HubSpot Lookup": {
+      "main": [
+        [
+          {
+            "node": "Has Company Domain?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Company Domain?": {
+      "main": [
+        [
+          {
+            "node": "Search HubSpot Company by Domain",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Has Contact Name?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search HubSpot Company by Domain": {
+      "main": [
+        [
+          {
+            "node": "Summarize HubSpot Company Search",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Summarize HubSpot Company Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize HubSpot Company Search": {
+      "main": [
+        [
+          {
+            "node": "Classify HubSpot Domain Match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify HubSpot Domain Match": {
+      "main": [
+        [
+          {
+            "node": "Persist HubSpot Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Persist HubSpot Decision": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over HubSpot Candidates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collapse HubSpot Loop": {
+      "main": [
+        [
+          {
+            "node": "Finalize Discovery Stage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Discovery Target Reached?": {
+      "main": [
+        [
+          {
+            "node": "Collapse Completed Source Loop",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Run This Source?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'A1 - Source Adapter - Mad Barn-v2'": {
+      "main": [
+        [
+          {
+            "node": "Normalize Adapter Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'A1 - Source Adapter - Best of Lexington-v2'": {
+      "main": [
+        [
+          {
+            "node": "Normalize Adapter Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'A1 - Source Adapter - FarrierIQ-v2'": {
+      "main": [
+        [
+          {
+            "node": "Normalize Adapter Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'A1 - Source Adapter - HorseProFinder-v2'": {
+      "main": [
+        [
+          {
+            "node": "Normalize Adapter Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'A1 - Source Adapter - NewHorse-v2'": {
+      "main": [
+        [
+          {
+            "node": "Normalize Adapter Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'A1 - Source Adapter - Google Maps via Apify-v2'": {
+      "main": [
+        [
+          {
+            "node": "Normalize Adapter Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Stored Run Scope": {
+      "main": [
+        [
+          {
+            "node": "Build Ordered Source Plan",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Contact Name?": {
+      "main": [
+        [
+          {
+            "node": "Search contacts",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build No-Lookup-Key HubSpot Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search contacts": {
+      "main": [
+        [
+          {
+            "node": "Summarize HubSpot Contact Search",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Summarize HubSpot Contact Search": {
+      "main": [
+        [
+          {
+            "node": "Classify HubSpot Contact Name Match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify HubSpot Contact Name Match": {
+      "main": [
+        [
+          {
+            "node": "Persist HubSpot Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build No-Lookup-Key HubSpot Decision": {
+      "main": [
+        [
+          {
+            "node": "Persist HubSpot Decision",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": true
+  },
+  "versionId": "983abd94-0ed0-451c-9414-fb128baad397",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e3ff0e1af6d8585ced988ca54236d3f2186eace6818ca3ec654b934a110aa381"
+  },
+  "id": "3tBw9IHcr4knwM4H",
+  "tags": []
+}

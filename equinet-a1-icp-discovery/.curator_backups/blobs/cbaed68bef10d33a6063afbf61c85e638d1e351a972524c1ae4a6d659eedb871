@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "a1.website-enrichment-state.v2",
+  "title": "Equinet A1 Website Enrichment State V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_contract_version", "source_sha256", "run", "discovery_result", "max_retries", "leads"],
+  "properties": {
+    "schema_version": {"const": "a1.website-enrichment-state.v2"},
+    "source_contract_version": {"const": "a1.discovery-result.v1"},
+    "source_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "run": {
+      "type": "object",
+      "required": ["run_id"],
+      "properties": {"run_id": {"type": "string", "minLength": 1}}
+    },
+    "discovery_result": {"type": "object"},
+    "max_retries": {"type": "integer", "minimum": 0},
+    "migration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from_schema_version", "migrated_at", "source_state_preserved", "crm_or_n8n_touched"],
+      "properties": {
+        "from_schema_version": {"const": "a1.website-enrichment-state.v1"},
+        "migrated_at": {"type": "string", "format": "date-time"},
+        "source_state_preserved": {"const": true},
+        "crm_or_n8n_touched": {"const": false}
+      }
+    },
+    "leads": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/record"}
+    }
+  },
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "lease_id", "claimed_at", "expires_at"],
+      "properties": {
+        "owner": {"type": "string", "minLength": 1},
+        "lease_id": {"type": "string", "format": "uuid"},
+        "claimed_at": {"type": "string", "format": "date-time"},
+        "expires_at": {"type": "string", "format": "date-time"}
+      }
+    },
+    "newFailure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "failure_code", "message", "attempted_at", "retryable"],
+      "properties": {
+        "stage": {"enum": ["research", "assessment", "scoring"]},
+        "failure_code": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"},
+        "message": {"type": "string", "minLength": 1},
+        "attempted_at": {"type": "string", "format": "date-time"},
+        "retryable": {"type": "boolean"}
+      }
+    },
+    "legacyFailure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recorded_at", "error", "retryable"],
+      "properties": {
+        "recorded_at": {"type": "string", "format": "date-time"},
+        "error": {"type": "string", "minLength": 1},
+        "retryable": {"type": "boolean"}
+      }
+    },
+    "terminal": {
+      "type": "object",
+      "required": ["outcome"],
+      "properties": {
+        "outcome": {"enum": ["scored", "none_found", "verification_failed", "assessment_failed", "out_of_scope"]},
+        "at": {"type": "string", "format": "date-time"},
+        "attempted_at": {"type": "string", "format": "date-time"},
+        "failure_code": {"type": ["string", "null"]},
+        "attempts": {"type": "integer", "minimum": 0},
+        "retries_exhausted": {"type": "boolean"}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lead", "state", "revision", "claim", "research_attempts", "assessment_attempts", "failure_history", "enrichment", "pipeline_inputs", "artifacts", "terminal"],
+      "properties": {
+        "lead": {"type": "object"},
+        "state": {"enum": ["research_pending", "researching", "assessment_pending", "assessing", "ready_to_score", "scoring", "operator_repair", "scored", "terminal_none_found", "terminal_verification_failed", "terminal_assessment_failed", "terminal_out_of_scope"]},
+        "revision": {"type": "integer", "minimum": 0},
+        "claim": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/claim"}]},
+        "research_attempts": {"type": "integer", "minimum": 0},
+        "assessment_attempts": {"type": "integer", "minimum": 0},
+        "failure_history": {"type": "array", "items": {"anyOf": [{"$ref": "#/$defs/newFailure"}, {"$ref": "#/$defs/legacyFailure"}]}},
+        "enrichment": {"type": ["object", "null"]},
+        "pipeline_inputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "classification_decision": {"type": "object"},
+            "qualification_assessment": {"type": "object"},
+            "confidence_assessment": {"type": "object"}
+          }
+        },
+        "artifacts": {"type": "object"},
+        "terminal": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/terminal"}]},
+        "migration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["legacy_status"],
+          "properties": {"legacy_status": {"enum": ["pending", "completed", "scored", "failed"]}}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"state": {"enum": ["researching", "assessing", "scoring"]}}, "required": ["state"]},
+          "then": {"properties": {"claim": {"$ref": "#/$defs/claim"}}},
+          "else": {"properties": {"claim": {"type": "null"}}}
+        },
+        {
+          "if": {"properties": {"state": {"enum": ["scored", "terminal_none_found", "terminal_verification_failed", "terminal_assessment_failed", "terminal_out_of_scope"]}}, "required": ["state"]},
+          "then": {"properties": {"terminal": {"$ref": "#/$defs/terminal"}}},
+          "else": {"properties": {"terminal": {"type": "null"}}}
+        }
+      ]
+    }
+  }
+}

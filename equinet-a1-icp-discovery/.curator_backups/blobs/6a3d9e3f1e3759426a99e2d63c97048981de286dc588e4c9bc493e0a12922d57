@@ -1,0 +1,720 @@
+#!/usr/bin/env python3
+"""Durable state transitions for Equinet n8n execution polling."""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import fcntl
+import hashlib
+import json
+import os
+import tempfile
+import time
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Iterator
+from urllib.parse import urlparse
+
+
+SCHEMA_VERSION = "equinet.n8n-poll-ticket.v2"
+LEGACY_SCHEMA_VERSION = "equinet.n8n-poll-ticket.v1"
+FINAL_NODE = "Build Final Discovery Result"
+LIFECYCLE_STATUSES = {"polling", "succeeded", "failed", "cancelled", "timed_out"}
+TERMINAL_STATUSES = LIFECYCLE_STATUSES - {"polling"}
+N8N_STATUS_MAP = {
+    "new": "polling",
+    "queued": "polling",
+    "running": "polling",
+    "waiting": "polling",
+    "success": "succeeded",
+    "succeeded": "succeeded",
+    "error": "failed",
+    "failed": "failed",
+    "crashed": "failed",
+    "canceled": "cancelled",
+    "cancelled": "cancelled",
+}
+REQUIRED_KEYS = {
+    "schema_version",
+    "ticket_id",
+    "workflow_id",
+    "execution_id",
+    "application_run_id",
+    "final_node",
+    "lifecycle_status",
+    "n8n_execution_status",
+    "poll_count",
+    "created_at",
+    "updated_at",
+    "deadline_at",
+    "last_polled_at",
+    "terminal_at",
+    "terminal_error",
+    "result_claimed_at",
+    "result_retrieved_at",
+    "result_sha256",
+    "result_artifact_reference",
+    "consumed_at",
+    "consumed_artifact_reference",
+    "delivered_at",
+    "delivery_reference",
+}
+V2_EXTRA_KEYS = {"configuration_snapshot", "monitor_identity", "monitor_budget"}
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def parse_timestamp(value: str) -> datetime:
+    if not isinstance(value, str) or not value:
+        raise ValueError("timestamp must be a non-empty string")
+    normalized = value[:-1] + "+00:00" if value.endswith("Z") else value
+    parsed = datetime.fromisoformat(normalized)
+    if parsed.tzinfo is None:
+        raise ValueError(f"timestamp must include a timezone: {value}")
+    return parsed.astimezone(timezone.utc)
+
+
+def _required_text(name: str, value: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{name} must be a non-empty string")
+    return value.strip()
+
+
+def new_ticket(
+    *,
+    ticket_id: str,
+    workflow_id: str,
+    execution_id: str,
+    application_run_id: str,
+    deadline_at: str,
+    now: str | None = None,
+    final_node: str = FINAL_NODE,
+    configuration_snapshot: dict[str, Any] | None = None,
+    monitor_identity: str = "unspecified-monitor",
+    monitor_budget: int = 100,
+) -> dict[str, Any]:
+    timestamp = now or utc_now()
+    parse_timestamp(timestamp)
+    parse_timestamp(deadline_at)
+    if final_node != FINAL_NODE:
+        raise ValueError(f"final_node must be {FINAL_NODE!r}")
+    ticket = {
+        "schema_version": SCHEMA_VERSION,
+        "ticket_id": _required_text("ticket_id", ticket_id),
+        "workflow_id": _required_text("workflow_id", workflow_id),
+        "execution_id": _required_text("execution_id", execution_id),
+        "application_run_id": _required_text("application_run_id", application_run_id),
+        "final_node": FINAL_NODE,
+        "lifecycle_status": "polling",
+        "n8n_execution_status": "new",
+        "poll_count": 0,
+        "created_at": timestamp,
+        "updated_at": timestamp,
+        "deadline_at": deadline_at,
+        "last_polled_at": None,
+        "terminal_at": None,
+        "terminal_error": None,
+        "result_claimed_at": None,
+        "result_retrieved_at": None,
+        "result_sha256": None,
+        "result_artifact_reference": None,
+        "consumed_at": None,
+        "consumed_artifact_reference": None,
+        "delivered_at": None,
+        "delivery_reference": None,
+        "configuration_snapshot": copy.deepcopy(configuration_snapshot or {"status": "unspecified"}),
+        "monitor_identity": _required_text("monitor_identity", monitor_identity),
+        "monitor_budget": {"max_actions": monitor_budget, "actions_used": 0},
+    }
+    validate_ticket(ticket)
+    return ticket
+
+
+def validate_ticket(ticket: dict[str, Any]) -> None:
+    if not isinstance(ticket, dict):
+        raise ValueError("ticket must be a JSON object")
+    version = ticket.get("schema_version")
+    if version not in {SCHEMA_VERSION, LEGACY_SCHEMA_VERSION}:
+        raise ValueError(f"unsupported schema_version: {version!r}")
+    expected = REQUIRED_KEYS if version == LEGACY_SCHEMA_VERSION else REQUIRED_KEYS | V2_EXTRA_KEYS
+    missing = expected - set(ticket)
+    extra = set(ticket) - expected
+    if missing:
+        raise ValueError(f"ticket is missing required keys: {', '.join(sorted(missing))}")
+    if extra:
+        raise ValueError(f"ticket has unsupported keys: {', '.join(sorted(extra))}")
+    if ticket["final_node"] != FINAL_NODE:
+        raise ValueError(f"final_node must be {FINAL_NODE!r}")
+    if ticket["lifecycle_status"] not in LIFECYCLE_STATUSES:
+        raise ValueError(f"invalid lifecycle_status: {ticket['lifecycle_status']!r}")
+    for name in ("ticket_id", "workflow_id", "execution_id", "application_run_id"):
+        _required_text(name, ticket[name])
+    if not isinstance(ticket["poll_count"], int) or ticket["poll_count"] < 0:
+        raise ValueError("poll_count must be a non-negative integer")
+    if version == SCHEMA_VERSION:
+        if not isinstance(ticket["configuration_snapshot"], dict) or not ticket["configuration_snapshot"]:
+            raise ValueError("v2 ticket requires a non-empty configuration_snapshot")
+        _required_text("monitor_identity", ticket["monitor_identity"])
+        budget = ticket["monitor_budget"]
+        if not isinstance(budget, dict) or set(budget) != {"max_actions", "actions_used"}:
+            raise ValueError("v2 ticket monitor_budget is invalid")
+        if not isinstance(budget["max_actions"], int) or budget["max_actions"] < 1 or not isinstance(budget["actions_used"], int) or not 0 <= budget["actions_used"] <= budget["max_actions"]:
+            raise ValueError("v2 ticket monitor budget is exhausted or invalid")
+    for name in ("created_at", "updated_at", "deadline_at"):
+        parse_timestamp(ticket[name])
+    for name in (
+        "last_polled_at",
+        "terminal_at",
+        "result_claimed_at",
+        "result_retrieved_at",
+        "consumed_at",
+        "delivered_at",
+    ):
+        if ticket[name] is not None:
+            parse_timestamp(ticket[name])
+    if ticket["result_retrieved_at"] and not ticket["result_claimed_at"]:
+        raise ValueError("result_retrieved_at requires result_claimed_at")
+    if ticket["consumed_at"] and not ticket["result_retrieved_at"]:
+        raise ValueError("consumed_at requires result_retrieved_at")
+    if ticket["lifecycle_status"] == "succeeded" and ticket["delivered_at"] and not ticket["consumed_at"]:
+        raise ValueError("successful delivery requires consumed_at")
+
+
+def observe(
+    ticket: dict[str, Any],
+    execution_status: str,
+    *,
+    error: str | None = None,
+    now: str | None = None,
+) -> dict[str, Any]:
+    validate_ticket(ticket)
+    if ticket["lifecycle_status"] in TERMINAL_STATUSES:
+        raise ValueError("cannot observe a terminal ticket")
+    raw_status = _required_text("execution_status", execution_status).lower()
+    if raw_status not in N8N_STATUS_MAP:
+        raise ValueError(f"unsupported n8n execution status: {raw_status!r}")
+    timestamp = now or utc_now()
+    parse_timestamp(timestamp)
+    updated = copy.deepcopy(ticket)
+    updated["poll_count"] += 1
+    updated["n8n_execution_status"] = raw_status
+    updated["lifecycle_status"] = N8N_STATUS_MAP[raw_status]
+    updated["last_polled_at"] = timestamp
+    updated["updated_at"] = timestamp
+    if updated["lifecycle_status"] in TERMINAL_STATUSES:
+        updated["terminal_at"] = timestamp
+        updated["terminal_error"] = error if updated["lifecycle_status"] == "failed" else None
+    validate_ticket(updated)
+    return updated
+
+
+def expire_if_due(ticket: dict[str, Any], *, now: str | None = None) -> dict[str, Any]:
+    validate_ticket(ticket)
+    if ticket["lifecycle_status"] != "polling":
+        return copy.deepcopy(ticket)
+    timestamp = now or utc_now()
+    if parse_timestamp(timestamp) <= parse_timestamp(ticket["deadline_at"]):
+        return copy.deepcopy(ticket)
+    updated = copy.deepcopy(ticket)
+    updated["lifecycle_status"] = "timed_out"
+    updated["terminal_at"] = timestamp
+    updated["terminal_error"] = "Polling deadline exceeded before n8n reached a terminal state."
+    updated["updated_at"] = timestamp
+    validate_ticket(updated)
+    return updated
+
+
+def claim_result(ticket: dict[str, Any], *, now: str | None = None) -> tuple[dict[str, Any], bool]:
+    validate_ticket(ticket)
+    if ticket["lifecycle_status"] != "succeeded":
+        raise ValueError("result data may be claimed only after successful execution")
+    if ticket["result_claimed_at"]:
+        return copy.deepcopy(ticket), False
+    timestamp = now or utc_now()
+    parse_timestamp(timestamp)
+    updated = copy.deepcopy(ticket)
+    updated["result_claimed_at"] = timestamp
+    updated["updated_at"] = timestamp
+    validate_ticket(updated)
+    return updated, True
+
+
+def mark_retrieved(
+    ticket: dict[str, Any],
+    *,
+    result_sha256: str,
+    artifact_reference: str,
+    now: str | None = None,
+) -> dict[str, Any]:
+    validate_ticket(ticket)
+    if ticket["lifecycle_status"] != "succeeded" or not ticket["result_claimed_at"]:
+        raise ValueError("result must be claimed after success before it is marked retrieved")
+    if ticket["result_retrieved_at"]:
+        return copy.deepcopy(ticket)
+    digest = result_sha256.lower()
+    if len(digest) != 64 or any(ch not in "0123456789abcdef" for ch in digest):
+        raise ValueError("result_sha256 must be a 64-character hexadecimal SHA-256")
+    timestamp = now or utc_now()
+    parse_timestamp(timestamp)
+    updated = copy.deepcopy(ticket)
+    updated["result_retrieved_at"] = timestamp
+    updated["result_sha256"] = digest
+    updated["result_artifact_reference"] = _required_text("artifact_reference", artifact_reference)
+    updated["updated_at"] = timestamp
+    validate_ticket(updated)
+    return updated
+
+
+def mark_consumed(
+    ticket: dict[str, Any],
+    *,
+    artifact_reference: str,
+    now: str | None = None,
+) -> dict[str, Any]:
+    validate_ticket(ticket)
+    if not ticket["result_retrieved_at"]:
+        raise ValueError("result must be retrieved before it is consumed")
+    if ticket["consumed_at"]:
+        return copy.deepcopy(ticket)
+
+    result_reference = _required_text("result_artifact_reference", ticket.get("result_artifact_reference"))
+    result_path = Path(result_reference)
+    if not result_path.is_absolute():
+        result_path = Path.cwd() / result_path
+    if not result_path.is_file():
+        raise ValueError(f"retrieved discovery artifact does not exist: {result_reference}")
+    result_bytes = result_path.read_bytes()
+    if hashlib.sha256(result_bytes).hexdigest() != ticket.get("result_sha256"):
+        raise ValueError("retrieved discovery artifact SHA-256 differs from polling ticket")
+    try:
+        discovery = json.loads(result_bytes)
+    except json.JSONDecodeError as exc:
+        raise ValueError("retrieved discovery artifact is not valid JSON") from exc
+    if not isinstance(discovery, dict) or discovery.get("contract_version") != "a1.discovery-result.v1":
+        raise ValueError("retrieved artifact is not a1.discovery-result.v1")
+    discovery_run_id = _required_text("discovery run_id", discovery.get("run_id"))
+    leads = discovery.get("leads")
+    if not isinstance(leads, list) or not leads:
+        raise ValueError("retrieved discovery artifact requires a non-empty leads array")
+    source_fingerprints = []
+    source_lanes: dict[str, str] = {}
+    source_person_required: dict[str, bool] = {}
+    for lead in leads:
+        if not isinstance(lead, dict):
+            raise ValueError("retrieved discovery leads must be objects")
+        fingerprint = _required_text("lead_fingerprint", lead.get("lead_fingerprint"))
+        source_fingerprints.append(fingerprint)
+        source_person_required[fingerprint] = isinstance(lead.get("name"), str) and bool(lead["name"].strip())
+        website = lead.get("website") or lead.get("official_website_url") or lead.get("domain")
+        if isinstance(website, str) and website.strip():
+            candidate = website.strip() if "://" in website else "https://" + website.strip()
+            try:
+                parsed = urlparse(candidate)
+                valid_port = parsed.port is None or 1 <= parsed.port <= 65535
+            except ValueError:
+                valid_candidate = False
+            else:
+                valid_candidate = (
+                    parsed.scheme in {"http", "https"}
+                    and bool(parsed.hostname)
+                    and parsed.username is None
+                    and parsed.password is None
+                    and valid_port
+                )
+        else:
+            valid_candidate = False
+        source_lanes[fingerprint] = "website_candidate" if valid_candidate else "no_website"
+    if len(set(source_fingerprints)) != len(source_fingerprints):
+        raise ValueError("retrieved discovery artifact contains duplicate lead_fingerprint values")
+
+    reference = _required_text("artifact_reference", artifact_reference)
+    artifact_path = Path(reference)
+    if not artifact_path.is_absolute():
+        artifact_path = Path.cwd() / artifact_path
+    if not artifact_path.is_file():
+        raise ValueError(f"consumed artifact does not exist: {reference}")
+    try:
+        staging_index = json.loads(artifact_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"consumed artifact is not valid JSON: {reference}") from exc
+    if staging_index.get("schema_version") != "a1.twenty-entity-staging-index.v3" or staging_index.get("complete") is not True:
+        raise ValueError("successful discovery consumption requires a complete combined Twenty entity staging index v3")
+    canonical_source_hash = hashlib.sha256(
+        json.dumps(discovery, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    if staging_index.get("source_contract_version") != "a1.discovery-result.v1":
+        raise ValueError("combined staging index source contract is invalid")
+    if staging_index.get("source_sha256") != canonical_source_hash:
+        raise ValueError("combined staging index source_sha256 differs from discovery result")
+    if staging_index.get("run_id") != discovery_run_id:
+        raise ValueError("combined staging index run_id differs from discovery result")
+
+    dispositions = staging_index.get("dispositions")
+    total = staging_index.get("total")
+    allowed = {
+        "company_staged_person_staged", "company_staged_no_person_required",
+        "company_staged_person_possible_match", "company_staged_person_sync_failed",
+        "company_possible_match", "company_sync_failed", "blocked_missing_company_name",
+    }
+    if not isinstance(dispositions, list) or total != len(dispositions) or not dispositions:
+        raise ValueError("staging index total must match a non-empty dispositions array")
+    fingerprints = [item.get("lead_fingerprint") for item in dispositions if isinstance(item, dict)]
+    if fingerprints != source_fingerprints:
+        raise ValueError("combined staging dispositions must exactly match discovery fingerprint order")
+    if any(item.get("status") not in allowed for item in dispositions):
+        raise ValueError("staging index contains a non-terminal disposition")
+    computed_counts: dict[str, int] = {}
+    computed_lane_counts = {"no_website": 0, "website_candidate": 0}
+    for item in dispositions:
+        fingerprint = item["lead_fingerprint"]
+        if item.get("lane") != source_lanes[fingerprint]:
+            raise ValueError(f"staging lane mismatch for {fingerprint}")
+        if item.get("person_required") is not source_person_required[fingerprint]:
+            raise ValueError(f"staging Person expectation mismatch for {fingerprint}")
+        computed_lane_counts[item["lane"]] += 1
+        computed_counts[item["status"]] = computed_counts.get(item["status"], 0) + 1
+        evidence_reference = _required_text("artifact_reference", item.get("artifact_reference"))
+        evidence_path = Path(evidence_reference)
+        if not evidence_path.is_absolute():
+            evidence_path = Path.cwd() / evidence_path
+        if not evidence_path.is_file():
+            raise ValueError(f"staging disposition artifact does not exist: {evidence_reference}")
+        if str(item.get("status")).startswith("company_staged_"):
+            company_id = _required_text("company_id", item.get("company_id"))
+            company_reference = _required_text(
+                "company_reconciliation_artifact", item.get("company_reconciliation_artifact")
+            )
+            company_path = Path(company_reference)
+            if not company_path.is_absolute():
+                company_path = Path.cwd() / company_path
+            try:
+                reconciliation = json.loads(company_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as exc:
+                raise ValueError(f"Company reconciliation artifact is invalid: {company_reference}") from exc
+            if reconciliation.get("verification_status") != "verified" or reconciliation.get("twenty_company_id") != company_id:
+                raise ValueError(f"Company reconciliation evidence mismatch for {fingerprint}")
+        if item.get("person_disposition") == "staged":
+            person_id = _required_text("person_id", item.get("person_id"))
+            person_reference = _required_text(
+                "person_reconciliation_artifact", item.get("person_reconciliation_artifact")
+            )
+            relation_reference = _required_text(
+                "relation_reconciliation_artifact", item.get("relation_reconciliation_artifact")
+            )
+            if relation_reference != person_reference:
+                raise ValueError(f"Person relation artifact differs from Person reconciliation for {fingerprint}")
+            person_path = Path(person_reference)
+            if not person_path.is_absolute():
+                person_path = Path.cwd() / person_path
+            try:
+                person_reconciliation = json.loads(person_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as exc:
+                raise ValueError(f"Person reconciliation artifact is invalid: {person_reference}") from exc
+            if (
+                person_reconciliation.get("verification_status") != "verified"
+                or person_reconciliation.get("relation_status") != "verified"
+                or person_reconciliation.get("twenty_person_id") != person_id
+                or person_reconciliation.get("twenty_company_id") != item.get("company_id")
+            ):
+                raise ValueError(f"Person reconciliation evidence mismatch for {fingerprint}")
+        elif item.get("person_required") and item.get("status") in {"company_possible_match", "company_sync_failed"}:
+            if item.get("person_disposition") != "blocked_by_company":
+                raise ValueError(f"Person must be terminally blocked by Company for {fingerprint}")
+        elif item.get("person_required") and item.get("status") not in {
+            "company_staged_person_possible_match", "company_staged_person_sync_failed",
+        }:
+            raise ValueError(f"Person-required lead is not terminal for {fingerprint}")
+        if not isinstance(item.get("reason"), str) or not item["reason"].strip():
+            raise ValueError(f"non-staged disposition requires a reason for {fingerprint}")
+    if staging_index.get("counts") != dict(sorted(computed_counts.items())):
+        raise ValueError("combined staging index counts do not match dispositions")
+    company_coverage = staging_index.get("company_coverage")
+    person_coverage = staging_index.get("person_coverage")
+    expected_people = sum(1 for value in source_person_required.values() if value)
+    terminal_people = sum(
+        1 for item in dispositions
+        if item.get("person_required") is True
+        and item.get("person_disposition") in {"staged", "possible_match", "sync_failed", "blocked_by_company"}
+    )
+    verified_relations = sum(1 for item in dispositions if item.get("relation_status") == "verified")
+    verified_company_ids = sum(
+        1 for item in dispositions
+        if str(item.get("status")).startswith("company_staged_") and item.get("company_id")
+    )
+    if (
+        not isinstance(company_coverage, dict)
+        or company_coverage.get("expected") != total
+        or company_coverage.get("terminal") != total
+        or company_coverage.get("verified_ids") != verified_company_ids
+    ):
+        raise ValueError("combined staging index Company coverage is incomplete")
+    if (
+        not isinstance(person_coverage, dict)
+        or person_coverage.get("expected") != expected_people
+        or person_coverage.get("terminal") != terminal_people
+        or person_coverage.get("verified_relations") != verified_relations
+    ):
+        raise ValueError("combined staging index Person coverage is incomplete")
+    lane_indexes = staging_index.get("lane_indexes")
+    if not isinstance(lane_indexes, dict) or set(lane_indexes) != {"no_website", "website_candidate"}:
+        raise ValueError("combined staging index requires both lane index entries")
+    for lane, count in computed_lane_counts.items():
+        metadata = lane_indexes.get(lane)
+        if count == 0:
+            if metadata is not None:
+                raise ValueError(f"empty lane {lane} must have a null lane index")
+        elif not isinstance(metadata, dict) or metadata.get("complete") is not True or metadata.get("total") != count:
+            raise ValueError(f"lane index summary mismatch for {lane}")
+    if ticket.get("schema_version") == SCHEMA_VERSION and computed_lane_counts["website_candidate"]:
+        website_metadata = lane_indexes.get("website_candidate")
+        provenance = website_metadata.get("website_overlay_provenance") if isinstance(website_metadata, dict) else None
+        if not isinstance(provenance, dict) or provenance.get("unexplained_verified_unscored_count") != 0:
+            raise ValueError("refusing final index with missing or unexplained website overlay provenance")
+        if provenance.get("verified_unscored_count") != provenance.get("explicit_exhausted_assessment_failure_count"):
+            raise ValueError("final index contains unexplained verified unscored website records")
+
+    timestamp = now or utc_now()
+    parse_timestamp(timestamp)
+    updated = copy.deepcopy(ticket)
+    updated["consumed_at"] = timestamp
+    updated["consumed_artifact_reference"] = reference
+    updated["updated_at"] = timestamp
+    validate_ticket(updated)
+    return updated
+
+
+def mark_delivered(
+    ticket: dict[str, Any],
+    *,
+    delivery_reference: str,
+    now: str | None = None,
+) -> dict[str, Any]:
+    validate_ticket(ticket)
+    if ticket["lifecycle_status"] not in TERMINAL_STATUSES:
+        raise ValueError("only a terminal ticket may be delivered")
+    if ticket["lifecycle_status"] == "succeeded" and not ticket["consumed_at"]:
+        raise ValueError("successful result must be consumed before delivery")
+    if ticket["delivered_at"]:
+        return copy.deepcopy(ticket)
+    timestamp = now or utc_now()
+    parse_timestamp(timestamp)
+    updated = copy.deepcopy(ticket)
+    updated["delivered_at"] = timestamp
+    updated["delivery_reference"] = _required_text("delivery_reference", delivery_reference)
+    updated["updated_at"] = timestamp
+    validate_ticket(updated)
+    return updated
+
+
+def consume_monitor_budget(ticket: dict[str, Any], *, now: str | None = None) -> dict[str, Any]:
+    """Consume one cron-tick action from a v2 ticket; v1 tickets remain readable."""
+    validate_ticket(ticket)
+    if ticket.get("schema_version") == LEGACY_SCHEMA_VERSION:
+        return copy.deepcopy(ticket)
+    updated = copy.deepcopy(ticket)
+    budget = updated["monitor_budget"]
+    if budget["actions_used"] >= budget["max_actions"]:
+        raise ValueError("monitor budget exhausted")
+    budget["actions_used"] += 1
+    updated["updated_at"] = now or utc_now()
+    parse_timestamp(updated["updated_at"])
+    validate_ticket(updated)
+    return updated
+
+
+def next_action(ticket: dict[str, Any]) -> str:
+    validate_ticket(ticket)
+    if ticket["delivered_at"]:
+        return "stop"
+    status = ticket["lifecycle_status"]
+    if status == "polling":
+        return "poll_metadata"
+    if status == "succeeded":
+        if not ticket["result_claimed_at"]:
+            return "retrieve_result"
+        if not ticket["result_retrieved_at"]:
+            return "recover_claim"
+        if not ticket["consumed_at"]:
+            return "process_result"
+        return "deliver_terminal"
+    return "deliver_terminal"
+
+
+def load_ticket(path: Path) -> dict[str, Any]:
+    ticket = json.loads(path.read_text(encoding="utf-8"))
+    validate_ticket(ticket)
+    return ticket
+
+
+def write_ticket(path: Path, ticket: dict[str, Any]) -> None:
+    validate_ticket(ticket)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(ticket, indent=2, sort_keys=True) + "\n"
+    with tempfile.NamedTemporaryFile(
+        "w", encoding="utf-8", dir=path.parent, prefix=f".{path.name}.", delete=False
+    ) as handle:
+        temporary = Path(handle.name)
+        handle.write(payload)
+        handle.flush()
+        os.fsync(handle.fileno())
+    try:
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+@contextmanager
+def ticket_lock(path: Path, timeout_seconds: float = 5.0) -> Iterator[None]:
+    """Use an OS-backed advisory lock; a crashed process cannot orphan it."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path = path.with_name(path.name + ".lock")
+    deadline = time.monotonic() + timeout_seconds
+    with lock_path.open("a+", encoding="utf-8") as handle:
+        while True:
+            try:
+                fcntl.flock(handle.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+                break
+            except BlockingIOError:
+                if time.monotonic() >= deadline:
+                    raise TimeoutError(f"timed out waiting for ticket lock: {lock_path}")
+                time.sleep(0.05)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
+
+
+def _mutate(path: Path, operation) -> dict[str, Any]:
+    with ticket_lock(path):
+        ticket = load_ticket(path)
+        updated = operation(ticket)
+        write_ticket(path, updated)
+        return updated
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    init = subparsers.add_parser("init")
+    init.add_argument("--file", required=True, type=Path)
+    init.add_argument("--ticket-id", required=True)
+    init.add_argument("--workflow-id", required=True)
+    init.add_argument("--execution-id", required=True)
+    init.add_argument("--application-run-id", required=True)
+    init.add_argument("--deadline-at", required=True)
+    init.add_argument("--now")
+    init.add_argument("--configuration-snapshot", required=True, type=Path)
+    init.add_argument("--monitor-identity", required=True)
+    init.add_argument("--monitor-budget", required=True, type=int)
+
+    for command in ("show", "next-action", "expire"):
+        sub = subparsers.add_parser(command)
+        sub.add_argument("--file", required=True, type=Path)
+        if command == "expire":
+            sub.add_argument("--now")
+
+    observe_parser = subparsers.add_parser("observe")
+    observe_parser.add_argument("--file", required=True, type=Path)
+    observe_parser.add_argument("--execution-status", required=True)
+    observe_parser.add_argument("--error")
+    observe_parser.add_argument("--now")
+
+    claim = subparsers.add_parser("claim-result")
+    claim.add_argument("--file", required=True, type=Path)
+    claim.add_argument("--now")
+
+    retrieved = subparsers.add_parser("mark-retrieved")
+    retrieved.add_argument("--file", required=True, type=Path)
+    retrieved.add_argument("--result-sha256", required=True)
+    retrieved.add_argument("--artifact-reference", required=True)
+    retrieved.add_argument("--now")
+
+    consumed = subparsers.add_parser("mark-consumed")
+    consumed.add_argument("--file", required=True, type=Path)
+    consumed.add_argument("--artifact-reference", required=True)
+    consumed.add_argument("--now")
+
+    delivered = subparsers.add_parser("mark-delivered")
+    delivered.add_argument("--file", required=True, type=Path)
+    delivered.add_argument("--delivery-reference", required=True)
+    delivered.add_argument("--now")
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    path: Path = args.file
+    if args.command == "init":
+        with ticket_lock(path):
+            if path.exists():
+                raise FileExistsError(f"ticket already exists: {path}")
+            result = new_ticket(
+                ticket_id=args.ticket_id,
+                workflow_id=args.workflow_id,
+                execution_id=args.execution_id,
+                application_run_id=args.application_run_id,
+                deadline_at=args.deadline_at,
+                now=args.now,
+                configuration_snapshot=(json.loads(args.configuration_snapshot.read_text(encoding="utf-8")) if args.configuration_snapshot else {"status": "unspecified"}),
+                monitor_identity=args.monitor_identity,
+                monitor_budget=args.monitor_budget,
+            )
+            write_ticket(path, result)
+    elif args.command == "show":
+        result = load_ticket(path)
+    elif args.command == "next-action":
+        ticket = load_ticket(path)
+        result = {"next_action": next_action(ticket), "ticket": ticket}
+    elif args.command == "expire":
+        result = _mutate(path, lambda ticket: expire_if_due(ticket, now=args.now))
+    elif args.command == "observe":
+        result = _mutate(
+            path,
+            lambda ticket: observe(
+                ticket, args.execution_status, error=args.error, now=args.now
+            ),
+        )
+    elif args.command == "claim-result":
+        fetched = False
+        with ticket_lock(path):
+            ticket = load_ticket(path)
+            result, fetched = claim_result(ticket, now=args.now)
+            write_ticket(path, result)
+        result = {"should_fetch_result": fetched, "ticket": result}
+    elif args.command == "mark-retrieved":
+        result = _mutate(
+            path,
+            lambda ticket: mark_retrieved(
+                ticket,
+                result_sha256=args.result_sha256,
+                artifact_reference=args.artifact_reference,
+                now=args.now,
+            ),
+        )
+    elif args.command == "mark-consumed":
+        result = _mutate(
+            path,
+            lambda ticket: mark_consumed(
+                ticket, artifact_reference=args.artifact_reference, now=args.now
+            ),
+        )
+    elif args.command == "mark-delivered":
+        result = _mutate(
+            path,
+            lambda ticket: mark_delivered(
+                ticket, delivery_reference=args.delivery_reference, now=args.now
+            ),
+        )
+    else:  # pragma: no cover
+        raise AssertionError(args.command)
+    print(json.dumps(result, indent=2, sort_keys=True))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

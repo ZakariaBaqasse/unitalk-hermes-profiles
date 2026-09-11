@@ -1,0 +1,23 @@
+{
+  "skill_name": "icp-scoring-and-rationale",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Calculate and explain the ICP score for the accepted James Holub qualification and confidence package.",
+      "expected_output": "A deterministic scoring package with numeric score, final band, component evidence IDs, unearned criteria and confidence interpretation.",
+      "files": ["evaluations/wave1/iteration-8/accepted-artifacts/qualification-output.json"]
+    },
+    {
+      "id": 2,
+      "prompt": "Score a commercial Horse Owner with unknown horse count and at least two strong commercial signals.",
+      "expected_output": "Numeric score remains unchanged but final band is capped at Medium with horse_count_unknown_human_review outcome.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Score a Farrier with confirmed no_professional_evidence.",
+      "expected_output": "Scoring is blocked and the exclusion outcome is preserved; no positive score is invented.",
+      "files": []
+    }
+  ]
+}

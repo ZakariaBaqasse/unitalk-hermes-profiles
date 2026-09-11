@@ -1,0 +1,45 @@
+mapping_version: 1.0.0
+object: people
+mode: one_optional_person_per_n8n_lead
+live_field_manifest: configurations/crm/twenty-person-field-manifest-v1.json
+creation_condition: non_empty_name
+sequence:
+  - require_verified_company_uuid
+  - scan_soft_deleted_people_for_company
+  - preflight_active_people_for_company
+  - decide_create_update_or_hold
+  - write_once
+  - read_back_person
+  - verify_person_fields_and_companyId_relation
+name_mapping:
+  source: name
+  target:
+    firstName: complete_unsplit_name
+    lastName: empty_string
+  split_or_guess: prohibited
+contact_ownership:
+  phones: validated_public_professional_phone_when_present
+  emails: validated_public_professional_email_when_present
+  company_copy: prohibited_after_verified_person_staging
+duplicate_preflight:
+  scope: same_verified_companyId
+  precedence:
+    - exact_email
+    - exact_phone
+    - exact_normalized_full_name
+  soft_deleted_scan: required
+  ambiguity: hold_without_write
+fields:
+  name: FULL_NAME
+  emails: EMAILS maximum 1
+  phones: PHONES maximum 1
+  companyId: verified Company UUID
+  jobTitle: optional public professional title
+failure_rules:
+  uncertain_write_retry: prohibited
+  person_failure_preserves_verified_company: true
+  terminal_states:
+    - company_staged_person_staged
+    - company_staged_person_possible_match
+    - company_staged_person_sync_failed
+prohibited_actions: [delete, outreach, automatic_a2_handoff, hubspot_write]

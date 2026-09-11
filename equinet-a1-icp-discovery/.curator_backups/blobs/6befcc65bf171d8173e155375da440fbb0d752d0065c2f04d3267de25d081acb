@@ -1,0 +1,93 @@
+# Two-lane website enrichment and Company plus Person staging
+
+## Status
+
+Approved target architecture. Router, overlay contract, field-aware REST mapping, durable next-action routing, and component tests are implemented. Full live n8n→cron→enrichment→Twenty validation remains pending.
+
+## Routing contract
+
+Start from one immutable `a1.discovery-result.v1` envelope. Route by exact `lead_fingerprint` without rediscovery, merging, or removal.
+
+```text
+website candidate absent or malformed
+  → direct-unscored lane
+  → Company-first staging with score/band/confidence null and optional linked Person
+  → malformed values retain `invalid_website_candidate` as the fallback reason
+
+valid HTTP(S) website candidate present
+  → verification/enrichment lane
+  → verify official domain with approved web tools
+  → cited enrichment
+  → attempt segment classification, ICP qualification, evidence confidence and deterministic scoring
+  → if the official site is verified, keep the lead non-terminal until classification, qualification and confidence inputs are accepted
+  → if scoring completes, stage the scored overlay
+  → if evidence proves the lead is outside both approved segments, stage an explicit evidence-backed out-of-scope overlay
+  → only after a structured non-retryable assessment failure or retry exhaustion, stage a verified-unscored overlay that retains the official URL
+  → Company-first staging with validated overlay and optional linked Person
+```
+
+A non-empty n8n website value is only a candidate destination. It must not populate `domainName` or support score-driving claims until official-site verification succeeds.
+
+## Failure routing
+
+Website verification or enrichment must be bounded and resumable. If verification is unsuccessful, access is blocked or retries are exhausted, preserve the failure artifact and fall back to unscored staging without `domainName`. If official-site verification succeeds but a downstream assessment wrapper cannot complete, preserve the cited official URL in overlay v2 and fall back to unscored staging with `domainName`. Person creation still follows the immutable `name` field and does not depend on website verification or scoring.
+
+Identity ambiguity and Twenty possible-duplicate/soft-deleted matches remain review holds and do not become fallback creates.
+
+## Overlay boundary
+
+Produce one deterministic overlay per lead fingerprint. It should carry only validated staging values, for example:
+
+```json
+{
+  "lead_fingerprint": "domain:example.com",
+  "website_verification_status": "VERIFIED",
+  "enrichment_status": "COMPLETED",
+  "official_website_url": "https://example.com",
+  "prospect_classification": "farrier_business",
+  "qualification_status": "ELIGIBLE",
+  "scoring": {
+    "status": "SCORED",
+    "score": 72,
+    "band": "MEDIUM",
+    "outcome": "qualified_farrier",
+    "model_version": "1.0.0"
+  },
+  "confidence": {
+    "score": 84,
+    "level": "HIGH",
+    "method_version": "1.1.0"
+  },
+  "enriched_at": "<ISO-8601>"
+}
+```
+
+No-site and fallback overlays must use explicit null score/band/confidence values. A verified-unscored overlay retains `official_website_url`; an unverified/no-site overlay does not. Never use score zero to mean not scored.
+
+## Durable processing index
+
+Maintain one terminal disposition per returned fingerprint across both lanes. The discovery ticket may be consumed only when every lead is either:
+
+- Company staged with verified read-back and required Person staged with verified relation;
+- Company staged with no Person required;
+- Company staged while a required Person is held or has an explicit sync failure;
+- held as a Company possible match;
+- blocked for missing Company name; or
+- recorded with an explicit item-scoped sync failure.
+
+The two lanes converge on one human-review queue. They create one Company and at most one linked Person; they do not create Opportunities, Tasks, messages, campaigns, outreach, HubSpot writes, or automatic A2 handoffs.
+
+## Implemented components
+
+1. Deterministic router with explicit absent, candidate, malformed, and duplicate-fingerprint behavior.
+2. Enrichment state summaries and one-lead-at-a-time deterministic scoring checkpoints.
+3. Versioned routing and overlay schemas plus strict fingerprint coverage.
+4. Live Twenty Company and Person metadata manifests with exact API names, types and cardinality.
+5. REST worker overlay merge, conditional contact ownership, Company-first sequencing and Person duplicate preflight.
+6. Read-back reconciliation of every emitted field and every required Person `companyId` relation.
+7. Deterministic lane-index merger and artifact-driven `next-action` command.
+8. Unit/mock integration coverage.
+
+## Remaining validation
+
+Run a bounded live two-lane discovery through the cron controller, including one no-site Company, one verified/scored Company and one safe fallback case. Verify the combined index and live Twenty read-back before changing deployment status.

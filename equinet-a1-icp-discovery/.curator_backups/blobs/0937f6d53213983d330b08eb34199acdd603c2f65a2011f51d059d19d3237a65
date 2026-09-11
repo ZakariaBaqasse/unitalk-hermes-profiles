@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1/confidence-assessment/1.0.0",
+  "title": "Equinet A1 Rich Confidence Assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "method_version", "candidate_reference", "available_evidence_ids", "dimensions", "gates", "confidence_stage_missing_fields"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "method_version": {"const": "evidence-confidence-1.0.0"},
+    "candidate_reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "seed_id"],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 6},
+        "seed_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9:._/-]{2,199}$"}
+      }
+    },
+    "available_evidence_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^EV-[A-Z0-9_-]{3,50}$"}, "uniqueItems": true},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity_certainty", "source_quality", "evidence_directness", "corroboration", "freshness", "completeness"],
+      "properties": {
+        "identity_certainty": {"$ref": "#/$defs/dimension"},
+        "source_quality": {"$ref": "#/$defs/dimension"},
+        "evidence_directness": {"$ref": "#/$defs/dimension"},
+        "corroboration": {"$ref": "#/$defs/dimension"},
+        "freshness": {"$ref": "#/$defs/dimension"},
+        "completeness": {"$ref": "#/$defs/dimension"}
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mandatory_claim_inference_only", "unresolved_identity_conflict", "critical_evidence_conflict", "minimum_data_failed", "blocked_source_used", "no_evidence", "fabricated_or_untraceable_evidence"],
+      "properties": {
+        "mandatory_claim_inference_only": {"$ref": "#/$defs/gate"},
+        "unresolved_identity_conflict": {"$ref": "#/$defs/gate"},
+        "critical_evidence_conflict": {"$ref": "#/$defs/gate"},
+        "minimum_data_failed": {"$ref": "#/$defs/gate"},
+        "blocked_source_used": {"$ref": "#/$defs/gate"},
+        "no_evidence": {"$ref": "#/$defs/gate"},
+        "fabricated_or_untraceable_evidence": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "confidence_stage_missing_fields": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
+  },
+  "$defs": {
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "evidence_ids", "rationale"],
+      "properties": {
+        "level": {"type": "string", "minLength": 1},
+        "evidence_ids": {"type": "array", "items": {"type": "string", "pattern": "^EV-[A-Z0-9_-]{3,50}$"}, "uniqueItems": true},
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 1000}
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "evidence_ids", "rationale"],
+      "properties": {
+        "value": {"type": "boolean"},
+        "evidence_ids": {"type": "array", "items": {"type": "string", "pattern": "^EV-[A-Z0-9_-]{3,50}$"}, "uniqueItems": true},
+        "rationale": {"type": "string", "minLength": 1, "maxLength": 1000}
+      }
+    }
+  }
+}

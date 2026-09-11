@@ -1,0 +1,3 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"a1.website-enrichment-explicit-fallback.v2","type":"object","additionalProperties":false,"required":["schema_version","lead_id","failure_code","attempted_at","attempts","retries_exhausted"],"properties":{"schema_version":{"const":"a1.website-enrichment-explicit-fallback.v2"},"lead_id":{"type":"string","minLength":1},"failure_code":{"type":"string","pattern":"^[a-z][a-z0-9_]{2,63}$"},"attempted_at":{"type":"string","format":"date-time"},"attempts":{"type":"integer","minimum":1},"retries_exhausted":{"const":true},"detail":{"type":"string"}}
+}

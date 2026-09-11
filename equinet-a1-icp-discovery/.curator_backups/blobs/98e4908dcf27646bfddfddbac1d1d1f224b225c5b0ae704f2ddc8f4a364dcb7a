@@ -1,0 +1,174 @@
+---
+name: equinet-n8n-discovery-control
+description: Run n8n discovery and stage Companies plus linked People.
+version: 3.3.0
+author: Equinet / Unitalk, Hermes Agent
+license: MIT
+platforms: [linux]
+status: production_active
+metadata:
+  hermes:
+    tags: [equinet, n8n, mcp, cron, discovery, twenty]
+    related_skills: [hermes-automation-routing, mcp-server-connectivity-testing, evidence-aware-crm-staging]
+---
+
+# Equinet n8n Discovery and Twenty Staging Control
+
+Use this skill to start the exposed Equinet n8n discovery orchestrator, retrieve its compact result exactly once, and stage each returned lead as a Twenty Company plus one linked Person whenever n8n supplies `name`.
+
+## Mandatory path
+
+```text
+n8n discovery and read-only HubSpot domain screen
+→ durable polling ticket
+→ retrieve Build Final Discovery Result once
+→ deterministic routing by website-candidate presence
+→ no-website lane: unscored Twenty Company staging
+→ website lane: official-site verification and cited enrichment, followed by classification, qualification, confidence and deterministic scoring when inputs permit
+→ website-lane Company staging with overlay v2; verified-unscored items retain `domainName`, while pre-verification failures omit it
+→ merge both staging indexes with exact original-fingerprint coverage
+→ human review in Twenty
+```
+
+Ranked review packages, exports and A2 remain optional after human request. A website value returned by n8n is only a candidate destination until the AI Collaborator verifies the official site. The production acceptance does not require one cited execution to exercise both website-routing lanes. Operational commands and recovery boundaries are in `references/two-lane-processing-runbook.md`.
+
+## Hard boundaries
+
+- Create or update one Twenty Company per named lead, then create or update one linked Person when `name` is present.
+- Resolve Company name as `business_name or name`. Never split or guess the Person name: write the complete `name` to `name.firstName` and `""` to `name.lastName`.
+- Route phone/email exclusively to Person when one is expected; otherwise retain them on Company.
+- Stage every named lead: no-website and item-level enrichment-failure leads are unscored; verified website leads always carry the accepted official URL and carry qualification, score and confidence only when those assessments completed.
+- Never treat an n8n website candidate as verified evidence or write it to `domainName` before official-site verification.
+- New Companies use `discoveryStatus: DISCOVERED`.
+- Preserve existing reviewer-controlled status when updating.
+- Never write HubSpot, create Opportunities/Tasks/campaigns/messages, invoke A2 or initiate outreach.
+- Never invent a Company name. Missing names end as `blocked_missing_company_name`.
+
+## Discovery request input contract
+
+Supply the main orchestrator through the MCP `webhook` input shape, using a `POST` body. The workflow's live validation node accepts:
+
+```json
+{
+  "requested_count": 10,
+  "segment": "farrier",
+  "location": {
+    "country": "Australia",
+    "country_code": "AU",
+    "region": "Victoria",
+    "region_code": "VIC",
+    "state": "Victoria",
+    "state_code": "VIC",
+    "city": "Melbourne",
+    "city_slug": "melbourne",
+    "location_display": "Melbourne, Victoria, Australia",
+    "location_key": "AU|VIC|melbourne"
+  }
+}
+```
+
+Accepted fields:
+
+- `requested_count` (preferred) or `target_count`: numeric requested lead count; defaults to `100`, minimum `1`.
+- `overfetch_factor`: numeric, defaults to `2`, minimum `1`; n8n derives `discovery_target = ceil(requested_count × overfetch_factor)`.
+- `segment`: `farrier` (default) or `horse_owner`; any other value is rejected.
+- `location`: canonical object. Country, region/state and city are required. The user supplies the names; the profile derives country and region codes with `scripts/resolve_discovery_location.py`. No location default is allowed.
+- `focus`: optional array.
+- `run_id`: optional; n8n generates one if omitted.
+- `source_policy_version`: set to the active `2.0.0` source policy.
+
+Before constructing the webhook body, require the user to supply country, region/state and city. If one is missing, ambiguous or conflicts with a supplied code, ask the user and do not invoke n8n. If all three names are complete and unambiguous, no additional confirmation is required. Resolve the canonical location with the approved mapping; never guess a code. Keep the request within the active runtime candidate limit. The code accepts the body from `$json.body` or `$json`, but MCP runs should use `inputs: { type: "webhook", webhookData: { method: "POST", body: ... } }`.
+
+## Start procedure
+
+1. Confirm the exposed main n8n orchestrator by immutable workflow ID using live MCP metadata.
+2. Resolve and validate the complete country, region/state and city against `configurations/geography/location-resolution-v1.json`, validate count and segment, then execute once through the active published production workflow.
+3. Create the durable ticket with:
+
+```text
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py init \
+  --file runtime/n8n-poll-tickets/<ticket-id>.json \
+  --ticket-id <ticket-id> \
+  --workflow-id <workflow-id> \
+  --execution-id <execution-id> \
+  --application-run-id <run-id> \
+  --deadline-at <UTC-deadline>
+```
+
+4. Create one finite cron monitor with:
+   - schedule exactly `every 2m`;
+   - enough finite repeats for polling **and staging**, not only the n8n deadline;
+   - skills `equinet-n8n-discovery-control`, `post-n8n-public-website-enrichment`, `prospect-segment-classification`, `equinet-icp-qualification`, `prospect-evidence-and-confidence`, `icp-scoring-and-rationale`, `a1-prospect-data-contract`, and `evidence-aware-crm-staging`;
+   - enabled toolsets including `terminal`, `file`, `web`, and `n8n`; the deterministic staging script calls Twenty REST directly and does not require the model-facing `twenty` toolset;
+   - the Equinet profile root as `workdir`;
+   - a verified delivery target;
+   - the self-contained prompt below.
+5. Verify the job schedule, repeat count, workdir, delivery, both skills, and all three required toolsets.
+
+The agent-facing cron tool cannot pin a model. This profile must keep `cron.model: gpt-5.6-terra` and `cron.model_provider: openai-api` configured independently of the chat model.
+
+## Self-contained cron prompt
+
+```text
+Monitor Equinet n8n ticket <absolute-ticket-path>. This is a fresh cron session.
+Use python3 with the full profile-relative skill paths below; do not invoke absolute interpreter binaries. Never call cronjob from this cron run and never rerun or modify n8n.
+
+Run `python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py expire --file <ticket>` and then `next-action`.
+
+For poll_metadata, call the runtime-discovered n8n execution-detail tool with includeData=false. Persist status with poll_ticket.py observe. Return [SILENT] when non-terminal and unchanged.
+
+For retrieve_result, claim first. Retrieve exactly `Build Final Discovery Result` with includeData=true, nodeNames restricted to that node and truncateData=1. Persist the compact envelope, SHA-256 and mark-retrieved. Never fetch all-node execution data.
+
+For recover_claim, do not retrieve again automatically; report operator recovery required.
+
+For process_result:
+1. Validate `contract_version: a1.discovery-result.v1`.
+2. Use a deterministic sibling work directory named `two-lane-v1`. Run `python3 skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py next-action --input <discovery-result.json> --work-dir <two-lane-v1>` before acting. Never infer the next phase from conversation history.
+3. For `route_result`, run the router into `<two-lane-v1>`. It writes immutable lane subsets, a routing index, and no-website overlays keyed by exact fingerprint.
+4. For `stage_no_website`, run `stage_twenty_rest.py` with the no-website subset and no-website overlays into `<two-lane-v1>/staging-no-website`. Skip this action when that lane count is zero. Never reuse a non-empty incomplete staging directory.
+5. For `init_enrichment`, initialise `enrichment-state.json` from the website-candidate subset.
+6. For `research_enrichment_batch`, request a stable batch of at most five. For each lead, verify the official site with approved web tools, retain destination citations, and supply evidence-linked classification, qualification and confidence assessments when supported. Accept results atomically. Item-level source/access failures use bounded retries and then an explicit terminal failure. If deterministic assessment configuration or schema execution fails after official-site verification, retain the accepted website and continue through the verified-unscored overlay; failures before verification require operator repair. Use the profile-local `.venv/bin/python` for classification and assessment validators; never install packages during a run.
+7. For `run_ready_scoring`, execute `.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py run-ready` for one ready lead so each successful score is checkpointed independently. The checked profile environment is provisioned from `configurations/operations/a1-python-runtime-requirements.txt`.
+8. For `build_website_overlays`, generate and validate overlay v2. Failed/none-found items become explicit unscored overlays without a domain; verified-but-unscored items retain the accepted official URL with null assessment values; scored items carry the full dedicated Twenty field values.
+9. For `stage_website`, run `stage_twenty_rest.py` with the website subset and website overlays into `<two-lane-v1>/staging-website`.
+10. For `merge_indexes`, merge lane indexes into `<two-lane-v1>/final-staging-index.json` using `a1.twenty-entity-staging-index.v3`, requiring exact source hash, lane membership, Company/Person expectation coverage, verified IDs and relation reconciliation. Empty lanes require no lane index.
+11. Only after the final index is complete, run poll_ticket.py mark-consumed with that final index path. `mark-consumed` rechecks the retrieved result hash, run ID, fingerprint order, lane membership, aggregate counts, Company IDs, expected Person IDs, `companyId` relation status and both reconciliation artifacts.
+12. Any `operator_repair_*` action must stop and report the exact persisted blocker. Never repeat an uncertain write, re-fetch n8n data, or recursively manage cron.
+
+For deliver_terminal, summarize routed no-website and website-candidate counts, enriched/scored/fallback counts, staged/possible-match/sync-failed/missing-name counts, and the final-index reference. State the HubSpot screen limitation and human-review boundary. Mark delivered immediately before returning the summary.
+
+For stop, return [SILENT].
+```
+
+## Ticket commands
+
+Always use the complete skill-relative path:
+
+```text
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py show --file <ticket>
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py expire --file <ticket>
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py next-action --file <ticket>
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py observe --file <ticket> --execution-status <status>
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py claim-result --file <ticket>
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py mark-retrieved --file <ticket> --result-sha256 <sha256> --artifact-reference <path>
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py mark-consumed --file <ticket> --artifact-reference <staging-index-path>
+python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py mark-delivered --file <ticket> --delivery-reference <target-or-message-id>
+```
+
+## Result-integrity hold
+
+Before routing or staging, compare the compact result's `source_policy.registry_version` with the active runtime policy's accepted labels and confirm that the returned lead list can account for the reported candidate totals. If the returned policy version is not accepted, or `discovered_unique`/`returned` implies candidates were found but `leads[]` is empty, persist and mark the result retrieved exactly once, then hold for operator repair. Do not fabricate missing leads, create a zero-coverage staging index, consume the ticket, or retry retrieval. Pause its monitor after recording the blocker.
+
+## Completion standard
+
+A successful run is complete only when:
+
+- the compact n8n result was retrieved exactly once;
+- every returned lead fingerprint appears once in the complete combined staging index;
+- no-website and terminal item-level enrichment failures are explicitly unscored rather than assigned zero;
+- website candidates are written to `domainName` only after official-site verification;
+- every successful Company write has a Twenty Company ID and verified read-back;
+- every lead with `name` has a terminal Person disposition, and every successful Person write has a Twenty Person ID plus verified `companyId` relation;
+- missing-name, ambiguous-match and sync-failure outcomes are explicit;
+- the ticket's consumed artifact is the complete combined staging index v3 and has passed source-hash, fingerprint-order, lane-membership, entity-coverage and reconciliation-evidence validation;
+- HubSpot remained read-only, no Twenty object outside Company plus its optional linked Person was created, and no outreach/A2 action occurred.

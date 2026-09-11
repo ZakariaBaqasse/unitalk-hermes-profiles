@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "equinet.n8n-poll-ticket.v2",
+  "title": "Equinet n8n Polling Ticket V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "ticket_id", "workflow_id", "execution_id", "application_run_id", "final_node", "lifecycle_status", "n8n_execution_status", "poll_count", "created_at", "updated_at", "deadline_at", "last_polled_at", "terminal_at", "terminal_error", "result_claimed_at", "result_retrieved_at", "result_sha256", "result_artifact_reference", "consumed_at", "consumed_artifact_reference", "delivered_at", "delivery_reference", "configuration_snapshot", "monitor_identity", "monitor_budget"],
+  "properties": {
+    "schema_version": {"const": "equinet.n8n-poll-ticket.v2"},
+    "ticket_id": {"type": "string", "minLength": 1},
+    "workflow_id": {"type": "string", "minLength": 1},
+    "execution_id": {"type": "string", "minLength": 1},
+    "application_run_id": {"type": "string", "minLength": 1},
+    "final_node": {"const": "Build Final Discovery Result"},
+    "lifecycle_status": {"enum": ["polling", "succeeded", "failed", "cancelled", "timed_out"]},
+    "n8n_execution_status": {"type": "string", "minLength": 1},
+    "poll_count": {"type": "integer", "minimum": 0},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "deadline_at": {"type": "string", "format": "date-time"},
+    "last_polled_at": {"type": ["string", "null"], "format": "date-time"},
+    "terminal_at": {"type": ["string", "null"], "format": "date-time"},
+    "terminal_error": {"type": ["string", "null"]},
+    "result_claimed_at": {"type": ["string", "null"], "format": "date-time"},
+    "result_retrieved_at": {"type": ["string", "null"], "format": "date-time"},
+    "result_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "result_artifact_reference": {"type": ["string", "null"]},
+    "consumed_at": {"type": ["string", "null"], "format": "date-time"},
+    "consumed_artifact_reference": {"type": ["string", "null"]},
+    "delivered_at": {"type": ["string", "null"], "format": "date-time"},
+    "delivery_reference": {"type": ["string", "null"]},
+    "configuration_snapshot": {"type": "object", "minProperties": 1},
+    "monitor_identity": {"type": "string", "minLength": 1},
+    "monitor_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_actions", "actions_used"],
+      "properties": {
+        "max_actions": {"type": "integer", "minimum": 1},
+        "actions_used": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

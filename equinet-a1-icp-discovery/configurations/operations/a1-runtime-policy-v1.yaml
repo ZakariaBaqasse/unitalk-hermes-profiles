@@ -1,7 +1,7 @@
 policy_id: equinet-a1-runtime-policy
-policy_version: 4.2.0
+policy_version: 4.3.0
 status: production_active_e2e_validated
-approved_at: 2026-09-04
+approved_at: 2026-09-10
 applies_to_profile: equinet-a1-icp-discovery
 
 responsibility_boundary:
@@ -36,12 +36,16 @@ control_plane:
   final_node: Build Final Discovery Result
   result_contract: a1.discovery-result.v1
   polling:
+    ticket_schema: equinet.n8n-poll-ticket.v2
     metadata_only_until_terminal: true
     include_data_after_success_only: true
     node_names: [Build Final Discovery Result]
     truncate_data_items_per_node: 1
     unchanged_tick_output: "[SILENT]"
     recursive_cron_management: prohibited
+    configuration_snapshot_required_for_new_runs: true
+    configuration_drift_action: operator_repair
+    finite_monitor_action_budget_required: true
   exactly_once_markers:
     - result_claimed_at
     - result_retrieved_at
@@ -150,6 +154,17 @@ policy_changes:
       - routed phone and email exclusively to Person when expected, otherwise to Company
       - added Person duplicate preflight, soft-delete holds and terminal partial-failure states
     implementation_status: policy_worker_contract_and_regression_tests_updated
+  - version: 4.3.0
+    effective_at: 2026-09-10
+    authorised_by: authorised_user_current_session
+    changes:
+      - separated website research, assessment and scoring into versioned durable states
+      - required per-lead owner, lease, expiry and revision checks for mutable transitions
+      - made verified website records with missing assessments non-terminal and non-stageable
+      - limited verified-unscored fallback to explicit non-retryable or retry-exhausted assessment failures backed by persisted failure history
+      - added configuration snapshots, drift holds, finite monitor budgets and website-overlay provenance gates
+      - preserved ICP criteria, scoring weights, geography, source permissions and Company plus optional linked Person scope
+    implementation_status: offline_contract_and_regression_validated_live_post_change_run_pending
 
 post_discovery:
   mandatory_path: retrieve_validate_route_enrich_when_supported_and_stage_companies_plus_optional_linked_people
@@ -160,9 +175,26 @@ post_discovery:
   staging_index_required: true
   route_by_website_candidate: true
   no_website_lane: stage_unscored_without_web_research
-  website_candidate_lane: verify_then_score_when_inputs_are_available_and_stage
+  website_candidate_lane: verify_then_assess_then_score_and_stage
   website_candidate_is_not_verified_evidence: true
-  verified_official_site_without_scoring_inputs: stage_domain_with_explicit_not_scored_assessment
+  enrichment_state_contract: a1.website-enrichment-state.v2
+  research_result_contract: a1.website-enrichment-research-results.v2
+  assessment_submission_contract: a1.website-enrichment-assessment-submissions.v2
+  explicit_fallback_contract: a1.website-enrichment-explicit-fallback.v2
+  verified_official_site_without_assessment_inputs: assessment_pending_block_staging
+  verified_unscored_fallback_requires:
+    - persisted_verified_destination_evidence
+    - persisted_assessment_or_scoring_failure_history
+    - structured_failure_code
+    - non_retryable_failure_or_retry_exhaustion
+    - explicit_terminal_assessment_failed_state
+  automatic_missing_pipeline_input_fallback: prohibited
+  per_lead_claim:
+    owner_required: true
+    lease_id_required: true
+    lease_expiry_required: true
+    compare_and_swap_revision_required: true
+    expired_claim_recovery_allowed: true
   item_level_enrichment_failure: fall_back_to_unscored_company_staging
   combined_index_requires_every_original_fingerprint: true
   missing_company_name_disposition: blocked_missing_company_name
@@ -247,8 +279,12 @@ failure_policy:
   staging_sync_failure: persist_and_require_safe_recovery_without_blind_retry
   person_partial_failure: preserve_verified_company_and_terminal_person_status
   staging_missing_company_name: persist_block_without_guessing
-  item_level_enrichment_failure: checkpoint_and_fallback_to_unscored_staging
-  deterministic_enrichment_or_scoring_failure_after_verified_site: retain_verified_domain_and_fallback_to_unscored_staging
+  item_level_enrichment_failure: checkpoint_with_structured_failure_and_apply_bounded_retry_policy
+  missing_assessment_inputs_after_verified_site: remain_nonterminal_and_block_staging
+  deterministic_enrichment_or_scoring_failure_after_verified_site: retain_verified_evidence_and_fallback_only_after_non_retryable_failure_or_retry_exhaustion
+  explicit_verified_unscored_fallback_without_matching_failure_history: prohibited
+  configuration_drift_during_run: operator_repair
+  monitor_action_budget_exhaustion: operator_repair
   deterministic_failure_before_official_site_verification: stop_for_operator_repair
   never_restart_paid_or_remote_work_blindly: true
 

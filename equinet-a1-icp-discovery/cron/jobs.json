@@ -1,9 +1,9 @@
 {
   "jobs": [
     {
-      "id": "ecb5b228a1a2",
-      "name": "equinet-a1-A1-20260907195529-LEX10-monitor",
-      "prompt": "Monitor the persisted Equinet n8n ticket `runtime/n8n-poll-tickets/A1-20260907195529-LEX10.json` in this fresh cron session. Do not invoke cronjob, re-run/modify n8n, repeat source discovery, broaden HubSpot checks, initiate outreach, invoke A2, or write any Twenty object other than Companies and linked People through the deterministic worker.\n\nUse PATH-selected python3 and the profile-relative scripts. First run `poll_ticket.py expire` and `next-action`. For `poll_metadata`, use the runtime n8n execution-detail tool with `includeData:false`, then persist the observed status. Return `[SILENT]` for unchanged non-terminal state.\n\nFor `retrieve_result`, first atomically claim the result. Retrieve execution data exactly once using `includeData:true`, `nodeNames:[\"Build Final Discovery Result\"]`, bounded `truncateData:1`; save only the compact result under the ticket runtime directory, SHA-256 it, then mark retrieved. Never retrieve all execution nodes. Validate contract `a1.discovery-result.v1`, source-policy acceptance and totals/leads integrity. Any integrity failure is an operator repair hold, not a retry.\n\nFor `process_result`, follow the exact deterministic next action from `skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py next-action`, using sibling work directory `runtime/n8n-poll-tickets/two-lane-v1-A1-20260907195529-LEX10` and immutable original result. Route by website-candidate presence. Stage no-website records as explicit unscored overlays through `stage_twenty_rest.py`, after its normal duplicate preflight/read-back reconciliation. For website candidates, use approved web tools only to verify official sites and capture cited destination-page evidence; run the classification/qualification/confidence/scoring wrappers only when their required inputs are complete. Item-level access/verification failures fall back to unscored staging without domainName; cited verified sites with incomplete later assessment retain domainName in a verified-unscored overlay. Never infer evidence from discovery context. Generate validated website overlays, stage the website lane once, merge indexes requiring exact fingerprint, Company/Person coverage and reconciliation evidence. Do not reuse incomplete nonempty staging dirs or retry uncertain writes.\n\nWhen complete, mark consumed only with the merged `a1.twenty-entity-staging-index.v3` artifact. For terminal delivery, mark delivered and report aggregate lead routing, assessment and staging dispositions, the final-index path, preservation of returned HubSpot-screening status only, and the mandatory human-review/no-outreach boundary. For operator repair or terminal n8n failure, report the persisted blocker and stop. For stop, return `[SILENT]`.",
+      "id": "3581370c0b2d",
+      "name": "equinet-n8n-monitor-A1-20260911124516-B16386",
+      "prompt": "Monitor Equinet n8n ticket /opt/data/profiles/equinet-a1-icp-discovery/runtime/n8n-poll-tickets/A1-20260911124516-B16386.json. This is a fresh cron session.\nUse python3 with the full profile-relative skill paths below; do not invoke absolute interpreter binaries. Never call cronjob from this cron run and never rerun or modify n8n.\n\nRun `python3 skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py expire --file /opt/data/profiles/equinet-a1-icp-discovery/runtime/n8n-poll-tickets/A1-20260911124516-B16386.json` and then `next-action`.\n\nFor poll_metadata, call the runtime-discovered n8n execution-detail tool with includeData=false. Persist status with poll_ticket.py observe. Return [SILENT] when non-terminal and unchanged.\n\nFor retrieve_result, claim first. Retrieve exactly `Build Final Discovery Result` with includeData=true, nodeNames restricted to that node and truncateData=1. Persist the compact envelope, SHA-256 and mark-retrieved. Never fetch all-node execution data.\n\nFor recover_claim, do not retrieve again automatically; report operator recovery required.\n\nFor process_result:\n1. Validate `contract_version: a1.discovery-result.v1`.\n2. Use a deterministic sibling work directory named `two-lane-v1`. Run `python3 skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py next-action --input <discovery-result.json> --work-dir <two-lane-v1>` before acting. Never infer the next phase from conversation history.\n3. For `route_result`, run the router into `<two-lane-v1>`. It writes immutable lane subsets, a routing index, and no-website overlays keyed by exact fingerprint.\n4. For `stage_no_website`, run `stage_twenty_rest.py` with the no-website subset and no-website overlays into `<two-lane-v1>/staging-no-website`. Skip this action when that lane count is zero. Never reuse a non-empty incomplete staging directory.\n5. For `init_enrichment`, initialise `a1.website-enrichment-state.v2` from the website-candidate subset.\n6. For `research_enrichment_batch`, request only the research phase (`next --phase research`), claim each lead with the cron job ID, lease ID and expected revision, verify the official site with approved web tools, retain destination citations, and submit one `a1.website-enrichment-research-results.v2` record per claim. A verified result moves to `assessment_pending`; it is not terminal. Item-level source/access failures use structured failure codes and bounded retries.\n7. For `assessment_enrichment_batch`, request only the assessment phase, claim each lead, and submit evidence-linked classification, qualification and confidence objects separately. Unknown facts remain explicit `unknown` values. Evidence-backed `out_of_scope` may terminate without fabricated downstream objects. Omitted assessment objects are incomplete work, not fallback.\n8. For `run_ready_scoring`, execute `.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py run-ready` for one ready lead with the cron job ID as owner. Each successful score is checkpointed independently. Retriable wrapper failures are bounded; deterministic schema/configuration failures stop for operator repair instead of looping.\n9. For `build_website_overlays`, generate and validate overlays only after the v2 state summary reports `build_overlays`. Allowed outcomes are scored, evidence-backed out-of-scope, researched none-found, terminal verification failure, or explicit exhausted assessment failure. A missing n8n website candidate remains `website_candidate_not_provided`. Any unexplained verified-unscored item blocks staging.\n10. For `stage_website`, run `stage_twenty_rest.py` with the website subset and website overlays into `<two-lane-v1>/staging-website`. The worker must reject unexplained verified-unscored overlays before any write.\n11. For `merge_indexes`, merge lane indexes into `<two-lane-v1>/final-staging-index.json` using `a1.twenty-entity-staging-index.v3`, requiring exact source hash, lane membership, Company/Person expectation coverage, verified IDs, relation reconciliation and clean website-overlay provenance. Empty lanes require no lane index.\n12. Only after the final index is complete, run poll_ticket.py mark-consumed with that final index path. `mark-consumed` rechecks the retrieved result hash, run ID, fingerprint order, lane membership, aggregate counts, website-overlay provenance, Company IDs, expected Person IDs, `companyId` relation status and both reconciliation artifacts.\n13. Any `operator_repair_*` action must stop and report the exact persisted blocker. Never repeat an uncertain write, re-fetch n8n data, or recursively manage cron.\n\nFor deliver_terminal, summarize routed no-website and website-candidate counts, enriched/scored/fallback counts, staged/possible-match/sync-failed/missing-name counts, and the final-index reference. State the HubSpot screen limitation and human-review boundary. Mark delivered immediately before returning the summary.\n\nFor stop, return [SILENT].",
       "skills": [
         "equinet-n8n-discovery-control",
         "post-n8n-public-website-enrichment",
@@ -22,6 +22,9 @@
       "base_url": null,
       "script": null,
       "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
       "context_from": null,
       "schedule": {
         "kind": "interval",
@@ -30,19 +33,20 @@
       },
       "schedule_display": "every 2m",
       "repeat": {
-        "times": 30,
-        "completed": 2
+        "times": 60,
+        "completed": 15
       },
-      "enabled": false,
-      "state": "paused",
-      "paused_at": "2026-09-07T19:59:18.595981+00:00",
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
       "paused_reason": null,
-      "created_at": "2026-09-07T19:56:02.295604+00:00",
-      "next_run_at": "2026-09-07T20:00:46.248063+00:00",
-      "last_run_at": "2026-09-07T19:58:46.248063+00:00",
+      "created_at": "2026-09-11T12:45:59.344224+00:00",
+      "next_run_at": "2026-09-11T13:40:11.004628+00:00",
+      "last_run_at": "2026-09-11T13:38:11.004628+00:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
+      "failure_streak": 0,
       "deliver": "local",
       "origin": null,
       "enabled_toolsets": [
@@ -55,5 +59,5 @@
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-07T19:59:18.597003+00:00"
+  "updated_at": "2026-09-11T13:38:11.004903+00:00"
 }

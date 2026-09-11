@@ -1,0 +1,1280 @@
+#!/usr/bin/env python3
+"""Stage an a1.discovery-result.v1 into Twenty Companies and optional People.
+
+This deterministic worker reads lead data locally and calls Twenty's REST API.
+It never emits lead rows or phone values to stdout. Authentication comes from
+TWENTY_API_KEY; TWENTY_BASE_URL defaults to https://api.twenty.com.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import os
+import re
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+HELPER_PATH = SCRIPT_DIR / "stage_twenty_company.py"
+DEFAULT_FIELD_MANIFEST = SCRIPT_DIR.parents[3] / "configurations" / "crm" / "twenty-company-field-manifest-v1.json"
+DEFAULT_PERSON_FIELD_MANIFEST = SCRIPT_DIR.parents[3] / "configurations" / "crm" / "twenty-person-field-manifest-v1.json"
+TERMINAL_DISPOSITIONS = {
+    "company_staged_person_staged",
+    "company_staged_no_person_required",
+    "company_staged_person_possible_match",
+    "company_staged_person_sync_failed",
+    "company_possible_match",
+    "company_sync_failed",
+    "blocked_missing_company_name",
+}
+
+
+def load_helper() -> Any:
+    spec = importlib.util.spec_from_file_location("stage_twenty_company", HELPER_PATH)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("Could not load stage_twenty_company.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+helper = load_helper()
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def canonical_json(value: Any) -> str:
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    with path.open(encoding="utf-8") as handle:
+        value = json.load(handle)
+    if not isinstance(value, dict):
+        raise ValueError(f"{path} must contain a JSON object")
+    return value
+
+
+def reject_unexplained_verified_unscored(overlays: dict[str, Any] | None) -> None:
+    if overlays is None:
+        return
+    rows = overlays.get("overlays")
+    if not isinstance(rows, list):
+        raise ValueError("overlay document requires overlays array")
+    for overlay in rows:
+        if not isinstance(overlay, dict):
+            raise ValueError("every overlay must be an object")
+        if overlay.get("website_status") == "verified" and overlay.get("icp_score_status") == "NOT_SCORED":
+            provenance = (overlay.get("notes") or {}).get("outcome_provenance")
+            if (overlay.get("enrichment_status") != "failed" or not isinstance(provenance, dict)
+                    or provenance.get("outcome") != "assessment_failed"
+                    or provenance.get("retries_exhausted") is not True
+                    or not helper.optional_text(provenance.get("failure_code"))):
+                raise ValueError("verified unscored website overlay lacks explicit exhausted assessment failure provenance")
+
+
+def validate_field_manifest(manifest: dict[str, Any]) -> None:
+    expected = {
+        "discoveryFingerprint": ("TEXT", None, True),
+        "discoverySourceNotes": ("TEXT", None, True),
+        "discoveryStatus": ("SELECT", {"ELIGIBLE", "DISCOVERED", "HELD", "REJECTED"}, True),
+        "domainName": ("LINKS", None, True),
+        "email": ("EMAILS", None, True),
+        "qualificationStatus": ("SELECT", helper.QUALIFICATION_VALUES, True),
+        "icpScoreStatus": ("SELECT", helper.SCORE_STATUS_VALUES, True),
+        "icpScore": ("NUMBER", None, True),
+        "icpBand": ("SELECT", helper.BAND_VALUES, True),
+        "icpOutcome": ("TEXT", None, True),
+        "evidenceConfidenceScore": ("NUMBER", None, True),
+        "evidenceConfidenceLevel": ("SELECT", helper.CONFIDENCE_VALUES, True),
+    }
+    fields = manifest.get("fields")
+    if manifest.get("schema_version") != "a1.twenty-company-field-manifest.v1" or not isinstance(fields, dict):
+        raise ValueError("Invalid Twenty Company field manifest")
+    for name, (field_type, options, nullable) in expected.items():
+        field = fields.get(name)
+        if not isinstance(field, dict) or field.get("type") != field_type:
+            raise ValueError(f"Twenty field manifest mismatch for {name}")
+        if field.get("writable") is not True or field.get("nullable") is not nullable:
+            raise ValueError(f"Twenty field writability/nullability mismatch for {name}")
+        if field_type == "NUMBER" and field.get("decimals") != 0:
+            raise ValueError(f"Twenty numeric field precision mismatch for {name}")
+        if options is not None and set(field.get("options", [])) != set(options):
+            raise ValueError(f"Twenty Select options mismatch for {name}")
+
+
+def validate_person_field_manifest(manifest: dict[str, Any]) -> None:
+    expected = {
+        "name": ("FULL_NAME", True),
+        "emails": ("EMAILS", True),
+        "phones": ("PHONES", True),
+        "company": ("RELATION", True),
+        "jobTitle": ("TEXT", True),
+    }
+    fields = manifest.get("fields")
+    if manifest.get("schema_version") != "a1.twenty-person-field-manifest.v1" or not isinstance(fields, dict):
+        raise ValueError("Invalid Twenty Person field manifest")
+    for name, (field_type, nullable) in expected.items():
+        field = fields.get(name)
+        if not isinstance(field, dict) or field.get("type") != field_type:
+            raise ValueError(f"Twenty Person field manifest mismatch for {name}")
+        if field.get("writable") is not True or field.get("nullable") is not nullable:
+            raise ValueError(f"Twenty Person field writability/nullability mismatch for {name}")
+    for name in ("emails", "phones"):
+        if fields[name].get("max_number_of_values") != 1:
+            raise ValueError(f"Twenty Person field cardinality mismatch for {name}")
+    if fields["company"].get("write_via") != "companyId":
+        raise ValueError("Twenty Person relation must be written via companyId")
+
+
+def atomic_json(path: Path, value: Any) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rendered = json.dumps(value, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    temp = path.with_name(f".{path.name}.tmp.{os.getpid()}")
+    with temp.open("w", encoding="utf-8") as handle:
+        os.chmod(temp, 0o600)
+        handle.write(rendered)
+        handle.flush()
+        os.fsync(handle.fileno())
+    os.replace(temp, path)
+    directory_fd = os.open(path.parent, os.O_RDONLY)
+    try:
+        os.fsync(directory_fd)
+    finally:
+        os.close(directory_fd)
+
+
+def safe_item_dir(root: Path, index: int, fingerprint: str) -> Path:
+    digest = hashlib.sha256(fingerprint.encode("utf-8")).hexdigest()[:16]
+    return root / "items" / f"item-{index:03d}-{digest}"
+
+
+def safe_message(value: Any, fallback: str) -> str:
+    if isinstance(value, dict):
+        value = (
+            value.get("message")
+            or value.get("error")
+            or (value.get("errors") or [{}])[0].get("message")
+            or fallback
+        )
+    text = str(value or fallback).replace("\n", " ").strip()
+    return text[:300]
+
+
+class TransportFailure(RuntimeError):
+    pass
+
+
+class TwentyClient:
+    def __init__(self, base_url: str, api_key: str, timeout: float, delay: float) -> None:
+        base = base_url.strip().rstrip("/")
+        if base.endswith("/rest"):
+            base = base[:-5]
+        if not re.fullmatch(r"https?://[^\s]+", base):
+            raise ValueError("TWENTY_BASE_URL must be an http(s) URL")
+        if not api_key.strip():
+            raise ValueError("TWENTY_API_KEY is required")
+        self.base_url = base
+        self.api_key = api_key.strip()
+        self.timeout = timeout
+        self.delay = max(0.0, delay)
+        self.last_request_at = 0.0
+
+    def _throttle(self) -> None:
+        elapsed = time.monotonic() - self.last_request_at
+        if self.last_request_at and elapsed < self.delay:
+            time.sleep(self.delay - elapsed)
+
+    def request(
+        self,
+        method: str,
+        path: str,
+        *,
+        query: dict[str, Any] | None = None,
+        body: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        self._throttle()
+        url = self.base_url + path
+        if query:
+            url += "?" + urllib.parse.urlencode(query)
+        payload = None if body is None else canonical_json(body).encode("utf-8")
+        request = urllib.request.Request(
+            url,
+            data=payload,
+            method=method,
+            headers={
+                "Authorization": f"Bearer {self.api_key}",
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "User-Agent": "equinet-a1-twenty-stager/1.0",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                status = int(response.status)
+                raw = response.read()
+        except urllib.error.HTTPError as exc:
+            status = int(exc.code)
+            raw = exc.read()
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            raise TransportFailure(type(exc).__name__) from exc
+        finally:
+            self.last_request_at = time.monotonic()
+
+        if not raw:
+            parsed: Any = None
+        else:
+            try:
+                parsed = json.loads(raw.decode("utf-8"))
+            except (UnicodeDecodeError, json.JSONDecodeError):
+                parsed = {"non_json_response": True, "byte_count": len(raw)}
+        return {"status_code": status, "body": parsed}
+
+    def find_many(self, filter_value: dict[str, Any], limit: int) -> dict[str, Any]:
+        return self.request(
+            "GET",
+            "/rest/companies",
+            query={"filter": rest_filter_expression(filter_value), "limit": str(limit)},
+        )
+
+    def create_company(self, payload: dict[str, Any]) -> dict[str, Any]:
+        return self.request("POST", "/rest/companies", body=payload)
+
+    def update_company(self, company_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+        encoded = urllib.parse.quote(company_id, safe="")
+        return self.request("PATCH", f"/rest/companies/{encoded}", body=payload)
+
+    def find_one(self, company_id: str) -> dict[str, Any]:
+        encoded = urllib.parse.quote(company_id, safe="")
+        return self.request("GET", f"/rest/companies/{encoded}")
+
+    def list_people_for_company(self, company_id: str, *, deleted: bool = False) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+        filters = [f"companyId[eq]:{json.dumps(company_id)}"]
+        if deleted:
+            filters.append("deletedAt[is]:NOT_NULL")
+        records: list[dict[str, Any]] = []
+        responses: list[dict[str, Any]] = []
+        cursor: str | None = None
+        seen_cursors: set[str] = set()
+        for _page in range(1, 101):
+            query = {"filter": ",".join(filters), "limit": "60"}
+            if cursor:
+                query["starting_after"] = cursor
+            response = self.request("GET", "/rest/people", query=query)
+            responses.append(response)
+            if not response_ok(response):
+                return records, responses
+            records.extend(normalize_records(response.get("body")))
+            page_info = normalize_page_info(response.get("body"))
+            if not page_info.get("hasNextPage"):
+                return records, responses
+            next_cursor = helper.optional_text(page_info.get("endCursor"))
+            if not next_cursor or next_cursor in seen_cursors:
+                raise RuntimeError("people_pagination_cursor_invalid")
+            seen_cursors.add(next_cursor)
+            cursor = next_cursor
+        raise RuntimeError("people_pagination_page_limit_exceeded")
+
+    def create_person(self, payload: dict[str, Any]) -> dict[str, Any]:
+        return self.request("POST", "/rest/people", body=payload)
+
+    def update_person(self, person_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+        encoded = urllib.parse.quote(person_id, safe="")
+        return self.request("PATCH", f"/rest/people/{encoded}", body=payload)
+
+    def find_one_person(self, person_id: str) -> dict[str, Any]:
+        encoded = urllib.parse.quote(person_id, safe="")
+        return self.request("GET", f"/rest/people/{encoded}")
+
+    def list_soft_deleted(self) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+        records: list[dict[str, Any]] = []
+        pages: list[dict[str, Any]] = []
+        cursor: str | None = None
+        seen_cursors: set[str] = set()
+        for page_number in range(1, 101):
+            query = {"filter": "deletedAt[is]:NOT_NULL", "limit": "60"}
+            if cursor:
+                query["starting_after"] = cursor
+            response = self.request("GET", "/rest/companies", query=query)
+            if not response_ok(response):
+                raise RuntimeError(f"soft_deleted_lookup_http_{response.get('status_code')}")
+            page_records = normalize_records(response.get("body"))
+            page_info = normalize_page_info(response.get("body"))
+            records.extend(page_records)
+            pages.append({
+                "page": page_number,
+                "record_count": len(page_records),
+                "has_next_page": bool(page_info.get("hasNextPage")),
+            })
+            if not page_info.get("hasNextPage"):
+                break
+            next_cursor = helper.optional_text(page_info.get("endCursor"))
+            if not next_cursor or next_cursor in seen_cursors:
+                raise RuntimeError("soft_deleted_pagination_cursor_invalid")
+            seen_cursors.add(next_cursor)
+            cursor = next_cursor
+        else:
+            raise RuntimeError("soft_deleted_pagination_page_limit_exceeded")
+        return records, {"record_count": len(records), "pages": pages}
+
+
+def response_ok(response: dict[str, Any]) -> bool:
+    status = response.get("status_code")
+    return isinstance(status, int) and 200 <= status < 300
+
+
+def rest_filter_expression(filter_value: dict[str, Any]) -> str:
+    """Serialize the subset of Twenty REST filters used by this worker.
+
+    Twenty's REST API accepts expressions such as ``name[eq]:Acme`` rather
+    than a JSON-encoded GraphQL filter object. For conservative possible-name
+    checks, an ``and`` plan is intentionally reduced to its name condition;
+    this can hold extra matches for review but cannot create a false negative.
+    """
+    if not isinstance(filter_value, dict) or not filter_value:
+        raise ValueError("Twenty REST filter must be a non-empty object")
+    if "and" in filter_value:
+        parts = filter_value.get("and")
+        if not isinstance(parts, list):
+            raise ValueError("Twenty REST and filter must be an array")
+        name_filter = next(
+            (item for item in parts if isinstance(item, dict) and "name" in item),
+            None,
+        )
+        if name_filter is None:
+            raise ValueError("Twenty REST possible-match filter requires a name condition")
+        return rest_filter_expression(name_filter)
+    if len(filter_value) != 1:
+        raise ValueError("Twenty REST worker supports one field per lookup")
+    field, condition = next(iter(filter_value.items()))
+    if not isinstance(field, str) or not field or not isinstance(condition, dict):
+        raise ValueError("Invalid Twenty REST filter field")
+    if "eq" in condition:
+        return f"{field}[eq]:{json.dumps(str(condition['eq']), ensure_ascii=False)}"
+    if len(condition) == 1:
+        child_field, child_condition = next(iter(condition.items()))
+        if isinstance(child_condition, dict) and "eq" in child_condition:
+            return f"{field}.{child_field}[eq]:{json.dumps(str(child_condition['eq']), ensure_ascii=False)}"
+    raise ValueError("Twenty REST worker supports only exact-match filters")
+
+
+def normalize_records(body: Any) -> list[dict[str, Any]]:
+    if isinstance(body, list):
+        return [item for item in body if isinstance(item, dict)]
+    if not isinstance(body, dict):
+        raise ValueError("Twenty find response body is not an object or array")
+    candidates = [
+        body.get("records"),
+        body.get("companies"),
+        body.get("people"),
+        body.get("data"),
+    ]
+    data = body.get("data")
+    if isinstance(data, dict):
+        candidates.extend([data.get("records"), data.get("companies"), data.get("people")])
+    for candidate in candidates:
+        if isinstance(candidate, list):
+            if not all(isinstance(item, dict) for item in candidate):
+                raise ValueError("Twenty find response contains non-object records")
+            return candidate
+        if isinstance(candidate, dict) and isinstance(candidate.get("edges"), list):
+            records = [edge.get("node") for edge in candidate["edges"] if isinstance(edge, dict)]
+            if all(isinstance(item, dict) for item in records):
+                return records
+    if isinstance(body.get("edges"), list):
+        records = [edge.get("node") for edge in body["edges"] if isinstance(edge, dict)]
+        if all(isinstance(item, dict) for item in records):
+            return records
+    return []
+
+
+def normalize_page_info(body: Any) -> dict[str, Any]:
+    if not isinstance(body, dict):
+        return {}
+    candidates: list[Any] = [body.get("pageInfo")]
+    data = body.get("data")
+    if isinstance(data, dict):
+        candidates.append(data.get("pageInfo"))
+        companies = data.get("companies")
+        if isinstance(companies, dict):
+            candidates.append(companies.get("pageInfo"))
+    companies = body.get("companies")
+    if isinstance(companies, dict):
+        candidates.append(companies.get("pageInfo"))
+    return next((item for item in candidates if isinstance(item, dict)), {})
+
+
+def canonical_link_host(value: Any) -> str:
+    raw = helper.optional_text(value)
+    if not raw:
+        return ""
+    if "://" not in raw:
+        raw = "https://" + raw
+    try:
+        hostname = urllib.parse.urlsplit(raw).hostname or ""
+    except ValueError:
+        return ""
+    return hostname.lower().removeprefix("www.").rstrip(".")
+
+
+def soft_deleted_exact_matches(plan: dict[str, Any], records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    payload = plan.get("company_payload") if isinstance(plan.get("company_payload"), dict) else {}
+    fingerprint = helper.optional_text(payload.get("discoveryFingerprint"))
+    domain_value = payload.get("domainName") if isinstance(payload.get("domainName"), dict) else {}
+    expected_host = canonical_link_host(domain_value.get("primaryLinkUrl"))
+    matches: dict[str, dict[str, Any]] = {}
+    for record in records:
+        record_id = helper.optional_text(record.get("id"))
+        if not record_id:
+            continue
+        fingerprint_match = bool(
+            fingerprint
+            and helper.optional_text(record.get("discoveryFingerprint")) == fingerprint
+        )
+        record_domain = record.get("domainName") if isinstance(record.get("domainName"), dict) else {}
+        domain_match = bool(
+            expected_host
+            and canonical_link_host(record_domain.get("primaryLinkUrl")) == expected_host
+        )
+        if fingerprint_match or domain_match:
+            matches[record_id] = record
+    return list(matches.values())
+
+
+def normalize_record(body: Any) -> dict[str, Any]:
+    if not isinstance(body, dict):
+        raise ValueError("Twenty record response body is not an object")
+    candidates: list[Any] = [
+        body.get("record"),
+        body.get("company"),
+        body.get("person"),
+        body.get("data"),
+        body,
+    ]
+    data = body.get("data")
+    if isinstance(data, dict):
+        candidates[2:2] = [
+            data.get("record"),
+            data.get("company"),
+            data.get("person"),
+            data.get("createCompany"),
+            data.get("updateCompany"),
+            data.get("createPerson"),
+            data.get("updatePerson"),
+        ]
+    for candidate in candidates:
+        if isinstance(candidate, dict) and helper.optional_text(candidate.get("id")):
+            return candidate
+    raise ValueError("Twenty response does not contain one record with an id")
+
+
+def extract_write_id(body: Any, action: str, entity: str = "company") -> str:
+    if not isinstance(body, dict):
+        raise ValueError("Twenty write response body is not an object")
+    data = body.get("data") if isinstance(body.get("data"), dict) else {}
+    candidates = [
+        body.get("id"),
+        (body.get("record") or {}).get("id") if isinstance(body.get("record"), dict) else None,
+        data.get("id"),
+        (data.get("record") or {}).get("id") if isinstance(data.get("record"), dict) else None,
+        (data.get("company") or {}).get("id") if isinstance(data.get("company"), dict) else None,
+        (data.get("person") or {}).get("id") if isinstance(data.get("person"), dict) else None,
+        (data.get("createCompany") or {}).get("id") if action == "create" and isinstance(data.get("createCompany"), dict) else None,
+        (data.get("updateCompany") or {}).get("id") if action == "update" and isinstance(data.get("updateCompany"), dict) else None,
+        (data.get("createPerson") or {}).get("id") if action == "create" and isinstance(data.get("createPerson"), dict) else None,
+        (data.get("updatePerson") or {}).get("id") if action == "update" and isinstance(data.get("updatePerson"), dict) else None,
+    ]
+    ids = sorted({value.strip() for value in candidates if isinstance(value, str) and value.strip()})
+    if len(ids) != 1:
+        raise ValueError(f"Expected exactly one {entity.title()} id in write response, found {len(ids)}")
+    return ids[0]
+
+
+def lookup_filter(arguments: dict[str, Any]) -> tuple[dict[str, Any], int]:
+    limit = int(arguments.get("limit", 10))
+    filter_value = {
+        key: value
+        for key, value in arguments.items()
+        if key not in {"select", "limit", "orderBy", "after"}
+    }
+    if not filter_value:
+        raise ValueError("Lookup plan does not contain a filter")
+    return filter_value, min(max(limit, 1), 50)
+
+
+def perform_lookup(
+    client: TwentyClient,
+    item_dir: Path,
+    label: str,
+    spec: dict[str, Any] | None,
+) -> list[dict[str, Any]]:
+    if spec is None:
+        return []
+    arguments = spec.get("arguments")
+    if not isinstance(arguments, dict):
+        raise ValueError(f"{label} lookup arguments are missing")
+    filter_value, limit = lookup_filter(arguments)
+    response = client.find_many(filter_value, limit)
+    atomic_json(item_dir / f"raw-{label}.json", response)
+    if not response_ok(response):
+        status = response.get("status_code")
+        raise RuntimeError(f"lookup_http_{status}")
+    records = normalize_records(response.get("body"))
+    atomic_json(
+        item_dir / f"normalized-{label}.json",
+        {"schema_version": helper.MATCH_SCHEMA, "records": records},
+    )
+    return records
+
+
+def disposition(
+    fingerprint: str,
+    status: str,
+    *,
+    write_attempted: bool,
+    reason: str,
+    company_id: str | None = None,
+    person_id: str | None = None,
+    operation: str | None = None,
+    company_operation: str | None = None,
+    person_operation: str | None = None,
+    person_required: bool = False,
+    company_disposition: str | None = None,
+    person_disposition: str = "not_required",
+    relation_status: str = "not_required",
+    duplicate_preflight_completed: bool = False,
+    person_duplicate_preflight_completed: bool = False,
+    write_outcome_uncertain: bool = False,
+    company_reconciliation_artifact: str | None = None,
+    person_reconciliation_artifact: str | None = None,
+    relation_reconciliation_artifact: str | None = None,
+    artifact_reference: str | None = None,
+) -> dict[str, Any]:
+    if status not in TERMINAL_DISPOSITIONS:
+        raise ValueError(f"Invalid disposition {status}")
+    return {
+        "lead_fingerprint": fingerprint,
+        "status": status,
+        "company_id": company_id,
+        "person_required": person_required,
+        "person_id": person_id,
+        "company_disposition": company_disposition or status,
+        "person_disposition": person_disposition,
+        "relation_status": relation_status,
+        "operation": operation or company_operation,
+        "company_operation": company_operation or operation,
+        "person_operation": person_operation,
+        "reason": reason,
+        "duplicate_preflight_completed": duplicate_preflight_completed,
+        "person_duplicate_preflight_completed": person_duplicate_preflight_completed,
+        "write_attempted": write_attempted,
+        "write_outcome_uncertain": write_outcome_uncertain,
+        "company_reconciliation_artifact": company_reconciliation_artifact,
+        "person_reconciliation_artifact": person_reconciliation_artifact,
+        "relation_reconciliation_artifact": relation_reconciliation_artifact,
+        "artifact_reference": artifact_reference,
+    }
+
+
+def process_company_item(
+    client: TwentyClient,
+    item_dir: Path,
+    fingerprint: str,
+    plan: dict[str, Any],
+    soft_deleted_records: list[dict[str, Any]],
+) -> dict[str, Any]:
+    atomic_json(item_dir / "plan.json", plan)
+
+    deleted_matches = soft_deleted_exact_matches(plan, soft_deleted_records)
+    if deleted_matches:
+        atomic_json(
+            item_dir / "soft-deleted-exact-matches.json",
+            {"records": deleted_matches},
+        )
+        decision = {
+            "schema_version": helper.DECISION_SCHEMA,
+            "action": "blocked",
+            "reason": "soft_deleted_exact_match",
+            "company_id": None,
+            "matches": deleted_matches,
+            "mcp_tool": None,
+            "mcp_arguments": None,
+        }
+        atomic_json(item_dir / "decision.json", decision)
+        company_id = helper.optional_text(deleted_matches[0].get("id")) if len(deleted_matches) == 1 else None
+        return disposition(
+            fingerprint,
+            "company_possible_match",
+            write_attempted=False,
+            reason="soft_deleted_exact_match",
+            company_id=company_id,
+            duplicate_preflight_completed=True,
+        )
+
+    try:
+        fp_matches = perform_lookup(client, item_dir, "fingerprint", plan["lookup_plan"]["fingerprint"])
+        domain_matches = perform_lookup(client, item_dir, "domain", plan["lookup_plan"].get("domain"))
+        possible_matches = perform_lookup(client, item_dir, "possible_name_location", plan["lookup_plan"]["possible_name_location"])
+    except TransportFailure as exc:
+        atomic_json(item_dir / "preflight-error.json", {"error_class": type(exc).__name__, "recorded_at": utc_now()})
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=False,
+            reason="twenty_preflight_transport_failure",
+        )
+    except Exception as exc:
+        atomic_json(item_dir / "preflight-error.json", {"error_class": type(exc).__name__, "error": safe_message(exc, "preflight failed"), "recorded_at": utc_now()})
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=False,
+            reason="twenty_preflight_failed",
+        )
+
+    matches = {
+        "fingerprint_matches": fp_matches,
+        "domain_matches": domain_matches,
+        "possible_matches": possible_matches,
+    }
+    atomic_json(item_dir / "matches.json", matches)
+    decision = helper.decide_action(plan, matches)
+    atomic_json(item_dir / "decision.json", decision)
+
+    action = decision.get("action")
+    if action == "blocked":
+        return disposition(
+            fingerprint,
+            "company_possible_match",
+            write_attempted=False,
+            reason=str(decision.get("reason") or "possible_match"),
+            duplicate_preflight_completed=True,
+        )
+    if action not in {"create", "update"}:
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=False,
+            reason="invalid_deterministic_decision",
+            duplicate_preflight_completed=True,
+        )
+
+    marker = {
+        "action": action,
+        "attempted_at": utc_now(),
+        "known_company_id": decision.get("company_id"),
+    }
+    atomic_json(item_dir / "write-attempt.json", marker)
+
+    try:
+        if action == "create":
+            records = decision.get("mcp_arguments", {}).get("records")
+            if not isinstance(records, list) or len(records) != 1 or not isinstance(records[0], dict):
+                raise ValueError("Create decision must contain exactly one Company record")
+            create_payload = {key: value for key, value in records[0].items() if key != "position"}
+            write_response = client.create_company(create_payload)
+        else:
+            arguments = decision.get("mcp_arguments")
+            if not isinstance(arguments, dict):
+                raise ValueError("Update decision arguments are missing")
+            company_id = helper.require_text(arguments.get("id"), "company_id")
+            update_payload = {key: value for key, value in arguments.items() if key != "id"}
+            write_response = client.update_company(company_id, update_payload)
+    except TransportFailure as exc:
+        atomic_json(item_dir / "write-transport-error.json", {"error_class": type(exc).__name__, "recorded_at": utc_now()})
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=True,
+            reason="twenty_write_transport_failure",
+            operation=action,
+            duplicate_preflight_completed=True,
+            write_outcome_uncertain=True,
+        )
+    except Exception as exc:
+        atomic_json(item_dir / "write-preparation-error.json", {"error_class": type(exc).__name__, "error": safe_message(exc, "write preparation failed"), "recorded_at": utc_now()})
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=True,
+            reason="twenty_write_preparation_failed",
+            operation=action,
+            duplicate_preflight_completed=True,
+            write_outcome_uncertain=False,
+        )
+
+    atomic_json(item_dir / f"raw-{action}.json", write_response)
+    if not response_ok(write_response):
+        status_code = int(write_response.get("status_code") or 0)
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=True,
+            reason=f"twenty_write_http_{status_code}",
+            operation=action,
+            duplicate_preflight_completed=True,
+            write_outcome_uncertain=status_code >= 500 or status_code == 0,
+        )
+
+    try:
+        company_id = extract_write_id(write_response.get("body"), action)
+    except Exception as exc:
+        atomic_json(item_dir / "write-response-error.json", {"error_class": type(exc).__name__, "error": safe_message(exc, "invalid response"), "recorded_at": utc_now()})
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=True,
+            reason="invalid_twenty_write_response",
+            operation=action,
+            duplicate_preflight_completed=True,
+            write_outcome_uncertain=True,
+        )
+
+    try:
+        readback_response = client.find_one(company_id)
+    except TransportFailure as exc:
+        atomic_json(item_dir / "readback-transport-error.json", {"error_class": type(exc).__name__, "recorded_at": utc_now()})
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=True,
+            reason="twenty_readback_transport_failure",
+            company_id=company_id,
+            operation=action,
+            duplicate_preflight_completed=True,
+        )
+
+    atomic_json(item_dir / "raw-readback.json", readback_response)
+    if not response_ok(readback_response):
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=True,
+            reason=f"twenty_readback_http_{readback_response.get('status_code')}",
+            company_id=company_id,
+            operation=action,
+            duplicate_preflight_completed=True,
+        )
+
+    try:
+        record = normalize_record(readback_response.get("body"))
+        atomic_json(item_dir / "readback.json", record)
+        manifest = helper.reconcile(plan, decision, company_id, record)
+        atomic_json(item_dir / "reconciliation.json", manifest)
+    except Exception as exc:
+        atomic_json(item_dir / "reconciliation-error.json", {"error_class": type(exc).__name__, "error": str(exc), "recorded_at": utc_now()})
+        return disposition(
+            fingerprint,
+            "company_sync_failed",
+            write_attempted=True,
+            reason="twenty_readback_reconciliation_failed",
+            company_id=company_id,
+            operation=action,
+            duplicate_preflight_completed=True,
+        )
+
+    return disposition(
+        fingerprint,
+        "company_staged_no_person_required",
+        write_attempted=True,
+        reason=str(decision.get("reason") or "verified"),
+        company_id=company_id,
+        operation=action,
+        duplicate_preflight_completed=True,
+    )
+
+
+def _person_failure(
+    fingerprint: str, company_result: dict[str, Any], *, status: str,
+    reason: str, person_id: str | None = None, person_operation: str | None = None,
+    attempted: bool = False, uncertain: bool = False, preflight: bool = False,
+    person_artifact: str | None = None,
+    person_disposition: str | None = None,
+    relation_status: str = "unverified",
+) -> dict[str, Any]:
+    return disposition(
+        fingerprint, status,
+        write_attempted=bool(company_result.get("write_attempted")) or attempted,
+        reason=reason,
+        company_id=company_result.get("company_id"),
+        person_id=person_id,
+        company_operation=company_result.get("company_operation") or company_result.get("operation"),
+        person_operation=person_operation,
+        person_required=True,
+        company_disposition="staged",
+        person_disposition=person_disposition or ("possible_match" if status.endswith("possible_match") else "sync_failed"),
+        relation_status=relation_status,
+        duplicate_preflight_completed=True,
+        person_duplicate_preflight_completed=preflight,
+        write_outcome_uncertain=uncertain,
+        company_reconciliation_artifact=company_result.get("company_reconciliation_artifact"),
+        person_reconciliation_artifact=person_artifact,
+        relation_reconciliation_artifact=person_artifact if relation_status == "verified" else None,
+    )
+
+
+def migrate_company_contacts(
+    client: TwentyClient, item_dir: Path, company_id: str, company_record: dict[str, Any]
+) -> tuple[bool, str | None, bool]:
+    fields = [key for key in ("phone", "email") if company_record.get(key) not in (None, {}, "")]
+    if not fields:
+        return True, None, False
+    payload = {key: None for key in fields}
+    atomic_json(item_dir / "company-contact-migration-attempt.json", {
+        "company_id": company_id, "fields": fields, "attempted_at": utc_now(),
+    })
+    try:
+        response = client.update_company(company_id, payload)
+    except TransportFailure:
+        atomic_json(item_dir / "company-contact-migration-error.json", {
+            "error_class": "TransportFailure", "recorded_at": utc_now(),
+        })
+        return False, None, True
+    atomic_json(item_dir / "raw-company-contact-migration.json", response)
+    if not response_ok(response):
+        return False, None, int(response.get("status_code") or 0) >= 500
+    try:
+        readback_response = client.find_one(company_id)
+    except TransportFailure:
+        return False, None, False
+    atomic_json(item_dir / "raw-company-contact-migration-readback.json", readback_response)
+    if not response_ok(readback_response):
+        return False, None, False
+    record = normalize_record(readback_response.get("body"))
+    if any(record.get(key) not in (None, {}, "") for key in fields):
+        return False, None, False
+    artifact = item_dir / "company-contact-migration.json"
+    atomic_json(artifact, {
+        "schema_version": "a1.twenty-company-contact-migration.v1",
+        "twenty_company_id": company_id,
+        "cleared_fields": fields,
+        "verification_status": "verified",
+        "recorded_at": utc_now(),
+    })
+    return True, str(artifact), False
+
+
+def process_person_item(
+    client: TwentyClient, item_dir: Path, fingerprint: str, plan: dict[str, Any],
+    company_result: dict[str, Any], company_record: dict[str, Any],
+) -> dict[str, Any]:
+    company_id = helper.require_text(company_result.get("company_id"), "company_id")
+    person_payload = plan.get("person_payload")
+    if not isinstance(person_payload, dict):
+        raise ValueError("person_required plan is missing person_payload")
+    person_dir = item_dir / "person"
+    person_dir.mkdir(parents=True, exist_ok=True)
+    os.chmod(person_dir, 0o700)
+
+    try:
+        deleted_records, deleted_responses = client.list_people_for_company(company_id, deleted=True)
+        atomic_json(person_dir / "raw-soft-deleted-pages.json", {"responses": deleted_responses})
+        if not deleted_responses or not response_ok(deleted_responses[-1]):
+            status = deleted_responses[-1].get("status_code") if deleted_responses else None
+            raise RuntimeError(f"soft_deleted_people_lookup_http_{status}")
+        deleted_decision = helper.decide_person_action(person_payload, company_id, deleted_records)
+        if deleted_decision.get("action") != "create":
+            atomic_json(person_dir / "soft-deleted-match.json", deleted_decision)
+            return _person_failure(
+                fingerprint, company_result,
+                status="company_staged_person_possible_match",
+                reason="soft_deleted_person_exact_match",
+                person_id=deleted_decision.get("person_id"), preflight=True,
+            )
+        records, active_responses = client.list_people_for_company(company_id)
+        atomic_json(person_dir / "raw-company-people-pages.json", {"responses": active_responses})
+        if not active_responses or not response_ok(active_responses[-1]):
+            status = active_responses[-1].get("status_code") if active_responses else None
+            raise RuntimeError(f"people_lookup_http_{status}")
+        decision = helper.decide_person_action(person_payload, company_id, records)
+        atomic_json(person_dir / "decision.json", decision)
+    except TransportFailure as exc:
+        atomic_json(person_dir / "preflight-error.json", {"error_class": type(exc).__name__, "recorded_at": utc_now()})
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="twenty_person_preflight_transport_failure",
+        )
+    except Exception as exc:
+        atomic_json(person_dir / "preflight-error.json", {
+            "error_class": type(exc).__name__, "error": safe_message(exc, "person preflight failed"),
+            "recorded_at": utc_now(),
+        })
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="twenty_person_preflight_failed",
+        )
+
+    action = decision.get("action")
+    if action == "blocked":
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_possible_match",
+            reason=str(decision.get("reason") or "person_possible_match"), preflight=True,
+        )
+    if action not in {"create", "update"}:
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="invalid_person_deterministic_decision", preflight=True,
+        )
+
+    payload = decision.get("payload")
+    if not isinstance(payload, dict) or payload.get("companyId") != company_id:
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="invalid_person_payload_relation", preflight=True,
+        )
+    atomic_json(person_dir / "write-attempt.json", {
+        "action": action, "attempted_at": utc_now(), "known_person_id": decision.get("person_id"),
+    })
+    try:
+        if action == "create":
+            write_response = client.create_person(payload)
+        else:
+            person_id = helper.require_text(decision.get("person_id"), "person_id")
+            write_response = client.update_person(person_id, payload)
+    except TransportFailure as exc:
+        atomic_json(person_dir / "write-transport-error.json", {"error_class": type(exc).__name__, "recorded_at": utc_now()})
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="twenty_person_write_transport_failure", person_operation=action,
+            attempted=True, uncertain=True, preflight=True,
+        )
+    atomic_json(person_dir / f"raw-{action}.json", write_response)
+    if not response_ok(write_response):
+        status_code = int(write_response.get("status_code") or 0)
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason=f"twenty_person_write_http_{status_code}", person_operation=action,
+            attempted=True, uncertain=status_code >= 500 or status_code == 0, preflight=True,
+        )
+    try:
+        person_id = extract_write_id(write_response.get("body"), action, "person")
+    except Exception as exc:
+        atomic_json(person_dir / "write-response-error.json", {
+            "error_class": type(exc).__name__, "error": safe_message(exc, "invalid Person response"),
+            "recorded_at": utc_now(),
+        })
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="invalid_twenty_person_write_response", person_operation=action,
+            attempted=True, uncertain=True, preflight=True,
+        )
+    try:
+        readback_response = client.find_one_person(person_id)
+        atomic_json(person_dir / "raw-readback.json", readback_response)
+        if not response_ok(readback_response):
+            raise RuntimeError(f"person_readback_http_{readback_response.get('status_code')}")
+        record = normalize_record(readback_response.get("body"))
+        atomic_json(person_dir / "readback.json", record)
+        manifest = helper.reconcile_person(plan, decision, person_id, company_id, record)
+        reconciliation_path = person_dir / "reconciliation.json"
+        atomic_json(reconciliation_path, manifest)
+    except Exception as exc:
+        atomic_json(person_dir / "reconciliation-error.json", {
+            "error_class": type(exc).__name__, "error": safe_message(exc, "Person reconciliation failed"),
+            "recorded_at": utc_now(),
+        })
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="twenty_person_readback_reconciliation_failed", person_id=person_id,
+            person_operation=action, attempted=True, preflight=True,
+        )
+
+    migrated, migration_artifact, migration_uncertain = migrate_company_contacts(
+        client, item_dir, company_id, company_record
+    )
+    if not migrated:
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="company_contact_migration_failed", person_id=person_id,
+            person_operation=action, attempted=True, uncertain=migration_uncertain,
+            preflight=True, person_artifact=str(reconciliation_path),
+            person_disposition="staged", relation_status="verified",
+        )
+    return disposition(
+        fingerprint, "company_staged_person_staged",
+        write_attempted=True,
+        reason=str(decision.get("reason") or "verified"),
+        company_id=company_id, person_id=person_id,
+        company_operation=company_result.get("company_operation") or company_result.get("operation"),
+        person_operation=action, person_required=True,
+        company_disposition="staged", person_disposition="staged",
+        relation_status="verified",
+        duplicate_preflight_completed=True,
+        person_duplicate_preflight_completed=True,
+        company_reconciliation_artifact=company_result.get("company_reconciliation_artifact"),
+        person_reconciliation_artifact=str(reconciliation_path),
+        relation_reconciliation_artifact=str(reconciliation_path),
+        artifact_reference=migration_artifact or str(reconciliation_path),
+    )
+
+
+def process_ready_item(
+    client: TwentyClient, item_dir: Path, fingerprint: str, plan: dict[str, Any],
+    soft_deleted_records: list[dict[str, Any]],
+) -> dict[str, Any]:
+    company_result = process_company_item(
+        client, item_dir, fingerprint, plan, soft_deleted_records
+    )
+    company_result["person_required"] = bool(plan.get("person_required"))
+    company_result["company_disposition"] = (
+        "staged" if company_result.get("status") == "company_staged_no_person_required"
+        else company_result.get("company_disposition")
+    )
+    if company_result.get("status") != "company_staged_no_person_required":
+        if plan.get("person_required"):
+            company_result["person_disposition"] = "blocked_by_company"
+            company_result["relation_status"] = "unverified"
+        return company_result
+    company_reconciliation = item_dir / "reconciliation.json"
+    company_result["company_reconciliation_artifact"] = str(company_reconciliation)
+    company_result["artifact_reference"] = str(company_reconciliation)
+    if not plan.get("person_required"):
+        company_result["person_disposition"] = "not_required"
+        company_result["relation_status"] = "not_required"
+        return company_result
+    try:
+        company_record = load_json(item_dir / "readback.json")
+    except Exception:
+        return _person_failure(
+            fingerprint, company_result, status="company_staged_person_sync_failed",
+            reason="verified_company_readback_artifact_missing",
+        )
+    return process_person_item(
+        client, item_dir, fingerprint, plan, company_result, company_record
+    )
+
+
+def run(args: argparse.Namespace) -> dict[str, Any]:
+    source = load_json(args.input)
+    overlays_path = getattr(args, "overlays", None)
+    field_manifest_path = getattr(args, "field_manifest", DEFAULT_FIELD_MANIFEST)
+    person_field_manifest_path = getattr(args, "person_field_manifest", DEFAULT_PERSON_FIELD_MANIFEST)
+    overlays = load_json(overlays_path) if overlays_path else None
+    validate_field_manifest(load_json(field_manifest_path))
+    validate_person_field_manifest(load_json(person_field_manifest_path))
+    batch = helper.prepare_batch(source, overlays)
+    if batch["total"] > args.max_records:
+        raise ValueError(f"Batch contains {batch['total']} records; --max-records is {args.max_records}")
+
+    output_dir = args.output_dir.resolve()
+    if output_dir.exists() and any(output_dir.iterdir()):
+        raise ValueError(f"Output directory is not empty: {output_dir}")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    os.chmod(output_dir, 0o700)
+
+    atomic_json(output_dir / "batch.json", batch)
+    phone_validation = helper.validate_batch_phones(batch)
+    atomic_json(output_dir / "phone-validation.json", phone_validation)
+
+    dispositions: list[dict[str, Any]] = []
+    if phone_validation.get("status") != "valid":
+        for item in batch["items"]:
+            fingerprint = item["lead_fingerprint"]
+            if item.get("status") == "blocked_missing_company_name":
+                dispositions.append(disposition(
+                    fingerprint,
+                    "blocked_missing_company_name",
+                    write_attempted=False,
+                    reason="missing_company_name",
+                    artifact_reference=str(output_dir / "phone-validation.json"),
+                ))
+            else:
+                person_required = bool((item.get("plan") or {}).get("person_required"))
+                dispositions.append(disposition(
+                    fingerprint,
+                    "company_sync_failed",
+                    write_attempted=False,
+                    reason="deterministic_staging_payload_rejected_prewrite",
+                    person_required=person_required,
+                    person_disposition="blocked_by_company" if person_required else "not_required",
+                    relation_status="unverified" if person_required else "not_required",
+                    artifact_reference=str(output_dir / "phone-validation.json"),
+                ))
+    else:
+        client = TwentyClient(
+            args.base_url,
+            args.api_key,
+            timeout=args.timeout,
+            delay=args.request_delay,
+        )
+        try:
+            soft_deleted_records, soft_deleted_summary = client.list_soft_deleted()
+            atomic_json(output_dir / "soft-deleted-scan-summary.json", soft_deleted_summary)
+        except Exception as exc:
+            atomic_json(output_dir / "soft-deleted-scan-error.json", {
+                "error_class": type(exc).__name__,
+                "error": safe_message(exc, "soft-deleted preflight failed"),
+                "recorded_at": utc_now(),
+            })
+            soft_deleted_records = []
+            for item in batch["items"]:
+                fingerprint = item["lead_fingerprint"]
+                if item.get("status") == "blocked_missing_company_name":
+                    dispositions.append(disposition(
+                        fingerprint,
+                        "blocked_missing_company_name",
+                        write_attempted=False,
+                        reason="missing_company_name",
+                        artifact_reference=str(output_dir / "soft-deleted-scan-error.json"),
+                    ))
+                else:
+                    person_required = bool((item.get("plan") or {}).get("person_required"))
+                    dispositions.append(disposition(
+                        fingerprint,
+                        "company_sync_failed",
+                        write_attempted=False,
+                        reason="soft_deleted_preflight_failed",
+                        person_required=person_required,
+                        person_disposition="blocked_by_company" if person_required else "not_required",
+                        relation_status="unverified" if person_required else "not_required",
+                        artifact_reference=str(output_dir / "soft-deleted-scan-error.json"),
+                    ))
+        if not dispositions:
+            for index, item in enumerate(batch["items"]):
+                fingerprint = item["lead_fingerprint"]
+                item_dir = safe_item_dir(output_dir, index, fingerprint)
+                item_dir.mkdir(parents=True, exist_ok=True)
+                os.chmod(item_dir, 0o700)
+                if item.get("status") == "blocked_missing_company_name":
+                    result = disposition(
+                        fingerprint,
+                        "blocked_missing_company_name",
+                        write_attempted=False,
+                        reason="missing_company_name",
+                        artifact_reference=str(item_dir / "disposition.json"),
+                    )
+                    atomic_json(item_dir / "disposition.json", result)
+                    dispositions.append(result)
+                    continue
+                plan = item.get("plan")
+                if not isinstance(plan, dict):
+                    result = disposition(fingerprint, "company_sync_failed", write_attempted=False, reason="missing_deterministic_plan")
+                else:
+                    result = process_ready_item(client, item_dir, fingerprint, plan, soft_deleted_records)
+                result["artifact_reference"] = str(item_dir / "disposition.json")
+                atomic_json(item_dir / "disposition.json", result)
+                dispositions.append(result)
+
+    atomic_json(output_dir / "dispositions.json", {"dispositions": dispositions})
+    staging_index = helper.finalize_batch(batch, dispositions)
+    atomic_json(output_dir / "staging-index.json", staging_index)
+
+    counts = staging_index.get("counts", {})
+    return {
+        "schema_version": "a1.twenty-rest-stager-summary.v2",
+        "run_id": staging_index.get("run_id"),
+        "complete": staging_index.get("complete") is True,
+        "total": staging_index.get("total"),
+        "counts": counts,
+        "output_dir": str(output_dir),
+        "lead_rows_emitted": False,
+    }
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input", type=Path, help="Persisted a1.discovery-result.v1 JSON file")
+    parser.add_argument("--overlays", type=Path, help="Optional validated a1.twenty-company-overlays.v2 file")
+    parser.add_argument("--field-manifest", type=Path, default=DEFAULT_FIELD_MANIFEST, help="Verified Twenty Company field contract")
+    parser.add_argument("--person-field-manifest", type=Path, default=DEFAULT_PERSON_FIELD_MANIFEST, help="Verified Twenty Person field contract")
+    parser.add_argument("--output-dir", type=Path, help="New or empty audit-artifact directory")
+    parser.add_argument("--check-connection", action="store_true", help="Perform read-only Company and Person API requests and emit a safe capability summary")
+    parser.add_argument("--base-url", default=os.environ.get("TWENTY_BASE_URL", "https://api.twenty.com"))
+    parser.add_argument("--api-key", default=os.environ.get("TWENTY_API_KEY"))
+    parser.add_argument("--timeout", type=float, default=float(os.environ.get("TWENTY_API_TIMEOUT", "30")))
+    parser.add_argument("--request-delay", type=float, default=float(os.environ.get("TWENTY_REQUEST_DELAY", "0.7")), help="Minimum seconds between API calls")
+    parser.add_argument("--max-records", type=int, default=200)
+    return parser
+
+
+def main() -> int:
+    parser = build_parser()
+    args = parser.parse_args()
+    if not args.api_key:
+        parser.error("TWENTY_API_KEY is required (or pass --api-key for an isolated test)")
+    if args.check_connection:
+        try:
+            client = TwentyClient(args.base_url, args.api_key, timeout=args.timeout, delay=0.0)
+            checks = {
+                "fingerprint_filter": {"discoveryFingerprint": {"eq": "__a1_connection_probe__"}},
+                "domain_filter": {"domainName": {"primaryLinkUrl": {"eq": "https://a1-connection-probe.invalid"}}},
+                "name_filter": {"name": {"eq": "__A1_CONNECTION_PROBE__, LLC."}},
+            }
+            results: dict[str, dict[str, Any]] = {}
+            for label, filter_value in checks.items():
+                response = client.find_many(filter_value, 1)
+                status_code = response.get("status_code")
+                records = normalize_records(response.get("body")) if response_ok(response) else []
+                results[label] = {
+                    "http_status": status_code,
+                    "usable": response_ok(response),
+                    "returned_record_count": len(records),
+                }
+                if not response_ok(response):
+                    results[label]["error"] = safe_message(response.get("body"), "connection check failed")
+            # Twenty rejects the nil UUID before evaluating the relation filter. Use a
+            # syntactically valid, non-real v4 UUID for this read-only capability probe.
+            people_records, people_responses = client.list_people_for_company("11111111-1111-4111-8111-111111111111")
+            people_response = people_responses[-1]
+            results["people_company_filter"] = {
+                "http_status": people_response.get("status_code"),
+                "usable": response_ok(people_response),
+                "returned_record_count": len(people_records) if response_ok(people_response) else 0,
+            }
+            statuses = [value.get("http_status") for value in results.values()]
+            summary = {
+                "schema_version": "a1.twenty-rest-connection-check.v1",
+                "reachable": all(isinstance(status, int) for status in statuses),
+                "authenticated": all(isinstance(status, int) and status not in {401, 403} for status in statuses),
+                "api_contract_usable": all(value["usable"] for value in results.values()),
+                "checks": results,
+                "lead_rows_emitted": False,
+            }
+            print(json.dumps(summary, sort_keys=True))
+            return 0 if summary["api_contract_usable"] else 1
+        except Exception as exc:
+            print(json.dumps({
+                "schema_version": "a1.twenty-rest-connection-check.v1",
+                "reachable": False,
+                "authenticated": False,
+                "api_contract_usable": False,
+                "error_class": type(exc).__name__,
+                "lead_rows_emitted": False,
+            }, sort_keys=True), file=sys.stderr)
+            return 1
+    if args.input is None or args.output_dir is None:
+        parser.error("--input and --output-dir are required unless --check-connection is used")
+    try:
+        summary = run(args)
+    except Exception as exc:
+        print(
+            json.dumps(
+                {
+                    "schema_version": "a1.twenty-rest-stager-error.v1",
+                    "status": "failed",
+                    "error_class": type(exc).__name__,
+                    "error": safe_message(exc, "staging failed"),
+                    "lead_rows_emitted": False,
+                },
+                sort_keys=True,
+            ),
+            file=sys.stderr,
+        )
+        return 1
+    print(json.dumps(summary, sort_keys=True))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

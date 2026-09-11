@@ -9,3 +9,5 @@ For Equinet A1 monitoring, the user requires cron intervals to be exactly every 
 User intentionally disabled Hermes secrets redaction globally and prefers Equinet A1 staging skills to call the original direct Twenty MCP create/update flow rather than the artifact bridge.
 §
 User prefers exact, manual node-by-node n8n edit and wiring instructions rather than regenerated workflow JSON; A1 geography is being generalised before later policy expansion.
+§
+User prefers concise, plain-language explanations of technical workflows written for non-specialist readers.

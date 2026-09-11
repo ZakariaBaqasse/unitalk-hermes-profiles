@@ -1,0 +1,161 @@
+---
+name: prospect-evidence-and-confidence
+description: Use after post-n8n enrichment and ICP qualification to evaluate cited evidence quality and calculate candidate confidence. Builds a traceable six-dimension assessment, invokes the deterministic confidence calculator, and returns a Prospect Candidate-compatible confidence object without rediscovery or changing ICP score.
+compatibility: Requires Evidence and Confidence Rules 1.2.0, Approved Source Register 2.0.0, Prospect Candidate Schema V1, accepted website-enrichment evidence, Classification Decision and Qualification Object.
+metadata:
+  version: 1.1.0
+  status: production_validated
+---
+
+# Prospect Evidence and Confidence
+
+Use this skill after accepted website enrichment and qualification, before ICP scoring. n8n discovery/deduplication is upstream and must not be repeated here.
+
+## Authoritative dependencies
+
+Resolve from the active profile home:
+
+```text
+configurations/evidence/evidence-confidence-rules-v1.yaml
+configurations/evidence/public-website-enrichment-policy-v1.yaml
+skills/a1-prospect-data-contract/references/prospect-candidate.schema.json
+skills/prospect-evidence-and-confidence/references/confidence-assessment.schema.json
+scripts/calculate_candidate_confidence.py
+```
+
+Use the wrapper:
+
+```text
+/opt/hermes/.venv/bin/python skills/prospect-evidence-and-confidence/scripts/build_confidence_package.py <assessment.json>
+```
+
+Do not install packages during execution.
+
+## Input
+
+Require:
+
+- accepted post-n8n enrichment with Hermes-gathered destination-page evidence IDs;
+- unchanged n8n lead/run references for traceability, not as confidence evidence;
+- Classification Decision;
+- Qualification Object;
+- all visible conflicts, unknowns and missing evidence;
+- a list of evidence IDs available to the assessment.
+
+Do not require downstream Wave 2/3 fields such as scoring, recommendation, workflow or exports to calculate confidence.
+Reject any assessment that upgrades an n8n field or search result snippet into retained evidence. Do not discover, merge or deduplicate leads.
+
+## Assessment dimensions
+
+Assess exactly six dimensions using the configured levels:
+
+1. `identity_certainty`;
+2. `source_quality`;
+3. `evidence_directness`;
+4. `corroboration`;
+5. `freshness`;
+6. `completeness`.
+
+For every selected level, provide:
+
+- the configured level name;
+- evidence IDs or an explicit data-quality basis;
+- a concise rationale.
+
+Do not invent a level name or points. The deterministic calculator assigns points.
+
+## Identity certainty
+
+- Use `strong_unique_match` when person/organisation identity is unambiguous across strong identifiers.
+- Use `good_multi_field_match` when the identity is sufficiently resolved but a minor naming variation remains.
+- Use `weak_name_and_location_match` when only weak identifiers align.
+- Use `unresolved` when the candidate identity cannot safely be resolved.
+
+A person and organisation on the same official business website may support `person_and_organisation` without a second source.
+
+## Source quality
+
+An official current business website is authoritative for explicit self-controlled facts. Use `authoritative_primary_business_source` when appropriate.
+
+Do not upgrade a directory, search result, social profile or blocked source to primary evidence. Blocked or untraceable evidence invalidates the assessment.
+
+## Directness and inference
+
+- Direct facts may support confirmed criteria.
+- Approved role-based purchasing influence is allowed when the current decision-role title is explicit.
+- A reasonable inference alone cannot confirm a mandatory criterion.
+- Unknowns remain unknown.
+- Material contradictions must remain visible.
+
+## Corroboration
+
+A current official business website can produce High confidence alone. Use `one_strong_source` when one strong source supports the facts. Use `two_or_more_independent_sources` only when the sources are genuinely independent.
+
+Do not count two pages on the same domain as two independent sources.
+
+## Freshness
+
+- Current official business website: no visible publication date required for explicit self-controlled facts.
+- Current official registry/association status: no visible publication date required.
+- Dated external sources: apply configured windows.
+- Undated external source: secondary/historical context only for time-sensitive claims.
+- Stale or conflicting signals lower confidence or trigger review.
+
+## Completeness and stage minimum
+
+Evaluate completeness for the confidence stage, not the final Wave 3 review package.
+
+The confidence-stage minimum requires:
+
+- resolved or reviewable identity;
+- segment/classification state;
+- at least one permitted evidence record;
+- qualification criteria;
+- exclusion status;
+- visible conflicts, unknowns and missing evidence.
+
+Do not set `minimum_data_failed` merely because scoring, recommendation, workflow, export, HubSpot or Twenty fields do not yet exist.
+
+## Gates
+
+Assess every configured gate:
+
+- mandatory claim inference-only;
+- unresolved identity conflict;
+- critical evidence conflict;
+- confidence-stage minimum data failed;
+- blocked source used;
+- no evidence;
+- fabricated or untraceable evidence.
+
+A true invalidating gate must stop the confidence calculation and return the real error.
+
+## Output
+
+Return:
+
+- the rich assessment with evidence-linked rationale;
+- the schema-compatible `confidence` object;
+- raw and adjusted confidence audit;
+- applied caps;
+- evidence and stage-minimum summary.
+
+Do not change the deterministic score or band in prose.
+
+## Boundaries
+
+Never:
+
+- calculate ICP score;
+- alter confidence points or caps;
+- use a blocked source;
+- hide conflicts or missing evidence;
+- infer private contact details;
+- treat n8n hints as verified evidence;
+- perform discovery or deduplication;
+- approve outreach, CRM write or A2 handoff;
+- claim HubSpot/Twenty checks.
+
+## Handoff
+
+Pass the confidence package and unchanged Qualification Object to `icp-scoring-and-rationale`. Preserve evidence IDs, method version, score, level, reasons, limitations and audit detail.

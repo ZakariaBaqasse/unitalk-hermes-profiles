@@ -1,6 +1,8 @@
 model:
   provider: openai-api
-  default: gpt-5.6-sol
+  default: Kimi K3
+terminal:
+  backend: local
 web:
   search_backend: exa
   extract_backend: exa
@@ -11,11 +13,11 @@ tts:
     voice: nova
     base_url: https://llmgateway.unitalk.ai/v1
 stt:
-  provider: openai
   openai:
     model: gpt-4o-mini-transcribe
     base_url: https://llmgateway.unitalk.ai/v1
     api_key: sk-EvxhgJihbKWELsEPRHB0Xg
+  provider: openai
 security:
   redact_secrets: false
 cron:

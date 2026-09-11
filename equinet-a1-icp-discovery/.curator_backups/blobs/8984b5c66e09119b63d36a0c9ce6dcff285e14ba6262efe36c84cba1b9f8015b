@@ -1,0 +1,165 @@
+---
+name: post-n8n-public-website-enrichment
+version: 2.2.0
+status: production_active
+description: Process the post-n8n website-candidate lane before Twenty staging.
+compatibility: Requires a1.discovery-result.v1, Public Website Enrichment Policy 1.4.0 and the production classification, qualification, confidence and scoring wrappers.
+---
+
+# Post-n8n Public Website Enrichment
+
+Use this skill on the website-candidate lane after the compact n8n result is routed and before that lane is staged in Twenty. n8n supplies compact run metadata and leads; Hermes verifies the official website and performs cited evidence collection, classification, qualification, confidence and scoring. Leads without a website candidate bypass this skill and stage unscored. Item-level website verification or access failures fall back to unscored Company staging; deterministic configuration/schema failures stop for operator repair.
+
+## Boundary
+
+Accept the compact `a1.discovery-result.v1` envelope from `Build Final Discovery Result`. Its canonical fields are `contract_version`, top-level `run_id`, and unique `leads[].lead_fingerprint` values. Preserve each lead exactly as supplied. The script accepts the earlier `schema_version`/`run.run_id`/`lead_id` shape only for existing fixtures and migration recovery.
+
+Do not:
+
+- rediscover, broaden, merge or deduplicate n8n leads;
+- treat a lead name, category, directory snippet, map result or candidate website as verified evidence;
+- call Firecrawl or any web service from the local script;
+- generate claims, excerpts, URLs, classifications or criterion statuses in the deterministic script;
+- claim HubSpot/Twenty checks, outreach permission or A2 approval.
+
+The script has no Hermes web-tool API and no Firecrawl credentials. Website retrieval is always an agent/tool action.
+
+## Authoritative dependencies
+
+Resolve from the active profile home:
+
+```text
+configurations/evidence/public-website-enrichment-policy-v1.yaml
+skills/post-n8n-public-website-enrichment/references/enrichment-results.schema.json
+skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py
+skills/prospect-segment-classification/scripts/validate_classification.py
+skills/equinet-icp-qualification/scripts/build_qualification.py
+skills/prospect-evidence-and-confidence/scripts/build_confidence_package.py
+skills/icp-scoring-and-rationale/scripts/build_scoring_package.py
+```
+
+Use the profile-local `.venv/bin/python`. Provision it outside a run from `configurations/operations/a1-python-runtime-requirements.txt`; do not install packages during a discovery run.
+
+## Routing and overlay commands
+
+Use the deterministic router before enrichment:
+
+```text
+python3 skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py route \
+  --input <discovery-result.json> --output-dir <two-lane-v1>
+```
+
+It writes a routing index, lane-specific discovery envelopes and explicit no-website overlays. `route_and_overlay.py next-action` determines the next durable phase from artifacts. After all website-lane records are `scored`, terminal `failed`, completed `none_found`, or completed with a cited verified official website but unavailable scoring inputs, build the website overlays and later merge the two verified staging indexes:
+
+```text
+python3 skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py build-website-overlays \
+  --input <website-candidate-discovery-result.json> --state <enrichment-state.json> \
+  --output <website-overlays.json>
+
+python3 skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py validate-overlays \
+  --input <website-overlays.json> --source <website-candidate-discovery-result.json>
+
+python3 skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py merge-indexes \
+  --input <original-discovery-result.json> \
+  --no-website-index <no-website-staging-index.json> \
+  --website-index <website-staging-index.json> \
+  --output <final-staging-index.json>
+```
+
+All command stdout is aggregate-only. The JSON artifacts are authoritative.
+
+## Checkpoint workflow
+
+1. Initialise one durable state file from the unchanged n8n handoff:
+
+```text
+.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py init <discovery-result.json> --state <state.json> --max-retries 2
+```
+
+Completion criterion: the state reports every n8n `lead_fingerprint` as `pending`, with `enrichment: null`; no evidence or website fact has been synthesized.
+
+2. Request a stable pending batch:
+
+```text
+.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py next --state <state.json> --batch-size 5
+```
+
+`next` is read-only. Re-running it before acceptance or failure returns the same pending slice, which permits safe resume after interruption.
+
+3. Research each returned lead as Hermes. Use `web_search` only to locate a plausible official domain, then use `web_extract` on destination pages for retained official-site evidence. Apply the Public Website Enrichment Policy and blocklist, respect terms/robots/access controls, and stop on CAPTCHA, login, paywall, 403, 429 or other blocking control. Do not use search snippets as final evidence. If no official website is found, record the explicit no-site completion described below; do not treat the n8n directory listing, a search snippet, phone number, or email as evidence.
+
+4. Create `a1.website-enrichment-results.v1`. A verified-website result must include:
+
+- `research_method: hermes_approved_web_tools`;
+- `website_status: verified`;
+- an HTTP(S) `official_website_url`;
+- at least one destination-page citation retrieved with `web_extract` on that official domain;
+- for every evidence item: stable evidence ID, destination URL, source name, retrieval time with timezone, exact excerpt, explicit claim, direct/inference/conflict label and retrieval tool;
+- explicit `missing_information` and `conflicts` arrays, including empty arrays when none are known.
+
+A no-site completion requires exactly:
+
+- `website_status: none_found`;
+- `official_website_url: null`;
+- `evidence: []`;
+- `missing_information` containing `official_business_website_not_found`.
+
+No-site completions require no alternative URL or excerpt, cannot include classification, qualification, or confidence inputs, and proceed to explicit unscored Company staging for human review.
+
+Each enrichment result uses `lead_id` as the processing identifier, set exactly to the source lead's `lead_fingerprint`. For verified-site results only, optional `classification_decision`, `qualification_assessment` and `confidence_assessment` objects must be authored by Hermes from cited evidence. Every evidence ID they reference must occur in the accepted enrichment evidence.
+
+5. Validate and checkpoint completed results atomically:
+
+```text
+.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py accept --state <state.json> --results <results.json>
+```
+
+A verified-site result is rejected if it lacks cited destination evidence, uses an unapproved tool, cites a different domain, references uncited evidence or attempts to complete an unknown/already completed lead. A no-site result is accepted only with the explicit `none_found` marker, null website URL, empty evidence, and no downstream pipeline inputs.
+
+6. Record retriable failure with a caller-supplied audit timestamp:
+
+```text
+.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py fail --state <state.json> --lead-id <lead-id> --error <message> --recorded-at <ISO-8601>
+```
+
+Add `--terminal` for a non-retriable failure. Retriable failures remain pending only within `max_retries`; exhausted leads become `failed`. Never convert a failed lookup into invented enrichment.
+
+7. When all three downstream inputs are present, execute the existing wrappers one lead at a time:
+
+```text
+.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py run-ready --state <state.json> --output-dir <artifacts-dir> --lead-id <lead-fingerprint>
+```
+
+The command holds a crash-safe state lock, writes the supplied inputs, validates classification, builds qualification, builds confidence, prepares the scoring input, executes deterministic scoring and checkpoints artifact paths. Incomplete records are reported under `skipped`; the script never fills missing assessment inputs.
+
+## Evidence rules
+
+- n8n fields are discovery context, not evidence for a confirmed criterion.
+- For a verified site, `web_search` identifies destinations only; every retained evidence record must be a `web_extract` destination-page citation.
+- A no-site completion carries no retained evidence and cannot support a confirmed classification, qualification criterion, confidence, or score.
+- Retain exact excerpts and page URLs for every retained evidence record. A claim must not be stronger than its excerpt.
+- Preserve unknowns and contradictions. Never infer horse count, commercial status, ownership, purchasing authority or private contact details.
+- Multiple pages on one official domain remain one source for corroboration.
+- Publication does not create consent or authorise outreach.
+
+## Handoff
+
+Classification starts only after accepted verified-site enrichment. A no-site completion cannot enter the classification, qualification, confidence, or scoring wrappers, but it must continue to unscored Twenty staging through `evidence-aware-crm-staging` when the unchanged n8n lead has `business_name` or `name`. A cited verified official site also remains stageable when classification or scoring inputs are unavailable: overlay v2 retains `official_website_url`, marks the assessment `NOT_SCORED`, and leaves score, band, outcome and confidence null. The stager always resolves a Company name as `business_name or name` and also creates one linked Person when `name` is present. Preserve the lead fingerprint, website status, missing information and conflicts. If neither name exists, record `blocked_missing_company_name` rather than inventing one.
+
+### Verified-site unscored terminal state
+
+Overlay contract `a1.twenty-company-overlays.v2` decouples official-site verification from ICP scoring. A completed, cited and verified official site is terminal even when classification, qualification, confidence or scoring inputs are absent. The generated overlay retains the verified official URL, sets `qualification_status: NOT_CHECKED` and `icp_score_status: NOT_SCORED`, and keeps all score, band, outcome and confidence values null. This permits `domainName` staging without inventing an assessment. Raw n8n website candidates remain ineligible for `domainName` until official-site verification is accepted.
+
+For a historical run stopped by the former terminal-state limitation, create a separately named corrective website-lane staging directory linked to the immutable discovery result and accepted enrichment state. Regenerate overlay v2, stage only the website lane, and merge it with the already verified no-website staging index. Do not rerun n8n or repeat completed or uncertain Twenty writes.
+
+## Verification
+
+Run:
+
+```text
+.venv/bin/python -m unittest -v \
+  skills/post-n8n-public-website-enrichment/tests/test_manage_enrichment.py \
+  skills/post-n8n-public-website-enrichment/tests/test_route_and_overlay.py
+```
+
+Verify that tests cover routing coverage, stable pending batches, evidence rejection, official-domain checks, bounded retries, per-lead scoring checkpoints, overlay null/range semantics, combined-index coverage, atomic checkpoints and real execution of the qualification/confidence/scoring wrappers.
