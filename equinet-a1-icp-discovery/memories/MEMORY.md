@@ -1,13 +1,19 @@
-Equinet Twenty REST staging must JSON-quote exact filter values because Twenty parses commas as filter separators. Before writes, the worker scans soft-deleted Companies; exact soft-deleted fingerprint/domain matches are held as possible_match with no automatic restore, delete, update, or recreate, since soft-deleted rows can still reserve unique values.
+Twenty REST staging must JSON-quote exact filter values (commas parse as separators). Soft-deleted Companies with exact fingerprint/domain matches are held as possible_match — no automatic restore/update/recreate.
 §
-Equinet A1 post-n8n routing is entity-aware: every named lead stages a Company; a non-empty `name` also requires one linked Person after Company verification. Phone/email route only to Person when expected, otherwise Company. No-site and terminal enrichment failures remain unscored; website candidates are verified/enriched/scored first.
+A1 post-n8n routing: every named lead stages a Company; non-empty `name` adds one linked Person after Company verification. Phone/email go to Person when expected, else Company. No-site/terminal enrichment failures stage unscored; website candidates are verified/enriched/scored first.
 §
 Equinet Twenty `sourceUrl` is acquisition provenance only: use the directory/source URL from the immutable n8n lead, label it with the normalized hostname, and never replace it with the verified official website. The official website belongs only in `domainName`.
 §
-Hermes deployment uses the default-profile gateway as a multiplexing gateway; named-profile messaging credential changes require restarting the default multiplexer, not starting a second profile gateway.
+Hermes default-profile gateway multiplexes named profiles; credential changes need a multiplexer restart.
 §
-Equinet Twenty Company now has live field `email` (label Email), type EMAILS, nullable/writable, max 10. A1 stages validated public professional email as `{primaryEmail, additionalEmails: []}` and omits invalid/masked values.
+Twenty Company live `email` field (EMAILS, nullable, max 10): stage as `{primaryEmail, additionalEmails: []}`, omit invalid/masked values.
 §
-Equinet A1 field contract: n8n `name`/`person_name` represents only an explicitly identified person. Organisation-only Google Maps records use `business_name` and leave person-name fields empty, so Twenty stages only a Company.
+A1 field contract: n8n `name`/`person_name` = explicitly identified person only. Organisation-only Google Maps records use `business_name` with empty person fields → Company only.
 §
 Equinet Google Maps cursor semantics: `dataset_exhausted` means one bounded Apify dataset is consumed; it must not imply durable `source_exhausted`. Google Maps remains cross-run `refreshable`, while same-run/provider completion stays separately recorded.
+§
+Equinet n8n MCP execute_workflow requires `workflowId` (not `id`) plus `executionMode:"production"`; the response returns only `executionId`/`status`, never the run ID.
+§
+Equinet poll_ticket.py init rejects an empty --application-run-id; when n8n is started without an explicit run_id, use a deterministic substitute such as exec-<execution-id>.
+§
+Facebook enrichment inside Equinet n8n needs no Facebook-specific runtime-policy change; source-specific controls belong in n8n source/evidence configuration.

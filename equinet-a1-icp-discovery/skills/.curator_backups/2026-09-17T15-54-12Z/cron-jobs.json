@@ -1,0 +1,63 @@
+{
+  "jobs": [
+    {
+      "id": "4d08b9486071",
+      "name": "equinet-a1-poll-austin-ho-1377",
+      "prompt": "Monitor Equinet n8n ticket /opt/data/profiles/equinet-a1-icp-discovery/runtime/n8n-poll-tickets/austin-horse-owners-1377.json. This is a fresh cron session.\nUse the provisioned profile-local .venv/bin/python with the full profile-relative skill paths below. Never install packages during a run, never call cronjob from this cron run, and never rerun or modify n8n.\n\nRun `.venv/bin/python skills/system-operations/equinet-n8n-discovery-control/scripts/poll_ticket.py expire --file <ticket>` and then `next-action`.\n\nFor poll_metadata, call the runtime-discovered n8n execution-detail tool with includeData=false (workflowId 3tBw9IHcr4knwM4H, executionId 1377). Persist status with poll_ticket.py observe. Return [SILENT] when non-terminal and unchanged.\n\nFor retrieve_result, claim first. Retrieve exactly `Build Final Discovery Result` with includeData=true, nodeNames restricted to that node and truncateData=1. Persist the compact envelope, SHA-256 and mark-retrieved. Never fetch all-node execution data.\n\nFor recover_claim, do not retrieve again automatically; report operator recovery required.\n\nFor process_result:\n1. Validate `contract_version: a1.discovery-result.v1`.\n2. Use a deterministic sibling work directory named `two-lane-v1` next to the ticket. Run `.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/route_and_overlay.py next-action --input <discovery-result.json> --work-dir <two-lane-v1>` before acting. Never infer the next phase from conversation history.\n3. For `route_result`, run the router into `<two-lane-v1>`. It writes immutable lane subsets, a routing index, and no-website overlays keyed by exact fingerprint.\n4. For `stage_no_website`, run `stage_twenty_rest.py` with the no-website subset and no-website overlays into `<two-lane-v1>/staging-no-website`. Skip this action when that lane count is zero. Never reuse a non-empty incomplete staging directory.\n5. For `init_enrichment`, initialise `a1.website-enrichment-state.v2` from the website-candidate subset.\n6. For `research_enrichment_batch`, request only the research phase (`next --phase research`), claim each lead with the cron job ID, lease ID and expected revision, verify the official site with approved web tools, retain destination citations, and submit one `a1.website-enrichment-research-results.v2` record per claim. A verified result moves to `assessment_pending`; it is not terminal. Item-level source/access failures use structured failure codes and bounded retries.\n7. For `assessment_enrichment_batch`, request only the assessment phase, claim each lead, and submit evidence-linked classification, qualification and confidence objects separately. Unknown facts remain explicit `unknown` values. Evidence-backed `out_of_scope` may terminate without fabricated downstream objects. Omitted assessment objects are incomplete work, not fallback.\n8. For `run_ready_scoring`, execute `.venv/bin/python skills/post-n8n-public-website-enrichment/scripts/manage_enrichment.py run-ready` for one ready lead with the cron job ID as owner. Each successful score is checkpointed independently. Retriable wrapper failures are bounded; deterministic schema/configuration failures stop for operator repair instead of looping.\n9. For `build_website_overlays`, generate and validate overlays only after the v2 state summary reports `build_overlays`. Allowed outcomes are scored, evidence-backed out-of-scope, researched none-found, terminal verification failure, or explicit exhausted assessment failure. A missing n8n website candidate remains `website_candidate_not_provided`. Any unexplained verified-unscored item blocks staging.\n10. For `stage_website`, run `stage_twenty_rest.py` with the website subset and website overlays into `<two-lane-v1>/staging-website`. The worker must reject unexplained verified-unscored overlays before any write.\n11. For `merge_indexes`, merge lane indexes into `<two-lane-v1>/final-staging-index.json` using `a1.twenty-entity-staging-index.v3`, requiring exact source hash, lane membership, Company/Person expectation coverage, verified IDs, relation reconciliation and clean website-overlay provenance. Empty lanes require no lane index.\n12. Only after the final index is complete, run poll_ticket.py mark-consumed with that final index path. `mark-consumed` rechecks the retrieved result hash, run ID, fingerprint order, lane membership, aggregate counts, website-overlay provenance, Company IDs, expected Person IDs, `companyId` relation status and both reconciliation artifacts.\n13. Any `operator_repair_*` action must stop and report the exact persisted blocker. Never repeat an uncertain write, re-fetch n8n data, or recursively manage cron.\n\nFor deliver_terminal, summarize routed no-website and website-candidate counts, enriched/scored/fallback counts, staged/possible-match/sync-failed/missing-name counts, and the final-index reference. State the HubSpot screen limitation and human-review boundary. Mark delivered immediately before returning the summary.\n\nFor stop, return [SILENT].",
+      "skills": [
+        "equinet-n8n-discovery-control",
+        "post-n8n-public-website-enrichment",
+        "prospect-segment-classification",
+        "equinet-icp-qualification",
+        "prospect-evidence-and-confidence",
+        "icp-scoring-and-rationale",
+        "a1-prospect-data-contract",
+        "evidence-aware-crm-staging"
+      ],
+      "skill": "equinet-n8n-discovery-control",
+      "model": null,
+      "provider": null,
+      "provider_snapshot": "openai-api",
+      "model_snapshot": "gpt-5.6-terra",
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 2,
+        "display": "every 2m"
+      },
+      "schedule_display": "every 2m",
+      "repeat": {
+        "times": 120,
+        "completed": 10
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-09-17T15:18:43.277283+00:00",
+      "next_run_at": "2026-09-17T15:55:27.993521+00:00",
+      "last_run_at": "2026-09-17T15:53:27.993521+00:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": [
+        "terminal",
+        "file",
+        "web",
+        "n8n"
+      ],
+      "workdir": "/opt/data/profiles/equinet-a1-icp-discovery",
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-09-17T15:53:27.993795+00:00"
+}

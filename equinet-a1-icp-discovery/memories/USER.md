@@ -1,6 +1,6 @@
 User uses n8n MCP with Hermes and is interested in durable monitoring of long-running workflows through session heartbeats or cron delivery to Bot Chat.
 §
-User prefers Hermes automation to be configured by the assistant when an appropriate management tool is available, rather than manually entering slash commands.
+User prefers the assistant to configure Hermes automation via management tools; Equinet profile deployments must auto-provision dependencies because recipients are non-technical.
 §
 Equinet A1 uses two-lane Twenty staging: every named lead gets a Company; if n8n `name` exists, one linked Person follows verified Company staging. Phone/email go to Person when expected, otherwise Company. Website candidates are enriched/scored; no-site and safe failures stage unscored. Human review remains mandatory.
 §

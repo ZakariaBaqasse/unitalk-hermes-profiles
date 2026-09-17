@@ -1,9 +1,9 @@
 {
-  "last_report_path": null,
-  "last_run_at": "2026-09-07T12:32:01.707729+00:00",
-  "last_run_duration_seconds": null,
-  "last_run_summary": "deferred first run — curator seeded, will run after one interval; use `hermes curator run --dry-run` to preview now",
+  "last_report_path": "/opt/data/profiles/equinet-a1-icp-discovery/logs/curator/20260917-155412",
+  "last_run_at": "2026-09-17T15:54:12.139700+00:00",
+  "last_run_duration_seconds": 0.500969,
+  "last_run_summary": "auto: no changes; llm: skipped (consolidation off)",
   "last_run_summary_shown_at": null,
   "paused": false,
-  "run_count": 0
+  "run_count": 1
 }

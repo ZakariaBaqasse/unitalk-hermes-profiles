@@ -1,0 +1,942 @@
+{
+  "name": "A1 - Facebook Business Page Enricher via Apify-v1",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## A1 Facebook Business Page Enricher\n\nOptional batch enrichment for records missing contact fields. Uses apify/facebook-search-scraper with categories, one canonical location, and a bounded total result limit.\n\nDefault trigger: at least two of phone, email, external website are missing. Override with facebook_missing_field_threshold (1..3).\n\nOnly confidently matched public business Pages can fill empty fields. Facebook Page URLs remain separate from official website candidates. Person names are never inferred. Parent source status, cursor, and exhaustion are preserved.",
+        "height": 500,
+        "width": 620,
+        "color": 5
+      },
+      "id": "d63faac8-e38f-4896-b961-0171d16a31bf",
+      "name": "Facebook Enricher Setup",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "5943513d-ae2c-4eef-ae38-ba3075914ac2",
+      "name": "When Executed by Source Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        80,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first()?.json ?? $json ?? {};\nconst records = Array.isArray(input.records)\n  ? input.records\n  : Array.isArray(input.parsed_records)\n    ? input.parsed_records\n    : [];\nif (!input.run_id) throw new Error('run_id is required.');\nif (!input.location_key) throw new Error('location_key is required.');\nif (!input.source_scope_key) throw new Error('source_scope_key is required.');\nif (records.length > 200) throw new Error('Facebook enricher accepts at most 200 records.');\nfunction text(v){return v==null?'':String(v).normalize('NFKC').trim().replace(/\\s+/g,' ')}\nfunction phone(v){const d=text(v).replace(/\\D/g,'');return d.length>=7&&d.length<=15}\nfunction email(v){return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(text(v))}\nfunction website(v){return /^https?:\\/\\/[^\\s/]+\\.[^\\s/]+/i.test(text(v))&&!/^https?:\\/\\/(?:www\\.)?facebook\\.com\\//i.test(text(v))}\nfunction hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(16).padStart(8,'0')}\nconst threshold=Math.min(3,Math.max(1,Number(input.facebook_missing_field_threshold??2)));\nconst maxCandidates=Math.min(50,Math.max(1,Number(input.facebook_max_candidates??20)));\nconst resultsPerCandidate=Math.min(5,Math.max(1,Number(input.facebook_results_per_candidate??3)));\nconst location=input.location||{};\nconst locationDisplay=text(location.location_display||[location.city,location.region||location.state,location.country].filter(Boolean).join(', '));\nconst prepared=records.map(r=>({...r}));\nconst eligible=[];\nfor(let i=0;i<prepared.length;i++){\n  const r=prepared[i];\n  const missing=[!phone(r.phone)?'phone':null,!email(r.email)?'email':null,!website(r.website)?'website':null].filter(Boolean);\n  const businessName=text(r.business_name);\n  const alreadyChecked=Boolean(r.facebook_enrichment?.checked_at);\n  const canSearch=Boolean(businessName&&locationDisplay&&!alreadyChecked&&missing.length>=threshold&&eligible.length<maxCandidates);\n  if(canSearch){\n    eligible.push({record_index:i,lead_fingerprint:text(r.lead_fingerprint),business_name:businessName,city:text(r.city||location.city),region:text(r.region||r.state||location.region||location.state),region_code:text(r.region_code||r.state_code||location.region_code||location.state_code),country:text(r.country||location.country),phone:text(r.phone),email:text(r.email),website:text(r.website),address:text(r.address),missing_fields:missing});\n    r.facebook_enrichment={schema_version:'a1.facebook-business-enrichment.v1',status:'pending',missing_fields_before:missing,checked_at:null};\n  }else if(!r.facebook_enrichment){\n    r.facebook_enrichment={schema_version:'a1.facebook-business-enrichment.v1',status:alreadyChecked?'already_checked':'skipped_not_needed',missing_fields_before:missing,checked_at:null};\n  }\n}\nconst categories=[...new Set(eligible.map(c=>c.business_name))];\nconst resultsLimit=Math.min(100,Math.max(1,categories.length*resultsPerCandidate));\nconst requestMaterial=JSON.stringify({run_id:input.run_id,source_job_id:input.source_job_id||'',source_scope_key:input.source_scope_key,location_key:input.location_key,categories,locationDisplay,resultsLimit});\nconst requestKey=`facebook-v1:${hash(requestMaterial)}`;\nreturn [{json:{source_envelope:input,prepared_records:prepared,facebook_candidates:eligible,facebook_needed:eligible.length>0,facebook_request_key:requestKey,facebook_actor_input:{categories,locations:locationDisplay?[locationDisplay]:[],resultsLimit},facebook_results_limit:resultsLimit,facebook_max_total_charge_usd:Math.min(2,Math.max(0.05,Number(input.facebook_max_total_charge_usd??1))),facebook_actor_build_tag:text(input.facebook_actor_build_tag||'latest'),facebook_started_at:new Date().toISOString()}}];"
+      },
+      "id": "a6c4ebdb-31e5-4d37-9d2b-f6849ed3a8b6",
+      "name": "Prepare Facebook Enrichment Batch",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "16803795-0c88-4099-b3f3-897d615b54cb",
+              "leftValue": "={{ $json.facebook_needed }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0010bea6-5f7a-46c6-a5f5-d527d3479639",
+      "name": "Facebook Enrichment Needed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const c=$json;return [{json:{...c,final_records:c.prepared_records,facebook_batch_status:'skipped',facebook_actor_run_id:null,facebook_dataset_id:null,facebook_error:null}}];"
+      },
+      "id": "279408b9-c8ea-4c0b-84b5-4cadfda0d5e8",
+      "name": "Build No Facebook Work Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "CREATE TABLE IF NOT EXISTS a1_facebook_enrichment_jobs (\n  run_id text NOT NULL,\n  source_job_id text NOT NULL,\n  request_key text NOT NULL,\n  actor_run_id text,\n  dataset_id text,\n  actor_status text NOT NULL DEFAULT 'PENDING',\n  job_status text NOT NULL DEFAULT 'PENDING',\n  actor_input jsonb NOT NULL DEFAULT '{}'::jsonb,\n  usage_total_usd numeric,\n  last_error jsonb,\n  started_at timestamptz,\n  finished_at timestamptz,\n  updated_at timestamptz NOT NULL DEFAULT now(),\n  PRIMARY KEY (run_id, source_job_id, request_key)\n);\nCREATE INDEX IF NOT EXISTS a1_facebook_enrichment_active_idx ON a1_facebook_enrichment_jobs(actor_status, updated_at DESC);\nSELECT 1 AS schema_ready;",
+        "options": {
+          "queryReplacement": "={{ [] }}"
+        },
+        "alwaysOutputData": true
+      },
+      "id": "b7572f4f-17db-4b89-9012-9909ab7052ac",
+      "name": "Ensure Facebook Job Table",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        800,
+        528
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "id": "99a22fff-95ab-458d-b441-2eecc3ddbad0",
+      "name": "Merge Facebook Request and Schema",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1040,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "WITH request AS (SELECT $1::text run_id,$2::text source_job_id,$3::text request_key,$4::jsonb request_payload), policy AS (SELECT COUNT(*) FILTER (WHERE actor_status IN ('READY','RUNNING','TIMING-OUT','ABORTING') AND NOT (run_id=$1 AND source_job_id=$2 AND request_key=$3))::integer active_other_runs FROM a1_facebook_enrichment_jobs) SELECT request.request_payload,(job.run_id IS NOT NULL) existing_job_found,job.actor_run_id,job.dataset_id,job.actor_status,job.job_status,job.usage_total_usd,job.last_error,policy.active_other_runs FROM request CROSS JOIN policy LEFT JOIN a1_facebook_enrichment_jobs job ON job.run_id=request.run_id AND job.source_job_id=request.source_job_id AND job.request_key=request.request_key;",
+        "options": {
+          "queryReplacement": "={{ [$json.source_envelope.run_id, $json.source_envelope.source_job_id || ($json.source_envelope.run_id + ':facebook'), $json.facebook_request_key, JSON.stringify($json)] }}"
+        }
+      },
+      "id": "70beec71-e2cd-49cd-8f56-776fc1756d11",
+      "name": "Load Existing Facebook Job",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1280,
+        640
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const row=$json||{};const request=row.request_payload||{};const status=String(row.actor_status||'').toUpperCase();const active=new Set(['READY','RUNNING','TIMING-OUT','ABORTING']);const succeeded=status==='SUCCEEDED'&&Boolean(row.dataset_id);const resumable=Boolean(row.actor_run_id)&&(active.has(status)||succeeded);let error=null;if(Number(row.active_other_runs||0)>0&&!resumable)error={code:'FACEBOOK_CONCURRENCY_LIMIT',message:'Another Facebook enrichment Actor is active.',retryable:true,stage:'policy'};else if(row.actor_run_id&&!resumable)error={code:'FACEBOOK_EXISTING_JOB_NOT_RESUMABLE',message:`Existing Facebook Actor state ${status||'UNKNOWN'} is not automatically restartable.`,retryable:false,stage:'policy'};return [{json:{...request,existing_job_found:Boolean(row.existing_job_found),actor_run_id:row.actor_run_id||null,dataset_id:row.dataset_id||null,actor_status:status||null,job_status:row.job_status||null,usage_total_usd:row.usage_total_usd??null,resume_existing:resumable,policy_allows_new_run:!error&&!row.actor_run_id,policy_block_error:error,actor_started_this_execution:false,poll_deadline_at:new Date(Date.now()+20*60*1000).toISOString()}}];"
+      },
+      "id": "bca4b730-143b-4eb4-9392-4ded662cd88e",
+      "name": "Decide Facebook Start or Resume",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "faaa38d0-4585-4e21-a7aa-43dc15ccc7c6",
+              "leftValue": "={{ $json.resume_existing }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "49653a8d-d9ef-4583-aaaf-9928a278b7d6",
+      "name": "Resume Existing Facebook Actor?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1760,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e22cbbde-1552-4b09-8f93-77c6cd98c4c3",
+              "leftValue": "={{ $json.policy_allows_new_run }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a3d691de-f286-4753-8b12-dfad84a5245a",
+      "name": "New Facebook Actor Allowed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1984,
+        816
+      ]
+    },
+    {
+      "parameters": {
+        "actorSource": "store",
+        "actorId": {
+          "__rl": true,
+          "value": "Us34x9p7VgjCz99H6",
+          "mode": "id",
+          "cachedResultName": "Facebook Search Scraper (apify/facebook-search-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/Us34x9p7VgjCz99H6/input"
+        },
+        "customBody": "={{ JSON.stringify($json.facebook_actor_input) }}",
+        "waitForFinish": false,
+        "timeout": 900,
+        "memory": 1024,
+        "maxTotalChargeUsd": "={{ $json.facebook_max_total_charge_usd }}",
+        "build": "={{ $json.facebook_actor_build_tag }}"
+      },
+      "id": "d9993e30-9373-4a30-a853-ce9f1c55115e",
+      "name": "Start Facebook Search Actor",
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        2224,
+        736
+      ],
+      "onError": "continueRegularOutput",
+      "credentials": {
+        "apifyApi": {
+          "id": "gbwB3O1jxZ6HxkEd",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const c=$('Decide Facebook Start or Resume').item.json;const run=$json||{};const msg=run.error?String(run.error?.message||run.error):'';const ok=Boolean(run.id)&&!msg;return [{json:{...c,actor_start_ok:ok,actor_run_id:ok?run.id:null,dataset_id:ok?(run.defaultDatasetId||null):null,actor_status:ok?String(run.status||'READY').toUpperCase():'START_FAILED',job_status:ok?'RUNNING':'FAILED',actor_started_this_execution:ok,actor_error:ok?null:{code:'FACEBOOK_ACTOR_START_FAILED',message:msg||'Apify returned no Actor run ID.',retryable:true,stage:'actor_start'},poll_deadline_at:new Date(Date.now()+20*60*1000).toISOString()}}];"
+      },
+      "id": "8d9900bf-7dc9-4fb1-bf63-a2ed449b2537",
+      "name": "Capture Facebook Actor Run",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2464,
+        736
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "be0bed1b-0e7b-4879-a017-ee7c9f0186f4",
+              "leftValue": "={{ $json.actor_start_ok }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fd8be99a-ff52-4334-9b5c-eb520da7e8bd",
+      "name": "Facebook Actor Start Succeeded?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2704,
+        736
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO a1_facebook_enrichment_jobs(run_id,source_job_id,request_key,actor_run_id,dataset_id,actor_status,job_status,actor_input,started_at,updated_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8::jsonb,now(),now()) ON CONFLICT(run_id,source_job_id,request_key) DO UPDATE SET actor_run_id=EXCLUDED.actor_run_id,dataset_id=EXCLUDED.dataset_id,actor_status=EXCLUDED.actor_status,job_status=EXCLUDED.job_status,actor_input=EXCLUDED.actor_input,last_error=NULL,started_at=COALESCE(a1_facebook_enrichment_jobs.started_at,now()),updated_at=now() RETURNING *,$9::jsonb AS request_payload;",
+        "options": {
+          "queryReplacement": "={{ [$json.source_envelope.run_id, $json.source_envelope.source_job_id || ($json.source_envelope.run_id + ':facebook'), $json.facebook_request_key, $json.actor_run_id, $json.dataset_id, $json.actor_status, $json.job_status, JSON.stringify($json.facebook_actor_input), JSON.stringify($json)] }}"
+        }
+      },
+      "id": "0aebc699-d1eb-44a0-9e31-859606c36755",
+      "name": "Persist Started Facebook Job",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2944,
+        656
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const row=$json||{};const request=row.request_payload||row;if(!request.actor_run_id)throw new Error('actor_run_id is required for Facebook polling.');return [{json:{...request,actor_run_id:row.actor_run_id||request.actor_run_id,dataset_id:row.dataset_id||request.dataset_id||null,actor_status:String(row.actor_status||request.actor_status||'READY').toUpperCase(),job_status:row.job_status||request.job_status||'RUNNING',poll_deadline_at:request.poll_deadline_at||new Date(Date.now()+20*60*1000).toISOString()}}];"
+      },
+      "id": "a92e0483-b3b9-4621-b101-4966e2ad0068",
+      "name": "Prepare Facebook Poll State",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3184,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "Actor runs",
+        "operation": "Get run",
+        "runId": {
+          "__rl": true,
+          "value": "={{ $json.actor_run_id }}",
+          "mode": "id"
+        }
+      },
+      "id": "0a56225f-e79b-49a4-9280-45f4b91afad3",
+      "name": "Get Facebook Actor Run",
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        3424,
+        576
+      ],
+      "onError": "continueRegularOutput",
+      "credentials": {
+        "apifyApi": {
+          "id": "gbwB3O1jxZ6HxkEd",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const c=$('Prepare Facebook Poll State').item.json;const run=$json||{};const responseError=run.error?String(run.error?.message||run.error):'';const previous=String(c.actor_status||'UNKNOWN').toUpperCase();const status=responseError?previous:String(run.status||'UNKNOWN').toUpperCase();const active=new Set(['READY','RUNNING','TIMING-OUT','ABORTING']);const deadline=Date.now()>=Date.parse(c.poll_deadline_at);let error=null;if(responseError)error={code:'FACEBOOK_ACTOR_STATUS_FAILED',message:responseError,retryable:true,stage:'actor_poll'};else if(deadline&&active.has(status))error={code:'FACEBOOK_POLL_DEADLINE_EXCEEDED',message:'Facebook Actor did not finish before the deadline.',retryable:true,stage:'actor_poll'};else if(!active.has(status)&&status!=='SUCCEEDED')error={code:'FACEBOOK_ACTOR_TERMINAL_FAILURE',message:`Facebook Actor ended with ${status}.`,retryable:status!=='ABORTED',stage:'actor_run'};return [{json:{...c,actor_run_id:run.id||c.actor_run_id,dataset_id:run.defaultDatasetId||c.dataset_id||null,actor_status:status,job_status:error?'FAILED':status==='SUCCEEDED'?'SUCCEEDED':'RUNNING',usage_total_usd:run.usageTotalUsd??c.usage_total_usd??null,actor_error:error,continue_polling:active.has(status)&&!deadline&&!responseError}}];"
+      },
+      "id": "1fd7cdae-0be0-4d38-bed2-cc3f66d6c7e5",
+      "name": "Evaluate Facebook Actor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3664,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6b0d7d19-dbb5-427d-9a3d-172f7819ffad",
+              "leftValue": "={{ $json.actor_status }}",
+              "rightValue": "SUCCEEDED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "61698d5a-11ef-4e34-b312-ccba40ea5563",
+      "name": "Facebook Actor Succeeded?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3904,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "fcec6732-a4cd-40b3-b7b1-663d2d0e8c63",
+              "leftValue": "={{ $json.continue_polling }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fe4c43f3-74b4-4d72-9113-6f5adb11e77f",
+      "name": "Facebook Actor Still Active?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4144,
+        768
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 15
+      },
+      "id": "fef21229-81f7-44db-ad09-165c40983f77",
+      "name": "Wait Before Facebook Poll",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4384,
+        720
+      ],
+      "webhookId": "fbb283f3-66e9-4819-ae5e-5be07dff8ec3"
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.dataset_id }}",
+        "offset": "0",
+        "limit": "={{ $json.facebook_results_limit }}",
+        "options": {
+          "fields": "facebookUrl,pageUrl,pageId,facebookId,pageName,title,categories,info,address,phone,email,website,about_me"
+        }
+      },
+      "id": "332f2b92-f18f-45f4-b0a8-2bbae23455aa",
+      "name": "Get Facebook Dataset Items",
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        4144,
+        416
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput",
+      "credentials": {
+        "apifyApi": {
+          "id": "gbwB3O1jxZ6HxkEd",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const c=$('Prepare Facebook Enrichment Batch').first().json;const rows=$input.all().map(i=>i.json||{}).filter(r=>!r.error&&Object.keys(r).length);const records=c.prepared_records.map(r=>({...r}));function text(v){return v==null?'':String(v).normalize('NFKC').trim().replace(/\\s+/g,' ')}function norm(v){return text(v).toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/\\b(llc|inc|ltd|company|co|corp)\\b/g,' ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\\s+/g,' ')}function digits(v){return text(v).replace(/\\D/g,'')}function mail(v){return text(v).toLowerCase()}function domain(v){let x=text(v);if(!x)return'';if(!/^https?:\\/\\//i.test(x))x='https://'+x;try{return new URL(x).hostname.toLowerCase().replace(/^www\\./,'')}catch{return''}}function pageUrl(r){const u=text(r.pageUrl||r.facebookUrl);return /^https?:\\/\\/(?:www\\.)?facebook\\.com\\//i.test(u)?u:null}function externalWebsite(v){let x=text(v);if(!x)return null;if(!/^https?:\\/\\//i.test(x))x='https://'+x;try{const u=new URL(x);if(!['http:','https:'].includes(u.protocol)||/^(www\\.)?facebook\\.com$/i.test(u.hostname))return null;return u.toString()}catch{return null}}function validEmail(v){const x=text(v);return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(x)?x:null}function validPhone(v){const x=text(v);const d=digits(x);return d.length>=7&&d.length<=15?x:null}const used=new Set();let verified=0,ambiguous=0,notFound=0;for(const cand of c.facebook_candidates){const scored=[];for(const r of rows){const url=pageUrl(r);if(!url)continue;const rid=text(r.pageId||r.facebookId||url);if(used.has(rid))continue;const title=text(r.title||r.pageName).split('|')[0].trim();const n1=norm(cand.business_name),n2=norm(title);const exact=Boolean(n1&&n1===n2);const contains=Boolean(n1&&n2&&(n1.includes(n2)||n2.includes(n1)));const hay=norm([r.title,r.address,...(Array.isArray(r.info)?r.info:[])].join(' '));const regionMatch=!cand.region&&!cand.region_code?true:Boolean((cand.region&&hay.includes(norm(cand.region)))||(cand.region_code&&hay.includes(norm(cand.region_code))));const location=Boolean(cand.city&&hay.includes(norm(cand.city))&&regionMatch);const contact=Boolean((cand.phone&&digits(cand.phone)===digits(r.phone))||(cand.email&&mail(cand.email)===mail(r.email))||(cand.website&&domain(cand.website)===domain(r.website)));const score=(exact?60:contains?35:0)+(location?25:0)+(contact?50:0);if(score>=80&&exact&&(location||contact))scored.push({r,url,rid,title,score,location,contact});}scored.sort((a,b)=>b.score-a.score||a.url.localeCompare(b.url));const target=records[cand.record_index];if(!scored.length){target.facebook_enrichment={schema_version:'a1.facebook-business-enrichment.v1',status:'not_found',missing_fields_before:cand.missing_fields,filled_fields:[],checked_at:new Date().toISOString()};notFound++;continue}if(scored.length>1&&scored[0].score-scored[1].score<15){target.facebook_enrichment={schema_version:'a1.facebook-business-enrichment.v1',status:'possible_match',missing_fields_before:cand.missing_fields,filled_fields:[],candidate_page_urls:scored.slice(0,3).map(x=>x.url),requires_human_review:true,checked_at:new Date().toISOString()};ambiguous++;continue}const best=scored[0];used.add(best.rid);const filled=[];const evidence=[{field:'facebook_page_identity',excerpt:best.title,source_url:best.url}];if(!validPhone(target.phone)){const v=validPhone(best.r.phone);if(v){target.phone=v;filled.push('phone');evidence.push({field:'phone',excerpt:v,source_url:best.url})}}if(!validEmail(target.email)){const v=validEmail(best.r.email);if(v){target.email=v;filled.push('email');evidence.push({field:'email',excerpt:v,source_url:best.url})}}if(!externalWebsite(target.website)){const v=externalWebsite(best.r.website);if(v){target.website=v;filled.push('website_candidate');evidence.push({field:'website_candidate',excerpt:text(best.r.website),source_url:best.url})}}target.facebook_page_url=best.url;target.facebook_enrichment={schema_version:'a1.facebook-business-enrichment.v1',status:'verified',page_id:best.rid,facebook_page_url:best.url,missing_fields_before:cand.missing_fields,filled_fields:filled,match_score:best.score,identity_basis:{exact_business_name:true,location_match:best.location,contact_match:best.contact},evidence,provider:'apify',actor:'apify/facebook-search-scraper',checked_at:new Date().toISOString()};target.source_notes=[...(Array.isArray(target.source_notes)?target.source_notes:[]),'Public Facebook business Page used only as supplemental evidence; any external website remains an unverified candidate.'];verified++;}return [{json:{...c,final_records:records,facebook_batch_status:'completed',facebook_actor_run_id:$('Evaluate Facebook Actor').first().json.actor_run_id,facebook_dataset_id:$('Evaluate Facebook Actor').first().json.dataset_id,facebook_error:null,facebook_counts:{eligible:c.facebook_candidates.length,verified,ambiguous,not_found:notFound,raw_results:rows.length}}}];"
+      },
+      "id": "2c111bb9-6e08-45d6-a10c-f6214a4f896c",
+      "name": "Match and Merge Facebook Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4384,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "UPDATE a1_facebook_enrichment_jobs SET actor_status='SUCCEEDED',job_status='COMPLETED',usage_total_usd=$4,last_error=NULL,finished_at=now(),updated_at=now() WHERE run_id=$1 AND source_job_id=$2 AND request_key=$3 RETURNING *,$5::jsonb AS normalized_payload;",
+        "options": {
+          "queryReplacement": "={{ [$json.source_envelope.run_id, $json.source_envelope.source_job_id || ($json.source_envelope.run_id + ':facebook'), $json.facebook_request_key, $('Evaluate Facebook Actor').first().json.usage_total_usd ?? null, JSON.stringify($json)] }}"
+        }
+      },
+      "id": "13371fc0-72d9-4a21-a327-4acd58e14656",
+      "name": "Persist Completed Facebook Job",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        4624,
+        416
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const row=$json||{};const payload=row.normalized_payload||row;return [{json:payload}];"
+      },
+      "id": "712bc7fc-29c7-40bf-882e-4ed5258ad65b",
+      "name": "Restore Persisted Facebook Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4864,
+        416
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO a1_facebook_enrichment_jobs(run_id,source_job_id,request_key,actor_run_id,dataset_id,actor_status,job_status,actor_input,last_error,started_at,finished_at,updated_at) VALUES($1,$2,$3,$4,$5,$6,'FAILED',$7::jsonb,$8::jsonb,now(),now(),now()) ON CONFLICT(run_id,source_job_id,request_key) DO UPDATE SET actor_run_id=COALESCE(EXCLUDED.actor_run_id,a1_facebook_enrichment_jobs.actor_run_id),dataset_id=COALESCE(EXCLUDED.dataset_id,a1_facebook_enrichment_jobs.dataset_id),actor_status=EXCLUDED.actor_status,job_status='FAILED',last_error=EXCLUDED.last_error,finished_at=now(),updated_at=now() RETURNING *,$9::jsonb AS failure_payload;",
+        "options": {
+          "queryReplacement": "={{ [$json.source_envelope.run_id, $json.source_envelope.source_job_id || ($json.source_envelope.run_id + ':facebook'), $json.facebook_request_key, $json.actor_run_id || null, $json.dataset_id || null, $json.actor_status || 'FAILED', JSON.stringify($json.facebook_actor_input), JSON.stringify($json.actor_error || $json.policy_block_error || {code:'FACEBOOK_ENRICHMENT_FAILED'}), JSON.stringify($json)] }}"
+        }
+      },
+      "id": "6e4c3d33-9c0c-4d21-ba9d-4e320e51e596",
+      "name": "Persist Failed Facebook Job",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        4384,
+        912
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "omhtvOXwqNrFGy72",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const c=$('Prepare Facebook Enrichment Batch').first().json;const src=$json||{};const err=src.actor_error||src.policy_block_error||{code:'FACEBOOK_ENRICHMENT_FAILED',message:'Facebook enrichment failed.',retryable:false,stage:'facebook_enrichment'};const eligible=new Set(c.facebook_candidates.map(x=>x.record_index));const records=c.prepared_records.map((r,i)=>eligible.has(i)?{...r,facebook_enrichment:{schema_version:'a1.facebook-business-enrichment.v1',status:'failed',missing_fields_before:r.facebook_enrichment?.missing_fields_before||[],filled_fields:[],checked_at:new Date().toISOString(),error:err}}:{...r});return [{json:{...c,final_records:records,facebook_batch_status:'failed',facebook_actor_run_id:src.actor_run_id||null,facebook_dataset_id:src.dataset_id||null,facebook_error:err,facebook_counts:{eligible:c.facebook_candidates.length,verified:0,ambiguous:0,not_found:0,raw_results:0}}}];"
+      },
+      "id": "429112ef-e5b0-4705-92c6-5262c65c3931",
+      "name": "Build Facebook Failure Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4624,
+        912
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const c=$json;const envelope=c.source_envelope||{};const records=Array.isArray(c.final_records)?c.final_records:c.prepared_records||[];const out={...envelope};if(Array.isArray(envelope.records))out.records=records;if(Array.isArray(envelope.parsed_records))out.parsed_records=records;if(!Array.isArray(envelope.records)&&!Array.isArray(envelope.parsed_records))out.records=records;const warnings=[...(Array.isArray(envelope.warnings)?envelope.warnings:[])];if(c.facebook_batch_status==='failed')warnings.push(`Optional Facebook enrichment failed: ${c.facebook_error?.code||'unknown_error'}. Original source records were retained.`);out.warnings=[...new Set(warnings)];if(Array.isArray(envelope.parser_warnings))out.parser_warnings=[...new Set([...envelope.parser_warnings,...warnings])];out.facebook_enrichment={schema_version:'a1.facebook-enrichment-batch.v1',status:c.facebook_batch_status,actor_run_id:c.facebook_actor_run_id||null,dataset_id:c.facebook_dataset_id||null,request_key:c.facebook_request_key,counts:c.facebook_counts||{eligible:c.facebook_candidates?.length||0,verified:0,ambiguous:0,not_found:0,raw_results:0},error:c.facebook_error||null,finished_at:new Date().toISOString()};return [{json:out}];"
+      },
+      "id": "70fe9935-37bb-4361-ac7d-850e28519f88",
+      "name": "Finalize Facebook Enrichment",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5104,
+        640
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Source Workflow": {
+      "main": [
+        [
+          {
+            "node": "Prepare Facebook Enrichment Batch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Facebook Enrichment Batch": {
+      "main": [
+        [
+          {
+            "node": "Facebook Enrichment Needed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Enrichment Needed?": {
+      "main": [
+        [
+          {
+            "node": "Ensure Facebook Job Table",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Facebook Request and Schema",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build No Facebook Work Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ensure Facebook Job Table": {
+      "main": [
+        [
+          {
+            "node": "Merge Facebook Request and Schema",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Facebook Request and Schema": {
+      "main": [
+        [
+          {
+            "node": "Load Existing Facebook Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Load Existing Facebook Job": {
+      "main": [
+        [
+          {
+            "node": "Decide Facebook Start or Resume",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Decide Facebook Start or Resume": {
+      "main": [
+        [
+          {
+            "node": "Resume Existing Facebook Actor?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resume Existing Facebook Actor?": {
+      "main": [
+        [
+          {
+            "node": "Prepare Facebook Poll State",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "New Facebook Actor Allowed?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "New Facebook Actor Allowed?": {
+      "main": [
+        [
+          {
+            "node": "Start Facebook Search Actor",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Build Facebook Failure Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start Facebook Search Actor": {
+      "main": [
+        [
+          {
+            "node": "Capture Facebook Actor Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Capture Facebook Actor Run": {
+      "main": [
+        [
+          {
+            "node": "Facebook Actor Start Succeeded?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Actor Start Succeeded?": {
+      "main": [
+        [
+          {
+            "node": "Persist Started Facebook Job",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Persist Failed Facebook Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Persist Started Facebook Job": {
+      "main": [
+        [
+          {
+            "node": "Prepare Facebook Poll State",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Facebook Poll State": {
+      "main": [
+        [
+          {
+            "node": "Get Facebook Actor Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Facebook Actor Run": {
+      "main": [
+        [
+          {
+            "node": "Evaluate Facebook Actor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate Facebook Actor": {
+      "main": [
+        [
+          {
+            "node": "Facebook Actor Succeeded?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Actor Succeeded?": {
+      "main": [
+        [
+          {
+            "node": "Get Facebook Dataset Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Facebook Actor Still Active?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Facebook Actor Still Active?": {
+      "main": [
+        [
+          {
+            "node": "Wait Before Facebook Poll",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Persist Failed Facebook Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Before Facebook Poll": {
+      "main": [
+        [
+          {
+            "node": "Get Facebook Actor Run",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Facebook Dataset Items": {
+      "main": [
+        [
+          {
+            "node": "Match and Merge Facebook Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match and Merge Facebook Results": {
+      "main": [
+        [
+          {
+            "node": "Persist Completed Facebook Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Persist Completed Facebook Job": {
+      "main": [
+        [
+          {
+            "node": "Restore Persisted Facebook Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restore Persisted Facebook Result": {
+      "main": [
+        [
+          {
+            "node": "Finalize Facebook Enrichment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Persist Failed Facebook Job": {
+      "main": [
+        [
+          {
+            "node": "Build Facebook Failure Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Facebook Failure Result": {
+      "main": [
+        [
+          {
+            "node": "Finalize Facebook Enrichment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build No Facebook Work Result": {
+      "main": [
+        [
+          {
+            "node": "Finalize Facebook Enrichment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "3669fcaa-2267-479c-9407-bf6b166c1f46",
+  "tags": []
+}

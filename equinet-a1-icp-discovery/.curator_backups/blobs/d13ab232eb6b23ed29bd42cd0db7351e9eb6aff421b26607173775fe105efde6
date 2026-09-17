@@ -124,7 +124,7 @@ The snapshot contains hashes of the authoritative policies, schemas and scripts.
    - the Equinet profile root as `workdir`;
    - a verified delivery target;
    - the self-contained prompt below.
-6. Verify the job schedule, repeat count, workdir, delivery, all required skills, and all four required toolsets.
+5. Verify the job schedule, repeat count, workdir, delivery, both skills, and all three required toolsets.
 
 The agent-facing cron tool cannot pin a model. This profile must keep `cron.model: gpt-5.6-terra` and `cron.model_provider: openai-api` configured independently of the chat model.
 

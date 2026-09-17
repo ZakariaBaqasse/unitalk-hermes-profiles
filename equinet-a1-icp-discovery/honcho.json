@@ -1,6 +1,6 @@
 {
   "baseUrl": "https://memory.unitalk.ai/v3",
-  "apiKey": "hch-v3-ec2ve4cov9q50fiod5feihh6fjnremt2sqfv2mshyj1uiq46x0ma73n6jfm62lvY",
+  "apiKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiMjAyNi0wOS0xNlQxNDowMjozOC40OTRaIiwiYWQiOnRydWV9.-RjrXjDO8aAq5LTF4XsdnvtZQWrXlrRKk9YwQ0gkWQE",
   "workspace": "user_3DwmJL2jXtw8gOJtjSwA9ucg9rp",
   "peerName": "user",
   "contextCadence": 2,
@@ -69,7 +69,8 @@
       },
       "workspace": "user_3DwmJL2jXtw8gOJtjSwA9ucg9rp",
       "peerName": "user",
-      "aiPeer": "equinet-a1-icp-discovery-g9rp"
+      "aiPeer": "equinet-a1-icp-discovery-g9rp",
+      "apiKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiMjAyNi0wOS0xNlQxNDowMjozOC40OTRaIiwiYWQiOnRydWV9.-RjrXjDO8aAq5LTF4XsdnvtZQWrXlrRKk9YwQ0gkWQE"
     }
   },
   "workspaceId": "user_3DwmJL2jXtw8gOJtjSwA9ucg9rp",

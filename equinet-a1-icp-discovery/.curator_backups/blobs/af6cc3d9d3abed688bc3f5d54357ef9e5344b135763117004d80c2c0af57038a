@@ -79,23 +79,11 @@ Accepted fields:
 
 Before constructing the webhook body, require the user to supply country, region/state and city. If one is missing, ambiguous or conflicts with a supplied code, ask the user and do not invoke n8n. If all three names are complete and unambiguous, no additional confirmation is required. Resolve the canonical location with the approved mapping; never guess a code. Keep the request within the active runtime candidate limit. The code accepts the body from `$json.body` or `$json`, but MCP runs should use `inputs: { type: "webhook", webhookData: { method: "POST", body: ... } }`.
 
-## Profile installation prerequisite
-
-The profile installer—not the end user and not a discovery run—must provision the profile-local Python runtime once after copying or updating the profile:
-
-```text
-python3 skills/system-operations/equinet-n8n-discovery-control/scripts/provision_profile_runtime.py
-python3 skills/system-operations/equinet-n8n-discovery-control/scripts/provision_profile_runtime.py --check
-```
-
-The provisioner creates a fresh host-local `.venv` from `configurations/operations/a1-python-runtime-requirements.txt`, verifies `jsonschema`, and replaces any copied or stale virtual environment only after the new one passes verification. Exclude `.venv/` from profile exports; it is machine-local and may contain non-portable interpreter links. A failed `--check` is a deployment blocker. Never install or repair dependencies during a discovery run.
-
 ## Start procedure
 
-1. Before starting n8n, run the provisioner with `--check`. If it fails, stop before n8n invocation and repair the profile installation.
-2. Confirm the exposed main n8n orchestrator by immutable workflow ID using live MCP metadata.
-3. Resolve and validate the complete country, region/state and city against `configurations/geography/location-resolution-v1.json`, validate count and segment, then execute once through the active published production workflow.
-4. Build a configuration snapshot, then create the durable v2 ticket:
+1. Confirm the exposed main n8n orchestrator by immutable workflow ID using live MCP metadata.
+2. Resolve and validate the complete country, region/state and city against `configurations/geography/location-resolution-v1.json`, validate count and segment, then execute once through the active published production workflow.
+3. Build a configuration snapshot, then create the durable v2 ticket:
 
 ```text
 .venv/bin/python skills/system-operations/equinet-n8n-discovery-control/scripts/build_configuration_snapshot.py \
@@ -116,7 +104,7 @@ The provisioner creates a fresh host-local `.venv` from `configurations/operatio
 
 The snapshot contains hashes of the authoritative policies, schemas and scripts. New production tickets must not use an unspecified snapshot or monitor identity.
 
-5. Create one finite cron monitor with:
+4. Create one finite cron monitor with:
    - schedule exactly `every 2m`;
    - enough finite repeats for polling **and staging**, not only the n8n deadline;
    - skills `equinet-n8n-discovery-control`, `post-n8n-public-website-enrichment`, `prospect-segment-classification`, `equinet-icp-qualification`, `prospect-evidence-and-confidence`, `icp-scoring-and-rationale`, `a1-prospect-data-contract`, and `evidence-aware-crm-staging`;
@@ -124,7 +112,7 @@ The snapshot contains hashes of the authoritative policies, schemas and scripts.
    - the Equinet profile root as `workdir`;
    - a verified delivery target;
    - the self-contained prompt below.
-6. Verify the job schedule, repeat count, workdir, delivery, all required skills, and all four required toolsets.
+5. Verify the job schedule, repeat count, workdir, delivery, both skills, and all three required toolsets.
 
 The agent-facing cron tool cannot pin a model. This profile must keep `cron.model: gpt-5.6-terra` and `cron.model_provider: openai-api` configured independently of the chat model.
 
