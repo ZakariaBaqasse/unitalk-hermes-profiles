@@ -1,0 +1,110 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "company_id": null,
+  "created_at": "2026-09-17T15:22:52Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "8baab696e580b1970010a969c825a2d40ac1ca21cfa4186a8d266d4d30871dee",
+  "requested_batch_size": 1,
+  "company_count": 1,
+  "companies": [
+    {
+      "twenty_company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "name": "Wilkins Farrier & Forge",
+      "segment": "FARRIER",
+      "domain": null,
+      "professional_network_url": null,
+      "location": {
+        "street": "Lawrenceburg, Kentucky, 40342, United States",
+        "city": "Lawrenceburg",
+        "region": "Kentucky",
+        "country": "United States",
+        "postal_code": "40342"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": "0.1.0",
+      "a2_enrichment_run_id": "run_20260917T152231Z",
+      "a2_processing_started_at": "2026-09-17T15:22:52.000Z",
+      "linked_people": [
+        {
+          "twenty_person_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+          "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+          "full_name": "Ryan Wilkins",
+          "raw_name": {
+            "firstName": "Ryan Wilkins",
+            "lastName": ""
+          },
+          "job_title": null,
+          "work_email": null,
+          "phone": "3174452402",
+          "professional_network_url": null,
+          "a2_identity_status": null,
+          "a2_role_status": null,
+          "a2_role_priority": null,
+          "a2_company_match_status": null,
+          "a2_enrichment_status": null,
+          "fullenrich_person_id": "",
+          "last_verified_at": null,
+          "last_enriched_at": null,
+          "updated_at": "2026-09-08T16:18:37.058Z"
+        }
+      ],
+      "snapshot_updated_at": "2026-09-17T15:22:52.613Z"
+    }
+  ],
+  "claims": [
+    {
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "claimed": true,
+      "write_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:22:52Z"
+      },
+      "read_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:22:52Z"
+      }
+    }
+  ],
+  "applied_filters": {
+    "statuses": [
+      "NOT_ENRICHED"
+    ],
+    "include_null": false,
+    "allow_any_status": false,
+    "company_ids": [],
+    "company_names": [
+      "Wilkins Farrier & Forge"
+    ],
+    "segments": [],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "200",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "a2EnrichmentStatus[eq]:NOT_ENRICHED,name[eq]:\"Wilkins Farrier & Forge\""
+    },
+    "receipt": {
+      "http_status": 200,
+      "attempt": 1,
+      "received_at": "2026-09-17T15:22:52Z"
+    }
+  },
+  "external_writes": 1,
+  "artifact_sha256": "785e5b529d0b57c2a1e969f6a111ab487fbc98c239df8a45c795df09f2d2d37c"
+}

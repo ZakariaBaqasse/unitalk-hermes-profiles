@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+"""Create reviewed Jonabell Stage 1 summaries without altering raw profile outputs."""
+from __future__ import annotations
+import copy,hashlib,json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];B=ROOT/'evaluations/step8/pilot/A1-DARLEY-JONABELL-001';AN=B/'stage1-analysis.json';AU=B/'stage1-audit.json';VAL=B/'validated-observations.json';OUT_AN=B/'stage1-analysis.reviewed.json';OUT_AU=B/'stage1-audit.reviewed.json'
+def load(p):return json.loads(p.read_text(encoding='utf-8'))
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def can(v):return hashlib.sha256(json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+def main():
+ original_a=load(AN);original_u=load(AU);v=load(VAL);ids={x['field_key']:x['field_assessment_candidate']['field_assessment_id'] for x in v['observations'][:3]};a=copy.deepcopy(original_a);a['review_correction']={'status':'unitalk_reviewed_summary','raw_profile_output':str(AN.relative_to(ROOT)),'raw_profile_output_sha256':sha(AN),'reason':'Correct preliminary-state wording, assessment IDs, gateway identity and audit references without changing the validated observation batch.'};a['unitalk_gateway']='litellm-unitalk'
+ for x in a['field_dispositions']:
+  x['disposition']='retain_for_evidence_assessment';x['validation_state']='present_unverified';x['field_assessment_id']=ids[x['field_key']];x['notes']='Direct official-site fact accepted for Wave 3 evidence/confidence assessment; final verification and canonical proposal are not assigned in Stage 1.'
+ a['target_role_priority_recommendation']['review_decision']='pending_severine';a['next']='Awaiting Séverine decision on secondary target-role classification. Do not create a canonical revision or process Rood & Riddle.';a.pop('sha256',None);a['sha256']=can(a);OUT_AN.write_text(json.dumps(a,indent=2,ensure_ascii=False)+'\n')
+ u=copy.deepcopy(original_u);u['review_correction']={'status':'unitalk_reviewed_audit','raw_profile_output':str(AU.relative_to(ROOT)),'raw_profile_output_sha256':sha(AU)};u['entity']['unitalk_gateway']='litellm-unitalk';u['entity']['upstream_provider']='microsoft_azure';u['entity']['processing_region']='Europe';u['usage_and_cost']['api_calls']=1;u['usage_and_cost']['model_calls']=1;u['usage_and_cost']['external_business_api_calls']=0
+ paths={'handoff_json':'evaluations/step8/handoffs/A1-DARLEY-JONABELL-001.handoff.json','initial_record_json':'evaluations/step8/intake/A1-DARLEY-JONABELL-001/initial-record.json','reuse_snapshot_json':'evaluations/step8/planning/A1-DARLEY-JONABELL-001.reuse-snapshot.json','gap_plan_json':'evaluations/step8/planning/A1-DARLEY-JONABELL-001.gap-plan.json','collection_manifest_json':'evaluations/step8/collection/collection-manifest.json','page_01_md':'evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-01.md','page_02_md':'evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md'};u['source_file_hashes']={k:sha(ROOT/p) for k,p in paths.items()};u.pop('sha256',None);u['sha256']=can(u);OUT_AU.write_text(json.dumps(u,indent=2,ensure_ascii=False)+'\n');print(json.dumps({'analysis':str(OUT_AN.relative_to(ROOT)),'analysis_sha256':sha(OUT_AN),'audit':str(OUT_AU.relative_to(ROOT)),'audit_sha256':sha(OUT_AU),'raw_outputs_preserved':True,'relationship_review':'pending_severine'},indent=2));return 0
+if __name__=='__main__':raise SystemExit(main())

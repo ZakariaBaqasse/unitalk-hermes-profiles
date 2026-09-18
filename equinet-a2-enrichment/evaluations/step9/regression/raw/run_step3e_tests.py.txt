@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3e_tests.py", line 220, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3e_tests.py", line 204, in main
+    render(policy, results)
+    ~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3e_tests.py", line 106, in render
+    outcomes = "\n".join(f"| `{item['name']}` | `{item['recommended_action']}` | {'Yes' if item['baseline_preserved'] else 'No'} | {'PASS' if item['passed'] else 'FAIL'} |" for item in cases)
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3e_tests.py", line 106, in <genexpr>
+    outcomes = "\n".join(f"| `{item['name']}` | `{item['recommended_action']}` | {'Yes' if item['baseline_preserved'] else 'No'} | {'PASS' if item['passed'] else 'FAIL'} |" for item in cases)
+                               ~~~~^^^^^^^^
+KeyError: 'name'

@@ -1,0 +1,57 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2B",
+  "artifacts": [
+    "foundations/A2-FIELD-DICTIONARY.md",
+    "foundations/A2-STATE-MODEL.md",
+    "foundations/contracts/a2-field-dictionary-0.1.0.csv",
+    "foundations/contracts/a2-state-model-0.1.0.json"
+  ],
+  "artifact_version": "0.1.0",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-25T22:20:22Z",
+  "approved_decisions": {
+    "B1": "Keep unknown, not_checked, unavailable, not_found, error, gap, conflict and stale as distinct meanings.",
+    "B2": "Use separate vocabularies for presence, availability, verification, confidence, freshness, conflict, quality, review and application.",
+    "B3": "Use the 14-section, 216-path structural field dictionary as the basis for the future JSON Schema.",
+    "B4": "Keep baseline, observations, one proposed resolution, human decision and application state separate.",
+    "B5": "Use record_approved and record_rejected as A2 workflow states to avoid HubSpot approval-state ambiguity.",
+    "B6": "Keep HubSpot Lifecycle, Lead, Deal, Ticket, Sample Request and Account Status values as external references only.",
+    "B7": "Use needs_owner_review without approved owner rules and block writes while workflow dependencies are unverified.",
+    "B8": "Keep the no-integration ceiling; reviewed records cannot enter sync states.",
+    "B9": "Keep A2 requalification signals separate from A1-produced numeric score revisions.",
+    "B10": "Keep future external-system IDs nullable and connector-controlled; null never proves no external match."
+  },
+  "technical_validation": {
+    "field_paths": 216,
+    "canonical_sections": 14,
+    "state_vocabularies": 37,
+    "workflow_states": 16,
+    "cross_state_rules": 12,
+    "negative_regressions": "9/9 pass",
+    "language_audit": "pass"
+  },
+  "not_approved": [
+    "business field catalogue",
+    "segment minimum data packages",
+    "field-specific evidence, confidence and freshness thresholds",
+    "source activation or paid providers",
+    "HubSpot/Twenty mapping",
+    "live enrichment",
+    "CRM write or outreach",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2C — Requalification and Score-Revision Data Contract",
+  "profile_sync": {
+    "temporary_soul_updated": true,
+    "updated_at": "2026-08-25T22:20:22Z",
+    "status": "complete"
+  }
+}

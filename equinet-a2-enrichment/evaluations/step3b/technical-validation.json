@@ -1,0 +1,281 @@
+{
+  "step": "3B",
+  "version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "package_contract": {
+    "path": "foundations/contracts/business/a2-minimum-data-packages-0.1.0-draft.1.json",
+    "sha256": "fe1dbd2afbc14a05ac289407c22a2f0b3365e17375d7e99def932dec25f85195"
+  },
+  "catalogue_dependency": {
+    "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json",
+    "sha256": "7ac3ca561dad724a0c390fb50e4905005814382be9ed204d97336d7f965a9d7b",
+    "passed": true
+  },
+  "contract_validation": {
+    "errors": [],
+    "passed": true
+  },
+  "fixture_summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "farrier_named_email_ready",
+        "segment": "farrier",
+        "package_status": "review_ready",
+        "workflow_recommendation": "review_required",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "farrier_named_phone_ready",
+        "segment": "farrier",
+        "package_status": "review_ready",
+        "workflow_recommendation": "review_required",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "farrier_general_fallback_ready",
+        "segment": "farrier",
+        "package_status": "review_ready",
+        "workflow_recommendation": "review_required",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "horse_owner_named_ready_without_horse_count",
+        "segment": "horse_owner",
+        "package_status": "review_ready",
+        "workflow_recommendation": "review_required",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "horse_owner_general_fallback_ready",
+        "segment": "horse_owner",
+        "package_status": "review_ready",
+        "workflow_recommendation": "review_required",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "farrier_missing_service_area",
+        "segment": "farrier",
+        "package_status": "incomplete",
+        "workflow_recommendation": "enrichment_in_progress",
+        "missing_required_fields": [
+          "organisation.service_area"
+        ],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "farrier_exhausted_missing_service_area",
+        "segment": "farrier",
+        "package_status": "incomplete",
+        "workflow_recommendation": "held",
+        "missing_required_fields": [
+          "organisation.service_area"
+        ],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "farrier_missing_all_contact_channels",
+        "segment": "farrier",
+        "package_status": "incomplete",
+        "workflow_recommendation": "enrichment_in_progress",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [
+          "person.business_email",
+          "person.business_phone"
+        ],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "horse_owner_optional_fields_missing",
+        "segment": "horse_owner",
+        "package_status": "review_ready",
+        "workflow_recommendation": "review_required",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "horse_owner_material_conflict",
+        "segment": "horse_owner",
+        "package_status": "needs_review",
+        "workflow_recommendation": "held",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "general_fallback_without_marker",
+        "segment": "horse_owner",
+        "package_status": "incomplete",
+        "workflow_recommendation": "enrichment_in_progress",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      },
+      {
+        "name": "invalid_unknown_segment",
+        "segment": "unknown_segment",
+        "package_status": "invalid",
+        "workflow_recommendation": "processing_failed",
+        "missing_required_fields": [],
+        "unsatisfied_contact_requirements": [],
+        "automatic_rejection": false,
+        "automatic_a1_score_change": false,
+        "external_action_authorized": false,
+        "passed": true
+      }
+    ]
+  },
+  "negative_regressions": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "wrong_catalogue_hash",
+        "expected_error": "dependency version or hash mismatch",
+        "errors": [
+          "Business Field Catalogue dependency version or hash mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_required_field",
+        "expected_error": "references unknown field",
+        "errors": [
+          "package references unknown field person.unknown: farrier_review_ready"
+        ],
+        "passed": true
+      },
+      {
+        "name": "duplicate_required_field",
+        "expected_error": "duplicate required field",
+        "errors": [
+          "duplicate required field: farrier_review_ready"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing_contact_path",
+        "expected_error": "contact path set mismatch",
+        "errors": [
+          "contact path set mismatch: horse_owner_review_ready"
+        ],
+        "passed": true
+      },
+      {
+        "name": "contact_without_channel",
+        "expected_error": "lacks a verified-channel alternative",
+        "errors": [
+          "contact path lacks a verified-channel alternative: farrier_review_ready/named_target"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing_required_auto_reject",
+        "expected_error": "missing Required field policy mismatch",
+        "errors": [
+          "missing Required field policy mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "human_review_disabled",
+        "expected_error": "human review must remain required",
+        "errors": [
+          "human review must remain required during pilot"
+        ],
+        "passed": true
+      },
+      {
+        "name": "outreach_send_enabled",
+        "expected_error": "outreach readiness boundary is unsafe",
+        "errors": [
+          "outreach readiness boundary is unsafe"
+        ],
+        "passed": true
+      },
+      {
+        "name": "equinet_falsely_confirmed",
+        "expected_error": "approval boundary exceeds",
+        "errors": [
+          "approval boundary exceeds the authorised draft scope"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unitalk_approval_removed",
+        "expected_error": "working-baseline approval metadata",
+        "errors": [
+          "Unitalk working-baseline approval metadata is invalid"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "missing_required_policy": true,
+    "outreach_separate": true,
+    "review_decisions": true,
+    "review_pending": true
+  },
+  "cli_smoke_test": true,
+  "language_audit": {
+    "files_checked": 410,
+    "findings": 0,
+    "passed": true
+  },
+  "external_actions": 0,
+  "equinet_confirmation": "pending",
+  "next_gate_after_approval": "Step 3C — A2 Source Register",
+  "failures": [],
+  "pass": true
+}

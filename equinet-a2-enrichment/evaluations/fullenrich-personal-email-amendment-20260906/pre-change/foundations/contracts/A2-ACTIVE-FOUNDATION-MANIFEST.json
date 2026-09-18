@@ -1,0 +1,511 @@
+{
+  "manifest_id": "equinet-a2-active-foundation",
+  "version": "1.3.0",
+  "status": "pilot_ready_no_integration",
+  "active_since": "2026-09-06T13:07:00Z",
+  "release_id": "equinet-a2-fullenrich-foundation-1.2.0",
+  "canonical_schema_version": "1.0.0",
+  "active_business_configuration_version": "0.3.0",
+  "current_clarification": "FullEnrich after official website, role-bounded search, selected-contact work-email/mobile enrichment, no personal email and separately gated Apify fallback",
+  "runtime_policy": {
+    "path": "foundations/contracts/runtime/a2-no-integration-runtime-policy-1.2.0.yaml",
+    "version": "1.2.0",
+    "sha256": "aa7ceccd42e300a01c40de7d9c510cbd0b81a93909ab042854c279e5ccd20d6d"
+  },
+  "skills": [
+    {
+      "skill_id": "a2-handoff-intake-and-initialisation",
+      "version": "0.1.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "sha256": "cf7cdec99a61b9206e4560ab9f7e551b9cc0a162b7dcff7245dbc9742b969812"
+    },
+    {
+      "skill_id": "a2-entity-resolution-and-normalisation",
+      "version": "0.2.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "sha256": "37e336023b71c933613e8088975374ae781add08c6eeb930ea533c0f55389ed1"
+    },
+    {
+      "skill_id": "a2-duplicate-and-eligibility-review",
+      "version": "0.1.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "sha256": "d978d067687d28190a9dd681b5d47c7c9bdc0392e90d64fb49955368c148be63"
+    },
+    {
+      "skill_id": "a2-gap-analysis-and-enrichment-planning",
+      "version": "0.3.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "sha256": "1be1f76e2896be20210292baa0d3372da3327f854d3ba9a495c8c6149a16f548"
+    },
+    {
+      "skill_id": "a2-permitted-enrichment-research",
+      "version": "0.3.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "sha256": "88ecd10ceff48d2751bceb7fe23dfc7a63ad99725dee2bde4bd0ce0c1a03a16b"
+    },
+    {
+      "skill_id": "a2-field-verification",
+      "version": "0.3.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-field-verification/SKILL.md",
+      "sha256": "881071160bd705e7e5d5f5721105cc586a9af8c754751be1d656a636a9756f0d"
+    },
+    {
+      "skill_id": "a2-evidence-confidence-and-freshness",
+      "version": "0.3.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "sha256": "2ea6b01bf525abd2d8134afdc345c5ab26727a2a0b92e9862989514d154341b2"
+    },
+    {
+      "skill_id": "a2-protected-field-conflict-resolution",
+      "version": "0.2.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "sha256": "9e0d573164a7a35d23df8d6a877db5f28017e805e8fcae9372534ec18ed028bd"
+    },
+    {
+      "skill_id": "a2-data-quality-and-review-readiness",
+      "version": "0.3.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "sha256": "891dfe49d97c5f337c22297ff959d7435da78a8b9ba77246f5b24ee69933c5ce"
+    },
+    {
+      "skill_id": "a2-review-package-and-governed-handoffs",
+      "version": "0.3.0",
+      "status": "pilot_ready_no_integration",
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "sha256": "37b026be36764e7b7b03546e7fa002839ee428ca63a9b65a33ddd7c7c8c66964"
+    }
+  ],
+  "active_files": [
+    {
+      "path": "SOUL.md",
+      "bytes": 22909,
+      "sha256": "4ab8073148dedb731d618dda228d58098e69128bd34adbcdd12d803fd04e983d"
+    },
+    {
+      "path": "foundations/A2-IMPLEMENTATION-CONTRACT.md",
+      "bytes": 29978,
+      "sha256": "d78307db98c7fd7a826786113fff1e6dbe8d5f9521396a03e5b75bea9f3d8692"
+    },
+    {
+      "path": "foundations/contracts/a1-to-a2-handoff.schema.json",
+      "bytes": 13719,
+      "sha256": "d1cd494b8548afeaf6691283e7ff88daf20689356377a476ff57aafa07b3ce59"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "bytes": 71694,
+      "sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531"
+    },
+    {
+      "path": "foundations/contracts/a2-field-dictionary-0.1.0.csv",
+      "bytes": 41917,
+      "sha256": "902f10c686bd09f00b1243d19a8d1e047a729a9f1ca0c2b991e63283b73a5dd0"
+    },
+    {
+      "path": "foundations/contracts/a2-state-model-0.1.0.json",
+      "bytes": 36269,
+      "sha256": "e5045b2f52c97ba588c33ac803ef582b8bb5a14cc376575ee86206d6b60d8d11"
+    },
+    {
+      "path": "foundations/contracts/requalification/a2-requalification-signal.schema.json",
+      "bytes": 6480,
+      "sha256": "f9bfb37baca8d9cc24d4c56f6cd7c3fc0cfe314de66ee4a6fe6efb83d419e33b"
+    },
+    {
+      "path": "foundations/contracts/requalification/a2-requalification-return.schema.json",
+      "bytes": 9134,
+      "sha256": "51803065548da06177b5d4c7d8c5e0250c6c0b6c1ac9604bcb3b30b2b86cfc61"
+    },
+    {
+      "path": "foundations/contracts/requalification/a1-score-revision-reference.schema.json",
+      "bytes": 7330,
+      "sha256": "c3749ebd5280657c12b312a1050b29fa8a6353dba452ecabecaa691f8611f89b"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.3.0.json",
+      "bytes": 45153,
+      "sha256": "8e1995048ce786843cf7419191b72a6d597acb1f1b5afa546454810c6c8ffc3d"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.3.0.csv",
+      "bytes": 17628,
+      "sha256": "c85cf007685f0dac9fbd935aa90aadeea9b3c07071f49b94d23a76e56ae6da37"
+    },
+    {
+      "path": "foundations/contracts/business/a2-minimum-data-packages-0.3.0.json",
+      "bytes": 7025,
+      "sha256": "74754aadd320d52abba32582a102c5ab94181b7967abe260cc7e9821c1c05589"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.3.0.json",
+      "bytes": 33222,
+      "sha256": "008e6f8ffca793f4fe2d9a4cb83d90f9318c7f392d88a64960084a1fd739d527"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.3.0.csv",
+      "bytes": 15089,
+      "sha256": "ade7f9bb8a5dc66ecdaaddeb0b24a5b9001436021414a0ae007c1585bdb0bf4d"
+    },
+    {
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.3.0.json",
+      "bytes": 12216,
+      "sha256": "31202a1afdfe2690ae194f9f21fdd97656f1115f7f12fb2ee0ad6d2d5d94d50f"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.3.0.json",
+      "bytes": 11247,
+      "sha256": "e546d0fd575642ccc9d2d2ebb23aa6f9e9caa818d5e6e81fce2f2757a931dee2"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.3.0.json",
+      "bytes": 11662,
+      "sha256": "7adf957a3161e1d45a47149167bc66e4387a877908a2ba2ca4e232d01d2c5a09"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.3.0.json",
+      "bytes": 30627,
+      "sha256": "8dbc41f780c2a8a349ae265ebec6e738dc7e187f69a14ce9e478f5b779d5ab66"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.3.0.csv",
+      "bytes": 14134,
+      "sha256": "0554fa6a97d5e16dd6aa967b9fa214274997cd8c11cb22f7a230b375d3a228ab"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "bytes": 5052,
+      "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+      "bytes": 4015,
+      "sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be"
+    },
+    {
+      "path": "foundations/A2-HANDOFF-TO-RECORD-INITIALISATION-CONTRACT.md",
+      "bytes": 6226,
+      "sha256": "ec86fcdacacec204a08b1165c2480a09e070b298d01265674491e9c992e8b3b8"
+    },
+    {
+      "path": "foundations/A2-CROSS-FIELD-VALIDATOR-CONTRACT.md",
+      "bytes": 11916,
+      "sha256": "f4d3201876eeca01801b36a15cf18f737a650142daa2e95f73d2e7e24e9a509f"
+    },
+    {
+      "path": "foundations/A2-REVIEW-VIEW-SPECIFICATION.md",
+      "bytes": 6350,
+      "sha256": "3cc49abc27642a3ad5bb4be5a1d7761ada44c3e9f55ffd59d3e35a181c880b1a"
+    },
+    {
+      "path": "scripts/validate_a1_to_a2_handoff.py",
+      "bytes": 15207,
+      "sha256": "7b0fd8154f472349c87c53310dcdd03af5f9a751528d5c8884a04d203dc007c4"
+    },
+    {
+      "path": "scripts/initialize_a2_record.py",
+      "bytes": 16942,
+      "sha256": "2a70a1f12648c655092837b2793ab4f5d6fb40deae89c3106b4e6b747a1741e7"
+    },
+    {
+      "path": "scripts/validate_a2_enrichment_record.py",
+      "bytes": 52608,
+      "sha256": "ed49f2cb0258afad35c28f86b49c23dc6fd6e1069baf0bd52cff96982404cd74"
+    },
+    {
+      "path": "scripts/render_a2_review_views.py",
+      "bytes": 29820,
+      "sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef"
+    },
+    {
+      "path": "scripts/classify_official_site_social_link.py",
+      "bytes": 6495,
+      "sha256": "6d1e4433ff0f62d9cb00fa3e845ded4e8652631dc6a1e490fada642d6717f717"
+    },
+    {
+      "path": "skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "bytes": 3098,
+      "sha256": "cf7cdec99a61b9206e4560ab9f7e551b9cc0a162b7dcff7245dbc9742b969812"
+    },
+    {
+      "path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "bytes": 2883,
+      "sha256": "37e336023b71c933613e8088975374ae781add08c6eeb930ea533c0f55389ed1"
+    },
+    {
+      "path": "skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "bytes": 2453,
+      "sha256": "d978d067687d28190a9dd681b5d47c7c9bdc0392e90d64fb49955368c148be63"
+    },
+    {
+      "path": "scripts/a2_intake.py",
+      "bytes": 2202,
+      "sha256": "d96c088a0600a6e604bc24901e7c9273efc1c094e0244808dbad6aaf64d12370"
+    },
+    {
+      "path": "scripts/normalise_and_resolve_a2_entities.py",
+      "bytes": 7359,
+      "sha256": "06bbeafd438d8021469ce45273cddff6bbf78004f3c456950bc260e366238bed"
+    },
+    {
+      "path": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "bytes": 4066,
+      "sha256": "12ea14764c1e5e1bf2e9ae06e8344c52b1ad6db79fa9db5b159af4f47f2b30c4"
+    },
+    {
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "bytes": 4322,
+      "sha256": "1be1f76e2896be20210292baa0d3372da3327f854d3ba9a495c8c6149a16f548"
+    },
+    {
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "bytes": 4438,
+      "sha256": "88ecd10ceff48d2751bceb7fe23dfc7a63ad99725dee2bde4bd0ce0c1a03a16b"
+    },
+    {
+      "path": "skills/a2-field-verification/SKILL.md",
+      "bytes": 3512,
+      "sha256": "881071160bd705e7e5d5f5721105cc586a9af8c754751be1d656a636a9756f0d"
+    },
+    {
+      "path": "skills/a2-field-verification/references/contact-verification.md",
+      "bytes": 1317,
+      "sha256": "723f456aae4366af9357cfa4b7527b3fbfafd147333743d8f42a78bbe80f281d"
+    },
+    {
+      "path": "skills/a2-field-verification/references/professional-verification.md",
+      "bytes": 1245,
+      "sha256": "d19e6389c410fe4ccebf194ef15f88f822e07980100be931b905b13b087ce36e"
+    },
+    {
+      "path": "skills/a2-field-verification/references/equine-business-verification.md",
+      "bytes": 1444,
+      "sha256": "90d601938a2dd74173b00e2a381def1a95fe1fe9b41560e351b8c3c1a8e01335"
+    },
+    {
+      "path": "scripts/a2_wave2_contracts.py",
+      "bytes": 2518,
+      "sha256": "b189cd98f47cbe7b4e47bc95ba5aee0b6afb9600436bec7bb8f93ccc98e28b7c"
+    },
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "bytes": 15503,
+      "sha256": "9f8b6c4ffbc249f5aab1586327327a1b4a4a11917207a61773edd1bd755f1f68"
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "bytes": 17671,
+      "sha256": "50677036fb4830d7f0472a1ae8438ddc9451f7fcea8e19cc989260837a20507d"
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "bytes": 18646,
+      "sha256": "db881fbf1cd2bb7469e41a25634c22c2154a97516eac8bd62371f80faf015452"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "bytes": 5383,
+      "sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df"
+    },
+    {
+      "path": "foundations/contracts/requalification/a2-requalification-package.schema.json",
+      "bytes": 2551,
+      "sha256": "c6babeb60063d810f0b2f715eae945e1716c4d078df693475ee23ffa9e227ffc"
+    },
+    {
+      "path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "bytes": 2599,
+      "sha256": "2ea6b01bf525abd2d8134afdc345c5ab26727a2a0b92e9862989514d154341b2"
+    },
+    {
+      "path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "bytes": 2545,
+      "sha256": "9e0d573164a7a35d23df8d6a877db5f28017e805e8fcae9372534ec18ed028bd"
+    },
+    {
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "bytes": 2611,
+      "sha256": "891dfe49d97c5f337c22297ff959d7435da78a8b9ba77246f5b24ee69933c5ce"
+    },
+    {
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "bytes": 3953,
+      "sha256": "37b026be36764e7b7b03546e7fa002839ee428ca63a9b65a33ddd7c7c8c66964"
+    },
+    {
+      "path": "scripts/a2_wave3_contracts.py",
+      "bytes": 1551,
+      "sha256": "3b183d40c756127df60f6f96c3a7db473a07f685051e5f481f22a072d9e02a9b"
+    },
+    {
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "bytes": 5259,
+      "sha256": "17746ef79e82bf27ef6cc0d92192a2db6244b62ef96704222ab307d075c165a2"
+    },
+    {
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "bytes": 4572,
+      "sha256": "719732a1cbe8488724740103166622a6274dfb89e6a0b63ac2571bee01f15153"
+    },
+    {
+      "path": "scripts/create_a2_revision.py",
+      "bytes": 3245,
+      "sha256": "a82861c9e11393b83e70352028a8c23d20a2c5365528a47610bcbbdab6be69a4"
+    },
+    {
+      "path": "scripts/render_and_validate_a2_review_package.py",
+      "bytes": 1805,
+      "sha256": "ccf329a893dec19a32b9e4119fce70620ef76a10673b5ce397bb440992758680"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_twenty_review.py",
+      "bytes": 2975,
+      "sha256": "25f52864d7526dbb95a18a531c51fe9f380ac4b99e486e6fbff73cd850882cd5"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "bytes": 4096,
+      "sha256": "5874165f682873c93e4cb1d7a29495fce1ab71b4c51bfb35635d07602a98637c"
+    },
+    {
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "bytes": 6357,
+      "sha256": "0dedaa9b6e69f60cc5d5432ddfca0b71cc559a10406058e5128d894cf0204f3d"
+    },
+    {
+      "path": "scripts/run_a2_no_integration_workflow.py",
+      "bytes": 7985,
+      "sha256": "bb3c8f5e24d801ec27702ea043986acf46ef65f0c6fe506112e6d8ee74efe39a"
+    },
+    {
+      "path": "config.yaml",
+      "bytes": 2692,
+      "sha256": "dfe27b880c2287909f26329cefb96af4350b12629b9b0a1bee1781673f41d96f"
+    },
+    {
+      "path": "foundations/contracts/runtime/a2-step7-synthetic-acceptance-manifest-0.1.0.json",
+      "bytes": 1130,
+      "sha256": "59a916f6e9113d0b640541868b999b1b3a1401507c5393205a487dea4b7bd50c"
+    },
+    {
+      "path": "foundations/contracts/runtime/a2-step8-pilot-acceptance-manifest-0.1.0.json",
+      "bytes": 956,
+      "sha256": "0619e919ff5f47245c46036f4fb608648f32f1fccd7af95be2cab385446c708c"
+    },
+    {
+      "path": "foundations/contracts/runtime/a2-no-integration-runtime-policy-1.2.0.yaml",
+      "bytes": 6480,
+      "sha256": "aa7ceccd42e300a01c40de7d9c510cbd0b81a93909ab042854c279e5ccd20d6d"
+    },
+    {
+      "path": "foundations/decisions/A2-EQUINET-BUSINESS-CONFIRMATION-20260830.json",
+      "bytes": 2117,
+      "sha256": "c71dee9080d6095d62bf73a5a301d8491f5057b898b429ed9591e70afda33fe2"
+    },
+    {
+      "path": "foundations/decisions/A2-EQUINET-BUSINESS-CONFIRMATION-20260830.md",
+      "bytes": 2558,
+      "sha256": "48bc501225aea5829f2486a76fbdeeaac410ce2492581bccff8b3a59659f0d51"
+    },
+    {
+      "path": "foundations/A2-BUSINESS-FIELD-CATALOGUE.md",
+      "bytes": 4050,
+      "sha256": "6908a841d9357d49bcf8aef0ea6f523b0eba2c74bfec619001e0ae0d11332d24"
+    },
+    {
+      "path": "foundations/A2-MINIMUM-DATA-PACKAGES.md",
+      "bytes": 2961,
+      "sha256": "1f5f023ffc129503e62d8446130c1bc730fd38cff671fecfceeae3fc4da514c9"
+    },
+    {
+      "path": "foundations/A2-PRELIMINARY-HUBSPOT-MAPPING.md",
+      "bytes": 2035,
+      "sha256": "62ba7d94ad42571b88d18506ae590c1688689102b15143a83cdfe1786e673a56"
+    },
+    {
+      "path": "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 34709,
+      "sha256": "8f830c6ce96e409683d4a791a7521af06ec290f4ddb6f4264baa2fbee2214b2d"
+    },
+    {
+      "path": "scripts/classify_a2_target_role.py",
+      "bytes": 5935,
+      "sha256": "5dd82e8a30eb4800450a7808efcf4d1f4223ba9de8f87c97553863e72223882e"
+    },
+    {
+      "path": "scripts/validate_a2_contact_selection.py",
+      "bytes": 3474,
+      "sha256": "b08724970441cbb211468f4897b39320535b490eadf2b7e4468cabdc01f726be"
+    },
+    {
+      "path": "foundations/contracts/skills/a2-fullenrich-amendment-runtime-manifest-1.2.0.json",
+      "bytes": 5907,
+      "sha256": "424cf5d7a6ce57498b5435b1693972b19f6fad5c60846478aaf3022882ca9700"
+    },
+    {
+      "path": "foundations/decisions/A2-FULLENRICH-SOURCE-ROUTING-20260906.json",
+      "bytes": 2542,
+      "sha256": "f653be41561cb77683e728bf5eeef56ea97e04000537a55d426a8b76287d7af0"
+    },
+    {
+      "path": "foundations/decisions/A2-FULLENRICH-SOURCE-ROUTING-20260906.md",
+      "bytes": 2276,
+      "sha256": "e4e01d7e3b99e7a473d99f65bd97546e98e936d756b18432b14e36bd6f6bcd26"
+    },
+    {
+      "path": "foundations/contracts/integrations/a2-fullenrich-n8n-integration-0.1.0.json",
+      "bytes": 4416,
+      "sha256": "ff8b3042f922610b276071177173330238322cb3f0864de3f6b2e8197e6c5637"
+    },
+    {
+      "path": "integrations/n8n/A2-FULLENRICH-N8N-WORKFLOW-SPEC.md",
+      "bytes": 2997,
+      "sha256": "146af74bd6f9973b38673df26466204ff6ffef45e49ff8b76cbe3fda321b2136"
+    },
+    {
+      "path": "scripts/normalise_fullenrich_response.py",
+      "bytes": 9676,
+      "sha256": "af5b6b16c923d78fa6aa642c1ca7bc7d2360c0514d7e3f116cc493f063a34c8d"
+    }
+  ],
+  "active_file_count": 78,
+  "historical_runtime_policies": [
+    "evaluations/step9/release-candidate/a2-no-integration-runtime-policy-1.0.0-rc.1.yaml",
+    "foundations/contracts/runtime/a2-runtime-policy-0.1.0.yaml",
+    "foundations/contracts/runtime/a2-step8-pilot-runtime-policy-0.1.0.yaml"
+  ],
+  "permissions": {
+    "local_file_processing": true,
+    "manual_approved_handoff_processing": true,
+    "web_enabled_by_default": false,
+    "conditional_web_requires_candidate_specific_activation": true,
+    "hubspot_read": false,
+    "hubspot_write": false,
+    "twenty": false,
+    "n8n": false,
+    "apify": false,
+    "outreach": false,
+    "durable_handoff_delivery": false,
+    "fullenrich": false
+  },
+  "external_actions": 0,
+  "supersedes": {
+    "manifest_version": "1.2.0",
+    "snapshot_path": "evaluations/fullenrich-source-amendment-20260906/pre-change/foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+    "sha256": "12bbd2ecfe60aaaa1d98ab8b9bac8e744b5aac06306ae3c882aae992e382eec4"
+  },
+  "business_confirmation": {
+    "decision_id": "A2-FULLENRICH-SOURCE-ROUTING-20260906",
+    "decision_path": "foundations/decisions/A2-FULLENRICH-SOURCE-ROUTING-20260906.json",
+    "equinet_confirmation": "confirmed_via_unitalk_operations",
+    "unitalk_implementation_authorized": true
+  }
+}

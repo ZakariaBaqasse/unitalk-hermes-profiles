@@ -1,0 +1,191 @@
+{
+  "step": "3A",
+  "catalogue_version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "catalogue": {
+    "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json",
+    "sha256": "7ac3ca561dad724a0c390fb50e4905005814382be9ed204d97336d7f965a9d7b"
+  },
+  "csv": {
+    "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.csv",
+    "sha256": "66d65650a73c65066b6cee41403b62587122a260686bba4aa51c778fc2d74aec"
+  },
+  "coverage": {
+    "field_count": 32,
+    "segments": [
+      "farrier",
+      "horse_owner"
+    ],
+    "priority_counts": {
+      "farrier": {
+        "required": 7,
+        "conditional_required": 5,
+        "optional": 11,
+        "do_not_collect": 5
+      },
+      "horse_owner": {
+        "required": 3,
+        "conditional_required": 7,
+        "optional": 12,
+        "do_not_collect": 3
+      }
+    },
+    "a1_requalification_linked_fields": 6,
+    "mapping_candidate_fields": 23,
+    "disabled_fields": 5
+  },
+  "catalogue_validation": {
+    "errors": [],
+    "passed": true
+  },
+  "csv_fidelity": {
+    "checks": {
+      "row_count": true,
+      "field_order": true,
+      "value_types": true,
+      "farrier_priorities": true,
+      "horse_owner_priorities": true
+    },
+    "passed": true
+  },
+  "negative_regressions": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "duplicate_field",
+        "expected_error": "duplicate field_key",
+        "errors": [
+          "duplicate field_key values are not allowed"
+        ],
+        "passed": true
+      },
+      {
+        "name": "invalid_key_format",
+        "expected_error": "invalid field_key format",
+        "errors": [
+          "invalid field_key format: Person.FullName",
+          "field scope/key mismatch: Person.FullName",
+          "missing canonical compatibility field: person.full_name"
+        ],
+        "passed": true
+      },
+      {
+        "name": "scope_mismatch",
+        "expected_error": "field scope/key mismatch",
+        "errors": [
+          "field scope/key mismatch: person.full_name"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_type",
+        "expected_error": "unsupported value_type",
+        "errors": [
+          "unsupported value_type: person.full_name",
+          "canonical compatibility field type mismatch: person.full_name"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing_segment_priority",
+        "expected_error": "priority coverage mismatch",
+        "errors": [
+          "priority coverage mismatch: person.full_name"
+        ],
+        "passed": true
+      },
+      {
+        "name": "enabled_do_not_collect",
+        "expected_error": "do_not_collect field is not disabled",
+        "errors": [
+          "do_not_collect field is not disabled: person.mobile_phone"
+        ],
+        "passed": true
+      },
+      {
+        "name": "paid_mobile_lookup",
+        "expected_error": "do_not_collect field permits paid lookup",
+        "errors": [
+          "do_not_collect field permits paid lookup: person.mobile_phone"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_a1_criterion",
+        "expected_error": "unknown A1 criterion_id",
+        "errors": [
+          "unknown A1 criterion_id a1.unknown_criterion: person.full_name"
+        ],
+        "passed": true
+      },
+      {
+        "name": "overlapping_horse_bands",
+        "expected_error": "horse-count bands",
+        "errors": [
+          "horse-count bands are missing, overlapping or changed"
+        ],
+        "passed": true
+      },
+      {
+        "name": "bad_contact_fallback",
+        "expected_error": "contact fallback",
+        "errors": [
+          "contact fallback differs from the Unitalk proposal"
+        ],
+        "passed": true
+      },
+      {
+        "name": "outreach_inference",
+        "expected_error": "review readiness must not establish outreach eligibility",
+        "errors": [
+          "review readiness must not establish outreach eligibility"
+        ],
+        "passed": true
+      },
+      {
+        "name": "mapping_claims_authority",
+        "expected_error": "mapping candidate claims operational authority",
+        "errors": [
+          "mapping candidate claims operational authority: person.full_name"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing_required_auto_reject",
+        "expected_error": "missing required field policy",
+        "errors": [
+          "missing required field policy differs from the approved Unitalk baseline"
+        ],
+        "passed": true
+      },
+      {
+        "name": "personal_email_operational",
+        "expected_error": "personal email candidate boundary mismatch",
+        "errors": [
+          "personal email candidate boundary mismatch"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "contract_pending": true,
+    "review_pending": true,
+    "decisions_3a1_to_3a8": true,
+    "step3b_boundary": true
+  },
+  "language_audit": {
+    "files_checked": 410,
+    "findings": 0,
+    "passed": true
+  },
+  "equinet_confirmation": "pending",
+  "live_collection_authorized": false,
+  "external_actions": 0,
+  "next_gate_after_approval": "Step 3B — Minimum Data Packages",
+  "failures": [],
+  "pass": true
+}

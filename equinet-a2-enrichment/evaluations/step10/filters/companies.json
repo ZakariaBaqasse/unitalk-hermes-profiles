@@ -1,0 +1,88 @@
+{
+  "companies": [
+    {
+      "id": "f-old",
+      "name": "Old Farrier",
+      "segment": "FARRIER",
+      "a2EnrichmentStatus": "NOT_ENRICHED",
+      "createdAt": "2026-09-01T00:00:00Z",
+      "updatedAt": "2026-09-01T00:00:00Z",
+      "city": "LEXINGTON",
+      "state": "KENTUCKY",
+      "country": "US",
+      "people": []
+    },
+    {
+      "id": "f-new",
+      "name": "New Farrier",
+      "segment": "FARRIER",
+      "a2EnrichmentStatus": "NOT_ENRICHED",
+      "createdAt": "2026-09-03T00:00:00Z",
+      "updatedAt": "2026-09-03T00:00:00Z",
+      "city": "LEXINGTON",
+      "state": "KENTUCKY",
+      "country": "US",
+      "people": []
+    },
+    {
+      "id": "f-mid",
+      "name": "Middle Farrier",
+      "segment": "FARRIER",
+      "a2EnrichmentStatus": "NOT_ENRICHED",
+      "createdAt": "2026-09-02T00:00:00Z",
+      "updatedAt": "2026-09-02T00:00:00Z",
+      "city": "PARIS",
+      "state": "KENTUCKY",
+      "country": "US",
+      "people": []
+    },
+    {
+      "id": "h-new",
+      "name": "Horse Farm",
+      "segment": "HORSE_OWNER",
+      "a2EnrichmentStatus": "NOT_ENRICHED",
+      "createdAt": "2026-09-04T00:00:00Z",
+      "updatedAt": "2026-09-04T00:00:00Z",
+      "city": "LEXINGTON",
+      "state": "KENTUCKY",
+      "country": "US",
+      "people": []
+    },
+    {
+      "id": "done",
+      "name": "Completed Farm",
+      "segment": "HORSE_OWNER",
+      "a2EnrichmentStatus": "COMPLETED_NO_TARGET",
+      "createdAt": "2026-09-05T00:00:00Z",
+      "updatedAt": "2026-09-05T00:00:00Z",
+      "city": "LEXINGTON",
+      "state": "KENTUCKY",
+      "country": "US",
+      "people": []
+    },
+    {
+      "id": "dup1",
+      "name": "Duplicate Name",
+      "segment": "FARRIER",
+      "a2EnrichmentStatus": "NOT_ENRICHED",
+      "createdAt": "2026-09-06T00:00:00Z",
+      "updatedAt": "2026-09-06T00:00:00Z",
+      "city": "LEXINGTON",
+      "state": "KENTUCKY",
+      "country": "US",
+      "people": []
+    },
+    {
+      "id": "dup2",
+      "name": "Duplicate Name",
+      "segment": "FARRIER",
+      "a2EnrichmentStatus": "NOT_ENRICHED",
+      "createdAt": "2026-09-07T00:00:00Z",
+      "updatedAt": "2026-09-07T00:00:00Z",
+      "city": "LEXINGTON",
+      "state": "KENTUCKY",
+      "country": "US",
+      "people": []
+    }
+  ]
+}

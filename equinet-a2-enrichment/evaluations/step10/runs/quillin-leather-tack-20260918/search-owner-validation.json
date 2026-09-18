@@ -1,0 +1,16 @@
+{
+  "status": "valid",
+  "validated_decisions": [
+    {
+      "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "decision_reason": "Exact-Owner-stage FullEnrich People Search returned terminal status not_found: no person with the exact title 'Owner' was found for Quillin Leather & Tack. No candidate retained. Advance to linked-secondary reuse evaluation.",
+      "search_stage": "owner",
+      "selected_target_priority": null,
+      "next_search_stage": "linked_secondary"
+    }
+  ],
+  "search_stage": "owner",
+  "errors": []
+}

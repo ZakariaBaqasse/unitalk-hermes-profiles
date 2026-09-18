@@ -1,0 +1,21 @@
+{
+  "step": "6",
+  "stage": "post_promotion",
+  "status": "approved_for_synthetic_local_testing",
+  "primary_functional_smoke": "passed",
+  "primary_upstream_route": "telemetry_pending",
+  "fallback_route": "configured_not_tested",
+  "real_data_authorized": false,
+  "step5_regression": true,
+  "active_foundation_files": 70,
+  "language_audit": {
+    "files_checked": 964,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 7 — Synthetic End-to-End Acceptance",
+  "failures": [],
+  "pass": true
+}

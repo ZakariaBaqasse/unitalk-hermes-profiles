@@ -1,0 +1,322 @@
+{
+  "record_type": "foundation_clarification_validation",
+  "profile": "equinet-a2-enrichment",
+  "clarification": "Official-Site Social Profile URL Capture",
+  "approved_decisions": [
+    "SOC-1",
+    "SOC-2",
+    "SOC-3",
+    "SOC-4",
+    "SOC-5",
+    "SOC-6",
+    "SOC-7",
+    "SOC-8"
+  ],
+  "validated_at": "2026-08-27T11:40:17Z",
+  "active_configuration_version": "0.1.1-draft.1",
+  "canonical_schema_version": "1.0.0",
+  "canonical_schema_changed": false,
+  "minimum_package_requirements_changed": false,
+  "field_count": 33,
+  "source_count": 12,
+  "mapping_count": 33,
+  "fixtures": {
+    "total": 15,
+    "passed": 15,
+    "cases": [
+      {
+        "id": "official-linkedin-company",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "linkedin",
+          "normalised_url": "https://linkedin.com/company/example-farrier-services",
+          "canonical_field": "organisation.public_profile_urls",
+          "attribution": "organisation",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "official-linkedin-person",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "linkedin",
+          "normalised_url": "https://linkedin.com/in/example-farrier",
+          "canonical_field": "person.public_profile_urls",
+          "attribution": "person",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "official-facebook-business",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "facebook",
+          "normalised_url": "https://facebook.com/examplefarm",
+          "canonical_field": "organisation.public_profile_urls",
+          "attribution": "organisation",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "official-instagram-business",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "instagram",
+          "normalised_url": "https://instagram.com/examplefarm",
+          "canonical_field": "organisation.public_profile_urls",
+          "attribution": "organisation",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "official-youtube-business",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "youtube",
+          "normalised_url": "https://youtube.com/@examplefarm",
+          "canonical_field": "organisation.public_profile_urls",
+          "attribution": "organisation",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "ambiguous-social-link",
+        "actual": {
+          "action": "hold_attribution_for_review",
+          "reason": "official-page context does not support person or organisation attribution",
+          "platform": "facebook",
+          "normalised_url": "https://facebook.com/example",
+          "canonical_field": null,
+          "attribution": null,
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "linkedin-company-actor-input",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "linkedin",
+          "normalised_url": "https://linkedin.com/company/example-farm",
+          "canonical_field": "organisation.public_profile_urls",
+          "attribution": "organisation",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": "harvestapi/linkedin-profile-search",
+          "actor_input_priority": "exact_linkedin_company_url",
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "company-name-actor-fallback",
+        "actual": {
+          "route": "harvestapi/linkedin-profile-search",
+          "input_priority": "verified_company_name_plus_target_role",
+          "input_value": {
+            "company_name": "Example Farm",
+            "target_role": "Owner"
+          },
+          "runtime_execution": false
+        },
+        "passed": true
+      },
+      {
+        "id": "individual-linkedin-not-search-input",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "linkedin",
+          "normalised_url": "https://linkedin.com/in/example-owner",
+          "canonical_field": "person.public_profile_urls",
+          "attribution": "person",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": "manual_review_or_separately_approved_profile_scraper",
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "social-url-no-consent",
+        "actual": {
+          "action": "retain_url_only",
+          "reason": "explicit professional social-profile URL published on the official website",
+          "platform": "instagram",
+          "normalised_url": "https://instagram.com/examplefarm",
+          "canonical_field": "organisation.public_profile_urls",
+          "attribution": "organisation",
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "broad-social-signals-remain-blocked",
+        "actual": {
+          "action": "reject_collection",
+          "requested_data": [
+            "followers",
+            "posts",
+            "connections",
+            "personal_interests"
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "apify-runtime-remains-blocked",
+        "actual": {
+          "action": "blocked",
+          "runtime_execution": false
+        },
+        "passed": true
+      },
+      {
+        "id": "unpublished-social-url-rejected",
+        "actual": {
+          "action": "reject",
+          "reason": "URL was not explicitly linked on the approved official-site page",
+          "platform": null,
+          "normalised_url": null,
+          "canonical_field": null,
+          "attribution": null,
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "linkedin-path-attribution-conflict",
+        "actual": {
+          "action": "hold_attribution_for_review",
+          "reason": "LinkedIn URL path conflicts with official-page attribution",
+          "platform": "linkedin",
+          "normalised_url": "https://linkedin.com/in/example-owner",
+          "canonical_field": null,
+          "attribution": null,
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      },
+      {
+        "id": "invalid-social-url-rejected",
+        "actual": {
+          "action": "reject",
+          "reason": "URL is invalid",
+          "platform": null,
+          "normalised_url": null,
+          "canonical_field": null,
+          "attribution": null,
+          "open_social_profile": false,
+          "extract_social_profile": false,
+          "actor_route": null,
+          "actor_input_priority": null,
+          "consent": false,
+          "outreach_eligibility": false,
+          "buying_influence": false
+        },
+        "passed": true
+      }
+    ]
+  },
+  "canonical_schema_compatibility": {
+    "schema_version": "1.0.0",
+    "record_id": "A2-SYNTH_OWNER_001",
+    "record_revision_id": "A2-REV-SYNTH_OWNER_001",
+    "previous_revision_checked": false,
+    "field_catalogue_checked": true,
+    "valid": true,
+    "errors": []
+  },
+  "csv_fidelity": {
+    "catalogue": true,
+    "source": true,
+    "mapping": true
+  },
+  "historical_acceptance_integrity": {
+    "step3a": true,
+    "step3c": true,
+    "step4_pre_clarification_soul": true
+  },
+  "active_foundation_manifest": {
+    "version": "1.0.0",
+    "active_files": 30,
+    "historical_builders": 16
+  },
+  "apify_runtime_activation": false,
+  "social_profile_automated_access": false,
+  "hubspot_write_authorized": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "failures": [],
+  "pass": true
+}

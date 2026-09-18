@@ -1,0 +1,1190 @@
+{
+  "state_model_id": "equinet-a2-state-model",
+  "version": "0.1.0",
+  "status": "approved_by_unitalk_for_step_2c",
+  "canonical_vocabularies": {
+    "operating_scope": {
+      "owner": "Approved handoff/runtime policy",
+      "values": [
+        {
+          "value": "synthetic_test",
+          "meaning": "Synthetic fixtures and controlled contract tests only."
+        },
+        {
+          "value": "manual_no_integration_pilot",
+          "meaning": "Controlled real-data pilot with no external delivery or write."
+        },
+        {
+          "value": "integrated_pilot",
+          "meaning": "Approved connected pilot with scoped integrations and recorded approvals."
+        },
+        {
+          "value": "production",
+          "meaning": "Approved operational scope; this value requires separate production acceptance."
+        }
+      ]
+    },
+    "enrichment_mode": {
+      "owner": "Approved request and business field catalogue",
+      "values": [
+        {
+          "value": "default_minimum_package",
+          "meaning": "Apply the approved segment-specific minimum enrichment package."
+        },
+        {
+          "value": "targeted_fields",
+          "meaning": "Assess only explicitly requested approved field keys."
+        }
+      ]
+    },
+    "entity_type": {
+      "owner": "Canonical A2 entity model",
+      "values": [
+        {
+          "value": "person",
+          "meaning": "A professional individual."
+        },
+        {
+          "value": "organisation",
+          "meaning": "A business, farm, stable, practice or other approved organisation."
+        }
+      ]
+    },
+    "field_scope": {
+      "owner": "Business field catalogue",
+      "values": [
+        {
+          "value": "person",
+          "meaning": "Field belongs to a person entity."
+        },
+        {
+          "value": "organisation",
+          "meaning": "Field belongs to an organisation entity."
+        },
+        {
+          "value": "relationship",
+          "meaning": "Field belongs to an entity relationship."
+        },
+        {
+          "value": "record",
+          "meaning": "Field applies to the A2 record as a whole."
+        }
+      ]
+    },
+    "identity_resolution_status": {
+      "owner": "A2 entity resolver plus human review",
+      "values": [
+        {
+          "value": "unresolved",
+          "meaning": "The subject identity is not sufficiently resolved."
+        },
+        {
+          "value": "possible_match",
+          "meaning": "A possible identity match requires human review."
+        },
+        {
+          "value": "resolved",
+          "meaning": "The subject identity is resolved for the declared scope."
+        },
+        {
+          "value": "conflict",
+          "meaning": "Material identity evidence conflicts."
+        },
+        {
+          "value": "invalid",
+          "meaning": "The identity cannot be used under the approved minimum rules."
+        }
+      ]
+    },
+    "entity_match_status": {
+      "owner": "Entity matcher/source system",
+      "values": [
+        {
+          "value": "not_checked",
+          "meaning": "No entity match check was attempted."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "The match source or integration is unavailable."
+        },
+        {
+          "value": "no_match",
+          "meaning": "The match check completed and found no material match."
+        },
+        {
+          "value": "possible_match",
+          "meaning": "A possible entity match requires review."
+        },
+        {
+          "value": "confirmed_match",
+          "meaning": "A match is confirmed for the recorded system and scope."
+        },
+        {
+          "value": "conflict",
+          "meaning": "The candidate match conflicts with material identity evidence."
+        },
+        {
+          "value": "error",
+          "meaning": "The match check failed technically."
+        }
+      ]
+    },
+    "evidence_namespace": {
+      "owner": "Canonical evidence model",
+      "values": [
+        {
+          "value": "a2",
+          "meaning": "Evidence collected natively by A2 under the A2 source register."
+        },
+        {
+          "value": "a1_reference",
+          "meaning": "Reference to immutable A1 evidence; not relabelled as A2 evidence."
+        }
+      ]
+    },
+    "reliability_level": {
+      "owner": "Approved A2 evidence policy",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "Evidence reliability has not been assessed."
+        },
+        {
+          "value": "low",
+          "meaning": "Source or claim reliability is weak or materially limited."
+        },
+        {
+          "value": "medium",
+          "meaning": "Source or claim is usable with stated limitations."
+        },
+        {
+          "value": "high",
+          "meaning": "Source is strong for the specific claim under the approved policy."
+        }
+      ]
+    },
+    "requalification_materiality": {
+      "owner": "A2 requalification policy",
+      "values": [
+        {
+          "value": "low",
+          "meaning": "New evidence is unlikely to alter qualification outcome but is retained."
+        },
+        {
+          "value": "medium",
+          "meaning": "New evidence may alter a criterion or review outcome."
+        },
+        {
+          "value": "high",
+          "meaning": "New evidence may alter exclusion, qualification, score band or routing."
+        }
+      ]
+    },
+    "potential_score_direction": {
+      "owner": "A2 evidence interpretation only",
+      "values": [
+        {
+          "value": "increase",
+          "meaning": "Evidence may increase an A1 score after A1 validation."
+        },
+        {
+          "value": "decrease",
+          "meaning": "Evidence may decrease an A1 score after A1 validation."
+        },
+        {
+          "value": "unchanged",
+          "meaning": "Evidence is material but is not expected to change numeric score."
+        },
+        {
+          "value": "unknown",
+          "meaning": "The score direction cannot be determined without A1 processing."
+        }
+      ]
+    },
+    "record_kind": {
+      "owner": "Unitalk runtime",
+      "values": [
+        {
+          "value": "synthetic_test",
+          "meaning": "Explicitly synthetic fixture or controlled test record."
+        },
+        {
+          "value": "production",
+          "meaning": "Record containing real authorised business data. This value does not mean production-ready deployment."
+        }
+      ]
+    },
+    "value_presence_status": {
+      "owner": "Deterministic field validator",
+      "values": [
+        {
+          "value": "known",
+          "meaning": "A value is recorded with its provenance."
+        },
+        {
+          "value": "unknown",
+          "meaning": "No reliable value is known after the applicable evaluation; no value may be inferred."
+        },
+        {
+          "value": "not_applicable",
+          "meaning": "The field does not apply to this entity or segment."
+        }
+      ]
+    },
+    "availability_status": {
+      "owner": "Tool, connector or deterministic controller",
+      "values": [
+        {
+          "value": "not_checked",
+          "meaning": "The applicable check has not been attempted."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "The source, integration, account or field is unavailable for the current run."
+        },
+        {
+          "value": "not_found",
+          "meaning": "The check completed successfully and no value was found."
+        },
+        {
+          "value": "available",
+          "meaning": "At least one candidate value or authoritative value is available."
+        },
+        {
+          "value": "error",
+          "meaning": "The check was attempted but failed technically."
+        }
+      ]
+    },
+    "verification_status": {
+      "owner": "Deterministic verification policy",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "Verification has not yet been evaluated."
+        },
+        {
+          "value": "unverified",
+          "meaning": "A value exists but does not meet the approved verification rule."
+        },
+        {
+          "value": "partially_verified",
+          "meaning": "Some but not all required proof conditions pass."
+        },
+        {
+          "value": "verified",
+          "meaning": "The approved field-specific proof rule passes."
+        },
+        {
+          "value": "contradicted",
+          "meaning": "Permitted evidence materially contradicts the value."
+        },
+        {
+          "value": "not_applicable",
+          "meaning": "Verification is not applicable to this field state."
+        },
+        {
+          "value": "error",
+          "meaning": "Verification failed technically."
+        }
+      ]
+    },
+    "confidence_level": {
+      "owner": "Deterministic A2 confidence method",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "No confidence result has been calculated."
+        },
+        {
+          "value": "low",
+          "meaning": "Evidence is weak, incomplete or materially uncertain."
+        },
+        {
+          "value": "medium",
+          "meaning": "Evidence is usable but has limitations or incomplete corroboration."
+        },
+        {
+          "value": "high",
+          "meaning": "Evidence meets the approved high-confidence rule."
+        }
+      ]
+    },
+    "freshness_status": {
+      "owner": "Deterministic field freshness policy",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "Freshness has not been evaluated."
+        },
+        {
+          "value": "current",
+          "meaning": "The value meets the approved field-specific freshness rule."
+        },
+        {
+          "value": "stale",
+          "meaning": "The value exceeds its approved age or has a recheck trigger."
+        },
+        {
+          "value": "undated",
+          "meaning": "The source is usable but no reliable source date is available."
+        },
+        {
+          "value": "not_applicable",
+          "meaning": "Freshness does not apply to this field or source type."
+        },
+        {
+          "value": "error",
+          "meaning": "Freshness evaluation failed technically."
+        }
+      ]
+    },
+    "conflict_status": {
+      "owner": "Deterministic conflict policy and human review",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "Conflict comparison has not been performed."
+        },
+        {
+          "value": "none",
+          "meaning": "No material conflict is present."
+        },
+        {
+          "value": "possible",
+          "meaning": "Values may conflict and require further comparison."
+        },
+        {
+          "value": "material",
+          "meaning": "A material conflict affects the proposed resolution or protected baseline."
+        },
+        {
+          "value": "resolved",
+          "meaning": "A recorded human or authoritative-system decision resolved the conflict without deleting history."
+        }
+      ]
+    },
+    "field_quality_status": {
+      "owner": "Deterministic data-quality controller",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "Field quality has not been evaluated."
+        },
+        {
+          "value": "complete",
+          "meaning": "The approved field requirement is satisfied."
+        },
+        {
+          "value": "partial",
+          "meaning": "Some usable data exists but the field requirement is not fully satisfied."
+        },
+        {
+          "value": "gap",
+          "meaning": "A required or requested value remains missing, unavailable or not found."
+        },
+        {
+          "value": "conflict",
+          "meaning": "An unresolved material conflict prevents completion."
+        },
+        {
+          "value": "invalid",
+          "meaning": "The field fails type, policy, evidence or consistency validation."
+        },
+        {
+          "value": "error",
+          "meaning": "The field could not be evaluated due to a technical error."
+        }
+      ]
+    },
+    "protected_field_status": {
+      "owner": "Approved protected-field policy",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "Protected-field status has not been evaluated."
+        },
+        {
+          "value": "not_protected",
+          "meaning": "The field is not protected by the active policy."
+        },
+        {
+          "value": "protected_manual",
+          "meaning": "The baseline was manually entered and cannot be overwritten automatically."
+        },
+        {
+          "value": "protected_policy",
+          "meaning": "The field is protected by Equinet/Unitalk policy."
+        },
+        {
+          "value": "protected_authoritative",
+          "meaning": "The field is controlled by an authoritative source or read-only system field."
+        }
+      ]
+    },
+    "proposal_action": {
+      "owner": "A2 proposal logic",
+      "values": [
+        {
+          "value": "add",
+          "meaning": "Propose a value where no usable baseline exists."
+        },
+        {
+          "value": "update",
+          "meaning": "Propose replacing a baseline value after conflict/protection review."
+        },
+        {
+          "value": "retain",
+          "meaning": "Recommend preserving the existing baseline value."
+        },
+        {
+          "value": "no_change",
+          "meaning": "No change is required or proposed."
+        },
+        {
+          "value": "hold",
+          "meaning": "Do not decide until a gap, conflict, permission or review issue is resolved."
+        },
+        {
+          "value": "clear_request",
+          "meaning": "Request explicit human approval to clear a value; never an autonomous delete."
+        }
+      ]
+    },
+    "field_review_decision": {
+      "owner": "Authorised human reviewer",
+      "values": [
+        {
+          "value": "pending",
+          "meaning": "No field decision has been recorded."
+        },
+        {
+          "value": "approved",
+          "meaning": "The proposed field action is approved within the recorded scope."
+        },
+        {
+          "value": "rejected",
+          "meaning": "The proposed field action is rejected."
+        },
+        {
+          "value": "needs_changes",
+          "meaning": "The proposal requires correction or more evidence."
+        },
+        {
+          "value": "held",
+          "meaning": "The reviewer defers the decision pending a named dependency."
+        },
+        {
+          "value": "not_required",
+          "meaning": "A separate field-level decision is not required under the active policy."
+        }
+      ]
+    },
+    "record_review_decision": {
+      "owner": "Authorised human reviewer",
+      "values": [
+        {
+          "value": "pending",
+          "meaning": "No record-level decision has been recorded."
+        },
+        {
+          "value": "approved",
+          "meaning": "The record is approved for its next permitted stage, not automatically for outreach or write."
+        },
+        {
+          "value": "rejected",
+          "meaning": "The record is rejected for the stated reason."
+        },
+        {
+          "value": "needs_changes",
+          "meaning": "The record requires correction or more evidence."
+        },
+        {
+          "value": "held",
+          "meaning": "The record is held pending a named dependency."
+        },
+        {
+          "value": "blocked",
+          "meaning": "Policy, duplicate, permission or authoritative status prevents progression."
+        }
+      ]
+    },
+    "application_status": {
+      "owner": "Authorised connector/workflow",
+      "values": [
+        {
+          "value": "not_requested",
+          "meaning": "No application or external write was requested."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "The destination integration is unavailable."
+        },
+        {
+          "value": "pending",
+          "meaning": "An approved application request exists but has not completed."
+        },
+        {
+          "value": "applied",
+          "meaning": "The approved action was performed and has an external reference."
+        },
+        {
+          "value": "failed",
+          "meaning": "The external action failed."
+        },
+        {
+          "value": "reconciled",
+          "meaning": "The applied result was read back and matched the approved action."
+        },
+        {
+          "value": "blocked",
+          "meaning": "The action is blocked by approval, permission, protected-field or workflow-dependency controls."
+        }
+      ]
+    },
+    "workflow_dependency_status": {
+      "owner": "HubSpot mapping/dependency audit",
+      "values": [
+        {
+          "value": "not_checked",
+          "meaning": "Workflow/list/form dependencies have not been audited."
+        },
+        {
+          "value": "unverified",
+          "meaning": "A dependency is suspected or known but not fully verified."
+        },
+        {
+          "value": "verified_no_side_effect",
+          "meaning": "The mapped change has no unmanaged workflow/list side effect."
+        },
+        {
+          "value": "verified_managed_side_effect",
+          "meaning": "The side effect is documented, approved and controlled."
+        },
+        {
+          "value": "blocked",
+          "meaning": "An unmanaged or prohibited side effect blocks the action."
+        },
+        {
+          "value": "error",
+          "meaning": "Dependency verification failed technically."
+        }
+      ]
+    },
+    "data_quality_status": {
+      "owner": "Deterministic A2 data-quality method",
+      "values": [
+        {
+          "value": "unassessed",
+          "meaning": "Record quality has not been calculated."
+        },
+        {
+          "value": "incomplete",
+          "meaning": "The applicable minimum package is not satisfied."
+        },
+        {
+          "value": "review_ready",
+          "meaning": "The no-integration review package is complete enough for human review."
+        },
+        {
+          "value": "needs_review",
+          "meaning": "Gaps or limitations require explicit human attention."
+        },
+        {
+          "value": "conflict",
+          "meaning": "An unresolved material conflict prevents approval."
+        },
+        {
+          "value": "invalid",
+          "meaning": "The record fails schema, policy or consistency validation."
+        },
+        {
+          "value": "error",
+          "meaning": "Quality calculation failed technically."
+        }
+      ]
+    },
+    "duplicate_status": {
+      "owner": "Duplicate-check controller/source system",
+      "values": [
+        {
+          "value": "unavailable",
+          "meaning": "The duplicate source or integration is unavailable."
+        },
+        {
+          "value": "not_checked",
+          "meaning": "The duplicate check has not run."
+        },
+        {
+          "value": "no_match",
+          "meaning": "The check ran and found no material match."
+        },
+        {
+          "value": "possible_match",
+          "meaning": "A possible match requires human review."
+        },
+        {
+          "value": "confirmed_duplicate",
+          "meaning": "A confirmed duplicate blocks treatment as a new record."
+        },
+        {
+          "value": "error",
+          "meaning": "The duplicate check failed technically."
+        }
+      ]
+    },
+    "eligibility_status": {
+      "owner": "Deterministic eligibility controller plus authoritative sources",
+      "values": [
+        {
+          "value": "not_checked",
+          "meaning": "Eligibility has not been evaluated."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "Required authoritative checks are unavailable."
+        },
+        {
+          "value": "eligible",
+          "meaning": "All gates for the declared scope pass."
+        },
+        {
+          "value": "hold",
+          "meaning": "A resolvable review or authoritative check is pending."
+        },
+        {
+          "value": "blocked",
+          "meaning": "A confirmed exclusion, duplicate, permission or policy gate prevents progression."
+        },
+        {
+          "value": "error",
+          "meaning": "Eligibility evaluation failed technically."
+        }
+      ]
+    },
+    "outreach_eligibility_status": {
+      "owner": "HubSpot authoritative checks plus approved policy and human decision",
+      "values": [
+        {
+          "value": "not_checked",
+          "meaning": "Outreach eligibility has not been evaluated."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "CRM consent/customer/Deal/sequence checks are unavailable."
+        },
+        {
+          "value": "eligible_for_review",
+          "meaning": "Checks support human outreach-eligibility review; this is not permission to send."
+        },
+        {
+          "value": "approved",
+          "meaning": "An authorised human approved outreach eligibility for the recorded scope."
+        },
+        {
+          "value": "hold",
+          "meaning": "A consent, customer, Deal, sequence or ownership issue remains unresolved."
+        },
+        {
+          "value": "blocked",
+          "meaning": "A confirmed rule prohibits outreach."
+        },
+        {
+          "value": "error",
+          "meaning": "Eligibility evaluation failed technically."
+        }
+      ]
+    },
+    "owner_routing_status": {
+      "owner": "Authoritative CRM plus approved assignment policy",
+      "values": [
+        {
+          "value": "not_checked",
+          "meaning": "Owner routing has not been evaluated."
+        },
+        {
+          "value": "current_owner_preserved",
+          "meaning": "The existing valid HubSpot owner is preserved."
+        },
+        {
+          "value": "needs_owner_review",
+          "meaning": "No approved deterministic owner/backup rule can resolve the owner."
+        },
+        {
+          "value": "approved_reassignment",
+          "meaning": "An authorised human approved reassignment under a recorded rule."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "Owner information or integration is unavailable."
+        },
+        {
+          "value": "error",
+          "meaning": "Owner routing failed technically."
+        }
+      ]
+    },
+    "workflow_state": {
+      "owner": "A2 workflow/application layer",
+      "values": [
+        {
+          "value": "initialised",
+          "meaning": "A valid handoff created the first A2 revision."
+        },
+        {
+          "value": "enrichment_planned",
+          "meaning": "A bounded field-gap plan is validated."
+        },
+        {
+          "value": "enrichment_in_progress",
+          "meaning": "Permitted enrichment work is in progress."
+        },
+        {
+          "value": "review_required",
+          "meaning": "A review package is complete and awaiting human decision."
+        },
+        {
+          "value": "record_approved",
+          "meaning": "The A2 record is human-approved for its next permitted stage."
+        },
+        {
+          "value": "changes_requested",
+          "meaning": "The reviewer requested correction or additional evidence."
+        },
+        {
+          "value": "held",
+          "meaning": "A named dependency temporarily prevents progression."
+        },
+        {
+          "value": "blocked",
+          "meaning": "A policy, duplicate, permission or authoritative state blocks progression."
+        },
+        {
+          "value": "record_rejected",
+          "meaning": "The record is rejected."
+        },
+        {
+          "value": "processing_failed",
+          "meaning": "A processing stage failed and requires controlled recovery."
+        },
+        {
+          "value": "ready_for_sync",
+          "meaning": "The approved record is eligible for a separately authorised sync."
+        },
+        {
+          "value": "sync_pending",
+          "meaning": "A guarded sync is in progress."
+        },
+        {
+          "value": "synced",
+          "meaning": "The approved patch was written and an external reference exists."
+        },
+        {
+          "value": "sync_failed",
+          "meaning": "The guarded sync failed."
+        },
+        {
+          "value": "reconciled",
+          "meaning": "The external write was read back and matched."
+        },
+        {
+          "value": "closed",
+          "meaning": "The lineage is closed for the stated reason."
+        }
+      ]
+    },
+    "requalification_signal_status": {
+      "owner": "A2 plus authorised reviewer",
+      "values": [
+        {
+          "value": "draft",
+          "meaning": "A2 created a signal that has not been reviewed."
+        },
+        {
+          "value": "pending_review",
+          "meaning": "The signal awaits human review."
+        },
+        {
+          "value": "approved_for_return",
+          "meaning": "The signal is approved for a return payload to A1."
+        },
+        {
+          "value": "rejected",
+          "meaning": "The signal was rejected."
+        },
+        {
+          "value": "sent_to_a1",
+          "meaning": "A durable return was delivered to A1."
+        },
+        {
+          "value": "accepted_by_a1",
+          "meaning": "A1 accepted the return for evidence/scoring review."
+        },
+        {
+          "value": "rejected_by_a1",
+          "meaning": "A1 rejected the return with reasons."
+        },
+        {
+          "value": "rescored",
+          "meaning": "A1 produced a score-revision result."
+        },
+        {
+          "value": "error",
+          "meaning": "The requalification process failed technically."
+        }
+      ]
+    },
+    "requalification_return_status": {
+      "owner": "Workflow/A1 receipt",
+      "values": [
+        {
+          "value": "not_created",
+          "meaning": "No return payload exists."
+        },
+        {
+          "value": "prepared",
+          "meaning": "The return payload exists but is not delivered."
+        },
+        {
+          "value": "delivered",
+          "meaning": "The durable workflow delivered the return."
+        },
+        {
+          "value": "accepted_by_a1",
+          "meaning": "A1 accepted the exact payload."
+        },
+        {
+          "value": "rejected_by_a1",
+          "meaning": "A1 rejected the payload."
+        },
+        {
+          "value": "delivery_failed",
+          "meaning": "Delivery failed after bounded retries."
+        },
+        {
+          "value": "error",
+          "meaning": "Return processing failed technically."
+        }
+      ]
+    },
+    "score_revision_status": {
+      "owner": "A1 deterministic scoring plus human approval",
+      "values": [
+        {
+          "value": "not_requested",
+          "meaning": "No A1 score revision was requested."
+        },
+        {
+          "value": "pending_a1_review",
+          "meaning": "A1 is validating returned evidence."
+        },
+        {
+          "value": "proposed_by_a1",
+          "meaning": "A1 produced a deterministic proposed revision."
+        },
+        {
+          "value": "approved",
+          "meaning": "An authorised human approved the revision."
+        },
+        {
+          "value": "rejected",
+          "meaning": "The proposed revision was rejected."
+        },
+        {
+          "value": "superseded",
+          "meaning": "A later approved revision supersedes this revision."
+        },
+        {
+          "value": "error",
+          "meaning": "The revision process failed technically."
+        }
+      ]
+    },
+    "integration_status": {
+      "owner": "Connector/runtime configuration",
+      "values": [
+        {
+          "value": "not_checked",
+          "meaning": "Integration readiness was not checked for the current run."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "No approved active connection is available."
+        },
+        {
+          "value": "connected_read_only",
+          "meaning": "A verified least-privilege read connection is active."
+        },
+        {
+          "value": "connected_guarded_write",
+          "meaning": "A verified guarded write connection is active for approved actions only."
+        },
+        {
+          "value": "error",
+          "meaning": "The integration check failed technically."
+        }
+      ]
+    },
+    "source_policy_status": {
+      "owner": "A2 source register",
+      "values": [
+        {
+          "value": "approved",
+          "meaning": "Permitted under the exact recorded A2 access profile."
+        },
+        {
+          "value": "conditional",
+          "meaning": "Permitted only under recorded conditions."
+        },
+        {
+          "value": "needs_verification",
+          "meaning": "Do not retain as evidence until the source decision is resolved."
+        },
+        {
+          "value": "blocked",
+          "meaning": "Do not use for A2 collection or evidence."
+        },
+        {
+          "value": "unavailable",
+          "meaning": "Required source/account/licence is unavailable."
+        }
+      ]
+    },
+    "claim_type": {
+      "owner": "Evidence collector and validator",
+      "values": [
+        {
+          "value": "direct_fact",
+          "meaning": "The source explicitly states the value or claim."
+        },
+        {
+          "value": "reasonable_inference",
+          "meaning": "The claim is an interpretation supported by evidence but not directly stated."
+        },
+        {
+          "value": "contradictory_evidence",
+          "meaning": "The source materially contradicts another value or claim."
+        }
+      ]
+    },
+    "change_reason": {
+      "owner": "Revision builder",
+      "values": [
+        {
+          "value": "initialisation",
+          "meaning": "First A2 revision from an accepted handoff."
+        },
+        {
+          "value": "enrichment",
+          "meaning": "New permitted observations or evidence were added."
+        },
+        {
+          "value": "correction",
+          "meaning": "A correction was recorded without erasing history."
+        },
+        {
+          "value": "human_review",
+          "meaning": "A human decision created a new revision."
+        },
+        {
+          "value": "requalification_result",
+          "meaning": "An A1 requalification result was recorded."
+        },
+        {
+          "value": "refresh",
+          "meaning": "Freshness-triggered re-evaluation created a revision."
+        },
+        {
+          "value": "reconciliation",
+          "meaning": "An external action was read back and reconciled."
+        }
+      ]
+    }
+  },
+  "transition_models": {
+    "workflow_state": {
+      "initialised": [
+        "enrichment_planned",
+        "held",
+        "blocked",
+        "record_rejected"
+      ],
+      "enrichment_planned": [
+        "enrichment_in_progress",
+        "held",
+        "blocked",
+        "processing_failed"
+      ],
+      "enrichment_in_progress": [
+        "review_required",
+        "held",
+        "blocked",
+        "processing_failed"
+      ],
+      "review_required": [
+        "record_approved",
+        "changes_requested",
+        "held",
+        "blocked",
+        "record_rejected"
+      ],
+      "changes_requested": [
+        "enrichment_planned",
+        "enrichment_in_progress",
+        "review_required",
+        "held",
+        "blocked"
+      ],
+      "record_approved": [
+        "ready_for_sync",
+        "closed"
+      ],
+      "held": [
+        "enrichment_planned",
+        "enrichment_in_progress",
+        "review_required",
+        "blocked",
+        "record_rejected"
+      ],
+      "processing_failed": [
+        "enrichment_planned",
+        "held",
+        "blocked"
+      ],
+      "ready_for_sync": [
+        "sync_pending",
+        "held",
+        "blocked"
+      ],
+      "sync_pending": [
+        "synced",
+        "sync_failed"
+      ],
+      "sync_failed": [
+        "sync_pending",
+        "held",
+        "blocked"
+      ],
+      "synced": [
+        "reconciled",
+        "sync_failed"
+      ],
+      "reconciled": [
+        "closed"
+      ],
+      "blocked": [],
+      "record_rejected": [],
+      "closed": []
+    }
+  },
+  "cross_state_rules": [
+    "unknown means no reliable value is known; it must never be replaced by an inference.",
+    "not_checked means no attempt occurred; unavailable means the source or integration could not be used; not_found means a successful check found no value; error means the attempt failed technically.",
+    "verified requires evidence references and an approved field-specific verification rule.",
+    "field review approval does not imply application or external write.",
+    "application applied requires an external action reference; reconciled requires a read-back result.",
+    "protected manual, policy and authoritative fields cannot be applied automatically.",
+    "workflow_dependency_status must be verified_no_side_effect or verified_managed_side_effect before any HubSpot write can be applied.",
+    "manual_no_integration_pilot records cannot enter ready_for_sync, sync_pending, synced or reconciled.",
+    "outreach eligibility approved requires authoritative CRM checks and recorded human approval; public information never creates consent.",
+    "A2 may create requalification signals but cannot set score_revision_status to proposed_by_a1 or approved without an A1 result reference.",
+    "null external-system IDs do not imply no external record exists; an explicit check status is required.",
+    "owner routing defaults to needs_owner_review when no approved assignment rule resolves the owner."
+  ],
+  "external_state_references": {
+    "hubspot_snapshot_id": "equinet-hubspot-operational-metadata-2026-08-25-v1",
+    "note": "External HubSpot states are mapping references only and are not canonical A2 workflow states.",
+    "status_models": {
+      "contact_company_lifecycle": {
+        "property": "lifecyclestage",
+        "stages": [
+          "subscriber",
+          "lead",
+          "marketingqualifiedlead",
+          "salesqualifiedlead",
+          "opportunity",
+          "customer",
+          "evangelist"
+        ]
+      },
+      "deal_pipeline": {
+        "name": "Sales Pipeline",
+        "internal_id": "default",
+        "stages": [
+          "appointmentscheduled",
+          "qualifiedtobuy",
+          "presentationscheduled",
+          "decisionmakerboughtin",
+          "contractsent",
+          "closedwon",
+          "closedlost"
+        ]
+      },
+      "complaints": {
+        "pipeline": null,
+        "classification_field": "complaint_type",
+        "options": [
+          "product_quality_issue",
+          "wrong_item_received",
+          "damaged_item",
+          "missing_item",
+          "other"
+        ]
+      },
+      "sample_requests": {
+        "pipeline": "Sample Request Pipeline",
+        "stages": [
+          "Sample Suggested",
+          "Awaiting Approval",
+          "Approved to Send",
+          "Shipment Arranged",
+          "Sample Sent by CS",
+          "Sample Sent by owner",
+          "Follow-up Complete",
+          "Request Rejected"
+        ],
+        "approval_status_options": [
+          "not_needed",
+          "pending_approval",
+          "approved",
+          "rejected"
+        ]
+      },
+      "ticket_pipeline": {
+        "name": "Support Pipeline",
+        "stages": [
+          "New",
+          "Rename 1",
+          "Waiting on us",
+          "Closed"
+        ],
+        "warning": "Rename 1 appears to be an unfinished placeholder label"
+      },
+      "lead_status": [
+        "NEW",
+        "OPEN",
+        "IN_PROGRESS",
+        "OPEN_DEAL",
+        "UNQUALIFIED",
+        "ATTEMPTED_TO_CONTACT",
+        "CONNECTED",
+        "BAD_TIMING"
+      ],
+      "company_account_status": [
+        "Active",
+        "Block",
+        "Ship"
+      ]
+    },
+    "owner_model": {
+      "owner_assignment_rules_available": false,
+      "backup_owner_rules_available": false,
+      "ownership_restrictions_configured": false
+    },
+    "process_controls": {
+      "enrichment_review_asset": "not_found",
+      "enabled_workflows": 28,
+      "workflow_dependency_status": "unverified"
+    }
+  }
+}

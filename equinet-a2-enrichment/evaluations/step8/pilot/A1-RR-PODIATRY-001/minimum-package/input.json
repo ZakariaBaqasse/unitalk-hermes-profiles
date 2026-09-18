@@ -1,0 +1,24 @@
+{
+  "fixture_id": "step8-rood-riddle-final",
+  "segment": "farrier",
+  "contact_path": "named_target",
+  "target_role_not_found": false,
+  "research_exhausted": true,
+  "field_states": {
+    "organisation.business_name": "verified",
+    "organisation.website": "verified",
+    "organisation.website_domain": "verified",
+    "organisation.public_business_location": "verified",
+    "person.full_name": "verified",
+    "person.role_title": "verified",
+    "organisation.business_phone": "verified",
+    "relationship.target_role_priority": "present_unverified",
+    "person.professional_status": "not_found",
+    "organisation.service_area": "not_found",
+    "organisation.disciplines": "verified",
+    "person.business_email": "not_found",
+    "person.business_phone": "not_found"
+  },
+  "conflict_field_keys": [],
+  "error_field_keys": []
+}

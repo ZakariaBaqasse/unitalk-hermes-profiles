@@ -1,0 +1,74 @@
+# Chat-Controlled Runbook
+
+All paths are relative to `/opt/data/profiles/equinet-a2-enrichment`.
+
+## 1. Start a run
+
+```bash
+python scripts/manage_a2_enrichment_run.py start --run-id <RUN_ID> --ledger evaluations/step10/runs/<RUN_ID>/run.json
+```
+
+## 2. Pull Companies
+
+For existing null statuses during migration:
+
+```bash
+python scripts/pull_twenty_companies.py --run-id <RUN_ID> --batch-size <N> --include-null --output evaluations/step10/runs/<RUN_ID>/companies.json
+```
+
+After status backfill, omit `--include-null`. Add `--claim` only when live provider use for this run is approved.
+
+## 3. Build and run Lookups
+
+```bash
+python scripts/build_fullenrich_action_requests.py lookup evaluations/step10/runs/<RUN_ID>/companies.json --output evaluations/step10/runs/<RUN_ID>/lookup-requests.json
+python scripts/fullenrich_people_lookup.py evaluations/step10/runs/<RUN_ID>/lookup-requests.json --output evaluations/step10/runs/<RUN_ID>/lookup-results.json
+python scripts/build_lookup_decision_packet.py evaluations/step10/runs/<RUN_ID>/companies.json evaluations/step10/runs/<RUN_ID>/lookup-results.json --output evaluations/step10/runs/<RUN_ID>/lookup-packet.json
+```
+
+The LLM writes `lookup-decisions.json`, then validate it:
+
+```bash
+python scripts/validate_lookup_decisions.py evaluations/step10/runs/<RUN_ID>/lookup-packet.json evaluations/step10/runs/<RUN_ID>/lookup-decisions.json --output evaluations/step10/runs/<RUN_ID>/lookup-validation.json
+```
+
+## 4. Build and run Searches
+
+```bash
+python scripts/build_fullenrich_action_requests.py search evaluations/step10/runs/<RUN_ID>/companies.json --decisions evaluations/step10/runs/<RUN_ID>/lookup-validation.json --output evaluations/step10/runs/<RUN_ID>/search-requests.json
+python scripts/fullenrich_people_search.py evaluations/step10/runs/<RUN_ID>/search-requests.json --output evaluations/step10/runs/<RUN_ID>/search-results.json
+python scripts/build_search_candidate_packet.py evaluations/step10/runs/<RUN_ID>/companies.json evaluations/step10/runs/<RUN_ID>/search-results.json --output evaluations/step10/runs/<RUN_ID>/search-packet.json
+```
+
+The LLM writes `selection-decisions.json`, then validate it:
+
+```bash
+python scripts/validate_person_selection_decisions.py evaluations/step10/runs/<RUN_ID>/search-packet.json evaluations/step10/runs/<RUN_ID>/selection-decisions.json --output evaluations/step10/runs/<RUN_ID>/selection-validation.json
+```
+
+## 5. Contact Enrichment
+
+```bash
+python scripts/build_selected_contact_batch.py --lookup-packet evaluations/step10/runs/<RUN_ID>/lookup-packet.json --lookup-decisions evaluations/step10/runs/<RUN_ID>/lookup-validation.json --search-packet evaluations/step10/runs/<RUN_ID>/search-packet.json --selection-decisions evaluations/step10/runs/<RUN_ID>/selection-validation.json --run-id <RUN_ID> --output evaluations/step10/runs/<RUN_ID>/selected-people.json
+python scripts/fullenrich_contact_enrichment.py evaluations/step10/runs/<RUN_ID>/selected-people.json --output evaluations/step10/runs/<RUN_ID>/contact-results.json
+```
+
+Default polling is 300 seconds. Do not request personal email.
+
+## 6. Write planning and application
+
+The LLM produces `write-proposal.json` from validated evidence and field decisions.
+
+```bash
+python scripts/build_twenty_enrichment_write_plan.py evaluations/step10/runs/<RUN_ID>/write-proposal.json --output evaluations/step10/runs/<RUN_ID>/write-plan.json
+python scripts/push_twenty_enrichment.py evaluations/step10/runs/<RUN_ID>/write-plan.json --output evaluations/step10/runs/<RUN_ID>/write-dry-run.json
+```
+
+After the run-specific write gate is approved:
+
+```bash
+python scripts/push_twenty_enrichment.py evaluations/step10/runs/<RUN_ID>/write-plan.json --apply --output evaluations/step10/runs/<RUN_ID>/write-result.json
+python scripts/validate_twenty_reconciliation.py evaluations/step10/runs/<RUN_ID>/write-result.json --output evaluations/step10/runs/<RUN_ID>/reconciliation-validation.json
+```
+
+Never apply a plan that failed validation. Company final status is written last and only reconciled read-back counts as success.

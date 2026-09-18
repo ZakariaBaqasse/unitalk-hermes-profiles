@@ -1,0 +1,94 @@
+{
+  "calls": [
+    {
+      "method": "POST",
+      "path": "/v2/scrape",
+      "http_status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "markdown": "# Example Equine Centre\nWelcome.\n\n© Example Equine Centre\nEmail: office@example.com\nPhone: +1 (859) 555-0100",
+          "html": "<!doctype html><html><body><nav>\n<a href='/contact'>Contact Us</a><a href='/about'>About Us</a><a href='/team'>Our Team</a><a href='/staff'>Staff Directory</a><a href='/people'>Leadership</a><a href='https://evil.example.net/contact'>External Contact</a>\n</nav><main><h1>Example Equine Centre</h1></main><footer>Email: office@example.com<br>Phone: +1 (859) 555-0100\n<a href='https://www.facebook.com/exampleequine'>Facebook</a>\n<a href='https://www.instagram.com/exampleequine'>Instagram</a>\n<a href='https://www.youtube.com/@exampleequine'>YouTube</a>\n<a href='https://www.linkedin.com/company/exampleequine'>LinkedIn</a>\n<a href='https://www.tiktok.com/@exampleequine'>TikTok</a>\n<a href='https://x.com/exampleequine'>X</a>\n</footer></body></html>",
+          "links": [
+            "https://www.example.com/contact",
+            "https://www.example.com/about",
+            "https://www.example.com/team",
+            "https://www.example.com/staff",
+            "https://www.example.com/people",
+            "https://127.0.0.1/admin",
+            "https://evil.example.net/contact"
+          ],
+          "metadata": {
+            "sourceURL": "https://www.example.com/",
+            "title": "Example Equine Centre",
+            "statusCode": 200
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v2/batch/scrape",
+      "http_status": 200,
+      "response": {
+        "success": true,
+        "id": "fixture-batch-001"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/v2/batch/scrape/fixture-batch-001",
+      "http_status": 200,
+      "response": {
+        "success": true,
+        "status": "completed",
+        "completed": 4,
+        "total": 4,
+        "data": [
+          {
+            "markdown": "# Contact Us\nGeneral enquiries: office@example.com\n+1 (859) 555-0100",
+            "html": "<main><h1>Contact Us</h1><p>General enquiries: office@example.com</p><p>+1 (859) 555-0100</p></main>",
+            "links": [],
+            "metadata": {
+              "sourceURL": "https://www.example.com/contact",
+              "title": "Contact",
+              "statusCode": 200
+            }
+          },
+          {
+            "markdown": "# About Us\nServing horses since 1980.",
+            "html": "<main><h1>About Us</h1><p>Serving horses since 1980.</p></main>",
+            "links": [],
+            "metadata": {
+              "sourceURL": "https://www.example.com/about",
+              "title": "About",
+              "statusCode": 200
+            }
+          },
+          {
+            "markdown": "# Our Team\n## Alex Morgan\nStable Operations Coordinator\n## Riley Chen\nCommunity Liaison",
+            "html": "<main><h1>Our Team</h1><article><h2>Alex Morgan</h2><p>Stable Operations Coordinator</p><p>alex.morgan@example.com</p></article><article><h2>Riley Chen</h2><p>Community Liaison</p></article></main>",
+            "links": [
+              "https://www.linkedin.com/in/alex-morgan-example"
+            ],
+            "metadata": {
+              "sourceURL": "https://www.example.com/team",
+              "title": "Our Team",
+              "statusCode": 200
+            }
+          },
+          {
+            "markdown": "# Staff Directory\nTaylor Brooks — Veterinary Receptionist",
+            "html": "<main><h1>Staff Directory</h1><p>Taylor Brooks — Veterinary Receptionist</p></main>",
+            "links": [],
+            "metadata": {
+              "sourceURL": "https://www.example.com/staff",
+              "title": "Staff Directory",
+              "statusCode": 200
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

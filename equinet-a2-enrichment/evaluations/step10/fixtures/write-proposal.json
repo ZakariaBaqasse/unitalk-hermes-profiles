@@ -1,0 +1,67 @@
+{
+  "run_id": "STEP10-SYN-001",
+  "company_id": "11111111-1111-4111-8111-111111111111",
+  "enrichment_version": "0.1.0",
+  "company_final_status": "ENRICHED",
+  "resolved_people": [
+    {
+      "source_kind": "new",
+      "provider_person_id": "fe-owner",
+      "full_name": "Jordan Owner",
+      "first_name": "Jordan",
+      "last_name": "Owner",
+      "exact_current_role": "Farm Owner",
+      "professional_network_url": "https://www.linkedin.com/in/fe-owner",
+      "work_email": {
+        "value": "jordan@example.test",
+        "status": "DELIVERABLE"
+      },
+      "mobile_phone": {
+        "value": "+1 555 0101",
+        "region": "US"
+      },
+      "statuses": {
+        "identity": "VERIFIED",
+        "role": "CURRENT_AT_COMPANY",
+        "priority": "PRIMARY",
+        "company_match": "CONFIRMED",
+        "enrichment": "ENRICHED"
+      },
+      "field_decisions": {
+        "exact_current_role": "add",
+        "professional_network_url": "add",
+        "work_email": "add",
+        "mobile_phone": "add"
+      },
+      "selection_stage": "primary"
+    },
+    {
+      "source_kind": "new",
+      "provider_person_id": "fe-manager",
+      "full_name": "Morgan Manager",
+      "first_name": "Morgan",
+      "last_name": "Manager",
+      "exact_current_role": "Stable Manager",
+      "professional_network_url": "https://www.linkedin.com/in/fe-manager",
+      "work_email": {
+        "value": "morgan@example.test",
+        "status": "HIGH_PROBABILITY"
+      },
+      "mobile_phone": null,
+      "statuses": {
+        "identity": "VERIFIED",
+        "role": "CURRENT_AT_COMPANY",
+        "priority": "PRIMARY",
+        "company_match": "CONFIRMED",
+        "enrichment": "PARTIAL"
+      },
+      "field_decisions": {
+        "exact_current_role": "add",
+        "professional_network_url": "add",
+        "work_email": "add",
+        "mobile_phone": "no_change"
+      },
+      "selection_stage": "primary"
+    }
+  ]
+}

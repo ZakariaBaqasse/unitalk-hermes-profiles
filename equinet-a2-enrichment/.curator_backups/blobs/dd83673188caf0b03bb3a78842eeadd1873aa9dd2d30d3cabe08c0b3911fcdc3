@@ -1,0 +1,59 @@
+---
+name: a2-official-site-and-facebook-enrichment
+description: "Use when A2 researches official sites before FullEnrich."
+version: 0.1.0
+author: Unitalk
+license: Proprietary
+metadata:
+  hermes:
+    tags: [equinet, a2, firecrawl, apify, website]
+    related_skills: [a2-twenty-fullenrich-workflow, a2-fullenrich-connector, a2-twenty-write-governance]
+---
+
+# A2 Official Site and Facebook Enrichment
+
+## When to Use
+
+Use for every retained Company with a verified official website before any FullEnrich People action. Also use for the conditional official-Facebook Company-contact fallback after the website merge.
+
+## Status
+
+`IMPLEMENTED LOCALLY — LIVE FIRECRAWL/APIFY/WRITE ACCEPTANCE PENDING`
+
+## Purpose
+
+Run the bounded official-site stage before FullEnrich. The agent makes attribution and Person-retention decisions; scripts enforce URL safety, the five-page limit, provider transport, evidence, merging and idempotency.
+
+## Commands
+
+```bash
+python scripts/preflight_step11_source_action.py website-preflight.json --output preflight.json
+python scripts/build_official_site_plan.py request.json --output site-plan.json
+python scripts/firecrawl_official_site_fetch.py site-plan.json --output site-fetch.json
+python scripts/extract_official_site_observations.py site-fetch.json --output observations.json
+python scripts/build_website_decision_packet.py observations.json --output website-packet-preliminary.json
+# The agent reviews every bounded person_evidence_block and writes person-proposals.json.
+python scripts/validate_website_person_observation_proposals.py website-packet-preliminary.json person-proposals.json --output website-packet.json
+python scripts/validate_website_decisions.py website-packet.json decisions.json --output website-validation.json
+python scripts/build_apify_facebook_requests.py facebook-input.json --output apify-requests.json
+python scripts/apify_facebook_page_contact.py apify-requests.json --output apify-raw-results.json
+python scripts/validate_apify_facebook_results.py apify-raw-results.json --output apify-results.json
+python scripts/build_company_contact_merge_plan.py merge-request.json --output company-merge.json
+python scripts/build_website_people_contact_batch.py website-packet.json website-validation.json --run-id <RUN_ID> --output selected-people.json
+```
+
+## Firecrawl boundary
+
+Use only `firecrawl_official_site_fetch.py` for prospect websites. Do not use free-form agent `web_extract`. The script fetches the homepage and at most four same-domain Contact/About/Team/Staff pages using Firecrawl v2 Markdown, HTML and links with `onlyMainContent=false`. `FIRECRAWL_API_KEY` is environment-only. Firecrawl has no credit-cap policy; page usage and receipts are audited.
+
+## Facebook boundary
+
+The Apify Actor reads `APIFY_API_KEY` from the environment (`APIFY_TOKEN` is accepted only as a legacy alias). It may run once per Company, with no retry, only when an official-site page explicitly linked the Facebook URL and Company email or phone remains missing across A1/Twenty and website evidence. Results append to Company fields only. Live execution remains blocked until account/build/rights/financial and positive-result gates pass.
+
+## Person-extraction coverage gate
+
+Before finalising `COMPLETED_NO_TARGET`, inspect the bounded About/Team/Staff evidence blocks for explicit person mentions. If relevant prose contains names or current-role language that is not represented in `candidate_people`, do not inject the names directly and do not finalise a no-target result. Record `website_person_extraction_incomplete`, retain the exact page/block/hash evidence, and route the record for a corrected extraction revision. Raw full-page Markdown must not be treated as a free-form authority; use cleaned, bounded semantic blocks and require exact-span validation before minting new person observation IDs.
+
+## People and writes
+
+Retain up to two official-site People regardless of role. Preserve exact name/title; role may be unknown. Generic Company contacts never populate Person fields. Missing Person channels may proceed to FullEnrich Contact Enrichment. Company primary values are preserved and distinct values append. Apply only a validated Twenty write plan and require read-back reconciliation.

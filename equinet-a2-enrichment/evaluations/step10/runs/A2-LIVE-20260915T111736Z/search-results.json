@@ -1,0 +1,293 @@
+{
+  "schema_id": "a2-fullenrich-search-results",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "company_id": null,
+  "created_at": "2026-09-15T11:18:24Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "result_count": 2,
+  "results": [
+    {
+      "request_id": "search-575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "terminal_status": "not_found",
+      "request_payload": {
+        "limit": 2,
+        "current_position_titles": [
+          {
+            "value": "breeding farm owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "breeding manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian center manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian center owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian centre manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian centre owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farm manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farm owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "general manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "horse owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "managing director",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "operations manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "stable manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "stable owner",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "current_company_domains": [
+          {
+            "value": "hiddencreek.farm",
+            "exact_match": true,
+            "exclude": false
+          }
+        ]
+      },
+      "candidates": [],
+      "metadata": {
+        "credits": 0,
+        "offset": 0
+      },
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:18:24Z"
+      }
+    },
+    {
+      "request_id": "search-c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "terminal_status": "not_found",
+      "request_payload": {
+        "limit": 2,
+        "current_position_titles": [
+          {
+            "value": "breeding farm owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "breeding manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian center manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian center owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian centre manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "equestrian centre owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farm manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farm owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "general manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "horse owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "managing director",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "operations manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "stable manager",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "stable owner",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "current_company_names": [
+          {
+            "value": "Triple Diamonds Training Center",
+            "exact_match": true,
+            "exclude": false
+          }
+        ],
+        "current_company_headquarters": [
+          {
+            "value": "Lexington",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "Kentucky",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "US",
+            "exact_match": false,
+            "exclude": false
+          }
+        ]
+      },
+      "candidates": [],
+      "metadata": {
+        "credits": 0,
+        "offset": 0
+      },
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:18:24Z"
+      }
+    }
+  ],
+  "preflight": {
+    "workspace_id_present": true,
+    "credits_before": 499,
+    "receipts": [
+      {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:18:23Z"
+      },
+      {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:18:23Z"
+      }
+    ]
+  },
+  "budget": {
+    "estimated_max_credits": 1,
+    "reservation": {
+      "reservation_id": "FE-RES-7E0D20F9928999ED",
+      "run_id": "A2-LIVE-20260915T111736Z",
+      "action": "people_search",
+      "request_sha256": "b502ce0b244c436445e1710e6232183e85a7f0de735c346cb81b04628c975353",
+      "reserved_credits": 1,
+      "actual_credits": null,
+      "status": "reserved",
+      "created_at": "2026-09-15T11:18:23Z",
+      "utc_day": "2026-09-15",
+      "reused": false,
+      "usage_before": {
+        "run": 0,
+        "day": 0,
+        "pilot": 0
+      },
+      "caps": {
+        "run": 50,
+        "day": 100,
+        "pilot": 250
+      }
+    },
+    "settlement": {
+      "reservation_id": "FE-RES-7E0D20F9928999ED",
+      "run_id": "A2-LIVE-20260915T111736Z",
+      "action": "people_search",
+      "request_sha256": "b502ce0b244c436445e1710e6232183e85a7f0de735c346cb81b04628c975353",
+      "reserved_credits": 1,
+      "actual_credits": 0,
+      "status": "settled",
+      "created_at": "2026-09-15T11:18:23Z",
+      "utc_day": "2026-09-15",
+      "settled_at": "2026-09-15T11:18:24Z",
+      "over_reservation": false,
+      "reused": false
+    }
+  },
+  "external_calls": 4,
+  "artifact_sha256": "8df572fff803220af0e4efd476c72733a36f32c5bf4596e66f4dc5623c686f43"
+}

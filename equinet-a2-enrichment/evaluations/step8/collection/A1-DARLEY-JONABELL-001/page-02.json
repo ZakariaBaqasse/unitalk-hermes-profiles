@@ -1,0 +1,23 @@
+{
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "url": "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+  "host": "www.darleyamerica.com",
+  "robots_allowed": true,
+  "status": "collected",
+  "attempts": [
+    {
+      "attempt": 1,
+      "http_status": 200,
+      "success": true,
+      "error": null
+    }
+  ],
+  "firecrawl_calls": 1,
+  "exa_calls": 0,
+  "resolved_url": "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+  "title": "Darley’s Kentucky thoroughbred racehorse stud farms in America",
+  "markdown_path": "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md",
+  "markdown_bytes": 5247,
+  "markdown_sha256": "1cec71b9e37e56aa79ded1d1f28e11a26a0810c6ce3ba83f75ab7cadbbe34d07",
+  "discovery_fallback": null
+}

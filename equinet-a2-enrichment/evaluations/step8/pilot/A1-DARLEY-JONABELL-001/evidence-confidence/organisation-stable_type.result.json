@@ -1,0 +1,35 @@
+{
+  "command": "a2-evaluate-evidence-confidence",
+  "version": "0.1.0-draft.1",
+  "evidence_id": "EV-STAGE1-OFFICIAL-SITE-001",
+  "field_assessment_id": "A2-FLD-2D64EACA1A6DFF97",
+  "source_id": "prospect_official_website",
+  "claim_key": "organisation.stable_type",
+  "normalised_value": "breeding",
+  "components": {
+    "identity_match": 20,
+    "source_authority": 18,
+    "claim_directness": 20,
+    "freshness": 20,
+    "corroboration": 10,
+    "consistency": 10
+  },
+  "raw_score": 98,
+  "applied_caps": [],
+  "confidence_score": 98,
+  "confidence_level": "high",
+  "verification_status": "verified",
+  "freshness_status": "current",
+  "source_references": [
+    "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+    "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-01.md"
+  ],
+  "source_preflight_sha256": "ca28000bcf416d542fcf0d443e4c5840567c0f020e53a21d7f58da933ca3f243",
+  "source_gate_passed": true,
+  "a1_confidence_preserved": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

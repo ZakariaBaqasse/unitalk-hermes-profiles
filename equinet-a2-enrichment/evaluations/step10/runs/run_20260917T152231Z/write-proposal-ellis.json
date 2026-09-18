@@ -1,0 +1,22 @@
+{
+  "run_id": "run_20260917T152231Z",
+  "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+  "enrichment_version": "0.1.0",
+  "resolved_people": [
+    {
+      "source_kind": "existing",
+      "twenty_person_id": "c53ee895-0ce9-4d04-a2fd-908c494a3469",
+      "selection_stage": null,
+      "provider_person_id": null,
+      "statuses": {
+        "identity": "NOT_FOUND",
+        "role": "UNVERIFIED",
+        "priority": "UNKNOWN",
+        "company_match": "AMBIGUOUS",
+        "enrichment": "NOT_FOUND"
+      },
+      "field_decisions": {}
+    }
+  ],
+  "company_final_status": "COMPLETED_NO_TARGET"
+}

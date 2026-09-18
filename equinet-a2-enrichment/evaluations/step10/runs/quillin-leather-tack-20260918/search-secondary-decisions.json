@@ -1,0 +1,11 @@
+{
+  "run_id": "quillin-leather-tack-20260918",
+  "decisions": [
+    {
+      "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "decision_reason": "Paid secondary-stage FullEnrich People Search returned terminal status not_found: no secondary-role people were found for Quillin Leather & Tack. All staged Search stages (primary, exact Owner, linked-secondary reuse, paid secondary) are exhausted with no selected contact. Resolution completes as completed_no_target; the record must be labelled target_role_not_found / Contact Needed - Needs Review and carry the unresolved named-contact gap into the consolidated human review. FullEnrich holds no professional-profile people for this small family business."
+    }
+  ]
+}

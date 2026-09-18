@@ -1,0 +1,260 @@
+{
+  "record_type": "step9b_offline_regression_and_no_web_replay",
+  "profile": "equinet-a2-enrichment",
+  "release_candidate": "equinet-a2-no-integration-1.0.0-rc.1",
+  "status": "pass_ready_for_step9c",
+  "checks": {
+    "isolated_sandbox_excludes_env": true,
+    "historical_low_level_suites": true,
+    "workflow_scenarios": true,
+    "operator_compile": true,
+    "step9a_release_candidate": true,
+    "exact_no_web_replay": true,
+    "canonical_byte_equality": true,
+    "export_equality": true,
+    "web_disabled": true,
+    "external_actions_zero": true
+  },
+  "checks_passed": 10,
+  "checks_total": 10,
+  "suite_runs": [
+    {
+      "name": "run_step1c_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step1c_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step1c_tests.txt",
+      "output_sha256": "3f4f8d90e690543ce2f71d5931f0ae73c92c8e3cf6f51fdc52c1509dcfddaa79",
+      "parsed_summary": {
+        "pass": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "validate_step2d_schema",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/validate_step2d_schema.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/validate_step2d_schema.txt",
+      "output_sha256": "726790479700d50cbf9300b3c8cd20d20fff9c52c440baab7bf752de7969f03d",
+      "parsed_summary": {
+        "pass": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "run_step2e_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step2e_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step2e_tests.txt",
+      "output_sha256": "d3fd870728ad110c63b31bd58c43f30feb2c9906dc47795e56f3f36e46d44d82",
+      "parsed_summary": {
+        "pass": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "run_step2f_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step2f_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step2f_tests.txt",
+      "output_sha256": "1992afd9b01272df141ae9c1f93017af963bd64a81c48586c39914582248090c",
+      "parsed_summary": {
+        "pass": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "run_step2g_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step2g_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step2g_tests.txt",
+      "output_sha256": "82d77ad9d36a33085c492393bc34c628d671e3b7316bd4f2f29394b879ead901",
+      "parsed_summary": {
+        "pass": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "run_step3b_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step3b_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step3b_tests.txt",
+      "output_sha256": "a3f4f0f6f6fbb582aa61501448dc5c0615c88dc42723e128efd9254839f83527",
+      "parsed_summary": {
+        "pass": true,
+        "fixtures": "12/12",
+        "negative_regressions": "10/10",
+        "failures": []
+      }
+    },
+    {
+      "name": "run_step3d_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step3d_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step3d_tests.txt",
+      "output_sha256": "a2d530a5fa4dd7a32d11c120d6c41050ce9dc882d4f44325e8d0c26e51fe98ae",
+      "parsed_summary": {
+        "pass": true,
+        "fixtures": "10/10",
+        "negative_regressions": "11/11",
+        "failures": []
+      }
+    },
+    {
+      "name": "run_step3e_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step3e_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step3e_tests.txt",
+      "output_sha256": "501c776b48c63a029df43867f6ff31c6427ca6d185347de8f2de790857b47356",
+      "parsed_summary": {
+        "pass": true,
+        "fixtures": "11/11",
+        "failures": []
+      }
+    },
+    {
+      "name": "run_step3f_tests",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_step3f_tests.py"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/run_step3f_tests.txt",
+      "output_sha256": "20baa2068c4d3532ed39274239118b47947ef2a264445c90c3cfaa5680ad915f",
+      "parsed_summary": {
+        "pass": true,
+        "failures": []
+      }
+    },
+    {
+      "name": "workflow-farrier_review",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_a2_no_integration_workflow.py",
+        "--scenario",
+        "farrier_review",
+        "--output-dir",
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/evaluations/step9-workflows/farrier_review"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/workflow-farrier_review.txt",
+      "output_sha256": "9df885c37c0a5e14dac55e6337cdd37878cfeea0dea282648fb43e0a4e9a8430",
+      "parsed_summary": {}
+    },
+    {
+      "name": "workflow-horse_owner_requalification",
+      "command": [
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/scripts/run_a2_no_integration_workflow.py",
+        "--scenario",
+        "horse_owner_requalification",
+        "--output-dir",
+        "/opt/data/tmp/equinet-a2-step9b-final-sandbox/evaluations/step9-workflows/horse_owner_requalification"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "output": "evaluations/step9/regression/final-runs/workflow-horse_owner_requalification.txt",
+      "output_sha256": "19b83d99aeda1c9d143e17b290671936d9d99870f12e538a762d1241e73b5d66",
+      "parsed_summary": {}
+    }
+  ],
+  "suite_count": 11,
+  "suite_passed": 11,
+  "operator_compile": [
+    {
+      "path": "scripts/a2_intake.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/normalise_and_resolve_a2_entities.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/classify_official_site_social_link.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/create_a2_revision.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/render_and_validate_a2_review_package.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/build_and_validate_a2_twenty_review.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "passed": true
+    }
+  ],
+  "exact_replay": {
+    "path": "evaluations/step9/replay/replay-manifest.json",
+    "sha256": "4d6ca01b78f89f0b34b3f210f93352f01b818379a87d36002b22db05806f437e",
+    "candidate_count": 2,
+    "candidates_passed": 2,
+    "canonical_exact": true,
+    "exports_exact": true
+  },
+  "historical_manifest_validators": {
+    "status": "superseded_for_release_candidate",
+    "reason": "Step 5/6/7 promotion validators pin historical hashes and are not release-candidate validators after approved Step 9A changes.",
+    "replacement": "Step 9A RC manifest validation plus the low-level suites, two workflow scenarios and exact accepted-record replay recorded here."
+  },
+  "web_calls": 0,
+  "provider_calls": 0,
+  "external_actions": 0,
+  "errors": []
+}

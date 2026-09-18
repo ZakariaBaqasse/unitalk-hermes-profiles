@@ -1,0 +1,34 @@
+{
+  "record_type": "a2_website_first_firecrawl_facebook_decision",
+  "decision_id": "A2-WEBSITE-FIRST-FIRECRAWL-FACEBOOK-20260918",
+  "recorded_at": "2026-09-18T13:54:27Z",
+  "decision_source": "authorised_chat_user",
+  "status": "approved_for_implementation_not_live_activation",
+  "decisions": {
+    "website_before_fullenrich": true,
+    "firecrawl_runtime": "bounded_skill_script_only",
+    "agent_web_extract_for_prospects": false,
+    "firecrawl_api_key_environment_variable": "FIRECRAWL_API_KEY",
+    "firecrawl_credit_policy_required": false,
+    "max_pages_per_company": 5,
+    "website_pages": [
+      "home",
+      "contact",
+      "about",
+      "team",
+      "staff"
+    ],
+    "retain_website_people_regardless_of_role": true,
+    "maximum_people": 2,
+    "preserve_a1_primary_company_contacts": true,
+    "append_distinct_website_contacts": true,
+    "generic_company_contacts_never_person": true,
+    "facebook_actor": "apify~facebook-page-contact-information",
+    "facebook_requires_official_website_link": true,
+    "facebook_trigger": "channel_missing_across_a1_and_website",
+    "facebook_actor_calls_per_company": 1,
+    "facebook_automatic_retries": 0,
+    "facebook_company_count_cap": null,
+    "website_failure_action": "continue_fullenrich"
+  }
+}

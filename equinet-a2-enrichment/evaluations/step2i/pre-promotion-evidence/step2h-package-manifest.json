@@ -1,0 +1,303 @@
+{
+  "manifest_id": "equinet-a2-step2h-review-view-package",
+  "version": "0.1.0",
+  "status": "approved_by_unitalk_for_step_2i",
+  "files": [
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-conflict-held-previous.json",
+      "sha256": "44e47e06154f590d2a64d0c61e51e144f932ae5619b2b8489d4abf63e27194f9"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-conflict-held.json",
+      "sha256": "918d7d40766da1aa000842f4d3dbe173f46260d4d1b8db62c83542597f9dc99c"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-protected-update-awaiting-review-previous.json",
+      "sha256": "44e47e06154f590d2a64d0c61e51e144f932ae5619b2b8489d4abf63e27194f9"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-protected-update-awaiting-review.json",
+      "sha256": "074db80a6332e6a3c0091dcebf996d601e9af48ef3f8f730f71187cc437c4d2f"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-review-required-previous.json",
+      "sha256": "44e47e06154f590d2a64d0c61e51e144f932ae5619b2b8489d4abf63e27194f9"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-review-required.json",
+      "sha256": "5ce6d2ef7923159b1b2649bffa2c6279cdb3e3c2dc291bc69f7b49a10b0d3e96"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-complete-requalification-previous.json",
+      "sha256": "d87fae93ed321a40690a7d5b628f2fe361931a2d13ed0afa179f5c5826fe39ba"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-complete-requalification.json",
+      "sha256": "61cd7a0e91c2ffcbc8ee76f08653897fb284b79ef17f27ebc9c496b40893cfe3"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-gap-held-previous.json",
+      "sha256": "926a40f410c1fdcc705595a7d2d2e274a59bf134969ba1d841c283115e358a80"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-gap-held.json",
+      "sha256": "efc3fa863f9e3df9da71c0a2f17b86b96a2dea8955d71f375d91d6dc399dd6d0"
+    },
+    {
+      "path": "evaluations/step2g/technical-validation.json",
+      "sha256": "65c23102652b72a4a149dc7a9ac0045c9287c150e839c3a51aa1dc4452a69cd7"
+    },
+    {
+      "path": "evaluations/step2h/A2-REVIEW-VIEW-SPECIFICATION-REVIEW.md",
+      "sha256": "59d61dac3305f2d064325f85afbdc074a5a7291c6f951643d9dc6e8d4050d3f1"
+    },
+    {
+      "path": "evaluations/step2h/INDEPENDENT-ADVERSARIAL-REVIEW-RESOLUTION.md",
+      "sha256": "a1c2b57c2304193f24bc3a2f9ca03a1f4b5f9824ed0716b0da595847d148c102"
+    },
+    {
+      "path": "evaluations/step2h/fixtures/farrier-application-blocked.json",
+      "sha256": "e769880b5f78f86c8fb8467fa0b9cde69ed078951abdd7b2dbc0eda609865ea7"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/audit.csv",
+      "sha256": "72f10ca0123f04296c57962b8871783bfde813844532c6fb26d5fc8afb167f6c"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/evidence.csv",
+      "sha256": "7e367090ecf4a91eda5678cd08bb80ae9154a040df6a56413b8e68f9576dc433"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/fields.csv",
+      "sha256": "02dfdbe8dde088ae3249bd43211a5b0233861736029f53f48443525f6e7239b2"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/manifest.json",
+      "sha256": "fe10dd7bcbbd5575027094ab94d11714f2fbc6364aee198e968553e1e97fc671"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/review-queue.csv",
+      "sha256": "a8670ed2e631e330316c2a41bbbdc3c63baa1ebbfd0353425b85f6fa8409a8ec"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/review.md",
+      "sha256": "e10eeac4082da62e4741b1a9e642ea10315415843bf54d55a6e3dd8a6d83634c"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/review.xlsx",
+      "sha256": "f644830cc3f3772887f1eb402865fb382ef9c01ba671dca5660f0d760dc96f7d"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-application-blocked/summary.csv",
+      "sha256": "c2e2813fda48cdede23aba1d0f6f8b60976a88158fb826aac95a9db368e91417"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/audit.csv",
+      "sha256": "27e5731315c9e45c4035a8a149fdfae5e9b4476220fb130b82911c7267ce7ebb"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/evidence.csv",
+      "sha256": "1bc49ca6011a390bd209f4d8091eb980c7ad570a06b3ec111c25f617650a08f8"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/fields.csv",
+      "sha256": "8e121d7ae0652ca67679b18bfbcd27dc33ed1cdfb8ac08f70945e3d95e3a6d94"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/manifest.json",
+      "sha256": "16411a14017434305ffea6f9f047d473788edb07559783e7cd68c4d71f7e7725"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/review-queue.csv",
+      "sha256": "398afba1547472a321d0c693b1a16fe96d8178feae02e3a5cd5f9e201025fff0"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/review.md",
+      "sha256": "ad3cfd8918ace3837b929d8da5871dee3f8a56dd91fce77c2d2c372f48db77b3"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/review.xlsx",
+      "sha256": "1b4dfa4346856e725c018c6fa61772a75f33de2fb8d23bac911db2bc5bddf8d4"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-conflict-held/summary.csv",
+      "sha256": "b5e6bf258aea601807cd530adbd2c5ea8080349a8c219cb28aafb863c1be995d"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/audit.csv",
+      "sha256": "39891c96b2464bde8758ec936a8e608c4c2e6b9247e4fbb66b9e0d59d53f6545"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/evidence.csv",
+      "sha256": "34cc427d55ffb02ed9e8c522a2fe69de3d1f3f9e5d93a31303bce3ee5a12ae3e"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/fields.csv",
+      "sha256": "7c352fc378ea6dd4291d86b23f634a3387af33a5abc4607089ceeb623b3e0ad5"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/manifest.json",
+      "sha256": "a1465f2fd518b637e73983f58ceb6953004336b4b9091674a63912d4c85ceede"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/review-queue.csv",
+      "sha256": "a7cab3cdde564972a643baea8a7f3aa4a6978acc541d4b7dc85de7a57cbce6a7"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/review.md",
+      "sha256": "490f8527afc52976c4dd8baa0d52ac2a1f16b3d6a22f1302957d5d8a804a488a"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/review.xlsx",
+      "sha256": "5dcd46c4f3fbb65cfc67a612ad994737f65c82ab59b7a6f42af1e5d3ce25a7cc"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-protected-update/summary.csv",
+      "sha256": "17108d9475f56017dfa27befcdf0166e9d03b5aa403e7606aacb47c458645d4d"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/audit.csv",
+      "sha256": "f8957e51943a3ec41fd2bf958b596a6016dc568748bd5b4d98b0f371353b572f"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/evidence.csv",
+      "sha256": "c1667efbaa217690e5c2c742cf6b5fa1a0867d82dc91f661b4bd27c3e7b72d03"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/fields.csv",
+      "sha256": "5ba9ff2d7f3c7bfe26c8c50bf0e9b34bbe530ac6694f4a2fcd9d0241ece48608"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/manifest.json",
+      "sha256": "e1b21a9ea7ab6ea46cb846c2ce5e3fdc2ddb86dc26158942f317370acf771cc8"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/review-queue.csv",
+      "sha256": "2b18db48985e4aee5b4d156f28fc7367100f8ac1d2a3dc6ad9df15a27b7941d1"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/review.md",
+      "sha256": "cc58c644c569dc1b12ea728555729a1263067c8b31d1430871a4d714140662af"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/review.xlsx",
+      "sha256": "ef12d065532da95d9f401353f356536bd97314cde6d53ace827afcaf85dd98bd"
+    },
+    {
+      "path": "evaluations/step2h/samples/farrier-review-required/summary.csv",
+      "sha256": "3a7403686535a04011ab4922375213e9cc4d3b4ccbef54e67c26157c5e817edd"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/audit.csv",
+      "sha256": "bee23016e8cdf3aacd23b2eae1a0bc71e5ad656f81fcb57110c414f1488e1afc"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/evidence.csv",
+      "sha256": "205479260a6233ffda899a361023ff789ad3db32d59e94593c2fd7731d9ae99b"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/fields.csv",
+      "sha256": "84f8ea156a56f4192a87000d66ff2a6a1dd60642e0ac7ddb45e70f18af68eb67"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/manifest.json",
+      "sha256": "c643506941df55cf196faa764c6307d2c73500418706db609feaa340f194090b"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/review-queue.csv",
+      "sha256": "e78ee7f144e553e01fb815378fd232fa601a9d4b422d60f7f94792f1c7f6c997"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/review.md",
+      "sha256": "54ab75c63e1ab23bf5e3bf9f96223a9d5f981c2ff483d736cc0eef348b30ddd6"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/review.xlsx",
+      "sha256": "956dd609fb8cb587d74309665db9f631c346aba1875376e22c76fc835d544156"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-gap-held/summary.csv",
+      "sha256": "068b18d0bfee4ec30faf9d1b2da0da74afdffeaae8cd0123c0b170b147699480"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/audit.csv",
+      "sha256": "3c5bcb46416bf622eb069222d93c282940a4daf4902915b6243461f65b40233f"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/evidence.csv",
+      "sha256": "512335e1fbc796e0fd17bd0cd3fe9ab9ea79735a6cc59da36f8ef8596c34213d"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/fields.csv",
+      "sha256": "105258c888968c1d6b9c07eb75f72f89eb9d3bc6041b7b187d910fff9a4a7c22"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/manifest.json",
+      "sha256": "5c4b5952c08cc107fe59f3872b237575b6c697b19311c1dbd846c4a221e41e1d"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/requalification.csv",
+      "sha256": "e6a4333dd42a15cb6dc0d0361357a41d8cc3f10e1b6d1afafd27e8d1f0121c75"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/review-queue.csv",
+      "sha256": "a58d1137841bef8c1cd2d7c737b71bc2d2ecdddec3c0315b9bec38e74ee034c0"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/review.md",
+      "sha256": "72c714cccf8a5c58a697ea3e604618f1b1fdd9f94d88ba8b96dbd73e523117f4"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/review.xlsx",
+      "sha256": "a5dd319c482977b9ed141063183dd2ea91bd46c87a9f78287cb65068653c9abf"
+    },
+    {
+      "path": "evaluations/step2h/samples/horse-owner-requalification/summary.csv",
+      "sha256": "67440fe2ffd1601fa034d530cde663c090e52a10e3166b53dd30a211746659da"
+    },
+    {
+      "path": "foundations/A2-REVIEW-VIEW-SPECIFICATION.md",
+      "sha256": "160ea06ee4407466597485a5dcea497684fde8034e3f8805fd166b1ce9030924"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "sha256": "f3549e91487571f44ef59cf92e85354af450bbaecd426895548d2b7052f784ee"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "sha256": "905158c330533928e6b16ba2af8f6535654877974f1954d5a4e98d8816bb1445"
+    },
+    {
+      "path": "foundations/contracts/requirements-foundation.txt",
+      "sha256": "64b8a154cbf7c749960b184c0b65b264c376c97ede781f0b81e9da061a24b868"
+    },
+    {
+      "path": "scripts/render_a2_review_views.py",
+      "sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef"
+    },
+    {
+      "path": "scripts/validate_step2h_review_views.py",
+      "sha256": "121ca4e34ca8cc395a72c90704086a1fd102eda7b421c7392ce783e0670e13da"
+    }
+  ]
+}

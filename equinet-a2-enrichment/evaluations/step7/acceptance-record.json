@@ -1,0 +1,37 @@
+{
+  "record_type": "step7_synthetic_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "7",
+  "decision": "approved_synthetic_acceptance",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-29T21:31:10Z",
+  "approved_decisions": [
+    "S7-1",
+    "S7-2",
+    "S7-3",
+    "S7-4",
+    "S7-5",
+    "S7-6",
+    "S7-7",
+    "S7-8",
+    "S7-9",
+    "S7-10"
+  ],
+  "synthetic_acceptance_manifest": "foundations/contracts/runtime/a2-step7-synthetic-acceptance-manifest-0.1.0.json",
+  "synthetic_acceptance_manifest_sha256": "59a916f6e9113d0b640541868b999b1b3a1401507c5393205a487dea4b7bd50c",
+  "technical_validation": "evaluations/step7/technical-validation.json",
+  "technical_validation_sha256": "6413ae019fcc84295531c31d89bdb9fe563736d63cd3bbeb1b8e32c9eac29283",
+  "profile_invocation": "evaluations/step7/profile-behavioural-result.json",
+  "profile_invocation_sha256": "5b3f70ac45bb4fb408063ca400c0cdfcbb683ec4b5970ffd0dac250880bbcb65",
+  "active_foundation_manifest": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+  "active_foundation_manifest_sha256": "cf2c3babf8a76580ed30dabfe7e0bba2bb5d91767b5298855997bbf4cc97286b",
+  "scenario_count": 6,
+  "operator_coverage": "14/14",
+  "external_actions": 0,
+  "real_data_authorized": false,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 8 — Bounded Real No-Integration Pilot Readiness"
+}

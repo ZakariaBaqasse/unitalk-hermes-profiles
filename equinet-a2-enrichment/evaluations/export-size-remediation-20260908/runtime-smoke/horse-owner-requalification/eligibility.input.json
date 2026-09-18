@@ -1,0 +1,13 @@
+{
+  "operating_scope": "synthetic_test",
+  "a1_eligibility_status": "eligible",
+  "identity_resolution_status": "resolved",
+  "checks": [
+    {
+      "check_type": "hubspot_company",
+      "system": "hubspot",
+      "status": "unavailable",
+      "authoritative": true
+    }
+  ]
+}

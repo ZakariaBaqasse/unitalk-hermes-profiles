@@ -1,0 +1,1216 @@
+{
+  "catalogue_id": "equinet-a2-business-field-catalogue",
+  "version": "0.1.1-draft.1",
+  "status": "approved_by_unitalk_as_working_baseline_pending_equinet_confirmation",
+  "profile": "equinet-a2-enrichment",
+  "canonical_schema_version": "1.0.0",
+  "decision_basis": {
+    "authority": "Unitalk working baseline approved by Séverine, including SOC-1 through SOC-8 official-site social-profile URL clarification",
+    "unitalk_approver": "Séverine, Unitalk Operations",
+    "unitalk_approved_at": "2026-08-27T11:40:17Z",
+    "equinet_confirmation": "pending",
+    "approved_for_live_collection": false,
+    "approved_for_pilot": false,
+    "approved_for_crm_write": false,
+    "clarification_ids": [
+      "SOC-1",
+      "SOC-2",
+      "SOC-3",
+      "SOC-4",
+      "SOC-5",
+      "SOC-6",
+      "SOC-7",
+      "SOC-8"
+    ]
+  },
+  "segments": [
+    "farrier",
+    "horse_owner"
+  ],
+  "priority_values": [
+    "required",
+    "conditional_required",
+    "optional",
+    "do_not_collect"
+  ],
+  "target_role_model": {
+    "farrier": {
+      "primary": [
+        "independent_farrier_owner",
+        "farrier_business_owner_founder",
+        "lead_farrier"
+      ],
+      "secondary": [
+        "business_office_administrator"
+      ],
+      "review_only": [
+        "student_apprentice"
+      ],
+      "excluded": []
+    },
+    "horse_owner": {
+      "primary": [
+        "owner_founder",
+        "farm_stable_owner",
+        "farm_stable_manager",
+        "trainer_head_trainer",
+        "breeding_manager"
+      ],
+      "secondary": [
+        "general_manager",
+        "operations_manager"
+      ],
+      "review_only": [],
+      "excluded": []
+    },
+    "source_role_title_must_be_preserved": true,
+    "buying_role_is_recommendation_only": true
+  },
+  "contact_selection_policy": {
+    "maximum_named_contacts": 3,
+    "primary_target_role_contacts": 1,
+    "additional_role_relevant_contacts": 2,
+    "fallback_when_no_target_role": "retain_general_organisation_contact_and_mark_target_role_not_found",
+    "minimum_review_contactability": "verified_professional_email_or_verified_business_phone",
+    "general_organisation_contact_can_satisfy_review_readiness": true,
+    "review_readiness_does_not_establish_outreach_eligibility": true
+  },
+  "missing_required_field_policy": {
+    "field_quality_status": "gap",
+    "record_data_quality_status": "incomplete",
+    "automatic_rejection": false,
+    "automatic_a1_score_change": false,
+    "external_action_authorized": false,
+    "visible_in_review_package": true,
+    "permitted_workflow_outcomes": [
+      "enrichment_in_progress",
+      "held",
+      "changes_requested"
+    ],
+    "resolution_options": [
+      "approved_targeted_research",
+      "human_correction",
+      "documented_exception"
+    ]
+  },
+  "horse_count_policy": {
+    "exact_count_authority": "verified_explicit_value_only",
+    "inference_prohibited": true,
+    "derived_band_use": "a2_review_only",
+    "bands": [
+      {
+        "value": "1",
+        "minimum": 1,
+        "maximum": 1
+      },
+      {
+        "value": "2_4",
+        "minimum": 2,
+        "maximum": 4
+      },
+      {
+        "value": "5_10",
+        "minimum": 5,
+        "maximum": 10
+      },
+      {
+        "value": "11_25",
+        "minimum": 11,
+        "maximum": 25
+      },
+      {
+        "value": "26_50",
+        "minimum": 26,
+        "maximum": 50
+      },
+      {
+        "value": "51_plus",
+        "minimum": 51,
+        "maximum": null
+      }
+    ],
+    "hubspot_horse_count_range": "protected_baseline_no_write",
+    "new_hubspot_property_proposed": false
+  },
+  "collection_boundaries": {
+    "reuse_a1_before_new_research": true,
+    "new_research_requires_named_gap_conflict_verification_or_freshness_need": true,
+    "public_professional_information_does_not_create_outreach_eligibility": true,
+    "personal_email_and_mobile_paid_discovery": "disabled_pending_equinet_approval",
+    "automated_linkedin_or_social_extraction": "blocked_pending_rights_and_integration_approval",
+    "named_client_identity_collection": "prohibited",
+    "crm_mapping_candidates_are_not_write_authority": true,
+    "official_site_explicit_professional_social_links_permitted": true,
+    "social_profile_content_extraction_requires_separate_approval": true,
+    "public_profile_urls_do_not_create_consent_outreach_or_buying_influence": true
+  },
+  "fields": [
+    {
+      "field_key": "person.full_name",
+      "label": "Full name",
+      "description": "Published or authorised name of a named professional contact.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "required",
+        "horse_owner": "conditional_required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "firstname",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "lastname",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.role_title",
+      "label": "Current role title",
+      "description": "Current source wording for the person's professional role.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "required",
+        "horse_owner": "conditional_required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [
+        "farrier.buying_influence",
+        "horse_owner.purchasing_influence"
+      ],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "jobtitle",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.business_email",
+      "label": "Professional email",
+      "description": "Explicitly published or authorised professional-use email; never a guessed pattern.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "conditional_required",
+        "horse_owner": "conditional_required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "work_email",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "email",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.personal_email_candidate",
+      "label": "Personal email candidate",
+      "description": "Email returned by the approved independent provider search and held for human privacy review before any operational use.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "review_only_pending_privacy_retention_and_human_decision",
+      "data_category": "personal_contact_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": true,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "explicit_human_privacy_review_required_no_crm_or_outreach",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "person.business_phone",
+      "label": "Professional phone",
+      "description": "Explicitly published or authorised professional business phone.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "conditional_required",
+        "horse_owner": "conditional_required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "phone",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.mobile_phone",
+      "label": "Mobile or direct dial",
+      "description": "Mobile or direct-dial number. Disabled until Equinet separately approves the field, source and purpose.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "do_not_collect",
+        "horse_owner": "do_not_collect"
+      },
+      "collection_policy": "disabled_pending_equinet_privacy_decision",
+      "data_category": "personal_contact_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "mobilephone",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.secondary_email",
+      "label": "Secondary email",
+      "description": "Secondary professional-use email retained only when encountered without paid lookup.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "secondary_email",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.professional_status",
+      "label": "Farrier professional status",
+      "description": "Current Farrier working status using the provisional Unitalk taxonomy.",
+      "scope": "person",
+      "value_type": "enum",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "priority_by_segment": {
+        "farrier": "required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": [
+        "full_time",
+        "part_time",
+        "student_apprentice"
+      ],
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [
+        "farrier.professional_activity",
+        "farrier.apprentice_future_potential",
+        "farrier.inactive_or_hobbyist"
+      ],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "farrier_active_flag",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.professional_credential",
+      "label": "Primary professional credential",
+      "description": "One primary current professional credential retained for compatibility with the canonical fixture contract.",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "farrier_certifications",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.certifications",
+      "label": "Professional certifications",
+      "description": "Current explicitly verified Farrier certifications or memberships.",
+      "scope": "person",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "farrier_certifications",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.years_experience",
+      "label": "Years of experience",
+      "description": "Explicitly stated professional years of experience; never derived from age or graduation year without an approved rule.",
+      "scope": "person",
+      "value_type": "integer",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "years_experience",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "person.public_profile_urls",
+      "label": "Public professional profile URLs",
+      "description": "Role-relevant public professional profile URLs explicitly linked from the official website, recorded by an authorised human, or returned through a separately approved official API. The link may be retained without opening or extracting the social profile.",
+      "scope": "person",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "person.recent_professional_activity",
+      "label": "Recent professional activity",
+      "description": "Dated public professional activity kept separate from private interests and CRM engagement.",
+      "scope": "person",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "person.social_signals",
+      "label": "Broad social signals",
+      "description": "Broad social metrics or inferred interests. Disabled until a permitted signal, purpose and access route are approved.",
+      "scope": "person",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "do_not_collect",
+        "horse_owner": "do_not_collect"
+      },
+      "collection_policy": "disabled_pending_source_and_purpose_approval",
+      "data_category": "social_platform_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "organisation.business_name",
+      "label": "Organisation or business name",
+      "description": "Verified public or authorised trading/business name.",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "required",
+        "horse_owner": "required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "name",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "trade_name",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.website",
+      "label": "Official website",
+      "description": "Verified official business website URL.",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "website",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.website_domain",
+      "label": "Official website domain",
+      "description": "Normalised official domain used as one identity signal, never as a unique match by itself.",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "domain",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.public_profile_urls",
+      "label": "Organisation public professional profile URLs",
+      "description": "Public business social-profile URLs explicitly linked from the organisation's official website, recorded by an authorised human, or returned through a separately approved official API. The link may be retained without opening or extracting the social profile.",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "organisation.business_phone",
+      "label": "Organisation general phone",
+      "description": "General published business phone used as a fallback when no named target-role channel is available.",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "conditional_required",
+        "horse_owner": "conditional_required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "phone",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.business_email",
+      "label": "Organisation general email",
+      "description": "General published business email used as a fallback when no named target-role channel is available.",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "conditional_required",
+        "horse_owner": "conditional_required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "company_email",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.public_business_location",
+      "label": "Public business location",
+      "description": "Structured public business location; proposed routing minimum is country and state.",
+      "scope": "organisation",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "required",
+        "horse_owner": "required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "address",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "city",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "state",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "zip",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "company",
+          "property": "country",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.service_area",
+      "label": "Farrier service area",
+      "description": "Explicit service regions stored as structured region labels plus preserved source wording.",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "priority_by_segment": {
+        "farrier": "required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [
+        "farrier.high_value_service_area"
+      ],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "organisation.disciplines",
+      "label": "Equine disciplines",
+      "description": "Explicit professional or organisation disciplines; multiple values permitted.",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "required",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [
+        "farrier.sport_horse_focus",
+        "horse_owner.performance_discipline"
+      ],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "disciplines_worked_with",
+          "status": "mapping_candidate_only"
+        },
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "owner_primary_discipline",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.horse_count",
+      "label": "Verified exact horse count",
+      "description": "Exact count only when explicitly stated by an approved source or confirmed by Equinet; never inferred.",
+      "scope": "organisation",
+      "value_type": "integer",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [
+        "horse_owner.more_than_three_horses"
+      ],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "owner_horse_count",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.horse_count_band",
+      "label": "A2 horse-count review band",
+      "description": "A2-only category deterministically derived from a verified exact count; not written to HubSpot during the no-integration pilot.",
+      "scope": "organisation",
+      "value_type": "enum",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "deterministic_derivation_from_verified_exact_count_only",
+      "paid_lookup_allowed": false,
+      "enum_values": [
+        "1",
+        "2_4",
+        "5_10",
+        "11_25",
+        "26_50",
+        "51_plus"
+      ],
+      "source_text_preserved": false,
+      "a1_requalification_criterion_ids": [
+        "horse_owner.more_than_three_horses"
+      ],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "horse_count_range",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.stable_type",
+      "label": "Stable or farm type",
+      "description": "Normalised organisation type using the provisional Unitalk taxonomy.",
+      "scope": "organisation",
+      "value_type": "enum",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "horse_owner": "required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": [
+        "private_farm",
+        "boarding",
+        "training",
+        "breeding",
+        "backyard",
+        "other"
+      ],
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "stable_type",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.breeds",
+      "label": "Horse breeds",
+      "description": "Explicitly stated horse breeds relevant to the organisation.",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "owner_breeds",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.horses_served_per_month",
+      "label": "Horses served per month",
+      "description": "Aggregate Farrier business volume. Disabled until Equinet confirms a use case and permitted source.",
+      "scope": "organisation",
+      "value_type": "integer",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "priority_by_segment": {
+        "farrier": "do_not_collect"
+      },
+      "collection_policy": "disabled_pending_equinet_use_case_and_source",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "farrier_horses_served",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "organisation.client_base_summary",
+      "label": "Aggregate client-base summary",
+      "description": "Aggregate business client types or size only; named client identities are prohibited.",
+      "scope": "organisation",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "priority_by_segment": {
+        "farrier": "do_not_collect"
+      },
+      "collection_policy": "disabled_pending_equinet_use_case_and_source",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "relationship.role",
+      "label": "Person-to-organisation role",
+      "description": "Verified relationship role between a retained person and organisation.",
+      "scope": "relationship",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "relationship.target_role_priority",
+      "label": "Target-role priority",
+      "description": "Normalised Unitalk role priority derived from the approved targeting table.",
+      "scope": "relationship",
+      "value_type": "enum",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "conditional_required",
+        "horse_owner": "conditional_required"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "deterministic_mapping_from_verified_current_role",
+      "paid_lookup_allowed": false,
+      "enum_values": [
+        "primary",
+        "secondary",
+        "review_only",
+        "excluded",
+        "target_role_not_found"
+      ],
+      "source_text_preserved": false,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    },
+    {
+      "field_key": "relationship.buying_role_recommendation",
+      "label": "Buying-role recommendation",
+      "description": "Non-binding recommendation derived from a verified role; human approval is required before CRM mapping.",
+      "scope": "relationship",
+      "value_type": "enum",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      },
+      "collection_policy": "permitted_for_proposal",
+      "data_category": "professional_business_data",
+      "inference_policy": "bounded_recommendation_from_verified_role",
+      "paid_lookup_allowed": false,
+      "enum_values": [
+        "decision_maker",
+        "influencer",
+        "user",
+        "unknown"
+      ],
+      "source_text_preserved": false,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": [
+        {
+          "system": "hubspot",
+          "object": "contact",
+          "property": "hs_buying_role",
+          "status": "mapping_candidate_only"
+        }
+      ]
+    },
+    {
+      "field_key": "network.mutual_connections",
+      "label": "Mutual connections",
+      "description": "Mutual-connection information. Disabled until an authorised official source, account, purpose and storage rule are approved.",
+      "scope": "network",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "priority_by_segment": {
+        "farrier": "do_not_collect",
+        "horse_owner": "do_not_collect"
+      },
+      "collection_policy": "disabled_pending_official_integration_and_storage_approval",
+      "data_category": "network_relationship_data",
+      "inference_policy": "not_permitted",
+      "paid_lookup_allowed": false,
+      "enum_values": null,
+      "source_text_preserved": true,
+      "a1_requalification_criterion_ids": [],
+      "approval_rule": "human_review_required_during_pilot",
+      "unknown_behaviour": "preserve_unknown_and_record_gap_when_required",
+      "mapping_candidates": []
+    }
+  ],
+  "open_equinet_confirmations": [
+    "target role model by segment",
+    "maximum named contacts and fallback",
+    "minimum review contactability",
+    "horse-count taxonomy and derivation",
+    "Required, Conditional Required, Optional and Do Not Collect classifications",
+    "personal email and mobile/direct-dial policy before pilot",
+    "A2 business reviewer and backup before pilot"
+  ],
+  "next_gate_after_approval": "Step 3B — Minimum Data Packages"
+}

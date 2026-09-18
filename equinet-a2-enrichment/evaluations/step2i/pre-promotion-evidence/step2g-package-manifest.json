@@ -1,0 +1,107 @@
+{
+  "manifest_id": "equinet-a2-step2g-initialisation-package",
+  "version": "0.1.0",
+  "status": "approved_by_unitalk_for_step_2h",
+  "files": [
+    {
+      "path": "evaluations/step2e/step2g-initialisation-compatibility-correction.json",
+      "sha256": "6dc06f4e737ec999a94578ca6b6e2b6034b7e6ecece23cd58a6d01ef2829768c"
+    },
+    {
+      "path": "evaluations/step2f/step2g-compatibility-correction.json",
+      "sha256": "791edd821a863d4ab373235fa9043375eedd7865e4b63bba71954c0033b9c875"
+    },
+    {
+      "path": "evaluations/step2f/technical-validation.json",
+      "sha256": "30dc4e5142afe7a519ac42f6e79965a5703a3d7875cb97b1225d10c86e6890ba"
+    },
+    {
+      "path": "evaluations/step2g/A2-HANDOFF-TO-RECORD-INITIALISATION-REVIEW.md",
+      "sha256": "6be462e13a3177b56d799767efbd5708fc22aceb53b4c4a31e49472af994cfa2"
+    },
+    {
+      "path": "evaluations/step2g/INDEPENDENT-ADVERSARIAL-REVIEW-RESOLUTION.md",
+      "sha256": "9728b9352e52069436452bad4ed0a5764d1c5ebfd444a1df0be973d06c7498db"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/initialisation-manifest.json",
+      "sha256": "bc6d3d665d73874fdfaafdd5f4087ae8cfe5675a69bdf9690564eacebdd333f5"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/inputs/farrier-handoff.json",
+      "sha256": "d939f49c36b2cc6eafda2ef5ade9f85df280b01a6f6fe7910301177540c70a02"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/inputs/horse-owner-handoff.json",
+      "sha256": "5bb02ccd8f6f8c80d142a49c23a4f23b787e7eea6b139c39079834874a804b3e"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/inputs/horse-owner-targeted-handoff.json",
+      "sha256": "7caa3a0a32e795b0886e3a5f6f2260dc64431f5e90f93dc8a55166566ef500fb"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/candidate-hash-mismatch.json",
+      "sha256": "24706eb7b5d73e518b23a23ce5f0d029290038919e5f7f3bc420a2a8c2ff977e"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/extra-handoff-property.json",
+      "sha256": "64cb8f0a9ab8503be5079c6d02e8f439f24eaee7935b366df568d3e4c0c52532"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/handoff-not-eligible.json",
+      "sha256": "9280439abfcd6c97d7a672983930674775cae5fc795200a2d2eb397e72b76cef"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/provider-authority-at-initialisation.json",
+      "sha256": "f01aac558223577fbe993ce8a943342c7ebe92e7f8f9c5d006f26ac816ac598f"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/recommendation-not-pass-to-a2.json",
+      "sha256": "3299c7032a0573ad9b8cdab02bdfb1dac4160cdca42143ca68dd4ba55f9ee0dc"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/synthetic-manual-scope.json",
+      "sha256": "94a41e41328b6894c3e1f5ddef29230b9e66537a1392a4eb3a4c4b9417f38215"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/synthetic-not-accepted.json",
+      "sha256": "74bf6085ad9bcbb1583c2f4998e8c7d35aaf296e0b2369a5cd4a27f466742648"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/invalid/wrong-target-profile.json",
+      "sha256": "25338de3b00288d8fdc3cf80e3bfa8f0e654ce24827369d95d81055240cd44aa"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/valid/farrier-initial-record.json",
+      "sha256": "7395d66119a97e52c07aacbbb6f4df2efaf1e8ee19ba9f22ff140779311e4d95"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/valid/horse-owner-initial-record.json",
+      "sha256": "f0b74a934413930394692bdf881f870928b27073f05374c30ccc284330845981"
+    },
+    {
+      "path": "evaluations/step2g/fixtures/valid/horse-owner-targeted-initial-record.json",
+      "sha256": "383a77ae644a9d4e283d6fef68e867421ce64777046a9c90be590f85f7af1562"
+    },
+    {
+      "path": "foundations/A2-HANDOFF-TO-RECORD-INITIALISATION-CONTRACT.md",
+      "sha256": "06330e79695ada1e227c16280d073bed8fe957cb2040e777d63d97d2bae1801e"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "sha256": "f3549e91487571f44ef59cf92e85354af450bbaecd426895548d2b7052f784ee"
+    },
+    {
+      "path": "scripts/build_step2g_fixtures.py",
+      "sha256": "a83e427242b0f0e3b5cf9d68dff5f91edf3ddcad7032f51337fb9e09bdb295a2"
+    },
+    {
+      "path": "scripts/initialize_a2_record.py",
+      "sha256": "30f7b7f31aa0ea726b12799df495861ddb58dcb683ea9aed0746d50b497bcc65"
+    },
+    {
+      "path": "scripts/run_step2g_tests.py",
+      "sha256": "24d513327be2485b8757bc9bcd664dc9f0dab4c3efa7b19571fa4c2d71133052"
+    }
+  ]
+}

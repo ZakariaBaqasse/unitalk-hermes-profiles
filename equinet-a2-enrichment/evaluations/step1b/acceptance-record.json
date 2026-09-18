@@ -1,0 +1,36 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "1B",
+  "artifact": "foundations/A2-IMPLEMENTATION-CONTRACT.md",
+  "artifact_version": "0.1.0",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-16T15:43:31Z",
+  "approved_scope": [
+    "A2 mission and business outcome",
+    "A2 in-scope and prohibited actions",
+    "source-of-truth and protected-field boundary",
+    "D1: recorded human A1 approval leading to approved_for_a2 is the primary trigger",
+    "D2: A2 preserves the A1 score and returns material evidence for requalification",
+    "D3: every enriched record requires human review during the pilot",
+    "D4: no HubSpot write or real A3/A14 delivery during the no-integration pilot",
+    "permission to proceed to Step 1C"
+  ],
+  "not_approved": [
+    "Equinet client sign-off",
+    "final A2 schema",
+    "source policy",
+    "confidence and data-quality rules",
+    "providers or budget",
+    "skills and runtime",
+    "integrations",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 1C — A1-to-A2 Boundary and Handoff Contract"
+}

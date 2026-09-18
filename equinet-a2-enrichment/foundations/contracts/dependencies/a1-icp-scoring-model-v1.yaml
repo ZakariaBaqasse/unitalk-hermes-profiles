@@ -1,0 +1,246 @@
+model_id: equinet-a1-icp-scoring
+model_version: 1.0.0
+status: approved_by_unitalk_for_a1_v1
+applies_to_profile: equinet-a1-icp-discovery
+owner_role: Unitalk Operations
+candidate_schema_version: 1.0.0
+icp_config_version: 1.0.0
+evidence_confidence_version: 1.0.0
+
+approval_record:
+  approved_by: Séverine
+  approver_role: Unitalk Operations
+  approval_scope: A1 ICP Scoring Model V1
+  equinet_formal_signoff: not_separately_recorded
+  approved_decisions:
+    - Farrier weight distribution totals 100
+    - Horse Owner weight distribution totals 100
+    - Bands are High 75-100, Medium 50-74, Low 25-49 and Unqualified 0-24
+    - Qualification threshold is 50
+    - Horse-count exception requires at least two strong commercial signals
+    - Unknown horse count is capped at Medium; at/below three is capped at Low
+    - Apprentice is capped at Low; inactive or hobbyist is capped at Unqualified
+    - Confirmed criteria receive full points; unknown, not_confirmed and contradicted receive zero
+
+principles:
+  - ICP score measures commercial fit; confidence score measures evidence reliability.
+  - Only criteria with status confirmed and traceable evidence receive points.
+  - Unknown, not_confirmed and contradicted criteria receive zero points; A1 never guesses missing data.
+  - A confirmed criterion receives its full configured weight in V1; partial points are not used.
+  - The numeric score always equals the sum of awarded scoring components.
+  - Special pathways and missing gates cap the outcome band rather than changing the numeric score.
+  - Confirmed exclusions override every score and block qualification.
+  - Every candidate remains human-reviewed in V1.
+
+criterion_status_points:
+  confirmed: full_weight
+  not_confirmed: zero
+  unknown: zero
+  contradicted: zero
+
+bands:
+  high:
+    minimum: 75
+    maximum: 100
+    business_meaning: High-priority ICP candidate
+  medium:
+    minimum: 50
+    maximum: 74
+    business_meaning: Qualified candidate requiring normal review
+  low:
+    minimum: 25
+    maximum: 49
+    business_meaning: Lower-priority candidate or evidence-limited pathway
+  unqualified:
+    minimum: 0
+    maximum: 24
+    business_meaning: Does not currently meet the ICP threshold
+
+qualification_threshold: 50
+
+band_order_from_high_to_low: [high, medium, low, unqualified]
+
+common_rules:
+  exclusion_status_excluded:
+    action: block_scoring
+    outcome: excluded
+  blocked_criteria:
+    - farrier.no_professional_evidence
+    - horse_owner.no_commercial_evidence
+  missing_data:
+    default_points: 0
+    default_effect: no_penalty_beyond_unearned_points
+    mandatory_gate_effect: apply_segment_review_rule
+  confidence_interaction:
+    changes_numeric_icp_score: false
+    low_confidence_action: keep_score_visible_but_do_not_present_as_validated_priority
+    display_rule: Always show ICP score and confidence score separately.
+  geography_interaction:
+    changes_numeric_icp_score: only_through_configured_location_criterion
+    outside_kentucky_but_inside_us: hold_for_future_geography_without_changing_score
+    outside_us: excluded_by_icp_configuration
+  crm_interaction:
+    changes_numeric_icp_score: false
+    confirmed_crm_exclusion: block_candidate_workflow
+    unavailable_crm_check: display_unavailable_without_score_penalty
+  previous_lost_opportunity:
+    changes_numeric_icp_score: false
+    outcome: needs_review
+  overlap_controls:
+    farrier_product_usage_and_buying_influence:
+      criteria: [farrier.product_usage_or_influence, farrier.buying_influence]
+      award_both_only_when: >-
+        Evidence establishes two distinct facts: professional product usage or recurring need,
+        and explicit recommendation, selection or purchasing influence.
+      generic_professional_role_alone: Confirm product usage/fit only; do not automatically confirm explicit buying influence.
+
+segments:
+  farrier:
+    maximum_positive_points: 100
+    required_gates:
+      - criterion_id: farrier.professional_activity
+        pass_status: confirmed
+        if_missing_or_unknown:
+          maximum_band: low
+          outcome: needs_review_missing_professional_activity
+    positive_weights:
+      farrier.professional_activity: 20
+      farrier.product_usage_or_influence: 15
+      farrier.product_fit: 10
+      farrier.established_client_base: 10
+      farrier.regular_business_activity: 10
+      farrier.advanced_specialisation: 8
+      farrier.high_value_service_area: 5
+      farrier.certified_or_experienced: 5
+      farrier.sport_horse_focus: 5
+      farrier.buying_influence: 5
+      farrier.multi_farrier_business: 4
+      farrier.engagement_signal: 3
+    non_scoring_criteria:
+      farrier.apprentice_future_potential: special_pathway
+      farrier.inactive_or_hobbyist: negative_override
+      farrier.no_professional_evidence: exclusion
+    special_rules:
+      apprentice_future_potential:
+        trigger:
+          criterion_id: farrier.apprentice_future_potential
+          status: confirmed
+        maximum_band: low
+        outcome: future_potential_human_review
+        automatic_high_priority_allowed: false
+      inactive_or_hobbyist:
+        trigger:
+          criterion_id: farrier.inactive_or_hobbyist
+          status: confirmed
+        maximum_band: unqualified
+        outcome: inactive_or_hobbyist_review
+      no_professional_evidence:
+        trigger:
+          criterion_id: farrier.no_professional_evidence
+          status: confirmed
+        action: block_scoring
+        outcome: excluded_no_professional_evidence
+    standard_outcomes:
+      high: high_priority_farrier
+      medium: qualified_farrier
+      low: lower_priority_farrier
+      unqualified: unqualified_farrier
+
+  horse_owner:
+    maximum_positive_points: 100
+    required_gates:
+      - criterion_id: horse_owner.commercial_operation
+        pass_status: confirmed
+        if_missing_or_unknown:
+          maximum_band: unqualified
+          outcome: needs_review_missing_commercial_operation
+      - criterion_id: horse_owner.more_than_three_horses
+        pass_status: confirmed
+        if_missing_or_unknown:
+          action: apply_horse_count_pathway
+    positive_weights:
+      horse_owner.commercial_operation: 25
+      horse_owner.more_than_three_horses: 20
+      horse_owner.purchasing_influence: 15
+      horse_owner.product_fit: 10
+      horse_owner.performance_discipline: 8
+      horse_owner.breeding_activity: 7
+      horse_owner.professional_network: 5
+      horse_owner.high_equine_activity_location: 5
+      horse_owner.buying_signal: 5
+    non_scoring_criteria:
+      horse_owner.single_horse_recreational: negative_override
+      horse_owner.no_commercial_evidence: exclusion
+    special_rules:
+      horse_count_unknown:
+        trigger_statuses: [unknown, not_confirmed]
+        strong_signal_criteria:
+          - horse_owner.purchasing_influence
+          - horse_owner.product_fit
+          - horse_owner.performance_discipline
+          - horse_owner.breeding_activity
+          - horse_owner.professional_network
+          - horse_owner.buying_signal
+        minimum_confirmed_strong_signals: 2
+        if_threshold_met:
+          maximum_band: medium
+          outcome: horse_count_unknown_human_review
+          automatic_qualification_allowed: false
+        if_threshold_not_met:
+          maximum_band: unqualified
+          outcome: insufficient_horse_count_evidence
+      horse_count_at_or_below_three:
+        trigger_statuses: [contradicted]
+        strong_signal_criteria:
+          - horse_owner.purchasing_influence
+          - horse_owner.product_fit
+          - horse_owner.performance_discipline
+          - horse_owner.breeding_activity
+          - horse_owner.professional_network
+          - horse_owner.buying_signal
+        minimum_confirmed_strong_signals: 2
+        if_threshold_met:
+          maximum_band: low
+          outcome: below_threshold_commercial_exception_review
+          automatic_qualification_allowed: false
+        if_threshold_not_met:
+          maximum_band: unqualified
+          outcome: below_threshold_unqualified
+      single_horse_recreational:
+        trigger:
+          criterion_id: horse_owner.single_horse_recreational
+          status: confirmed
+        maximum_band: unqualified
+        outcome: recreational_owner_unqualified
+      no_commercial_evidence:
+        trigger:
+          criterion_id: horse_owner.no_commercial_evidence
+          status: confirmed
+        action: block_scoring
+        outcome: excluded_no_commercial_evidence
+    standard_outcomes:
+      high: high_priority_horse_owner
+      medium: qualified_horse_owner
+      low: lower_priority_horse_owner
+      unqualified: unqualified_horse_owner
+
+scoring_output:
+  candidate_fields:
+    - scoring.status
+    - scoring.score
+    - scoring.band
+    - scoring.model_version
+    - scoring.components
+    - scoring.rationale
+    - scoring.block_reason
+  audit_fields:
+    - raw_band
+    - final_band
+    - applied_band_caps
+    - outcome
+    - review_required
+    - confirmed_positive_criteria
+    - missing_required_gates
+  recommendation_rule: >-
+    The deterministic score and outcome inform recommendation.next_action but never execute outreach,
+    CRM writes, A2 handoff or approval automatically.

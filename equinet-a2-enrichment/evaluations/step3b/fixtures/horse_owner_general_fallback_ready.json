@@ -1,0 +1,15 @@
+{
+  "fixture_id": "horse_owner_general_fallback_ready",
+  "segment": "horse_owner",
+  "contact_path": "general_organisation_fallback",
+  "target_role_not_found": true,
+  "research_exhausted": false,
+  "field_states": {
+    "organisation.business_name": "verified",
+    "organisation.public_business_location": "verified",
+    "organisation.stable_type": "verified",
+    "organisation.business_phone": "verified"
+  },
+  "conflict_field_keys": [],
+  "error_field_keys": []
+}

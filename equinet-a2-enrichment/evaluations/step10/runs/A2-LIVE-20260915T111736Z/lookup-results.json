@@ -1,0 +1,17 @@
+{
+  "schema_id": "a2-fullenrich-lookup-results",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "company_id": null,
+  "created_at": "2026-09-15T11:17:44Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "result_count": 0,
+  "results": [],
+  "budget": {
+    "no_action": true
+  },
+  "external_calls": 0,
+  "artifact_sha256": "92b02802df731adc962803e8ba674cb92ef17e8325684547a3e738a8b3dc4080"
+}

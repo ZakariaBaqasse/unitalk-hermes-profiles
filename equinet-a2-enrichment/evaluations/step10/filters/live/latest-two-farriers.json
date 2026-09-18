@@ -1,0 +1,115 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "FILTER-LIVE-VERIFY",
+  "company_id": null,
+  "created_at": "2026-09-15T13:49:02Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "aa9bfa729533debc1771ec686d3e506572b1be5092f435823aa112e6350456ad",
+  "requested_batch_size": 2,
+  "company_count": 2,
+  "companies": [
+    {
+      "twenty_company_id": "56daa001-befd-4969-b867-384212372b0c",
+      "name": "SoundHorse",
+      "segment": "FARRIER",
+      "domain": "soundhorse.com",
+      "professional_network_url": null,
+      "location": {
+        "street": "2150 Georgetown Rd, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "a2_enrichment_status": "NOT_ENRICHED",
+      "a2_enrichment_version": "",
+      "a2_enrichment_run_id": "",
+      "a2_processing_started_at": null,
+      "linked_people": [
+        {
+          "twenty_person_id": "cf041f49-0835-4830-819b-54bb9e59b601",
+          "company_id": "56daa001-befd-4969-b867-384212372b0c",
+          "full_name": "SoundHorse",
+          "raw_name": {
+            "firstName": "SoundHorse",
+            "lastName": ""
+          },
+          "job_title": null,
+          "work_email": null,
+          "phone": "8008012654",
+          "professional_network_url": null,
+          "a2_identity_status": null,
+          "a2_role_status": null,
+          "a2_role_priority": null,
+          "a2_company_match_status": null,
+          "a2_enrichment_status": null,
+          "fullenrich_person_id": "",
+          "last_verified_at": null,
+          "last_enriched_at": null,
+          "updated_at": "2026-09-08T16:26:33.403Z"
+        }
+      ],
+      "snapshot_updated_at": "2026-09-15T10:36:35.782Z"
+    },
+    {
+      "twenty_company_id": "79fff9dc-8ec8-4b40-b7fe-39b291bc1da0",
+      "name": "American Farrier's Association",
+      "segment": "FARRIER",
+      "domain": "americanfarriers.org",
+      "professional_network_url": null,
+      "location": {
+        "street": "2201 Regency Rd Unit 704, Lexington, KY 40503",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40503"
+      },
+      "a2_enrichment_status": "NOT_ENRICHED",
+      "a2_enrichment_version": "",
+      "a2_enrichment_run_id": "",
+      "a2_processing_started_at": null,
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-15T10:36:38.663Z"
+    }
+  ],
+  "claims": [],
+  "applied_filters": {
+    "statuses": [
+      "NOT_ENRICHED"
+    ],
+    "include_null": false,
+    "allow_any_status": false,
+    "company_ids": [],
+    "company_names": [],
+    "segments": [
+      "FARRIER"
+    ],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "2",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "a2EnrichmentStatus[eq]:NOT_ENRICHED,segment[eq]:FARRIER"
+    },
+    "receipt": {
+      "http_status": 200,
+      "attempt": 1,
+      "received_at": "2026-09-15T13:49:02Z"
+    }
+  },
+  "external_writes": 0,
+  "artifact_sha256": "155baf6d9f068a1d35e8f2e61292060b0769a88db9c3b81ce4b98ddc5cd035d4"
+}

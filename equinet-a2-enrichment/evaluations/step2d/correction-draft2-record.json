@@ -1,0 +1,18 @@
+{
+  "record_type": "foundation_correction_proposal",
+  "profile": "equinet-a2-enrichment",
+  "source_step": "2D",
+  "identified_during_step": "2E",
+  "prior_schema_version": "1.0.0-draft.1",
+  "prior_accepted_sha256": "aae2e0c16af015c468cfb88803aa8af6778e42f767fa0e29af3030b5c255afe6",
+  "corrected_schema_version": "1.0.0-draft.2",
+  "corrected_schema_sha256": "f3549e91487571f44ef59cf92e85354af450bbaecd426895548d2b7052f784ee",
+  "status": "approved_in_step_2e",
+  "reason": "The approved canonical design permits relationship-scoped field assessments, but draft.1 constrained field_assessments[].entity_id to A2-ENT identifiers only.",
+  "correction": "Retain the approved entity_id property name for dictionary compatibility and allow A2-REL identifiers only when scope is relationship. Person and organisation scopes continue to require A2-ENT identifiers; record scope continues to require null.",
+  "scope_impact": "Backward-compatible correction to the unpromoted draft schema. No business field, CRM mapping, source policy, integration or external action is approved.",
+  "approval_route": "Approved through Step 2E decision E13.",
+  "created_at": "2026-08-26T09:01:26Z",
+  "approved_by": "Séverine, Unitalk Operations",
+  "approved_at": "2026-08-26T10:00:06Z"
+}

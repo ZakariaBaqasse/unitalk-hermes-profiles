@@ -1,0 +1,28 @@
+---
+name: a2-twenty-write-governance
+description: "Use when A2 builds and reconciles Twenty writes."
+version: 0.1.0
+author: Unitalk
+license: Proprietary
+metadata:
+  hermes:
+    tags: [equinet, a2, twenty, governance]
+    related_skills: [a2-twenty-connector, a2-twenty-fullenrich-workflow]
+---
+
+# A2 Twenty Write Governance
+
+## When to Use
+
+Use after provider values and LLM field decisions are validated.
+
+## Commands
+
+```bash
+python scripts/build_twenty_enrichment_write_plan.py <proposal.json> --output <plan.json>
+python scripts/push_twenty_enrichment.py <plan.json> --output <dry-run.json>
+python scripts/push_twenty_enrichment.py <plan.json> --apply --output <result.json>
+python scripts/validate_twenty_reconciliation.py <result.json> --output <validation.json>
+```
+
+Values must originate in validated evidence. Never silently overwrite manual values, mutate one person into another, or write personal email. New People require verified identity, `CURRENT_AT_COMPANY`, and confirmed Company match. `PRIMARY` is allowed only from the primary or owner Search stage; `SECONDARY` is allowed only from the secondary fallback stage. `a2RoleStatus` may only be `CURRENT_AT_COMPANY`, `NOT_CURRENT_AT_COMPANY`, or `UNVERIFIED`. Company final status is the last operation. Twenty API success is incomplete until read-back matches.

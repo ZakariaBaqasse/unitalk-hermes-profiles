@@ -1,0 +1,30 @@
+{
+  "record_type": "final_soul_activation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "4",
+  "decision": "approved_and_activated",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-27T11:02:47Z",
+  "approved_decisions": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10"],
+  "proposed_soul": "evaluations/step4/SOUL.proposed.md",
+  "proposed_soul_sha256": "0939b9f160fe2abd47762fc16aad1cacc4b2c722b3636298afd75af597b789d0",
+  "active_soul": "SOUL.md",
+  "active_soul_sha256": "0939b9f160fe2abd47762fc16aad1cacc4b2c722b3636298afd75af597b789d0",
+  "replaced_scaffold": "evaluations/step4/pre-promotion/SOUL.before-final-activation.md",
+  "replaced_scaffold_sha256": "f36abac07768ea1ecd644094c4bb3a36aefa061c56aa23a33222238998fd9862",
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "does_not_authorize": [
+    "live source access",
+    "Twenty API or webhook execution",
+    "Apify execution or provider spend",
+    "HubSpot access or write",
+    "outreach",
+    "pilot readiness",
+    "production readiness",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 5 — Operational Skills and Scripts"
+}

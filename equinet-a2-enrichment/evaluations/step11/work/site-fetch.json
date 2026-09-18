@@ -1,0 +1,149 @@
+{
+  "schema_id": "a2-firecrawl-official-site-fetch",
+  "schema_version": "0.1.0",
+  "created_at": "2026-09-18T17:40:56Z",
+  "status": "succeeded",
+  "run_id": "step11-fixture-run",
+  "company_id": "company-fixture-001",
+  "company": {
+    "company_id": "company-fixture-001",
+    "name": "Example Equine Centre"
+  },
+  "official_url": "https://www.example.com/",
+  "official_host": "www.example.com",
+  "plan_sha256": "4bab5288d07dfcbf4182b2e2d5c82262b4af596e45f2840d23f272799271329e",
+  "page_limit": 5,
+  "discovered_links": [
+    {
+      "category": "contact",
+      "url": "https://www.example.com/contact"
+    },
+    {
+      "category": "about",
+      "url": "https://www.example.com/about"
+    },
+    {
+      "category": "team",
+      "url": "https://www.example.com/people"
+    },
+    {
+      "category": "staff",
+      "url": "https://www.example.com/staff"
+    }
+  ],
+  "page_count": 5,
+  "pages": [
+    {
+      "page_index": 1,
+      "category": "homepage",
+      "requested_url": "https://www.example.com/",
+      "resolved_url": "https://www.example.com/",
+      "title": "Example Equine Centre",
+      "status": "collected",
+      "markdown": "# Example Equine Centre\nWelcome.\n\n© Example Equine Centre\nEmail: office@example.com\nPhone: +1 (859) 555-0100",
+      "html": "<!doctype html><html><body><nav>\n<a href='/contact'>Contact Us</a><a href='/about'>About Us</a><a href='/team'>Our Team</a><a href='/staff'>Staff Directory</a><a href='/people'>Leadership</a><a href='https://evil.example.net/contact'>External Contact</a>\n</nav><main><h1>Example Equine Centre</h1></main><footer>Email: office@example.com<br>Phone: +1 (859) 555-0100\n<a href='https://www.facebook.com/exampleequine'>Facebook</a>\n<a href='https://www.instagram.com/exampleequine'>Instagram</a>\n<a href='https://www.youtube.com/@exampleequine'>YouTube</a>\n<a href='https://www.linkedin.com/company/exampleequine'>LinkedIn</a>\n<a href='https://www.tiktok.com/@exampleequine'>TikTok</a>\n<a href='https://x.com/exampleequine'>X</a>\n</footer></body></html>",
+      "links": [
+        "https://www.example.com/contact",
+        "https://www.example.com/about",
+        "https://www.example.com/team",
+        "https://www.example.com/staff",
+        "https://www.example.com/people",
+        "https://127.0.0.1/admin",
+        "https://evil.example.net/contact"
+      ],
+      "content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+    },
+    {
+      "page_index": 2,
+      "category": "contact",
+      "requested_url": "https://www.example.com/contact",
+      "resolved_url": "https://www.example.com/contact",
+      "title": "Contact",
+      "status": "collected",
+      "markdown": "# Contact Us\nGeneral enquiries: office@example.com\n+1 (859) 555-0100",
+      "html": "<main><h1>Contact Us</h1><p>General enquiries: office@example.com</p><p>+1 (859) 555-0100</p></main>",
+      "links": [],
+      "content_sha256": "31f26b9f95d47de9483c9512ccd819cf8ccdec7837ba6ad5d25a15b92a505f23"
+    },
+    {
+      "page_index": 3,
+      "category": "about",
+      "requested_url": "https://www.example.com/about",
+      "resolved_url": "https://www.example.com/about",
+      "title": "About",
+      "status": "collected",
+      "markdown": "# About Us\nServing horses since 1980.",
+      "html": "<main><h1>About Us</h1><p>Serving horses since 1980.</p></main>",
+      "links": [],
+      "content_sha256": "909eb9516d2226e8730fcab4bb6000e2e0e19743fa89181c0f0f454e16b28cc7"
+    },
+    {
+      "page_index": 4,
+      "category": "team",
+      "requested_url": "https://www.example.com/people",
+      "resolved_url": "https://www.example.com/team",
+      "title": "Our Team",
+      "status": "collected",
+      "markdown": "# Our Team\n## Alex Morgan\nStable Operations Coordinator\n## Riley Chen\nCommunity Liaison",
+      "html": "<main><h1>Our Team</h1><article><h2>Alex Morgan</h2><p>Stable Operations Coordinator</p><p>alex.morgan@example.com</p></article><article><h2>Riley Chen</h2><p>Community Liaison</p></article></main>",
+      "links": [
+        "https://www.linkedin.com/in/alex-morgan-example"
+      ],
+      "content_sha256": "251dd130afc5e462437f9b884c01ed80d85715717a628c685089df5e844afbc9"
+    },
+    {
+      "page_index": 5,
+      "category": "staff",
+      "requested_url": "https://www.example.com/staff",
+      "resolved_url": "https://www.example.com/staff",
+      "title": "Staff Directory",
+      "status": "collected",
+      "markdown": "# Staff Directory\nTaylor Brooks — Veterinary Receptionist",
+      "html": "<main><h1>Staff Directory</h1><p>Taylor Brooks — Veterinary Receptionist</p></main>",
+      "links": [],
+      "content_sha256": "9744796371cd54ba73385694d8363b2780553f0873883ae99e07907bdbe4b6f3"
+    }
+  ],
+  "provider_receipts": [
+    {
+      "method": "POST",
+      "endpoint": "/v2/scrape",
+      "http_status": 200,
+      "requested_at": "2026-09-18T17:40:56Z",
+      "received_at": "2026-09-18T17:40:56Z",
+      "request_sha256": "155ff9a6730a3efdec9c2d907229c2114c3fd82a1c6804bc94d3e06ffb4df83d",
+      "response_sha256": "7a909fa66b9a8939b669ff5586a8a70ea7af9614ddf3f8c2ea91f468b2d8fefe",
+      "external": false
+    },
+    {
+      "method": "POST",
+      "endpoint": "/v2/batch/scrape",
+      "http_status": 200,
+      "requested_at": "2026-09-18T17:40:56Z",
+      "received_at": "2026-09-18T17:40:56Z",
+      "request_sha256": "c553fc31c7f611c395d34f24e71ed57b6545bdd67712b144cee1d776bd76b872",
+      "response_sha256": "37be07e106d2589723b0a84b5ebd959de715819326115862bf9e7cfa7db09fba",
+      "external": false
+    },
+    {
+      "method": "GET",
+      "endpoint": "/v2/batch/scrape/fixture-batch-001",
+      "http_status": 200,
+      "requested_at": "2026-09-18T17:40:56Z",
+      "received_at": "2026-09-18T17:40:56Z",
+      "request_sha256": null,
+      "response_sha256": "16d7e8a3a084b6a25dcc7b07dfb443d3a38c61039efc3508b2042fb05e823378",
+      "external": false
+    }
+  ],
+  "robots_receipt": null,
+  "external_calls": 0,
+  "fixture_calls": 3,
+  "external_actions": 0,
+  "browser_fallback": false,
+  "web_extract_fallback": false,
+  "credit_policy_calls": 0,
+  "llm_or_json_extraction": false,
+  "errors": [],
+  "artifact_sha256": "0c2ba9c5b7a0d350975581fe612d003464ad5d2e714024760891cac1fb90a3cf"
+}

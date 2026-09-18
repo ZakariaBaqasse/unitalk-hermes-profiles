@@ -1,0 +1,58 @@
+{
+  "record_type": "step8_current_status",
+  "profile": "equinet-a2-enrichment",
+  "status": "step8_completed_approved_for_step9",
+  "technical_checks": {
+    "jonabell_final_decision_recorded": true,
+    "jonabell_canonical_chain": true,
+    "jonabell_review_package": true,
+    "rood_riddle_stage_validation": true,
+    "rood_riddle_evidence_confidence": true,
+    "rood_riddle_minimum_package_incomplete": true,
+    "rood_riddle_canonical_chain": true,
+    "rood_riddle_review_package": true,
+    "rood_riddle_final_decision_recorded": true,
+    "deepseek_behavioral_replay": true,
+    "external_business_actions_zero": true
+  },
+  "checks_passed": 11,
+  "checks_total": 11,
+  "candidates": {
+    "A1-DARLEY-JONABELL-001": {
+      "status": "approved_as_step8_test_result",
+      "record_decision": "approved",
+      "target_role_priority": "secondary",
+      "canonical_revisions": 4,
+      "review_package_valid": true
+    },
+    "A1-RR-PODIATRY-001": {
+      "status": "held_as_accepted_step8_test_result",
+      "record_decision": "held",
+      "target_role_priority": "primary",
+      "disciplines": [
+        "all breeds and disciplines"
+      ],
+      "missing_required_fields": [
+        "organisation.service_area",
+        "person.business_email",
+        "person.business_phone",
+        "person.professional_status"
+      ],
+      "canonical_revisions": 4,
+      "review_package_valid": true
+    }
+  },
+  "execution_notes": [
+    "The non-interactive Unitalk gateway route was restored by adding the approved OPENAI-compatible endpoint variables to the isolated A2 profile without exposing their values.",
+    "The Rood & Riddle DeepSeek behavioural replay completed and matched the accepted deterministic package.",
+    "Replay cost remains undetermined because the usage report returned estimated_cost_usd 0.0 with cost_status unknown; it must not be described as free.",
+    "HubSpot, Twenty, n8n, Apify, outreach and downstream delivery remained disabled."
+  ],
+  "next_required_actions": [
+    "Proceed to Step 9 — Evaluation, Improvement and No-Integration Freeze.",
+    "Keep the Rood & Riddle record held until approved evidence resolves the minimum-package gaps or Equinet approves a documented exception."
+  ],
+  "step8_complete": true,
+  "external_actions": 0,
+  "all_current_artifact_checks_passed": true
+}

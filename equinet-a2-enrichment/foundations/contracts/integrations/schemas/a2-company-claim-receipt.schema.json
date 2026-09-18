@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-company-claim-receipt-0.1.0",
+  "required": [
+    "company_id",
+    "claimed"
+  ],
+  "properties": {
+    "company_id": {
+      "type": "string"
+    },
+    "claimed": {
+      "type": "boolean"
+    },
+    "write_receipt": {
+      "type": "object"
+    },
+    "read_receipt": {
+      "type": "object"
+    }
+  }
+}

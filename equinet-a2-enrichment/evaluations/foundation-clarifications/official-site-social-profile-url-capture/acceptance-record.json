@@ -1,0 +1,53 @@
+{
+  "record_type": "foundation_clarification_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "clarification": "Official-Site Social Profile URL Capture",
+  "decision": "approved_and_applied",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-27T11:40:17Z",
+  "approved_decisions": {
+    "SOC-1": "Retain professional social-profile URLs explicitly published on the official website.",
+    "SOC-2": "Keep person and organisation profile URLs separate and hold ambiguous attribution for review.",
+    "SOC-3": "Keep both URL fields optional for Farrier and Horse Owner.",
+    "SOC-4": "Do not open or extract linked social profiles automatically during the official-site check.",
+    "SOC-5": "Prefer an exact LinkedIn company URL for the future profile-search Actor; use verified company name plus target role as fallback.",
+    "SOC-6": "Route an individual LinkedIn profile URL to human review or a separately approved profile-scraper action.",
+    "SOC-7": "Keep broad social signals, followers, posts, connections and personal interests out of scope.",
+    "SOC-8": "Do not infer consent, outreach eligibility or buying influence from a social-profile URL."
+  },
+  "active_configuration_version": "0.1.1-draft.1",
+  "active_foundation_manifest": {
+    "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+    "sha256": "1a457483d9905a5bb1da597d14351b6523662b1d6b257f8a796cd92c8dc089fb"
+  },
+  "pre_clarification_soul": {
+    "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/SOUL.md",
+    "sha256": "0939b9f160fe2abd47762fc16aad1cacc4b2c722b3636298afd75af597b789d0",
+    "matches_step4_acceptance": true
+  },
+  "active_soul": {
+    "path": "SOUL.md",
+    "sha256": "7ba186315880f7efd6b962c03ce50197c93848261416492a70cafe6a4e4c71b1",
+    "change_authority": "SOC-1 through SOC-8"
+  },
+  "technical_validation": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/technical-validation.json",
+  "technical_validation_sha256": "b4cd85092193ee725dc46c4f787f1dcf45fa31ddb79f2c1ec29cc97bdb4d5d2e",
+  "manifest": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/manifest.json",
+  "manifest_sha256": "aff53d094e0ecc5b21731a92202182d1289a1ca3db63b5c82c2c51ae6a93fc05",
+  "canonical_schema_changed": false,
+  "minimum_package_requirements_changed": false,
+  "validation_results": {
+    "deterministic_classifier_cases": "15/15 pass",
+    "canonical_schema_compatibility": "pass",
+    "csv_fidelity": "pass",
+    "historical_acceptance_integrity": "pass",
+    "language_audit": "pass"
+  },
+  "runtime_activation": false,
+  "external_actions": 0,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 5A — Operational Skill Architecture and Runtime Manifest"
+}

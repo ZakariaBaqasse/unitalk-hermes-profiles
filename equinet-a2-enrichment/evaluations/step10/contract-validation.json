@@ -1,0 +1,74 @@
+{
+  "suite": "step10_contract_validation",
+  "status": "pass",
+  "passed": 11,
+  "total": 11,
+  "results": [
+    {
+      "schema": "a2-company-batch.schema.json",
+      "artifact": "evaluations/step10/work/companies.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-company-batch-0.1.0\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/work/companies.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-fullenrich-lookup-batch.schema.json",
+      "artifact": "evaluations/step10/fixtures/lookup-requests.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-fullenrich-lookup-batch-0.1.0\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/fixtures/lookup-requests.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-lookup-decisions-0.1.2.schema.json",
+      "artifact": "evaluations/step10/fixtures/lookup-decisions.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-lookup-decisions-0.1.2\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/fixtures/lookup-decisions.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-fullenrich-search-batch-0.1.1.schema.json",
+      "artifact": "evaluations/step10/fixtures/search-requests.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-fullenrich-search-batch-0.1.1\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/fixtures/search-requests.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-person-selection-decisions-0.1.2.schema.json",
+      "artifact": "evaluations/step10/fixtures/selection-decisions.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-person-selection-decisions-0.1.2\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/fixtures/selection-decisions.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-selected-contact-batch.schema.json",
+      "artifact": "evaluations/step10/work/generated-selected.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-selected-contact-batch-0.1.0\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/work/generated-selected.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-fullenrich-contact-results.schema.json",
+      "artifact": "evaluations/step10/work/contacts.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-fullenrich-contact-results-0.1.0\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/work/contacts.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-write-proposal-0.1.2.schema.json",
+      "artifact": "evaluations/step10/fixtures/write-proposal.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-write-proposal-0.1.2\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/fixtures/write-proposal.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-twenty-write-plan.schema.json",
+      "artifact": "evaluations/step10/work/write-plan.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-twenty-write-plan-0.1.0\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/work/write-plan.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-run-ledger.schema.json",
+      "artifact": "evaluations/step10/work/run.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-run-ledger-0.1.0\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/work/run.json\",\n  \"errors\": []\n}\n"
+    },
+    {
+      "schema": "a2-twenty-mapping-validation.schema.json",
+      "artifact": "evaluations/step10/live-read/twenty-mapping-validation.json",
+      "passed": true,
+      "output": "{\n  \"status\": \"valid\",\n  \"schema_id\": \"a2-twenty-mapping-validation-0.1.0\",\n  \"artifact\": \"/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/live-read/twenty-mapping-validation.json\",\n  \"errors\": []\n}\n"
+    }
+  ]
+}

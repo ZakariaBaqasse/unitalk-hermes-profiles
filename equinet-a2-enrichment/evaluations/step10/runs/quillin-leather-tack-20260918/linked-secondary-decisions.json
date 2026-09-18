@@ -1,0 +1,11 @@
+{
+  "run_id": "quillin-leather-tack-20260918",
+  "decisions": [
+    {
+      "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "decision_reason": "No A1-linked secondary People exist for this Company (linked_people is empty), so there is no zero-call linked-secondary fallback to select. Advance to the paid secondary-target Search stage."
+    }
+  ]
+}

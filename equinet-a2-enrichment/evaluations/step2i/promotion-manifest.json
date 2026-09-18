@@ -1,0 +1,201 @@
+{
+  "manifest_id": "equinet-a2-step2i-promotion",
+  "schema_version": "1.0.0",
+  "approval_state": "approved_and_promoted",
+  "files": [
+    {
+      "path": "SOUL.md",
+      "bytes": 5109,
+      "sha256": "9c7d5e8b355cef5dfdb99ab9381488ab86e59b9e10b0fef8c08b995bb91a4e0d"
+    },
+    {
+      "path": "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 18681,
+      "sha256": "10052caae8f4867dbca9f8b84deaddcb5e91f07a317c95af47f1db6fffb6f47a"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/language-audit.json",
+      "bytes": 286,
+      "sha256": "b2d3dabfb3541ffb3e463a56c98b0a53cdf5835f90daadfc6bfe59f164a0e780"
+    },
+    {
+      "path": "evaluations/step2d/technical-validation.json",
+      "bytes": 13015,
+      "sha256": "897642bed1b4ffd3810b00aab880d2d9dbe4cad68498c5924546931e639df47a"
+    },
+    {
+      "path": "evaluations/step2e/technical-validation.json",
+      "bytes": 38927,
+      "sha256": "6c93784f4d9e1dd342316a02eb74fddacf8ff1da0d4e654a72dd5a6d3316cd3a"
+    },
+    {
+      "path": "evaluations/step2f/step2f-package-manifest.json",
+      "bytes": 12314,
+      "sha256": "794c95ca575b5e9c71312f6c0433bad91411550abd7247f3cb831d38b785df09"
+    },
+    {
+      "path": "evaluations/step2f/technical-validation.json",
+      "bytes": 13212,
+      "sha256": "582899ada89f00daa550a9f9af672f5f50bfbbe48ea53fcae3fa2fb7b748ffd6"
+    },
+    {
+      "path": "evaluations/step2g/step2g-package-manifest.json",
+      "bytes": 4469,
+      "sha256": "469f059e327ad5f7d4f584876fcca0073fe4f2d3eecb264d98b949995119b04d"
+    },
+    {
+      "path": "evaluations/step2g/technical-validation.json",
+      "bytes": 5361,
+      "sha256": "1b275f8a72bc6a0b7c9f71405c202fc5f951c5ea9e06b42705da6985e093a2f4"
+    },
+    {
+      "path": "evaluations/step2h/step2h-package-manifest.json",
+      "bytes": 13262,
+      "sha256": "34fe5f702edc542bb777e03028073a70a62cc9649f4324dbed4cb702e75299cd"
+    },
+    {
+      "path": "evaluations/step2h/technical-validation.json",
+      "bytes": 3896,
+      "sha256": "b75d5c35c65ba4547d5f9da65626f64e7d495e103f61cc9baaf6ff8915dc2045"
+    },
+    {
+      "path": "evaluations/step2i/approval-record.json",
+      "bytes": 2140,
+      "sha256": "fbbef1372a806ac25b3a2bcfe3c1fafa327d52af4ca5fee94f4450c27a830a22"
+    },
+    {
+      "path": "evaluations/step2i/post-promotion-technical-validation.json",
+      "bytes": 4774,
+      "sha256": "d178d88489c49aef45316fc5a16c884224a7333cb1c4dd8d5a4f016eccfc1aa3"
+    },
+    {
+      "path": "evaluations/step2i/pre-promotion-evidence/a2-cross-field-validator.manifest.json",
+      "bytes": 2776,
+      "sha256": "395d6da0857b0827f20bb7899bb5bad383ab39eab3f6dd35f443993964c9e851"
+    },
+    {
+      "path": "evaluations/step2i/pre-promotion-evidence/a2-enrichment-record-1.0.0-draft.2.schema.json",
+      "bytes": 71717,
+      "sha256": "f3549e91487571f44ef59cf92e85354af450bbaecd426895548d2b7052f784ee"
+    },
+    {
+      "path": "evaluations/step2i/pre-promotion-evidence/a2-enrichment-record.dependency-manifest.json",
+      "bytes": 1740,
+      "sha256": "c55bae46645b22d45988db4127fb5a62ae6aa84c65c296aa9d8ceff83804bd4d"
+    },
+    {
+      "path": "evaluations/step2i/pre-promotion-evidence/step2f-package-manifest.json",
+      "bytes": 12314,
+      "sha256": "5d5dc6a8c14a9f1af6c9f4c0d4b0dad37322eb378dcb709ed73208da86b49514"
+    },
+    {
+      "path": "evaluations/step2i/pre-promotion-evidence/step2g-package-manifest.json",
+      "bytes": 4469,
+      "sha256": "786ee42e513bfa3ae11ce2d354a519e7d710e7b1ae17db957e8392b98a1cb31b"
+    },
+    {
+      "path": "evaluations/step2i/pre-promotion-evidence/step2h-package-manifest.json",
+      "bytes": 13262,
+      "sha256": "61a6ea643866c6dc806bf41803c355d27e55e905cc569a03412ee405a67b4613"
+    },
+    {
+      "path": "evaluations/step2i/pre-promotion-snapshot.tar.gz",
+      "bytes": 671485,
+      "sha256": "907ad381e494efbdb14091cb6a029bd344ecd6322b5d74df554143f13511b5ae"
+    },
+    {
+      "path": "foundations/A2-CANONICAL-JSON-SCHEMA-CONTRACT.md",
+      "bytes": 11183,
+      "sha256": "f912353b2e2eedcc2319d59f86c74dead0f6c12f9454aecfc792130d2bb15fbc"
+    },
+    {
+      "path": "foundations/A2-CROSS-FIELD-VALIDATOR-CONTRACT.md",
+      "bytes": 11916,
+      "sha256": "f4d3201876eeca01801b36a15cf18f737a650142daa2e95f73d2e7e24e9a509f"
+    },
+    {
+      "path": "foundations/A2-FIXTURES-AND-REGRESSION-CONTRACT.md",
+      "bytes": 6122,
+      "sha256": "61271ab4a813481795a92296ef2389c49fe51bd1682f7526813c57452d8e6bbc"
+    },
+    {
+      "path": "foundations/A2-HANDOFF-TO-RECORD-INITIALISATION-CONTRACT.md",
+      "bytes": 6226,
+      "sha256": "ec86fcdacacec204a08b1165c2480a09e070b298d01265674491e9c992e8b3b8"
+    },
+    {
+      "path": "foundations/A2-REVIEW-VIEW-SPECIFICATION.md",
+      "bytes": 6350,
+      "sha256": "3cc49abc27642a3ad5bb4be5a1d7761ada44c3e9f55ffd59d3e35a181c880b1a"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-cross-field-validator.manifest.json",
+      "bytes": 2775,
+      "sha256": "a11f4a8a204c63574c7a21c1c01308e708cbb8bc18b41b14e30bfc89e56280b5"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.dependency-manifest.json",
+      "bytes": 1731,
+      "sha256": "a832f9156792a86dd2da360f4fef8169f8fd94f9d49f41d3bf6b9e285ebf54c1"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "bytes": 71694,
+      "sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "bytes": 5383,
+      "sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df"
+    },
+    {
+      "path": "scripts/build_step2d_schema.py",
+      "bytes": 48515,
+      "sha256": "b1a53aa19298a159877eeeca944aae9aaa930218dc566f04ac7dc18bfdd923d8"
+    },
+    {
+      "path": "scripts/initialize_a2_record.py",
+      "bytes": 16942,
+      "sha256": "2a70a1f12648c655092837b2793ab4f5d6fb40deae89c3106b4e6b747a1741e7"
+    },
+    {
+      "path": "scripts/render_a2_review_views.py",
+      "bytes": 29820,
+      "sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef"
+    },
+    {
+      "path": "scripts/run_step2e_tests.py",
+      "bytes": 7668,
+      "sha256": "49a93c3935156b626167cb5b3c0b101eb1b9d358cf1cba4b4fe55c5f329b5704"
+    },
+    {
+      "path": "scripts/run_step2f_tests.py",
+      "bytes": 15242,
+      "sha256": "65760859c4e510a9a7e67e22c132e304c208a18a877987b6c60ddf12914bf2b9"
+    },
+    {
+      "path": "scripts/run_step2g_tests.py",
+      "bytes": 21183,
+      "sha256": "a9300fe06c2564fd4df6dd89fc0155a6612bbe8a5978f71a79d905b03f73e2ec"
+    },
+    {
+      "path": "scripts/validate_a2_enrichment_record.py",
+      "bytes": 52569,
+      "sha256": "02acd1aa345dc69c2b990ef4aa77ab066cb078a695f3d09e34a31938d1ed5fe2"
+    },
+    {
+      "path": "scripts/validate_step2d_schema.py",
+      "bytes": 16711,
+      "sha256": "ebb8befafc100d9908faa01fba47b88b1158b2e2b5031b79926203f5efc38f8c"
+    },
+    {
+      "path": "scripts/validate_step2h_review_views.py",
+      "bytes": 27231,
+      "sha256": "7f4a53444236f580a9f48014d5c49e9c1f0e5ac7d51e70321e52b742d8bf66af"
+    }
+  ],
+  "file_count": 38,
+  "external_actions": 0,
+  "integrations_activated": [],
+  "next_gate": "Step 3A — Business Field Catalogue"
+}

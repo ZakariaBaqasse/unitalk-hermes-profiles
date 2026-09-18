@@ -1,0 +1,17 @@
+{
+  "handoff_ids": {
+    "A1A2-PILOT-RR-PODIATRY-001": {
+      "a2_record_id": "A2-INIT_5DC8D468C11B265DA37B",
+      "handoff_sha256": "5dc8d468c11b265da37b68df3cd80c07580a9cabe884ffc77a10e4b7636a8b88",
+      "record_revision_id": "A2-REV-INIT_4C254395651AB18F9D49_001"
+    }
+  },
+  "idempotency_keys": {
+    "A1A2-IDEMP-PILOT-RR-PODIATRY-001": {
+      "a2_record_id": "A2-INIT_5DC8D468C11B265DA37B",
+      "handoff_sha256": "5dc8d468c11b265da37b68df3cd80c07580a9cabe884ffc77a10e4b7636a8b88",
+      "record_revision_id": "A2-REV-INIT_4C254395651AB18F9D49_001"
+    }
+  },
+  "version": "0.1.0"
+}

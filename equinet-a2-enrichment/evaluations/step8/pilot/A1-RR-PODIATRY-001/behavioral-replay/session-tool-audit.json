@@ -1,0 +1,23 @@
+{
+  "record_type": "step8_behavioral_replay_session_tool_audit",
+  "session_id": "20260830_135633_f40046",
+  "session_link": "@session:equinet-a2-enrichment/20260830_135633_f40046",
+  "model": "deepseek-v4-flash",
+  "message_count": 26,
+  "tool_call_counts": {
+    "read_file": 13,
+    "search_files": 2,
+    "write_file": 1
+  },
+  "external_tool_calls": 0,
+  "web_search_calls": 0,
+  "web_extract_calls": 0,
+  "browser_calls": 0,
+  "accepted_artifact_write_calls": 0,
+  "permitted_result_write_calls": 1,
+  "notes": [
+    "The first relative-path read failed because the one-shot session started outside the requested profile directory.",
+    "The profile recovered by locating and reading the approved absolute paths.",
+    "The only write was the required behavioural replay result.json."
+  ]
+}

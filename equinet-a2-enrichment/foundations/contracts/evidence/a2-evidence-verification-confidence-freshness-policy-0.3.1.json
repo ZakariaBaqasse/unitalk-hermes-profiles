@@ -1,0 +1,333 @@
+{
+  "policy_id": "equinet-a2-evidence-verification-confidence-freshness",
+  "version": "0.3.1",
+  "status": "equinet_confirmed_fullenrich_personal_email_correction_integration_pending",
+  "profile": "equinet-a2-enrichment",
+  "unitalk_approval": {
+    "approver": "Séverine, Unitalk Operations",
+    "approved_at": "2026-09-06T13:38:10Z",
+    "scope": "Incidental FullEnrich personal-email retention with provenance, review and no operational authority"
+  },
+  "dependencies": [
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.3.1.json",
+      "sha256": "ec83d19d82eb31b59f55b6e36023cff238263ed33c4138f57c6730093b89ae0b"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.3.1.json",
+      "sha256": "33db1fd42f15ac00d58afdeb63e39de5f135dbc74750b0f02de1b571961ffbed"
+    },
+    {
+      "path": "foundations/contracts/a2-state-model-0.1.0.json",
+      "sha256": "e5045b2f52c97ba588c33ac803ef582b8bb5a14cc376575ee86206d6b60d8d11"
+    },
+    {
+      "path": "foundations/decisions/A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906.json",
+      "sha256": "1ef4ece1845d267391b9ebc71645280e2ec75cf11c6bee2731163984f5792596"
+    }
+  ],
+  "principles": {
+    "confidence_is_not_icp_score": true,
+    "a2_never_calculates_a1_score": true,
+    "unknown_is_not_negative_or_fact": true,
+    "blocked_source_cannot_support_a_claim": true,
+    "search_snippet_is_discovery_only": true,
+    "professional_contact_does_not_create_outreach_consent": true,
+    "a1_evidence_keeps_original_provenance_and_confidence": true,
+    "official_website_can_confirm_explicit_self_controlled_fact_without_visible_date": true,
+    "official_site_outbound_professional_social_link_is_a_url_claim_not_social_profile_content": true,
+    "public_profile_url_does_not_create_consent_outreach_or_buying_influence": true,
+    "existing_hubspot_owner_horse_count_is_authoritative": true,
+    "net_new_horse_count_requires_explicit_approved_evidence": true,
+    "horse_count_range_is_ignored": true,
+    "horse_count_band_new_values_prohibited": true,
+    "missing_required_business_data_still_reaches_final_human_review": true,
+    "fullenrich_search_and_lookup_do_not_supply_contact_channels": true,
+    "fullenrich_personal_email_is_not_requested": true,
+    "fullenrich_mobile_is_stored_separately_from_business_phone": true,
+    "fullenrich_incidental_personal_email_is_retained_separately": true
+  },
+  "confidence_dimensions": {
+    "identity_match": {
+      "maximum": 20,
+      "levels": {
+        "exact": 20,
+        "probable": 10,
+        "unresolved": 0
+      }
+    },
+    "source_authority": {
+      "maximum": 20,
+      "levels": {
+        "authoritative_system": 20,
+        "authorised_first_party": 20,
+        "official_business_website": 18,
+        "official_registry": 18,
+        "apify_linkedin_profile": 12,
+        "apify_email_search": 12,
+        "reused_a1_directory_evidence": 10,
+        "search_discovery": 0,
+        "blocked_or_unverified": 0,
+        "fullenrich_people_search": 12,
+        "fullenrich_people_lookup": 12,
+        "fullenrich_contact_enrichment": 12
+      }
+    },
+    "claim_directness": {
+      "maximum": 20,
+      "levels": {
+        "direct_fact": 20,
+        "reasonable_inference": 10,
+        "contradictory_evidence": 0
+      }
+    },
+    "freshness": {
+      "maximum": 20,
+      "levels": {
+        "current": 20,
+        "current_official_undated": 18,
+        "undated_external": 8,
+        "stale": 0,
+        "not_applicable": 20,
+        "error": 0
+      }
+    },
+    "corroboration": {
+      "maximum": 10,
+      "levels": {
+        "authoritative_or_primary_sufficient": 10,
+        "two_independent_sources": 10,
+        "one_secondary_source": 5,
+        "none": 0
+      }
+    },
+    "consistency": {
+      "maximum": 10,
+      "levels": {
+        "no_conflict": 10,
+        "possible_conflict": 5,
+        "material_conflict": 0
+      }
+    }
+  },
+  "confidence_bands": [
+    {
+      "level": "high",
+      "minimum": 80,
+      "maximum": 100
+    },
+    {
+      "level": "medium",
+      "minimum": 60,
+      "maximum": 79
+    },
+    {
+      "level": "low",
+      "minimum": 0,
+      "maximum": 59
+    }
+  ],
+  "caps": [
+    {
+      "condition": "identity_match_unresolved",
+      "maximum_score": 39
+    },
+    {
+      "condition": "material_conflict",
+      "maximum_score": 39
+    },
+    {
+      "condition": "required_claim_supported_only_by_reasonable_inference",
+      "maximum_score": 59
+    },
+    {
+      "condition": "time_sensitive_claim_is_stale",
+      "maximum_score": 59
+    },
+    {
+      "condition": "source_rights_or_runtime_gate_not_passed",
+      "maximum_score": 0
+    }
+  ],
+  "verification_rules": {
+    "verified": "High confidence, direct fact, exact identity, permitted source, applicable freshness passed and no material conflict.",
+    "partially_verified": "Medium confidence or a usable direct fact with a documented freshness, corroboration or identity limitation.",
+    "unverified": "Low confidence or evidence insufficient for the proposed value.",
+    "contradicted": "Material permitted evidence conflicts with the proposed or baseline value.",
+    "not_applicable": "The field does not apply under the approved package or documented fallback.",
+    "error": "Deterministic verification failed technically."
+  },
+  "source_rules": {
+    "a1_approved_handoff": {
+      "authority": "preserve_inherited",
+      "freshness": "preserve_inherited",
+      "usable_when": "handoff validation passes"
+    },
+    "hubspot_authoritative_records": {
+      "authority": "authoritative_system",
+      "usable_when": "read-only connection and source permissions pass",
+      "horse_count_rule": "Contact.owner_horse_count is authoritative for an existing matched record."
+    },
+    "equinet_authorized_first_party_data": {
+      "authority": "authorised_first_party",
+      "usable_when": "asset approval and actor are recorded"
+    },
+    "prospect_official_website": {
+      "authority": "official_business_website",
+      "usable_when": "per-domain preflight passes",
+      "undated_self_controlled_fact": "current_official_undated",
+      "horse_count_rule": "An explicit exact count may support a net-new prospect or an empty HubSpot value; inference is prohibited."
+    },
+    "a1_directory_evidence_reuse": {
+      "authority": "reused_a1_directory_evidence",
+      "usable_when": "original evidence remains approved and applicable"
+    },
+    "apify_harvestapi_linkedin_profile_search": {
+      "authority": "apify_linkedin_profile",
+      "usable_when": "all rights, vendor and runtime gates pass",
+      "current_status": "blocked"
+    },
+    "apify_harvestapi_email_search": {
+      "authority": "apify_email_search",
+      "usable_when": "all rights, vendor, privacy, budget and runtime gates pass",
+      "current_status": "blocked",
+      "email_provenance": "independent_provider_search_not_linkedin"
+    },
+    "search_engine_discovery": {
+      "authority": "search_discovery",
+      "usable_when": "destination discovery only",
+      "retained_evidence": false
+    },
+    "fullenrich_people_search": {
+      "authority": "fullenrich_people_search",
+      "usable_when": "exact organisation domain, approved target role, result and provider gates pass",
+      "current_status": "integration_pending",
+      "contact_channels_returned": false
+    },
+    "fullenrich_people_lookup": {
+      "authority": "fullenrich_people_lookup",
+      "usable_when": "known person plus company identifier and provider gates pass",
+      "current_status": "integration_pending",
+      "contact_channels_returned": false
+    },
+    "fullenrich_contact_enrichment": {
+      "authority": "fullenrich_contact_enrichment",
+      "usable_when": "selected contact, work-email/mobile-only request and all provider/runtime gates pass",
+      "current_status": "integration_pending",
+      "personal_email_requested": false,
+      "incidental_personal_email_retained": true
+    }
+  },
+  "field_freshness_days": {
+    "person.role_title": 180,
+    "person.business_email": 180,
+    "person.personal_email_candidate": 180,
+    "person.business_phone": 180,
+    "organisation.business_email": 180,
+    "organisation.business_phone": 180,
+    "person.professional_status": 365,
+    "person.certifications": 365,
+    "person.professional_credential": 365,
+    "organisation.public_business_location": 365,
+    "organisation.service_area": 365,
+    "organisation.horse_count": 365,
+    "organisation.stable_type": 730,
+    "organisation.disciplines": 730,
+    "organisation.breeds": 730,
+    "person.recent_professional_activity": 365,
+    "person.public_profile_urls": 365,
+    "organisation.public_profile_urls": 365
+  },
+  "conflict_policy": {
+    "authoritative_system_overrides_non_authoritative_source": "propose_authoritative_value_but_preserve_conflict_and_require_review_if_material",
+    "official_website_vs_linkedin_current_role": "material_conflict_hold",
+    "same_domain_pages_are_independent": false,
+    "syndicated_or_copied_content_is_independent": false,
+    "material_conflict_blocks_verified_status": true,
+    "resolved_conflict_requires_reviewer_and_reason": true,
+    "official_website_vs_fullenrich_current_role": "material_conflict_hold"
+  },
+  "email_specific_rules": {
+    "officially_published_professional_email": "may_be_verified_from_one_exact_official_source",
+    "apify_email_search": "requires_exact_identity_and_company_match_plus_provider_verification",
+    "personal_email": "not_requested_by_default_but_retained_if_incidentally_returned_with_provider_provenance_verification_status_and_human_review",
+    "deliverability_does_not_create_consent": true,
+    "email_source_must_not_be_mislabeled_as_linkedin": true,
+    "fullenrich_work_email": "requires_exact_identity_and_company_match_plus_non_invalid_provider_status"
+  },
+  "outcomes": {
+    "required_field_unsatisfied": {
+      "field_quality": "gap",
+      "record_quality": "incomplete",
+      "automatic_rejection": false,
+      "workflow_after_research_exhausted": "review_required",
+      "human_dispositions": [
+        "needs_changes",
+        "held",
+        "approved_collect_during_discovery",
+        "rejected_for_explicit_business_reason"
+      ]
+    },
+    "optional_field_unsatisfied": {
+      "field_quality": "gap",
+      "record_quality_change": "none_by_itself"
+    },
+    "material_conflict": {
+      "field_quality": "conflict",
+      "record_quality": "conflict",
+      "workflow": "held"
+    },
+    "verified_new_a1_material_evidence": {
+      "action": "create_requalification_signal",
+      "a2_score_calculation": false
+    }
+  },
+  "open_confirmations": [
+    "Approve or correct the proposed field freshness windows.",
+    "Confirm whether personal email must always be discarded; Unitalk default is discard.",
+    "Confirm which dated professional activities are commercially relevant.",
+    "Complete source-specific rights and runtime gates before evidence from a conditional source is usable."
+  ],
+  "field_specific_rules": {
+    "organisation.horse_count": {
+      "existing_match_authority": "Contact.owner_horse_count",
+      "net_new_sources": [
+        "a1_approved_handoff",
+        "equinet_representative_confirmation",
+        "prospect_official_website"
+      ],
+      "exact_positive_integer_required": true,
+      "inference_prohibited": true,
+      "conflict_action": "preserve_hubspot_and_hold_for_human_review"
+    },
+    "organisation.horse_count_band": {
+      "new_values_prohibited": true,
+      "historical_values_preserved": true
+    },
+    "organisation.breeds": {
+      "at_least_one_verified_value_for_completeness": true,
+      "mixed_or_other_preserved_when_verified": true
+    },
+    "organisation.public_business_location": {
+      "minimum_verified_components": [
+        "state_region",
+        "country_code"
+      ],
+      "complete_address_preferred_when_available": true
+    },
+    "person.contact_channels": {
+      "attempt": [
+        "person.business_email",
+        "person.business_phone",
+        "person.mobile_phone"
+      ],
+      "at_least_one_verified_channel_required_when_others_unavailable": true,
+      "mobile_absence_blocks_review_by_itself": false
+    }
+  },
+  "mobile_specific_rules": {
+    "fullenrich_phone_output": "map_to_person.mobile_phone_only",
+    "absence_blocks_review_by_itself": false,
+    "does_not_create_consent_or_outreach_eligibility": true
+  }
+}

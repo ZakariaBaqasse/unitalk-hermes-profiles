@@ -1,0 +1,58 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2H",
+  "spec_version": "0.1.0",
+  "review_view_spec": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+  "renderer": "scripts/render_a2_review_views.py",
+  "package_manifest": "evaluations/step2h/step2h-package-manifest.json",
+  "package_manifest_sha256": "61a6ea643866c6dc806bf41803c355d27e55e905cc569a03412ee405a67b4613",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-26T13:22:23Z",
+  "approved_decisions": {
+    "H1": "Keep canonical JSON as the sole lossless source of truth.",
+    "H2": "Approve the Markdown, six-CSV and seven-sheet Excel package.",
+    "H3": "Separate summary, queue, complete fields, evidence, requalification and audit.",
+    "H4": "Preserve all canonical state distinctions.",
+    "H5": "Preserve A1/A2 evidence namespaces, identifiers and full URLs.",
+    "H6": "Keep A1 score separate from A2 quality and display only A1-produced score revisions.",
+    "H7": "Keep all Step 2H views read-only with no writeback.",
+    "H8": "Require closed manifests, hashes and row counts in every package.",
+    "H9": "Require professional, formula-free, error-free and formula-injection-safe spreadsheet output.",
+    "H10": "Proceed to Step 2I canonical data-contract review and promotion."
+  },
+  "technical_validation": {
+    "sample_packages": "6/6 pass",
+    "negative_checks": "10/10 pass",
+    "markdown": "pass",
+    "csv": "pass",
+    "xlsx": "pass",
+    "formula_cells": 0,
+    "spreadsheet_error_values": 0,
+    "canonical_mutations": 0,
+    "external_actions": 0,
+    "independent_post_fix_review": "pass"
+  },
+  "not_approved": [
+    "reviewer writeback",
+    "live source access",
+    "provider use",
+    "HubSpot or Twenty access",
+    "n8n execution",
+    "CRM write",
+    "outreach",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2I — Canonical Data Contract Review and Promotion",
+  "profile_sync": {
+    "temporary_soul_updated": true,
+    "updated_at": "2026-08-26T13:22:23Z",
+    "status": "complete"
+  }
+}

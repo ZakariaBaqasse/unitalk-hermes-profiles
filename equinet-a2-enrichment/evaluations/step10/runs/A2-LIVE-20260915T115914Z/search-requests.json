@@ -1,0 +1,78 @@
+{
+  "schema_id": "a2-fullenrich-search-requests",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "company_id": null,
+  "created_at": "2026-09-15T12:37:38Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "requests": [
+    {
+      "request_id": "search-0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "company_name": "Consignors & Commercial Breeders",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "3600 Georgetown Rd, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "target_titles": [
+        "breeding farm owner",
+        "breeding manager",
+        "equestrian center manager",
+        "equestrian center owner",
+        "equestrian centre manager",
+        "equestrian centre owner",
+        "farm manager",
+        "farm owner",
+        "general manager",
+        "horse owner",
+        "managing director",
+        "operations manager",
+        "owner",
+        "stable manager",
+        "stable owner"
+      ],
+      "limit": 2
+    },
+    {
+      "request_id": "search-8d7f70a7-f176-437c-ac66-55484d19bee6",
+      "company_id": "8d7f70a7-f176-437c-ac66-55484d19bee6",
+      "company_name": "Equestrian Event Inc",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "3960 Marks Ln, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "target_titles": [
+        "breeding farm owner",
+        "breeding manager",
+        "equestrian center manager",
+        "equestrian center owner",
+        "equestrian centre manager",
+        "equestrian centre owner",
+        "farm manager",
+        "farm owner",
+        "general manager",
+        "horse owner",
+        "managing director",
+        "operations manager",
+        "owner",
+        "stable manager",
+        "stable owner"
+      ],
+      "limit": 2
+    }
+  ],
+  "blocked_requests": [],
+  "artifact_sha256": "8572ad50f7ddca07f61df9f4029b673f8baac444d4ff15d5286ffba8e171fb5e"
+}

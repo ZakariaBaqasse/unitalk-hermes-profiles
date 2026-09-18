@@ -1,0 +1,123 @@
+{
+  "step": "5C",
+  "stage": "post_promotion",
+  "status": "approved_and_promoted",
+  "skills": 3,
+  "deterministic_replay": {
+    "total": 24,
+    "passed": 24,
+    "cases": [
+      {
+        "name": "complete-farrier-no-research",
+        "passed": true
+      },
+      {
+        "name": "horse-owner-required-gap",
+        "passed": true
+      },
+      {
+        "name": "targeted-do-not-collect-blocked",
+        "passed": true
+      },
+      {
+        "name": "research-exhausted-required-gap-held",
+        "passed": true
+      },
+      {
+        "name": "optional-not-requested-does-not-block",
+        "passed": true
+      },
+      {
+        "name": "wave1-hold-stops-planning",
+        "passed": true
+      },
+      {
+        "name": "official-site-synthetic-fixture-allowed",
+        "passed": true
+      },
+      {
+        "name": "apify-profile-runtime-blocked",
+        "passed": true
+      },
+      {
+        "name": "official-site-social-opening-blocked",
+        "passed": true
+      },
+      {
+        "name": "search-snippet-evidence-blocked",
+        "passed": true
+      },
+      {
+        "name": "unknown-source-invalid",
+        "passed": true
+      },
+      {
+        "name": "personal-email-provider-runtime-blocked",
+        "passed": true
+      },
+      {
+        "name": "professional-contact-normalised",
+        "passed": true
+      },
+      {
+        "name": "organisation-social-link-retained",
+        "passed": true
+      },
+      {
+        "name": "social-link-scope-conflict-rejected",
+        "passed": true
+      },
+      {
+        "name": "inferred-horse-count-rejected-personal-email-held",
+        "passed": true
+      },
+      {
+        "name": "ambiguous-current-role-held",
+        "passed": true
+      },
+      {
+        "name": "absence-states-remain-distinct",
+        "passed": true
+      },
+      {
+        "name": "conflicting-values-held",
+        "passed": true
+      },
+      {
+        "name": "forged-source-preflight-rejected",
+        "passed": true
+      },
+      {
+        "name": "fallback-without-target-role-search-held",
+        "passed": true
+      },
+      {
+        "name": "canonical-record-input-idempotent",
+        "passed": true
+      },
+      {
+        "name": "duplicate-json-key-rejected",
+        "passed": true
+      },
+      {
+        "name": "non-finite-json-number-rejected",
+        "passed": true
+      }
+    ]
+  },
+  "behavioural_replay": {
+    "total": 3,
+    "passed": 3,
+    "status": "pass"
+  },
+  "active_foundation_files": 70,
+  "language_audit": {
+    "files_checked": 964,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "next_gate": "Step 5D — Wave 3 Decision, Review and Handoffs",
+  "failures": [],
+  "pass": true
+}

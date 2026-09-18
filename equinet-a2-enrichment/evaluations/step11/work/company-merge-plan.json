@@ -1,0 +1,228 @@
+{
+  "schema_id": "a2-company-contact-merge-plan",
+  "schema_version": "0.1.0",
+  "run_id": "step11-fixture-run",
+  "company_id": "company-fixture-001",
+  "created_at": "2026-09-18T17:40:57Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "baseline_sha256": "b5ce66f03724257c87f783ddfecdb9e9e775a197df367cc49322bb7d679cfa2f",
+  "company_field_updates": {
+    "email": {
+      "primaryEmail": "a1@example.com",
+      "additionalEmails": [
+        "office@example.com",
+        "alex.morgan@example.com"
+      ]
+    },
+    "phone": {
+      "primaryPhoneNumber": "+15550001",
+      "primaryPhoneCountryCode": "US",
+      "primaryPhoneCallingCode": "+1",
+      "additionalPhones": [
+        {
+          "number": "+1 (859) 555-0100",
+          "countryCode": "",
+          "callingCode": ""
+        }
+      ]
+    },
+    "linkedinLink": {
+      "primaryLinkUrl": "https://linkedin.com/company/exampleequine",
+      "primaryLinkLabel": "Linkedin",
+      "secondaryLinks": [
+        {
+          "url": "https://linkedin.com/in/alex-morgan-example",
+          "label": "Linkedin"
+        }
+      ]
+    },
+    "facebook": {
+      "primaryLinkUrl": "https://facebook.com/exampleequine",
+      "primaryLinkLabel": "Facebook",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkUrl": "https://instagram.com/exampleequine",
+      "primaryLinkLabel": "Instagram",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkUrl": "https://youtube.com/@exampleequine",
+      "primaryLinkLabel": "Youtube",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkUrl": "https://tiktok.com/@exampleequine",
+      "primaryLinkLabel": "Tiktok",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkUrl": "https://x.com/exampleequine",
+      "primaryLinkLabel": "X",
+      "secondaryLinks": []
+    }
+  },
+  "merged_fields": {
+    "email": {
+      "primaryEmail": "a1@example.com",
+      "additionalEmails": [
+        "office@example.com",
+        "alex.morgan@example.com"
+      ]
+    },
+    "phone": {
+      "primaryPhoneNumber": "+15550001",
+      "primaryPhoneCountryCode": "US",
+      "primaryPhoneCallingCode": "+1",
+      "additionalPhones": [
+        {
+          "number": "+1 (859) 555-0100",
+          "countryCode": "",
+          "callingCode": ""
+        }
+      ]
+    },
+    "linkedinLink": {
+      "primaryLinkUrl": "https://linkedin.com/company/exampleequine",
+      "primaryLinkLabel": "Linkedin",
+      "secondaryLinks": [
+        {
+          "url": "https://linkedin.com/in/alex-morgan-example",
+          "label": "Linkedin"
+        }
+      ]
+    },
+    "facebook": {
+      "primaryLinkUrl": "https://facebook.com/exampleequine",
+      "primaryLinkLabel": "Facebook",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkUrl": "https://instagram.com/exampleequine",
+      "primaryLinkLabel": "Instagram",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkUrl": "https://youtube.com/@exampleequine",
+      "primaryLinkLabel": "Youtube",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkUrl": "https://tiktok.com/@exampleequine",
+      "primaryLinkLabel": "Tiktok",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkUrl": "https://x.com/exampleequine",
+      "primaryLinkLabel": "X",
+      "secondaryLinks": []
+    }
+  },
+  "decisions": [
+    {
+      "field": "phone",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "+1 (859) 555-0100",
+      "action": "append_additional",
+      "evidence_refs": [
+        "website-contact-388270b7e2479fbc"
+      ]
+    },
+    {
+      "field": "email",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "office@example.com",
+      "action": "append_additional",
+      "evidence_refs": [
+        "website-contact-ce27a575d652b66b"
+      ]
+    },
+    {
+      "field": "email",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/team",
+      "canonical_value": "alex.morgan@example.com",
+      "action": "append_additional",
+      "evidence_refs": [
+        "website-contact-f624041796afcd72"
+      ]
+    },
+    {
+      "field": "tiktok",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "https://tiktok.com/@exampleequine",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-0d65762f6704abe5"
+      ]
+    },
+    {
+      "field": "linkedinLink",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "https://linkedin.com/company/exampleequine",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-2d8936bb8a53ace3"
+      ]
+    },
+    {
+      "field": "instagram",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "https://instagram.com/exampleequine",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-3865ad7abc90039a"
+      ]
+    },
+    {
+      "field": "youtube",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "https://youtube.com/@exampleequine",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-45a0c648ce570b62"
+      ]
+    },
+    {
+      "field": "xTwitter",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "https://x.com/exampleequine",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-a1b11e9d1a424b85"
+      ]
+    },
+    {
+      "field": "facebook",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "canonical_value": "https://facebook.com/exampleequine",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-a6ffb9e611643cda"
+      ]
+    },
+    {
+      "field": "linkedinLink",
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/team",
+      "canonical_value": "https://linkedin.com/in/alex-morgan-example",
+      "action": "append_additional",
+      "evidence_refs": [
+        "website-social-b2eb6e7505b6ec57"
+      ]
+    }
+  ],
+  "provenance": [],
+  "external_actions": 0,
+  "artifact_sha256": "2aacdbd0810d8c3b7085b4007738d35e57daa4e75f06a61f9da3bd5b84cfc0fd"
+}

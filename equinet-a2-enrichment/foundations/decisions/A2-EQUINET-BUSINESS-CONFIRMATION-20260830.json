@@ -1,0 +1,47 @@
+{
+  "record_type": "equinet_a2_business_confirmation",
+  "decision_id": "A2-EQUINET-ROLES-CONTACTS-HORSEOWNER-20260830",
+  "recorded_at": "2026-08-30T17:05:11Z",
+  "recorded_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "client_authority": "Equinet-confirmed business requirements relayed by Séverine",
+  "named_equinet_approver": null,
+  "source_reference": "Unitalk implementation conversation; original Equinet message/reference to be attached when available",
+  "scope": [
+    "target_roles",
+    "contact_selection",
+    "horse_owner_priorities",
+    "horse_count",
+    "contact_and_location_completeness",
+    "single_final_review"
+  ],
+  "decisions": {
+    "contact_selection": {
+      "default_named_contacts": 1,
+      "maximum_named_contacts": 2,
+      "second_contact_conditions": [
+        "large_organisation",
+        "shared_purchasing_or_operational_responsibility"
+      ],
+      "no_suitable_contact": "contact_needed_human_review_no_unrelated_role_outreach"
+    },
+    "horse_owner_required": [
+      "person.role_title",
+      "organisation.stable_type",
+      "organisation.horse_count",
+      "organisation.breeds",
+      "organisation.public_business_location"
+    ],
+    "contact_channels": "attempt_both_professional_email_and_business_phone; at_least_one_satisfies_minimum_when_the_other_is_not_available",
+    "location": "attempt_complete_address; state_and_country_are_the_minimum",
+    "breeds": "at_least_one_verified_value; preserve Mixed or Other when verified",
+    "horse_count": "existing HubSpot owner_horse_count is authoritative; net-new prospects may use explicit approved evidence; never infer; ignore horse_count_range; do not derive horse_count_band",
+    "missing_information": "always present the consolidated human review; allow a documented collect_during_discovery disposition without changing A1 score",
+    "crm_sync": "only after final human review, active HubSpot integration, guarded write and read-back reconciliation"
+  },
+  "external_actions_authorized": false,
+  "hubspot_write_authorized": false,
+  "production_acceptance": false
+}

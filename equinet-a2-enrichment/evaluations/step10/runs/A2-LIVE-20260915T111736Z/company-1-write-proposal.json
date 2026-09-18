@@ -1,0 +1,14 @@
+{
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+  "enrichment_version": "0.1.0-live-test.1",
+  "company_final_status": "COMPLETED_NO_TARGET",
+  "error_code": "target_role_not_found",
+  "resolved_people": [],
+  "limitations": [
+    "No linked People in Twenty.",
+    "FullEnrich approved-role Search returned no results.",
+    "One permitted Owner-specific follow-up Search also returned no results.",
+    "Contact Enrichment skipped because no selected Person exists."
+  ]
+}

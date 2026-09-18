@@ -1,0 +1,171 @@
+{
+  "record_type": "a2_equinet_business_confirmation_technical_validation",
+  "version": "0.2.0",
+  "validated_at": "2026-08-30T17:05:11Z",
+  "status": "pass",
+  "checks_passed": 32,
+  "checks_total": 32,
+  "checks": [
+    {
+      "name": "catalogue version",
+      "passed": true,
+      "detail": "0.2.0"
+    },
+    {
+      "name": "client confirmation status",
+      "passed": true,
+      "detail": "equinet_confirmed_unitalk_implemented_no_integration"
+    },
+    {
+      "name": "field inventory preserved",
+      "passed": true,
+      "detail": "fields=33"
+    },
+    {
+      "name": "contact limit",
+      "passed": true,
+      "detail": "{\"default_named_contacts\": 1, \"maximum_named_contacts\": 2, \"primary_target_role_contacts\": 1, \"additional_role_relevant_contacts\": 1, \"second_contact_requires_reason\": true, \"second_contact_allowed_reasons\": [\"large_organisation\", \"shared_purchasing_or_operational_responsibility\"], \"fallback_when_no_target_role\": \"retain_organisation_information_mark_contact_needed_and_continue_review\", \"contact_needed_review_label\": \"Contact Needed / Needs Review\", \"unrelated_role_cannot_satisfy_contact_need\": true, \"attempt_both_contact_channels\": [\"person.business_email\", \"person.business_phone\"], \"minimum_review_contactability\": \"verified_professional_email_or_verified_business_phone\", \"general_organisation_contact_can_satisfy_review_readiness\": false, \"review_readiness_does_not_establish_outreach_eligibility\": true}"
+    },
+    {
+      "name": "general contact does not satisfy target contact",
+      "passed": true,
+      "detail": "retain_organisation_information_mark_contact_needed_and_continue_review"
+    },
+    {
+      "name": "owner priorities",
+      "passed": true,
+      "detail": "five confirmed priority fields"
+    },
+    {
+      "name": "horse band deprecated",
+      "passed": true,
+      "detail": "disabled_deprecated_historical_only"
+    },
+    {
+      "name": "horse count policy",
+      "passed": true,
+      "detail": "{\"exact_count_authority_order\": [\"hubspot_owner_horse_count_for_existing_matched_record\", \"approved_explicit_evidence_for_net_new_or_empty_hubspot_value\"], \"net_new_permitted_explicit_sources\": [\"a1_approved_handoff\", \"equinet_authorized_first_party_data\", \"equinet_representative_confirmation\", \"prospect_official_website\"], \"inference_prohibited\": true, \"hubspot_property\": \"Contact.owner_horse_count\", \"existing_hubspot_value_is_authoritative\": true, \"conflict_action\": \"preserve_hubspot_and_hold_for_human_review\", \"sync_only_after_final_human_review\": true, \"horse_count_range\": \"ignored_not_used_for_determination_or_sync\", \"derived_band_use\": \"disabled\", \"bands\": [], \"historical_band_values_preserved\": true, \"new_hubspot_property_proposed\": false}"
+    },
+    {
+      "name": "location minimum",
+      "passed": true,
+      "detail": "{\"minimum_verified_components\": [\"state\", \"country\"], \"preferred_components\": [\"address\", \"city\", \"state\", \"postal_code\", \"country\"]}"
+    },
+    {
+      "name": "breed rule",
+      "passed": true,
+      "detail": "At least one explicitly verified breed value is required for Horse Owner enrichment completeness. Preserve verified Mixed or Other values as stated."
+    },
+    {
+      "name": "all confirmed role aliases",
+      "passed": true,
+      "detail": "aliases_tested=55"
+    },
+    {
+      "name": "conditional roles require evidence",
+      "passed": true,
+      "detail": "all conditional roles held without the required evidence flag"
+    },
+    {
+      "name": "contact selection paths",
+      "passed": true,
+      "detail": "{\"one\": \"valid\", \"two\": \"valid\", \"three\": \"invalid\", \"none\": \"contact_needed\"}"
+    },
+    {
+      "name": "email and phone preference",
+      "passed": true,
+      "detail": "{\"fixture_id\": \"owner-email-only\", \"segment\": \"horse_owner\", \"package\": \"horse_owner_review_ready\", \"package_status\": \"review_ready\", \"data_quality_status\": \"review_ready\", \"workflow_recommendation\": \"review_required\", \"missing_required_fields\": [], \"unsatisfied_contact_requirements\": [], \"preferred_missing_fields\": [\"person.business_phone\"], \"documented_exception_fields\": [], \"conflict_field_keys\": [], \"error_field_keys\": [], \"automatic_rejection\": false, \"automatic_a1_score_change\": false, \"external_action_authorized\": false, \"human_review_required\": true, \"review_queue_label\": null, \"human_dispositions\": [\"needs_changes\", \"held\", \"approved_collect_during_discovery\", \"rejected_for_explicit_business_reason\"], \"outreach_readiness_status\": \"unavailable\", \"errors\": []}"
+    },
+    {
+      "name": "open gaps reach human review",
+      "passed": true,
+      "detail": "{\"fixture_id\": \"owner-open-gap\", \"segment\": \"horse_owner\", \"package\": \"horse_owner_review_ready\", \"package_status\": \"incomplete\", \"data_quality_status\": \"incomplete\", \"workflow_recommendation\": \"review_required\", \"missing_required_fields\": [\"organisation.horse_count\"], \"unsatisfied_contact_requirements\": [], \"preferred_missing_fields\": [\"person.business_phone\"], \"documented_exception_fields\": [], \"conflict_field_keys\": [], \"error_field_keys\": [], \"automatic_rejection\": false, \"automatic_a1_score_change\": false, \"external_action_authorized\": false, \"human_review_required\": true, \"review_queue_label\": null, \"human_dispositions\": [\"needs_changes\", \"held\", \"approved_collect_during_discovery\", \"rejected_for_explicit_business_reason\"], \"outreach_readiness_status\": \"unavailable\", \"errors\": []}"
+    },
+    {
+      "name": "contact-needed reaches human review",
+      "passed": true,
+      "detail": "{\"fixture_id\": \"owner-contact-needed\", \"segment\": \"horse_owner\", \"package\": \"horse_owner_review_ready\", \"package_status\": \"incomplete\", \"data_quality_status\": \"incomplete\", \"workflow_recommendation\": \"review_required\", \"missing_required_fields\": [], \"unsatisfied_contact_requirements\": [], \"preferred_missing_fields\": [], \"documented_exception_fields\": [], \"conflict_field_keys\": [], \"error_field_keys\": [], \"automatic_rejection\": false, \"automatic_a1_score_change\": false, \"external_action_authorized\": false, \"human_review_required\": true, \"review_queue_label\": \"Contact Needed / Needs Review\", \"human_dispositions\": [\"needs_changes\", \"held\", \"approved_collect_during_discovery\", \"rejected_for_explicit_business_reason\"], \"outreach_readiness_status\": \"unavailable\", \"errors\": []}"
+    },
+    {
+      "name": "location component validation",
+      "passed": true,
+      "detail": "{\"components\": [{\"key\": \"country_code\", \"value\": \"US\"}, {\"key\": \"state_region\", \"value\": \"Kentucky\"}]}"
+    },
+    {
+      "name": "horse band rejected",
+      "passed": true,
+      "detail": "new horse_count_band values are rejected"
+    },
+    {
+      "name": "Mixed breed preserved",
+      "passed": true,
+      "detail": "[\"Mixed\"]"
+    },
+    {
+      "name": "source policy",
+      "passed": true,
+      "detail": "official-site explicit values and contact cap"
+    },
+    {
+      "name": "provider contact cap",
+      "passed": true,
+      "detail": "max_retained_contacts=2"
+    },
+    {
+      "name": "HubSpot count mapping",
+      "passed": true,
+      "detail": "equinet_confirmed_live_verification_pending"
+    },
+    {
+      "name": "horse range ignored",
+      "passed": true,
+      "detail": "deprecated_ignored"
+    },
+    {
+      "name": "evidence dependencies current",
+      "passed": true,
+      "detail": "{\"foundations/contracts/sources/a2-source-register-0.2.0.json\": \"8bf66ca93e7b9f158bf50260b25944be91728e90185f9dda88a54349ccf6401a\", \"foundations/contracts/business/a2-business-field-catalogue-0.2.0.json\": \"0789d21c3de432fa0c3ba804dfa6d99f4d4d565f0ce1c576745e2aa9190a7d16\", \"foundations/contracts/a2-state-model-0.1.0.json\": \"e5045b2f52c97ba588c33ac803ef582b8bb5a14cc376575ee86206d6b60d8d11\", \"foundations/decisions/A2-EQUINET-BUSINESS-CONFIRMATION-20260830.json\": \"c71dee9080d6095d62bf73a5a301d8491f5057b898b429ed9591e70afda33fe2\"}"
+    },
+    {
+      "name": "protected dependencies current",
+      "passed": true,
+      "detail": "{\"foundations/contracts/business/a2-business-field-catalogue-0.2.0.json\": \"0789d21c3de432fa0c3ba804dfa6d99f4d4d565f0ce1c576745e2aa9190a7d16\", \"foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.2.0.json\": \"7027c33234d545789f66556a9d7a1820a52ae30402bfd143163ef662c3050294\", \"/opt/data/profiles/equinet/attachments/Property_Definitions (1).csv\": \"3303992627bad953e28913eaf3b19cdc998fc0c6f3f6f29ef455d788e8c9b952\"}"
+    },
+    {
+      "name": "owner_horse_count conflict policy",
+      "passed": true,
+      "detail": "{\"object\": \"Contact\", \"property\": \"owner_horse_count\", \"class\": \"a2_enrichment_candidate\", \"reason\": \"authoritative existing horse-count value; reviewed proposal permitted only when empty or through an approved field exception\"}"
+    },
+    {
+      "name": "CSV fidelity a2-business-field-catalogue-0.2.0.csv",
+      "passed": true,
+      "detail": "rows=33"
+    },
+    {
+      "name": "CSV fidelity a2-source-register-0.2.0.csv",
+      "passed": true,
+      "detail": "rows=12"
+    },
+    {
+      "name": "CSV fidelity a2-hubspot-preliminary-mapping-0.2.0.csv",
+      "passed": true,
+      "detail": "rows=33"
+    },
+    {
+      "name": "active guidance propagated",
+      "passed": true,
+      "detail": "required guidance markers found"
+    },
+    {
+      "name": "decision non-authorisation",
+      "passed": true,
+      "detail": "zero external action authority"
+    },
+    {
+      "name": "active manifest has no superseded business contracts",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "external_actions": 0
+}

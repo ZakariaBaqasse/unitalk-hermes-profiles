@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-selected-contact-batch-0.1.0",
+  "required": [
+    "run_id",
+    "selected_people"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "selected_people": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "required": [
+          "request_id",
+          "company_id",
+          "provider_person_id",
+          "full_name"
+        ],
+        "properties": {
+          "request_id": {
+            "type": "string"
+          },
+          "company_id": {
+            "type": "string"
+          },
+          "provider_person_id": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "source_kind": {
+            "enum": [
+              "existing",
+              "new"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

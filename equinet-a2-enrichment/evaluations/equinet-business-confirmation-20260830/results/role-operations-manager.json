@@ -1,0 +1,8 @@
+{
+  "status": "classified",
+  "priority": "primary",
+  "canonical_role": "operations_manager_with_horse_care_or_purchasing_responsibility",
+  "source_role_title": "Operations Manager",
+  "reason": "exact confirmed title and required conditions passed",
+  "human_review_required": true
+}

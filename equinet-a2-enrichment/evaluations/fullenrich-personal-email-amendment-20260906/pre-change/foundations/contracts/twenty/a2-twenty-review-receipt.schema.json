@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a2/twenty-review-receipt/0.1.0-draft.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_version",
+    "review_receipt_id",
+    "idempotency_key",
+    "twenty_candidate_id",
+    "twenty_review_id",
+    "a1_candidate_id",
+    "a2_record_id",
+    "record_revision_id",
+    "canonical_record_sha256",
+    "review_status",
+    "field_decisions",
+    "record_decision",
+    "corrected_values_create_new_revision",
+    "reviewer",
+    "decided_at",
+    "reason",
+    "approval_scope",
+    "proposed_hubspot_patch_authorized",
+    "hubspot_write_authorized",
+    "source_event",
+    "audit_correlation_id"
+  ],
+  "properties": {
+    "receipt_version": {
+      "const": "0.1.0-draft.1"
+    },
+    "review_receipt_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 6
+    },
+    "twenty_candidate_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "twenty_review_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "a1_candidate_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "a2_record_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "record_revision_id": {
+      "type": "string",
+      "minLength": 6
+    },
+    "canonical_record_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "review_status": {
+      "enum": [
+        "pending",
+        "in_review",
+        "needs_changes",
+        "held",
+        "approved",
+        "rejected"
+      ]
+    },
+    "field_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field_assessment_id",
+          "decision",
+          "corrected_value",
+          "reason"
+        ],
+        "properties": {
+          "field_assessment_id": {
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "approved",
+              "rejected",
+              "needs_changes",
+              "held"
+            ]
+          },
+          "corrected_value": {},
+          "reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "record_decision": {
+      "enum": [
+        "pending",
+        "approved",
+        "needs_changes",
+        "held",
+        "rejected"
+      ]
+    },
+    "corrected_values_create_new_revision": {
+      "type": "boolean"
+    },
+    "reviewer": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "actor_id",
+        "actor_role",
+        "display_name"
+      ],
+      "properties": {
+        "actor_id": {
+          "type": "string"
+        },
+        "actor_role": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "decided_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approval_scope": {
+      "enum": [
+        "a2_review_only",
+        "prepare_proposed_hubspot_patch"
+      ]
+    },
+    "proposed_hubspot_patch_authorized": {
+      "type": "boolean"
+    },
+    "hubspot_write_authorized": {
+      "const": false
+    },
+    "source_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_type",
+        "event_id",
+        "occurred_at"
+      ],
+      "properties": {
+        "event_type": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "occurred_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "audit_correlation_id": {
+      "type": "string"
+    }
+  }
+}

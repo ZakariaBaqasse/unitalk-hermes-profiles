@@ -1,0 +1,129 @@
+{
+  "schema_id": "a2-fullenrich-search-results",
+  "schema_version": "0.1.0",
+  "run_id": "STEP10-SYN-001",
+  "company_id": null,
+  "created_at": "2026-09-18T17:41:02Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "search_stage": "primary",
+  "result_count": 1,
+  "results": [
+    {
+      "request_id": "search-company",
+      "company_id": "11111111-1111-4111-8111-111111111111",
+      "search_stage": "primary",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "Farm Owner",
+        "Stable Manager"
+      ],
+      "terminal_status": "succeeded",
+      "request_payload": {
+        "limit": 2,
+        "current_position_titles": [
+          {
+            "value": "Farm Owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "Stable Manager",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "current_company_names": [
+          {
+            "value": "Bluegrass Farm",
+            "exact_match": true,
+            "exclude": false
+          }
+        ],
+        "current_company_headquarters": [
+          {
+            "value": "Lexington",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "Kentucky",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "United States",
+            "exact_match": false,
+            "exclude": false
+          }
+        ]
+      },
+      "candidates": [
+        {
+          "provider_person_id": "fe-owner",
+          "full_name": "Jordan Owner",
+          "first_name": "Jordan",
+          "last_name": "Owner",
+          "exact_current_role": "Farm Owner",
+          "current_role_description": "Responsible for horse care and farm operations.",
+          "current_employment_is_current": true,
+          "organisation": {
+            "provider_company_id": "fe-company-1",
+            "name": "Bluegrass Farm",
+            "domain": null,
+            "professional_network_url": "https://www.linkedin.com/company/bluegrass-farm"
+          },
+          "location": {
+            "city": "Lexington",
+            "region": "Kentucky",
+            "country": "United States",
+            "country_code": "US"
+          },
+          "professional_network_url": "https://www.linkedin.com/in/fe-owner"
+        },
+        {
+          "provider_person_id": "fe-manager",
+          "full_name": "Morgan Manager",
+          "first_name": "Morgan",
+          "last_name": "Manager",
+          "exact_current_role": "Stable Manager",
+          "current_role_description": "Responsible for horse care and farm operations.",
+          "current_employment_is_current": true,
+          "organisation": {
+            "provider_company_id": "fe-company-1",
+            "name": "Bluegrass Farm",
+            "domain": null,
+            "professional_network_url": "https://www.linkedin.com/company/bluegrass-farm"
+          },
+          "location": {
+            "city": "Lexington",
+            "region": "Kentucky",
+            "country": "United States",
+            "country_code": "US"
+          },
+          "professional_network_url": "https://www.linkedin.com/in/fe-manager"
+        }
+      ],
+      "metadata": {
+        "total": 2,
+        "credits": 0.5
+      },
+      "provider_payload_sha256": "56088efeb270b1d49198271f781500eec9d0f8b2e58b050aecdbc97065a642e4",
+      "receipt": {
+        "fixture": true,
+        "http_status": 200
+      }
+    }
+  ],
+  "preflight": {
+    "fixture": true
+  },
+  "budget": {
+    "estimated_max_credits": 0.5,
+    "reservation": null,
+    "settlement": null
+  },
+  "external_calls": 0,
+  "artifact_sha256": "3a977e1c62a339d252f45276f176df46ff81b35c176ec462bd251366e11bfacd"
+}

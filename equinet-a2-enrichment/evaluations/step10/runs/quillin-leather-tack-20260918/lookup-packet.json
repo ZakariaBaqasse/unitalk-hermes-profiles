@@ -1,0 +1,39 @@
+{
+  "schema_id": "a2-lookup-decision-packet",
+  "schema_version": "0.1.0",
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": null,
+  "created_at": "2026-09-18T16:41:13Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "packets": [
+    {
+      "company": {
+        "twenty_company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+        "name": "Quillin Leather & Tack",
+        "segment": "HORSE_OWNER",
+        "domain": "quillin.com",
+        "professional_network_url": null,
+        "location": {
+          "street": "716 Main St, Paris, KY 40361",
+          "city": "Paris",
+          "region": "Kentucky",
+          "country": "US",
+          "postal_code": "40361"
+        }
+      },
+      "linked_people": [],
+      "decision_required": [
+        "identity_status",
+        "company_match_status",
+        "role_priority",
+        "role_status",
+        "retain_as_target",
+        "secondary_fallback_eligible",
+        "people_search_required"
+      ]
+    }
+  ],
+  "artifact_sha256": "55349e9bcf0075f7c9ee406355eefa49fa18a095230eb278081494d0315cd5ae"
+}

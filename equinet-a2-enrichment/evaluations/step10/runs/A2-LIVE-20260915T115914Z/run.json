@@ -1,0 +1,137 @@
+{
+  "schema_id": "a2-enrichment-run-ledger",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "created_at": "2026-09-15T11:59:14Z",
+  "updated_at": "2026-09-15T12:45:10Z",
+  "stage": "terminal",
+  "company_ids": [
+    "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+    "8d7f70a7-f176-437c-ac66-55484d19bee6"
+  ],
+  "artifacts": [
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/companies.json",
+      "sha256": "b9568d8c7a0ab254cb6c91ebea03d7c5da3b7eef364c6980835ccb4b4cdcd079"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/companies.json",
+      "sha256": "b9568d8c7a0ab254cb6c91ebea03d7c5da3b7eef364c6980835ccb4b4cdcd079"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/lookup-results.json",
+      "sha256": "c344d53a6c84f94203a7e97a2fa200ba89e4e7f03b7332d4af6d78a06bb40081"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/lookup-validation.json",
+      "sha256": "86485cd2d9cece1973ac39d63dae6824ff54e23ec0c80bfeed43e3ef1ca87018"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/search-results.json",
+      "sha256": "593aab6e018e349e234c03b82d17beec15a5a873b0d4190e3c91b5040b82c8e2"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/search-owner-results.json",
+      "sha256": "72e4ef8170d376e3e05f02d2a125b6cd9722a23e955653d1b55028a178cd4ada"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/selection-validation.json",
+      "sha256": "434ed9c5b96f7536a7a2ed63488a09ec12d89ba0cc1494a878934563ca6312e2"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/selected-people.json",
+      "sha256": "b779b1abd563cd3e1bfaa43e6b8c5e8d997d44277b137eeac48bd68acf277ae9"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/company-1-write-plan.json",
+      "sha256": "e87a67c54e1f5ea5614460e914c79385a5ac8558eca1c1bd34a407571f944d20"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/company-2-write-plan.json",
+      "sha256": "1b343258c851ba991869cc53e250cfefb82b499b1159463c10d086ffb5241bf8"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/company-1-write-result.json",
+      "sha256": "5fa0187b16c01445b0bf6b9d3424088d1c769cdf08d3bf4a7935e337e79990a2"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/company-2-write-result.json",
+      "sha256": "a99390ec47d96750997fdfa0f45bce4260794f6e3de1bcfbe9bbdde3c4d74ce2"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/company-1-reconciliation-validation.json",
+      "sha256": "f87f2bd676bd6fc4b233d46a922ee6211e351ae0d3422b97306a9d101201491c"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T115914Z/company-2-reconciliation-validation.json",
+      "sha256": "ed839267d501417043d607099430d18e1e0a66932ade00a05291288db042f285"
+    }
+  ],
+  "audit": [
+    {
+      "at": "2026-09-15T12:43:21Z",
+      "from": "created",
+      "to": "pulled"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "pulled",
+      "to": "claimed"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "claimed",
+      "to": "lookup_complete"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "lookup_complete",
+      "to": "lookup_decisions_validated"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "lookup_decisions_validated",
+      "to": "search_complete"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "search_complete",
+      "to": "selection_decisions_validated"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "selection_decisions_validated",
+      "to": "contact_enrichment_complete"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "contact_enrichment_complete",
+      "to": "write_plan_validated"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "write_plan_validated",
+      "to": "twenty_written"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "twenty_written",
+      "to": "reconciled"
+    },
+    {
+      "at": "2026-09-15T12:43:22Z",
+      "from": "reconciled",
+      "to": "terminal"
+    }
+  ],
+  "external_actions": 10,
+  "ledger_sha256": "3c6a029d2889f6ed26bae926ada7bdb1066b15d1321a4239ea6e25a61e0e35b1",
+  "issues": [
+    {
+      "code": "TARGET_ROLE_NOT_FOUND",
+      "severity": "review_required",
+      "scope": "both_companies",
+      "detail": "FullEnrich returned no People for the approved-title Search or the permitted Owner-specific follow-up Search. No named contact could be selected for either company."
+    }
+  ]
+}

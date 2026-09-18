@@ -1,0 +1,376 @@
+{
+  "handoff_schema_version": "1.0.1",
+  "handoff_id": "A1A2-TEST_FARRIER_001",
+  "idempotency_key": "A1A2-IDEMP-TEST_FARRIER_001",
+  "created_at": "2026-08-16T15:30:10Z",
+  "source_profile": "equinet-a1-icp-discovery",
+  "target_profile": "equinet-a2-enrichment",
+  "operating_scope": "synthetic_test",
+  "delivery_state": "accepted_by_a2",
+  "trigger_event": {
+    "event_type": "a1_candidate_approved_for_a2",
+    "event_id": "EVENT-TEST_FARRIER_001",
+    "occurred_at": "2026-08-16T15:30:05Z",
+    "source_layer": "manual_review_package",
+    "source_record_id": "REVIEW-TEST_FARRIER_001"
+  },
+  "approval_event": {
+    "decision": "approved_for_enrichment",
+    "scope": "a2_enrichment",
+    "reviewer": {
+      "actor_id": "UNITALK-A1-REVIEWER-TEST",
+      "actor_role": "A1 Business Reviewer",
+      "display_name": "Synthetic A1 Reviewer"
+    },
+    "decision_at": "2026-08-16T15:30:00Z",
+    "source_layer": "manual_review_package",
+    "source_record_id": "REVIEW-TEST_FARRIER_001"
+  },
+  "eligibility": {
+    "status": "eligible",
+    "evaluated_at": "2026-08-16T15:30:10Z",
+    "method_version": "a1-a2-eligibility-1.0.1",
+    "gates": [
+      {
+        "gate_id": "candidate_schema",
+        "status": "pass",
+        "reason": "Pinned A1 schema and cross-field validation passed.",
+        "source_path": "candidate_snapshot"
+      },
+      {
+        "gate_id": "human_approval",
+        "status": "pass",
+        "reason": "A1 human approval is recorded and consistent.",
+        "source_path": "candidate_snapshot.workflow"
+      },
+      {
+        "gate_id": "recommendation",
+        "status": "pass",
+        "reason": "A1 recommends pass_to_a2.",
+        "source_path": "candidate_snapshot.recommendation.next_action"
+      },
+      {
+        "gate_id": "exclusion",
+        "status": "pass",
+        "reason": "Candidate is eligible and not excluded.",
+        "source_path": "candidate_snapshot.qualification.exclusion_status"
+      },
+      {
+        "gate_id": "minimum_data",
+        "status": "pass",
+        "reason": "A1 minimum data status passed.",
+        "source_path": "candidate_snapshot.qualification.minimum_data_status"
+      },
+      {
+        "gate_id": "identity_quality",
+        "status": "pass",
+        "reason": "A1 data quality is validated.",
+        "source_path": "candidate_snapshot.data_quality.validation_status"
+      },
+      {
+        "gate_id": "duplicate_batch",
+        "status": "pass",
+        "reason": "No current-batch duplicate was found.",
+        "source_path": "candidate_snapshot.duplicate_check.batch"
+      },
+      {
+        "gate_id": "duplicate_exclusion_file",
+        "status": "unavailable",
+        "reason": "No exclusion file was supplied for the synthetic fixture.",
+        "source_path": "candidate_snapshot.duplicate_check.provided_exclusion_file"
+      },
+      {
+        "gate_id": "source_policy",
+        "status": "pass",
+        "reason": "No blocked source supports the candidate.",
+        "source_path": "candidate_snapshot.source_evidence"
+      },
+      {
+        "gate_id": "scoring_state",
+        "status": "pass",
+        "reason": "A1 deterministic scoring completed.",
+        "source_path": "candidate_snapshot.scoring.status"
+      },
+      {
+        "gate_id": "audit_identity",
+        "status": "pass",
+        "reason": "A1 audit correlation ID is present.",
+        "source_path": "candidate_snapshot.provenance.audit_correlation_id"
+      },
+      {
+        "gate_id": "scope_permissions",
+        "status": "pass",
+        "reason": "Synthetic scope prohibits every external action.",
+        "source_path": "constraints"
+      },
+      {
+        "gate_id": "hubspot_duplicate",
+        "status": "unavailable",
+        "reason": "HubSpot is not connected for the synthetic fixture.",
+        "source_path": "candidate_snapshot.duplicate_check.hubspot"
+      },
+      {
+        "gate_id": "candidate_schema",
+        "status": "pass",
+        "reason": "Pinned A1 schema and cross-field validation passed.",
+        "source_path": "candidate_snapshot"
+      }
+    ],
+    "reasons": [
+      "Core A1 approval and quality gates passed.",
+      "Unavailable HubSpot checks are permitted only for synthetic contract validation."
+    ]
+  },
+  "requested_enrichment": {
+    "mode": "default_minimum_package",
+    "requested_fields": [],
+    "request_reason": "Synthetic end-to-end handoff validation."
+  },
+  "candidate_snapshot": {
+    "schema_version": "1.0.0",
+    "record_kind": "synthetic_test",
+    "candidate_id": "A1-TEST_FARRIER_001",
+    "run_id": "RUN-TEST-0001",
+    "discovered_at": "2026-08-11T10:00:00Z",
+    "updated_at": "2026-08-16T15:30:00Z",
+    "segment": "farrier",
+    "prospect_type": "farrier_business",
+    "identity": {
+      "display_name": "Bluegrass Hoof Care — Synthetic Test Record",
+      "person": {
+        "full_name": "Jordan Example",
+        "first_name": "Jordan",
+        "last_name": "Example",
+        "role_title": "Professional Farrier"
+      },
+      "organisation": {
+        "name": "Bluegrass Hoof Care — Synthetic",
+        "website": "https://example.com/bluegrass-hoof-care",
+        "domain": "example.com"
+      },
+      "aliases": []
+    },
+    "location": {
+      "country_code": "US",
+      "state_region": "Kentucky",
+      "city": "Lexington",
+      "postal_code": null,
+      "public_address": null,
+      "geography_status": "in_scope",
+      "geography_rule_version": "pilot-lexington-0.1"
+    },
+    "public_contacts": [],
+    "source_evidence": [
+      {
+        "evidence_id": "EV-TEST001",
+        "source_url": "https://example.com/bluegrass-hoof-care",
+        "source_name": "Synthetic business website fixture",
+        "source_type": "business_website",
+        "source_policy_status": "approved",
+        "access_method": "manual_browser",
+        "retrieved_at": "2026-08-11T10:00:00Z",
+        "title": "Synthetic Professional Farrier Service",
+        "evidence_excerpt": "Synthetic fixture: professional farrier service in Lexington supporting sport-horse clients.",
+        "fact_or_inference": "direct_fact",
+        "supports_claims": [
+          "farrier.professional_activity",
+          "farrier.sport_horse_focus"
+        ],
+        "reliability_level": "high"
+      }
+    ],
+    "qualification": {
+      "icp_config_version": "proposed-0.1",
+      "criteria": [
+        {
+          "criterion_id": "farrier.professional_activity",
+          "criterion_label": "Active professional Farrier",
+          "category": "fit",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-TEST001"
+          ],
+          "notes": "Supported by the synthetic business-site fixture."
+        },
+        {
+          "criterion_id": "farrier.sport_horse_focus",
+          "criterion_label": "Works with sport or competition horses",
+          "category": "priority",
+          "status": "confirmed",
+          "evidence_ids": [
+            "EV-TEST001"
+          ],
+          "notes": null
+        }
+      ],
+      "minimum_data_status": "pass",
+      "missing_minimum_fields": [],
+      "exclusion_status": "eligible",
+      "exclusion_reasons": []
+    },
+    "scoring": {
+      "status": "scored",
+      "score": 72,
+      "band": "high",
+      "model_version": "synthetic-test-score-0.1",
+      "components": [
+        {
+          "criterion_id": "farrier.professional_activity",
+          "points_awarded": 50,
+          "max_points": 50,
+          "evidence_ids": [
+            "EV-TEST001"
+          ],
+          "notes": "Synthetic test contribution."
+        },
+        {
+          "criterion_id": "farrier.sport_horse_focus",
+          "points_awarded": 22,
+          "max_points": 30,
+          "evidence_ids": [
+            "EV-TEST001"
+          ],
+          "notes": "Synthetic test contribution."
+        }
+      ],
+      "rationale": "Synthetic score based on professional activity, Lexington location and sport-horse focus.",
+      "block_reason": null
+    },
+    "confidence": {
+      "level": "medium",
+      "score": 65,
+      "method_version": "proposed-confidence-0.1",
+      "reasons": [
+        "The synthetic source directly supports the core qualification claims."
+      ],
+      "limitations": [
+        "Only one synthetic source is present."
+      ]
+    },
+    "duplicate_check": {
+      "batch": {
+        "status": "no_match",
+        "checked_at": "2026-08-11T10:08:00Z",
+        "method_version": "local-dedup-0.1",
+        "matches": [],
+        "notes": null
+      },
+      "provided_exclusion_file": {
+        "status": "unavailable",
+        "checked_at": null,
+        "method_version": null,
+        "matches": [],
+        "notes": "No exclusion file supplied for this synthetic test."
+      },
+      "twenty": {
+        "status": "unavailable",
+        "checked_at": null,
+        "method_version": null,
+        "matches": [],
+        "notes": "Twenty is not connected."
+      },
+      "hubspot": {
+        "status": "unavailable",
+        "checked_at": null,
+        "method_version": null,
+        "matches": [],
+        "notes": "HubSpot is not connected."
+      }
+    },
+    "data_quality": {
+      "validation_status": "validated",
+      "missing_fields": [],
+      "conflicts": [],
+      "last_validated_at": "2026-08-11T10:10:00Z"
+    },
+    "data_governance": {
+      "contains_personal_data": true,
+      "collection_context": "public_business_information",
+      "source_terms_review_status": "confirmed",
+      "retention_policy_version": null,
+      "a1_outreach_prohibited": true
+    },
+    "recommendation": {
+      "next_action": "pass_to_a2",
+      "priority_rank": 1,
+      "suggested_owner": null,
+      "suggested_territory": "Kentucky",
+      "notes": "Synthetic candidate approved for A2 handoff contract testing."
+    },
+    "workflow": {
+      "stage": "approved_for_a2",
+      "review_decision": "approved",
+      "reviewer": {
+        "actor_id": "UNITALK-A1-REVIEWER-TEST",
+        "actor_role": "A1 Business Reviewer",
+        "display_name": "Synthetic A1 Reviewer"
+      },
+      "decision_at": "2026-08-16T15:30:00Z",
+      "rejection_reason": null
+    },
+    "system_references": {
+      "twenty_candidate_id": null,
+      "a2_handoff_id": "A1A2-TEST_FARRIER_001",
+      "hubspot_contact_id": null,
+      "hubspot_company_id": null,
+      "hubspot_sync_id": null
+    },
+    "provenance": {
+      "created_by_profile": "equinet-a1-icp-discovery",
+      "initiated_by": "unitalk-contract-test",
+      "model": null,
+      "tools_used": [
+        "synthetic-fixture-generator"
+      ],
+      "audit_correlation_id": "AUDIT-TEST-0001",
+      "synthetic": true
+    }
+  },
+  "snapshot_integrity": {
+    "algorithm": "sha256",
+    "canonicalization": "json_sorted_utf8_v1",
+    "candidate_snapshot_sha256": "6d0134bfc8d8c99b0efbe2c25947c25534b6e5513dbd51f859725c41ec466056"
+  },
+  "integration_availability": {
+    "hubspot_read": "unavailable",
+    "staging": "unavailable",
+    "workflow": "unavailable",
+    "enrichment_provider": "unavailable",
+    "email_verification": "unavailable",
+    "phone_verification": "unavailable"
+  },
+  "constraints": {
+    "a1_score_mutation_authorized": false,
+    "human_review_required": true,
+    "outreach_authorized": false,
+    "crm_write_authorized": false,
+    "downstream_delivery_authorized": false,
+    "paid_provider_authorized": false,
+    "public_information_creates_consent": false,
+    "external_action_approval_reference": null
+  },
+  "delivery": {
+    "external_event_reference": "synthetic://a1-a2/TEST_FARRIER_001",
+    "attempt_count": 1,
+    "last_attempt_at": "2026-08-16T15:30:20Z",
+    "failure_reason": null
+  },
+  "a2_receipt": {
+    "status": "accepted",
+    "receiver_profile": "equinet-a2-enrichment",
+    "receiver_id": "A2-SYNTHETIC-VALIDATOR",
+    "received_at": "2026-08-16T15:30:20Z",
+    "handoff_id": "A1A2-TEST_FARRIER_001",
+    "candidate_snapshot_sha256": "6d0134bfc8d8c99b0efbe2c25947c25534b6e5513dbd51f859725c41ec466056",
+    "rejection_reasons": []
+  },
+  "provenance": {
+    "created_by": "unitalk-a1-a2-handoff-builder",
+    "initiated_by": "unitalk-step1c-test",
+    "audit_correlation_id": "AUDIT-TEST-0001",
+    "synthetic": true,
+    "tools_used": [
+      "deterministic-fixture-builder"
+    ]
+  }
+}

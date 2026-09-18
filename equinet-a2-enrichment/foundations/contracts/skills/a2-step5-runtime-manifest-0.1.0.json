@@ -1,0 +1,241 @@
+{
+  "manifest_id": "equinet-a2-step5-runtime",
+  "version": "0.1.0",
+  "status": "approved_local_no_integration",
+  "profile": "equinet-a2-enrichment",
+  "approved_wave_manifests": [
+    {
+      "path": "foundations/contracts/skills/a2-wave1-runtime-manifest-0.1.0.json",
+      "sha256": "c9d4ac2f3ec8b93de8171c89557f18dfd881af58eda3338d52b2cce067cafd2e"
+    },
+    {
+      "path": "foundations/contracts/skills/a2-wave2-runtime-manifest-0.1.0.json",
+      "sha256": "34072acbf10a7c14ec7d32b668d8a307a223b04100f41b3be6e862d42a6959bc"
+    },
+    {
+      "path": "foundations/contracts/skills/a2-wave3-runtime-manifest-0.1.0.json",
+      "sha256": "97bbba04d6029621f88ad91c57e0e9f1c1c9b37226f84465ed9ca9c6548b0849"
+    }
+  ],
+  "skill_count": 10,
+  "skills": [
+    {
+      "skill_id": "a2-handoff-intake-and-initialisation",
+      "path": "skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "sha256": "cf7cdec99a61b9206e4560ab9f7e551b9cc0a162b7dcff7245dbc9742b969812",
+      "evals_path": "skills/a2-handoff-intake-and-initialisation/evals/evals.json",
+      "evals_sha256": "d03c9488cfa0aa74a4b7e21edd39403a7b8824812936f796f1c43e05c6e33377",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-entity-resolution-and-normalisation",
+      "path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "sha256": "8ea85add0a0d1d86fe2b96026405e1671bdd96901da94238e40bae8cc98373a6",
+      "evals_path": "skills/a2-entity-resolution-and-normalisation/evals/evals.json",
+      "evals_sha256": "fb8c6c74fdbb414a974f73996af9bc027ce0921461b75f46b68483109fcec864",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-duplicate-and-eligibility-review",
+      "path": "skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "sha256": "d978d067687d28190a9dd681b5d47c7c9bdc0392e90d64fb49955368c148be63",
+      "evals_path": "skills/a2-duplicate-and-eligibility-review/evals/evals.json",
+      "evals_sha256": "68bcebde79fa62713a377ca14c6a2bf5093cbce44072aa4dea533ddc69707dc6",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-gap-analysis-and-enrichment-planning",
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "sha256": "cafec340031d65a4e480f2aa8080e851ce60581ebf30768e1a97bf92ca5e84bd",
+      "evals_path": "skills/a2-gap-analysis-and-enrichment-planning/evals/evals.json",
+      "evals_sha256": "b27f0966fa036707ec9f8c1f5077ac63b7923596fd39fe1fe591c18029e33d9b",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-permitted-enrichment-research",
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "sha256": "bf5c1e969646f9e0800df42f0159cf2c033f91a902b2b4a75f4916e622ef69ea",
+      "evals_path": "skills/a2-permitted-enrichment-research/evals/evals.json",
+      "evals_sha256": "9dc3401aee35523e76c95a3eddf7aa690619ba0a7eba7408ff2ce36c9cb22514",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-field-verification",
+      "path": "skills/a2-field-verification/SKILL.md",
+      "sha256": "8f0179193f718aa1950561b0a4150063d2b9a4833a25cf564d0265b02e0e2f22",
+      "evals_path": "skills/a2-field-verification/evals/evals.json",
+      "evals_sha256": "10da6c924e62b422a04a569865861a45dcbf692d46dc1e4b9a430377a5c38f90",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-evidence-confidence-and-freshness",
+      "path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "sha256": "abce4d5742a2b5f8e4832c32c53b372f79cb7b1afb116f8d45a989371efad52f",
+      "evals_path": "skills/a2-evidence-confidence-and-freshness/evals/evals.json",
+      "evals_sha256": "3ebbf7faa2bb0e431ebb70fca3fb301d01050a934aa7e9c734fe69ce0189377b",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-protected-field-conflict-resolution",
+      "path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "sha256": "ab64cc4477de052464572add30f405de4418a9acf6cbb0fed4fc0fb3beaec4a8",
+      "evals_path": "skills/a2-protected-field-conflict-resolution/evals/evals.json",
+      "evals_sha256": "e6da52ca3fb8fa70ea687fd48db080e1bf98161484a7559ddcf42efd908de35b",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-data-quality-and-review-readiness",
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "sha256": "966a16bf9eb8e7903dcae04228325a629f4a92122cae1e1a8d1dda220c006cf4",
+      "evals_path": "skills/a2-data-quality-and-review-readiness/evals/evals.json",
+      "evals_sha256": "eb9a71643994387130a15a4aba1a3671ebd5c6acc62a878459eef6031b2a6662",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-review-package-and-governed-handoffs",
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "sha256": "f8b9c9c2bb08b2546d63005b79bd4af347550dba09cea4faab2cb794919c0bda",
+      "evals_path": "skills/a2-review-package-and-governed-handoffs/evals/evals.json",
+      "evals_sha256": "35e1ed14a5e97c04411332b54dbc7671528be8fd1b03edd49e63bca7772fcbfb",
+      "status": "approved_local_no_integration"
+    }
+  ],
+  "operator_count": 14,
+  "operators": [
+    {
+      "command_id": "a2-intake",
+      "path": "scripts/a2_intake.py",
+      "sha256": "d96c088a0600a6e604bc24901e7c9273efc1c094e0244808dbad6aaf64d12370",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-normalise-resolve-entities",
+      "path": "scripts/normalise_and_resolve_a2_entities.py",
+      "sha256": "06bbeafd438d8021469ce45273cddff6bbf78004f3c456950bc260e366238bed",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-duplicate-eligibility",
+      "path": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "sha256": "12ea14764c1e5e1bf2e9ae06e8344c52b1ad6db79fa9db5b159af4f47f2b30c4",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-build-gap-plan",
+      "path": "scripts/build_a2_gap_plan.py",
+      "sha256": "4abcfdfaa996f8ffa381e50fc9c2727a84009c532d3d65619ee27d77a4bb3012",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-evaluate-minimum-package",
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "sha256": "442a0546d2967d9e9b39b6847513192c2c474c3f8871dc7e9f470bd1455a3a14",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-source-preflight",
+      "path": "scripts/preflight_a2_source_action.py",
+      "sha256": "8310f9dde39577ca6fd673b0454f804742a6ce8341a8aa7f4a15fa6fb3798343",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-social-link-classifier",
+      "path": "scripts/classify_official_site_social_link.py",
+      "sha256": "3f1cf0df3b86eb5d2ac0ac29633315a2f3d379809f3e5409c4f5fcd49aeb1211",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-normalise-validate-observations",
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "sha256": "d943b9c3b9e9bbbdd4433d726ec3669b803f656f9c20d33d75ca2fc409daf333",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-evaluate-evidence-confidence",
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "sha256": "a684ca81e108c20632b1273ef957876c7ede028533d14a07c650f59856a76ba7",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-evaluate-protected-field-action",
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "sha256": "7aee880d68e1109db012393b374b84752b780d80b19926d12a5d769165eb12e5",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-create-revision",
+      "path": "scripts/create_a2_revision.py",
+      "sha256": "6c5c4c8903efb7f2b9df079e5929299629dd6c7ba6d1ec9966eb2f94fba40a2c",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-render-review-package",
+      "path": "scripts/render_and_validate_a2_review_package.py",
+      "sha256": "ccf329a893dec19a32b9e4119fce70620ef76a10673b5ce397bb440992758680",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-twenty-review",
+      "path": "scripts/build_and_validate_a2_twenty_review.py",
+      "sha256": "25f52864d7526dbb95a18a531c51fe9f380ac4b99e486e6fbff73cd850882cd5",
+      "status": "active_local_no_integration"
+    },
+    {
+      "command_id": "a2-governed-handoff",
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "sha256": "ba6182fba48b7a779e013e3b0a4cb31aff33e5709089a62b32f19050738c9394",
+      "status": "active_local_no_integration"
+    }
+  ],
+  "supporting_modules": [
+    {
+      "path": "scripts/a2_wave2_contracts.py",
+      "sha256": "b189cd98f47cbe7b4e47bc95ba5aee0b6afb9600436bec7bb8f93ccc98e28b7c"
+    },
+    {
+      "path": "scripts/a2_wave3_contracts.py",
+      "sha256": "3b183d40c756127df60f6f96c3a7db473a07f685051e5f481f22a072d9e02a9b"
+    }
+  ],
+  "orchestrator": {
+    "path": "scripts/run_a2_no_integration_workflow.py",
+    "sha256": "967fbfc51bd3a363ffe8c4ad51f25a7200362d5cdf180005222c307b9bd7de8a",
+    "status": "active_local_no_integration"
+  },
+  "permissions": {
+    "local_file_processing": true,
+    "synthetic_fixture_processing": true,
+    "web_access": false,
+    "apify": false,
+    "twenty": false,
+    "hubspot_read": false,
+    "hubspot_write": false,
+    "n8n": false,
+    "outreach": false,
+    "handoff_delivery": false
+  },
+  "regression_summary": {
+    "deterministic": "58/58 pass",
+    "behavioural": "10/10 pass",
+    "workflow_scenarios": "2/2 pass",
+    "operators": "14/14 covered"
+  },
+  "next_gate": "Step 6 — Model, Tools, Permissions and Quotas",
+  "approved_at": "2026-08-29T17:26:25Z",
+  "approved_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_decisions": [
+    "5E-1",
+    "5E-2",
+    "5E-3",
+    "5E-4",
+    "5E-5",
+    "5E-6",
+    "5E-7",
+    "5E-8",
+    "5E-9",
+    "5E-10"
+  ]
+}

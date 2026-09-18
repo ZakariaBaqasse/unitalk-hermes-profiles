@@ -1,0 +1,69 @@
+{
+  "record_type": "a2_fullenrich_source_routing_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "decision_id": "A2-FULLENRICH-SOURCE-ROUTING-20260906",
+  "approved_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-09-06T13:07:00Z",
+  "decision": "approved_business_configuration_runtime_integration_pending",
+  "approved_scope": [
+    "official website before FullEnrich",
+    "FullEnrich before separately gated Apify fallback",
+    "People Search by exact organisation domain and approved target role",
+    "default one Search result and maximum two unique returned/retained people per prospect",
+    "second contact only for large organisation or shared purchasing or operational responsibility",
+    "People Lookup for a known contact requiring identity, organisation or current-role verification",
+    "Contact Enrichment only for selected contacts",
+    "request work email and mobile phone",
+    "do not request or retain personal email",
+    "n8n as the target orchestration layer"
+  ],
+  "technical_validation": {
+    "path": "evaluations/fullenrich-source-amendment-20260906/technical-validation.json",
+    "checks_passed": 44,
+    "checks_total": 44,
+    "status": "pass"
+  },
+  "regressions": [
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/fullenrich-source-amendment-20260906/final-regression/farrier/workflow-result.json",
+      "operators_passed": 14,
+      "operators_total": 14,
+      "status": "pass"
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/fullenrich-source-amendment-20260906/final-regression/horse-owner/workflow-result.json",
+      "operators_passed": 14,
+      "operators_total": 14,
+      "status": "pass"
+    }
+  ],
+  "language_audit": {
+    "path": "evaluations/foundation-clarifications/language-audit.json",
+    "files_checked": 1472,
+    "findings": 0,
+    "status": "pass"
+  },
+  "final_verification": {
+    "path": "evaluations/fullenrich-source-amendment-20260906/final-verification.json",
+    "checks_passed": 17,
+    "checks_total": 17,
+    "status": "pass"
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "runtime_activation": false,
+  "production_acceptance": false,
+  "limitations": [
+    "FullEnrich API key not installed",
+    "n8n workflow not deployed or connected",
+    "Premium-plan rates and credit balance not verified",
+    "FullEnrich provider governance and retention approval pending",
+    "FullEnrich, Apify, Twenty and HubSpot integrations disabled"
+  ],
+  "next_gate": "FullEnrich n8n connector activation and bounded acceptance"
+}

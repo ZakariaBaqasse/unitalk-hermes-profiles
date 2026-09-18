@@ -1,0 +1,55 @@
+{
+  "record_type": "foundation_working_baseline_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "3H",
+  "version": "0.1.0-draft.1",
+  "decision": "approved_as_unitalk_working_baseline",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-27T10:19:34Z",
+  "approved_decisions": {
+    "3H-1": "Keep the A1 prospect as the main Twenty record and use a linked versioned A2 review record.",
+    "3H-2": "Use pending, in_review, needs_changes, held, approved and rejected review states.",
+    "3H-3": "Support field-level decisions, corrected values, comments and a record-level decision.",
+    "3H-4": "Require reviewer identity, role, timestamp, reason and an idempotent receipt.",
+    "3H-5": "Let Twenty approval authorize proposed HubSpot patch preparation only.",
+    "3H-6": "Require corrected values to create a new canonical A2 revision.",
+    "3H-7": "Keep canonical JSON as the lossless source and Twenty as a review projection/input layer.",
+    "3H-8": "Use role-scoped Twenty API access and n8n filtering/deduplication after integration approval.",
+    "3H-9": "Reject duplicate or mismatched Twenty candidate/review events.",
+    "3H-10": "Keep HubSpot write and outreach authorization false in every Twenty review receipt."
+  },
+  "contract": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+  "contract_sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27",
+  "receipt_schema": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+  "receipt_schema_sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be",
+  "technical_validation": "evaluations/step3h/technical-validation.json",
+  "technical_validation_sha256": "da5d795fa4460dac1fc676e789f0501ff0ffa5a4eca022d229f473241588d0c3",
+  "package_manifest": "evaluations/step3h/step3h-draft-package-manifest.json",
+  "package_manifest_sha256": "6eae49a2842c38b5b39f00cac60c1a0c947c2e26e7110873b5142cc887076c47",
+  "validation_results": {
+    "valid_and_invalid_receipt_cases": "12/12 pass",
+    "twenty_connection": false,
+    "hubspot_write_authorized": false,
+    "external_actions": 0
+  },
+  "profile_sync": {
+    "soul_updated": true,
+    "status": "completed",
+    "explicit_user_authorization_received": true,
+    "completed_at": "2026-08-27T10:29:05Z"
+  },
+  "remaining_integration_inputs": [
+    "Twenty workspace URL and deployment type",
+    "exact A1 prospect object and internal name",
+    "workspace metadata export for objects, fields and relations",
+    "reviewer and backup plus Twenty roles",
+    "API key owner and role scopes",
+    "field-decision child object versus structured-field decision",
+    "webhook/workflow configuration and event filtering",
+    "retention and administrator visibility"
+  ],
+  "next_gate": "Step 4 — Final Specialist SOUL (draft preparation)"
+}

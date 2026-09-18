@@ -1,0 +1,158 @@
+{
+  "manifest_id": "equinet-a2-wave3-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "ready_for_severine_review_not_approved",
+  "files": [
+    {
+      "path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "bytes": 2097,
+      "sha256": "6b130ee6b4c7419048f6e4c832dc1fc7ab443f69e023e54b52db83b71ff62bd2"
+    },
+    {
+      "path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "bytes": 2111,
+      "sha256": "dc132c9bec4ece92c650fe37802bdf76d789dfc07c4f043810eeb56a90835f2f"
+    },
+    {
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "bytes": 2005,
+      "sha256": "6c30801f3fb8e4b644edd6e397fdad8c9081b90ec1fb42008a5d19fe7727a418"
+    },
+    {
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "bytes": 2082,
+      "sha256": "98ea432e210878afa44ed219dd4638d6aa59632b1b4c4cef9126d45768635c14"
+    },
+    {
+      "path": "skills/a2-evidence-confidence-and-freshness/evals/evals.json",
+      "bytes": 568,
+      "sha256": "3ebbf7faa2bb0e431ebb70fca3fb301d01050a934aa7e9c734fe69ce0189377b"
+    },
+    {
+      "path": "skills/a2-protected-field-conflict-resolution/evals/evals.json",
+      "bytes": 653,
+      "sha256": "e6da52ca3fb8fa70ea687fd48db080e1bf98161484a7559ddcf42efd908de35b"
+    },
+    {
+      "path": "skills/a2-data-quality-and-review-readiness/evals/evals.json",
+      "bytes": 550,
+      "sha256": "eb9a71643994387130a15a4aba1a3671ebd5c6acc62a878459eef6031b2a6662"
+    },
+    {
+      "path": "skills/a2-review-package-and-governed-handoffs/evals/evals.json",
+      "bytes": 592,
+      "sha256": "35e1ed14a5e97c04411332b54dbc7671528be8fd1b03edd49e63bca7772fcbfb"
+    },
+    {
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "bytes": 5267,
+      "sha256": "a684ca81e108c20632b1273ef957876c7ede028533d14a07c650f59856a76ba7"
+    },
+    {
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "bytes": 4580,
+      "sha256": "7aee880d68e1109db012393b374b84752b780d80b19926d12a5d769165eb12e5"
+    },
+    {
+      "path": "scripts/create_a2_revision.py",
+      "bytes": 3113,
+      "sha256": "6c5c4c8903efb7f2b9df079e5929299629dd6c7ba6d1ec9966eb2f94fba40a2c"
+    },
+    {
+      "path": "scripts/render_and_validate_a2_review_package.py",
+      "bytes": 1805,
+      "sha256": "ccf329a893dec19a32b9e4119fce70620ef76a10673b5ce397bb440992758680"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_twenty_review.py",
+      "bytes": 2975,
+      "sha256": "25f52864d7526dbb95a18a531c51fe9f380ac4b99e486e6fbff73cd850882cd5"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "bytes": 4104,
+      "sha256": "ba6182fba48b7a779e013e3b0a4cb31aff33e5709089a62b32f19050738c9394"
+    },
+    {
+      "path": "scripts/a2_wave3_contracts.py",
+      "bytes": 1551,
+      "sha256": "3b183d40c756127df60f6f96c3a7db473a07f685051e5f481f22a072d9e02a9b"
+    },
+    {
+      "path": "evaluations/step5d/fixtures/wave3-cases.json",
+      "bytes": 5145,
+      "sha256": "7fe3d48824846265288f3fedadbdef2ee25b62fef7a1804055cf25cdffe03790"
+    },
+    {
+      "path": "evaluations/step5d/behavioural-validation.json",
+      "bytes": 1268,
+      "sha256": "308311373c848b8b85703b21be68dae071fadeed57381dfec5edfd18b27e5c9d"
+    },
+    {
+      "path": "evaluations/step5d/technical-validation.json",
+      "bytes": 73303,
+      "sha256": "e4d2048f82ec2a24d6ee10bff19ed86c4b54824230e11197790e65fc3c5e1fd5"
+    },
+    {
+      "path": "evaluations/step5d/A2-WAVE-3-REVIEW.md",
+      "bytes": 1877,
+      "sha256": "efb41da847cf3580a6c5adaf3f8594953f2c56f7aea1dced55a37ff38286ac59"
+    },
+    {
+      "path": "evaluations/step5c/acceptance-record.json",
+      "bytes": 1443,
+      "sha256": "04cecd200c60cea689885095630cd9ad3628fb84dd042eaff92daa0064dbf6fe"
+    },
+    {
+      "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 13481,
+      "sha256": "daf6dbb34cb18e6716d6a4084a5b279e7ff50a4f7a9cd30b846af97d8ef375bb"
+    },
+    {
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.1-draft.1.json",
+      "bytes": 8508,
+      "sha256": "ccecc0aeb6d725bbe74dc73c72648b2f0ec4fe72e3ef402194b4952dc27b869d"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.1-draft.1.json",
+      "bytes": 10311,
+      "sha256": "cae627cd3efe7a21958f9667bb3c214ea6a7ec7fd743eb5e85f2519be9b5e3e7"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "bytes": 41682,
+      "sha256": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "bytes": 5383,
+      "sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+      "bytes": 4015,
+      "sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "bytes": 5052,
+      "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27"
+    },
+    {
+      "path": "foundations/contracts/requalification/a2-requalification-package.schema.json",
+      "bytes": 2551,
+      "sha256": "c6babeb60063d810f0b2f715eae945e1716c4d078df693475ee23ffa9e227ffc"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "bytes": 71694,
+      "sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531"
+    }
+  ],
+  "file_count": 29,
+  "skills": 4,
+  "commands": 6,
+  "deterministic_cases": "21/21 pass",
+  "external_actions": 0,
+  "promotion_performed": false
+}

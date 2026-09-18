@@ -1,0 +1,49 @@
+{
+  "manifest_id": "equinet-a2-step3e-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "files": [
+    {
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.0-draft.1.json",
+      "bytes": 10267,
+      "sha256": "94a54a54e88857adc5d9a65e10f2ed5719dab50beba1fbf26894eee700584c3f"
+    },
+    {
+      "path": "evaluations/step3e/fixtures/cases.json",
+      "bytes": 5039,
+      "sha256": "e42122f7ad0e22d68d4cb667672ad6ef743a54aeabb9ad1fc3772e7972ecd5fa"
+    },
+    {
+      "path": "scripts/build_step3e_protected_fields.py",
+      "bytes": 13583,
+      "sha256": "41b3cb20f48d6e3539f9fb09a3f0d52090d345fa4d6ab158b155377191480178"
+    },
+    {
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "bytes": 3605,
+      "sha256": "98dc47a30f38a1562ff8ed48ce8ec41177abfd54e36b3e98de4f82202c7a4c83"
+    },
+    {
+      "path": "scripts/run_step3e_tests.py",
+      "bytes": 14463,
+      "sha256": "89a45fded192b998dae57b9ca469b46484b1e3b717f7a9242edc0076305fbc37"
+    },
+    {
+      "path": "foundations/A2-PROTECTED-FIELDS-AND-CONFLICT-POLICY.md",
+      "bytes": 5464,
+      "sha256": "16a33daf7c53bbf49ea6466a5632c7d18c10e69b8d5cbe63adea3d83acde2456"
+    },
+    {
+      "path": "evaluations/step3e/A2-PROTECTED-FIELDS-CONFLICT-REVIEW.md",
+      "bytes": 2386,
+      "sha256": "16af90afbde0f326ea03ee97e25b249887dc1442268efff0c67b406997b94220"
+    },
+    {
+      "path": "evaluations/step3e/technical-validation.json",
+      "bytes": 7169,
+      "sha256": "97dad8da40c21c675301a4efb2c33dccf190adea2170cf455440e835ab7c0d44"
+    }
+  ],
+  "file_count": 8,
+  "external_actions": 0
+}

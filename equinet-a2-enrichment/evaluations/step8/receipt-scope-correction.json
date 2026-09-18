@@ -1,0 +1,21 @@
+{
+  "record_type": "step8_receipt_scope_correction",
+  "profile": "equinet-a2-enrichment",
+  "corrected_at": "2026-08-30T13:10:32Z",
+  "reason": "The business field catalogue permits person.business_phone, but the Step 8 official-site receipt allowlist omitted that field and blocked a valid no-value verification receipt during the Rood & Riddle test.",
+  "change": {
+    "file": "scripts/build_step8_collection_receipt.py",
+    "field_added_to_allowlist": "person.business_phone",
+    "previous_sha256": "6ca11ca579d6f35b3383f802662108a38e5f675aba514268ad119f70e24d1de5",
+    "corrected_sha256": "33ba89cd6b928c4ee484e07d4084c2f2ace6c5f2b9f9d95df0c84ab391024f51"
+  },
+  "validation": {
+    "rood_riddle_stage_checks": "14/14 pass",
+    "receipt_hashes": "pass",
+    "source_content_hashes": "pass",
+    "canonical_chain": "3/3 valid",
+    "review_package": "pass"
+  },
+  "scope": "Deterministic receipt allowlist consistency only; no source permission, Web access or external action was added.",
+  "external_actions": 0
+}

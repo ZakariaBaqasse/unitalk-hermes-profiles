@@ -1,0 +1,51 @@
+{
+  "manifest_id": "equinet-a2-soc-pre-amendment-snapshots",
+  "file_count": 9,
+  "files": [
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/SOUL.md",
+      "bytes": 16421,
+      "sha256": "0939b9f160fe2abd47762fc16aad1cacc4b2c722b3636298afd75af597b789d0"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 24646,
+      "sha256": "c9d8b4294728f8606fd25f7c0297b57b9c740679ceac5e6a99ec452eea6facd8"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/foundations/A2-BUSINESS-FIELD-CATALOGUE.md",
+      "bytes": 8357,
+      "sha256": "b60c553cb03ca58545acea97a104d30abdb2f618dcce47d3aa597f8435f69ce8"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/foundations/A2-EVIDENCE-VERIFICATION-CONFIDENCE-FRESHNESS-POLICY.md",
+      "bytes": 4068,
+      "sha256": "7bbd808df9f939fe7f867491e17af3d929b2e7b5c66f4e14066545e3881f0ccb"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/foundations/A2-MINIMUM-DATA-PACKAGES.md",
+      "bytes": 2744,
+      "sha256": "803b1d924158ca44a0a09c4fa84de1fe564bc97a960f9822de354946abbbb18f"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/foundations/A2-PRELIMINARY-HUBSPOT-MAPPING.md",
+      "bytes": 5182,
+      "sha256": "79cd8b3c1d3e5b7684289017499f16a03a18238bd0e0012953217e90f97e54dd"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/foundations/A2-PROTECTED-FIELDS-AND-CONFLICT-POLICY.md",
+      "bytes": 5464,
+      "sha256": "16a33daf7c53bbf49ea6466a5632c7d18c10e69b8d5cbe63adea3d83acde2456"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/foundations/A2-PROVIDER-AND-COST-POLICY.md",
+      "bytes": 2393,
+      "sha256": "c5c84d58d74bc7f664c627f4a67cc449b93474cd8bb33e97581c2d0fcbdb4ca8"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment/foundations/A2-SOURCE-REGISTER.md",
+      "bytes": 4952,
+      "sha256": "a7a64876db7961535ea7d741a0111716bb052a39323bc79a9fd8cd4f049dec2d"
+    }
+  ]
+}

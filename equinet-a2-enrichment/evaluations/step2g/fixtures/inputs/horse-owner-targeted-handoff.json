@@ -1,0 +1,402 @@
+{
+  "a2_receipt": {
+    "candidate_snapshot_sha256": "cf297efc421323afbd55e44c16520657937530ff3b41b0f62f6e20c6d1889a49",
+    "handoff_id": "A1A2-TEST_OWNER_TARGETED_001",
+    "received_at": "2026-08-16T15:30:20Z",
+    "receiver_id": "A2-SYNTHETIC-VALIDATOR",
+    "receiver_profile": "equinet-a2-enrichment",
+    "rejection_reasons": [],
+    "status": "accepted"
+  },
+  "approval_event": {
+    "decision": "approved_for_enrichment",
+    "decision_at": "2026-08-16T15:30:00Z",
+    "reviewer": {
+      "actor_id": "UNITALK-A1-REVIEWER-TEST",
+      "actor_role": "A1 Business Reviewer",
+      "display_name": "Synthetic A1 Reviewer"
+    },
+    "scope": "a2_enrichment",
+    "source_layer": "manual_review_package",
+    "source_record_id": "REVIEW-TEST_OWNER_001"
+  },
+  "candidate_snapshot": {
+    "candidate_id": "A1-TEST_OWNER_001",
+    "confidence": {
+      "level": "medium",
+      "limitations": [
+        "Only one synthetic source is present."
+      ],
+      "method_version": "proposed-confidence-0.1",
+      "reasons": [
+        "The synthetic source directly supports the three qualification criteria."
+      ],
+      "score": 65
+    },
+    "data_governance": {
+      "a1_outreach_prohibited": true,
+      "collection_context": "public_business_information",
+      "contains_personal_data": false,
+      "retention_policy_version": null,
+      "source_terms_review_status": "confirmed"
+    },
+    "data_quality": {
+      "conflicts": [],
+      "last_validated_at": "2026-08-11T11:10:00Z",
+      "missing_fields": [],
+      "validation_status": "validated"
+    },
+    "discovered_at": "2026-08-11T11:00:00Z",
+    "duplicate_check": {
+      "batch": {
+        "checked_at": "2026-08-11T11:08:00Z",
+        "matches": [],
+        "method_version": "local-dedup-0.1",
+        "notes": null,
+        "status": "no_match"
+      },
+      "hubspot": {
+        "checked_at": null,
+        "matches": [],
+        "method_version": null,
+        "notes": "HubSpot is not connected.",
+        "status": "unavailable"
+      },
+      "provided_exclusion_file": {
+        "checked_at": null,
+        "matches": [],
+        "method_version": null,
+        "notes": "No exclusion file supplied for this synthetic test.",
+        "status": "unavailable"
+      },
+      "twenty": {
+        "checked_at": null,
+        "matches": [],
+        "method_version": null,
+        "notes": "Twenty is not connected.",
+        "status": "unavailable"
+      }
+    },
+    "identity": {
+      "aliases": [],
+      "display_name": "Lexington Breeding Farm — Synthetic Test Record",
+      "organisation": {
+        "domain": "example.com",
+        "name": "Lexington Breeding Farm — Synthetic",
+        "website": "https://example.com/lexington-breeding-farm"
+      },
+      "person": null
+    },
+    "location": {
+      "city": "Lexington",
+      "country_code": "US",
+      "geography_rule_version": "pilot-lexington-0.1",
+      "geography_status": "in_scope",
+      "postal_code": null,
+      "public_address": null,
+      "state_region": "Kentucky"
+    },
+    "prospect_type": "breeding_farm",
+    "provenance": {
+      "audit_correlation_id": "AUDIT-TEST-0002",
+      "created_by_profile": "equinet-a1-icp-discovery",
+      "initiated_by": "unitalk-contract-test",
+      "model": null,
+      "synthetic": true,
+      "tools_used": [
+        "synthetic-fixture-generator"
+      ]
+    },
+    "public_contacts": [
+      {
+        "contact_type": "email",
+        "evidence_ids": [
+          "EV-TEST002"
+        ],
+        "label": "Synthetic public business email",
+        "value": "info@example.com"
+      }
+    ],
+    "qualification": {
+      "criteria": [
+        {
+          "category": "fit",
+          "criterion_id": "horse_owner.commercial_operation",
+          "criterion_label": "Professional or commercial operation",
+          "evidence_ids": [
+            "EV-TEST002"
+          ],
+          "notes": "Synthetic commercial-operation evidence.",
+          "status": "confirmed"
+        },
+        {
+          "category": "fit",
+          "criterion_id": "horse_owner.more_than_three_horses",
+          "criterion_label": "Manages more than three horses",
+          "evidence_ids": [
+            "EV-TEST002"
+          ],
+          "notes": "Uses the current proposed threshold from the A1 blueprint.",
+          "status": "confirmed"
+        },
+        {
+          "category": "priority",
+          "criterion_id": "horse_owner.breeding_activity",
+          "criterion_label": "Active breeding operation",
+          "evidence_ids": [
+            "EV-TEST002"
+          ],
+          "notes": null,
+          "status": "confirmed"
+        }
+      ],
+      "exclusion_reasons": [],
+      "exclusion_status": "eligible",
+      "icp_config_version": "proposed-0.1",
+      "minimum_data_status": "pass",
+      "missing_minimum_fields": []
+    },
+    "recommendation": {
+      "next_action": "pass_to_a2",
+      "notes": "Synthetic candidate approved for A2 handoff contract testing.",
+      "priority_rank": 2,
+      "suggested_owner": null,
+      "suggested_territory": "Kentucky"
+    },
+    "record_kind": "synthetic_test",
+    "run_id": "RUN-TEST-0002",
+    "schema_version": "1.0.0",
+    "scoring": {
+      "band": "high",
+      "block_reason": null,
+      "components": [
+        {
+          "criterion_id": "horse_owner.commercial_operation",
+          "evidence_ids": [
+            "EV-TEST002"
+          ],
+          "max_points": 35,
+          "notes": null,
+          "points_awarded": 35
+        },
+        {
+          "criterion_id": "horse_owner.more_than_three_horses",
+          "evidence_ids": [
+            "EV-TEST002"
+          ],
+          "max_points": 25,
+          "notes": null,
+          "points_awarded": 20
+        },
+        {
+          "criterion_id": "horse_owner.breeding_activity",
+          "evidence_ids": [
+            "EV-TEST002"
+          ],
+          "max_points": 20,
+          "notes": null,
+          "points_awarded": 13
+        }
+      ],
+      "model_version": "synthetic-test-score-0.1",
+      "rationale": "Synthetic score based on commercial status, more than three horses and breeding activity.",
+      "score": 68,
+      "status": "scored"
+    },
+    "segment": "horse_owner",
+    "source_evidence": [
+      {
+        "access_method": "manual_browser",
+        "evidence_excerpt": "Synthetic fixture: a commercial Lexington breeding farm managing more than three horses.",
+        "evidence_id": "EV-TEST002",
+        "fact_or_inference": "direct_fact",
+        "reliability_level": "high",
+        "retrieved_at": "2026-08-11T11:00:00Z",
+        "source_name": "Synthetic breeding-farm website fixture",
+        "source_policy_status": "approved",
+        "source_type": "business_website",
+        "source_url": "https://example.com/lexington-breeding-farm",
+        "supports_claims": [
+          "horse_owner.commercial_operation",
+          "horse_owner.more_than_three_horses",
+          "horse_owner.breeding_activity"
+        ],
+        "title": "Synthetic Lexington Breeding Farm"
+      }
+    ],
+    "system_references": {
+      "a2_handoff_id": "A1A2-TEST_OWNER_TARGETED_001",
+      "hubspot_company_id": null,
+      "hubspot_contact_id": null,
+      "hubspot_sync_id": null,
+      "twenty_candidate_id": null
+    },
+    "updated_at": "2026-08-16T15:30:00Z",
+    "workflow": {
+      "decision_at": "2026-08-16T15:30:00Z",
+      "rejection_reason": null,
+      "review_decision": "approved",
+      "reviewer": {
+        "actor_id": "UNITALK-A1-REVIEWER-TEST",
+        "actor_role": "A1 Business Reviewer",
+        "display_name": "Synthetic A1 Reviewer"
+      },
+      "stage": "approved_for_a2"
+    }
+  },
+  "constraints": {
+    "a1_score_mutation_authorized": false,
+    "crm_write_authorized": false,
+    "downstream_delivery_authorized": false,
+    "external_action_approval_reference": null,
+    "human_review_required": true,
+    "outreach_authorized": false,
+    "paid_provider_authorized": false,
+    "public_information_creates_consent": false
+  },
+  "created_at": "2026-08-16T15:30:10Z",
+  "delivery": {
+    "attempt_count": 1,
+    "external_event_reference": "synthetic://a1-a2/TEST_OWNER_001",
+    "failure_reason": null,
+    "last_attempt_at": "2026-08-16T15:30:20Z"
+  },
+  "delivery_state": "accepted_by_a2",
+  "eligibility": {
+    "evaluated_at": "2026-08-16T15:30:10Z",
+    "gates": [
+      {
+        "gate_id": "candidate_schema",
+        "reason": "Pinned A1 schema and cross-field validation passed.",
+        "source_path": "candidate_snapshot",
+        "status": "pass"
+      },
+      {
+        "gate_id": "human_approval",
+        "reason": "A1 human approval is recorded and consistent.",
+        "source_path": "candidate_snapshot.workflow",
+        "status": "pass"
+      },
+      {
+        "gate_id": "recommendation",
+        "reason": "A1 recommends pass_to_a2.",
+        "source_path": "candidate_snapshot.recommendation.next_action",
+        "status": "pass"
+      },
+      {
+        "gate_id": "exclusion",
+        "reason": "Candidate is eligible and not excluded.",
+        "source_path": "candidate_snapshot.qualification.exclusion_status",
+        "status": "pass"
+      },
+      {
+        "gate_id": "minimum_data",
+        "reason": "A1 minimum data status passed.",
+        "source_path": "candidate_snapshot.qualification.minimum_data_status",
+        "status": "pass"
+      },
+      {
+        "gate_id": "identity_quality",
+        "reason": "A1 data quality is validated.",
+        "source_path": "candidate_snapshot.data_quality.validation_status",
+        "status": "pass"
+      },
+      {
+        "gate_id": "duplicate_batch",
+        "reason": "No current-batch duplicate was found.",
+        "source_path": "candidate_snapshot.duplicate_check.batch",
+        "status": "pass"
+      },
+      {
+        "gate_id": "duplicate_exclusion_file",
+        "reason": "No exclusion file was supplied for the synthetic fixture.",
+        "source_path": "candidate_snapshot.duplicate_check.provided_exclusion_file",
+        "status": "unavailable"
+      },
+      {
+        "gate_id": "source_policy",
+        "reason": "No blocked source supports the candidate.",
+        "source_path": "candidate_snapshot.source_evidence",
+        "status": "pass"
+      },
+      {
+        "gate_id": "scoring_state",
+        "reason": "A1 deterministic scoring completed.",
+        "source_path": "candidate_snapshot.scoring.status",
+        "status": "pass"
+      },
+      {
+        "gate_id": "audit_identity",
+        "reason": "A1 audit correlation ID is present.",
+        "source_path": "candidate_snapshot.provenance.audit_correlation_id",
+        "status": "pass"
+      },
+      {
+        "gate_id": "scope_permissions",
+        "reason": "Synthetic scope prohibits every external action.",
+        "source_path": "constraints",
+        "status": "pass"
+      },
+      {
+        "gate_id": "hubspot_duplicate",
+        "reason": "HubSpot is not connected for the synthetic fixture.",
+        "source_path": "candidate_snapshot.duplicate_check.hubspot",
+        "status": "unavailable"
+      },
+      {
+        "gate_id": "hubspot_eligibility",
+        "reason": "Authoritative HubSpot eligibility checks are unavailable and not required for synthetic contract validation.",
+        "source_path": null,
+        "status": "unavailable"
+      }
+    ],
+    "method_version": "a1-a2-eligibility-1.0.1",
+    "reasons": [
+      "Core A1 approval and quality gates passed.",
+      "Unavailable HubSpot checks are permitted only for synthetic contract validation."
+    ],
+    "status": "eligible"
+  },
+  "handoff_id": "A1A2-TEST_OWNER_TARGETED_001",
+  "handoff_schema_version": "1.0.1",
+  "idempotency_key": "A1A2-IDEMP-TEST_OWNER_TARGETED_001",
+  "integration_availability": {
+    "email_verification": "unavailable",
+    "enrichment_provider": "unavailable",
+    "hubspot_read": "unavailable",
+    "phone_verification": "unavailable",
+    "staging": "unavailable",
+    "workflow": "unavailable"
+  },
+  "operating_scope": "synthetic_test",
+  "provenance": {
+    "audit_correlation_id": "AUDIT-TEST-0002",
+    "created_by": "unitalk-a1-a2-handoff-builder",
+    "initiated_by": "unitalk-step1c-test",
+    "synthetic": true,
+    "tools_used": [
+      "deterministic-fixture-builder"
+    ]
+  },
+  "requested_enrichment": {
+    "mode": "targeted_fields",
+    "request_reason": "Synthetic targeted initialisation fixture.",
+    "requested_fields": [
+      "organisation.horse_count"
+    ]
+  },
+  "snapshot_integrity": {
+    "algorithm": "sha256",
+    "candidate_snapshot_sha256": "cf297efc421323afbd55e44c16520657937530ff3b41b0f62f6e20c6d1889a49",
+    "canonicalization": "json_sorted_utf8_v1"
+  },
+  "source_profile": "equinet-a1-icp-discovery",
+  "target_profile": "equinet-a2-enrichment",
+  "trigger_event": {
+    "event_id": "EVENT-TEST_OWNER_001",
+    "event_type": "a1_candidate_approved_for_a2",
+    "occurred_at": "2026-08-16T15:30:05Z",
+    "source_layer": "manual_review_package",
+    "source_record_id": "REVIEW-TEST_OWNER_001"
+  }
+}

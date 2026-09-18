@@ -1,0 +1,30 @@
+{
+  "requests": {
+    "apify-facebook-company-trigger": {
+      "dataset": [
+        {
+          "email": "must-not-read@example.com",
+          "pageUrl": "https://www.facebook.com/BluegrassFarm/"
+        }
+      ],
+      "polls": [
+        {
+          "data": {
+            "defaultDatasetId": "dataset-must-not-read",
+            "id": "run-failed",
+            "status": "SUCCEEDED"
+          }
+        }
+      ],
+      "start": {
+        "data": {
+          "buildId": "build-official-1",
+          "defaultDatasetId": "dataset-must-not-read",
+          "id": "run-failed",
+          "status": "FAILED",
+          "usageTotalUsd": 0.002
+        }
+      }
+    }
+  }
+}

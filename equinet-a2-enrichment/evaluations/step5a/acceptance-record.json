@@ -1,0 +1,47 @@
+{
+  "record_type": "step5a_operational_skill_architecture_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "5A",
+  "decision": "approved_and_promoted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-27T12:10:52Z",
+  "approved_decisions": [
+    "5A-1",
+    "5A-2",
+    "5A-3",
+    "5A-4",
+    "5A-5",
+    "5A-6",
+    "5A-7",
+    "5A-8",
+    "5A-9",
+    "5A-10"
+  ],
+  "approved_manifest": "foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json",
+  "approved_manifest_sha256": "c91351814a084cffd020c0f6890bca88fb6550f117e5e85c79516294899d1a37",
+  "architecture_document": "foundations/A2-OPERATIONAL-SKILL-ARCHITECTURE.md",
+  "architecture_document_sha256": "3c3de61e656872b89f54f2dbdfdbcc559987a07862d64d10b338ab69123da806",
+  "review": "evaluations/step5a/A2-OPERATIONAL-SKILL-ARCHITECTURE-REVIEW.md",
+  "review_sha256": "cf79357c3eadaa3811aa4a5d688debabd885e7465c19387d10150c34dfec4c48",
+  "draft_validation": "evaluations/step5a/technical-validation.json",
+  "draft_validation_sha256": "5066058a39b25e1ac968f0d95b8fd8fb8876815f1eab6f7c25bedf571a30c946",
+  "authorizes": [
+    "create and test Wave 1 skill packages",
+    "create local deterministic Wave 1 scripts"
+  ],
+  "does_not_authorize": [
+    "live Web access",
+    "Apify execution",
+    "provider spend",
+    "Twenty action",
+    "HubSpot access or write",
+    "n8n action",
+    "outreach",
+    "pilot readiness",
+    "production readiness"
+  ],
+  "next_gate": "Step 5B — Wave 1 Intake and Identity"
+}

@@ -1,0 +1,374 @@
+{
+  "fixture_set": "equinet-a2-step5c-wave2",
+  "version": "0.1.0-draft.1",
+  "synthetic_only": true,
+  "gap_cases": [
+    {
+      "name": "complete-farrier-no-research",
+      "request": {
+        "candidate_id": "SYN-FAR-001",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "a2_eligibility_status": "eligible",
+        "enrichment_mode": "default_minimum_package",
+        "contact_path": "named_target",
+        "field_states": {
+          "person.professional_status": "verified",
+          "organisation.business_name": "verified",
+          "organisation.public_business_location": "verified",
+          "organisation.service_area": "verified",
+          "organisation.disciplines": "verified",
+          "person.full_name": "verified",
+          "person.role_title": "verified",
+          "relationship.target_role_priority": "verified",
+          "person.business_email": "verified",
+          "person.business_phone": "missing"
+        }
+      },
+      "expected": {"plan_status": "no_research_needed", "plan_item_count": 0}
+    },
+    {
+      "name": "horse-owner-required-gap",
+      "request": {
+        "candidate_id": "SYN-OWN-001",
+        "segment": "horse_owner",
+        "operating_scope": "synthetic_test",
+        "a2_eligibility_status": "eligible",
+        "enrichment_mode": "default_minimum_package",
+        "contact_path": "general_organisation_fallback",
+        "target_role_not_found": true,
+        "field_states": {
+          "organisation.business_name": "verified",
+          "organisation.public_business_location": "verified",
+          "organisation.stable_type": "unknown",
+          "organisation.business_email": "verified"
+        }
+      },
+      "expected": {"plan_status": "research_required", "contains_field": "organisation.stable_type", "need_type": "gap"}
+    },
+    {
+      "name": "targeted-do-not-collect-blocked",
+      "request": {
+        "candidate_id": "SYN-FAR-002",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "a2_eligibility_status": "eligible",
+        "enrichment_mode": "targeted_fields",
+        "requested_field_keys": ["person.social_signals"],
+        "field_states": {"person.social_signals": "missing"}
+      },
+      "expected": {"plan_status": "blocked", "blocked_field": "person.social_signals"}
+    },
+    {
+      "name": "research-exhausted-required-gap-held",
+      "request": {
+        "candidate_id": "SYN-FAR-003",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "a2_eligibility_status": "eligible",
+        "enrichment_mode": "targeted_fields",
+        "requested_field_keys": ["person.role_title"],
+        "field_states": {"person.role_title": "not_found"},
+        "research_exhausted": true
+      },
+      "expected": {"plan_status": "held", "contains_field": "person.role_title", "need_type": "gap"}
+    },
+    {
+      "name": "optional-not-requested-does-not-block",
+      "request": {
+        "candidate_id": "SYN-OWN-002",
+        "segment": "horse_owner",
+        "operating_scope": "synthetic_test",
+        "a2_eligibility_status": "eligible",
+        "enrichment_mode": "default_minimum_package",
+        "contact_path": "general_organisation_fallback",
+        "target_role_not_found": true,
+        "field_states": {
+          "organisation.business_name": "verified",
+          "organisation.public_business_location": "verified",
+          "organisation.stable_type": "verified",
+          "organisation.business_phone": "verified",
+          "organisation.horse_count": "missing"
+        }
+      },
+      "expected": {"plan_status": "no_research_needed", "excluded_field": "organisation.horse_count"}
+    },
+    {
+      "name": "wave1-hold-stops-planning",
+      "request": {
+        "candidate_id": "SYN-FAR-004",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "a2_eligibility_status": "hold",
+        "enrichment_mode": "targeted_fields",
+        "requested_field_keys": ["person.role_title"],
+        "field_states": {"person.role_title": "unknown"}
+      },
+      "expected": {"plan_status": "held", "plan_item_count": 0}
+    }
+  ],
+  "source_cases": [
+    {
+      "name": "official-site-synthetic-fixture-allowed",
+      "request": {
+        "candidate_id": "SYN-FAR-001",
+        "operating_scope": "synthetic_test",
+        "source_id": "prospect_official_website",
+        "field_key": "person.role_title",
+        "named_need": "verify current role",
+        "execution_mode": "local_fixture_simulation",
+        "fixture_is_synthetic": true,
+        "fixture_reference": "fixtures://official-site/farrier-team",
+        "official_site_check": "completed_fixture"
+      },
+      "expected": {"preflight_status": "allowed_local_fixture", "field_gate": "official_site_business_field_boundary"}
+    },
+    {
+      "name": "apify-profile-runtime-blocked",
+      "request": {
+        "candidate_id": "SYN-FAR-001",
+        "operating_scope": "synthetic_test",
+        "source_id": "apify_harvestapi_linkedin_profile_search",
+        "field_key": "person.role_title",
+        "named_need": "role remains missing after official site",
+        "execution_mode": "preflight_only",
+        "official_site_check": "completed_fixture",
+        "named_role_gap": true,
+        "max_items": 5,
+        "automatic_query_segmentation": false
+      },
+      "expected": {"preflight_status": "prepared_runtime_blocked", "contains_block": "provider_runtime_activation_gate_blocked"}
+    },
+    {
+      "name": "official-site-social-opening-blocked",
+      "request": {
+        "candidate_id": "SYN-FAR-001",
+        "operating_scope": "synthetic_test",
+        "source_id": "prospect_official_website",
+        "field_key": "organisation.public_profile_urls",
+        "named_need": "capture explicit social links",
+        "execution_mode": "preflight_only",
+        "official_site_check": "planned",
+        "open_linked_social_profile": true
+      },
+      "expected": {"preflight_status": "blocked", "contains_block": "opening_linked_social_profile_is_not_authorised"}
+    },
+    {
+      "name": "search-snippet-evidence-blocked",
+      "request": {
+        "candidate_id": "SYN-OWN-001",
+        "operating_scope": "synthetic_test",
+        "source_id": "search_engine_discovery",
+        "field_key": "organisation.website",
+        "named_need": "locate official website",
+        "execution_mode": "preflight_only",
+        "retain_search_snippet": true
+      },
+      "expected": {"preflight_status": "blocked", "contains_block": "search_snippet_cannot_be_retained_as_evidence"}
+    },
+    {
+      "name": "unknown-source-invalid",
+      "request": {
+        "candidate_id": "SYN-X-001",
+        "operating_scope": "synthetic_test",
+        "source_id": "invented_provider",
+        "field_key": "person.role_title",
+        "named_need": "role gap",
+        "execution_mode": "preflight_only"
+      },
+      "expected": {"preflight_status": "invalid_request"}
+    },
+    {
+      "name": "personal-email-provider-runtime-blocked",
+      "request": {
+        "candidate_id": "SYN-FAR-001",
+        "operating_scope": "synthetic_test",
+        "source_id": "apify_harvestapi_email_search",
+        "field_key": "person.personal_email_candidate",
+        "named_need": "email gap",
+        "execution_mode": "preflight_only",
+        "selected_profile_match": true
+      },
+      "expected": {"preflight_status": "prepared_runtime_blocked", "contains_block": "provider_runtime_activation_gate_blocked"}
+    }
+  ],
+  "observation_cases": [
+    {
+      "name": "professional-contact-normalised",
+      "request": {
+        "candidate_id": "SYN-FAR-001",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "observations": [
+          {
+            "observation_id": "OBS-EMAIL-1",
+            "field_key": "person.business_email",
+            "entity_id": "P-1",
+            "raw_value": " Owner@Example.com ",
+            "source_id": "prospect_official_website",
+            "source_action_status": "allowed_local_fixture",
+            "source_url": "https://example.com/contact",
+            "evidence_id": "EV-W2-001",
+            "availability_status": "available",
+            "fact_type": "direct_fact",
+            "collection_method": "explicitly_published",
+            "email_kind": "professional"
+          },
+          {
+            "observation_id": "OBS-PHONE-1",
+            "field_key": "person.business_phone",
+            "entity_id": "P-1",
+            "raw_value": "(859) 555-0100",
+            "source_id": "prospect_official_website",
+            "source_action_status": "allowed_local_fixture",
+            "source_url": "https://example.com/contact",
+            "evidence_id": "EV-W2-002",
+            "availability_status": "available",
+            "fact_type": "direct_fact",
+            "collection_method": "explicitly_published"
+          }
+        ]
+      },
+      "expected": {"batch_status": "completed", "accepted_count": 2, "email": "owner@example.com", "phone": "+185****0100"}
+    },
+    {
+      "name": "organisation-social-link-retained",
+      "request": {
+        "candidate_id": "SYN-OWN-001",
+        "segment": "horse_owner",
+        "operating_scope": "synthetic_test",
+        "observations": [
+          {
+            "observation_id": "OBS-SOCIAL-1",
+            "field_key": "organisation.public_profile_urls",
+            "entity_id": "ORG-1",
+            "raw_value": "https://www.linkedin.com/company/example-farm/?utm_source=test",
+            "source_id": "prospect_official_website",
+            "source_action_status": "allowed_local_fixture",
+            "source_url": "https://example.com/about",
+            "evidence_id": "EV-W2-003",
+            "availability_status": "available",
+            "fact_type": "direct_fact",
+            "explicitly_linked": true,
+            "page_context": "organisation"
+          }
+        ]
+      },
+      "expected": {"batch_status": "completed", "accepted_count": 1, "normalised_value": ["https://linkedin.com/company/example-farm?utm_source=test"]}
+    },
+    {
+      "name": "social-link-scope-conflict-rejected",
+      "request": {
+        "candidate_id": "SYN-OWN-001",
+        "segment": "horse_owner",
+        "operating_scope": "synthetic_test",
+        "observations": [
+          {
+            "observation_id": "OBS-SOCIAL-2",
+            "field_key": "person.public_profile_urls",
+            "entity_id": "P-1",
+            "raw_value": "https://linkedin.com/company/example-farm",
+            "source_id": "prospect_official_website",
+            "source_action_status": "allowed_local_fixture",
+            "source_url": "https://example.com/about",
+            "evidence_id": "EV-W2-004",
+            "availability_status": "available",
+            "fact_type": "direct_fact",
+            "explicitly_linked": true,
+            "page_context": "person"
+          }
+        ]
+      },
+      "expected": {"batch_status": "completed_with_holds", "held_count": 1}
+    },
+    {
+      "name": "inferred-horse-count-rejected-personal-email-held",
+      "request": {
+        "candidate_id": "SYN-OWN-002",
+        "segment": "horse_owner",
+        "operating_scope": "synthetic_test",
+        "observations": [
+          {
+            "observation_id": "OBS-HORSE-1",
+            "field_key": "organisation.horse_count",
+            "entity_id": "ORG-2",
+            "raw_value": 20,
+            "source_id": "prospect_official_website",
+            "source_action_status": "allowed_local_fixture",
+            "source_url": "https://example.com/gallery",
+            "evidence_id": "EV-W2-005",
+            "availability_status": "available",
+            "fact_type": "reasonable_inference"
+          },
+          {
+            "observation_id": "OBS-EMAIL-2",
+            "field_key": "person.personal_email_candidate",
+            "entity_id": "P-2",
+            "raw_value": "private@example.test",
+            "source_id": "apify_harvestapi_email_search",
+            "source_action_status": "allowed_local_fixture",
+            "source_url": "fixture://apify-email-search",
+            "evidence_id": "EV-W2-006",
+            "availability_status": "available",
+            "fact_type": "direct_fact",
+            "collection_method": "authorised_first_party",
+            "email_kind": "personal"
+          }
+        ]
+      },
+      "expected": {"batch_status": "completed_with_holds_and_rejections", "rejected_count": 1, "held_count": 1}
+    },
+    {
+      "name": "ambiguous-current-role-held",
+      "request": {
+        "candidate_id": "SYN-FAR-002",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "observations": [
+          {
+            "observation_id": "OBS-ROLE-1",
+            "field_key": "person.role_title",
+            "entity_id": "P-3",
+            "raw_value": "Farrier",
+            "source_id": "prospect_official_website",
+            "source_action_status": "allowed_local_fixture",
+            "source_url": "https://example.com/team",
+            "evidence_id": "EV-W2-007",
+            "availability_status": "available",
+            "fact_type": "direct_fact",
+            "role_current": false
+          }
+        ]
+      },
+      "expected": {"batch_status": "completed_with_holds", "held_count": 1}
+    },
+    {
+      "name": "absence-states-remain-distinct",
+      "request": {
+        "candidate_id": "SYN-FAR-003",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "observations": [
+          {"observation_id": "OBS-NC", "field_key": "person.business_email", "entity_id": "P-4", "raw_value": null, "source_id": "prospect_official_website", "source_action_status": "allowed_local_fixture", "availability_status": "not_checked", "fact_type": "direct_fact"},
+          {"observation_id": "OBS-NF", "field_key": "person.business_phone", "entity_id": "P-4", "raw_value": null, "source_id": "prospect_official_website", "source_action_status": "allowed_local_fixture", "availability_status": "not_found", "fact_type": "direct_fact"},
+          {"observation_id": "OBS-UA", "field_key": "person.role_title", "entity_id": "P-4", "raw_value": null, "source_id": "hubspot_authoritative_records", "source_action_status": "preflight_passed_execution_not_authorized", "availability_status": "unavailable", "fact_type": "direct_fact"},
+          {"observation_id": "OBS-ER", "field_key": "person.full_name", "entity_id": "P-4", "raw_value": null, "source_id": "prospect_official_website", "source_action_status": "allowed_local_fixture", "availability_status": "error", "fact_type": "direct_fact"}
+        ]
+      },
+      "expected": {"batch_status": "completed", "field_states": ["unknown", "not_found", "unavailable", "error"]}
+    },
+    {
+      "name": "conflicting-values-held",
+      "request": {
+        "candidate_id": "SYN-FAR-004",
+        "segment": "farrier",
+        "operating_scope": "synthetic_test",
+        "observations": [
+          {"observation_id": "OBS-T1", "field_key": "person.role_title", "entity_id": "P-5", "raw_value": "Owner Farrier", "source_id": "prospect_official_website", "source_action_status": "allowed_local_fixture", "source_url": "https://example.com/team", "evidence_id": "EV-W2-008", "availability_status": "available", "fact_type": "direct_fact", "role_current": true},
+          {"observation_id": "OBS-T2", "field_key": "person.role_title", "entity_id": "P-5", "raw_value": "Apprentice", "source_id": "a1_approved_handoff", "source_action_status": "allowed_local_reuse", "source_url": "fixture://a1", "evidence_id": "EV-W2-009", "availability_status": "available", "fact_type": "direct_fact", "role_current": true}
+        ]
+      },
+      "expected": {"batch_status": "completed_with_holds", "held_count": 2, "field_state": "conflict"}
+    }
+  ]
+}

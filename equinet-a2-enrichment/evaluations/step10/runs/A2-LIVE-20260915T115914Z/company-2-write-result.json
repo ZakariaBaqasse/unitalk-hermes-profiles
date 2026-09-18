@@ -1,0 +1,25 @@
+{
+  "status": "reconciled",
+  "write_plan_sha256": "1b343258c851ba991869cc53e250cfefb82b499b1159463c10d086ffb5241bf8",
+  "receipts": [
+    {
+      "operation_id": "final-company-status",
+      "operation_type": "update_company_status",
+      "target_id": "8d7f70a7-f176-437c-ac66-55484d19bee6",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T12:41:58Z"
+      }
+    }
+  ],
+  "temporary_person_ids": {},
+  "read_receipt": {
+    "http_status": 200,
+    "attempt": 1,
+    "received_at": "2026-09-15T12:41:59Z"
+  },
+  "mismatches": [],
+  "external_writes": 1,
+  "completed_at": "2026-09-15T12:41:59Z"
+}

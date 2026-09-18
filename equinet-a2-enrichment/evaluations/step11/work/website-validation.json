@@ -1,0 +1,253 @@
+{
+  "schema_id": "a2-validated-website-decisions",
+  "schema_version": "0.1.0",
+  "created_at": "2026-09-18T17:40:57Z",
+  "status": "valid",
+  "run_id": "step11-fixture-run",
+  "company_id": "company-fixture-001",
+  "packet_sha256": "551267ddfbc7c7b1acef2c176baf7273b6f14196640a0feaf1c190a27103609c",
+  "retained_people": [
+    {
+      "observation_id": "website-person-7004cbac0675cee8",
+      "name": "Alex Morgan",
+      "provider_comparison_name": "Alex Morgan",
+      "name_normalization_reason": null,
+      "role": "Stable Operations Coordinator",
+      "role_priority": "UNKNOWN",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "duplicate_of_twenty_person_id": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.example.com/team",
+          "page_title": "Our Team",
+          "evidence_text": "Alex Morgan — Stable Operations Coordinator",
+          "page_content_sha256": "251dd130afc5e462437f9b884c01ed80d85715717a628c685089df5e844afbc9"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-person-e6cdf8df308890f6",
+      "name": "Taylor Brooks",
+      "provider_comparison_name": "Taylor Brooks",
+      "name_normalization_reason": null,
+      "role": "Veterinary Receptionist",
+      "role_priority": "UNKNOWN",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "duplicate_of_twenty_person_id": null,
+      "page_evidence": [
+        {
+          "page_index": 5,
+          "page_url": "https://www.example.com/staff",
+          "page_title": "Staff Directory",
+          "evidence_text": "Taylor Brooks — Veterinary Receptionist",
+          "page_content_sha256": "9744796371cd54ba73385694d8363b2780553f0873883ae99e07907bdbe4b6f3"
+        }
+      ]
+    }
+  ],
+  "retained_contacts": [
+    {
+      "observation_id": "website-contact-388270b7e2479fbc",
+      "contact_type": "phone",
+      "value": "+1 (859) 555-0100",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "company-fixture-001"
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "Email: office@example.com Phone: +1 (859) 555-0100",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "Phone: +1 (859) 555-0100",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.example.com/contact",
+          "page_title": "Contact",
+          "evidence_text": "+1 (859) 555-0100",
+          "page_content_sha256": "31f26b9f95d47de9483c9512ccd819cf8ccdec7837ba6ad5d25a15b92a505f23"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-ce27a575d652b66b",
+      "contact_type": "email",
+      "value": "office@example.com",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "company-fixture-001"
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "Email: office@example.com Phone: +1 (859) 555-0100",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "Email: office@example.com",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.example.com/contact",
+          "page_title": "Contact",
+          "evidence_text": "General enquiries: office@example.com",
+          "page_content_sha256": "31f26b9f95d47de9483c9512ccd819cf8ccdec7837ba6ad5d25a15b92a505f23"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-f624041796afcd72",
+      "contact_type": "email",
+      "value": "alex.morgan@example.com",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "company-fixture-001"
+      },
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.example.com/team",
+          "page_title": "Our Team",
+          "evidence_text": "alex.morgan@example.com",
+          "page_content_sha256": "251dd130afc5e462437f9b884c01ed80d85715717a628c685089df5e844afbc9"
+        }
+      ]
+    }
+  ],
+  "retained_social_links": [
+    {
+      "observation_id": "website-social-0d65762f6704abe5",
+      "platform": "tiktok",
+      "url": "https://www.tiktok.com/@exampleequine",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "TikTok",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-2d8936bb8a53ace3",
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/company/exampleequine",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "LinkedIn",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-3865ad7abc90039a",
+      "platform": "instagram",
+      "url": "https://www.instagram.com/exampleequine",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "Instagram",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-45a0c648ce570b62",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@exampleequine",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "YouTube",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-a1b11e9d1a424b85",
+      "platform": "x",
+      "url": "https://x.com/exampleequine",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "X",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-a6ffb9e611643cda",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/exampleequine",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.example.com/",
+          "page_title": "Example Equine Centre",
+          "evidence_text": "Facebook",
+          "page_content_sha256": "4739f035c356224b39557191f2e78b6be3cc3ba25cdf20eee80eed8f9cf63bbc"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-b2eb6e7505b6ec57",
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/alex-morgan-example",
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.example.com/team",
+          "page_title": "Our Team",
+          "evidence_text": "https://www.linkedin.com/in/alex-morgan-example",
+          "page_content_sha256": "251dd130afc5e462437f9b884c01ed80d85715717a628c685089df5e844afbc9"
+        }
+      ]
+    }
+  ],
+  "retained_people_count": 2,
+  "person_extraction_coverage": {
+    "status": "complete",
+    "semantic_block_count": 4,
+    "deterministic_candidate_count": 3,
+    "llm_observation_proposals_validated": true,
+    "reviewed_block_count": 4,
+    "accepted_proposal_count": 0,
+    "ignored_proposal_count": 0
+  },
+  "website_no_target_coverage_complete": true,
+  "role_based_eligibility_filter_applied": false,
+  "external_calls": 0,
+  "external_actions": 0,
+  "errors": [],
+  "artifact_sha256": "24f1e478fb48e1460cdebc40fee6a75a79b3cc954f03c75a9ce31829e292b4f6"
+}

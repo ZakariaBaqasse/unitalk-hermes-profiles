@@ -1,0 +1,44 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2A",
+  "artifact": "foundations/A2-CANONICAL-RECORD-DESIGN.md",
+  "artifact_version": "0.1.0",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-16T16:37:04Z",
+  "approved_decisions": {
+    "R1": "One A2 record lineage per accepted A1 handoff version; materially changed handoffs create a new linked lineage.",
+    "R2": "Every released A2 JSON revision is immutable and changes create a new record revision.",
+    "R3": "The complete accepted A1-to-A2 handoff is embedded as immutable source input.",
+    "R4": "The stable schema uses generic field_assessments and the business field list remains in a separate versioned catalogue.",
+    "R5": "Each field is modelled as baseline, observations, one proposed resolution, human decision and separate application state.",
+    "R6": "A2 evidence uses an A2 namespace and reused A1 evidence remains referenced as A1 evidence.",
+    "R7": "The record supports field-level and record-level review; protected-field changes require explicit field-level approval.",
+    "R8": "The record stores requalification signals, requalification returns and authoritative A1 score-revision references while A1 owns scoring.",
+    "R9": "External-system IDs are nullable and connector-controlled; null never means checked, absent or eligible."
+  },
+  "technical_validation": {
+    "required_design_sections": "24/24 pass",
+    "canonical_sections": "14/14 pass",
+    "ownership_boundaries": "10/10 pass",
+    "forbidden_claims": 0,
+    "language_audit": "pass"
+  },
+  "not_approved": [
+    "detailed field dictionary and exact enums",
+    "canonical JSON Schema",
+    "business field catalogue",
+    "minimum data packages",
+    "source, provider, confidence, freshness and conflict policies",
+    "HubSpot or Twenty mapping",
+    "live enrichment",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2B — Field Dictionary and State Model"
+}

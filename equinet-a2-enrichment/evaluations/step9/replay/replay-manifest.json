@@ -1,0 +1,116 @@
+{
+  "record_type": "step9_exact_no_web_replay",
+  "profile": "equinet-a2-enrichment",
+  "release_candidate": "equinet-a2-no-integration-1.0.0-rc.1",
+  "status": "pass",
+  "candidate_count": 2,
+  "candidates_passed": 2,
+  "web_calls": 0,
+  "provider_calls": 0,
+  "external_actions": 0,
+  "results": [
+    {
+      "candidate_id": "A1-DARLEY-JONABELL-001",
+      "accepted_record": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-005-record-approved.json",
+      "accepted_sha256": "bc2b618e0be5270edef6325b28d205a299c19addf4a18688b3040dc1ca8232bf",
+      "replay_record": "evaluations/step9/replay/A1-DARLEY-JONABELL-001/canonical.json",
+      "replay_sha256": "bc2b618e0be5270edef6325b28d205a299c19addf4a18688b3040dc1ca8232bf",
+      "canonical_byte_equal": true,
+      "canonical_validation": {
+        "schema_version": "1.0.0",
+        "record_id": "A2-INIT_D21BC65DDC16BB6B66F3",
+        "record_revision_id": "A2-REV-STEP8_D21BC65DDC16BB6B66F3_005",
+        "previous_revision_checked": true,
+        "field_catalogue_checked": false,
+        "valid": true,
+        "errors": []
+      },
+      "review_validation": {
+        "name": "step9-A1-DARLEY-JONABELL-001",
+        "canonical_record_sha256": "f125a7354e5b4635cfd352bc51ff3bed16ff5a0e0485189275685e8bdaa1ad6d",
+        "row_counts": {
+          "summary": 1,
+          "review_queue": 1,
+          "fields": 11,
+          "evidence": 5,
+          "requalification": 0,
+          "audit": 5
+        },
+        "errors": [],
+        "passed": true
+      },
+      "text_export_equality": {
+        "review.md": true,
+        "summary.csv": true,
+        "review-queue.csv": true,
+        "fields.csv": true,
+        "evidence.csv": true,
+        "requalification.csv": true,
+        "audit.csv": true
+      },
+      "xlsx_cell_value_equality": true,
+      "review_manifest_semantic_equality": true,
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 1,
+        "fields": 11,
+        "evidence": 5,
+        "requalification": 0,
+        "audit": 5
+      },
+      "passed": true
+    },
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "accepted_record": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-005-held.json",
+      "accepted_sha256": "710f0dab47f206eca0dd7fba1658b447509f7f15d35912ec4a6a385bc90f5eb3",
+      "replay_record": "evaluations/step9/replay/A1-RR-PODIATRY-001/canonical.json",
+      "replay_sha256": "710f0dab47f206eca0dd7fba1658b447509f7f15d35912ec4a6a385bc90f5eb3",
+      "canonical_byte_equal": true,
+      "canonical_validation": {
+        "schema_version": "1.0.0",
+        "record_id": "A2-INIT_5DC8D468C11B265DA37B",
+        "record_revision_id": "A2-REV-STEP8_5DC8D468C11B265DA37B_005",
+        "previous_revision_checked": true,
+        "field_catalogue_checked": false,
+        "valid": true,
+        "errors": []
+      },
+      "review_validation": {
+        "name": "step9-A1-RR-PODIATRY-001",
+        "canonical_record_sha256": "6b5588934629edc1a590d91709dd40d6f9f8dcf6d59634a52d3bc0c185c4ed0e",
+        "row_counts": {
+          "summary": 1,
+          "review_queue": 6,
+          "fields": 13,
+          "evidence": 5,
+          "requalification": 0,
+          "audit": 5
+        },
+        "errors": [],
+        "passed": true
+      },
+      "text_export_equality": {
+        "review.md": true,
+        "summary.csv": true,
+        "review-queue.csv": true,
+        "fields.csv": true,
+        "evidence.csv": true,
+        "requalification.csv": true,
+        "audit.csv": true
+      },
+      "xlsx_cell_value_equality": true,
+      "review_manifest_semantic_equality": true,
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 6,
+        "fields": 13,
+        "evidence": 5,
+        "requalification": 0,
+        "audit": 5
+      },
+      "passed": true
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,54 @@
+{
+  "manifest_id": "equinet-a2-step3a-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "files": [
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json",
+      "bytes": 40025,
+      "sha256": "7ac3ca561dad724a0c390fb50e4905005814382be9ed204d97336d7f965a9d7b"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.csv",
+      "bytes": 16806,
+      "sha256": "66d65650a73c65066b6cee41403b62587122a260686bba4aa51c778fc2d74aec"
+    },
+    {
+      "path": "foundations/A2-BUSINESS-FIELD-CATALOGUE.md",
+      "bytes": 8357,
+      "sha256": "b60c553cb03ca58545acea97a104d30abdb2f618dcce47d3aa597f8435f69ce8"
+    },
+    {
+      "path": "evaluations/step3a/A2-BUSINESS-FIELD-CATALOGUE-REVIEW.md",
+      "bytes": 2062,
+      "sha256": "21276e37143f47fce859f71d34e5adf9b9703f5720a2e8044a4a0d6e714c7b62"
+    },
+    {
+      "path": "scripts/build_step3a_business_field_catalogue.py",
+      "bytes": 20195,
+      "sha256": "bfaad2a3cce88f8a5a5237e96654f2e8df53d4b34e102401f7c40bf8091c4ca8"
+    },
+    {
+      "path": "scripts/validate_step3a_business_field_catalogue.py",
+      "bytes": 28085,
+      "sha256": "969b8b5a32e52bf6db3c0a6b7cfc5db84426ed135af7041fe49616887a6ac0d7"
+    },
+    {
+      "path": "foundations/sources/A2-SOURCE-AND-FIELD-DECISION-PACK.md",
+      "bytes": 21052,
+      "sha256": "737ed178552b95503fd3027ed694d95d77144af4be71dd6f0d26b337f1fc7d04"
+    },
+    {
+      "path": "evaluations/step2i/acceptance-record.json",
+      "bytes": 3757,
+      "sha256": "504f485f71df407684a927e8b47d3fbbccef508e499a47a88df99c018d505e8c"
+    },
+    {
+      "path": "evaluations/step3a/technical-validation.json",
+      "bytes": 5422,
+      "sha256": "4767dd22cd511de2613842a660c06cbc160ce70e0f9578a635f12e502c953d7d"
+    }
+  ],
+  "file_count": 9,
+  "external_actions": 0
+}

@@ -1,0 +1,47 @@
+{
+  "record_type": "hubspot_metadata_intake_update",
+  "profile": "equinet-a2-enrichment",
+  "recorded_at": "2026-08-25T09:51:49Z",
+  "inputs": {
+    "data_model_image_sha256": "1aac099ce0158752e336e813dfe56728a8b7a66f28448a8d098193072bcfce39",
+    "property_export_sha256": "3303992627bad953e28913eaf3b19cdc998fc0c6f3f6f29ef455d788e8c9b952",
+    "property_rows": 950,
+    "exported_objects": [
+      "Company",
+      "Contact",
+      "Deal",
+      "Ticket",
+      "Complaints",
+      "Sample Requests"
+    ]
+  },
+  "profile_changes": {
+    "implementation_contract": "0.1.2",
+    "soul_integration_status": "updated",
+    "hubspot_snapshot_manifest": "foundations/hubspot/HUBSPOT-SNAPSHOT-MANIFEST.json",
+    "hubspot_intake_audit": "foundations/hubspot/HUBSPOT-DATA-MODEL-INTAKE-AUDIT.md"
+  },
+  "unchanged_foundations": [
+    "A1-to-A2 handoff structure and version",
+    "Canonical A2 record design decisions R1-R9",
+    "A1 scoring ownership and score-revision lifecycle",
+    "No-integration state ceiling",
+    "CRM-write and outreach prohibitions"
+  ],
+  "newly_possible": [
+    "Draft A2 Contact/Company/Deal property mapping",
+    "Exact metadata-based type, enum and read-only validation",
+    "Protected-field candidate register",
+    "Draft consent, customer, Deal, sequence and duplicate eligibility mapping",
+    "HubSpot gap analysis against canonical A2 fields"
+  ],
+  "still_blocked": [
+    "Live HubSpot reads and writes",
+    "Live values and fill-rate verification",
+    "Association-label and cardinality verification",
+    "Workflow/list/form dependency verification",
+    "OAuth scopes and source-system permission verification",
+    "Production integration testing and acceptance"
+  ],
+  "next_gate": "Step 2B Field Dictionary and State Model using the received metadata as a mapping reference"
+}

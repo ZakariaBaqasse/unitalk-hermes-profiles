@@ -1,0 +1,38 @@
+{
+  "record_type": "step5_closure_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "5E",
+  "decision": "approved_and_promoted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-29T17:26:25Z",
+  "approved_decisions": [
+    "5E-1",
+    "5E-2",
+    "5E-3",
+    "5E-4",
+    "5E-5",
+    "5E-6",
+    "5E-7",
+    "5E-8",
+    "5E-9",
+    "5E-10"
+  ],
+  "runtime_manifest": "foundations/contracts/skills/a2-step5-runtime-manifest-0.1.0.json",
+  "runtime_manifest_sha256": "c913973a862711559c841c65af08f8fe07d3ced8dd01e5d40f0e227e92ad3d7d",
+  "technical_validation": "evaluations/step5e/technical-validation.json",
+  "technical_validation_sha256": "ed5c61120734aa6bc4f67bf87e3cd16fb3b32fb537d6467a513c3d4a1a36fd86",
+  "active_foundation_manifest": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+  "active_foundation_manifest_sha256": "f2048d1361a9ecad16e6ed5d052fee8969f47bc033f77dbb311f38ae98174d18",
+  "skills": 10,
+  "operators": 14,
+  "deterministic_replay": "58/58 pass",
+  "behavioural_replay": "10/10 pass",
+  "workflow_scenarios": "2/2 pass",
+  "external_calls": 0,
+  "external_actions": 0,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 6 — Model, Tools, Permissions and Quotas"
+}

@@ -1,0 +1,45 @@
+{
+  "manifest_id": "equinet-a2-step5a-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "ready_for_severine_review_not_approved",
+  "files": [
+    {
+      "path": "foundations/contracts/skills/a2-operational-skill-manifest-0.1.0-draft.1.json",
+      "bytes": 20515,
+      "sha256": "8a07a4f4588f313c4ed2a53e0277e247afba21f2c762c02cf9e26ccfa282bbfe"
+    },
+    {
+      "path": "foundations/A2-OPERATIONAL-SKILL-ARCHITECTURE.md",
+      "bytes": 7520,
+      "sha256": "1e56acfae80a5c790e6a19fd35ae2cefda3618db76c76d3b983efe6b4577101c"
+    },
+    {
+      "path": "evaluations/step5a/A2-OPERATIONAL-SKILL-ARCHITECTURE-REVIEW.md",
+      "bytes": 1653,
+      "sha256": "1b306ef6c12d9c60fdbf3f506f71b524e1554282506a972ea94ca8ad3ad28036"
+    },
+    {
+      "path": "scripts/build_step5a_skill_architecture.py",
+      "bytes": 22090,
+      "sha256": "3ce2ea7e8656054844c81f3a33313bd8670f39fa4b78209caa80ce8086851611"
+    },
+    {
+      "path": "scripts/validate_step5a_skill_architecture.py",
+      "bytes": 12931,
+      "sha256": "3caf3e2b7e868768c3dde9feab5c2fc46c6b825eaa7d04bda9ad4ee3689bd555"
+    },
+    {
+      "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 9981,
+      "sha256": "1a457483d9905a5bb1da597d14351b6523662b1d6b257f8a796cd92c8dc089fb"
+    },
+    {
+      "path": "evaluations/step5a/technical-validation.json",
+      "bytes": 4779,
+      "sha256": "5066058a39b25e1ac968f0d95b8fd8fb8876815f1eab6f7c25bedf571a30c946"
+    }
+  ],
+  "file_count": 7,
+  "skills_created": 0,
+  "external_actions": 0
+}

@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-write-proposal-0.1.3",
+  "required": [
+    "run_id",
+    "company_id",
+    "company_final_status",
+    "resolved_people"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "company_id": {
+      "type": "string"
+    },
+    "company_final_status": {
+      "enum": [
+        "ENRICHED",
+        "PARTIALLY_ENRICHED",
+        "COMPLETED_NO_TARGET",
+        "RETRYABLE_ERROR",
+        "BLOCKED"
+      ]
+    },
+    "resolved_people": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source_kind",
+          "provider_person_id",
+          "statuses",
+          "field_decisions"
+        ],
+        "properties": {
+          "source_kind": {
+            "enum": [
+              "existing",
+              "new"
+            ]
+          },
+          "provider_person_id": {
+            "type": "string"
+          },
+          "statuses": {
+            "type": "object"
+          },
+          "field_decisions": {
+            "type": "object",
+            "additionalProperties": {
+              "enum": [
+                "add",
+                "update_a2_owned",
+                "no_change",
+                "preserve_manual",
+                "hold_conflict",
+                "privacy_review",
+                "reject_invalid"
+              ]
+            }
+          },
+          "selection_stage": {
+            "enum": [
+              "lookup",
+              "primary",
+              "owner",
+              "linked_secondary",
+              "secondary",
+              "website"
+            ]
+          }
+        },
+        "additionalProperties": true,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "source_kind": {
+                  "const": "new"
+                }
+              },
+              "required": [
+                "source_kind"
+              ]
+            },
+            "then": {
+              "required": [
+                "selection_stage"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "company_merge": {
+      "type": "object",
+      "required": [
+        "baseline_sha256",
+        "baseline",
+        "company_field_updates"
+      ],
+      "properties": {
+        "baseline_sha256": {
+          "type": "string"
+        },
+        "baseline": {
+          "type": "object"
+        },
+        "company_field_updates": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

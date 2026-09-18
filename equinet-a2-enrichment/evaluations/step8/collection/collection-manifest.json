@@ -1,0 +1,167 @@
+{
+  "record_type": "step8_bounded_official_site_collection",
+  "executed_at": "2026-08-30T11:58:27.885263Z",
+  "scope": "two_authorised_real_public_business_prospects",
+  "candidate_ids": [
+    "A1-DARLEY-JONABELL-001",
+    "A1-RR-PODIATRY-001"
+  ],
+  "robots_preflight": {
+    "roodandriddle.com": {
+      "url": "https://roodandriddle.com/robots.txt",
+      "http_status": 200,
+      "mode": "parsed",
+      "error": null,
+      "content_sha256": "e1f21c9aa28d50ca112ed357f34b67c550597effd4d42fd55b4e27300dd8f9c1"
+    },
+    "www.darleyamerica.com": {
+      "url": "https://www.darleyamerica.com/robots.txt",
+      "http_status": 200,
+      "mode": "parsed",
+      "error": null,
+      "content_sha256": "3200f655bd0e859a4fb1a7237cc64d4cec38824f6f5ee914c37d0b9de0f9c554"
+    },
+    "www.roodandriddle.com": {
+      "url": "https://www.roodandriddle.com/robots.txt",
+      "http_status": 200,
+      "mode": "parsed",
+      "error": null,
+      "content_sha256": "e1f21c9aa28d50ca112ed357f34b67c550597effd4d42fd55b4e27300dd8f9c1"
+    }
+  },
+  "records": [
+    {
+      "candidate_id": "A1-DARLEY-JONABELL-001",
+      "url": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+      "host": "www.darleyamerica.com",
+      "robots_allowed": true,
+      "status": "collected",
+      "attempts": [
+        {
+          "attempt": 1,
+          "http_status": 200,
+          "success": true,
+          "error": null
+        }
+      ],
+      "firecrawl_calls": 1,
+      "exa_calls": 0,
+      "resolved_url": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+      "title": "Darley - thoroughbred horse farm tours in Lexington, Kentucky",
+      "markdown_path": "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-01.md",
+      "markdown_bytes": 5071,
+      "markdown_sha256": "a8a4b767e81834e7792075ee42f7b2877d299975ba783b41942858bd0f2c4b52",
+      "discovery_fallback": null
+    },
+    {
+      "candidate_id": "A1-DARLEY-JONABELL-001",
+      "url": "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+      "host": "www.darleyamerica.com",
+      "robots_allowed": true,
+      "status": "collected",
+      "attempts": [
+        {
+          "attempt": 1,
+          "http_status": 200,
+          "success": true,
+          "error": null
+        }
+      ],
+      "firecrawl_calls": 1,
+      "exa_calls": 0,
+      "resolved_url": "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+      "title": "Darley’s Kentucky thoroughbred racehorse stud farms in America",
+      "markdown_path": "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md",
+      "markdown_bytes": 5247,
+      "markdown_sha256": "1cec71b9e37e56aa79ded1d1f28e11a26a0810c6ce3ba83f75ab7cadbbe34d07",
+      "discovery_fallback": null
+    },
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "url": "https://roodandriddle.com/lexington-podiatry-team",
+      "host": "roodandriddle.com",
+      "robots_allowed": true,
+      "status": "collected",
+      "attempts": [
+        {
+          "attempt": 1,
+          "http_status": 200,
+          "success": true,
+          "error": null
+        }
+      ],
+      "firecrawl_calls": 1,
+      "exa_calls": 0,
+      "resolved_url": "https://roodandriddle.com/lexington-podiatry-team",
+      "title": "Lexington Podiatry - Rood & Riddle Equine Hospital",
+      "markdown_path": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+      "markdown_bytes": 5123,
+      "markdown_sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+      "discovery_fallback": null
+    },
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "url": "https://roodandriddle.com/lexington/",
+      "host": "roodandriddle.com",
+      "robots_allowed": true,
+      "status": "collected",
+      "attempts": [
+        {
+          "attempt": 1,
+          "http_status": 200,
+          "success": true,
+          "error": null
+        }
+      ],
+      "firecrawl_calls": 1,
+      "exa_calls": 0,
+      "resolved_url": "https://roodandriddle.com/lexington/",
+      "title": "Lexington - Rood & Riddle Equine Hospital",
+      "markdown_path": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-02.md",
+      "markdown_bytes": 2986,
+      "markdown_sha256": "a2413050089a5b55e4e35b8002dc2fb6741d5dce518a6b014566f651cfc0974a",
+      "discovery_fallback": null
+    },
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "url": "https://www.roodandriddle.com/contact",
+      "host": "www.roodandriddle.com",
+      "robots_allowed": true,
+      "status": "collected",
+      "attempts": [
+        {
+          "attempt": 1,
+          "http_status": 200,
+          "success": true,
+          "error": null
+        }
+      ],
+      "firecrawl_calls": 1,
+      "exa_calls": 0,
+      "resolved_url": "https://www.roodandriddle.com/contact",
+      "title": "General Contact - Rood & Riddle Equine Hospital",
+      "markdown_path": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-03.md",
+      "markdown_bytes": 761,
+      "markdown_sha256": "20cd0158d87eb4a9932987fb13422ffc809dc4ef66438396e240761d820e0356",
+      "discovery_fallback": null
+    }
+  ],
+  "summary": {
+    "targets": 5,
+    "collected": 5,
+    "blocked": 0,
+    "failed": 0,
+    "robots_calls": 3,
+    "firecrawl_calls": 5,
+    "exa_calls": 0
+  },
+  "model_processing": false,
+  "hubspot_calls": 0,
+  "twenty_calls": 0,
+  "apify_calls": 0,
+  "outreach_actions": 0,
+  "external_calls": 8,
+  "external_actions": 0,
+  "secrets_logged": false,
+  "pass": true
+}

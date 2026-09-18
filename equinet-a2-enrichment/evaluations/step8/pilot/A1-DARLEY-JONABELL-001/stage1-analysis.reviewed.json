@@ -1,0 +1,99 @@
+{
+  "stage": "step8_jonabell_stage1",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "executed_at": "2026-08-30T12:18:50.241728Z",
+  "mode": "local_analysis_of_collected_pages",
+  "profile": "equinet-a2-enrichment",
+  "model": "deepseek-v4-flash",
+  "unitalk_gateway": "litellm-unitalk",
+  "field_dispositions": [
+    {
+      "field_key": "organisation.stable_type",
+      "disposition": "retain_for_evidence_assessment",
+      "proposed_value": "breeding",
+      "normalised_value": "breeding",
+      "evidence_basis": "page-01.md — explicit 'privately-owned, working thoroughbred horse farm' with breeding shed, stallion complex, thoroughbred breeding/racing operation",
+      "matches_a1_reuse": true,
+      "a1_reuse_value": "breeding",
+      "validation_state": "present_unverified",
+      "validation_action": "accept_for_wave3_evidence_assessment",
+      "field_assessment_id": "A2-FLD-2D64EACA1A6DFF97",
+      "notes": "Direct official-site fact accepted for Wave 3 evidence/confidence assessment; final verification and canonical proposal are not assigned in Stage 1."
+    },
+    {
+      "field_key": "person.role_title",
+      "disposition": "retain_for_evidence_assessment",
+      "proposed_value": "Nominations Sales and Operating Manager, Jonabell Farm",
+      "normalised_value": "Nominations Sales and Operating Manager, Jonabell Farm",
+      "evidence_basis": "page-02.md — official contact page listing Kate Galvin with this exact role title under name and photograph",
+      "matches_a1_reuse": true,
+      "a1_reuse_value": "Nominations Sales and Operating Manager, Jonabell Farm",
+      "validation_state": "present_unverified",
+      "validation_action": "accept_for_wave3_evidence_assessment",
+      "field_assessment_id": "A2-FLD-E65EE5C6BAB67CB0",
+      "notes": "Direct official-site fact accepted for Wave 3 evidence/confidence assessment; final verification and canonical proposal are not assigned in Stage 1."
+    },
+    {
+      "field_key": "person.business_email",
+      "disposition": "retain_for_evidence_assessment",
+      "proposed_value": "kgalvin@godolphin.com",
+      "normalised_value": "kgalvin@godolphin.com",
+      "evidence_basis": "page-02.md — official contact page listing kgalvin@godolphin.com under Kate Galvin's entry",
+      "matches_a1_reuse": true,
+      "a1_reuse_value": "kgalvin@godolphin.com",
+      "validation_state": "present_unverified",
+      "validation_action": "accept_for_wave3_evidence_assessment",
+      "field_assessment_id": "A2-FLD-4361D5B6055BFC30",
+      "notes": "Direct official-site fact accepted for Wave 3 evidence/confidence assessment; final verification and canonical proposal are not assigned in Stage 1."
+    }
+  ],
+  "target_role_priority_recommendation": {
+    "field_key": "relationship.target_role_priority",
+    "recommendation": "secondary",
+    "recommendation_type": "human_reviewable_classification",
+    "not_a_sourced_fact": true,
+    "rationale": "Kate Galvin's verified role is 'Nominations Sales and Operating Manager, Jonabell Farm'. Under the approved horse_owner target_role_model, 'operations_manager' is classified as a secondary target role. The role explicitly contains 'Operating Manager', which maps to the 'operations_manager' archetype: general_manager and operations_manager are secondary targets for horse_owner.",
+    "validation_state": "rejected_as_observation",
+    "validation_errors": [
+      "source_preflight receipt does not match observation scope",
+      "inference is prohibited for this field"
+    ],
+    "human_review_required": true,
+    "recommendation_basis_evidence_ids": [
+      "EV-STAGE1-OFFICIAL-SITE-002"
+    ],
+    "supporting_role_evidence_ids": [
+      "OBS-ROLE-TITLE-001"
+    ],
+    "notes": "The validator correctly rejected this as a direct observation because target_role_priority is a classification, not a sourced fact. This recommendation is presented for human review as specified in the Stage 1 instructions.",
+    "review_decision": "pending_severine"
+  },
+  "boundaries_verified": [
+    "Preserved exact published role title: true",
+    "Did not infer purchasing authority: true",
+    "Recommended secondary as reviewable classification, not sourced fact: true",
+    "Did not collect or operationalise the published mobile number: true",
+    "Did not set exact farm horse count from seven named stallions: true",
+    "Did not open social-profile destinations: true",
+    "No Web, Exa, Firecrawl, Apify, HubSpot, Twenty or n8n calls: true",
+    "No A1 score calculation or change: true",
+    "No outreach eligibility created: true"
+  ],
+  "outputs_created": [
+    "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/stage1-analysis.json",
+    "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/receipts/stable-type.json",
+    "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/receipts/role-title.json",
+    "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/receipts/business-email.json",
+    "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/observation-batch.json",
+    "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/validated-observations.json",
+    "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/stage1-audit.json"
+  ],
+  "next": "Awaiting Séverine decision on secondary target-role classification. Do not create a canonical revision or process Rood & Riddle.",
+  "review_correction": {
+    "status": "unitalk_reviewed_summary",
+    "raw_profile_output": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/stage1-analysis.json",
+    "raw_profile_output_sha256": "9b3d9d459787b6ce2cd8e424a4de97a237add899d24c662b094f9d84a1674f4f",
+    "reason": "Correct preliminary-state wording, assessment IDs, gateway identity and audit references without changing the validated observation batch."
+  },
+  "sha256": "1dfc9de4f6d8421c888fe574e35a35f8bc11c9a990410f266330fa320c58926a"
+}

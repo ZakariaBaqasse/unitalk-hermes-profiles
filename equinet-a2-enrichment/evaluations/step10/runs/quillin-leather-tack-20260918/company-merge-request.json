@@ -1,0 +1,113 @@
+{
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+  "baseline": {
+    "email": {
+      "primaryEmail": "",
+      "additionalEmails": []
+    },
+    "phone": {
+      "primaryPhoneNumber": "8599870215",
+      "primaryPhoneCountryCode": "US",
+      "primaryPhoneCallingCode": "+1",
+      "additionalPhones": []
+    },
+    "linkedinLink": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "facebook": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    }
+  },
+  "observations": [
+    {
+      "field": "email",
+      "value": "order@Quillin.com",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "evidence_refs": [
+        "website-contact-22eeb8f6627ea04c"
+      ]
+    },
+    {
+      "field": "phone",
+      "value": "859-987-0215",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "evidence_refs": [
+        "website-contact-64cae5e3100b797f"
+      ]
+    },
+    {
+      "field": "facebook",
+      "value": "https://www.facebook.com/QuillinHalters/",
+      "label": "Facebook",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "evidence_refs": [
+        "website-social-dfcd420ab56ac054"
+      ]
+    },
+    {
+      "field": "instagram",
+      "value": "https://www.instagram.com/quillinleatherandtack/",
+      "label": "Instagram",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "evidence_refs": [
+        "website-social-ee2475e1a67e24b5"
+      ]
+    },
+    {
+      "field": "xTwitter",
+      "value": "https://twitter.com/QuillinLeather",
+      "label": "X",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "evidence_refs": [
+        "website-social-60ce1583b2bb3f73"
+      ]
+    },
+    {
+      "field": "youtube",
+      "value": "https://www.youtube.com/@ralphquillin",
+      "label": "Youtube",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "evidence_refs": [
+        "website-social-79b7667c3616fb9c"
+      ]
+    }
+  ],
+  "errors": []
+}

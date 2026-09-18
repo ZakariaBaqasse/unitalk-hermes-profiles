@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "a2-website-decisions-0.1.0",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "run_id",
+    "company_id",
+    "status",
+    "retained_people",
+    "retained_contacts",
+    "retained_social_links"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "a2-validated-website-decisions"
+    },
+    "status": {
+      "enum": [
+        "valid",
+        "invalid"
+      ]
+    },
+    "retained_people": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "observation_id",
+          "name",
+          "page_evidence"
+        ],
+        "properties": {
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role_priority": {
+            "enum": [
+              "PRIMARY",
+              "SECONDARY",
+              "REVIEW_ONLY",
+              "EXCLUDED",
+              "UNKNOWN"
+            ]
+          }
+        }
+      }
+    },
+    "retained_contacts": {
+      "type": "array"
+    },
+    "retained_social_links": {
+      "type": "array"
+    },
+    "role_based_eligibility_filter_applied": {
+      "const": false
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,82 @@
+{
+  "spec_id": "equinet-a2-review-view",
+  "version": "0.1.0",
+  "status": "promoted_by_unitalk_in_step_2i",
+  "canonical_input": {
+    "schema_version": "1.0.0",
+    "source_of_truth": "canonical_json_only",
+    "mutation_allowed": false
+  },
+  "view_principles": [
+    "Every view is a deterministic projection of one canonical A2 record revision.",
+    "No projection may add, delete, approve, apply or reconcile a canonical value.",
+    "Full identifiers, URLs and evidence references must be preserved.",
+    "Arrays and structured values must be represented as JSON in CSV cells.",
+    "Missing, unavailable, not_found, unknown and error states must remain distinct.",
+    "A1 score and A2 data quality must remain visibly separate.",
+    "A2 may display requalification direction but not calculate replacement points or score."
+  ],
+  "formats": {
+    "markdown": {
+      "filename": "review.md",
+      "sections": [
+        "Decision Summary",
+        "Subject and Workflow",
+        "Review Queue",
+        "Gaps, Conflicts and Limitations",
+        "Requalification",
+        "Evidence Summary",
+        "Action Boundaries"
+      ]
+    },
+    "csv": {
+      "files": {
+        "summary": ["canonical_record_sha256", "a2_record_id", "record_revision_id", "segment", "subject", "workflow_state", "record_decision", "data_quality_status", "a2_eligibility_status", "a1_score", "a1_band", "field_count", "review_queue_count", "evidence_count", "signal_count", "score_revision_count", "limitations_json"],
+        "review_queue": ["canonical_record_sha256", "priority", "field_assessment_id", "field_key", "scope", "target_id", "baseline_value_json", "observations_json", "proposed_action", "proposed_value_json", "verification_status", "confidence_level", "freshness_status", "conflict_status", "protected_status", "evidence_ids_json", "field_quality_status", "field_review_decision", "application_status", "workflow_dependency_status", "application_error_json"],
+        "fields": ["canonical_record_sha256", "field_assessment_id", "field_key", "scope", "target_id", "presence_status", "availability_status", "field_quality_status", "baseline_value_json", "observations_json", "proposed_action", "proposed_value_json", "verification_status", "confidence_level", "freshness_status", "conflict_status", "protected_status", "evidence_ids_json", "field_review_decision", "field_review_reason", "application_status", "workflow_dependency_status", "application_error_json", "external_action_reference"],
+        "evidence": ["canonical_record_sha256", "evidence_id", "namespace", "source_id", "source_type", "source_policy_status", "source_url", "title", "retrieved_at", "source_date", "claim_type", "reliability_level", "supports_field_assessment_ids_json", "supports_requalification_signal_ids_json", "cost_status", "summary", "data_minimisation_notes"],
+        "requalification": ["canonical_record_sha256", "kind", "item_id", "status", "affected_criterion_id", "field_assessment_ids_json", "materiality", "potential_score_direction", "source_signal_ids_json", "source_requalification_return_id", "evidence_ids_json", "signal_snapshot_sha256", "result_sha256", "receipt_status", "delivery_reference", "prior_score", "revised_score", "prior_band", "revised_band", "review_decision", "result_reference"],
+        "audit": ["canonical_record_sha256", "event_id", "event_type", "timestamp", "actor_id", "actor_role", "model", "tools_json", "input_references_json", "output_references_json", "external_action_state", "external_action_reference", "usage_json"]
+      }
+    },
+    "xlsx": {
+      "filename": "review.xlsx",
+      "sheets": ["Read Me", "Summary", "Review Queue", "Fields", "Evidence", "Requalification", "Audit"],
+      "font": "Arial",
+      "freeze_header": true,
+      "filters": true,
+      "formula_policy": "no_formulas"
+    }
+  },
+  "queue_rules": {
+    "include_when": [
+      "field_review.decision is pending, held or needs_changes",
+      "field_quality_status is gap, conflict, partial, invalid or error",
+      "proposed_resolution.action is add, update, clear_request or hold",
+      "proposed_resolution.conflict_status is possible or material",
+      "proposed_resolution.protected_status is protected_manual, protected_policy or protected_authoritative",
+      "application.status is blocked or failed",
+      "application.workflow_dependency_status is blocked or error",
+      "application.error is present"
+    ],
+    "priority_order": ["blocked", "protected", "conflict", "gap", "change", "review"]
+  },
+  "read_only_boundary": {
+    "reviewer_input_columns": false,
+    "crm_write": false,
+    "outreach": false,
+    "provider_call": false,
+    "score_calculation": false,
+    "writeback_import": "future_guarded_workflow_only",
+    "csv_formula_escape": "Values beginning with formula-control characters or the reserved prefix are encoded as __A2_TEXT_B64__:<urlsafe-base64-utf8>; decoding is reversible.",
+    "xlsx_formula_escape": "Formula-like strings beginning =, +, - or @ are stored as explicit Excel string cells. Leading tab or carriage-return strings use the reversible Base64-prefixed text encoding because SpreadsheetML normalises those control characters."
+  },
+  "required_manifest_fields": [
+    "spec_version",
+    "canonical_record_path",
+    "canonical_record_sha256",
+    "renderer_sha256",
+    "outputs",
+    "validation"
+  ]
+}

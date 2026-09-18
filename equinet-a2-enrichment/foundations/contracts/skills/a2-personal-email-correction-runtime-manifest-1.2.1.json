@@ -1,0 +1,174 @@
+{
+  "manifest_id": "equinet-a2-personal-email-correction-runtime",
+  "version": "1.2.1",
+  "status": "pilot_ready_no_integration_personal_email_correction",
+  "created_at": "2026-09-06T13:38:10Z",
+  "business_configuration_version": "0.3.1",
+  "decision_id": "A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906",
+  "files": [
+    {
+      "path": "skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "bytes": 3098,
+      "sha256": "cf7cdec99a61b9206e4560ab9f7e551b9cc0a162b7dcff7245dbc9742b969812",
+      "version": "0.1.0"
+    },
+    {
+      "path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "bytes": 2883,
+      "sha256": "37e336023b71c933613e8088975374ae781add08c6eeb930ea533c0f55389ed1",
+      "version": "0.2.0"
+    },
+    {
+      "path": "skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "bytes": 2453,
+      "sha256": "d978d067687d28190a9dd681b5d47c7c9bdc0392e90d64fb49955368c148be63",
+      "version": "0.1.0"
+    },
+    {
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "bytes": 4322,
+      "sha256": "d87ebbd4ad831c684156b9ade560d5dc5c61bca9693bcdb574104de4513c33f5",
+      "version": "0.3.1"
+    },
+    {
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "bytes": 4587,
+      "sha256": "6364c2e98dda8ddd2b91476250f17eb02a67c4e841274b642df5c56be02b77d8",
+      "version": "0.3.1"
+    },
+    {
+      "path": "skills/a2-field-verification/SKILL.md",
+      "bytes": 3706,
+      "sha256": "e114a53560479736e21686b3e2ef639dd486f3d8ab4d68a42d73eb2683482c46",
+      "version": "0.3.1"
+    },
+    {
+      "path": "skills/a2-field-verification/references/contact-verification.md",
+      "bytes": 1483,
+      "sha256": "5ebac26a63353ec9408859c82e7bd923d6cdbc28eca42ac3c425e29cb7d4cec1"
+    },
+    {
+      "path": "skills/a2-field-verification/references/professional-verification.md",
+      "bytes": 1245,
+      "sha256": "d19e6389c410fe4ccebf194ef15f88f822e07980100be931b905b13b087ce36e"
+    },
+    {
+      "path": "skills/a2-field-verification/references/equine-business-verification.md",
+      "bytes": 1444,
+      "sha256": "90d601938a2dd74173b00e2a381def1a95fe1fe9b41560e351b8c3c1a8e01335"
+    },
+    {
+      "path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "bytes": 2599,
+      "sha256": "3cfa166e5cebac88326108e6a9116d293053bc581c37041fa9554f2eef470227",
+      "version": "0.3.1"
+    },
+    {
+      "path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "bytes": 2545,
+      "sha256": "9e0d573164a7a35d23df8d6a877db5f28017e805e8fcae9372534ec18ed028bd",
+      "version": "0.2.0"
+    },
+    {
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "bytes": 2611,
+      "sha256": "5581b2ba0428f012dac27c999ff9f949874301f3af1ea814c234680754eae859",
+      "version": "0.3.1"
+    },
+    {
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "bytes": 3953,
+      "sha256": "451c99d32e93f731dd6beed2685879c0446c0e8d5ea8792abdaa0324545e7bea",
+      "version": "0.3.1"
+    },
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "bytes": 15503,
+      "sha256": "0f22cafc6bc84072bf186a730dd59068738702c213ea5051dd90e43e65333262"
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "bytes": 17908,
+      "sha256": "f3865065fd37593226c9a36d14ff8ca132134512d54a9aae7bcb5b997a1236c6"
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "bytes": 18646,
+      "sha256": "8fb57a6aff0874b1b79206582129fce9e498b07b8d5bf4273d941a691fc83c80"
+    },
+    {
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "bytes": 6357,
+      "sha256": "35f0e155a9459bf3fe78aaaea1f2464ba3c9d9eabd4b92783a92c34e16ce4d29"
+    },
+    {
+      "path": "scripts/classify_a2_target_role.py",
+      "bytes": 5935,
+      "sha256": "89fae1f0d40192efb70e55376a8a577ab308d697dc6f6df77e61c694ed396332"
+    },
+    {
+      "path": "scripts/validate_a2_contact_selection.py",
+      "bytes": 3474,
+      "sha256": "b08724970441cbb211468f4897b39320535b490eadf2b7e4468cabdc01f726be"
+    },
+    {
+      "path": "scripts/create_a2_revision.py",
+      "bytes": 3245,
+      "sha256": "93375b52b2e3f317f719f0e3c23c85b510a86cda6162605efc20ba3f5960b961"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "bytes": 4096,
+      "sha256": "10d2468daeb0ec932ede4fedd22278ce4848a3e4d3ef2cc9b03b6540465344df"
+    },
+    {
+      "path": "scripts/normalise_fullenrich_response.py",
+      "bytes": 10588,
+      "sha256": "cb9a0c99b3d26d960483760e003953b32e5545178fbbe049a7a8dd2ceeadeba2"
+    },
+    {
+      "path": "foundations/contracts/integrations/a2-fullenrich-n8n-integration-0.1.1.json",
+      "bytes": 4685,
+      "sha256": "1c79f4993de180716b568f75d892ce4433ec0eb7f1b5972acf6ba5e724e21364"
+    },
+    {
+      "path": "integrations/n8n/A2-FULLENRICH-N8N-WORKFLOW-SPEC.md",
+      "bytes": 3176,
+      "sha256": "d44e20cab1e050eee5e9f06833af32a5b3766847ddf979b2b8b70bc01e04731a"
+    }
+  ],
+  "runtime_limits": {
+    "default_selected_contacts": 1,
+    "maximum_selected_contacts": 2,
+    "external_actions": 0,
+    "fullenrich_people_search_default_result_limit": 1,
+    "fullenrich_max_unique_people_per_prospect": 2,
+    "fullenrich_contact_enrichment_selected_contacts_only": true
+  },
+  "integration_states": {
+    "hubspot_read": "not_connected",
+    "hubspot_write": "not_connected_not_authorized",
+    "twenty": "not_connected",
+    "n8n": "design_approved_not_connected",
+    "apify_harvestapi": "fallback_not_runtime_active",
+    "web": "disabled_by_default",
+    "fullenrich": "business_approved_not_connected"
+  },
+  "historical_runtime_manifests": [
+    "a2-operational-skill-manifest-0.1.0.json",
+    "a2-wave1-runtime-manifest-0.1.0.json",
+    "a2-wave2-runtime-manifest-0.1.0.json",
+    "a2-wave3-runtime-manifest-0.1.0.json",
+    "a2-step5-runtime-manifest-0.1.0.json"
+  ],
+  "external_actions": 0,
+  "personal_email_policy": {
+    "requested_by_default": false,
+    "incidental_return_retained": true,
+    "canonical_field": "person.personal_email_candidate",
+    "human_review_required": true,
+    "professional_contactability": false,
+    "automatic_crm_write": false,
+    "outreach_authority": false
+  }
+}

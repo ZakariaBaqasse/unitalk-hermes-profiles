@@ -1,0 +1,27 @@
+{
+  "requests": {
+    "apify-facebook-company-trigger": {
+      "dataset": [
+        {
+          "email": "person@example.com",
+          "pageUrl": "https://www.facebook.com/BluegrassFarm/",
+          "personalProfileData": {
+            "birthday": "private-and-prohibited"
+          },
+          "phone": null,
+          "title": "Bluegrass Farm",
+          "website": null
+        }
+      ],
+      "polls": [],
+      "start": {
+        "data": {
+          "buildId": "build-official-1",
+          "defaultDatasetId": "dataset-personal",
+          "id": "run-personal",
+          "status": "SUCCEEDED"
+        }
+      }
+    }
+  }
+}

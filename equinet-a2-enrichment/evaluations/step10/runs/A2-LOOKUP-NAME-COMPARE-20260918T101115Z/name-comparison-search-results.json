@@ -1,0 +1,315 @@
+{
+  "schema_id": "a2-fullenrich-search-results",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LOOKUP-NAME-COMPARE-20260918T101115Z",
+  "company_id": null,
+  "created_at": "2026-09-18T10:14:34Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "search_stage": "primary",
+  "result_count": 2,
+  "results": [
+    {
+      "request_id": "search-name-with-suffix",
+      "company_id": "1ea1f492-9b84-4347-93a5-3c44013327af",
+      "search_stage": "primary",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "co founder",
+        "co-founder",
+        "farrier",
+        "farrier business owner",
+        "founder",
+        "head farrier",
+        "independent farrier",
+        "lead farrier",
+        "professional farrier",
+        "self employed farrier",
+        "self-employed farrier"
+      ],
+      "terminal_status": "not_found",
+      "request_payload": {
+        "limit": 1,
+        "current_position_titles": [
+          {
+            "value": "co founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "co-founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier business owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "head farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "independent farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "lead farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "professional farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self employed farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self-employed farrier",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "current_company_names": [
+          {
+            "value": "Baxter Equine and Forge",
+            "exact_match": true,
+            "exclude": false
+          }
+        ],
+        "current_company_headquarters": [
+          {
+            "value": "Weatherford",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "TX",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "United States",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "person_names": [
+          {
+            "value": "Corey Baxter, CJF",
+            "exact_match": false,
+            "exclude": false
+          }
+        ]
+      },
+      "candidates": [],
+      "metadata": {
+        "credits": 0,
+        "offset": 0
+      },
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-18T10:14:33Z"
+      }
+    },
+    {
+      "request_id": "search-name-without-suffix",
+      "company_id": "1ea1f492-9b84-4347-93a5-3c44013327af",
+      "search_stage": "primary",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "co founder",
+        "co-founder",
+        "farrier",
+        "farrier business owner",
+        "founder",
+        "head farrier",
+        "independent farrier",
+        "lead farrier",
+        "professional farrier",
+        "self employed farrier",
+        "self-employed farrier"
+      ],
+      "terminal_status": "not_found",
+      "request_payload": {
+        "limit": 1,
+        "current_position_titles": [
+          {
+            "value": "co founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "co-founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier business owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "head farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "independent farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "lead farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "professional farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self employed farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self-employed farrier",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "current_company_names": [
+          {
+            "value": "Baxter Equine and Forge",
+            "exact_match": true,
+            "exclude": false
+          }
+        ],
+        "current_company_headquarters": [
+          {
+            "value": "Weatherford",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "TX",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "United States",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "person_names": [
+          {
+            "value": "Corey Baxter",
+            "exact_match": false,
+            "exclude": false
+          }
+        ]
+      },
+      "candidates": [],
+      "metadata": {
+        "credits": 0,
+        "offset": 0
+      },
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-18T10:14:34Z"
+      }
+    }
+  ],
+  "preflight": {
+    "workspace_id_present": true,
+    "credits_before": 496.5,
+    "receipts": [
+      {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-18T10:14:33Z"
+      },
+      {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-18T10:14:33Z"
+      }
+    ]
+  },
+  "budget": {
+    "estimated_max_credits": 0.5,
+    "reservation": {
+      "reservation_id": "FE-RES-0F25E5B83EF931A9",
+      "run_id": "A2-LOOKUP-NAME-COMPARE-20260918T101115Z",
+      "action": "people_search",
+      "request_sha256": "c3fd4fa6f60c3ae8cabdf2478b4f3159cac6fdb527fc1a37ac541e97f303b414",
+      "reserved_credits": 0.5,
+      "actual_credits": null,
+      "status": "reserved",
+      "created_at": "2026-09-18T10:14:33Z",
+      "utc_day": "2026-09-18",
+      "reused": false,
+      "usage_before": {
+        "run": 0,
+        "day": 0,
+        "pilot": 0
+      },
+      "caps": {
+        "run": 50,
+        "day": 100,
+        "pilot": 250
+      }
+    },
+    "settlement": {
+      "reservation_id": "FE-RES-0F25E5B83EF931A9",
+      "run_id": "A2-LOOKUP-NAME-COMPARE-20260918T101115Z",
+      "action": "people_search",
+      "request_sha256": "c3fd4fa6f60c3ae8cabdf2478b4f3159cac6fdb527fc1a37ac541e97f303b414",
+      "reserved_credits": 0.5,
+      "actual_credits": 0,
+      "status": "settled",
+      "created_at": "2026-09-18T10:14:33Z",
+      "utc_day": "2026-09-18",
+      "settled_at": "2026-09-18T10:14:34Z",
+      "over_reservation": false,
+      "reused": false
+    }
+  },
+  "external_calls": 4,
+  "artifact_sha256": "aee6e2a47d33ac748b01ed8f6b11aebcaa44426ec9b44aecb0f6129f0fb55d48"
+}

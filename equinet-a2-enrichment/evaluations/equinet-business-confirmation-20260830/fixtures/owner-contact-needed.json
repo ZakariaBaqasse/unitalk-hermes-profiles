@@ -1,0 +1,16 @@
+{
+  "fixture_id": "owner-contact-needed",
+  "segment": "horse_owner",
+  "contact_path": "contact_needed",
+  "target_role_not_found": true,
+  "research_exhausted": true,
+  "field_states": {
+    "organisation.business_name": "verified",
+    "organisation.public_business_location": "verified",
+    "organisation.stable_type": "verified",
+    "organisation.horse_count": "verified",
+    "organisation.breeds": "verified",
+    "organisation.business_email": "verified",
+    "organisation.business_phone": "verified"
+  }
+}

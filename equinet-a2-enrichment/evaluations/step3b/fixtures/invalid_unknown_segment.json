@@ -1,0 +1,10 @@
+{
+  "fixture_id": "invalid_unknown_segment",
+  "segment": "unknown_segment",
+  "contact_path": "named_target",
+  "target_role_not_found": false,
+  "research_exhausted": false,
+  "field_states": {},
+  "conflict_field_keys": [],
+  "error_field_keys": []
+}

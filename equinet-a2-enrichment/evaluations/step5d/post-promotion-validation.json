@@ -1,0 +1,111 @@
+{
+  "step": "5D",
+  "stage": "post_promotion",
+  "status": "approved_and_promoted",
+  "skills": 4,
+  "deterministic_replay": {
+    "total": 21,
+    "passed": 21,
+    "cases": [
+      {
+        "name": "official-site-direct-verified",
+        "passed": true
+      },
+      {
+        "name": "stale-required-capped",
+        "passed": true
+      },
+      {
+        "name": "material-conflict-contradicted",
+        "passed": true
+      },
+      {
+        "name": "blocked-provider-zero",
+        "passed": true
+      },
+      {
+        "name": "empty-unprotected-add",
+        "passed": true
+      },
+      {
+        "name": "manual-value-hold",
+        "passed": true
+      },
+      {
+        "name": "authoritative-block",
+        "passed": true
+      },
+      {
+        "name": "personal-email-privacy-hold",
+        "passed": true
+      },
+      {
+        "name": "score-signal-not-score",
+        "passed": true
+      },
+      {
+        "name": "valid-immutable-revision",
+        "passed": true
+      },
+      {
+        "name": "mutated-handoff-rejected",
+        "passed": true
+      },
+      {
+        "name": "bad-lineage-rejected",
+        "passed": true
+      },
+      {
+        "name": "lossless-review-package",
+        "passed": true
+      },
+      {
+        "name": "twenty-payload-prepared",
+        "passed": true
+      },
+      {
+        "name": "twenty-mismatch-rejected",
+        "passed": true
+      },
+      {
+        "name": "a1-requalification-prepared",
+        "passed": true
+      },
+      {
+        "name": "hubspot-contract-pending",
+        "passed": true
+      },
+      {
+        "name": "a3-contract-pending",
+        "passed": true
+      },
+      {
+        "name": "a14-contract-pending",
+        "passed": true
+      },
+      {
+        "name": "duplicate-json-rejected",
+        "passed": true
+      },
+      {
+        "name": "non-finite-json-rejected",
+        "passed": true
+      }
+    ]
+  },
+  "behavioural_replay": {
+    "total": 4,
+    "passed": 4,
+    "status": "pass"
+  },
+  "active_foundation_files": 70,
+  "language_audit": {
+    "files_checked": 964,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "next_gate": "Step 5E — Full Operational Skills Regression and No-Integration Workflow",
+  "failures": [],
+  "pass": true
+}

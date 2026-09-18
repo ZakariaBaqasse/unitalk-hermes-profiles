@@ -1,0 +1,49 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": null,
+  "created_at": "2026-09-18T16:34:09Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "requested_batch_size": 5,
+  "company_count": 0,
+  "companies": [],
+  "claims": [],
+  "applied_filters": {
+    "statuses": null,
+    "include_null": false,
+    "allow_any_status": true,
+    "company_ids": [],
+    "company_names": [
+      "Quillin"
+    ],
+    "segments": [],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "200",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "name[eq]:\"Quillin\""
+    },
+    "receipt": {
+      "http_status": 200,
+      "attempt": 1,
+      "received_at": "2026-09-18T16:34:09Z"
+    }
+  },
+  "external_writes": 0,
+  "artifact_sha256": "3a7e425085f8af7c5ce9d32bd1423867d8ca42e5aa989dce9315e83072066cac"
+}

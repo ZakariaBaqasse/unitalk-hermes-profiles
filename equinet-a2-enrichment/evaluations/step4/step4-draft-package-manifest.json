@@ -1,0 +1,84 @@
+{
+  "manifest_id": "equinet-a2-step4-final-soul-draft",
+  "status": "ready_for_severine_review_not_active",
+  "files": [
+    {
+      "path": "evaluations/step4/SOUL.proposed.md",
+      "bytes": 16421,
+      "sha256": "0939b9f160fe2abd47762fc16aad1cacc4b2c722b3636298afd75af597b789d0"
+    },
+    {
+      "path": "scripts/validate_step4_final_soul.py",
+      "bytes": 7909,
+      "sha256": "1cc42f8f8853c3bcce4bf769c8ab135b2e9b11f003590614bf5a44da8c84a428"
+    },
+    {
+      "path": "evaluations/step4/technical-validation.json",
+      "bytes": 4495,
+      "sha256": "957e670c08ba031fe33f39703bc74ecc4d5f2fc5817306c93da9b662561bd20e"
+    },
+    {
+      "path": "evaluations/step4/A2-FINAL-SOUL-REVIEW.md",
+      "bytes": 1407,
+      "sha256": "2778df5cfab337e18f8392b92f9a9f509ee338186a651f4e44cef8420a68c890"
+    },
+    {
+      "path": "foundations/A2-IMPLEMENTATION-CONTRACT.md",
+      "bytes": 29292,
+      "sha256": "869594b53f713a171ead67e62a7898dff8d1ea4782a2e1a9fe2dc1add88d69ed"
+    },
+    {
+      "path": "foundations/contracts/a1-to-a2-handoff.schema.json",
+      "bytes": 13719,
+      "sha256": "d1cd494b8548afeaf6691283e7ff88daf20689356377a476ff57aafa07b3ce59"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "bytes": 71694,
+      "sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json",
+      "bytes": 40025,
+      "sha256": "7ac3ca561dad724a0c390fb50e4905005814382be9ed204d97336d7f965a9d7b"
+    },
+    {
+      "path": "foundations/contracts/business/a2-minimum-data-packages-0.1.0-draft.1.json",
+      "bytes": 5099,
+      "sha256": "fe1dbd2afbc14a05ac289407c22a2f0b3365e17375d7e99def932dec25f85195"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.0-draft.1.json",
+      "bytes": 21738,
+      "sha256": "901dbd504e77a5bf4543c10a32cb05d6e9b723e9368138a2894646dc368fcc3c"
+    },
+    {
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.0-draft.1.json",
+      "bytes": 8274,
+      "sha256": "23effcd67dbf5e444ebc24eaf95873098927330a037b2d8ad399864529337730"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.0-draft.1.json",
+      "bytes": 10267,
+      "sha256": "94a54a54e88857adc5d9a65e10f2ed5719dab50beba1fbf26894eee700584c3f"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.1.0-draft.1.json",
+      "bytes": 5565,
+      "sha256": "54c80c188d9a78510e331a9f65290bad03c9c69c721b9c99b5b8bca96520e9fb"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.0-draft.1.json",
+      "bytes": 29885,
+      "sha256": "c4177c5b353a58e9c4a24e059b3ed3f3d9ae273723cdc0d38d2257b85871e2af"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "bytes": 5052,
+      "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27"
+    }
+  ],
+  "file_count": 15,
+  "active_soul_replaced": false,
+  "external_actions": 0
+}

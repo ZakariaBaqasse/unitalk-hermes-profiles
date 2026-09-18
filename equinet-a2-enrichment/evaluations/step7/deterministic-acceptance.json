@@ -1,0 +1,184 @@
+{
+  "step": "7",
+  "suite": "representative_synthetic_acceptance",
+  "version": "0.1.0-draft.1",
+  "status": "deterministic_pass_profile_invocation_pending",
+  "scenario_count": 6,
+  "passed": 6,
+  "scenarios": [
+    {
+      "scenario": "farrier_review",
+      "expected_outcome": "blocked_contract_pending",
+      "observed_outcome": "blocked_contract_pending",
+      "operator_count": 14,
+      "review_package_valid": true,
+      "human_decision": "pending_or_synthetic_fixture_only",
+      "external_actions": 0,
+      "passed": true,
+      "result_path": "evaluations/step7/workflows/farrier_review/workflow-result.json"
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "expected_outcome": "prepared_not_delivered",
+      "observed_outcome": "prepared_not_delivered",
+      "operator_count": 14,
+      "review_package_valid": true,
+      "human_decision": "pending_or_synthetic_fixture_only",
+      "external_actions": 0,
+      "passed": true,
+      "result_path": "evaluations/step7/workflows/horse_owner_requalification/workflow-result.json"
+    },
+    {
+      "scenario": "possible-duplicate-hold",
+      "expected_outcome": "hold",
+      "observed_outcome": "hold",
+      "human_decision": "pending",
+      "external_actions": 0,
+      "passed": true,
+      "result_path": "evaluations/step7/possible-duplicate-hold.json"
+    },
+    {
+      "scenario": "confirmed-duplicate-block",
+      "expected_outcome": "blocked",
+      "observed_outcome": "blocked",
+      "human_decision": "pending",
+      "external_actions": 0,
+      "passed": true,
+      "result_path": "evaluations/step7/confirmed-duplicate-block.json"
+    },
+    {
+      "scenario": "authoritative-control-conflict",
+      "expected_outcome": "preserve_authoritative_and_block",
+      "observed_outcome": "preserve_authoritative_and_block",
+      "human_decision": "pending",
+      "external_actions": 0,
+      "passed": true,
+      "result_path": "evaluations/step7/authoritative-conflict.json"
+    },
+    {
+      "scenario": "prohibited-social-profile-opening",
+      "expected_outcome": "blocked",
+      "observed_outcome": "blocked",
+      "human_decision": "not_applicable",
+      "external_actions": 0,
+      "passed": true,
+      "result_path": "evaluations/step7/prohibited-social.json"
+    }
+  ],
+  "export_files": [
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/review.md",
+      "sha256": "04d20ec58f915268472ecfe88aeda3cafbd1d0e2590821c0981ce41fe1c69ebb",
+      "bytes": 3092
+    },
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/summary.csv",
+      "sha256": "652ab945e6616cc73e33f8125e2f844c1a80980690439a5d11cf118ceea4fa76",
+      "bytes": 576
+    },
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/review-queue.csv",
+      "sha256": "0e7c7cd789a041d5a1607110336462a256bfc6e7e20569982efe364ba8955fe4",
+      "bytes": 1712
+    },
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/fields.csv",
+      "sha256": "4497ee563e493dcf63005786514e85c9403b4c27bf0921d59d45e1618008154a",
+      "bytes": 3219
+    },
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/evidence.csv",
+      "sha256": "046580db15d351be3318ad35475f55f95282947659525a1724745863e679a052",
+      "bytes": 1613
+    },
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6",
+      "bytes": 359
+    },
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/audit.csv",
+      "sha256": "d5c14eba6a8ef6e610a5add3989733894b55d665aa25233f5f88d908e1467f05",
+      "bytes": 1406
+    },
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/step7/workflows/farrier_review/review-package/review.xlsx",
+      "sha256": "639caa27a429a210a39baaf6c3a21fbef1993ea75a95e3a8f5516e5658d44f13",
+      "bytes": 14920
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/review.md",
+      "sha256": "d76752e60f035f2d25a331e6468b3b9e2b3a89812358d499078c3181d91d9edf",
+      "bytes": 3105
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/summary.csv",
+      "sha256": "2f20f92ff2a4c71cdc8126a8d0b3744ed5a41eb04893c9db87496f29a825c8aa",
+      "bytes": 623
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/review-queue.csv",
+      "sha256": "be7c7a9a365b0671ec0f81a38bb2c030c1d39e772723f93bfcf2f26e80703d27",
+      "bytes": 974
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/fields.csv",
+      "sha256": "af7330a11f867fa3d53e778e5a9a08d050ba2c07574cfdc3dad59277fb6fc85e",
+      "bytes": 1058
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/evidence.csv",
+      "sha256": "439ac3f443bb5f55d61404d665529780885a1a66fac2fa6b8878898b38f0dfb4",
+      "bytes": 1115
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/requalification.csv",
+      "sha256": "2a814cc589c4e8732db6d6361c34131142561f9f9b731096baf9da6c8812e08c",
+      "bytes": 1512
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/audit.csv",
+      "sha256": "fd3afed914a53ab9e50ba4d0d27335418541ca27a8501b3f861172b76b56e9f1",
+      "bytes": 492
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/review.xlsx",
+      "sha256": "71d9c38fd00ff26b2aa61365dd2d54b4b55989c48414a11eaf22756fe32655af",
+      "bytes": 14121
+    }
+  ],
+  "export_formats": {
+    "markdown": 2,
+    "csv": 12,
+    "xlsx": 2
+  },
+  "all_records_synthetic": true,
+  "human_decisions_remain_pending_or_fixture_only": true,
+  "model_usage": {
+    "model_calls": 0,
+    "tokens": "not_applicable_deterministic_suite",
+    "cost_usd": "not_applicable_deterministic_suite"
+  },
+  "profile_level_invocation": "pending",
+  "external_calls": 0,
+  "external_actions": 0,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "failures": [],
+  "pass": true
+}

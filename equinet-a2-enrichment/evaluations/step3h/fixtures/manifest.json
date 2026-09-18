@@ -1,0 +1,73 @@
+{
+  "version": "0.1.0-draft.1",
+  "cases": [
+    {
+      "name": "valid_approved",
+      "fixture": "valid-approved.json",
+      "valid": true
+    },
+    {
+      "name": "valid_needs_changes",
+      "fixture": "valid-needs_changes.json",
+      "valid": true
+    },
+    {
+      "name": "valid_held",
+      "fixture": "valid-held.json",
+      "valid": true
+    },
+    {
+      "name": "valid_rejected",
+      "fixture": "valid-rejected.json",
+      "valid": true
+    },
+    {
+      "name": "missing-reviewer",
+      "fixture": "invalid-missing-reviewer.json",
+      "valid": false,
+      "expected": "final decision requires reviewer"
+    },
+    {
+      "name": "hubspot-write",
+      "fixture": "invalid-hubspot-write.json",
+      "valid": false,
+      "expected": "hubspot_write_authorized"
+    },
+    {
+      "name": "wrong-hash",
+      "fixture": "invalid-wrong-hash.json",
+      "valid": false,
+      "expected": "schema"
+    },
+    {
+      "name": "approved-pending-field",
+      "fixture": "invalid-approved-pending-field.json",
+      "valid": false,
+      "expected": "approved receipt cannot contain unresolved field decision"
+    },
+    {
+      "name": "approval-scope",
+      "fixture": "invalid-approval-scope.json",
+      "valid": false,
+      "expected": "approved review requires proposed patch scope"
+    },
+    {
+      "name": "changed-without-revision",
+      "fixture": "invalid-changed-without-revision.json",
+      "valid": false,
+      "expected": "needs_changes with correction requires new revision"
+    },
+    {
+      "name": "duplicate-field-id",
+      "fixture": "invalid-duplicate-field-id.json",
+      "valid": false,
+      "expected": "duplicate field decision"
+    },
+    {
+      "name": "missing-twenty-id",
+      "fixture": "invalid-missing-twenty-id.json",
+      "valid": false,
+      "expected": "schema"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "command": "a2-evaluate-evidence-confidence",
+  "version": "0.1.0-draft.1",
+  "evidence_id": "EV-STAGE1-OFFICIAL-SITE-003",
+  "field_assessment_id": "A2-FLD-4361D5B6055BFC30",
+  "source_id": "prospect_official_website",
+  "claim_key": "person.business_email",
+  "normalised_value": "kgalvin@godolphin.com",
+  "components": {
+    "identity_match": 20,
+    "source_authority": 18,
+    "claim_directness": 20,
+    "freshness": 18,
+    "corroboration": 10,
+    "consistency": 10
+  },
+  "raw_score": 96,
+  "applied_caps": [],
+  "confidence_score": 96,
+  "confidence_level": "high",
+  "verification_status": "verified",
+  "freshness_status": "current_official_undated",
+  "source_references": [
+    "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+    "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md"
+  ],
+  "source_preflight_sha256": "8500fe8b402d62e2048bcc3b8eedf73ac635f6cd9620aaf4db8960ba915f86d3",
+  "source_gate_passed": true,
+  "a1_confidence_preserved": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

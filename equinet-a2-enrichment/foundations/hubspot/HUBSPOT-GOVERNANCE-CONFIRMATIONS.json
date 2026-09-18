@@ -1,0 +1,58 @@
+{
+  "record_type": "hubspot_client_confirmation",
+  "profile": "equinet-a2-enrichment",
+  "recorded_at": "2026-08-25T10:28:44Z",
+  "source": "Confirmed by Séverine from Equinet-provided responses",
+  "object_decisions": {
+    "creator": {
+      "exists_in_hubspot": false,
+      "object_kind": null,
+      "a2_consequence": "No Creator object is required for A2. If another specialist later requires a Creator object, Unitalk must propose a separate schema for Mustad/Equinet approval."
+    },
+    "campaign": {
+      "exists_in_hubspot": true,
+      "object_kind": "standard_hubspot_object",
+      "is_custom_object": false,
+      "a2_consequence": "A2 may later reference the standard Campaign object when an approved mapping requires campaign provenance; A2 must not propose a duplicate Campaign custom object."
+    },
+    "confirmed_custom_objects": [
+      "Complaints",
+      "Sample Requests"
+    ]
+  },
+  "hubspot_governance": {
+    "super_admins": [
+      {"name": "Tahmineh Goljan", "identity_type": "person"},
+      {"name": "Faezeh Yazdani", "identity_type": "person"},
+      {"name": "Lucija Batarelo", "identity_type": "person"},
+      {"name": "Mustad HubSpot", "identity_type": "service_or_placeholder_account"}
+    ],
+    "crm_business_owners": [
+      "Tahmineh Goljan",
+      "Lucija Batarelo"
+    ],
+    "property_object_workflow_approvers": [
+      "Tahmineh Goljan",
+      "Lucija Batarelo"
+    ],
+    "unitalk_oauth_connection_approvers": [
+      "Tahmineh Goljan",
+      "Faezeh Yazdani",
+      "Lucija Batarelo"
+    ]
+  },
+  "authority_boundaries": [
+    "Super Admin status does not by itself approve A2 business outputs, CRM writes, provider spend, pilot activation or production acceptance.",
+    "Mustad HubSpot is a service or placeholder account and cannot serve as a human approver.",
+    "The named CRM/business owners may approve HubSpot properties, objects and workflows as confirmed, but the A2 business reviewer and backup reviewer remain to be confirmed.",
+    "OAuth approver identification does not mean that OAuth has been granted or connected.",
+    "Every sensitive action still requires the applicable recorded approval and verified connector scope."
+  ],
+  "remaining_gaps": [
+    "Named A2 business reviewer and backup reviewer",
+    "Action-level approval matrix for A2 records and field changes",
+    "Provider and budget approvers",
+    "Actual OAuth grant, scopes and read-only connection",
+    "Creator schema decision for any future non-A2 specialist that requires it"
+  ]
+}

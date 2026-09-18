@@ -1,0 +1,21 @@
+{
+  "status": "dry_run",
+  "write_plan_sha256": "e87a67c54e1f5ea5614460e914c79385a5ac8558eca1c1bd34a407571f944d20",
+  "operation_count": 1,
+  "operations": [
+    {
+      "operation_id": "final-company-status",
+      "operation_type": "update_company_status",
+      "twenty_company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "fields": {
+        "a2EnrichmentStatus": "COMPLETED_NO_TARGET",
+        "a2EnrichmentVersion": "0.1.0-live-test.1",
+        "a2EnrichmentRunId": "A2-LIVE-20260915T115914Z",
+        "a2LastAttemptedAt": "2026-09-15T12:41:34Z",
+        "a2EnrichmentErrorCode": "target_role_not_found"
+      }
+    }
+  ],
+  "external_writes": 0,
+  "completed_at": "2026-09-15T12:41:49Z"
+}

@@ -1,0 +1,73 @@
+{
+  "audit_id": "AUDIT-STEP8-STAGE1-JONABELL",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "stage": "step8_jonabell_stage1",
+  "executed_at": "2026-08-30T12:18:50.241928Z",
+  "entity": {
+    "profile": "equinet-a2-enrichment",
+    "model": "deepseek-v4-flash",
+    "unitalk_gateway": "hermes_tui"
+  },
+  "source_file_hashes": {
+    "handoff_json": "d21bc65ddc16bb6b66f367b0bce19b27a8f30f9face4f61470ee1c26ec1672d4",
+    "initial_record_json": "0cc8c5b8cbc77d4a6096b05eb5a19560ce6dbfadca1ba744e4881c65786256ce",
+    "reuse_snapshot_json": "dafbdccffa9ff31184c230b6add233a26f0f0fe2c77e44af179d1fada2c04620",
+    "gap_plan_json": "e90671dbec037ac1dd4b4dbf0430cdab622830995efe69c2cd0bf03d42fbfd28",
+    "collection_manifest_json": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+    "page_01_md": "a8a4b767e81834e7792075ee42f7b2877d299975ba783b41942858bd0f2c4b52",
+    "page_02_md": "1cec71b9e37e56aa79ded1d1f28e11a26a0810c6ce3ba83f75ab7cadbbe34d07"
+  },
+  "commands_executed": [
+    {
+      "step": "receipt_stable_type",
+      "command": "scripts/build_step8_collection_receipt.py --candidate-id A1-DARLEY-JONABELL-001 --field-key organisation.stable_type --source-url https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours --requested-at 2026-08-30T12:05:00Z --output evaluations/step8/pilot/A1-DARLEY-JONABELL-001/receipts/stable-type.json",
+      "exit_code": 0,
+      "result_reference": "receipts/stable-type.json"
+    },
+    {
+      "step": "receipt_role_title",
+      "command": "scripts/build_step8_collection_receipt.py --candidate-id A1-DARLEY-JONABELL-001 --field-key person.role_title --source-url https://www.darleyamerica.com/contact-us/united-states/jonabell-farm --requested-at 2026-08-30T12:05:01Z --output evaluations/step8/pilot/A1-DARLEY-JONABELL-001/receipts/role-title.json",
+      "exit_code": 0,
+      "result_reference": "receipts/role-title.json"
+    },
+    {
+      "step": "receipt_business_email",
+      "command": "scripts/build_step8_collection_receipt.py --candidate-id A1-DARLEY-JONABELL-001 --field-key person.business_email --source-url https://www.darleyamerica.com/contact-us/united-states/jonabell-farm --requested-at 2026-08-30T12:05:02Z --output evaluations/step8/pilot/A1-DARLEY-JONABELL-001/receipts/business-email.json",
+      "exit_code": 0,
+      "result_reference": "receipts/business-email.json"
+    },
+    {
+      "step": "validate_observation_batch",
+      "command": "scripts/normalise_and_validate_a2_observations.py evaluations/step8/pilot/A1-DARLEY-JONABELL-001/observation-batch.json --output evaluations/step8/pilot/A1-DARLEY-JONABELL-001/validated-observations.json",
+      "exit_code": 0,
+      "result_reference": "validated-observations.json"
+    }
+  ],
+  "usage_and_cost": {
+    "api_calls": 0,
+    "cost_amount": null,
+    "currency": "USD",
+    "cost_status": "unavailable",
+    "provider_calls": 0,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "firecrawl_calls": 0,
+  "exa_calls": 0,
+  "apify_calls": 0,
+  "hubspot_calls": 0,
+  "twenty_calls": 0,
+  "n8n_calls": 0,
+  "outreach_actions": 0,
+  "crm_writes": 0,
+  "website_collection_actions_reused": 2,
+  "collection_source_summary": {
+    "page_01": "collected by Firecrawl in Step 8 collection run; reused locally; robots_allowed: true",
+    "page_02": "collected by Firecrawl in Step 8 collection run; reused locally; robots_allowed: true"
+  },
+  "pass": true,
+  "sha256": "0339f6b74899b0559b437e31dd4f97963cf882d25e28863eb0fd6024c02be5be"
+}

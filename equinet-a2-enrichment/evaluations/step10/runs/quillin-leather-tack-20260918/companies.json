@@ -1,0 +1,146 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": null,
+  "created_at": "2026-09-18T16:34:32Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "bdcfd575d19b4ae5f7f93b0c5f4b35322a9ad5a800b83ad99b95e34633cd7799",
+  "requested_batch_size": 1,
+  "company_count": 1,
+  "companies": [
+    {
+      "twenty_company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+      "name": "Quillin Leather & Tack",
+      "segment": "HORSE_OWNER",
+      "website_url": "https://www.quillin.com",
+      "domain": "quillin.com",
+      "professional_network_url": null,
+      "company_emails": [],
+      "company_phones": [
+        {
+          "number": "8599870215",
+          "countryCode": "US",
+          "callingCode": "+1"
+        }
+      ],
+      "social_links": {
+        "linkedin": [],
+        "facebook": [],
+        "instagram": [],
+        "youtube": [],
+        "tiktok": [],
+        "x": []
+      },
+      "company_contact_composites": {
+        "email": {
+          "primaryEmail": "",
+          "additionalEmails": []
+        },
+        "phone": {
+          "primaryPhoneNumber": "8599870215",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "+1",
+          "additionalPhones": []
+        },
+        "linkedinLink": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "facebook": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "youtube": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "tiktok": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "xTwitter": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        }
+      },
+      "location": {
+        "street": "716 Main St, Paris, KY 40361",
+        "city": "Paris",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40361"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": "0.1.0",
+      "a2_enrichment_run_id": "quillin-leather-tack-20260918",
+      "a2_processing_started_at": "2026-09-18T16:34:32.000Z",
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-18T16:34:32.261Z"
+    }
+  ],
+  "claims": [
+    {
+      "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+      "claimed": true,
+      "write_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-18T16:34:32Z"
+      },
+      "read_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-18T16:34:32Z"
+      }
+    }
+  ],
+  "applied_filters": {
+    "statuses": [
+      "NOT_ENRICHED"
+    ],
+    "include_null": true,
+    "allow_any_status": false,
+    "company_ids": [
+      "98cbdeae-a863-48b9-88e7-9f0ae8099ea5"
+    ],
+    "company_names": [],
+    "segments": [],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "1",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "or(a2EnrichmentStatus[eq]:NOT_ENRICHED,a2EnrichmentStatus[is]:NULL),id[eq]:98cbdeae-a863-48b9-88e7-9f0ae8099ea5"
+    },
+    "receipt": {
+      "http_status": 200,
+      "attempt": 1,
+      "received_at": "2026-09-18T16:34:32Z"
+    }
+  },
+  "external_writes": 1,
+  "artifact_sha256": "3b3243d3eccbdd430bc94a7f0b6e36b6b7516a1bdaa2ac91fe642661a5de9621"
+}

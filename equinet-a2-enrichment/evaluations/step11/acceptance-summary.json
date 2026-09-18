@@ -1,0 +1,100 @@
+{
+  "suite": "step11_website_first_local_acceptance",
+  "status": "pass",
+  "checks": [
+    {
+      "script": "scripts/run_step11_preflight_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_agent_web_extract_blocked (__main__.Tests.test_agent_web_extract_blocked) ... ok\ntest_facebook_fixture_allowed (__main__.Tests.test_facebook_fixture_allowed) ... ok\ntest_facebook_requires_official_link (__main__.Tests.test_facebook_requires_official_link) ... ok\ntest_live_website_requires_candidate_specific_approval (__main__.Tests.test_live_website_requires_candidate_specific_approval) ... ok\ntest_website_fixture_allowed (__main__.Tests.test_website_fixture_allowed) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.569s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step11_firecrawl_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "ll_dedicated_scripts_compile (__main__.CompileTests.test_all_dedicated_scripts_compile) ... ok\ntest_exact_name_and_role_required (__main__.DecisionTests.test_exact_name_and_role_required) ... ok\ntest_maximum_two_retained_people (__main__.DecisionTests.test_maximum_two_retained_people) ... ok\ntest_missing_role_is_allowed_and_preserved (__main__.DecisionTests.test_missing_role_is_allowed_and_preserved) ... ok\ntest_packet_rejects_unevidenced_observation (__main__.DecisionTests.test_packet_rejects_unevidenced_observation) ... ok\ntest_real_observations_only_and_non_target_roles_allowed (__main__.DecisionTests.test_real_observations_only_and_non_target_roles_allowed) ... ok\ntest_unobserved_values_and_bad_person_attribution_are_rejected (__main__.DecisionTests.test_unobserved_values_and_bad_person_attribution_are_rejected) ... ok\ntest_blocked_and_error_states (__main__.FirecrawlFetchTests.test_blocked_and_error_states) ... ok\ntest_discovered_subdomain_private_dns_is_blocked_before_batch (__main__.FirecrawlFetchTests.test_discovered_subdomain_private_dns_is_blocked_before_batch) ... ok\ntest_fixture_mode_does_not_require_api_key (__main__.FirecrawlFetchTests.test_fixture_mode_does_not_require_api_key) ... ok\ntest_homepage_then_bounded_batch_and_payload (__main__.FirecrawlFetchTests.test_homepage_then_bounded_batch_and_payload) ... ok\ntest_live_mode_requires_environment_key_before_network (__main__.FirecrawlFetchTests.test_live_mode_requires_environment_key_before_network) ... ok\ntest_off_domain_provider_redirect_is_blocked (__main__.FirecrawlFetchTests.test_off_domain_provider_redirect_is_blocked) ... ok\ntest_all_supported_social_urls (__main__.ObservationTests.test_all_supported_social_urls) ... ok\ntest_candidate_people_preserve_page_name_and_role (__main__.ObservationTests.test_candidate_people_preserve_page_name_and_role) ... ok\ntest_candidate_person_without_role_is_retained (__main__.ObservationTests.test_candidate_person_without_role_is_retained) ... ok\ntest_extraction_rejects_blocked_fetch (__main__.ObservationTests.test_extraction_rejects_blocked_fetch) ... ok\ntest_footer_contacts (__main__.ObservationTests.test_footer_contacts) ... ok\ntest_unheaded_staff_name_is_candidate (__main__.ObservationTests.test_unheaded_staff_name_is_candidate) ... ok\ntest_exact_span_proposals_complete_coverage (__main__.QuillinRegressionTests.test_exact_span_proposals_complete_coverage) ... ok\ntest_prose_people_are_found_without_product_false_positives (__main__.QuillinRegressionTests.test_prose_people_are_found_without_product_false_positives) ... ok\ntest_shared_surname_and_multiple_full_names_preserve_source_mentions (__main__.QuillinRegressionTests.test_shared_surname_and_multiple_full_names_preserve_source_mentions) ... ok\ntest_unreviewed_blocks_or_invented_names_are_rejected (__main__.QuillinRegressionTests.test_unreviewed_blocks_or_invented_names_are_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 29 tests in 0.113s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step11_apify_facebook_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_async_post_bounded_poll_and_dataset_protocol_without_live_call (__main__.OfficialFacebookApifyTests.test_async_post_bounded_poll_and_dataset_protocol_without_live_call) ... ok\ntest_cli_fixture_end_to_end_and_failed_cli_returns_nonzero (__main__.OfficialFacebookApifyTests.test_cli_fixture_end_to_end_and_failed_cli_returns_nonzero) ... ok\ntest_duplicate_or_no_change_result_emits_no_candidate (__main__.OfficialFacebookApifyTests.test_duplicate_or_no_change_result_emits_no_candidate) ... ok\ntest_exact_url_comes_from_validated_official_site_evidence (__main__.OfficialFacebookApifyTests.test_exact_url_comes_from_validated_official_site_evidence) ... ok\ntest_failure_has_one_start_and_no_retry_poll_resurrection_or_dataset (__main__.OfficialFacebookApifyTests.test_failure_has_one_start_and_no_retry_poll_resurrection_or_dataset) ... ok\ntest_mismatched_page_is_rejected (__main__.OfficialFacebookApifyTests.test_mismatched_page_is_rejected) ... ok\ntest_multiple_items_and_unexpected_data_are_rejected (__main__.OfficialFacebookApifyTests.test_multiple_items_and_unexpected_data_are_rejected) ... ok\ntest_no_trigger_when_company_email_and_phone_exist_across_sources (__main__.OfficialFacebookApifyTests.test_no_trigger_when_company_email_and_phone_exist_across_sources) ... ok\ntest_one_actor_run_per_company_and_no_company_count_max (__main__.OfficialFacebookApifyTests.test_one_actor_run_per_company_and_no_company_count_max) ... ok\ntest_personal_profile_data_is_rejected (__main__.OfficialFacebookApifyTests.test_personal_profile_data_is_rejected) ... ok\ntest_success_yields_company_only_append_candidates_and_audit (__main__.OfficialFacebookApifyTests.test_success_yields_company_only_append_candidates_and_audit) ... ok\ntest_trigger_when_company_email_or_phone_is_missing (__main__.OfficialFacebookApifyTests.test_trigger_when_company_email_or_phone_is_missing) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.447s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step11_company_merge_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_apply_blocks_changed_baseline (__main__.Tests.test_apply_blocks_changed_baseline) ... ok\ntest_apply_company_merge_and_readback (__main__.Tests.test_apply_company_merge_and_readback) ... ok\ntest_company_normalisation_includes_contacts_and_socials (__main__.Tests.test_company_normalisation_includes_contacts_and_socials) ... ok\ntest_duplicate_is_no_change (__main__.Tests.test_duplicate_is_no_change) ... ok\ntest_empty_primary_uses_website (__main__.Tests.test_empty_primary_uses_website) ... ok\ntest_generic_company_contact_never_person (__main__.Tests.test_generic_company_contact_never_person) ... ok\ntest_preserve_primary_and_append (__main__.Tests.test_preserve_primary_and_append) ... ok\ntest_social_canonicalisation (__main__.Tests.test_social_canonicalisation) ... ok\ntest_website_person_preserves_multiple_channels (__main__.Tests.test_website_person_preserves_multiple_channels) ... ok\ntest_website_person_without_role_can_be_created (__main__.Tests.test_website_person_without_role_can_be_created) ... ok\ntest_write_plan_company_operation_first (__main__.Tests.test_write_plan_company_operation_first) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 1.105s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step11_website_people_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_complete_website_person_skips_provider (__main__.Tests.test_complete_website_person_skips_provider) ... ok\ntest_maximum_two (__main__.Tests.test_maximum_two) ... ok\ntest_missing_channels_routes_contact_enrichment (__main__.Tests.test_missing_channels_routes_contact_enrichment) ... ok\ntest_unknown_role_is_allowed (__main__.Tests.test_unknown_role_is_allowed) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.470s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step11_quillin_extraction_acceptance.py",
+      "returncode": 0,
+      "stdout_tail": "{\n  \"suite\": \"quillin_person_extraction_acceptance\",\n  \"status\": \"pass\",\n  \"fixture\": \"evaluations/step11/fixtures/firecrawl/quillin-about-fetch.json\",\n  \"checks\": {\n    \"exact_people\": true,\n    \"no_product_false_positives\": true,\n    \"coverage_complete\": true,\n    \"all_blocks_reviewed\": true\n  },\n  \"deterministic_candidate_names\": [\n    \"Donna Quillin\",\n    \"Ralph Quillin\",\n    \"Rob Windels\",\n    \"Vince Grupposo\"\n  ],\n  \"validated_candidate_names\": [\n    \"Donna Quillin\",\n    \"Ralph Quillin\",\n    \"Rob Windels\",\n    \"Vince Grupposo\"\n  ],\n  \"false_positive_names\": [],\n  \"semantic_block_count\": 9,\n  \"external_calls\": 0,\n  \"external_writes\": 0\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "scripts/run_step11_synthetic_acceptance.py",
+      "returncode": 0,
+      "stdout_tail": "{\n  \"suite\": \"step11_website_first_synthetic_acceptance\",\n  \"status\": \"pass\",\n  \"steps\": [\n    \"site_plan\",\n    \"firecrawl_fixture\",\n    \"site_observations\",\n    \"website_packet\",\n    \"website_person_proposals\",\n    \"website_decisions\",\n    \"website_people\",\n    \"contact_fixture\",\n    \"assemble_company_merge\",\n    \"company_merge\",\n    \"write_plan\",\n    \"write_dry\",\n    \"apify_requests\",\n    \"apify_fixture\",\n    \"apify_validation\",\n    \"apify_company_merge\",\n    \"schema_a2-official-site-plan-0.1.0.schema.json\",\n    \"schema_a2-firecrawl-official-site-results-0.1.0.schema.json\",\n    \"schema_a2-official-site-observations-0.1.0.schema.json\",\n    \"schema_a2-website-decision-packet-0.1.0.schema.json\",\n    \"schema_a2-website-person-observation-proposals-0.1.0.schema.json\",\n    \"schema_a2-website-decisions-0.1.0.schema.json\",\n    \"schema_a2-company-contact-merge-plan-0.1.0.schema.json\",\n    \"schema_a2-apify-facebook-requests-0.1.0.schema.json\",\n    \"schema_a2-apify-facebook-results-0.1.0.schema.json\",\n    \"schema_a2-write-proposal-0.1.3.schema.json\"\n  ],\n  \"assertions\": {\n    \"five_pages\": true,\n    \"zero_live_web_calls\": true,\n    \"all_socials\": true,\n    \"two_people\": true,\n    \"contact_enriched\": true,\n    \"company_merge\": true,\n    \"facebook_candidates\": true,\n    \"facebook_company_append\": true,\n    \"company_merge_first\": true,\n    \"status_last\": true,\n    \"dry_run\": true\n  },\n  \"external_calls\": 0,\n  \"external_writes\": 0,\n  \"failures\": []\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "scripts/run_step11_contract_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_apify_contract (__main__.Tests.test_apify_contract) ... ok\ntest_decision (__main__.Tests.test_decision) ... ok\ntest_firecrawl_contract (__main__.Tests.test_firecrawl_contract) ... ok\ntest_runtime_stays_blocked (__main__.Tests.test_runtime_stays_blocked) ... ok\ntest_source_order (__main__.Tests.test_source_order) ... ok\ntest_twenty_mapping (__main__.Tests.test_twenty_mapping) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.002s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step10_unit_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_active_role_classifier (__main__.Tests.test_active_role_classifier) ... ok\ntest_domain_normalisation (__main__.Tests.test_domain_normalisation) ... ok\ntest_domainless_search (__main__.Tests.test_domainless_search) ... ok\ntest_email_selection (__main__.Tests.test_email_selection) ... ok\ntest_lookup_identifier_rules (__main__.Tests.test_lookup_identifier_rules) ... ok\ntest_name_split (__main__.Tests.test_name_split) ... ok\ntest_phone_selection (__main__.Tests.test_phone_selection) ... ok\ntest_protected_write_rejected (__main__.Tests.test_protected_write_rejected) ... ok\ntest_search_rejects_role_free (__main__.Tests.test_search_rejects_role_free) ... ok\ntest_status_last (__main__.Tests.test_status_last) ... ok\ntest_timestamp_equivalence (__main__.Tests.test_timestamp_equivalence) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step10_connector_integration_tests.py",
+      "returncode": 0,
+      "stdout_tail": "{\n  \"status\": \"valid\",\n  \"terminal_status\": \"FINISHED\",\n  \"results\": 1,\n  \"output\": \"/tmp/tmpls53c4z7/out.json\"\n}\n",
+      "stderr_tail": "test_contact_submit_poll_and_minimise (__main__.ConnectorTests.test_contact_submit_poll_and_minimise) ... ok\ntest_twenty_apply_and_reconcile (__main__.ConnectorTests.test_twenty_apply_and_reconcile) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.008s\n\nOK\n"
+    },
+    {
+      "script": "scripts/run_step10_synthetic_acceptance.py",
+      "returncode": 0,
+      "stdout_tail": "{\n  \"suite\": \"step10_twenty_fullenrich_synthetic_acceptance\",\n  \"status\": \"pass\",\n  \"checks_run\": [\n    \"ledger_start\",\n    \"pull_fixture\",\n    \"company_schema\",\n    \"lookup_fixture\",\n    \"lookup_packet\",\n    \"lookup_decisions\",\n    \"search_fixture\",\n    \"search_packet\",\n    \"selection_decisions\",\n    \"contact_fixture\",\n    \"write_plan\",\n    \"write_plan_schema\",\n    \"write_dry_run\",\n    \"ledger_advance\",\n    \"ledger_schema\"\n  ],\n  \"assertions\": {\n    \"one_company\": true,\n    \"zero_external_twenty_writes\": true,\n    \"lookup_secondary_found\": true,\n    \"two_search_candidates\": true,\n    \"two_contacts\": true,\n    \"personal_email_not_requested\": true,\n    \"five_write_operations\": true,\n    \"final_company_status_last\": true,\n    \"dry_run_no_writes\": true\n  },\n  \"external_calls\": 0,\n  \"external_writes\": 0,\n  \"failures\": []\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "scripts/run_step10_contract_validation.py",
+      "returncode": 0,
+      "stdout_tail": "{\n  \"status\": \"pass\",\n  \"passed\": 11,\n  \"total\": 11\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "script": "scripts/run_step10_staged_search_tests.py",
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_conditional_secondary_requires_catalogue_flag (__main__.Tests.test_conditional_secondary_requires_catalogue_flag) ... ok\ntest_failed_search_does_not_fallback (__main__.Tests.test_failed_search_does_not_fallback) ... ok\ntest_linked_secondary_cannot_create_new_person (__main__.Tests.test_linked_secondary_cannot_create_new_person) ... ok\ntest_linked_secondary_existing_person_write_plan_is_valid (__main__.Tests.test_linked_secondary_existing_person_write_plan_is_valid) ... ok\ntest_linked_secondary_is_used_before_paid_secondary_search (__main__.Tests.test_linked_secondary_is_used_before_paid_secondary_search) ... ok\ntest_lookup_accepts_verified_linked_secondary_fallback (__main__.Tests.test_lookup_accepts_verified_linked_secondary_fallback) ... ok\ntest_owner_empty_advances_linked_secondary (__main__.Tests.test_owner_empty_advances_linked_secondary) ... ok\ntest_owner_success_stops (__main__.Tests.test_owner_success_stops) ... ok\ntest_paid_secondary_search_runs_when_no_linked_fallback_selected (__main__.Tests.test_paid_secondary_search_runs_when_no_linked_fallback_selected) ... ok\ntest_primary_empty_advances_owner (__main__.Tests.test_primary_empty_advances_owner) ... ok\ntest_role_groups_match_active_catalogue (__main__.Tests.test_role_groups_match_active_catalogue) ... ok\ntest_secondary_empty_completes_no_target (__main__.Tests.test_secondary_empty_completes_no_target) ... ok\ntest_secondary_priority_rejected_outside_secondary_stage (__main__.Tests.test_secondary_priority_rejected_outside_secondary_stage) ... ok\ntest_secondary_rejects_primary_selection (__main__.Tests.test_secondary_rejects_primary_selection) ... ok\ntest_secondary_selected_contact_batch (__main__.Tests.test_secondary_selected_contact_batch) ... ok\ntest_secondary_success_is_selectable (__main__.Tests.test_secondary_success_is_selectable) ... ok\ntest_secondary_write_plan_is_allowed_only_for_secondary_stage (__main__.Tests.test_secondary_write_plan_is_allowed_only_for_secondary_stage) ... ok\ntest_stage_titles (__main__.Tests.test_stage_titles) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 2.265s\n\nOK\n"
+    }
+  ],
+  "checks_passed": 13,
+  "checks_total": 13,
+  "twenty_mapping_validated": true,
+  "firecrawl_key_resolved": true,
+  "apify_key_resolved": true,
+  "live_firecrawl_calls": 0,
+  "live_apify_calls": 0,
+  "live_twenty_writes": 0,
+  "activation_ready": false,
+  "remaining_gates": [
+    "Firecrawl live authentication and positive-result acceptance",
+    "Apify live authentication, account/build/rights/financial controls and positive-result acceptance",
+    "Twenty Company composite write/readback live acceptance",
+    "website Person FullEnrich positive-result acceptance",
+    "full end-to-end human review"
+  ]
+}

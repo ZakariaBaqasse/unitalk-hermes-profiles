@@ -1,0 +1,18 @@
+{
+  "candidate_id": "STEP9-RC-PERSON-PHONE",
+  "segment": "farrier",
+  "operating_scope": "manual_no_integration_pilot",
+  "source_id": "prospect_official_website",
+  "field_key": "person.business_phone",
+  "named_need": "Verify a published named professional phone",
+  "execution_mode": "preflight_only",
+  "official_site_check": "planned",
+  "open_linked_social_profile": false,
+  "requested_at": "2026-08-30T14:20:00Z",
+  "run_id": "STEP9-RC-PREFLIGHT-PERSON-PHONE",
+  "source_urls": [
+    "https://example.invalid/official-contact"
+  ],
+  "output_reference": null,
+  "retry_number": 0
+}

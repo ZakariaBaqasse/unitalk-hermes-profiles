@@ -1,0 +1,44 @@
+{
+  "record_type": "step9a_correction_propagation_validation",
+  "profile": "equinet-a2-enrichment",
+  "release_candidate": "equinet-a2-no-integration-1.0.0-rc.1",
+  "status": "pass_ready_for_step9b",
+  "checks": {
+    "historical_active_manifest_preserved": true,
+    "rc_manifest_not_active": true,
+    "rc_manifest_hashes": true,
+    "runtime_policy_versioned": true,
+    "primary_route": true,
+    "fallback_disabled": true,
+    "web_default_disabled": true,
+    "single_final_review": true,
+    "contact_semantics": true,
+    "held_independent_of_a1_score": true,
+    "usage_baseline": true,
+    "absolute_paths": true,
+    "person_business_phone_preflight": true,
+    "modified_skills_versioned": true,
+    "external_actions_zero": true
+  },
+  "checks_passed": 15,
+  "checks_total": 15,
+  "skill_versions": {
+    "a2-gap-analysis-and-enrichment-planning": "0.1.1-rc.1",
+    "a2-data-quality-and-review-readiness": "0.1.1-rc.1",
+    "a2-review-package-and-governed-handoffs": "0.1.1-rc.1"
+  },
+  "correction_status": {
+    "S9-C1": "propagated_to_release_candidate_manifest",
+    "S9-C2": "propagated_to_no_integration_runtime_policy",
+    "S9-C3": "validated_in_generic_preflight_and_pilot_helper",
+    "S9-C4": "propagated_to_soul_and_skills",
+    "S9-C5": "propagated_to_soul_review_skill_and_runtime_policy",
+    "S9-C6": "recorded_as_usage_baseline_with_unknown_cost",
+    "S9-C7": "propagated_to_soul_data_quality_skill_and_runtime_policy",
+    "S9-C8": "propagated_to_runtime_policy_and_review_skill_commands"
+  },
+  "rc_manifest": "evaluations/step9/release-candidate/A2-ACTIVE-FOUNDATION-MANIFEST-1.1.0-rc.1.json",
+  "runtime_policy": "evaluations/step9/release-candidate/a2-no-integration-runtime-policy-1.0.0-rc.1.yaml",
+  "external_actions": 0,
+  "errors": []
+}

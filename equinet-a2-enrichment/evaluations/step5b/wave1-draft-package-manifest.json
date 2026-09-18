@@ -1,0 +1,85 @@
+{
+  "manifest_id": "equinet-a2-wave1-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "ready_for_severine_review_not_approved",
+  "files": [
+    {
+      "path": "skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "bytes": 3090,
+      "sha256": "6cef52cd35f6bd4d14d485af137a834f290fe01d0737d679c54ea1efbe7fa28d"
+    },
+    {
+      "path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "bytes": 2622,
+      "sha256": "859a52ac1ae3e1b4326ea69ee224ab5b5bf098d5dfec0c0d49b880083078c214"
+    },
+    {
+      "path": "skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "bytes": 2445,
+      "sha256": "8ad329351a2ca5e504d3b8435a3896afbe0c65bdfe8512387d512408dbccf1f4"
+    },
+    {
+      "path": "skills/a2-handoff-intake-and-initialisation/evals/evals.json",
+      "bytes": 1161,
+      "sha256": "d03c9488cfa0aa74a4b7e21edd39403a7b8824812936f796f1c43e05c6e33377"
+    },
+    {
+      "path": "skills/a2-entity-resolution-and-normalisation/evals/evals.json",
+      "bytes": 844,
+      "sha256": "fb8c6c74fdbb414a974f73996af9bc027ce0921461b75f46b68483109fcec864"
+    },
+    {
+      "path": "skills/a2-duplicate-and-eligibility-review/evals/evals.json",
+      "bytes": 871,
+      "sha256": "68bcebde79fa62713a377ca14c6a2bf5093cbce44072aa4dea533ddc69707dc6"
+    },
+    {
+      "path": "scripts/a2_intake.py",
+      "bytes": 2202,
+      "sha256": "d96c088a0600a6e604bc24901e7c9273efc1c094e0244808dbad6aaf64d12370"
+    },
+    {
+      "path": "scripts/normalise_and_resolve_a2_entities.py",
+      "bytes": 7359,
+      "sha256": "06bbeafd438d8021469ce45273cddff6bbf78004f3c456950bc260e366238bed"
+    },
+    {
+      "path": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "bytes": 4066,
+      "sha256": "12ea14764c1e5e1bf2e9ae06e8344c52b1ad6db79fa9db5b159af4f47f2b30c4"
+    },
+    {
+      "path": "evaluations/step5b/fixtures/wave1-cases.json",
+      "bytes": 5223,
+      "sha256": "4c9fd95995b3706a54af29092869ad1f5e9b5ad63ad2f4d6ea2b09aa8a15e6cc"
+    },
+    {
+      "path": "evaluations/step5b/behavioural-validation.json",
+      "bytes": 2267,
+      "sha256": "f99ea27a4a63bd9443bec917cf963c7d05a7c86ab77d1f02430cca9bfc7cb815"
+    },
+    {
+      "path": "evaluations/step5b/technical-validation.json",
+      "bytes": 14427,
+      "sha256": "46e543cc780622e55b81cd163b0944a6b037734674c37ce673b30c9459d78f13"
+    },
+    {
+      "path": "evaluations/step5b/A2-WAVE-1-REVIEW.md",
+      "bytes": 1954,
+      "sha256": "2c44221120a86f8298547b0e9c9d26c6eb9c432ebb46f14982f0a8ee5f6e8445"
+    },
+    {
+      "path": "evaluations/step5a/acceptance-record.json",
+      "bytes": 1551,
+      "sha256": "70e93f7e2d5fca84c6280afffb19406f6a9699b412960d2743400d88c385152a"
+    },
+    {
+      "path": "foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json",
+      "bytes": 20646,
+      "sha256": "c91351814a084cffd020c0f6890bca88fb6550f117e5e85c79516294899d1a37"
+    }
+  ],
+  "file_count": 15,
+  "skills": 3,
+  "external_actions": 0
+}

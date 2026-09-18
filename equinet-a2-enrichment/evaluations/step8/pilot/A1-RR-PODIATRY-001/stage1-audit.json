@@ -1,0 +1,103 @@
+{
+  "audit_id": "AUDIT-STEP8-RR-STORED-PAGE-RECOVERY",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "stage": "step8_rood_riddle_stored_page_recovery",
+  "executed_at": "2026-08-30T13:19:51Z",
+  "execution_kind": "deterministic_recovery",
+  "entity": {
+    "profile": "equinet-a2-enrichment",
+    "intended_model": "deepseek-v4-flash",
+    "actual_model": null,
+    "unitalk_gateway": "litellm-unitalk",
+    "upstream_provider": "microsoft_azure",
+    "processing_region": "Europe"
+  },
+  "source_files": {
+    "handoff_json": "evaluations/step8/handoffs/A1-RR-PODIATRY-001.handoff.json",
+    "initial_record_json": "evaluations/step8/intake/A1-RR-PODIATRY-001/initial-record.json",
+    "reuse_snapshot_json": "evaluations/step8/planning/A1-RR-PODIATRY-001.reuse-snapshot.json",
+    "gap_plan_json": "evaluations/step8/planning/A1-RR-PODIATRY-001.gap-plan.json",
+    "collection_manifest_json": "evaluations/step8/collection/collection-manifest.json",
+    "page_01_md": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+    "page_02_md": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-02.md",
+    "page_03_md": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-03.md"
+  },
+  "source_file_hashes": {
+    "handoff_json": "408957b931e2086d2255b1ad538912833c9de585697ddeb1437798086ba52030",
+    "initial_record_json": "26fb36043cec11ceb0d11a2aed68fbca93b9868380455795fb54e371fc9f537e",
+    "reuse_snapshot_json": "f75d531cc90ee41bae73d719233e770317854e98b375576bed5cd90fac491cfb",
+    "gap_plan_json": "72ebf1c6a53f5f7d4cab21373dbac35304c4161f7b7ceb200b7bf2fa5b69a7ed",
+    "collection_manifest_json": "3a3ffed0404ea78e32b3d739d08070bf0e0e94e6ea486814b421b6248457bfed",
+    "page_01_md": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+    "page_02_md": "a2413050089a5b55e4e35b8002dc2fb6741d5dce518a6b014566f651cfc0974a",
+    "page_03_md": "20cd0158d87eb4a9932987fb13422ffc809dc4ef66438396e240761d820e0356"
+  },
+  "commands_executed": [
+    {
+      "step": "receipt_person_role_title",
+      "command": "/opt/data/profiles/equinet-a2-enrichment/scripts/build_step8_collection_receipt.py --candidate-id A1-RR-PODIATRY-001 --field-key person.role_title --source-url https://roodandriddle.com/lexington-podiatry-team --requested-at 2026-08-30T13:19:51Z --output /opt/data/profiles/equinet-a2-enrichment/evaluations/step8/pilot/A1-RR-PODIATRY-001/receipts/role-title.json",
+      "exit_code": 0,
+      "result_reference": "receipts/role-title.json"
+    },
+    {
+      "step": "receipt_organisation_disciplines",
+      "command": "/opt/data/profiles/equinet-a2-enrichment/scripts/build_step8_collection_receipt.py --candidate-id A1-RR-PODIATRY-001 --field-key organisation.disciplines --source-url https://roodandriddle.com/lexington/ --requested-at 2026-08-30T13:19:52Z --output /opt/data/profiles/equinet-a2-enrichment/evaluations/step8/pilot/A1-RR-PODIATRY-001/receipts/disciplines.json",
+      "exit_code": 0,
+      "result_reference": "receipts/disciplines.json"
+    },
+    {
+      "step": "receipt_person_professional_status",
+      "command": "/opt/data/profiles/equinet-a2-enrichment/scripts/build_step8_collection_receipt.py --candidate-id A1-RR-PODIATRY-001 --field-key person.professional_status --source-url https://roodandriddle.com/lexington-podiatry-team --requested-at 2026-08-30T13:19:53Z --output /opt/data/profiles/equinet-a2-enrichment/evaluations/step8/pilot/A1-RR-PODIATRY-001/receipts/professional-status-not-found.json",
+      "exit_code": 0,
+      "result_reference": "receipts/professional-status-not-found.json"
+    },
+    {
+      "step": "receipt_organisation_service_area",
+      "command": "/opt/data/profiles/equinet-a2-enrichment/scripts/build_step8_collection_receipt.py --candidate-id A1-RR-PODIATRY-001 --field-key organisation.service_area --source-url https://roodandriddle.com/lexington/ --requested-at 2026-08-30T13:19:54Z --output /opt/data/profiles/equinet-a2-enrichment/evaluations/step8/pilot/A1-RR-PODIATRY-001/receipts/service-area-not-found.json",
+      "exit_code": 0,
+      "result_reference": "receipts/service-area-not-found.json"
+    },
+    {
+      "step": "receipt_person_business_email",
+      "command": "/opt/data/profiles/equinet-a2-enrichment/scripts/build_step8_collection_receipt.py --candidate-id A1-RR-PODIATRY-001 --field-key person.business_email --source-url https://roodandriddle.com/lexington-podiatry-team --requested-at 2026-08-30T13:19:55Z --output /opt/data/profiles/equinet-a2-enrichment/evaluations/step8/pilot/A1-RR-PODIATRY-001/receipts/named-email-not-found.json",
+      "exit_code": 0,
+      "result_reference": "receipts/named-email-not-found.json"
+    },
+    {
+      "step": "receipt_person_business_phone",
+      "command": "/opt/data/profiles/equinet-a2-enrichment/scripts/build_step8_collection_receipt.py --candidate-id A1-RR-PODIATRY-001 --field-key person.business_phone --source-url https://roodandriddle.com/lexington-podiatry-team --requested-at 2026-08-30T13:19:56Z --output /opt/data/profiles/equinet-a2-enrichment/evaluations/step8/pilot/A1-RR-PODIATRY-001/receipts/named-phone-not-found.json",
+      "exit_code": 0,
+      "result_reference": "receipts/named-phone-not-found.json"
+    },
+    {
+      "step": "validate_observation_batch",
+      "command": "scripts/normalise_and_validate_a2_observations.py evaluations/step8/pilot/A1-RR-PODIATRY-001/observation-batch.json --output evaluations/step8/pilot/A1-RR-PODIATRY-001/validated-observations.json",
+      "exit_code": 0,
+      "result_reference": "validated-observations.json"
+    }
+  ],
+  "usage_and_cost": {
+    "model_calls": 0,
+    "api_calls": 0,
+    "input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "cost_amount": null,
+    "currency": "USD",
+    "cost_status": "unavailable",
+    "profile_attempt_usage_record": "evaluations/step8/pilot/A1-RR-PODIATRY-001/profile-usage.json",
+    "profile_attempt_status": "failed_before_model_call"
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "firecrawl_calls": 0,
+  "exa_calls": 0,
+  "apify_calls": 0,
+  "hubspot_calls": 0,
+  "twenty_calls": 0,
+  "n8n_calls": 0,
+  "outreach_actions": 0,
+  "crm_writes": 0,
+  "stored_collection_pages_reused": 3,
+  "pass": true
+}

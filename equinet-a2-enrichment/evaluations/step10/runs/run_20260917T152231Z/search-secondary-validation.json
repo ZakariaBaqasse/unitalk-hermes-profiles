@@ -1,0 +1,23 @@
+{
+  "status": "valid",
+  "validated_decisions": [
+    {
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "search_stage": "secondary",
+      "selected_candidates": [],
+      "next_search_stage": "completed_no_target",
+      "decision_notes": "Paid secondary People Search returned not_found for Wilkins Farrier & Forge. Full approved search sequence exhausted (primary, owner, linked-secondary reuse, paid secondary) with no suitable target. Linked Person Ryan Wilkins remains unverified (Lookup blocked: no supported identifier).",
+      "selected_target_priority": null
+    },
+    {
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "search_stage": "secondary",
+      "selected_candidates": [],
+      "next_search_stage": "completed_no_target",
+      "decision_notes": "Paid secondary People Search returned not_found for Ellis Forge LLC. Full approved search sequence exhausted (primary, owner, linked-secondary reuse, paid secondary) with no suitable target. Linked Person Colton Ellis, CF remains unverified (Lookup blocked: no supported identifier).",
+      "selected_target_priority": null
+    }
+  ],
+  "search_stage": "secondary",
+  "errors": []
+}

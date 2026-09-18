@@ -1,0 +1,141 @@
+{
+  "step": "2H",
+  "spec_version": "0.1.0",
+  "approval_state": "promoted_in_step_2i",
+  "summary": {
+    "sample_packages": 6,
+    "sample_packages_passed": 6,
+    "negative_checks": 11,
+    "negative_checks_passed": 11
+  },
+  "formats": [
+    "markdown",
+    "csv",
+    "xlsx"
+  ],
+  "samples": [
+    {
+      "name": "farrier-review-required",
+      "canonical_record_sha256": "7fa2c98a6feb0d016ccd2cd3bff433b39748392270fb663ebd6e5a2d186eb0fc",
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 2,
+        "fields": 6,
+        "evidence": 3,
+        "requalification": 0,
+        "audit": 4
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "name": "farrier-conflict-held",
+      "canonical_record_sha256": "cba702550a01c5943a58acee389f59ad25496d45a3b4f997e352f26b57f0d377",
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 2,
+        "fields": 6,
+        "evidence": 4,
+        "requalification": 0,
+        "audit": 4
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "name": "horse-owner-requalification",
+      "canonical_record_sha256": "1936af2fc43799cfdda90121741cde56ca7f0190a8e1361ae4261aa163f75cd8",
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 1,
+        "fields": 1,
+        "evidence": 2,
+        "requalification": 3,
+        "audit": 1
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "name": "horse-owner-gap-held",
+      "canonical_record_sha256": "3580e6edd10b40e2593fe15c14715edef3b19ee45bba23b93cd4e597291de5ec",
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 1,
+        "fields": 3,
+        "evidence": 1,
+        "requalification": 0,
+        "audit": 3
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "name": "farrier-protected-update",
+      "canonical_record_sha256": "d30fb039ffba81dd1e13e6f7e04f2ec0c7b83c0da60254bf1b1a13562ce7d02b",
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 3,
+        "fields": 6,
+        "evidence": 4,
+        "requalification": 0,
+        "audit": 4
+      },
+      "errors": [],
+      "passed": true
+    },
+    {
+      "name": "farrier-application-blocked",
+      "canonical_record_sha256": "8deb9b6cf68fc4fee45f15d881d7dd2230a2ffe189281f3f1979e3b868c16f63",
+      "row_counts": {
+        "summary": 1,
+        "review_queue": 3,
+        "fields": 6,
+        "evidence": 3,
+        "requalification": 0,
+        "audit": 4
+      },
+      "errors": [],
+      "passed": true
+    }
+  ],
+  "negative_checks": {
+    "invalid_record_rejected": true,
+    "incompatible_spec_rejected": true,
+    "canonical_source_unchanged": true,
+    "manifest_output_omission_rejected": true,
+    "manifest_duplicate_output_rejected": true,
+    "manifest_path_traversal_rejected": true,
+    "manifest_stale_renderer_hash_rejected": true,
+    "cross_format_value_corruption_rejected": true,
+    "spreadsheet_formula_injection_escaped": true,
+    "csv_escape_is_reversible_and_collision_free": true,
+    "carriage_return_prefix_roundtrip": true
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "contract_approved": true,
+    "review_version": true,
+    "decisions_h1_to_h10": true,
+    "canonical_json_authority": true,
+    "step2i_boundary": true
+  },
+  "acceptance_checks": {
+    "decision": true,
+    "spec_version": true,
+    "historical_package_manifest_hash": true,
+    "carriage_correction_status": true,
+    "historical_carriage_correction_hash": true,
+    "next_gate": true,
+    "step2i_promotion_approved": true
+  },
+  "package_manifest": {
+    "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/step2h-package-manifest.json",
+    "sha256": "34fe5f702edc542bb777e03028073a70a62cc9649f4324dbed4cb702e75299cd",
+    "file_count": 74
+  },
+  "external_actions": 0,
+  "independent_post_fix_review": "pass",
+  "failures": [],
+  "pass": true
+}

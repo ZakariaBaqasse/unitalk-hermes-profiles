@@ -1,0 +1,140 @@
+{
+  "step": "3H",
+  "version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_twenty_integration_pending",
+  "contract": {
+    "path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+    "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27"
+  },
+  "schema": {
+    "path": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+    "sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be"
+  },
+  "fixtures": {
+    "total": 12,
+    "passed": 12,
+    "cases": [
+      {
+        "name": "valid_approved",
+        "expected": true,
+        "actual": true,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "valid_needs_changes",
+        "expected": true,
+        "actual": true,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "valid_held",
+        "expected": true,
+        "actual": true,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "valid_rejected",
+        "expected": true,
+        "actual": true,
+        "errors": [],
+        "passed": true
+      },
+      {
+        "name": "missing-reviewer",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "final decision requires reviewer and decided_at"
+        ],
+        "passed": true
+      },
+      {
+        "name": "hubspot-write",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "hubspot_write_authorized must remain false",
+          "schema:/hubspot_write_authorized: False was expected"
+        ],
+        "passed": true
+      },
+      {
+        "name": "wrong-hash",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "schema:/canonical_record_sha256: 'bad' does not match '^[a-f0-9]{64}$'"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approved-pending-field",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "approved receipt cannot contain unresolved field decision"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approval-scope",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "approved review requires proposed patch scope"
+        ],
+        "passed": true
+      },
+      {
+        "name": "changed-without-revision",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "needs_changes with correction requires new revision"
+        ],
+        "passed": true
+      },
+      {
+        "name": "duplicate-field-id",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "duplicate field decision"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing-twenty-id",
+        "expected": false,
+        "actual": false,
+        "errors": [
+          "schema:/twenty_candidate_id: '' is too short"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "language_audit": {
+    "files_checked": 433,
+    "findings": 0,
+    "passed": true
+  },
+  "twenty_connection": false,
+  "hubspot_write_authorized": false,
+  "external_actions": 0,
+  "open_inputs": [
+    "Twenty workspace URL and deployment type",
+    "exact A1 prospect object and internal name",
+    "workspace metadata export for objects fields and relations",
+    "reviewer and backup plus Twenty roles",
+    "API key owner and role scopes",
+    "whether field decisions use a child object or structured field",
+    "webhook/workflow configuration and event filtering",
+    "retention and administrator visibility"
+  ],
+  "failures": [],
+  "pass": true
+}

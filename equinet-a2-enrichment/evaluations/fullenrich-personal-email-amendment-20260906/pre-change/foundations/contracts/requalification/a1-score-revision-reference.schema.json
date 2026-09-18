@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a2/a1-score-revision-reference/0.1.0",
+  "title": "Equinet A1 Score Revision Reference Stored by A2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "score_revision_id",
+    "a1_candidate_id",
+    "prior_revision_id",
+    "source_requalification_return_id",
+    "source_signal_ids",
+    "produced_by_profile",
+    "calculation_method",
+    "scoring_model_version",
+    "icp_config_version",
+    "evidence_policy_version",
+    "validated_evidence_ids",
+    "criteria_changes",
+    "prior_scoring",
+    "revised_scoring",
+    "calculated_at",
+    "revision_status",
+    "review",
+    "result_reference",
+    "result_sha256",
+    "audit_correlation_id",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "score_revision_id": {
+      "type": "string",
+      "pattern": "^A1-SCORE-REV-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a1_candidate_id": {
+      "type": "string",
+      "pattern": "^A1-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "prior_revision_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 100
+    },
+    "source_requalification_return_id": {
+      "type": "string",
+      "pattern": "^A2-RQ-RET-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "source_signal_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^A2-RQ-SIG-[A-Z0-9][A-Z0-9_-]{5,79}$"
+      },
+      "uniqueItems": true
+    },
+    "produced_by_profile": {
+      "const": "equinet-a1-icp-discovery"
+    },
+    "calculation_method": {
+      "const": "deterministic_a1_scoring"
+    },
+    "scoring_model_version": {
+      "const": "1.0.0"
+    },
+    "icp_config_version": {
+      "const": "1.0.0"
+    },
+    "evidence_policy_version": {
+      "const": "1.0.0"
+    },
+    "validated_evidence_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "criteria_changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/criterionChange"
+      }
+    },
+    "prior_scoring": {
+      "$ref": "https://unitalk.ai/schemas/equinet/a1/prospect-candidate/1.0.0#/$defs/scoring"
+    },
+    "revised_scoring": {
+      "$ref": "https://unitalk.ai/schemas/equinet/a1/prospect-candidate/1.0.0#/$defs/scoring"
+    },
+    "calculated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "revision_status": {
+      "type": "string",
+      "enum": [
+        "proposed_by_a1",
+        "approved",
+        "rejected",
+        "superseded",
+        "error"
+      ]
+    },
+    "review": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/review"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "result_reference": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "result_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "audit_correlation_id": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 200
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "revision_status": {
+            "const": "approved"
+          }
+        },
+        "required": [
+          "revision_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/review"
+              },
+              {
+                "properties": {
+                  "decision": {
+                    "const": "approved"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "revision_status": {
+            "const": "rejected"
+          }
+        },
+        "required": [
+          "revision_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/review"
+              },
+              {
+                "properties": {
+                  "decision": {
+                    "const": "rejected"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_id",
+        "actor_role",
+        "display_name"
+      ],
+      "properties": {
+        "actor_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actor_role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "reviewer",
+        "decided_at",
+        "reason"
+      ],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approved",
+            "rejected",
+            "needs_changes",
+            "held"
+          ]
+        },
+        "reviewer": {
+          "$ref": "#/$defs/actor"
+        },
+        "decided_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "criterionChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "criterion_id",
+        "before_status",
+        "after_status",
+        "before_evidence_ids",
+        "after_evidence_ids",
+        "source_signal_ids",
+        "change_reason"
+      ],
+      "properties": {
+        "criterion_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_.-]{2,99}$"
+        },
+        "before_status": {
+          "type": "string",
+          "enum": [
+            "confirmed",
+            "not_confirmed",
+            "contradicted",
+            "unknown"
+          ]
+        },
+        "after_status": {
+          "type": "string",
+          "enum": [
+            "confirmed",
+            "not_confirmed",
+            "contradicted",
+            "unknown"
+          ]
+        },
+        "before_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "after_evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "source_signal_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^A2-RQ-SIG-[A-Z0-9][A-Z0-9_-]{5,79}$"
+          },
+          "uniqueItems": true
+        },
+        "change_reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    }
+  }
+}

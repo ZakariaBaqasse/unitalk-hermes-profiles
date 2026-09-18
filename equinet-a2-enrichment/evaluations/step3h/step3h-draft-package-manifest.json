@@ -1,0 +1,49 @@
+{
+  "manifest_id": "equinet-a2-step3h-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_twenty_integration_pending",
+  "files": [
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "bytes": 5052,
+      "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+      "bytes": 4015,
+      "sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be"
+    },
+    {
+      "path": "evaluations/step3h/fixtures/manifest.json",
+      "bytes": 1849,
+      "sha256": "7f08fac42cdd85f51c1da9a1f90b2d7d1b1af235ae23655466a0ff74d6a075f0"
+    },
+    {
+      "path": "scripts/build_step3h_twenty_review.py",
+      "bytes": 10467,
+      "sha256": "3994569b297a9e35f964d2caf26f88a97ad702047cf8447ee77c548b47ad092a"
+    },
+    {
+      "path": "scripts/validate_step3h_twenty_review.py",
+      "bytes": 8766,
+      "sha256": "83f0e65247622e4dc49583e5803d42e8ca991a4f111d74d133f5708ee42eefa7"
+    },
+    {
+      "path": "foundations/A2-TWENTY-REVIEW-LAYER-CONTRACT.md",
+      "bytes": 1987,
+      "sha256": "b3b5f69e467201bfa4d31d87d5ca980c1cf1ee56258f05b3a9ac53f8f4db620e"
+    },
+    {
+      "path": "evaluations/step3h/A2-TWENTY-REVIEW-LAYER-REVIEW.md",
+      "bytes": 1890,
+      "sha256": "49428d6953d5a5c4e9b7d928bbe7b0cdabe311333af7d2e65270f1a61c34139b"
+    },
+    {
+      "path": "evaluations/step3h/technical-validation.json",
+      "bytes": 3660,
+      "sha256": "da5d795fa4460dac1fc676e789f0501ff0ffa5a4eca022d229f473241588d0c3"
+    }
+  ],
+  "file_count": 8,
+  "external_actions": 0
+}

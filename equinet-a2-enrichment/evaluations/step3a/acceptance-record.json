@@ -1,0 +1,57 @@
+{
+  "record_type": "foundation_working_baseline_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "3A",
+  "catalogue_version": "0.1.0-draft.1",
+  "decision": "approved_as_unitalk_working_baseline",
+  "equinet_confirmation": "pending",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-26T16:49:28Z",
+  "verified_at": "2026-08-26T16:51:29Z",
+  "approved_decisions": {
+    "3A-1": "Use the proposed Farrier target roles and keep Student/Apprentice review-only.",
+    "3A-2": "Use the proposed Horse Owner organisation target roles.",
+    "3A-3": "Retain one primary and up to two additional named contacts, with organisation general contact fallback.",
+    "3A-4": "Treat verified professional email or verified business phone as sufficient for A2 review contactability.",
+    "3A-5": "Use verified exact horse count plus non-overlapping A2-only review bands and do not write the current HubSpot range.",
+    "3A-6": "A missing Required field creates a visible gap and an incomplete record; it does not automatically reject the prospect, change the A1 score or authorise an external action.",
+    "3A-7": "Keep mobile/direct dial, broad social signals, mutual connections, horses-served volume and client-base summaries disabled.",
+    "3A-8": "Keep HubSpot mappings proposed and non-operational until Step 3G and live read-only verification."
+  },
+  "catalogue": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json",
+  "catalogue_sha256": "7ac3ca561dad724a0c390fb50e4905005814382be9ed204d97336d7f965a9d7b",
+  "csv_projection": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.csv",
+  "csv_projection_sha256": "66d65650a73c65066b6cee41403b62587122a260686bba4aa51c778fc2d74aec",
+  "technical_validation": "evaluations/step3a/technical-validation.json",
+  "technical_validation_sha256": "4767dd22cd511de2613842a660c06cbc160ce70e0f9578a635f12e502c953d7d",
+  "package_manifest": "evaluations/step3a/step3a-draft-package-manifest.json",
+  "package_manifest_sha256": "5000901656316988146a779425389c997f93f2c3680ba82d79dc72d95abb311d",
+  "validation_results": {
+    "field_count": 32,
+    "catalogue_validation": "pass",
+    "csv_fidelity": "pass",
+    "negative_regressions": "14/14 pass",
+    "language_audit": "pass",
+    "external_actions": 0
+  },
+  "authorizes": [
+    "use as the Unitalk working baseline",
+    "prepare Step 3B Minimum Data Packages in draft form"
+  ],
+  "does_not_authorize": [
+    "final Step 3A promotion to 0.1.0 without Equinet confirmation",
+    "live collection",
+    "source activation",
+    "provider use or spend",
+    "HubSpot or other CRM access or write",
+    "outreach",
+    "pilot readiness",
+    "production readiness",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 3B — Minimum Data Packages (draft preparation)",
+  "clarification_applied": "evaluations/foundation-clarifications/step3f-personal-email-review-clarification.json"
+}

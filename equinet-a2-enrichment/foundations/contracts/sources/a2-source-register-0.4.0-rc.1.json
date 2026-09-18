@@ -1,0 +1,57 @@
+{
+  "register_id": "equinet-a2-source-register",
+  "version": "0.4.0-rc.1",
+  "status": "implementation_ready_activation_pending",
+  "source_sequence": [
+    "twenty_companies_and_people",
+    "fullenrich_people_lookup",
+    "fullenrich_people_search",
+    "fullenrich_contact_enrichment",
+    "twenty_write_and_read_back"
+  ],
+  "sources": {
+    "twenty_companies_and_people": {
+      "purpose": "Operational input and output system of record",
+      "runtime_readiness": "read_validated_write_user_confirmed_acceptance_pending",
+      "allowed": [
+        "read eligible Companies and linked People",
+        "write validated A2-owned fields",
+        "create selected People",
+        "create Company-Person association",
+        "read-back reconciliation"
+      ],
+      "prohibited": [
+        "A1 discovery/qualification/ICP mutation",
+        "unvalidated writes"
+      ]
+    },
+    "fullenrich_people_lookup": {
+      "purpose": "Resolve a known linked Person",
+      "runtime_readiness": "credential_and_live_acceptance_pending",
+      "constraints": [
+        "network ID/URL or name plus Company domain/network identifier",
+        "maximum one result"
+      ]
+    },
+    "fullenrich_people_search": {
+      "purpose": "Find up to two primary People when no fresh verified primary exists",
+      "runtime_readiness": "credential_and_live_acceptance_pending",
+      "constraints": [
+        "approved target titles required",
+        "domain optional",
+        "Company name/location route permitted",
+        "maximum two retained"
+      ]
+    },
+    "fullenrich_contact_enrichment": {
+      "purpose": "Find work email and phone for selected People",
+      "runtime_readiness": "credential_and_live_acceptance_pending",
+      "constraints": [
+        "selected contacts only",
+        "work email and phone exactly",
+        "personal email not requested",
+        "poll result endpoint"
+      ]
+    }
+  }
+}

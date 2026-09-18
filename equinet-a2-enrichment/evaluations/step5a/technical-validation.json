@@ -1,0 +1,144 @@
+{
+  "step": "5A",
+  "status": "ready_for_severine_review_not_approved",
+  "version": "0.1.0-draft.1",
+  "skill_count": 10,
+  "wave_counts": {
+    "1": 3,
+    "2": 3,
+    "3": 4
+  },
+  "operator_command_count": 14,
+  "existing_reuse_commands": 4,
+  "commands_to_build_or_wrap": 10,
+  "validation": {
+    "errors": [],
+    "passed": true
+  },
+  "negative_regressions": {
+    "total": 10,
+    "passed": 10,
+    "cases": [
+      {
+        "name": "duplicate_skill",
+        "expected_error": "exact ten unique",
+        "errors": [
+          "skill inventory must contain the exact ten unique packages",
+          "wave skill counts must be 3, 3 and 4",
+          "wave membership or gate mismatch: 1"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing_skill",
+        "expected_error": "exact ten unique",
+        "errors": [
+          "skill inventory must contain the exact ten unique packages",
+          "skill wave mismatch: a2-review-package-and-governed-handoffs",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.mission",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.triggers",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.inputs",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.outputs",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.skill_dependencies",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.script_dependencies",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.boundaries",
+          "skill contract incomplete: a2-review-package-and-governed-handoffs.representative_evaluations",
+          "insufficient representative evaluations: a2-review-package-and-governed-handoffs",
+          "skill status overstated: a2-review-package-and-governed-handoffs",
+          "wave skill counts must be 3, 3 and 4",
+          "wave membership or gate mismatch: 3",
+          "unknown command owner: a2-render-review-package",
+          "unknown command owner: a2-twenty-review",
+          "unknown command owner: a2-governed-handoff"
+        ],
+        "passed": true
+      },
+      {
+        "name": "wave_count",
+        "expected_error": "wave skill counts",
+        "errors": [
+          "skill wave mismatch: a2-handoff-intake-and-initialisation",
+          "wave skill counts must be 3, 3 and 4",
+          "wave membership or gate mismatch: 1",
+          "wave membership or gate mismatch: 2",
+          "command/skill wave mismatch: a2-intake"
+        ],
+        "passed": true
+      },
+      {
+        "name": "forward_dependency",
+        "expected_error": "forward skill dependency",
+        "errors": [
+          "forward skill dependency: a2-handoff-intake-and-initialisation->a2-review-package-and-governed-handoffs"
+        ],
+        "passed": true
+      },
+      {
+        "name": "skill_claimed_created",
+        "expected_error": "skill status overstated",
+        "errors": [
+          "skill status overstated: a2-handoff-intake-and-initialisation"
+        ],
+        "passed": true
+      },
+      {
+        "name": "duplicate_command",
+        "expected_error": "exact fourteen unique",
+        "errors": [
+          "operator command registry must contain the exact fourteen unique commands"
+        ],
+        "passed": true
+      },
+      {
+        "name": "command_wrong_wave",
+        "expected_error": "command/skill wave mismatch",
+        "errors": [
+          "command/skill wave mismatch: a2-intake"
+        ],
+        "passed": true
+      },
+      {
+        "name": "external_actions_enabled",
+        "expected_error": "integration boundary weakened",
+        "errors": [
+          "integration boundary weakened: current_external_actions_authorized"
+        ],
+        "passed": true
+      },
+      {
+        "name": "a1_score_ownership_removed",
+        "expected_error": "architecture principles mismatch",
+        "errors": [
+          "architecture principles mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approval_gate_removed",
+        "expected_error": "decision checkpoint mismatch",
+        "errors": [
+          "Step 5A decision checkpoint mismatch"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "documentation_checks": {
+    "architecture_status": true,
+    "three_waves": true,
+    "ten_decisions": true,
+    "integration_boundary": true,
+    "next_gate": true
+  },
+  "language_audit": {
+    "files_checked": 523,
+    "findings": 0,
+    "passed": true
+  },
+  "skills_created": 0,
+  "external_actions": 0,
+  "approval_required": true,
+  "next_gate_after_approval": "Step 5B — Wave 1 Intake and Identity",
+  "failures": [],
+  "pass": true
+}

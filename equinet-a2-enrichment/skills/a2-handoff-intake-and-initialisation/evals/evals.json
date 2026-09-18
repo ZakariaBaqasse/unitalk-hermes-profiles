@@ -1,0 +1,23 @@
+{
+  "skill_name": "a2-handoff-intake-and-initialisation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Accept this approved synthetic A1 handoff and initialise its A2 record. Return only the compact audit result and save the canonical JSON to the requested path.",
+      "expected_output": "A valid deterministic initial record, zero external actions, pending review and an idempotent write result.",
+      "files": ["evaluations/step2g/fixtures/inputs/horse-owner-handoff.json"]
+    },
+    {
+      "id": 2,
+      "prompt": "Process this handoff whose approval or recommendation does not permit A2 enrichment.",
+      "expected_output": "The handoff is rejected with a precise gate failure and no output record.",
+      "files": ["evaluations/step2g/fixtures/invalid/recommendation-not-pass-to-a2.json"]
+    },
+    {
+      "id": 3,
+      "prompt": "Retry the same accepted handoff with the same idempotency key and output destination.",
+      "expected_output": "The same record IDs and bytes are returned with unchanged/existing status and no duplicate record.",
+      "files": ["evaluations/step2g/fixtures/inputs/horse-owner-handoff.json"]
+    }
+  ]
+}

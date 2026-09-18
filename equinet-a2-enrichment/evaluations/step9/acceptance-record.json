@@ -1,0 +1,42 @@
+{
+  "record_type": "step9_no_integration_release_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "release_id": "equinet-a2-no-integration-1.0.0",
+  "decision": "approved_pilot_ready_no_integration",
+  "approved_decisions": [
+    "S9-1",
+    "S9-2",
+    "S9-3",
+    "S9-4",
+    "S9-5",
+    "S9-6",
+    "S9-7",
+    "S9-8",
+    "S9-9",
+    "S9-10"
+  ],
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-30T14:56:57Z",
+  "scope": "Controlled human-reviewed no-integration pilot operation with candidate-specific external-source activation only.",
+  "validation_basis": {
+    "step9a": "15/15 pass",
+    "step9b": "10/10 pass; 11/11 suites; 14/14 operators; 2/2 exact replays",
+    "step9c": "10/10 pass",
+    "step9d": "11/11 pass"
+  },
+  "limitations": [
+    "Not production acceptance or contractual delivery acceptance.",
+    "HubSpot, Twenty, n8n, Apify, outreach and durable downstream delivery remain disabled.",
+    "Web is disabled by default and requires candidate-specific approval and runtime activation.",
+    "Rood & Riddle remains held pending approved evidence or an Equinet-approved exception.",
+    "Detailed retention, administrator visibility, named Equinet reviewers and global cost telemetry remain open."
+  ],
+  "profile_status": "PILOT_READY_NO_INTEGRATION",
+  "production_acceptance": false,
+  "contractual_acceptance": false,
+  "authorised_external_actions": [],
+  "next_gate": "Step 10 — Integrations"
+}

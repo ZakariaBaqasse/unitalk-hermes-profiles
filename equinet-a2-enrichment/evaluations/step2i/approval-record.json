@@ -1,0 +1,37 @@
+{
+  "record_type": "foundation_promotion_approval",
+  "profile": "equinet-a2-enrichment",
+  "step": "2I",
+  "decision": "approved",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-26T15:15:50Z",
+  "approved_decisions": {
+    "I1": "Promote the unchanged approved canonical structure from 1.0.0-draft.2 to 1.0.0.",
+    "I2": "Keep exactly fourteen required top-level sections and strict locally defined objects.",
+    "I3": "Keep the Field Catalogue, minimum packages, source/provider policy, confidence/freshness rules, protected-field catalogue, approval matrix, CRM mapping and retention policy outside the stable schema.",
+    "I4": "Preserve the complete A1 handoff and A1-only numeric scoring boundary; A2 may create evidence-backed requalification signals but cannot calculate scores.",
+    "I5": "Keep canonical JSON as the sole lossless record and Markdown, CSV and Excel as read-only derived views.",
+    "I6": "Promote dependent active tooling and synthetic test assets together, while preserving a hashed pre-promotion evidence snapshot.",
+    "I7": "Require all Step 2D–2H regression suites and the deployment-language audit to pass after promotion.",
+    "I8": "Keep all external integrations and actions disabled; schema promotion does not authorise enrichment, provider use, CRM access, writeback, outreach or pilot use.",
+    "I9": "Create a Step 2I acceptance record that pins the final schema, dependency manifest, validation and promotion evidence hashes.",
+    "I10": "After successful promotion, advance the next foundation gate to Step 3A — Business Field Catalogue."
+  },
+  "review_artifact": "evaluations/step2i/A2-CANONICAL-DATA-CONTRACT-PROMOTION-REVIEW.md",
+  "review_manifest": "evaluations/step2i/review-package-manifest.json",
+  "promotion_authorized": true,
+  "not_approved": [
+    "live prospect enrichment",
+    "source activation or paid-provider use",
+    "A1/A2 production delivery",
+    "HubSpot, Twenty or n8n access",
+    "CRM writeback",
+    "outreach",
+    "pilot readiness",
+    "production readiness",
+    "contractual acceptance"
+  ]
+}

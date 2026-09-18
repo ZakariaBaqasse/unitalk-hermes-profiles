@@ -1,0 +1,35 @@
+{
+  "command": "a2-evaluate-evidence-confidence",
+  "version": "0.1.0-draft.1",
+  "evidence_id": "EV-STAGE1-OFFICIAL-SITE-002",
+  "field_assessment_id": "A2-FLD-E65EE5C6BAB67CB0",
+  "source_id": "prospect_official_website",
+  "claim_key": "person.role_title",
+  "normalised_value": "Nominations Sales and Operating Manager, Jonabell Farm",
+  "components": {
+    "identity_match": 20,
+    "source_authority": 18,
+    "claim_directness": 20,
+    "freshness": 18,
+    "corroboration": 10,
+    "consistency": 10
+  },
+  "raw_score": 96,
+  "applied_caps": [],
+  "confidence_score": 96,
+  "confidence_level": "high",
+  "verification_status": "verified",
+  "freshness_status": "current_official_undated",
+  "source_references": [
+    "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+    "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md"
+  ],
+  "source_preflight_sha256": "a5dc2ad94f65677d8d17f2b5464a4041eb7cec2196426a0ece8089eb6c0a70c4",
+  "source_gate_passed": true,
+  "a1_confidence_preserved": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

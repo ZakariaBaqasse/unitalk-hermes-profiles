@@ -1,0 +1,59 @@
+{
+  "manifest_id": "equinet-a2-step5e-promotion",
+  "version": "0.1.0",
+  "status": "approved_and_promoted",
+  "approved_decisions": [
+    "5E-1",
+    "5E-2",
+    "5E-3",
+    "5E-4",
+    "5E-5",
+    "5E-6",
+    "5E-7",
+    "5E-8",
+    "5E-9",
+    "5E-10"
+  ],
+  "files": [
+    {
+      "path": "foundations/contracts/skills/a2-step5-runtime-manifest-0.1.0.json",
+      "bytes": 10047,
+      "sha256": "c913973a862711559c841c65af08f8fe07d3ced8dd01e5d40f0e227e92ad3d7d"
+    },
+    {
+      "path": "scripts/run_a2_no_integration_workflow.py",
+      "bytes": 7855,
+      "sha256": "967fbfc51bd3a363ffe8c4ad51f25a7200362d5cdf180005222c307b9bd7de8a"
+    },
+    {
+      "path": "evaluations/step5e/technical-validation.json",
+      "bytes": 4389,
+      "sha256": "ed5c61120734aa6bc4f67bf87e3cd16fb3b32fb537d6467a513c3d4a1a36fd86"
+    },
+    {
+      "path": "evaluations/step5e/A2-STEP-5-CLOSURE-REVIEW.md",
+      "bytes": 1784,
+      "sha256": "f1baa1fb5ce147f28921859fc8004544bd20614f0443072157b01edb71355449"
+    },
+    {
+      "path": "evaluations/step5e/acceptance-record.json",
+      "bytes": 1302,
+      "sha256": "f1699aa7524fd6e49b144aa3ec506fb3ad6ce55735d5f5929eba4096669d39c5"
+    },
+    {
+      "path": "evaluations/step5e/post-promotion/SOUL.md",
+      "bytes": 17895,
+      "sha256": "a48d954d2e41edc9a691a187e4040dc92a8f27092f9d69a24a831b5e2a769a90"
+    },
+    {
+      "path": "evaluations/step5e/post-promotion/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 30285,
+      "sha256": "0551df19004a095c594dc3f898e86a57c45f7e24bb9f65c5d5877ef02ced03f8"
+    }
+  ],
+  "active_foundation_manifest": {
+    "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+    "sha256": "f2048d1361a9ecad16e6ed5d052fee8969f47bc033f77dbb311f38ae98174d18"
+  },
+  "external_actions": 0
+}

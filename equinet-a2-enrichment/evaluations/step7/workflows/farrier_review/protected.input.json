@@ -1,0 +1,17 @@
+{
+  "field_key": "person.business_email",
+  "target_id": "P-1",
+  "protection_class": "a2_enrichment_candidate",
+  "baseline_state": "empty",
+  "baseline_value": null,
+  "proposal_state": "different",
+  "proposed_value": "owner@example.test",
+  "confidence": "high",
+  "conflict": "none",
+  "review_decision": "pending",
+  "workflow_dependency_status": "not_checked",
+  "crm_write_authorized": false,
+  "evidence_ids": [
+    "A2-EV-1"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "calls": [
+    {
+      "method": "POST",
+      "path": "/v2/scrape",
+      "http_status": 200,
+      "response": {
+        "success": true,
+        "data": {
+          "markdown": "# Example Equine Centre\nWelcome.\n\n© Example Equine Centre\nEmail: office@example.com\nPhone: +1 (859) 555-0100",
+          "html": "<a href='/contact'>Contact</a>",
+          "links": [
+            "https://www.example.com/contact"
+          ],
+          "metadata": {
+            "sourceURL": "https://www.example.com/",
+            "title": "Example Equine Centre",
+            "statusCode": 200
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/v2/batch/scrape",
+      "http_status": 500,
+      "response": {
+        "success": false,
+        "error": "upstream unavailable"
+      }
+    }
+  ]
+}

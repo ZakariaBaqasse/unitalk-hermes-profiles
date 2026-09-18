@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "a2-official-site-plan-0.1.0",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "run_id",
+    "company_id",
+    "official_url",
+    "page_limit",
+    "discovery_categories",
+    "firecrawl"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "a2-official-site-plan"
+    },
+    "status": {
+      "enum": [
+        "ready",
+        "invalid"
+      ]
+    },
+    "official_url": {
+      "type": "string",
+      "pattern": "^https?://"
+    },
+    "page_limit": {
+      "const": 5
+    },
+    "discovery_categories": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "contact",
+          "about",
+          "team",
+          "staff"
+        ]
+      }
+    },
+    "firecrawl": {
+      "type": "object",
+      "required": [
+        "formats",
+        "onlyMainContent"
+      ],
+      "properties": {
+        "formats": {
+          "const": [
+            "markdown",
+            "html",
+            "links"
+          ]
+        },
+        "onlyMainContent": {
+          "const": false
+        },
+        "credit_policy_calls": {
+          "const": false
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

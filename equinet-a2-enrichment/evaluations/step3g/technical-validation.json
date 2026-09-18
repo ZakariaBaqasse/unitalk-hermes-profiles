@@ -1,0 +1,131 @@
+{
+  "step": "3G",
+  "version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_live_verification_pending",
+  "mapping": {
+    "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.0-draft.1.json",
+    "sha256": "c4177c5b353a58e9c4a24e059b3ed3f3d9ae273723cdc0d38d2257b85871e2af"
+  },
+  "field_count": 32,
+  "mapped_field_count": 22,
+  "status_counts": {
+    "canonical_only_compatibility_field": 1,
+    "canonical_only_no_hubspot_mapping": 5,
+    "mapping_blocked_enum_mismatch": 1,
+    "mapping_blocked_taxonomy_conflict": 1,
+    "prohibited": 5,
+    "proposed_segment_specific": 1,
+    "proposed_unverified": 17,
+    "review_only_no_hubspot_mapping": 1
+  },
+  "validation": {
+    "errors": [],
+    "passed": true
+  },
+  "csv_fidelity": true,
+  "negative_regressions": {
+    "total": 11,
+    "passed": 11,
+    "cases": [
+      {
+        "name": "dep_hash",
+        "expected_error": "dependency hash mismatch",
+        "errors": [
+          "dependency hash mismatch: foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json"
+        ],
+        "passed": true
+      },
+      {
+        "name": "drop_field",
+        "expected_error": "coverage or uniqueness mismatch",
+        "errors": [
+          "canonical field coverage or uniqueness mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "duplicate_field",
+        "expected_error": "coverage or uniqueness mismatch",
+        "errors": [
+          "canonical field coverage or uniqueness mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "enable_write",
+        "expected_error": "write authority enabled",
+        "errors": [
+          "write authority enabled: person.business_email"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_property",
+        "expected_error": "unknown HubSpot destination",
+        "errors": [
+          "unknown HubSpot destination: Contact.invented"
+        ],
+        "passed": true
+      },
+      {
+        "name": "workflow_verified_early",
+        "expected_error": "workflow dependency overstated",
+        "errors": [
+          "workflow dependency overstated: person.business_email"
+        ],
+        "passed": true
+      },
+      {
+        "name": "connection_active",
+        "expected_error": "connection or write readiness overstated",
+        "errors": [
+          "connection or write readiness overstated"
+        ],
+        "passed": true
+      },
+      {
+        "name": "personal_email_mapped",
+        "expected_error": "personal email candidate mapped",
+        "errors": [
+          "workflow dependency overstated: person.personal_email_candidate",
+          "personal email candidate mapped to HubSpot"
+        ],
+        "passed": true
+      },
+      {
+        "name": "horse_band_enabled",
+        "expected_error": "mapping status mismatch",
+        "errors": [
+          "mapping status mismatch: organisation.horse_count_band"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approval_write",
+        "expected_error": "approval gate overstated",
+        "errors": [
+          "approval gate overstated"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approval_removed",
+        "expected_error": "Unitalk approval metadata is invalid",
+        "errors": [
+          "Unitalk approval metadata is invalid"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "language_audit": {
+    "files_checked": 411,
+    "findings": 0,
+    "passed": true
+  },
+  "hubspot_connection": false,
+  "hubspot_write_authorized": false,
+  "external_actions": 0,
+  "failures": [],
+  "pass": true
+}

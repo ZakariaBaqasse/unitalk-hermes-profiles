@@ -1,0 +1,20 @@
+{
+  "record_type": "a2_equinet_business_confirmation_final_verification",
+  "verified_at": "2026-08-30T17:05:11Z",
+  "status": "pass",
+  "checks": {
+    "active_manifest_hashes": true,
+    "release_manifest_hashes": true,
+    "business_validation": true,
+    "farrier_workflow": true,
+    "horse_owner_workflow": true,
+    "zero_external_actions": true,
+    "language_audit": true,
+    "acceptance_release_hash": true
+  },
+  "active_manifest_errors": [],
+  "release_manifest_errors": [],
+  "release_manifest_sha256": "ffd084bc1ce5556913cb8fa591270fb8c0bee57850866f93c1930df56276220f",
+  "acceptance_record_sha256": "9eba16058faaad5921d609e8bea4d562837b74072bee5464d550f0acdd966fe9",
+  "external_actions": 0
+}

@@ -1,0 +1,46 @@
+{
+  "record_type": "step8_rood_riddle_evidence_confidence",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "status": "pass",
+  "validated_observations_sha256": "884600fde603f21049c01052fdb93496098733ab12193ab33d07ef200a135af2",
+  "accepted_field_keys": [
+    "organisation.disciplines",
+    "person.role_title"
+  ],
+  "required_accepted_field_keys": [
+    "organisation.disciplines",
+    "person.role_title"
+  ],
+  "missing_required_accepted_field_keys": [],
+  "results": [
+    {
+      "field_key": "person.role_title",
+      "request_path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/evidence-confidence/person-role_title.request.json",
+      "request_sha256": "6f4eca73acf0497c53c32d2dccbb95dceb630e361d712d146993c49ac9755361",
+      "result_path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/evidence-confidence/person-role_title.result.json",
+      "result_sha256": "1804190699ecdc567f929a54396392f15c8c81f33b12ce0d19443afa9405b522",
+      "confidence_score": 96,
+      "confidence_level": "high",
+      "verification_status": "verified",
+      "freshness_status": "current_official_undated",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "field_key": "organisation.disciplines",
+      "request_path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/evidence-confidence/organisation-disciplines.request.json",
+      "request_sha256": "b7dabb1aaf104c85bcbaf8a8792a33f6c0d296d91c00c11f567a6ac736714233",
+      "result_path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/evidence-confidence/organisation-disciplines.result.json",
+      "result_sha256": "72672eb14939a465a940d79b17dd81400812eeddd1f8b097de80e7b3787bab79",
+      "confidence_score": 96,
+      "confidence_level": "high",
+      "verification_status": "verified",
+      "freshness_status": "current_official_undated",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "external_actions": 0
+}

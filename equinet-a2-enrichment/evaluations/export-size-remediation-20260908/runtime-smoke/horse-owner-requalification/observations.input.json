@@ -1,0 +1,206 @@
+{
+  "candidate_id": "SYN-FAR-001",
+  "segment": "farrier",
+  "operating_scope": "synthetic_test",
+  "observations": [
+    {
+      "observation_id": "OBS-EMAIL-1",
+      "field_key": "person.business_email",
+      "entity_id": "P-1",
+      "raw_value": " Owner@Example.com ",
+      "source_id": "prospect_official_website",
+      "source_action_status": "allowed_local_fixture",
+      "source_url": "https://example.com/contact",
+      "evidence_id": "EV-W2-001",
+      "availability_status": "available",
+      "fact_type": "direct_fact",
+      "collection_method": "explicitly_published",
+      "email_kind": "professional",
+      "source_preflight": {
+        "preflight_version": "0.1.0-draft.1",
+        "candidate_id": "SYN-FAR-001",
+        "source_id": "prospect_official_website",
+        "field_key": "person.business_email",
+        "named_need": "Verify person.business_email",
+        "execution_mode": "local_fixture_simulation",
+        "preflight_status": "allowed_local_fixture",
+        "field_gate": "official_site_business_field_boundary",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "per_domain_terms_and_robots_preflight",
+        "runtime_readiness": "runtime_policy_pending",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1,
+          "required_pages": [
+            "home_or_primary",
+            "about_or_team_when_available",
+            "services_when_available",
+            "contact_or_location_when_available"
+          ],
+          "capture_explicit_outbound_professional_social_links": true,
+          "open_or_extract_linked_social_profiles": false
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "audit_requirements": [
+          "actor_profile",
+          "trigger",
+          "timestamp",
+          "source_id",
+          "input_scope",
+          "source_urls",
+          "output_reference",
+          "approval_state",
+          "status",
+          "retries",
+          "usage_and_cost"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 5E synthetic workflow",
+          "timestamp": "2026-08-28T10:00:00Z",
+          "run_id": "STEP5E-horse_owner_requalification",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "SYN-FAR-001",
+            "field_key": "person.business_email",
+            "named_need": "Verify person.business_email"
+          },
+          "source_urls": [],
+          "output_reference": null,
+          "approval_state": "fixture_only",
+          "status": "allowed_local_fixture",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 0,
+            "cost_amount": 0,
+            "currency": "USD",
+            "cost_status": "no_external_call"
+          }
+        },
+        "audit_complete": true,
+        "external_call_authorized": false,
+        "external_calls": 0,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "cf802693502261862cd6ca565ca534bfad002c78bdc44f91e6a71c336b8f445c"
+      }
+    },
+    {
+      "observation_id": "OBS-PHONE-1",
+      "field_key": "person.business_phone",
+      "entity_id": "P-1",
+      "raw_value": "(859) 555-0100",
+      "source_id": "prospect_official_website",
+      "source_action_status": "allowed_local_fixture",
+      "source_url": "https://example.com/contact",
+      "evidence_id": "EV-W2-002",
+      "availability_status": "available",
+      "fact_type": "direct_fact",
+      "collection_method": "explicitly_published",
+      "source_preflight": {
+        "preflight_version": "0.1.0-draft.1",
+        "candidate_id": "SYN-FAR-001",
+        "source_id": "prospect_official_website",
+        "field_key": "person.business_phone",
+        "named_need": "Verify person.business_phone",
+        "execution_mode": "local_fixture_simulation",
+        "preflight_status": "allowed_local_fixture",
+        "field_gate": "official_site_business_field_boundary",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "per_domain_terms_and_robots_preflight",
+        "runtime_readiness": "runtime_policy_pending",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1,
+          "required_pages": [
+            "home_or_primary",
+            "about_or_team_when_available",
+            "services_when_available",
+            "contact_or_location_when_available"
+          ],
+          "capture_explicit_outbound_professional_social_links": true,
+          "open_or_extract_linked_social_profiles": false
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "audit_requirements": [
+          "actor_profile",
+          "trigger",
+          "timestamp",
+          "source_id",
+          "input_scope",
+          "source_urls",
+          "output_reference",
+          "approval_state",
+          "status",
+          "retries",
+          "usage_and_cost"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 5E synthetic workflow",
+          "timestamp": "2026-08-28T10:00:00Z",
+          "run_id": "STEP5E-horse_owner_requalification",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "SYN-FAR-001",
+            "field_key": "person.business_phone",
+            "named_need": "Verify person.business_phone"
+          },
+          "source_urls": [],
+          "output_reference": null,
+          "approval_state": "fixture_only",
+          "status": "allowed_local_fixture",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 0,
+            "cost_amount": 0,
+            "currency": "USD",
+            "cost_status": "no_external_call"
+          }
+        },
+        "audit_complete": true,
+        "external_call_authorized": false,
+        "external_calls": 0,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "b3f40beb113a989f90286f3a7826c00cf2d3dba29a8fbf9d1e695c31fc740c35"
+      }
+    }
+  ]
+}

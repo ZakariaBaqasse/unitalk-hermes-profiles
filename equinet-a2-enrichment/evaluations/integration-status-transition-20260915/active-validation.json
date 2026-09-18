@@ -1,0 +1,10 @@
+{
+  "record_type": "a2_active_foundation_integrity_validation",
+  "manifest_version": "1.4.0",
+  "status": "pass",
+  "active_file_count": 85,
+  "python_files_compiled": 25,
+  "hash_algorithm": "sha256_raw_file_bytes",
+  "errors": [],
+  "external_actions": 0
+}

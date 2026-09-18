@@ -1,0 +1,160 @@
+{
+  "actor_id": "apify~facebook-page-contact-information",
+  "artifact_sha256": "9936bba16549c2f37bb9d4e096108edd9b9eaf3df31c46ab6836a7b7568e2384",
+  "audit": {
+    "operation_counts": {
+      "actor_run_posts": 2,
+      "dataset_gets": 2,
+      "status_polls": 2
+    },
+    "request_batch_sha256": "0cfa0ddac6062d63fa46d0325ae11bf15ebae690a692e7b8328488ac01033082",
+    "runner_sha256": "eb650c9416c9212a59afe543a388bb8b25a7c7da5401805058f2b7f6f1132286"
+  },
+  "controls": {
+    "fallback_actor": null,
+    "max_polls": 60,
+    "max_retries": 0,
+    "resurrection": false
+  },
+  "external_calls": 0,
+  "kind": "a2-apify-official-facebook-results",
+  "mode": "fixture",
+  "result_count": 2,
+  "results": [
+    {
+      "audit": {
+        "actor_id": "apify~facebook-page-contact-information",
+        "build_id": "build-official-1",
+        "build_sha256": "c7beed643d02fc4b388a47a44bfb68540df8b848a1ce8509e070f65522c7b6ba",
+        "cost": {
+          "usage": {
+            "ACTOR_COMPUTE_UNITS": 0.001
+          },
+          "usageTotalUsd": 0.0066
+        },
+        "dataset_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+        "default_dataset_id": "dataset-trigger",
+        "input_sha256": "4f0b44b92ee580155ae6f3db1c4b779ece2cd0c73cc4c7ec6e2e04d2f5ef3ac5",
+        "operation_counts": {
+          "actor_run_posts": 1,
+          "dataset_gets": 1,
+          "status_polls": 1
+        },
+        "output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+        "provider_run_id": "run-trigger",
+        "run_response_sha256": "72afe4bd0a9b2e4920498e624cc940c033ba06d7452f5e1c862b62398fce7a23",
+        "start_response_sha256": "686b80fa8616705773b39e0ef18a53dae2adbca725bd14c377f26c71c30e718e",
+        "status_responses_sha256": "f6549f6cdfd0fda6bf429a21d59cb984807865bcfd4bcbffc61d7f5ed0d8fe7c"
+      },
+      "company_candidates": {
+        "email": null,
+        "phone": null
+      },
+      "company_id": "company-trigger",
+      "company_name": "Bluegrass Farm LLC",
+      "current_values": {
+        "company.company_email": [],
+        "company.company_phone": []
+      },
+      "dataset_items": [
+        {
+          "email": "Contact@Bluegrass.Example",
+          "facebookUrl": "https://www.facebook.com/BluegrassFarm/",
+          "pageName": "BluegrassFarm",
+          "pageUrl": "https://facebook.com/BluegrassFarm",
+          "phone": "+1 555 010 1000",
+          "title": "Bluegrass Farm",
+          "website": "https://bluegrass.example"
+        }
+      ],
+      "entity_type": "Company",
+      "exact_facebook_url": "https://www.facebook.com/BluegrassFarm/",
+      "facebook_url": "https://www.facebook.com/BluegrassFarm/",
+      "missing_channels": [
+        "email",
+        "phone"
+      ],
+      "missing_fields": [
+        "company.company_email",
+        "company.company_phone"
+      ],
+      "official_site_evidence": {
+        "evidence_id": "web-bluegrass-facebook",
+        "facebook_url": "https://www.facebook.com/BluegrassFarm/",
+        "field_key": "company.facebook_url",
+        "source_type": "prospect_owned_official_site",
+        "source_url": "https://bluegrass.example/contact",
+        "status": "validated"
+      },
+      "request_id": "apify-facebook-company-trigger",
+      "terminal_status": "succeeded"
+    },
+    {
+      "audit": {
+        "actor_id": "apify~facebook-page-contact-information",
+        "build_id": "build-official-1",
+        "build_sha256": "c7beed643d02fc4b388a47a44bfb68540df8b848a1ce8509e070f65522c7b6ba",
+        "cost": {
+          "usageTotalUsd": 0.0066
+        },
+        "dataset_sha256": "d40463d7e3b9e9265e183250556f2ed17e8f130b37546b2a5937f0339cb21a62",
+        "default_dataset_id": "dataset-duplicate",
+        "input_sha256": "3c58fc438cc5b31ad3df9eb518b1742b870b4414950fbe0a557ac5db50220055",
+        "operation_counts": {
+          "actor_run_posts": 1,
+          "dataset_gets": 1,
+          "status_polls": 1
+        },
+        "output_sha256": "d40463d7e3b9e9265e183250556f2ed17e8f130b37546b2a5937f0339cb21a62",
+        "provider_run_id": "run-duplicate",
+        "run_response_sha256": "d2d1d2f79fb44159119cc84c0b504ec368252c3956d65ee106b222db47f2bac7",
+        "start_response_sha256": "c9c8a9cd2e8130a02c8490f935298196971a48026d02e0e8ed5d1468f6debeaf",
+        "status_responses_sha256": "d3cc1e780e48ccfc4c1e325be5d4ab0aecce52fb95c534d30db4dd33153f1c7a"
+      },
+      "company_candidates": {
+        "email": null,
+        "phone": null
+      },
+      "company_id": "company-duplicate",
+      "company_name": "Existing Email Farm",
+      "current_values": {
+        "company.company_email": [
+          "hello@existing.example"
+        ],
+        "company.company_phone": []
+      },
+      "dataset_items": [
+        {
+          "email": "HELLO@EXISTING.EXAMPLE",
+          "pageName": "ExistingEmailFarm",
+          "pageUrl": "https://www.facebook.com/ExistingEmailFarm/",
+          "phone": null,
+          "title": "Existing Email Farm",
+          "website": "https://existing.example"
+        }
+      ],
+      "entity_type": "Company",
+      "exact_facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+      "facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+      "missing_channels": [
+        "phone"
+      ],
+      "missing_fields": [
+        "company.company_phone"
+      ],
+      "official_site_evidence": {
+        "evidence_id": "web-existing-facebook",
+        "facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+        "field_key": "company.facebook_url",
+        "source_type": "official_site",
+        "source_url": "https://existing.example",
+        "status": "validated"
+      },
+      "request_id": "apify-facebook-company-duplicate",
+      "terminal_status": "succeeded"
+    }
+  ],
+  "run_id": "STEP11-APIFY-TEST",
+  "schema_version": "1.0.0",
+  "writes": 0
+}

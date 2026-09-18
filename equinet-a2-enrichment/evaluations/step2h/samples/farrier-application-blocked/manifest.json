@@ -1,0 +1,67 @@
+{
+  "spec_version": "0.1.0",
+  "renderer_version": "0.1.0",
+  "canonical_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/fixtures/farrier-application-blocked.json",
+  "canonical_record_sha256": "8deb9b6cf68fc4fee45f15d881d7dd2230a2ffe189281f3f1979e3b868c16f63",
+  "previous_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2f/fixtures/valid/farrier-review-required-previous.json",
+  "previous_record_sha256": "c0fbe959bb0e1b36dff2f5a2540a9e96b116ce378c64061d2184c594a969c73d",
+  "spec_path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+  "spec_sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df",
+  "renderer_sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef",
+  "outputs": [
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/review.md",
+      "sha256": "52bf3144a344c8e84854faf1d847051dbf35d1492e9ebd016075a13cdf9f42ba",
+      "bytes": 3246
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/summary.csv",
+      "sha256": "59db6dd2cf3a1414dbca21e41277382f3f3f6766d1e86ac78285f0ad5337da64",
+      "bytes": 576
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/review-queue.csv",
+      "sha256": "9bc5ba48ab3103cdc4279a46173ba44bcf85a59d6306bcb1fe7d7840aed918fd",
+      "bytes": 2245
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/fields.csv",
+      "sha256": "74df9331e2d7a280b3bb4c0510f0523e0cd2c1a45cd24c9a82bfc78bee181b7a",
+      "bytes": 3441
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/evidence.csv",
+      "sha256": "2e2e752a4c4cead698bfc521cec98b21ea00e2d15c16ffac50ec01a4e97a7583",
+      "bytes": 1613
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6",
+      "bytes": 359
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/audit.csv",
+      "sha256": "33cdae7d3cd9651a923cf9f7fab2a7cb58bd7f3255f24020eb000a3e0ed04a0b",
+      "bytes": 1406
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-application-blocked/review.xlsx",
+      "sha256": "fde36a1da8349bcffa04b82503c3ed136f360c9e1087e1a0fed1927e028aa264",
+      "bytes": 15334
+    }
+  ],
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 3,
+    "fields": 6,
+    "evidence": 3,
+    "requalification": 0,
+    "audit": 4
+  },
+  "validation": {
+    "canonical_record_valid": true,
+    "read_only_projection": true,
+    "external_actions": 0,
+    "formula_policy": "no_formulas"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "record_type": "pre_change_snapshot_manifest",
+  "created_at": "2026-08-30T17:05:11Z",
+  "files": [
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 17670,
+      "sha256": "c8d0ddec7c2ddf20414d42a19075cca4ff280895e89ba2760a0547f9ad043246"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/SOUL.md",
+      "bytes": 19301,
+      "sha256": "3acb24d2b2cb03037bf57b92c21aa60b864a2ff064a6a3ea608f7496c45b17ef"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "bytes": 41682,
+      "sha256": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/a2-hubspot-preliminary-mapping-0.1.1-draft.1.json",
+      "bytes": 30550,
+      "sha256": "772d00be0c6c330362c453a324e9c7dc67597dbc48fe74fb26e0311d7d126f75"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/a2-minimum-data-packages-0.1.1-draft.1.json",
+      "bytes": 5408,
+      "sha256": "2ddf615e4c2894b97cfa8ef42f73d4437a7e2370e1cefa0d60a2986fb7741b94"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/a2-no-integration-runtime-policy-1.0.0.yaml",
+      "bytes": 5157,
+      "sha256": "f83c89df8cb7a726ff0696b0de5fd2958703bb56702768e844e61f066c7226ab"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/a2-provider-and-cost-policy-0.1.1-draft.1.json",
+      "bytes": 5925,
+      "sha256": "3e2b56b7989c523f37219730d266d6b83a9b25f104cc7289697931927ea6d05b"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/pre-change/a2-source-register-0.1.1-draft.1.json",
+      "bytes": 23039,
+      "sha256": "ee5fc77aadd4b511ad8681cde7e5714146fc930072e2d71a1c4e2bba952ddab8"
+    }
+  ]
+}

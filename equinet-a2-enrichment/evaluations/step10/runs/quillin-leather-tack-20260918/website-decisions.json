@@ -1,0 +1,24 @@
+{
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+  "decision_notes": "Website stage decisions for Quillin Leather & Tack. Company email and phone corroborated on homepage, contact and about pages. Phone matches the existing Twenty primary exactly (no_change expected). Email fills an empty primary (propose_add). Four official social profiles retained for Company composite append. All 63 candidate 'people' observations are product names, headings and navigation fragments produced by heading extraction (e.g. 'Track Halters', 'Leather Passport Cover'); none is a real person, so zero website People are retained. LIMITATION RECORDED FOR REVIEW: the About page prose explicitly names 'Ralph and Donna Quillin' (owners) and 'Rob Windels & Vince Grupposo' (shop operators), but the deterministic extractor emitted no person observations for them and the decision contract forbids introducing unobserved values, so they cannot be retained in this stage. The named-contact gap proceeds to the FullEnrich staged Search.",
+  "people": [],
+  "contacts": [
+    {
+      "observation_id": "website-contact-22eeb8f6627ea04c",
+      "retain": true,
+      "attribution": {"entity_type": "Company", "entity_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5"}
+    },
+    {
+      "observation_id": "website-contact-64cae5e3100b797f",
+      "retain": true,
+      "attribution": {"entity_type": "Company", "entity_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5"}
+    }
+  ],
+  "social_links": [
+    {"observation_id": "website-social-dfcd420ab56ac054", "retain": true},
+    {"observation_id": "website-social-ee2475e1a67e24b5", "retain": true},
+    {"observation_id": "website-social-60ce1583b2bb3f73", "retain": true},
+    {"observation_id": "website-social-79b7667c3616fb9c", "retain": true}
+  ]
+}

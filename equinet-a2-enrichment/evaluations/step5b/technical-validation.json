@@ -1,0 +1,471 @@
+{
+  "step": "5B",
+  "wave": 1,
+  "status": "ready_for_severine_review_not_approved",
+  "skill_count": 3,
+  "command_count": 3,
+  "package_checks": [
+    {
+      "skill_id": "a2-handoff-intake-and-initialisation",
+      "checks": {
+        "frontmatter_name": true,
+        "description": true,
+        "draft_status": true,
+        "mission": true,
+        "inputs": true,
+        "command": true,
+        "boundaries": true,
+        "handoff": true,
+        "three_evals": true
+      },
+      "passed": true
+    },
+    {
+      "skill_id": "a2-entity-resolution-and-normalisation",
+      "checks": {
+        "frontmatter_name": true,
+        "description": true,
+        "draft_status": true,
+        "mission": true,
+        "inputs": true,
+        "command": true,
+        "boundaries": true,
+        "handoff": true,
+        "three_evals": true
+      },
+      "passed": true
+    },
+    {
+      "skill_id": "a2-duplicate-and-eligibility-review",
+      "checks": {
+        "frontmatter_name": true,
+        "description": true,
+        "draft_status": true,
+        "mission": true,
+        "inputs": true,
+        "command": true,
+        "boundaries": true,
+        "handoff": true,
+        "three_evals": true
+      },
+      "passed": true
+    }
+  ],
+  "deterministic_cases": {
+    "total": 14,
+    "passed": 14,
+    "cases": [
+      {
+        "name": "intake-valid-and-idempotent",
+        "checks": {
+          "first_created": true,
+          "repeat_unchanged": true,
+          "ledger_repeat_existing": true,
+          "records_equal": true,
+          "external_actions_zero": true
+        },
+        "passed": true
+      },
+      {
+        "name": "intake-invalid-rejected",
+        "checks": {
+          "exit_one": true,
+          "no_output": true,
+          "reports_invalid": true
+        },
+        "passed": true
+      },
+      {
+        "name": "organisation-confirmed-name-domain",
+        "result": {
+          "command": "a2-normalise-resolve-entities",
+          "version": "0.1.0",
+          "source_entity": {
+            "entity_id": "SRC-ORG-001",
+            "entity_type": "organisation",
+            "display_name": "Bluegrass Farrier Services LLC",
+            "normalised_name": "bluegrass farrier services",
+            "domain": "bluegrass.example",
+            "business_email": null,
+            "business_phone": null,
+            "organisation_name": null,
+            "public_profile_urls": []
+          },
+          "candidate_results": [
+            {
+              "candidate_id": "CRM-ORG-001",
+              "status": "confirmed_match",
+              "signals": [
+                {
+                  "signal": "normalised_name",
+                  "match": true
+                },
+                {
+                  "signal": "domain",
+                  "match": true
+                }
+              ],
+              "reason": "matching name and strong identifier with no conflicting compared field"
+            }
+          ],
+          "identity_resolution_status": "resolved",
+          "human_review_required": false,
+          "canonical_record_mutated": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "identity_resolution_status": "resolved",
+          "candidate_status": "confirmed_match",
+          "human_review_required": false
+        },
+        "passed": true
+      },
+      {
+        "name": "organisation-name-only-possible",
+        "result": {
+          "command": "a2-normalise-resolve-entities",
+          "version": "0.1.0",
+          "source_entity": {
+            "entity_id": "SRC-ORG-002",
+            "entity_type": "organisation",
+            "display_name": "Oak Hill Farm",
+            "normalised_name": "oak hill farm",
+            "domain": null,
+            "business_email": null,
+            "business_phone": null,
+            "organisation_name": null,
+            "public_profile_urls": []
+          },
+          "candidate_results": [
+            {
+              "candidate_id": "CRM-ORG-002",
+              "status": "possible_match",
+              "signals": [
+                {
+                  "signal": "normalised_name",
+                  "match": true
+                }
+              ],
+              "reason": "one identity basis matches but confirmation is insufficient"
+            }
+          ],
+          "identity_resolution_status": "possible_match",
+          "human_review_required": true,
+          "canonical_record_mutated": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "identity_resolution_status": "possible_match",
+          "candidate_status": "possible_match",
+          "human_review_required": true
+        },
+        "passed": true
+      },
+      {
+        "name": "organisation-material-conflict",
+        "result": {
+          "command": "a2-normalise-resolve-entities",
+          "version": "0.1.0",
+          "source_entity": {
+            "entity_id": "SRC-ORG-003",
+            "entity_type": "organisation",
+            "display_name": "Pine Ridge Farm",
+            "normalised_name": "pine ridge farm",
+            "domain": "pineridge.example",
+            "business_email": null,
+            "business_phone": "18595550101",
+            "organisation_name": null,
+            "public_profile_urls": []
+          },
+          "candidate_results": [
+            {
+              "candidate_id": "CRM-ORG-003",
+              "status": "conflict",
+              "signals": [
+                {
+                  "signal": "normalised_name",
+                  "match": true
+                },
+                {
+                  "signal": "domain",
+                  "match": false
+                },
+                {
+                  "signal": "business_phone",
+                  "match": false
+                }
+              ],
+              "reason": "matching and conflicting identity signals coexist"
+            }
+          ],
+          "identity_resolution_status": "conflict",
+          "human_review_required": true,
+          "canonical_record_mutated": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "identity_resolution_status": "conflict",
+          "candidate_status": "conflict",
+          "human_review_required": true
+        },
+        "passed": true
+      },
+      {
+        "name": "organisation-two-differences-no-match",
+        "result": {
+          "command": "a2-normalise-resolve-entities",
+          "version": "0.1.0",
+          "source_entity": {
+            "entity_id": "SRC-ORG-004",
+            "entity_type": "organisation",
+            "display_name": "North Farm",
+            "normalised_name": "north farm",
+            "domain": "north.example",
+            "business_email": null,
+            "business_phone": null,
+            "organisation_name": null,
+            "public_profile_urls": []
+          },
+          "candidate_results": [
+            {
+              "candidate_id": "CRM-ORG-004",
+              "status": "no_match",
+              "signals": [
+                {
+                  "signal": "normalised_name",
+                  "match": false
+                },
+                {
+                  "signal": "domain",
+                  "match": false
+                }
+              ],
+              "reason": "multiple compared identity fields differ"
+            }
+          ],
+          "identity_resolution_status": "resolved",
+          "human_review_required": false,
+          "canonical_record_mutated": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "identity_resolution_status": "resolved",
+          "candidate_status": "no_match",
+          "human_review_required": false
+        },
+        "passed": true
+      },
+      {
+        "name": "no-comparison-unresolved",
+        "result": {
+          "command": "a2-normalise-resolve-entities",
+          "version": "0.1.0",
+          "source_entity": {
+            "entity_id": "SRC-PER-001",
+            "entity_type": "person",
+            "display_name": "Alex Morgan",
+            "normalised_name": "alex morgan",
+            "domain": null,
+            "business_email": null,
+            "business_phone": null,
+            "organisation_name": null,
+            "public_profile_urls": []
+          },
+          "candidate_results": [],
+          "identity_resolution_status": "unresolved",
+          "human_review_required": true,
+          "canonical_record_mutated": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "identity_resolution_status": "unresolved",
+          "candidate_status": null,
+          "human_review_required": true
+        },
+        "passed": true
+      },
+      {
+        "name": "synthetic-hubspot-unavailable-can-continue",
+        "result": {
+          "command": "a2-duplicate-eligibility",
+          "version": "0.1.0",
+          "a2_eligibility_status": "eligible",
+          "outreach_eligibility_status": "unavailable",
+          "owner_routing_status": "needs_owner_review",
+          "reasons": [
+            "no blocking or review-required duplicate signal exists for the declared scope"
+          ],
+          "checks": [
+            {
+              "check_type": "hubspot_company",
+              "system": "hubspot",
+              "status": "unavailable",
+              "authoritative": true
+            }
+          ],
+          "crm_write_authorized": false,
+          "outreach_authorized": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "a2_eligibility_status": "eligible",
+          "outreach_eligibility_status": "unavailable"
+        },
+        "passed": true
+      },
+      {
+        "name": "possible-duplicate-hold",
+        "result": {
+          "command": "a2-duplicate-eligibility",
+          "version": "0.1.0",
+          "a2_eligibility_status": "hold",
+          "outreach_eligibility_status": "unavailable",
+          "owner_routing_status": "needs_owner_review",
+          "reasons": [
+            "identity or duplicate ambiguity requires review"
+          ],
+          "checks": [
+            {
+              "check_type": "batch",
+              "system": "a1",
+              "status": "possible_match",
+              "authoritative": false
+            }
+          ],
+          "crm_write_authorized": false,
+          "outreach_authorized": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "a2_eligibility_status": "hold",
+          "outreach_eligibility_status": "unavailable"
+        },
+        "passed": true
+      },
+      {
+        "name": "confirmed-duplicate-block",
+        "result": {
+          "command": "a2-duplicate-eligibility",
+          "version": "0.1.0",
+          "a2_eligibility_status": "blocked",
+          "outreach_eligibility_status": "blocked",
+          "owner_routing_status": "needs_owner_review",
+          "reasons": [
+            "a confirmed duplicate exists"
+          ],
+          "checks": [
+            {
+              "check_type": "batch",
+              "system": "a1",
+              "status": "confirmed_duplicate",
+              "authoritative": false
+            }
+          ],
+          "crm_write_authorized": false,
+          "outreach_authorized": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "a2_eligibility_status": "blocked",
+          "outreach_eligibility_status": "blocked"
+        },
+        "passed": true
+      },
+      {
+        "name": "integrated-authoritative-check-unavailable-hold",
+        "result": {
+          "command": "a2-duplicate-eligibility",
+          "version": "0.1.0",
+          "a2_eligibility_status": "hold",
+          "outreach_eligibility_status": "hold",
+          "owner_routing_status": "needs_owner_review",
+          "reasons": [
+            "an authoritative duplicate check is unavailable"
+          ],
+          "checks": [
+            {
+              "check_type": "hubspot_company",
+              "system": "hubspot",
+              "status": "unavailable",
+              "authoritative": true
+            }
+          ],
+          "crm_write_authorized": false,
+          "outreach_authorized": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "a2_eligibility_status": "hold",
+          "outreach_eligibility_status": "hold"
+        },
+        "passed": true
+      },
+      {
+        "name": "upstream-block-propagates",
+        "result": {
+          "command": "a2-duplicate-eligibility",
+          "version": "0.1.0",
+          "a2_eligibility_status": "blocked",
+          "outreach_eligibility_status": "blocked",
+          "owner_routing_status": "needs_owner_review",
+          "reasons": [
+            "A1 eligibility is blocked"
+          ],
+          "checks": [],
+          "crm_write_authorized": false,
+          "outreach_authorized": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "a2_eligibility_status": "blocked",
+          "outreach_eligibility_status": "blocked"
+        },
+        "passed": true
+      },
+      {
+        "name": "identity-conflict-hold",
+        "result": {
+          "command": "a2-duplicate-eligibility",
+          "version": "0.1.0",
+          "a2_eligibility_status": "hold",
+          "outreach_eligibility_status": "unavailable",
+          "owner_routing_status": "needs_owner_review",
+          "reasons": [
+            "identity or duplicate ambiguity requires review"
+          ],
+          "checks": [],
+          "crm_write_authorized": false,
+          "outreach_authorized": false,
+          "external_actions": 0
+        },
+        "expected": {
+          "a2_eligibility_status": "hold",
+          "outreach_eligibility_status": "unavailable"
+        },
+        "passed": true
+      },
+      {
+        "name": "invalid-duplicate-state-rejected",
+        "result": {
+          "error": "unknown duplicate status: clear"
+        },
+        "expected": "unknown duplicate status",
+        "passed": true
+      }
+    ]
+  },
+  "targeted_behavioural_validation": {
+    "overall_pass": true,
+    "three_scenarios": true,
+    "all_skill_statuses_pass": true,
+    "external_actions_zero": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "hubspot_access": false,
+  "apify_access": false,
+  "approval_required": true,
+  "next_gate_after_approval": "Step 5C — Wave 2 Planning, Research and Verification",
+  "failures": [],
+  "pass": true
+}

@@ -1,0 +1,57 @@
+{
+  "schema_id": "a2-fullenrich-search-requests",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "company_id": null,
+  "created_at": "2026-09-17T15:26:29Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "search_stage": "owner",
+  "requests": [
+    {
+      "request_id": "search-owner-0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "company_name": "Wilkins Farrier & Forge",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "Lawrenceburg, Kentucky, 40342, United States",
+        "city": "Lawrenceburg",
+        "region": "Kentucky",
+        "country": "United States",
+        "postal_code": "40342"
+      },
+      "segment": "FARRIER",
+      "search_stage": "owner",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "Owner"
+      ],
+      "limit": 1
+    },
+    {
+      "request_id": "search-owner-fd216e4e-287c-4d6b-994e-861278ca3065",
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "company_name": "Ellis Forge LLC",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "3610 Lexington Road, Richmond, Kentucky, 40475, United States",
+        "city": "Richmond",
+        "region": "KY",
+        "country": "United States",
+        "postal_code": "40475"
+      },
+      "segment": "FARRIER",
+      "search_stage": "owner",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "Owner"
+      ],
+      "limit": 1
+    }
+  ],
+  "blocked_requests": [],
+  "artifact_sha256": "109deb3d0e74bbae9a6c08c230b17838670375eac21123105441f6b072d23b54"
+}

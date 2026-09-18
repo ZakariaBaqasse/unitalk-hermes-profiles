@@ -1,0 +1,78 @@
+{
+  "schema_id": "a2-fullenrich-search-requests",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "company_id": null,
+  "created_at": "2026-09-15T11:18:02Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "requests": [
+    {
+      "request_id": "search-575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "company_name": "Hidden Creek Farm LLC",
+      "domain": "http://hiddencreek.farm",
+      "company_professional_network_url": null,
+      "location": {
+        "street": "4721 Newtown Pike, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "target_titles": [
+        "breeding farm owner",
+        "breeding manager",
+        "equestrian center manager",
+        "equestrian center owner",
+        "equestrian centre manager",
+        "equestrian centre owner",
+        "farm manager",
+        "farm owner",
+        "general manager",
+        "horse owner",
+        "managing director",
+        "operations manager",
+        "owner",
+        "stable manager",
+        "stable owner"
+      ],
+      "limit": 2
+    },
+    {
+      "request_id": "search-c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "company_name": "Triple Diamonds Training Center",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "2501 Russell Cave Rd, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "target_titles": [
+        "breeding farm owner",
+        "breeding manager",
+        "equestrian center manager",
+        "equestrian center owner",
+        "equestrian centre manager",
+        "equestrian centre owner",
+        "farm manager",
+        "farm owner",
+        "general manager",
+        "horse owner",
+        "managing director",
+        "operations manager",
+        "owner",
+        "stable manager",
+        "stable owner"
+      ],
+      "limit": 2
+    }
+  ],
+  "blocked_requests": [],
+  "artifact_sha256": "c6253e938ad9b42539d71a68b44791852b8aa2cb0117923ae3f0c1ff49d2fbbd"
+}

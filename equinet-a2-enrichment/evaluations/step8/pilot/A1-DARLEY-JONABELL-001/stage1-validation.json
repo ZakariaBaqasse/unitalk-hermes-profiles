@@ -1,0 +1,40 @@
+{
+  "record_type": "step8_jonabell_stage1_validation",
+  "status": "accepted_pending_relationship_review",
+  "checks": {
+    "candidate": true,
+    "validated_batch": true,
+    "no_final_confidence": true,
+    "no_canonical_mutation": true,
+    "zero_external_actions": true,
+    "receipt_hashes": true,
+    "source_content_hashes": true,
+    "analysis_self_hash": true,
+    "audit_self_hash": true,
+    "analysis_assessment_ids": true,
+    "analysis_state_language": true,
+    "gateway_name": true,
+    "model_usage_not_zeroed": true,
+    "audit_file_hashes": true,
+    "role_priority_recommendation": true
+  },
+  "checks_passed": 15,
+  "checks_total": 15,
+  "accepted_observations": [
+    "organisation.stable_type",
+    "person.role_title",
+    "person.business_email"
+  ],
+  "accepted_observation_state": "present_unverified_ready_for_evidence_assessment",
+  "rejected_observation": "relationship.target_role_priority",
+  "review_decision_required": {
+    "field_key": "relationship.target_role_priority",
+    "recommendation": "secondary",
+    "recommended_decision": "approve_as_reviewed_classification_not_sourced_fact"
+  },
+  "audit_hash_mismatches": [],
+  "required_corrections": [],
+  "canonical_revision_authorized": false,
+  "rood_and_riddle_authorized": false,
+  "external_actions": 0
+}

@@ -1,0 +1,550 @@
+{
+  "batch_version": "0.1.0-draft.1",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "segment": "farrier",
+  "operating_scope": "manual_no_integration_pilot",
+  "observations": [
+    {
+      "source_id": "prospect_official_website",
+      "source_action_status": "completed",
+      "explicitly_linked": true,
+      "named_role_gap": false,
+      "country_code": "US",
+      "supporting_role_evidence_ids": [],
+      "recommendation_basis_evidence_ids": [],
+      "email_kind": null,
+      "collection_method": "direct_extraction",
+      "observation_id": "A2-OBS-RR-ROLE-TITLE-001",
+      "field_key": "person.role_title",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "source_url": "https://roodandriddle.com/lexington-podiatry-team",
+      "availability_status": "available",
+      "fact_type": "direct_fact",
+      "raw_value": "Co-Founder/Farrier",
+      "page_context": "The official Lexington Podiatry team page lists Manfred Eckert under FARRIERS with the exact title Co-Founder/Farrier.",
+      "evidence_id": "A2-EV-STEP8-RR-ROLE",
+      "source_preflight": {
+        "preflight_version": "0.1.0-step8",
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "source_id": "prospect_official_website",
+        "field_key": "person.role_title",
+        "named_need": "Step 8 verified field observation for person.role_title",
+        "execution_mode": "bounded_real_pilot_collection",
+        "preflight_status": "completed",
+        "field_gate": "step8_approved_official_site_field_allowlist",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "robots_checked_and_allowed",
+        "runtime_readiness": "step8_bounded_pilot",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 8 bounded official-site collection",
+          "timestamp": "2026-08-30T13:19:51Z",
+          "run_id": "STEP8-A1-RR-PODIATRY-001",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "A1-RR-PODIATRY-001",
+            "field_key": "person.role_title",
+            "named_need": "Verify person.role_title"
+          },
+          "source_urls": [
+            "https://roodandriddle.com/lexington-podiatry-team"
+          ],
+          "output_reference": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+          "approval_state": "approved_bounded_real_pilot",
+          "status": "completed",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 1,
+            "cost_amount": null,
+            "currency": "USD",
+            "cost_status": "unavailable"
+          }
+        },
+        "audit_complete": true,
+        "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+        "source_content_sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+        "external_call_authorized": false,
+        "external_calls": 1,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "297c7c501d53172fc2ce68f46c899dbc04083f8a0dbc9c1afd5cea72f5340743"
+      },
+      "role_current": true
+    },
+    {
+      "source_id": "prospect_official_website",
+      "source_action_status": "completed",
+      "explicitly_linked": true,
+      "named_role_gap": false,
+      "country_code": "US",
+      "supporting_role_evidence_ids": [],
+      "recommendation_basis_evidence_ids": [],
+      "email_kind": null,
+      "collection_method": "direct_extraction",
+      "observation_id": "A2-OBS-RR-DISCIPLINES-001",
+      "field_key": "organisation.disciplines",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "source_url": "https://roodandriddle.com/lexington/",
+      "availability_status": "available",
+      "fact_type": "direct_fact",
+      "raw_value": [
+        "all breeds and disciplines"
+      ],
+      "page_context": "The official Lexington hospital page states that Rood & Riddle provides ambulatory care for all breeds and disciplines. This is organisation-level context and is not narrowed to one Podiatry discipline.",
+      "evidence_id": "A2-EV-STEP8-RR-DISCIPLINES",
+      "source_preflight": {
+        "preflight_version": "0.1.0-step8",
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "source_id": "prospect_official_website",
+        "field_key": "organisation.disciplines",
+        "named_need": "Step 8 verified field observation for organisation.disciplines",
+        "execution_mode": "bounded_real_pilot_collection",
+        "preflight_status": "completed",
+        "field_gate": "step8_approved_official_site_field_allowlist",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "robots_checked_and_allowed",
+        "runtime_readiness": "step8_bounded_pilot",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 8 bounded official-site collection",
+          "timestamp": "2026-08-30T13:19:52Z",
+          "run_id": "STEP8-A1-RR-PODIATRY-001",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "A1-RR-PODIATRY-001",
+            "field_key": "organisation.disciplines",
+            "named_need": "Verify organisation.disciplines"
+          },
+          "source_urls": [
+            "https://roodandriddle.com/lexington/"
+          ],
+          "output_reference": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-02.md",
+          "approval_state": "approved_bounded_real_pilot",
+          "status": "completed",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 1,
+            "cost_amount": null,
+            "currency": "USD",
+            "cost_status": "unavailable"
+          }
+        },
+        "audit_complete": true,
+        "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+        "source_content_sha256": "a2413050089a5b55e4e35b8002dc2fb6741d5dce518a6b014566f651cfc0974a",
+        "external_call_authorized": false,
+        "external_calls": 1,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "ba966cc2744195e6c5341734556ab2018994072f98ba89551cce297219764d35"
+      },
+      "role_current": null
+    },
+    {
+      "source_id": "prospect_official_website",
+      "source_action_status": "completed",
+      "explicitly_linked": true,
+      "named_role_gap": false,
+      "country_code": "US",
+      "supporting_role_evidence_ids": [],
+      "recommendation_basis_evidence_ids": [],
+      "email_kind": null,
+      "collection_method": "direct_extraction",
+      "observation_id": "A2-OBS-RR-PROFESSIONAL-STATUS-GAP-001",
+      "field_key": "person.professional_status",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "source_url": "https://roodandriddle.com/lexington-podiatry-team",
+      "availability_status": "not_found",
+      "fact_type": "direct_fact",
+      "raw_value": null,
+      "page_context": "The team page confirms a Farrier role but does not explicitly state full-time, part-time or student/apprentice status.",
+      "evidence_id": null,
+      "source_preflight": {
+        "preflight_version": "0.1.0-step8",
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "source_id": "prospect_official_website",
+        "field_key": "person.professional_status",
+        "named_need": "Step 8 verified field observation for person.professional_status",
+        "execution_mode": "bounded_real_pilot_collection",
+        "preflight_status": "completed",
+        "field_gate": "step8_approved_official_site_field_allowlist",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "robots_checked_and_allowed",
+        "runtime_readiness": "step8_bounded_pilot",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 8 bounded official-site collection",
+          "timestamp": "2026-08-30T13:19:53Z",
+          "run_id": "STEP8-A1-RR-PODIATRY-001",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "A1-RR-PODIATRY-001",
+            "field_key": "person.professional_status",
+            "named_need": "Verify person.professional_status"
+          },
+          "source_urls": [
+            "https://roodandriddle.com/lexington-podiatry-team"
+          ],
+          "output_reference": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+          "approval_state": "approved_bounded_real_pilot",
+          "status": "completed",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 1,
+            "cost_amount": null,
+            "currency": "USD",
+            "cost_status": "unavailable"
+          }
+        },
+        "audit_complete": true,
+        "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+        "source_content_sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+        "external_call_authorized": false,
+        "external_calls": 1,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "bb0f886358dc5d74f3bb73a1048181f889464e0dd7ec5f175432f8ad61992378"
+      },
+      "role_current": null
+    },
+    {
+      "source_id": "prospect_official_website",
+      "source_action_status": "completed",
+      "explicitly_linked": true,
+      "named_role_gap": false,
+      "country_code": "US",
+      "supporting_role_evidence_ids": [],
+      "recommendation_basis_evidence_ids": [],
+      "email_kind": null,
+      "collection_method": "direct_extraction",
+      "observation_id": "A2-OBS-RR-SERVICE-AREA-GAP-001",
+      "field_key": "organisation.service_area",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "source_url": "https://roodandriddle.com/lexington/",
+      "availability_status": "not_found",
+      "fact_type": "direct_fact",
+      "raw_value": null,
+      "page_context": "The page gives the Lexington hospital location and describes ambulatory care but does not explicitly define the Podiatry service area. Location is not treated as service area.",
+      "evidence_id": null,
+      "source_preflight": {
+        "preflight_version": "0.1.0-step8",
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "source_id": "prospect_official_website",
+        "field_key": "organisation.service_area",
+        "named_need": "Step 8 verified field observation for organisation.service_area",
+        "execution_mode": "bounded_real_pilot_collection",
+        "preflight_status": "completed",
+        "field_gate": "step8_approved_official_site_field_allowlist",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "robots_checked_and_allowed",
+        "runtime_readiness": "step8_bounded_pilot",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 8 bounded official-site collection",
+          "timestamp": "2026-08-30T13:19:54Z",
+          "run_id": "STEP8-A1-RR-PODIATRY-001",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "A1-RR-PODIATRY-001",
+            "field_key": "organisation.service_area",
+            "named_need": "Verify organisation.service_area"
+          },
+          "source_urls": [
+            "https://roodandriddle.com/lexington/"
+          ],
+          "output_reference": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-02.md",
+          "approval_state": "approved_bounded_real_pilot",
+          "status": "completed",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 1,
+            "cost_amount": null,
+            "currency": "USD",
+            "cost_status": "unavailable"
+          }
+        },
+        "audit_complete": true,
+        "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+        "source_content_sha256": "a2413050089a5b55e4e35b8002dc2fb6741d5dce518a6b014566f651cfc0974a",
+        "external_call_authorized": false,
+        "external_calls": 1,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "760e77b476c331a7ca579c38e7768100afe9c5d1d6dc4e47f1b129406fcc01d2"
+      },
+      "role_current": null
+    },
+    {
+      "source_id": "prospect_official_website",
+      "source_action_status": "completed",
+      "explicitly_linked": true,
+      "named_role_gap": false,
+      "country_code": "US",
+      "supporting_role_evidence_ids": [],
+      "recommendation_basis_evidence_ids": [],
+      "email_kind": null,
+      "collection_method": "direct_extraction",
+      "observation_id": "A2-OBS-RR-NAMED-EMAIL-GAP-001",
+      "field_key": "person.business_email",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "source_url": "https://roodandriddle.com/lexington-podiatry-team",
+      "availability_status": "not_found",
+      "fact_type": "direct_fact",
+      "raw_value": null,
+      "page_context": "No professional email is published for Manfred Eckert on the bounded team page. The contact-form placeholder is excluded.",
+      "evidence_id": null,
+      "source_preflight": {
+        "preflight_version": "0.1.0-step8",
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "source_id": "prospect_official_website",
+        "field_key": "person.business_email",
+        "named_need": "Step 8 verified field observation for person.business_email",
+        "execution_mode": "bounded_real_pilot_collection",
+        "preflight_status": "completed",
+        "field_gate": "step8_approved_official_site_field_allowlist",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "robots_checked_and_allowed",
+        "runtime_readiness": "step8_bounded_pilot",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 8 bounded official-site collection",
+          "timestamp": "2026-08-30T13:19:55Z",
+          "run_id": "STEP8-A1-RR-PODIATRY-001",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "A1-RR-PODIATRY-001",
+            "field_key": "person.business_email",
+            "named_need": "Verify person.business_email"
+          },
+          "source_urls": [
+            "https://roodandriddle.com/lexington-podiatry-team"
+          ],
+          "output_reference": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+          "approval_state": "approved_bounded_real_pilot",
+          "status": "completed",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 1,
+            "cost_amount": null,
+            "currency": "USD",
+            "cost_status": "unavailable"
+          }
+        },
+        "audit_complete": true,
+        "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+        "source_content_sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+        "external_call_authorized": false,
+        "external_calls": 1,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "01b37dc76576a457398007b0fb3d3ce495ae79ffd3ae4c94bf435179e4fc3d9e"
+      },
+      "role_current": null
+    },
+    {
+      "source_id": "prospect_official_website",
+      "source_action_status": "completed",
+      "explicitly_linked": true,
+      "named_role_gap": false,
+      "country_code": "US",
+      "supporting_role_evidence_ids": [],
+      "recommendation_basis_evidence_ids": [],
+      "email_kind": null,
+      "collection_method": "direct_extraction",
+      "observation_id": "A2-OBS-RR-NAMED-PHONE-GAP-001",
+      "field_key": "person.business_phone",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "source_url": "https://roodandriddle.com/lexington-podiatry-team",
+      "availability_status": "not_found",
+      "fact_type": "direct_fact",
+      "raw_value": null,
+      "page_context": "No professional phone is published for Manfred Eckert on the bounded team page. The organisation phone is not attributed to him.",
+      "evidence_id": null,
+      "source_preflight": {
+        "preflight_version": "0.1.0-step8",
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "source_id": "prospect_official_website",
+        "field_key": "person.business_phone",
+        "named_need": "Step 8 verified field observation for person.business_phone",
+        "execution_mode": "bounded_real_pilot_collection",
+        "preflight_status": "completed",
+        "field_gate": "step8_approved_official_site_field_allowlist",
+        "register_status": "conditional",
+        "business_approval": "approved_by_equinet",
+        "source_rights_preflight": "robots_checked_and_allowed",
+        "runtime_readiness": "step8_bounded_pilot",
+        "allowed_access_modes": [
+          "bounded_public_web_read"
+        ],
+        "limits": {
+          "max_pages_per_candidate": 5,
+          "max_retry_per_failed_url": 1,
+          "concurrency": 1
+        },
+        "stop_conditions": [
+          "terms_or_robots_denial",
+          "login_or_paywall",
+          "captcha",
+          "http_403",
+          "http_429",
+          "unexpected_personal_data",
+          "scope_or_budget_limit"
+        ],
+        "provider_missing_activation_gates": [],
+        "live_runtime_blocks": [],
+        "blocks": [],
+        "warnings": [],
+        "audit": {
+          "actor_profile": "equinet-a2-enrichment",
+          "trigger": "Step 8 bounded official-site collection",
+          "timestamp": "2026-08-30T13:19:56Z",
+          "run_id": "STEP8-A1-RR-PODIATRY-001",
+          "source_id": "prospect_official_website",
+          "input_scope": {
+            "candidate_id": "A1-RR-PODIATRY-001",
+            "field_key": "person.business_phone",
+            "named_need": "Verify person.business_phone"
+          },
+          "source_urls": [
+            "https://roodandriddle.com/lexington-podiatry-team"
+          ],
+          "output_reference": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+          "approval_state": "approved_bounded_real_pilot",
+          "status": "completed",
+          "retries": 0,
+          "usage_and_cost": {
+            "api_calls": 1,
+            "cost_amount": null,
+            "currency": "USD",
+            "cost_status": "unavailable"
+          }
+        },
+        "audit_complete": true,
+        "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+        "source_content_sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+        "external_call_authorized": false,
+        "external_calls": 1,
+        "external_actions": 0,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "preflight_sha256": "5d373ce5daf9dd4c12e4d55a3a59cea96ce8b1ddde1f7dec46e3f040d32278ed"
+      },
+      "role_current": null
+    }
+  ]
+}

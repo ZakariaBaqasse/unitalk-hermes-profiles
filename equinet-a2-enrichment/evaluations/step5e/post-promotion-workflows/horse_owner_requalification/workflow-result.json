@@ -1,0 +1,130 @@
+{
+  "workflow": "equinet-a2-no-integration",
+  "version": "0.1.0",
+  "scenario": "horse_owner_requalification",
+  "status": "pass",
+  "operator_coverage": [
+    "a2-build-gap-plan",
+    "a2-create-revision",
+    "a2-duplicate-eligibility",
+    "a2-evaluate-evidence-confidence",
+    "a2-evaluate-minimum-package",
+    "a2-evaluate-protected-field-action",
+    "a2-governed-handoff",
+    "a2-intake",
+    "a2-normalise-resolve-entities",
+    "a2-normalise-validate-observations",
+    "a2-render-review-package",
+    "a2-social-link-classifier",
+    "a2-source-preflight",
+    "a2-twenty-review"
+  ],
+  "operator_count": 14,
+  "steps": [
+    {
+      "operator": "a2-intake",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-normalise-resolve-entities",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-duplicate-eligibility",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-build-gap-plan",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-evaluate-minimum-package",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-source-preflight",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step5e/post-promotion-workflows/horse_owner_requalification/source-preflight.json"
+    },
+    {
+      "operator": "a2-social-link-classifier",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-source-preflight",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step5e/post-promotion-workflows/horse_owner_requalification/observation-preflight-1.json"
+    },
+    {
+      "operator": "a2-source-preflight",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step5e/post-promotion-workflows/horse_owner_requalification/observation-preflight-2.json"
+    },
+    {
+      "operator": "a2-normalise-validate-observations",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-evaluate-evidence-confidence",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-evaluate-protected-field-action",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-create-revision",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": ""
+    },
+    {
+      "operator": "a2-render-review-package",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step5e/post-promotion-workflows/horse_owner_requalification/review-result.json"
+    },
+    {
+      "operator": "a2-twenty-review",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step5e/post-promotion-workflows/horse_owner_requalification/twenty-preparation.json"
+    },
+    {
+      "operator": "a2-governed-handoff",
+      "return_code": 0,
+      "passed": true,
+      "output_reference": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step5e/post-promotion-workflows/horse_owner_requalification/governed-handoff.json"
+    }
+  ],
+  "semantic_checks": {
+    "all_operators_covered": true,
+    "external_actions_zero": true,
+    "review_package_valid": true,
+    "handoff_not_delivered": true,
+    "expected_handoff_state": true
+  },
+  "external_calls": 0,
+  "external_actions": 0
+}

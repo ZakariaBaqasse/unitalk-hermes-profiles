@@ -1,0 +1,44 @@
+model:
+  provider: openai-api
+  default: deepseek-v4-flash
+  provider_name: litellm-unitalk
+  max_tokens: ***
+fallback_providers: []
+agent:
+  max_turns: 50
+  api_max_retries: 1
+  reasoning_effort: medium
+web:
+  search_backend: exa
+  extract_backend: firecrawl
+_config_version: 38
+platform_toolsets:
+  cli:
+    - clarify
+    - code_execution
+    - file
+    - skills
+    - terminal
+    - todo
+    - web
+security:
+  website_blocklist:
+    enabled: true
+    domains:
+      - yelp.com
+      - yellowpages.com
+      - equineprofinder.com
+      - themhorses.com
+      - members.horsecouncil.org
+      - ohorse.com
+      - mms.professionalfarriers.com
+      - linkedin.com
+      - facebook.com
+      - instagram.com
+approvals:
+  deny:
+    - '*pip install*'
+    - '*pip3 install*'
+    - '*uv pip install*'
+    - '*uv add*'
+    - '*uv venv*'

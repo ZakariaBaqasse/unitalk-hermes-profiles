@@ -1,0 +1,16 @@
+{
+  "record_type": "foundation_clarification_proposal",
+  "profile": "equinet-a2-enrichment",
+  "source_step": "2C",
+  "identified_during_step": "2E",
+  "prior_contract_version": "0.1.0",
+  "clarified_contract_version": "0.1.1",
+  "status": "approved_in_step_2e",
+  "reason": "The Step 2C validator required a retained requalification signal to use the current A2 revision ID, which conflicted with immutable signal history across later A2 revisions.",
+  "clarification": "a2_record_revision_id identifies the revision in which a signal or return was created. It remains immutable. A later A2 revision may retain the artifact and advance only its approved lifecycle fields. New signals and returns must identify the current creation revision.",
+  "schema_compatibility": "The Step 2C JSON Schemas remain version 0.1.0 because their field shapes do not change. The clarification changes cross-field lifecycle validation only.",
+  "approval_route": "Approved through Step 2E decision E13.",
+  "created_at": "2026-08-26T09:01:26Z",
+  "approved_by": "Séverine, Unitalk Operations",
+  "approved_at": "2026-08-26T10:00:06Z"
+}

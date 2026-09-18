@@ -1,0 +1,453 @@
+{
+  "step": "2F",
+  "suite_version": "0.1.0",
+  "catalogue": "a2-step2f-synthetic-field-catalogue.json",
+  "cases": [
+    {
+      "name": "farrier-initial",
+      "record": "valid/farrier-initial.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "initialised",
+        "data_quality_status": "unassessed",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0
+      },
+      "record_sha256": "dadd94ee185b41922f40aa85b2b5fbc786cb7966f6caf6897f33dd07378a24a6"
+    },
+    {
+      "name": "farrier-planned-gap",
+      "record": "valid/farrier-planned-gap.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "enrichment_planned",
+        "data_quality_status": "incomplete",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0,
+        "missing_field_keys": [
+          "person.business_email"
+        ]
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/farrier-planned-gap-previous.json",
+      "record_sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e",
+      "previous_record_sha256": "dadd94ee185b41922f40aa85b2b5fbc786cb7966f6caf6897f33dd07378a24a6"
+    },
+    {
+      "name": "farrier-enrichment-in-progress",
+      "record": "valid/farrier-enrichment-in-progress.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "enrichment_in_progress",
+        "data_quality_status": "review_ready",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/farrier-enrichment-in-progress-previous.json",
+      "record_sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702",
+      "previous_record_sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "name": "farrier-review-required",
+      "record": "valid/farrier-review-required.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "review_required",
+        "data_quality_status": "review_ready",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/farrier-review-required-previous.json",
+      "record_sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194",
+      "previous_record_sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "name": "farrier-record-approved",
+      "record": "valid/farrier-record-approved.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "record_approved",
+        "data_quality_status": "review_ready",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "approved",
+        "external_actions": 0
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/farrier-record-approved-previous.json",
+      "record_sha256": "82e2db70900164847fb4ce68a04bf2271a48ccdee8515e448a6383ae5b912ca2",
+      "previous_record_sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194"
+    },
+    {
+      "name": "horse-owner-initial",
+      "record": "valid/horse-owner-initial.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "initialised",
+        "data_quality_status": "unassessed",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0
+      },
+      "record_sha256": "fc9f634564edc2f9df035c3c9bce8dbf84bb1b6f97fe69a3e982db058c7d1329"
+    },
+    {
+      "name": "horse-owner-planned-gap",
+      "record": "valid/horse-owner-planned-gap.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "enrichment_planned",
+        "data_quality_status": "incomplete",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0,
+        "missing_field_keys": [
+          "organisation.horse_count"
+        ]
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/horse-owner-planned-gap-previous.json",
+      "record_sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217",
+      "previous_record_sha256": "fc9f634564edc2f9df035c3c9bce8dbf84bb1b6f97fe69a3e982db058c7d1329"
+    },
+    {
+      "name": "horse-owner-enrichment-in-progress",
+      "record": "valid/horse-owner-enrichment-in-progress.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "enrichment_in_progress",
+        "data_quality_status": "review_ready",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/horse-owner-enrichment-in-progress-previous.json",
+      "record_sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115",
+      "previous_record_sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "name": "horse-owner-review-required",
+      "record": "valid/horse-owner-review-required.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "review_required",
+        "data_quality_status": "review_ready",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/horse-owner-review-required-previous.json",
+      "record_sha256": "723ba5d1033f80a0d7e19ce77d4e91f0568ba906a8d4b8445ca1ceec3a53de39",
+      "previous_record_sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "name": "horse-owner-record-approved",
+      "record": "valid/horse-owner-record-approved.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "record_approved",
+        "data_quality_status": "review_ready",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "approved",
+        "external_actions": 0
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/horse-owner-record-approved-previous.json",
+      "record_sha256": "7cf9baacaa699fe9328dde169095d5c8bf2f735a9368742fd8050bc400a39dd2",
+      "previous_record_sha256": "723ba5d1033f80a0d7e19ce77d4e91f0568ba906a8d4b8445ca1ceec3a53de39"
+    },
+    {
+      "name": "horse-owner-gap-held",
+      "record": "valid/horse-owner-gap-held.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "held",
+        "data_quality_status": "incomplete",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "held",
+        "external_actions": 0,
+        "missing_field_keys": [
+          "organisation.horse_count"
+        ],
+        "hold_reason_count": 1
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/horse-owner-gap-held-previous.json",
+      "record_sha256": "0b58e35159d86aceaf61269db38c8d63356c951397c8d80d24abe2358e2eead1",
+      "previous_record_sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "name": "farrier-conflict-held",
+      "record": "valid/farrier-conflict-held.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "held",
+        "data_quality_status": "conflict",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "held",
+        "external_actions": 0,
+        "conflict_field_keys": [
+          "person.business_email"
+        ],
+        "contradictory_observation_count": 1
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/farrier-conflict-held-previous.json",
+      "record_sha256": "e426b4869d6344a18790dff0d5c64ed9b956630c30a37a847efe03a804f9a1ae",
+      "previous_record_sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "name": "horse-owner-possible-duplicate-held",
+      "record": "valid/horse-owner-possible-duplicate-held.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "held",
+        "data_quality_status": "incomplete",
+        "a2_eligibility_status": "hold",
+        "record_decision": "held",
+        "external_actions": 0,
+        "duplicate_statuses": [
+          "possible_match"
+        ]
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/horse-owner-possible-duplicate-held-previous.json",
+      "record_sha256": "96b65025a6b5fcbf98941b260f895494bd6f069430f43a9e5a7d9468dcd58516",
+      "previous_record_sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "name": "farrier-confirmed-duplicate-blocked",
+      "record": "valid/farrier-confirmed-duplicate-blocked.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "blocked",
+        "data_quality_status": "incomplete",
+        "a2_eligibility_status": "blocked",
+        "record_decision": "blocked",
+        "external_actions": 0,
+        "duplicate_statuses": [
+          "confirmed_duplicate"
+        ]
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/farrier-confirmed-duplicate-blocked-previous.json",
+      "record_sha256": "aaee1b3691af290d625c5bad799acd8abd23d962f6559bcf8138602d6fe9cdc2",
+      "previous_record_sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "name": "farrier-protected-update-awaiting-review",
+      "record": "valid/farrier-protected-update-awaiting-review.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "farrier",
+        "workflow_state": "review_required",
+        "data_quality_status": "review_ready",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0,
+        "protected_pending_count": 1,
+        "proposed_actions": [
+          "add",
+          "update"
+        ]
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/farrier-protected-update-awaiting-review-previous.json",
+      "record_sha256": "d4ac41364a4dc69615a51342488ff8905bb29381bf546732bfad9782464f0b4e",
+      "previous_record_sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "name": "horse-owner-complete-requalification",
+      "record": "valid/horse-owner-complete-requalification.json",
+      "expected_valid": true,
+      "expected": {
+        "segment": "horse_owner",
+        "workflow_state": "enrichment_planned",
+        "data_quality_status": "needs_review",
+        "a2_eligibility_status": "not_checked",
+        "record_decision": "pending",
+        "external_actions": 0,
+        "requalification_signals": 1,
+        "requalification_returns": 1,
+        "score_revisions": 1,
+        "signal_statuses": [
+          "accepted_by_a1"
+        ],
+        "return_statuses": [
+          "accepted_by_a1"
+        ],
+        "score_revision_statuses": [
+          "approved"
+        ]
+      },
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "previous_record": "valid/horse-owner-complete-requalification-previous.json",
+      "record_sha256": "a1f387ff137592b57f326fbe0b798f99eb4ccc49c528442805049a51d34a0eca",
+      "previous_record_sha256": "4909f1bbb96211439fa53a0e00ada0c8f7809e9968d0d6dfe9ac6340fa183de6"
+    },
+    {
+      "name": "missing-evidence",
+      "record": "invalid/missing-evidence.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "references unknown evidence ID",
+      "expected_error_count": 4,
+      "previous_record": "invalid/missing-evidence-previous.json",
+      "record_sha256": "139271f935d81a9fbf3409bfd51825af6fff389bbb749b0fb37e20ebd38bbb45",
+      "previous_record_sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "name": "blocked-source-evidence",
+      "record": "invalid/blocked-source-evidence.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "not approved for evidentiary use",
+      "expected_error_count": 2,
+      "previous_record": "invalid/blocked-source-evidence-previous.json",
+      "record_sha256": "04d28f8fce6db9ca997bf2a784d7a9d0f8fe95fba420805f1cf3d34f6213b3a6",
+      "previous_record_sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "name": "protected-overwrite-without-approval",
+      "record": "invalid/protected-overwrite-without-approval.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "requires explicit approved review and approval matrix",
+      "expected_error_count": 5,
+      "previous_record": "invalid/protected-overwrite-without-approval-previous.json",
+      "record_sha256": "cd920ce0536795f2d26e684f9224e827c444c0ef66eabbbd206f6582a02be80c",
+      "previous_record_sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "name": "false-synthetic-sync",
+      "record": "invalid/false-synthetic-sync.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "synthetic_test record cannot authorise CRM write or provider use",
+      "expected_error_count": 4,
+      "previous_record": "invalid/false-synthetic-sync-previous.json",
+      "record_sha256": "4a14ae5134fd3ddae69f3b74038d34440d49970804d54d396f8d7cd476479a51",
+      "previous_record_sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "name": "a2-score-production",
+      "record": "invalid/a2-score-production.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "Additional properties are not allowed",
+      "expected_error_count": 1,
+      "previous_record": "invalid/a2-score-production-previous.json",
+      "record_sha256": "58498400c2b9845b770da64d9266fe09c2164e7552788b6c624847e37ee1261c",
+      "previous_record_sha256": "4909f1bbb96211439fa53a0e00ada0c8f7809e9968d0d6dfe9ac6340fa183de6"
+    },
+    {
+      "name": "prohibited-outreach",
+      "record": "invalid/prohibited-outreach.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "A2 must not authorise outreach",
+      "expected_error_count": 1,
+      "previous_record": "invalid/prohibited-outreach-previous.json",
+      "record_sha256": "6e9c9a910f51d7b3b40debdefab67d40055e8efa4b5191c4f0bd57b6858bc52e",
+      "previous_record_sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "name": "provider-without-approval",
+      "record": "invalid/provider-without-approval.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "claims provider use without authorisation",
+      "expected_error_count": 1,
+      "previous_record": "invalid/provider-without-approval-previous.json",
+      "record_sha256": "b9f89e0eca0331733e56b1ff2ccda4877c63dbf3e4b6ee1a0bf3c974b501f5a6",
+      "previous_record_sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "name": "cross-segment-field",
+      "record": "invalid/cross-segment-field.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "is not allowed for segment horse_owner",
+      "expected_error_count": 1,
+      "previous_record": "invalid/cross-segment-field-previous.json",
+      "record_sha256": "884ed75fbc8958626cd4cb92fe1d925c38dc2414b2269d05c6eca44d0ae2e0c4",
+      "previous_record_sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "name": "required-package-missing-assessment",
+      "record": "invalid/required-package-missing-assessment.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "references field key without an assessment",
+      "expected_error_count": 2,
+      "previous_record": "invalid/required-package-missing-assessment-previous.json",
+      "record_sha256": "6c5b006fcc187046c48566cc37f07fd19bc5502539f38480abd01fe0ffdd5ca0",
+      "previous_record_sha256": "fc9f634564edc2f9df035c3c9bce8dbf84bb1b6f97fe69a3e982db058c7d1329"
+    },
+    {
+      "name": "review-ready-with-conflict",
+      "record": "invalid/review-ready-with-conflict.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "review_ready cannot contain missing, conflict or invalid fields",
+      "expected_error_count": 1,
+      "previous_record": "invalid/review-ready-with-conflict-previous.json",
+      "record_sha256": "f698d018f4e8c76915faedba90a853b644927c9ec6a8d6ea77c262c01694f41a",
+      "previous_record_sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "name": "confirmed-duplicate-marked-eligible",
+      "record": "invalid/confirmed-duplicate-marked-eligible.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "confirmed duplicate requires blocked A2 eligibility",
+      "expected_error_count": 1,
+      "previous_record": "invalid/confirmed-duplicate-marked-eligible-previous.json",
+      "record_sha256": "7a5c8bc37fbe207870ff3cc16ca99c3d5ddeef4869cf6dc9f61c4fc3472eeedd",
+      "previous_record_sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "name": "invalid-a1-score-revision",
+      "record": "invalid/invalid-a1-score-revision.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "revised scoring score must equal component total",
+      "expected_error_count": 3,
+      "previous_record": "invalid/invalid-a1-score-revision-previous.json",
+      "record_sha256": "33cb1793ab3186abd510418b76550f2b51bd816b5ab59781a50aec0ef613f774",
+      "previous_record_sha256": "4909f1bbb96211439fa53a0e00ada0c8f7809e9968d0d6dfe9ac6340fa183de6"
+    },
+    {
+      "name": "record-approved-with-incomplete-field-decisions",
+      "record": "invalid/record-approved-with-incomplete-field-decisions.json",
+      "field_catalogue": "a2-step2f-synthetic-field-catalogue.json",
+      "expected_valid": false,
+      "expected_error": "required_field_decisions_complete is true while field reviews remain unresolved",
+      "expected_error_count": 1,
+      "previous_record": "invalid/record-approved-with-incomplete-field-decisions-previous.json",
+      "record_sha256": "6e4b7494c2cb4df312762d733f0f05a68fdb6ef43ec4de06e2d0c880065fcfd6",
+      "previous_record_sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194"
+    }
+  ]
+}

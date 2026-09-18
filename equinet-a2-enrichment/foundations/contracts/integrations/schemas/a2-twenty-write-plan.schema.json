@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-twenty-write-plan-0.1.0",
+  "required": [
+    "schema_id",
+    "run_id",
+    "company_id",
+    "operations",
+    "expected_read_back",
+    "artifact_sha256"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "a2-twenty-write-plan"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "company_id": {
+      "type": "string"
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "operation_id",
+          "operation_type",
+          "fields"
+        ],
+        "properties": {
+          "operation_id": {
+            "type": "string"
+          },
+          "operation_type": {
+            "enum": [
+              "create_person",
+              "update_person",
+              "associate_person_company",
+              "update_company_status"
+            ]
+          },
+          "fields": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "expected_read_back": {
+      "type": "object"
+    },
+    "artifact_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  }
+}

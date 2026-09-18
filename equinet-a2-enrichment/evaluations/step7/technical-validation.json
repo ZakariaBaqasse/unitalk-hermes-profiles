@@ -1,0 +1,44 @@
+{
+  "step": "7",
+  "version": "0.1.0-draft.1",
+  "status": "approved_synthetic_acceptance",
+  "deterministic_scenarios": {
+    "passed": 6,
+    "total": 6
+  },
+  "profile_invocation": {
+    "present": true,
+    "passed": true,
+    "status": "pass",
+    "checks": {
+      "profile": true,
+      "suite_pass": true,
+      "scenarios": true,
+      "formats": true,
+      "external_actions": true,
+      "identity": true,
+      "usage": true
+    },
+    "source_sha256": "5b3f70ac45bb4fb408063ca400c0cdfcbb683ec4b5970ffd0dac250880bbcb65"
+  },
+  "operator_coverage": "14/14",
+  "export_formats": {
+    "markdown": 2,
+    "csv": 12,
+    "xlsx": 2
+  },
+  "step6_regression": true,
+  "language_audit": {
+    "files_checked": 908,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "approval_required": false,
+  "promotion_performed": true,
+  "real_data_authorized": false,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate_after_approval": "Step 8 — Bounded Real No-Integration Pilot Readiness",
+  "failures": [],
+  "pass": true
+}

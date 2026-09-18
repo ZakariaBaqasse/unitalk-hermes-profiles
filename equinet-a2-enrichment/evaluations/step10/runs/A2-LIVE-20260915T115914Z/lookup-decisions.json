@@ -1,0 +1,17 @@
+{
+  "schema_id": "a2-lookup-decisions",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "decisions": [
+    {
+      "company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "person_decisions": [],
+      "people_search_required": true
+    },
+    {
+      "company_id": "8d7f70a7-f176-437c-ac66-55484d19bee6",
+      "person_decisions": [],
+      "people_search_required": true
+    }
+  ]
+}

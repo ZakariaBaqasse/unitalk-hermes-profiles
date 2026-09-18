@@ -1,0 +1,105 @@
+{
+  "run_id": "step11-fixture-run",
+  "company_id": "company-fixture-001",
+  "people": [
+    {
+      "observation_id": "website-person-7004cbac0675cee8",
+      "retain": true,
+      "name": "Alex Morgan",
+      "role": "Stable Operations Coordinator",
+      "provider_comparison_name": "Alex Morgan",
+      "role_priority": "UNKNOWN",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY"
+    },
+    {
+      "observation_id": "website-person-e6cdf8df308890f6",
+      "retain": true,
+      "name": "Taylor Brooks",
+      "role": "Veterinary Receptionist",
+      "provider_comparison_name": "Taylor Brooks",
+      "role_priority": "UNKNOWN",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY"
+    },
+    {
+      "observation_id": "website-person-f6bcc08e7a36c2b2",
+      "retain": false,
+      "name": "Riley Chen",
+      "role": "Community Liaison",
+      "provider_comparison_name": "Riley Chen",
+      "role_priority": "UNKNOWN",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY"
+    }
+  ],
+  "contacts": [
+    {
+      "observation_id": "website-contact-388270b7e2479fbc",
+      "retain": true,
+      "value": "+1 (859) 555-0100",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "company-fixture-001"
+      }
+    },
+    {
+      "observation_id": "website-contact-ce27a575d652b66b",
+      "retain": true,
+      "value": "office@example.com",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "company-fixture-001"
+      }
+    },
+    {
+      "observation_id": "website-contact-f624041796afcd72",
+      "retain": true,
+      "value": "alex.morgan@example.com",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "company-fixture-001"
+      }
+    }
+  ],
+  "social_links": [
+    {
+      "observation_id": "website-social-0d65762f6704abe5",
+      "retain": true,
+      "url": "https://www.tiktok.com/@exampleequine"
+    },
+    {
+      "observation_id": "website-social-2d8936bb8a53ace3",
+      "retain": true,
+      "url": "https://www.linkedin.com/company/exampleequine"
+    },
+    {
+      "observation_id": "website-social-3865ad7abc90039a",
+      "retain": true,
+      "url": "https://www.instagram.com/exampleequine"
+    },
+    {
+      "observation_id": "website-social-45a0c648ce570b62",
+      "retain": true,
+      "url": "https://www.youtube.com/@exampleequine"
+    },
+    {
+      "observation_id": "website-social-a1b11e9d1a424b85",
+      "retain": true,
+      "url": "https://x.com/exampleequine"
+    },
+    {
+      "observation_id": "website-social-a6ffb9e611643cda",
+      "retain": true,
+      "url": "https://www.facebook.com/exampleequine"
+    },
+    {
+      "observation_id": "website-social-b2eb6e7505b6ec57",
+      "retain": true,
+      "url": "https://www.linkedin.com/in/alex-morgan-example"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "test_metadata": {
+    "test_name": "step6-primary-model-smoke",
+    "test_version": "1.0.0",
+    "profile": "equinet-a2-enrichment",
+    "timestamp_utc": "2026-08-29T20:32:17Z",
+    "operating_scope": "synthetic_and_local_only"
+  },
+  "profile_configuration": {
+    "logical_model": "deepseek-v4-flash",
+    "profile_provider": "openai-api",
+    "gateway": "litellm-unitalk",
+    "upstream_provider": "microsoft_azure",
+    "fallback_model": "Gemini 3.7 Flash",
+    "fallback_gateway": "litellm-unitalk",
+    "fallback_upstream": "google",
+    "runtime_controls": {
+      "model_max_output_tokens_per_call": 4000,
+      "max_model_iterations_per_turn": 50,
+      "api_max_retries_before_fallback": 1,
+      "reasoning_effort": "medium",
+      "automatic_full_run_retry": false,
+      "max_tool_retry_per_failed_call": 1
+    },
+    "active_manifest": "A2-ACTIVE-FOUNDATION-MANIFEST-1.0.0",
+    "runtime_activation": {
+      "official_site": false,
+      "apify_harvestapi": false,
+      "social_profile_automated_access": false,
+      "hubspot_read": false,
+      "hubspot_write": false,
+      "twenty": false,
+      "n8n": false
+    },
+    "configuration_provenance": {
+      "profile.yaml": "confirmed_by_reading_profile_yaml",
+      "config.yaml": "confirmed_by_reading_config_yaml_model_provider_and_router_keys",
+      "runtime_policy": "a2-runtime-policy-0.1.0-draft.1_yaml_model_routing_section",
+      "active_foundation_manifest": "A2-ACTIVE-FOUNDATION-MANIFEST-1.0.0_next_gate_Step_6"
+    }
+  },
+  "reasoning_task": {
+    "task_name": "Farrier Minimum Package Field-Gap Assessment",
+    "synthetic_prospect_name": "Eleanor Hartwell",
+    "required_field_count": 12,
+    "logic": "assess_minimum_package",
+    "deterministic_hash_sha256": "716423d15f1042e4e1a4f49057dcc3e481b006bc267ba855f7c9e5fbba66f3ad"
+  },
+  "results": {
+    "present_field_count": 10,
+    "gap_field_count": 2,
+    "completeness_percent": 83.3,
+    "record_state": "incomplete_but_enrichable",
+    "review_recommendation": "enrichment_in_progress",
+    "field_level_assessment": {
+      "prospect_first_name": {
+        "present": true,
+        "value_if_present": "Eleanor",
+        "status": "present"
+      },
+      "prospect_last_name": {
+        "present": true,
+        "value_if_present": "Hartwell",
+        "status": "present"
+      },
+      "current_job_title": {
+        "present": true,
+        "value_if_present": "Head Farrier",
+        "status": "present"
+      },
+      "current_employer": {
+        "present": true,
+        "value_if_present": "Thoroughbred Stables Ltd",
+        "status": "present"
+      },
+      "location_city": {
+        "present": true,
+        "value_if_present": "Newmarket",
+        "status": "present"
+      },
+      "location_region": {
+        "present": true,
+        "value_if_present": "Suffolk",
+        "status": "present"
+      },
+      "location_country": {
+        "present": true,
+        "value_if_present": "United Kingdom",
+        "status": "present"
+      },
+      "email_address": {
+        "present": false,
+        "value_if_present": null,
+        "status": "required_gap"
+      },
+      "prospect_linkedin_url": {
+        "present": true,
+        "value_if_present": "https://www.linkedin.com/in/eleanor-hartwell",
+        "status": "present"
+      },
+      "organisation_website_url": {
+        "present": true,
+        "value_if_present": "https://thoroughbredstables.co.uk",
+        "status": "present"
+      },
+      "organisation_legal_name": {
+        "present": true,
+        "value_if_present": "Thoroughbred Stables Ltd",
+        "status": "present"
+      },
+      "phone_number": {
+        "present": false,
+        "value_if_present": null,
+        "status": "required_gap"
+      }
+    },
+    "gaps_identified": [
+      "email_address",
+      "phone_number"
+    ]
+  },
+  "compliance": {
+    "schema_version": "1.0.0",
+    "checks": {
+      "schema_version_present": true,
+      "logical_model_recorded": true,
+      "profile_provider_recorded": true,
+      "gateway_recorded": true,
+      "reasoning_completed": true,
+      "field_level_assessment_completed": true,
+      "deterministic_hash_present": true,
+      "external_action_count_recorded": true,
+      "no_credentials_printed": true,
+      "no_external_actions_executed": true
+    },
+    "all_compliant": true,
+    "output_schema_fields_present": [
+      "test_metadata",
+      "profile_configuration",
+      "reasoning_task",
+      "results",
+      "compliance",
+      "audit"
+    ]
+  },
+  "usage_metadata": {
+    "model": "deepseek-v4-flash",
+    "provider": "openai-api",
+    "gateway": "litellm-unitalk",
+    "model_calls_this_test": 1,
+    "tokens_used": "not_tracked_local_synthetic_only",
+    "cost_usd": 0.0,
+    "reasoning_effort": "medium",
+    "external_api_spend_usd": 0.0,
+    "provider_calls_this_run": 0,
+    "web_calls_this_run": 0
+  },
+  "audit": {
+    "external_action_count": 0,
+    "external_actions_executed": [],
+    "skills_used": [
+      "a2-handoff-intake-and-initialisation"
+    ],
+    "scripts_used": [],
+    "fallback_activated": false,
+    "fallback_reason": null,
+    "errors": [],
+    "retries": 0
+  }
+}

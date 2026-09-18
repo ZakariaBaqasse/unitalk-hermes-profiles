@@ -1,0 +1,21 @@
+{
+  "command": "a2-duplicate-eligibility",
+  "version": "0.1.0",
+  "a2_eligibility_status": "eligible",
+  "outreach_eligibility_status": "unavailable",
+  "owner_routing_status": "needs_owner_review",
+  "reasons": [
+    "no blocking or review-required duplicate signal exists for the declared scope"
+  ],
+  "checks": [
+    {
+      "check_type": "hubspot_company",
+      "system": "hubspot",
+      "status": "unavailable",
+      "authoritative": true
+    }
+  ],
+  "crm_write_authorized": false,
+  "outreach_authorized": false,
+  "external_actions": 0
+}

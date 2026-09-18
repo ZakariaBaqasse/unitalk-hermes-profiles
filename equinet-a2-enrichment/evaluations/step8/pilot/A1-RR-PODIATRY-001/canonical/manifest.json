@@ -1,0 +1,50 @@
+{
+  "record_type": "step8_rood_riddle_canonical_revision_chain",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "status": "rood_riddle_accepted_as_held_step8_test_result",
+  "records": [
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-002-enrichment-planned.json",
+      "sha256": "9b949374ca5178040f51acd09e6385809d2407ae211b09d4ea74997c76b0a65f",
+      "revision_id": "A2-REV-STEP8_5DC8D468C11B265DA37B_002",
+      "workflow": "enrichment_planned",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-003-enrichment-in-progress.json",
+      "sha256": "ca61b1b5395f996848ba5fc4569504346d92ae896ed20755e7184459f4224c1c",
+      "revision_id": "A2-REV-STEP8_5DC8D468C11B265DA37B_003",
+      "workflow": "enrichment_in_progress",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-004-review-required.json",
+      "sha256": "333f52b3337cb8c322901372730eb81e38dc4bd8a2d61c382c62dc0ad9d08c66",
+      "revision_id": "A2-REV-STEP8_5DC8D468C11B265DA37B_004",
+      "workflow": "review_required",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-005-held.json",
+      "sha256": "710f0dab47f206eca0dd7fba1658b447509f7f15d35912ec4a6a385bc90f5eb3",
+      "revision_id": "A2-REV-STEP8_5DC8D468C11B265DA37B_005",
+      "workflow": "held",
+      "valid": true,
+      "errors": []
+    }
+  ],
+  "minimum_package_result": "evaluations/step8/pilot/A1-RR-PODIATRY-001/minimum-package/result.json",
+  "minimum_package_status": "incomplete",
+  "workflow_recommendation": "held",
+  "final_record": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-005-held.json",
+  "final_review_decision": "held",
+  "recommended_record_decision": "held",
+  "hubspot_write": false,
+  "outreach": false,
+  "external_actions": 0,
+  "final_review_decision_record": "evaluations/step8/pilot/A1-RR-PODIATRY-001/final-review-decision.json",
+  "deepseek_behavioral_replay": "blocked_before_model_call"
+}

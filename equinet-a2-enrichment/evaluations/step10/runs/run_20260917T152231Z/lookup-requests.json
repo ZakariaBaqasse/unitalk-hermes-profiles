@@ -1,0 +1,35 @@
+{
+  "schema_id": "a2-fullenrich-lookup-requests",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "company_id": null,
+  "created_at": "2026-09-17T15:23:41Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "search_stage": null,
+  "requests": [],
+  "blocked_requests": [
+    {
+      "request_id": "lookup-18855312-e7a7-41fa-b92f-ce06f5776d21",
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "twenty_person_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+      "person_name": "Ryan Wilkins",
+      "person_professional_network_url": null,
+      "company_domain": null,
+      "company_professional_network_url": null,
+      "reason": "FullEnrich Lookup requires a Person network identifier or name plus Company domain/network identifier"
+    },
+    {
+      "request_id": "lookup-c53ee895-0ce9-4d04-a2fd-908c494a3469",
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "twenty_person_id": "c53ee895-0ce9-4d04-a2fd-908c494a3469",
+      "person_name": "Colton Ellis, CF",
+      "person_professional_network_url": null,
+      "company_domain": null,
+      "company_professional_network_url": null,
+      "reason": "FullEnrich Lookup requires a Person network identifier or name plus Company domain/network identifier"
+    }
+  ],
+  "artifact_sha256": "5227e2b56bc14a9e9c1a8397f8ebb8d356435baecba7562a98ff775322bcae3c"
+}

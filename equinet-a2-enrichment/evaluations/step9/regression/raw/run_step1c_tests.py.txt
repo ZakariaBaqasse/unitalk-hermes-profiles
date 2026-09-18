@@ -1,0 +1,161 @@
+{
+  "step": "1C",
+  "contract_version": "1.0.1",
+  "approval_state": "approved_for_a2_foundation",
+  "static_checks": {
+    "contract_version": true,
+    "contract_approved_status": true,
+    "recorded_decision": true,
+    "decision_ids_h1_to_h6": true,
+    "score_revision_clarification": true,
+    "schema_id": true,
+    "schema_version_const": true,
+    "strict_root": true
+  },
+  "dependency_checks": {
+    "source_schema_hash": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de",
+    "pinned_schema_hash": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de",
+    "manifest_schema_hash": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de",
+    "source_validator_hash": "a7eabd5e3e1789b1d4dcb59008d56fc3f93d32b3a5e6f7d2fef65d438ec7f4b7",
+    "pinned_validator_hash": "a7eabd5e3e1789b1d4dcb59008d56fc3f93d32b3a5e6f7d2fef65d438ec7f4b7",
+    "manifest_validator_hash": "a7eabd5e3e1789b1d4dcb59008d56fc3f93d32b3a5e6f7d2fef65d438ec7f4b7",
+    "schema_copy_match": true,
+    "validator_copy_match": true
+  },
+  "summary": {
+    "valid_expected": 2,
+    "invalid_expected": 9,
+    "cases_total": 11,
+    "cases_passed": 11,
+    "cases_failed": 0
+  },
+  "cases": [
+    {
+      "fixture": "valid-farrier-handoff.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "fixture": "valid-horse-owner-handoff.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "fixture": "invalid-missing-human-approval.json",
+      "expected": "invalid",
+      "expected_error": "candidate workflow.stage must be approved_for_a2",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "candidate workflow.stage must be approved_for_a2",
+        "candidate workflow.review_decision must be approved",
+        "approval_event.reviewer must match candidate workflow.reviewer",
+        "approval_event.decision_at must match candidate workflow.decision_at",
+        "human_approval gate must be fail; got 'pass'",
+        "eligibility.status must be blocked; got 'eligible'"
+      ]
+    },
+    {
+      "fixture": "invalid-recommendation-not-pass-to-a2.json",
+      "expected": "invalid",
+      "expected_error": "candidate recommendation.next_action must be pass_to_a2",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "candidate recommendation.next_action must be pass_to_a2",
+        "recommendation gate must be fail; got 'pass'",
+        "eligibility.status must be blocked; got 'eligible'"
+      ]
+    },
+    {
+      "fixture": "invalid-possible-duplicate-declared-eligible.json",
+      "expected": "invalid",
+      "expected_error": "duplicate_batch gate must be needs_review",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "duplicate_batch gate must be needs_review; got 'pass'",
+        "eligibility.status must be hold; got 'eligible'"
+      ]
+    },
+    {
+      "fixture": "invalid-snapshot-hash.json",
+      "expected": "invalid",
+      "expected_error": "snapshot hash mismatch",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "snapshot hash mismatch: declared '0000000000000000000000000000000000000000000000000000000000000000', calculated '6d0134bfc8d8c99b0efbe2c25947c25534b6e5513dbd51f859725c41ec466056'"
+      ]
+    },
+    {
+      "fixture": "invalid-no-integration-claims-delivered.json",
+      "expected": "invalid",
+      "expected_error": "manual_no_integration_pilot cannot progress beyond ready_for_delivery",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "schema:/delivery_state: 'delivered' is not one of ['prepared', 'ready_for_delivery']",
+        "manual_no_integration_pilot cannot progress beyond ready_for_delivery",
+        "non-synthetic operating scopes require a production A1 candidate and non-synthetic provenance"
+      ]
+    },
+    {
+      "fixture": "invalid-synthetic-crm-write-authorized.json",
+      "expected": "invalid",
+      "expected_error": "scope_permissions gate must be fail",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "schema:/constraints/crm_write_authorized: False was expected",
+        "schema:/constraints/external_action_approval_reference: 'UNAPPROVED-TEST-REFERENCE' is not of type 'null'",
+        "scope_permissions gate must be fail; got 'pass'",
+        "eligibility.status must be blocked; got 'eligible'"
+      ]
+    },
+    {
+      "fixture": "invalid-receipt-handoff-id.json",
+      "expected": "invalid",
+      "expected_error": "A2 receipt handoff_id must equal handoff_id",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "A2 receipt handoff_id must equal handoff_id"
+      ]
+    },
+    {
+      "fixture": "invalid-duplicate-gate-id.json",
+      "expected": "invalid",
+      "expected_error": "eligibility gate IDs must be unique",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "eligibility gate IDs must be unique",
+        "missing eligibility gates: hubspot_eligibility",
+        "hubspot_eligibility gate must be unavailable; got None"
+      ]
+    },
+    {
+      "fixture": "invalid-excluded-candidate.json",
+      "expected": "invalid",
+      "expected_error": "candidate workflow.stage must be approved_for_a2",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "candidate workflow.stage must be approved_for_a2",
+        "candidate workflow.review_decision must be approved",
+        "candidate recommendation.next_action must be pass_to_a2",
+        "human_approval gate must be fail; got 'pass'",
+        "recommendation gate must be fail; got 'pass'",
+        "exclusion gate must be fail; got 'pass'",
+        "eligibility.status must be blocked; got 'eligible'"
+      ]
+    }
+  ],
+  "failures": [],
+  "pass": true
+}

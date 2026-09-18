@@ -1,0 +1,17 @@
+{
+  "handoff_ids": {
+    "A1A2-TEST_OWNER_001": {
+      "a2_record_id": "A2-INIT_3337D4BF4FD2C4CCA03F",
+      "handoff_sha256": "3337d4bf4fd2c4cca03f075d44707d9766fc8b581758619f74c2d932318cd652",
+      "record_revision_id": "A2-REV-INIT_EC3B6721B9F89601CB39_001"
+    }
+  },
+  "idempotency_keys": {
+    "A1A2-IDEMP-TEST_OWNER_001": {
+      "a2_record_id": "A2-INIT_3337D4BF4FD2C4CCA03F",
+      "handoff_sha256": "3337d4bf4fd2c4cca03f075d44707d9766fc8b581758619f74c2d932318cd652",
+      "record_revision_id": "A2-REV-INIT_EC3B6721B9F89601CB39_001"
+    }
+  },
+  "version": "0.1.0"
+}

@@ -1,0 +1,123 @@
+{
+  "schema_id": "a2-lookup-decision-packet",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "company_id": null,
+  "created_at": "2026-09-17T15:24:08Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "packets": [
+    {
+      "company": {
+        "twenty_company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+        "name": "Wilkins Farrier & Forge",
+        "segment": "FARRIER",
+        "domain": null,
+        "professional_network_url": null,
+        "location": {
+          "street": "Lawrenceburg, Kentucky, 40342, United States",
+          "city": "Lawrenceburg",
+          "region": "Kentucky",
+          "country": "United States",
+          "postal_code": "40342"
+        }
+      },
+      "linked_people": [
+        {
+          "twenty_person": {
+            "twenty_person_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+            "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+            "full_name": "Ryan Wilkins",
+            "raw_name": {
+              "firstName": "Ryan Wilkins",
+              "lastName": ""
+            },
+            "job_title": null,
+            "work_email": null,
+            "phone": "3174452402",
+            "professional_network_url": null,
+            "a2_identity_status": null,
+            "a2_role_status": null,
+            "a2_role_priority": null,
+            "a2_company_match_status": null,
+            "a2_enrichment_status": null,
+            "fullenrich_person_id": "",
+            "last_verified_at": null,
+            "last_enriched_at": null,
+            "updated_at": "2026-09-08T16:18:37.058Z"
+          },
+          "lookup_result": null,
+          "evidence_refs": [
+            "twenty_snapshot"
+          ]
+        }
+      ],
+      "decision_required": [
+        "identity_status",
+        "company_match_status",
+        "role_priority",
+        "role_status",
+        "retain_as_target",
+        "secondary_fallback_eligible",
+        "people_search_required"
+      ]
+    },
+    {
+      "company": {
+        "twenty_company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+        "name": "Ellis Forge LLC",
+        "segment": "FARRIER",
+        "domain": null,
+        "professional_network_url": null,
+        "location": {
+          "street": "3610 Lexington Road, Richmond, Kentucky, 40475, United States",
+          "city": "Richmond",
+          "region": "KY",
+          "country": "United States",
+          "postal_code": "40475"
+        }
+      },
+      "linked_people": [
+        {
+          "twenty_person": {
+            "twenty_person_id": "c53ee895-0ce9-4d04-a2fd-908c494a3469",
+            "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+            "full_name": "Colton Ellis, CF",
+            "raw_name": {
+              "firstName": "Colton Ellis, CF",
+              "lastName": ""
+            },
+            "job_title": null,
+            "work_email": null,
+            "phone": "3048398833",
+            "professional_network_url": null,
+            "a2_identity_status": null,
+            "a2_role_status": null,
+            "a2_role_priority": null,
+            "a2_company_match_status": null,
+            "a2_enrichment_status": null,
+            "fullenrich_person_id": "",
+            "last_verified_at": null,
+            "last_enriched_at": null,
+            "updated_at": "2026-09-08T16:18:29.537Z"
+          },
+          "lookup_result": null,
+          "evidence_refs": [
+            "twenty_snapshot"
+          ]
+        }
+      ],
+      "decision_required": [
+        "identity_status",
+        "company_match_status",
+        "role_priority",
+        "role_status",
+        "retain_as_target",
+        "secondary_fallback_eligible",
+        "people_search_required"
+      ]
+    }
+  ],
+  "artifact_sha256": "2a4c354862b9c178e3414085b010e547b25fb62dbfcd1512d3927842c12c5638"
+}

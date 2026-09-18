@@ -1,0 +1,169 @@
+{
+  "policy_id": "equinet-a2-provider-and-cost-policy",
+  "version": "0.1.0-draft.1",
+  "status": "approved_by_unitalk_as_working_baseline_runtime_activation_pending",
+  "profile": "equinet-a2-enrichment",
+  "unitalk_approval": {
+    "approver": "Séverine, Unitalk Operations",
+    "approved_at": "2026-08-26T20:26:01Z",
+    "scope": "decisions_3F_1_through_3F_10"
+  },
+  "dependencies": [
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.0-draft.1.json",
+      "sha256": "901dbd504e77a5bf4543c10a32cb05d6e9b723e9368138a2894646dc368fcc3c"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/step3f-personal-email-review-clarification.json",
+      "sha256": "f01df5ca77ba12a568195ec57ec625c4a1c17687a06028fbedb1645cb59c61a7"
+    }
+  ],
+  "contractual_budget_boundary": {
+    "advance_token_credit_currency": "USD",
+    "advance_token_credit_initial_amount": 5000,
+    "negative_balance_permitted": false,
+    "a2_provider_allocation_usd": null,
+    "daily_visibility_required": true,
+    "monthly_statement_required": true
+  },
+  "providers": {
+    "apify_linkedin_profile_search": {
+      "actor_id": "harvestapi/linkedin-profile-search",
+      "purpose": "role_and_company_match_after_official_site_gap",
+      "business_approval": "approved",
+      "runtime_status": "blocked_pending_rights_vendor_account_budget_retention_and_connector",
+      "billing_model": "pay_per_event_verify_in_live_console",
+      "limits": {
+        "take_pages": 1,
+        "max_items_per_candidate": 5,
+        "max_retained_contacts": 3,
+        "concurrency": 1,
+        "automatic_query_segmentation": false
+      },
+      "allowed_fields": [
+        "name",
+        "current_title",
+        "current_company",
+        "professional_location",
+        "profile_url"
+      ],
+      "prohibited_fields": [
+        "full_career_history",
+        "education",
+        "skills",
+        "posts",
+        "followers",
+        "connections",
+        "photos",
+        "personal_interests"
+      ]
+    },
+    "apify_independent_email_search": {
+      "actor_id": "harvestapi/linkedin-profile-search",
+      "mode": "full_plus_email_search",
+      "purpose": "professional_email_search_for_selected_matched_profile",
+      "business_approval": "approved",
+      "runtime_status": "blocked_pending_rights_vendor_account_budget_retention_and_connector",
+      "max_searches_per_candidate": 3,
+      "professional_email": "eligible_for_verification",
+      "personal_email": "held_for_human_privacy_review",
+      "personal_email_contactability_before_review": false,
+      "crm_write_before_review": false,
+      "outreach_before_authoritative_checks": false,
+      "provenance": "independent_HarvestAPI_email_search_not_LinkedIn"
+    },
+    "apollo": {
+      "status": "equinet_test_pending_not_selected",
+      "runtime_enabled": false
+    },
+    "clay": {
+      "status": "equinet_test_pending_not_selected",
+      "runtime_enabled": false
+    }
+  },
+  "benchmark": {
+    "candidate_count": 10,
+    "segments": [
+      "farrier",
+      "horse_owner"
+    ],
+    "dataset": "approved_fixed_dataset",
+    "live_crm_write": false,
+    "outreach": false,
+    "success_metrics": [
+      "identity_match_precision",
+      "role_company_match_precision",
+      "professional_email_precision",
+      "coverage_by_segment",
+      "false_positive_rate",
+      "cost_per_usable_verified_field",
+      "provenance_completeness",
+      "latency"
+    ],
+    "acceptance_thresholds": "pending_after_first_bounded_output_review"
+  },
+  "budget_controls": {
+    "test_cap_usd": null,
+    "daily_cap_usd": null,
+    "pilot_cap_usd": null,
+    "spend_approver": null,
+    "consumption_owner": null,
+    "warning_percent": 50,
+    "escalation_percent": 80,
+    "hard_stop_percent": 100,
+    "run_blocked_when_any_required_cap_is_null": true,
+    "never_exceed_remaining_prepaid_balance": true
+  },
+  "execution_controls": {
+    "idempotency_key_components": [
+      "candidate_id",
+      "provider_action",
+      "field_key",
+      "policy_version"
+    ],
+    "successful_lookup_reuse_required": true,
+    "retry_on_not_found": 0,
+    "retry_on_policy_or_budget_block": 0,
+    "max_retry_on_transient_technical_failure": 1,
+    "no_automatic_provider_fallback": true,
+    "provider_result_requires_audit_record": true
+  },
+  "data_governance": {
+    "raw_dataset_retention_days": null,
+    "retention_policy_status": "pending",
+    "minimum_normalised_evidence_only": true,
+    "credentials_in_secret_store_only": true,
+    "provider_output_not_authoritative_without_validation": true,
+    "deliverability_is_not_consent": true,
+    "personal_email_review_state": "held_for_human_privacy_review"
+  },
+  "runtime_activation_gate": {
+    "all_required": [
+      "approved_account",
+      "pinned_actor_build",
+      "rights_or_exception",
+      "vendor_due_diligence",
+      "retention_rule",
+      "test_cap",
+      "daily_cap",
+      "pilot_cap",
+      "spend_approver",
+      "consumption_owner",
+      "audit_logging",
+      "connector_test"
+    ],
+    "current_status": "blocked",
+    "external_calls_authorized": false
+  },
+  "open_inputs": [
+    "authorised Apify workspace/account and runtime owner",
+    "pinned Actor build",
+    "rights or documented exception",
+    "HarvestAPI vendor/privacy review",
+    "raw dataset retention period",
+    "test, daily and pilot USD caps",
+    "spend approver and consumption owner",
+    "benchmark acceptance thresholds after the first bounded output review",
+    "Equinet decision on personal-email review outcomes"
+  ]
+}

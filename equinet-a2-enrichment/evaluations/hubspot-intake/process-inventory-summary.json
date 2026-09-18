@@ -1,0 +1,269 @@
+{
+  "source": "/opt/data/profiles/equinet/attachments/Sales_Marketing_Process_Inventory.csv",
+  "rows": 68,
+  "categories": {
+    "Prospect and lead review": 12,
+    "Enrichment review": 1,
+    "Outreach eligibility": 8,
+    "Consent opt-out and do-not-contact": 6,
+    "Sequence enrolment": 1,
+    "Reply routing": 1,
+    "Deal approvals": 3,
+    "Lifecycle and retention": 18,
+    "Other Sales or Marketing": 18
+  },
+  "asset_types": {
+    "Workflow": 33,
+    "List": 32,
+    "Audit finding": 3
+  },
+  "statuses": {
+    "Disabled": 5,
+    "Enabled": 28,
+    "Dynamic": 19,
+    "Not found": 3,
+    "Static": 13
+  },
+  "enabled_workflow_count": 28,
+  "disabled_workflow_count": 5,
+  "list_count": 32,
+  "audit_finding_count": 3,
+  "enabled_workflow_side_effects": {
+    "creates_tasks": [
+      "EQUINET | Telesales Outreach - First Batch Triggered",
+      "EQUINET | Telesales Outreach - 2nd Batch Triggered",
+      "EQUINET | Referral Reply Follow-up",
+      "EQUINET | Free Trial Expiring | Call Task for Fred",
+      "EQUINET | Free Trial Ended | Call Task for Fred",
+      "EQUINET | Churned core users- downgraded | Call Task for Fred",
+      "EQUINET | Premium Users Who Reverted to Core | Call Task for Fred",
+      "Sample Request | CS Shipment Complete"
+    ],
+    "sends_external_communication": [
+      "EQUINET | App Download Invite | Batch 1",
+      "EQUINET | App Download Invite | Batch 2",
+      "EQUINET | App Download Invite | Batch 3",
+      "EQUINET | App Download Invite | Batch 4",
+      "EQUINET | Churn core user- Remaining | Free Trial email | 5-day resend",
+      "EQUINET | Core + Churned | Free Trial email | 5-day resend | Excl Internal Accounts",
+      "EQUINET | Referral Campaign - July 2026",
+      "EQUINET | Referral Campaign - July 2026/Batch 2"
+    ],
+    "updates_status_or_subscription": [
+      "EQUINET | SMS Opt-in",
+      "Sample Request | Duplicate Approval Outcome",
+      "EQUINET | Mark Users as At Risk",
+      "Sample Request | Owner Hand-Off Stage Update"
+    ],
+    "creates_records": [
+      "Capewell Swag Campaign | Intake and Create Sample Request",
+      "QR Code Flow | Intake and Create Sample Request",
+      "Create note on Sample Request from Internal Note"
+    ]
+  },
+  "audit_findings": [
+    {
+      "category": "Enrichment review",
+      "name": "No matching enrichment review asset identified",
+      "status": "Not found",
+      "description": "No current workflow or list matched enrichment or review in its name or description after checking the full inventory."
+    },
+    {
+      "category": "Sequence enrolment",
+      "name": "No sequence resources returned",
+      "status": "Not found",
+      "description": "Neither the standard nor permission-aware sequence inventory returned any sequence items in the current check. The telesales workflows use list membership triggers but are not sequences."
+    },
+    {
+      "category": "Deal approvals",
+      "name": "No Deal approval workflow identified",
+      "status": "Not found",
+      "description": "The approval search returned sample request approval workflows but no workflow explicitly for Deal approvals."
+    }
+  ],
+  "category_detail": {
+    "Consent opt-out and do-not-contact": {
+      "count": 6,
+      "asset_types": {
+        "Workflow": 1,
+        "List": 5
+      },
+      "statuses": {
+        "Enabled": 1,
+        "Dynamic": 4,
+        "Static": 1
+      },
+      "names": [
+        "EQUINET | SMS Opt-in",
+        "EQUINET | Contacts Unsubscribed from All Email Communications",
+        "EQUINET | Not Opted In to Marketing Emails | App",
+        "EQUINET | Hard Bounced users AU/NZ",
+        "EQUINET | User Ignore is Yes | AU/NZ",
+        "EQUINET | User Ignore is Yes | US"
+      ]
+    },
+    "Deal approvals": {
+      "count": 3,
+      "asset_types": {
+        "Audit finding": 1,
+        "Workflow": 2
+      },
+      "statuses": {
+        "Not found": 1,
+        "Enabled": 2
+      },
+      "names": [
+        "No Deal approval workflow identified",
+        "Sample Request | Duplicate Approval Request",
+        "Sample Request | Duplicate Approval Outcome"
+      ]
+    },
+    "Enrichment review": {
+      "count": 1,
+      "asset_types": {
+        "Audit finding": 1
+      },
+      "statuses": {
+        "Not found": 1
+      },
+      "names": [
+        "No matching enrichment review asset identified"
+      ]
+    },
+    "Lifecycle and retention": {
+      "count": 18,
+      "asset_types": {
+        "Workflow": 8,
+        "List": 10
+      },
+      "statuses": {
+        "Enabled": 8,
+        "Dynamic": 3,
+        "Static": 7
+      },
+      "names": [
+        "EQUINET | Mark Users as At Risk",
+        "EQUINET | Free Trial Expiring | Call Task for Fred",
+        "EQUINET | Free Trial Ended | Call Task for Fred",
+        "EQUINET | Churned core users- downgraded | Call Task for Fred",
+        "EQUINET | Premium Users Who Reverted to Core | Call Task for Fred",
+        "EQUINET | Churn core user- Remaining | Free Trial email | 5-day resend",
+        "EQUINET | Core + Churned | Free Trial email | 5-day resend | Excl Internal Accounts",
+        "EQUINET | Negative Feedback Follow-up - Faezeh",
+        "EQUINET | At Risk Users",
+        "EQUINET | Churned Users All - New | June 2026",
+        "EQUINET | Churned Users AU/NZ List | June 2026",
+        "EQUINET | Churned Users Core US | June 2026",
+        "EQUINET | Churned Users Paid/Internal NEW USA | June 2026",
+        "EQUINET | Churned core users- downgraded",
+        "Premium Users Downgraded to Core",
+        "EQUINET | Users whose free trial expired without upgrading | Aug 2026",
+        "EQUINET | Users whose free trial is ending | Aug 2026",
+        "Unengaged contacts"
+      ]
+    },
+    "Other Sales or Marketing": {
+      "count": 18,
+      "asset_types": {
+        "Workflow": 10,
+        "List": 8
+      },
+      "statuses": {
+        "Enabled": 10,
+        "Static": 5,
+        "Dynamic": 3
+      },
+      "names": [
+        "Capewell Swag Campaign | Intake and Create Sample Request",
+        "QR Code Flow | Intake and Create Sample Request",
+        "QR Sample Request | CS Shipment",
+        "Sample Request | CS Shipment Request updated",
+        "Sample Request | CS Shipment Complete",
+        "Sample Request | Follow-up Reminder",
+        "Sample Request | Owner Hand-Off Stage Update",
+        "Create note on Sample Request from Internal Note",
+        "EQUINET | Referral Campaign - July 2026",
+        "EQUINET | Referral Campaign - July 2026/Batch 2",
+        "EQUINET | Telesales + Email 2nd Batch/Sample Excluded",
+        "EQUINET | Telesales + Email",
+        "EQUINET | Telesales + Email /Churned Users",
+        "EQUINET | Call task 1st Batch",
+        "EQUINET | Call Task 2nd batch",
+        "EQUINET | Release Notes Email List USA | June 2026",
+        "EQUINET | Release Notes Email List AU/NZ | June 2026",
+        "EQUINET | Not Opted In to Marketing Emails | App"
+      ]
+    },
+    "Outreach eligibility": {
+      "count": 8,
+      "asset_types": {
+        "Workflow": 4,
+        "List": 4
+      },
+      "statuses": {
+        "Enabled": 4,
+        "Dynamic": 4
+      },
+      "names": [
+        "EQUINET | App Download Invite | Batch 1",
+        "EQUINET | App Download Invite | Batch 2",
+        "EQUINET | App Download Invite | Batch 3",
+        "EQUINET | App Download Invite | Batch 4",
+        "EQUINET | Internal Accounts | Exclusion List",
+        "EQUINET | Internal Users",
+        "EQUINET | At Risk Users",
+        "EQUINET | At Risk Users 2nd Batch | 1st batch Excluded"
+      ]
+    },
+    "Prospect and lead review": {
+      "count": 12,
+      "asset_types": {
+        "Workflow": 7,
+        "List": 5
+      },
+      "statuses": {
+        "Disabled": 5,
+        "Enabled": 2,
+        "Dynamic": 5
+      },
+      "names": [
+        "Mustad | Allison - Follow up with Lead | Form Submission",
+        "Mustad | David - Follow up with Lead | Form Submission",
+        "Mustad | Kris - Follow up with Lead | Form Submission",
+        "Mustad | Tim - Follow up with Lead | Form Submission",
+        "Mustad | Todd - Follow up with Lead | Form Submission",
+        "EQUINET | Telesales Outreach - First Batch Triggered",
+        "EQUINET | Telesales Outreach - 2nd Batch Triggered",
+        "EQUINET | Leads - Non App Users",
+        "Contacts From USA",
+        "Contacts From Australia or New Zealand",
+        "All KY contacts with phone number and Email",
+        "Lexington contacts with Phone and Email"
+      ]
+    },
+    "Reply routing": {
+      "count": 1,
+      "asset_types": {
+        "Workflow": 1
+      },
+      "statuses": {
+        "Enabled": 1
+      },
+      "names": [
+        "EQUINET | Referral Reply Follow-up"
+      ]
+    },
+    "Sequence enrolment": {
+      "count": 1,
+      "asset_types": {
+        "Audit finding": 1
+      },
+      "statuses": {
+        "Not found": 1
+      },
+      "names": [
+        "No sequence resources returned"
+      ]
+    }
+  }
+}

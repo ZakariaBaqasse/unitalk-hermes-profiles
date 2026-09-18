@@ -1,0 +1,37 @@
+{
+  "policy_id": "equinet-a2-target-contact-policy",
+  "version": "0.4.0-rc.1",
+  "status": "implementation_ready_pilot_acceptance_pending",
+  "role_model_source": "foundations/contracts/business/a2-business-field-catalogue-0.3.1.json#target_role_model",
+  "rules": {
+    "company_may_have_many_people": true,
+    "a1_initial_people_maximum": 1,
+    "maximum_new_primary_people_when_no_fresh_primary": 2,
+    "preserve_existing_non_primary_or_stale_people": true,
+    "search_when_no_linked_people": true,
+    "search_when_no_fresh_verified_primary": true,
+    "search_when_fresh_verified_primary_exists": false,
+    "domain_required": false,
+    "domainless_company_name_required": true,
+    "domainless_location_used_when_available": true,
+    "ambiguous_company_match_auto_link": false,
+    "selected_roles": [
+      "primary"
+    ],
+    "source_title_preserved": true,
+    "conditional_role_evidence_required": true
+  },
+  "contact_fields": {
+    "attempt": [
+      "person.business_email",
+      "person.mobile_phone",
+      "person.public_profile_urls"
+    ],
+    "contact_enrichment_terminal_without_result": "PARTIAL"
+  },
+  "personal_email": {
+    "requested": false,
+    "automatic_twenty_write": false,
+    "incidental_return": "restricted_exception_artifact"
+  }
+}

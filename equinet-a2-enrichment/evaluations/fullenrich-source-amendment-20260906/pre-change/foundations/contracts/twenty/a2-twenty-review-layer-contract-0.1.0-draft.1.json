@@ -1,0 +1,154 @@
+{
+  "contract_id": "equinet-a2-twenty-review-layer",
+  "version": "0.1.0-draft.1",
+  "status": "approved_by_unitalk_as_working_baseline_twenty_integration_pending",
+  "profile": "equinet-a2-enrichment",
+  "unitalk_approval": {
+    "approver": "Séverine, Unitalk Operations",
+    "approved_at": "2026-08-27T10:19:34Z",
+    "scope": "decisions_3H_1_through_3H_10"
+  },
+  "operating_model": {
+    "a1_prospect_record": "existing Twenty record created by A1",
+    "a2_review_record": "proposed linked versioned review object",
+    "field_decision_record": "proposed linked field-level decision object or equivalent workspace-supported structure",
+    "canonical_json": "only lossless source of truth",
+    "hubspot": "final CRM system of record"
+  },
+  "proposed_objects": [
+    {
+      "logical_name": "A2 Enrichment Review",
+      "workspace_internal_name": "pending_metadata_snapshot",
+      "relation_to_a1_prospect": "many reviews to one prospect",
+      "idempotency_key_required": true
+    },
+    {
+      "logical_name": "A2 Field Decision",
+      "workspace_internal_name": "pending_metadata_snapshot",
+      "relation_to_review": "many decisions to one review",
+      "optional_if_workspace_supports_safe_structured_field": true
+    }
+  ],
+  "review_states": [
+    "pending",
+    "in_review",
+    "needs_changes",
+    "held",
+    "approved",
+    "rejected"
+  ],
+  "transitions": {
+    "pending": [
+      "in_review"
+    ],
+    "in_review": [
+      "approved",
+      "needs_changes",
+      "held",
+      "rejected"
+    ],
+    "needs_changes": [
+      "pending"
+    ],
+    "held": [
+      "in_review"
+    ],
+    "approved": [],
+    "rejected": []
+  },
+  "review_requirements": {
+    "field_level_decisions": true,
+    "corrected_values_allowed": true,
+    "comments_allowed": true,
+    "record_level_decision": true,
+    "reviewer_and_timestamp_required_for_final_decision": true,
+    "human_review_required": true
+  },
+  "approval_effects": {
+    "approved": "authorizes proposed HubSpot patch preparation only",
+    "needs_changes": "creates a new A2 revision after authorised correction",
+    "held": "no progression until named dependency resolves",
+    "rejected": "closes the review revision without HubSpot proposal",
+    "any_decision": "never authorizes HubSpot write or outreach"
+  },
+  "api_and_webhook_design": {
+    "workspace_schema_specific": true,
+    "metadata_snapshot_required": true,
+    "role_scoped_api_key_required": true,
+    "webhook_or_workflow_event": "record create/update; exact event names pending workspace schema",
+    "n8n_filters_and_deduplicates_events": true,
+    "read_back_after_write_to_twenty": true,
+    "credentials_status": "not_connected"
+  },
+  "idempotency": {
+    "key_components": [
+      "twenty_candidate_id",
+      "a2_record_id",
+      "record_revision_id",
+      "canonical_record_sha256"
+    ],
+    "same_payload": "return existing review",
+    "changed_payload": "new A2 revision and new review idempotency key",
+    "duplicate_approval_event": "ignore after exact receipt reconciliation"
+  },
+  "mapping": [
+    {
+      "canonical_section": "record_metadata",
+      "twenty_target": "A2 Enrichment Review identifiers",
+      "status": "logical_mapping_proposed"
+    },
+    {
+      "canonical_section": "field_assessments",
+      "twenty_target": "A2 Field Decision rows or equivalent",
+      "status": "logical_mapping_proposed"
+    },
+    {
+      "canonical_section": "evidence_registry",
+      "twenty_target": "read-only evidence summary and source links",
+      "status": "logical_mapping_proposed"
+    },
+    {
+      "canonical_section": "data_quality",
+      "twenty_target": "review summary status, gaps and limitations",
+      "status": "logical_mapping_proposed"
+    },
+    {
+      "canonical_section": "requalification",
+      "twenty_target": "read-only signal summary",
+      "status": "logical_mapping_proposed"
+    },
+    {
+      "canonical_section": "review",
+      "twenty_target": "reviewer inputs and record decision",
+      "status": "logical_mapping_proposed"
+    },
+    {
+      "canonical_section": "system_references.twenty_record_id",
+      "twenty_target": "verified A1 prospect record ID",
+      "status": "required"
+    },
+    {
+      "canonical_section": "audit_and_consumption",
+      "twenty_target": "external audit reference only",
+      "status": "logical_mapping_proposed"
+    }
+  ],
+  "integration_status": {
+    "twenty_selected": true,
+    "workspace_metadata_received": false,
+    "api_key_connected": false,
+    "permissions_verified": false,
+    "webhooks_configured": false,
+    "runtime_active": false
+  },
+  "open_inputs": [
+    "Twenty workspace URL and deployment type",
+    "exact A1 prospect object and internal name",
+    "workspace metadata export for objects fields and relations",
+    "reviewer and backup plus Twenty roles",
+    "API key owner and role scopes",
+    "whether field decisions use a child object or structured field",
+    "webhook/workflow configuration and event filtering",
+    "retention and administrator visibility"
+  ]
+}

@@ -1,0 +1,1758 @@
+{
+  "audit_and_consumption": {
+    "errors": [],
+    "events": [
+      {
+        "actor": {
+          "actor_id": "UNITALK-A2-INITIALISER",
+          "actor_role": "A2 Deterministic Initialiser",
+          "display_name": null,
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "event_id": "A2-EVENT-INIT_5DC8D468C11B265DA37B_001",
+        "event_type": "canonical_record_initialised",
+        "external_action": null,
+        "input_references": [
+          "A1A2-PILOT-RR-PODIATRY-001",
+          "5dc8d468c11b265da37b68df3cd80c07580a9cabe884ffc77a10e4b7636a8b88"
+        ],
+        "model": null,
+        "output_references": [
+          "A2-REV-INIT_4C254395651AB18F9D49_001"
+        ],
+        "timestamp": "2026-08-30T10:42:31Z",
+        "tools": [
+          "initialize_a2_record.py"
+        ],
+        "usage": null
+      },
+      {
+        "event_id": "A2-EVENT-STEP8-RR-002",
+        "event_type": "workflow_enrichment_planned",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP8",
+          "actor_role": "A2 Bounded Pilot Runtime",
+          "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-30T13:20:47Z",
+        "input_references": [
+          "A2-REV-INIT_4C254395651AB18F9D49_001"
+        ],
+        "output_references": [
+          "A2-REV-STEP8_5DC8D468C11B265DA37B_002"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-step8-canonical-builder"
+        ],
+        "usage": null,
+        "external_action": null
+      },
+      {
+        "event_id": "A2-EVENT-STEP8-RR-003",
+        "event_type": "workflow_enrichment_in_progress",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP8",
+          "actor_role": "A2 Bounded Pilot Runtime",
+          "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-30T13:20:48Z",
+        "input_references": [
+          "A2-REV-STEP8_5DC8D468C11B265DA37B_002"
+        ],
+        "output_references": [
+          "A2-REV-STEP8_5DC8D468C11B265DA37B_003"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-recovery-from-approved-stored-pages",
+          "build_step8_collection_receipt.py",
+          "normalise_and_validate_a2_observations.py",
+          "evaluate_a2_evidence_confidence.py",
+          "evaluate_a2_minimum_package.py"
+        ],
+        "usage": {
+          "input_tokens": null,
+          "output_tokens": null,
+          "total_tokens": null,
+          "api_calls": 0,
+          "credits": null,
+          "cost_amount": null,
+          "currency": "USD",
+          "cost_status": "unknown"
+        },
+        "external_action": null
+      },
+      {
+        "event_id": "A2-EVENT-STEP8-RR-004",
+        "event_type": "workflow_review_required",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP8",
+          "actor_role": "A2 Bounded Pilot Runtime",
+          "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-30T13:20:49Z",
+        "input_references": [
+          "A2-REV-STEP8_5DC8D468C11B265DA37B_003"
+        ],
+        "output_references": [
+          "A2-REV-STEP8_5DC8D468C11B265DA37B_004"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-step8-canonical-builder"
+        ],
+        "usage": null,
+        "external_action": null
+      }
+    ],
+    "total_usage": {
+      "api_calls": 0,
+      "cost_amount": null,
+      "cost_status": "unknown",
+      "credits": null,
+      "currency": "USD",
+      "input_tokens": null,
+      "output_tokens": null,
+      "provider_calls": 0,
+      "total_tokens": null
+    }
+  },
+  "data_quality": {
+    "calculated_at": "2026-08-30T13:20:48Z",
+    "conflict_field_keys": [],
+    "invalid_field_keys": [],
+    "limitations": [
+      "The stored official pages do not establish full-time, part-time or apprentice professional status for Manfred Eckert.",
+      "The Lexington location does not establish the Podiatry service area.",
+      "No named professional email or phone for Manfred Eckert was found in the bounded pages; form placeholders were excluded.",
+      "The organisation general phone remains available as fallback contactability but does not satisfy the named-target contact path.",
+      "The hospital-wide statement 'all breeds and disciplines' is retained as organisation-level context and is not narrowed to a specific Podiatry discipline.",
+      "HubSpot customer, Deal, consent, suppression and owner checks are unavailable."
+    ],
+    "method_version": "a2-step8-quality-0.1.0",
+    "missing_field_keys": [
+      "organisation.service_area",
+      "person.business_email",
+      "person.business_phone",
+      "person.professional_status"
+    ],
+    "required_field_keys": [
+      "person.professional_status",
+      "organisation.business_name",
+      "organisation.public_business_location",
+      "organisation.service_area",
+      "organisation.disciplines",
+      "person.full_name",
+      "person.role_title",
+      "relationship.target_role_priority",
+      "person.business_email",
+      "person.business_phone"
+    ],
+    "stale_field_keys": [],
+    "status": "incomplete",
+    "unverified_field_keys": [
+      "relationship.target_role_priority"
+    ]
+  },
+  "duplicate_and_eligibility": {
+    "a2_eligibility_status": "not_checked",
+    "checks": [],
+    "evaluated_at": null,
+    "method_version": null,
+    "outreach_eligibility_status": "unavailable",
+    "owner_routing_status": "needs_owner_review",
+    "reasons": [
+      "A2 duplicate, CRM eligibility and owner-routing checks have not run."
+    ]
+  },
+  "enrichment_scope": {
+    "field_catalogue_version": "0.1.1-draft.1",
+    "initiated_by": {
+      "actor_id": "UNITALK-A2-STEP8",
+      "actor_role": "A2 Bounded Pilot Runtime",
+      "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "limits": {
+      "max_records": 1,
+      "max_source_calls": 5,
+      "max_provider_calls": 0,
+      "max_retries": 1,
+      "max_concurrency": 1,
+      "max_cost_usd": 0,
+      "policy_version": "a2-step8-bounded-pilot-runtime-0.1.0"
+    },
+    "mode": "default_minimum_package",
+    "operating_scope": "manual_no_integration_pilot",
+    "requested_field_keys": [],
+    "source_register_version": "0.1.1-draft.1"
+  },
+  "evidence_registry": [
+    {
+      "evidence_id": "A2-EV-STEP8-RR-ROLE",
+      "namespace": "a2",
+      "source_id": "prospect_official_website",
+      "source_type": "prospect_owned_website",
+      "source_policy_status": "approved",
+      "source_url": "https://roodandriddle.com/lexington-podiatry-team",
+      "provider_reference": null,
+      "access_method": "firecrawl_bounded_public_web_read",
+      "retrieved_at": "2026-08-30T13:20:48Z",
+      "source_date": null,
+      "title": "Rood & Riddle official website",
+      "excerpt_or_result_summary": "The official Lexington Podiatry team page lists Manfred Eckert under FARRIERS with the exact title Co-Founder/Farrier.",
+      "claim_type": "direct_fact",
+      "supports_field_assessment_ids": [
+        "A2-FLD-5250BDB1758E6551",
+        "A2-FLD-STEP8-RR-ROLE-PRIORITY"
+      ],
+      "supports_requalification_signal_ids": [],
+      "reliability_level": "high",
+      "independence_group_id": "roodandriddle.com",
+      "provider_cost": null,
+      "supersedes_evidence_id": null,
+      "data_minimisation_notes": "Retains only the approved business claim and source reference; form placeholders and unrelated people are excluded."
+    },
+    {
+      "evidence_id": "A2-EV-STEP8-RR-DISCIPLINES",
+      "namespace": "a2",
+      "source_id": "prospect_official_website",
+      "source_type": "prospect_owned_website",
+      "source_policy_status": "approved",
+      "source_url": "https://roodandriddle.com/lexington/",
+      "provider_reference": null,
+      "access_method": "firecrawl_bounded_public_web_read",
+      "retrieved_at": "2026-08-30T13:20:48Z",
+      "source_date": null,
+      "title": "Rood & Riddle official website",
+      "excerpt_or_result_summary": "The official Lexington hospital page states that Rood & Riddle provides ambulatory care for all breeds and disciplines. This is organisation-level context and is not narrowed to one Podiatry discipline.",
+      "claim_type": "direct_fact",
+      "supports_field_assessment_ids": [
+        "A2-FLD-559EE482F011D31A"
+      ],
+      "supports_requalification_signal_ids": [],
+      "reliability_level": "high",
+      "independence_group_id": "roodandriddle.com",
+      "provider_cost": null,
+      "supersedes_evidence_id": null,
+      "data_minimisation_notes": "Retains only the approved business claim and source reference; form placeholders and unrelated people are excluded."
+    }
+  ],
+  "field_assessments": [
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-ORG-NAME",
+      "field_key": "organisation.business_name",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Rood & Riddle Equine Hospital",
+        "normalised_value": "Rood & Riddle Equine Hospital",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-RR-CONTACT-001",
+          "field_reference": "organisation.business_name",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Rood & Riddle Equine Hospital",
+        "normalised_value": "Rood & Riddle Equine Hospital",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value following bounded A2 verification.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-LOCATION",
+      "field_key": "organisation.public_business_location",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "structured",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40511"
+            },
+            {
+              "key": "public_address",
+              "value": "2150 Georgetown Road, Lexington, KY 40511"
+            }
+          ]
+        },
+        "normalised_value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40511"
+            },
+            {
+              "key": "public_address",
+              "value": "2150 Georgetown Road, Lexington, KY 40511"
+            }
+          ]
+        },
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-RR-CONTACT-001",
+          "field_reference": "organisation.public_business_location",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40511"
+            },
+            {
+              "key": "public_address",
+              "value": "2150 Georgetown Road, Lexington, KY 40511"
+            }
+          ]
+        },
+        "normalised_value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40511"
+            },
+            {
+              "key": "public_address",
+              "value": "2150 Georgetown Road, Lexington, KY 40511"
+            }
+          ]
+        },
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value following bounded A2 verification.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-WEBSITE",
+      "field_key": "organisation.website",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "https://roodandriddle.com/lexington-podiatry-team",
+        "normalised_value": "https://roodandriddle.com/lexington-podiatry-team",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-RR-CONTACT-001",
+          "field_reference": "organisation.website",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "https://roodandriddle.com/lexington-podiatry-team",
+        "normalised_value": "https://roodandriddle.com/lexington-podiatry-team",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value following bounded A2 verification.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-DOMAIN",
+      "field_key": "organisation.website_domain",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "roodandriddle.com",
+        "normalised_value": "roodandriddle.com",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-RR-CONTACT-001",
+          "field_reference": "organisation.website_domain",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "roodandriddle.com",
+        "normalised_value": "roodandriddle.com",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value following bounded A2 verification.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-ORG-PHONE",
+      "field_key": "organisation.business_phone",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "(859) 233-0371",
+        "normalised_value": "(859) 233-0371",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-RR-CONTACT-001",
+          "field_reference": "organisation.business_phone",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "(859) 233-0371",
+        "normalised_value": "(859) 233-0371",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value following bounded A2 verification.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-PERSON-NAME",
+      "field_key": "person.full_name",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Manfred Eckert",
+        "normalised_value": "Manfred Eckert",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-RR-CONTACT-001",
+          "field_reference": "person.full_name",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Manfred Eckert",
+        "normalised_value": "Manfred Eckert",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value following bounded A2 verification.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-5250BDB1758E6551",
+      "field_key": "person.role_title",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Co-Founder/Farrier",
+        "normalised_value": "Co-Founder/Farrier",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-RR-CONTACT-001",
+          "field_reference": "person.role_title",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-RR-CONTACT-001",
+          "EV-RR-LEX-001",
+          "EV-RR-TEAM-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [
+        {
+          "observation_id": "A2-OBS-RR-ROLE-TITLE-001",
+          "raw_value": "Co-Founder/Farrier",
+          "normalised_value": "Co-Founder/Farrier",
+          "evidence_ids": [
+            "A2-EV-STEP8-RR-ROLE"
+          ],
+          "verification_status": "verified",
+          "confidence_level": "high",
+          "freshness_status": "undated",
+          "claim_type": "direct_fact",
+          "error": null
+        }
+      ],
+      "proposed_resolution": {
+        "action": "no_change",
+        "value": "Co-Founder/Farrier",
+        "normalised_value": "Co-Founder/Farrier",
+        "evidence_ids": [
+          "A2-EV-STEP8-RR-ROLE"
+        ],
+        "rationale": "Current official-site evidence supports this bounded Step 8 field proposal.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "not_protected"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-7C9E495FD7C5F607",
+      "field_key": "person.professional_status",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "enum",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "unknown",
+      "availability_status": "not_found",
+      "field_quality_status": "gap",
+      "baseline": null,
+      "observations": [],
+      "proposed_resolution": null,
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-4678012972BE1E9E",
+      "field_key": "organisation.service_area",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string_array",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "unknown",
+      "availability_status": "not_found",
+      "field_quality_status": "gap",
+      "baseline": null,
+      "observations": [],
+      "proposed_resolution": null,
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-559EE482F011D31A",
+      "field_key": "organisation.disciplines",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string_array",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": null,
+      "observations": [
+        {
+          "observation_id": "A2-OBS-RR-DISCIPLINES-001",
+          "raw_value": [
+            "all breeds and disciplines"
+          ],
+          "normalised_value": [
+            "all breeds and disciplines"
+          ],
+          "evidence_ids": [
+            "A2-EV-STEP8-RR-DISCIPLINES"
+          ],
+          "verification_status": "verified",
+          "confidence_level": "high",
+          "freshness_status": "undated",
+          "claim_type": "direct_fact",
+          "error": null
+        }
+      ],
+      "proposed_resolution": {
+        "action": "add",
+        "value": [
+          "all breeds and disciplines"
+        ],
+        "normalised_value": [
+          "all breeds and disciplines"
+        ],
+        "evidence_ids": [
+          "A2-EV-STEP8-RR-DISCIPLINES"
+        ],
+        "rationale": "Current official-site evidence supports this bounded Step 8 field proposal.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "not_protected"
+      },
+      "field_review": {
+        "decision": "pending",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-420BC91BE7E0E495",
+      "field_key": "person.business_email",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "unknown",
+      "availability_status": "not_found",
+      "field_quality_status": "gap",
+      "baseline": null,
+      "observations": [],
+      "proposed_resolution": null,
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-679BB7B6EA706C1A",
+      "field_key": "person.business_phone",
+      "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "unknown",
+      "availability_status": "not_found",
+      "field_quality_status": "gap",
+      "baseline": null,
+      "observations": [],
+      "proposed_resolution": null,
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-ROLE-PRIORITY",
+      "field_key": "relationship.target_role_priority",
+      "entity_id": "A2-REL-STEP8-RR-WORKS-FOR",
+      "scope": "relationship",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "enum",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "partial",
+      "baseline": null,
+      "observations": [],
+      "proposed_resolution": {
+        "action": "add",
+        "value": "primary",
+        "normalised_value": "primary",
+        "evidence_ids": [
+          "A2-EV-STEP8-RR-ROLE"
+        ],
+        "rationale": "Human-reviewable classification from the verified Co-Founder/Farrier role; not a sourced fact and not proof of purchasing authority.",
+        "verification_status": "partially_verified",
+        "confidence_level": "medium",
+        "freshness_status": "not_applicable",
+        "conflict_status": "none",
+        "protected_status": "not_protected"
+      },
+      "field_review": {
+        "decision": "pending",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    }
+  ],
+  "governance": {
+    "approval_matrix_version": null,
+    "consent_check_status": "unavailable",
+    "contains_personal_data": true,
+    "crm_write_authorized": false,
+    "data_categories": [
+      "professional_personal_data"
+    ],
+    "outreach_authorized": false,
+    "policy_limitations": [
+      "No HubSpot, Twenty, n8n, Apify, outreach or downstream delivery.",
+      "Form placeholders are not contact data.",
+      "No employment status, service area or purchasing authority is inferred."
+    ],
+    "processing_purpose": "Bounded enrichment of an authorised public-business Farrier prospect for human review.",
+    "provider_use_authorized": false,
+    "retention_policy_version": null,
+    "source_register_version": "0.1.1-draft.1",
+    "source_terms_review_status": "approved"
+  },
+  "record_metadata": {
+    "a2_record_id": "A2-INIT_5DC8D468C11B265DA37B",
+    "audit_correlation_id": "A1-RP-STEP9-REAL-PILOT:A1-RR-PODIATRY-001",
+    "change_reason": "enrichment",
+    "created_at": "2026-08-30T13:20:49Z",
+    "created_by": {
+      "actor_id": "UNITALK-A2-STEP8",
+      "actor_role": "A2 Bounded Pilot Runtime",
+      "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "record_kind": "production",
+    "record_revision_id": "A2-REV-STEP8_5DC8D468C11B265DA37B_004",
+    "revision_number": 4,
+    "run_id": "A2-RUN-INIT_4C254395651AB18F9D49",
+    "schema_version": "1.0.0",
+    "supersedes_a2_record_id": null,
+    "supersedes_revision_id": "A2-REV-STEP8_5DC8D468C11B265DA37B_003"
+  },
+  "requalification": {
+    "returns": [],
+    "score_revision_references": [],
+    "signals": []
+  },
+  "review": {
+    "record_decision": "pending",
+    "reviewer": null,
+    "decided_at": null,
+    "reason": null,
+    "required_field_decisions_complete": false,
+    "requested_changes": []
+  },
+  "source_handoff": {
+    "accepted_at": "2026-08-30T10:42:31Z",
+    "accepted_by": {
+      "actor_id": "UNITALK-A2-MANUAL-INITIALISER",
+      "actor_role": "A2 Manual Initialiser",
+      "display_name": null,
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "candidate_snapshot_sha256": "ac8ecfc78127e39f6844f676a0374719b29a6083c3c7b12843f6b067eb68448c",
+    "eligibility_status": "eligible",
+    "handoff_id": "A1A2-PILOT-RR-PODIATRY-001",
+    "handoff_schema_version": "1.0.1",
+    "handoff_snapshot": {
+      "a2_receipt": null,
+      "approval_event": {
+        "decision": "approved_for_enrichment",
+        "decision_at": "2026-08-30T10:42:29Z",
+        "reviewer": {
+          "actor_id": "UNITALK-SEVERINE-STEP8",
+          "actor_role": "Unitalk Operations A2 Pilot Reviewer",
+          "display_name": "Séverine"
+        },
+        "scope": "a2_enrichment",
+        "source_layer": "manual_review_package",
+        "source_record_id": "A1-RR-PODIATRY-001"
+      },
+      "candidate_snapshot": {
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "confidence": {
+          "level": "high",
+          "limitations": [
+            "No confidence score cap was triggered.",
+            "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+          ],
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "identity_certainty: strong_unique_match (20/20)",
+            "source_quality: authoritative_primary_business_source (20/20)",
+            "evidence_directness: mostly_direct (15/20)",
+            "corroboration: one_strong_source (12/20)",
+            "freshness: current_within_claim_window (10/10)",
+            "completeness: minimum_review_package_only (7/10)"
+          ],
+          "score": 84
+        },
+        "data_governance": {
+          "a1_outreach_prohibited": true,
+          "collection_context": "public_business_information",
+          "contains_personal_data": true,
+          "retention_policy_version": null,
+          "source_terms_review_status": "confirmed"
+        },
+        "data_quality": {
+          "conflicts": [],
+          "last_validated_at": "2026-08-15T20:38:58Z",
+          "missing_fields": [],
+          "validation_status": "validated"
+        },
+        "discovered_at": "2026-08-15T20:38:58Z",
+        "duplicate_check": {
+          "batch": {
+            "checked_at": "2026-08-15T20:38:58Z",
+            "matches": [],
+            "method_version": "a1-batch-duplicate-1.0.0",
+            "notes": "No exact or probable match found within the current review batch.",
+            "status": "no_match"
+          },
+          "hubspot": {
+            "checked_at": null,
+            "matches": [],
+            "method_version": null,
+            "notes": "HubSpot is not connected for A1 V1; customer, opportunity, consent and exclusion status are unknown.",
+            "status": "unavailable"
+          },
+          "provided_exclusion_file": {
+            "checked_at": null,
+            "matches": [],
+            "method_version": null,
+            "notes": "No authorised Equinet exclusion file was supplied for this run.",
+            "status": "unavailable"
+          },
+          "twenty": {
+            "checked_at": null,
+            "matches": [],
+            "method_version": null,
+            "notes": "Twenty is not connected for A1 V1.",
+            "status": "unavailable"
+          }
+        },
+        "identity": {
+          "aliases": [
+            "Manfred Eckert",
+            "Rood & Riddle Equine Hospital"
+          ],
+          "display_name": "Rood & Riddle Equine Hospital — Lexington Podiatry",
+          "organisation": {
+            "domain": "roodandriddle.com",
+            "name": "Rood & Riddle Equine Hospital",
+            "website": "https://roodandriddle.com/lexington-podiatry-team"
+          },
+          "person": {
+            "first_name": null,
+            "full_name": "Manfred Eckert",
+            "last_name": null,
+            "role_title": "Co-Founder/Farrier"
+          }
+        },
+        "location": {
+          "city": "Lexington",
+          "country_code": "US",
+          "geography_rule_version": "equinet-a1-icp-1.0.0",
+          "geography_status": "in_scope",
+          "postal_code": "40511",
+          "public_address": "2150 Georgetown Road, Lexington, KY 40511",
+          "state_region": "Kentucky"
+        },
+        "prospect_type": "farrier_multi_practitioner_business",
+        "provenance": {
+          "audit_correlation_id": "A1-RP-STEP9-REAL-PILOT:A1-RR-PODIATRY-001",
+          "created_by_profile": "equinet-a1-icp-discovery",
+          "initiated_by": "Séverine — Step 9 approved real-prospect pilot",
+          "model": "deepseek-v4-flash",
+          "synthetic": false,
+          "tools_used": [
+            "Exa web_search",
+            "Firecrawl web_extract",
+            "deterministic qualification builder",
+            "deterministic confidence calculator",
+            "deterministic ICP scorer"
+          ]
+        },
+        "public_contacts": [
+          {
+            "contact_type": "phone",
+            "evidence_ids": [
+              "EV-RR-CONTACT-001"
+            ],
+            "label": "Organisation general contact",
+            "value": "(859) 233-0371"
+          }
+        ],
+        "qualification": {
+          "criteria": [
+            {
+              "category": "fit",
+              "criterion_id": "farrier.professional_activity",
+              "criterion_label": "Active professional Farrier activity",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "notes": "The official Podiatry team page has a dedicated Farriers section with multiple current named Farriers.",
+              "status": "confirmed"
+            },
+            {
+              "category": "fit",
+              "criterion_id": "farrier.product_usage_or_influence",
+              "criterion_label": "Uses or influences the purchase of professional hoof-care products",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "notes": "A current multi-practitioner Farrier team necessarily uses professional hoof-care products; this is a role-based product-usage conclusion, not a claim of procurement authority.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.established_client_base",
+              "criterion_label": "Established or broad client base",
+              "evidence_ids": [],
+              "notes": "The official pages describe a worldwide referral center but do not quantify Farrier-team clients.",
+              "status": "unknown"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.regular_business_activity",
+              "criterion_label": "Regular appointments and established business activity",
+              "evidence_ids": [
+                "EV-RR-TEAM-001",
+                "EV-RR-LEX-001"
+              ],
+              "notes": "The official hospital and current team pages show an established active Lexington operation.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.high_value_service_area",
+              "criterion_label": "Serves a high-equine-activity area",
+              "evidence_ids": [
+                "EV-RR-LEX-001"
+              ],
+              "notes": "The hospital is explicitly located in the heart of the Bluegrass in Lexington, Kentucky.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.advanced_specialisation",
+              "criterion_label": "Advanced hoof-care specialisation",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "notes": "The dedicated Equine Podiatry team is an explicit advanced hoof-care specialisation.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.certified_or_experienced",
+              "criterion_label": "Certified, experienced or well-established professional",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "notes": "The official team page lists CJF, NZCF and DIPWCF credentials among current team members.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.sport_horse_focus",
+              "criterion_label": "Works with sport or competition horses",
+              "evidence_ids": [],
+              "notes": "The retained pages state all breeds and disciplines rather than a specific sport-horse focus.",
+              "status": "not_confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.multi_farrier_business",
+              "criterion_label": "Multi-Farrier or established Farrier business",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "notes": "The official page lists multiple Farriers in the Lexington team.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.buying_influence",
+              "criterion_label": "Influences product selection",
+              "evidence_ids": [],
+              "notes": "No named procurement or product-selection decision-maker is identified.",
+              "status": "unknown"
+            },
+            {
+              "category": "fit",
+              "criterion_id": "farrier.product_fit",
+              "criterion_label": "Strong fit with professional hoof-care products",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "notes": "A dedicated professional Farrier/Podiatry team has recurring hoof-care product requirements.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.engagement_signal",
+              "criterion_label": "Recent professional engagement signal",
+              "evidence_ids": [
+                "EV-RR-TEAM-001",
+                "EV-RR-LEX-001"
+              ],
+              "notes": "The current official site presents active team and hospital operations.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "farrier.apprentice_future_potential",
+              "criterion_label": "Apprentice or junior Farrier actively entering the profession",
+              "evidence_ids": [],
+              "notes": "The retained public evidence does not establish this criterion.",
+              "status": "unknown"
+            },
+            {
+              "category": "negative",
+              "criterion_id": "farrier.inactive_or_hobbyist",
+              "criterion_label": "Inactive or hobby-only Farrier",
+              "evidence_ids": [],
+              "notes": "No retained evidence confirms this negative or exclusion criterion.",
+              "status": "not_confirmed"
+            },
+            {
+              "category": "exclusion",
+              "criterion_id": "farrier.no_professional_evidence",
+              "criterion_label": "No evidence of professional hoof-care activity",
+              "evidence_ids": [],
+              "notes": "No retained evidence confirms this negative or exclusion criterion.",
+              "status": "not_confirmed"
+            }
+          ],
+          "exclusion_reasons": [],
+          "exclusion_status": "eligible",
+          "icp_config_version": "1.0.0",
+          "minimum_data_status": "pass",
+          "missing_minimum_fields": []
+        },
+        "recommendation": {
+          "next_action": "pass_to_a2",
+          "notes": "Authorised by Séverine for the bounded Step 8 A2 pilot. This is a Unitalk test authorisation, not outreach or CRM-write approval.",
+          "priority_rank": 1,
+          "suggested_owner": null,
+          "suggested_territory": "Kentucky"
+        },
+        "record_kind": "production",
+        "run_id": "RUN-20260815T203652Z-4B969F6F",
+        "schema_version": "1.0.0",
+        "scoring": {
+          "band": "high",
+          "block_reason": null,
+          "components": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "max_points": 20,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 20
+            },
+            {
+              "criterion_id": "farrier.product_usage_or_influence",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "max_points": 15,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 15
+            },
+            {
+              "criterion_id": "farrier.product_fit",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "max_points": 10,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 10
+            },
+            {
+              "criterion_id": "farrier.regular_business_activity",
+              "evidence_ids": [
+                "EV-RR-TEAM-001",
+                "EV-RR-LEX-001"
+              ],
+              "max_points": 10,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 10
+            },
+            {
+              "criterion_id": "farrier.advanced_specialisation",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "max_points": 8,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 8
+            },
+            {
+              "criterion_id": "farrier.high_value_service_area",
+              "evidence_ids": [
+                "EV-RR-LEX-001"
+              ],
+              "max_points": 5,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 5
+            },
+            {
+              "criterion_id": "farrier.certified_or_experienced",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "max_points": 5,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 5
+            },
+            {
+              "criterion_id": "farrier.multi_farrier_business",
+              "evidence_ids": [
+                "EV-RR-TEAM-001"
+              ],
+              "max_points": 4,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 4
+            },
+            {
+              "criterion_id": "farrier.engagement_signal",
+              "evidence_ids": [
+                "EV-RR-TEAM-001",
+                "EV-RR-LEX-001"
+              ],
+              "max_points": 3,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 3
+            }
+          ],
+          "model_version": "1.0.0",
+          "rationale": "Numeric ICP score 80/100 from 9 confirmed weighted criteria. Raw band high; final band high.",
+          "score": 80,
+          "status": "scored"
+        },
+        "segment": "farrier",
+        "source_evidence": [
+          {
+            "access_method": "approved_api",
+            "evidence_excerpt": "Meet Your Podiatry Equine Veterinary Care Team. The Lexington page lists veterinarians and a dedicated FARRIERS team including Manfred Eckert (Co-Founder/Farrier), Benjamin Barhorst, CJF, Stuart Muir, NZCF, CJF, DIPWCF, and other named farriers. Lexington public phone: (859) 233-0371.",
+            "evidence_id": "EV-RR-TEAM-001",
+            "fact_or_inference": "direct_fact",
+            "reliability_level": "high",
+            "retrieved_at": "2026-08-15T20:38:58Z",
+            "source_name": "Rood & Riddle Lexington Podiatry Team",
+            "source_policy_status": "approved",
+            "source_type": "business_website",
+            "source_url": "https://roodandriddle.com/lexington-podiatry-team",
+            "supports_claims": [
+              "farrier.professional_activity",
+              "farrier.product_usage_or_influence",
+              "farrier.regular_business_activity",
+              "farrier.advanced_specialisation",
+              "farrier.certified_or_experienced",
+              "farrier.multi_farrier_business",
+              "farrier.product_fit",
+              "farrier.engagement_signal"
+            ],
+            "title": "Rood & Riddle Lexington Podiatry Team"
+          },
+          {
+            "access_method": "approved_api",
+            "evidence_excerpt": "Rood & Riddle Equine Hospital sits on 24 acres in the heart of the Bluegrass in Lexington, KY, as a horse referral center. The practice is known and respected worldwide for innovative and highly skilled treatment of horses and is run by 36 shareholders.",
+            "evidence_id": "EV-RR-LEX-001",
+            "fact_or_inference": "direct_fact",
+            "reliability_level": "high",
+            "retrieved_at": "2026-08-15T20:38:58Z",
+            "source_name": "Rood & Riddle Lexington Hospital",
+            "source_policy_status": "approved",
+            "source_type": "business_website",
+            "source_url": "https://roodandriddle.com/lexington/",
+            "supports_claims": [
+              "farrier.regular_business_activity",
+              "farrier.high_value_service_area",
+              "farrier.engagement_signal"
+            ],
+            "title": "Rood & Riddle Lexington Hospital"
+          },
+          {
+            "access_method": "approved_api",
+            "evidence_excerpt": "The official contact page footer lists the Lexington location at 2150 Georgetown Road, Lexington, KY 40511, the postal address PO Box 12070, Lexington, KY 40580, and telephone (859) 233-0371. The page provides a contact form but does not publish a general email address.",
+            "evidence_id": "EV-RR-CONTACT-001",
+            "fact_or_inference": "direct_fact",
+            "reliability_level": "high",
+            "retrieved_at": "2026-08-15T20:59:46Z",
+            "source_name": "Rood & Riddle General Contact",
+            "source_policy_status": "approved",
+            "source_type": "business_website",
+            "source_url": "https://www.roodandriddle.com/contact",
+            "supports_claims": [
+              "public_contact.phone"
+            ],
+            "title": "Rood & Riddle General Contact"
+          }
+        ],
+        "system_references": {
+          "a2_handoff_id": "A1A2-PILOT-RR-PODIATRY-001",
+          "hubspot_company_id": null,
+          "hubspot_contact_id": null,
+          "hubspot_sync_id": null,
+          "twenty_candidate_id": null
+        },
+        "updated_at": "2026-08-30T10:42:29Z",
+        "workflow": {
+          "decision_at": "2026-08-30T10:42:29Z",
+          "rejection_reason": null,
+          "review_decision": "approved",
+          "reviewer": {
+            "actor_id": "UNITALK-SEVERINE-STEP8",
+            "actor_role": "Unitalk Operations A2 Pilot Reviewer",
+            "display_name": "Séverine"
+          },
+          "stage": "approved_for_a2"
+        }
+      },
+      "constraints": {
+        "a1_score_mutation_authorized": false,
+        "crm_write_authorized": false,
+        "downstream_delivery_authorized": false,
+        "external_action_approval_reference": null,
+        "human_review_required": true,
+        "outreach_authorized": false,
+        "paid_provider_authorized": false,
+        "public_information_creates_consent": false
+      },
+      "created_at": "2026-08-30T10:42:31Z",
+      "delivery": {
+        "attempt_count": 0,
+        "external_event_reference": null,
+        "failure_reason": null,
+        "last_attempt_at": null
+      },
+      "delivery_state": "ready_for_delivery",
+      "eligibility": {
+        "evaluated_at": "2026-08-30T10:42:31Z",
+        "gates": [
+          {
+            "gate_id": "candidate_schema",
+            "reason": "Pinned A1 candidate schema and deterministic validation passed.",
+            "source_path": "candidate_snapshot",
+            "status": "pass"
+          },
+          {
+            "gate_id": "human_approval",
+            "reason": "Séverine authorised this candidate for the bounded A2 pilot.",
+            "source_path": "candidate_snapshot.workflow",
+            "status": "pass"
+          },
+          {
+            "gate_id": "recommendation",
+            "reason": "Candidate recommendation is pass_to_a2.",
+            "source_path": "candidate_snapshot.recommendation.next_action",
+            "status": "pass"
+          },
+          {
+            "gate_id": "exclusion",
+            "reason": "Candidate is eligible and not excluded.",
+            "source_path": "candidate_snapshot.qualification.exclusion_status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "minimum_data",
+            "reason": "A1 minimum data status passed.",
+            "source_path": "candidate_snapshot.qualification.minimum_data_status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "identity_quality",
+            "reason": "A1 data quality is validated.",
+            "source_path": "candidate_snapshot.data_quality.validation_status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "duplicate_batch",
+            "reason": "No current-batch duplicate was found.",
+            "source_path": "candidate_snapshot.duplicate_check.batch",
+            "status": "pass"
+          },
+          {
+            "gate_id": "duplicate_exclusion_file",
+            "reason": "No authoritative exclusion file is available.",
+            "source_path": "candidate_snapshot.duplicate_check.provided_exclusion_file",
+            "status": "unavailable"
+          },
+          {
+            "gate_id": "source_policy",
+            "reason": "No blocked source supports the candidate.",
+            "source_path": "candidate_snapshot.source_evidence",
+            "status": "pass"
+          },
+          {
+            "gate_id": "scoring_state",
+            "reason": "A1 deterministic scoring completed.",
+            "source_path": "candidate_snapshot.scoring.status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "audit_identity",
+            "reason": "A1 audit correlation ID is present.",
+            "source_path": "candidate_snapshot.provenance.audit_correlation_id",
+            "status": "pass"
+          },
+          {
+            "gate_id": "scope_permissions",
+            "reason": "Manual no-integration pilot keeps writes, providers, outreach and downstream delivery disabled.",
+            "source_path": "constraints",
+            "status": "pass"
+          },
+          {
+            "gate_id": "hubspot_duplicate",
+            "reason": "HubSpot duplicate check is unavailable.",
+            "source_path": "candidate_snapshot.duplicate_check.hubspot",
+            "status": "unavailable"
+          },
+          {
+            "gate_id": "hubspot_eligibility",
+            "reason": "HubSpot customer, Deal, consent, suppression and owner checks are unavailable.",
+            "source_path": null,
+            "status": "unavailable"
+          }
+        ],
+        "method_version": "a1-a2-eligibility-1.0.1",
+        "reasons": [
+          "Core A1 approval, quality, source and scoring gates passed.",
+          "Unavailable HubSpot and exclusion-file checks are accepted only for this review-only no-integration pilot; outreach remains unavailable."
+        ],
+        "status": "eligible"
+      },
+      "handoff_id": "A1A2-PILOT-RR-PODIATRY-001",
+      "handoff_schema_version": "1.0.1",
+      "idempotency_key": "A1A2-IDEMP-PILOT-RR-PODIATRY-001",
+      "integration_availability": {
+        "email_verification": "unavailable",
+        "enrichment_provider": "unavailable",
+        "hubspot_read": "unavailable",
+        "phone_verification": "unavailable",
+        "staging": "unavailable",
+        "workflow": "unavailable"
+      },
+      "operating_scope": "manual_no_integration_pilot",
+      "provenance": {
+        "audit_correlation_id": "A1-RP-STEP9-REAL-PILOT:A1-RR-PODIATRY-001",
+        "created_by": "unitalk-a1-a2-handoff-builder",
+        "initiated_by": "Séverine Step 8 authorisation",
+        "synthetic": false,
+        "tools_used": [
+          "deterministic-step8-handoff-builder"
+        ]
+      },
+      "requested_enrichment": {
+        "mode": "default_minimum_package",
+        "request_reason": "Bounded Step 8 A2 pilot using A1 evidence first and approved official-site checks only.",
+        "requested_fields": []
+      },
+      "snapshot_integrity": {
+        "algorithm": "sha256",
+        "candidate_snapshot_sha256": "ac8ecfc78127e39f6844f676a0374719b29a6083c3c7b12843f6b067eb68448c",
+        "canonicalization": "json_sorted_utf8_v1"
+      },
+      "source_profile": "equinet-a1-icp-discovery",
+      "target_profile": "equinet-a2-enrichment",
+      "trigger_event": {
+        "event_id": "EVENT-A1A2-PILOT-RR-PODIATRY-001",
+        "event_type": "a1_candidate_approved_for_a2",
+        "occurred_at": "2026-08-30T10:42:30Z",
+        "source_layer": "manual_review_package",
+        "source_record_id": "A1-RR-PODIATRY-001"
+      }
+    },
+    "idempotency_key": "A1A2-IDEMP-PILOT-RR-PODIATRY-001",
+    "operating_scope": "manual_no_integration_pilot"
+  },
+  "subject": {
+    "entities": [
+      {
+        "aliases": [],
+        "display_name": "Manfred Eckert",
+        "entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+        "entity_type": "person",
+        "external_matches": [],
+        "match_status": "not_checked",
+        "source_identity_reference": "candidate_snapshot.identity.person"
+      },
+      {
+        "aliases": [],
+        "display_name": "Rood & Riddle Equine Hospital",
+        "entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+        "entity_type": "organisation",
+        "external_matches": [],
+        "match_status": "not_checked",
+        "source_identity_reference": "candidate_snapshot.identity.organisation"
+      }
+    ],
+    "identity_resolution_status": "resolved",
+    "material_conflicts": [],
+    "relationships": [
+      {
+        "relationship_id": "A2-REL-STEP8-RR-WORKS-FOR",
+        "from_entity_id": "A2-ENT-5DC8D468C11B265DA37B_PERSON",
+        "to_entity_id": "A2-ENT-5DC8D468C11B265DA37B_ORGANISATION",
+        "relationship_type": "works_for",
+        "evidence_ids": [
+          "A2-EV-STEP8-RR-ROLE"
+        ]
+      }
+    ]
+  },
+  "system_references": {
+    "a14_handoff_id": null,
+    "a1_candidate_id": "A1-RR-PODIATRY-001",
+    "a1_handoff_id": "A1A2-PILOT-RR-PODIATRY-001",
+    "a1_score_revision_id": null,
+    "a3_handoff_id": null,
+    "hubspot_company_id": null,
+    "hubspot_contact_id": null,
+    "hubspot_deal_ids": null,
+    "hubspot_proposed_patch_id": null,
+    "hubspot_sync_id": null,
+    "n8n_execution_id": null,
+    "n8n_work_item_id": null,
+    "provider_request_ids": null,
+    "requalification_return_id": null,
+    "twenty_record_id": null
+  },
+  "workflow": {
+    "block_reasons": [],
+    "failure": null,
+    "hold_reasons": [],
+    "previous_state": "enrichment_in_progress",
+    "state": "review_required",
+    "transitioned_at": "2026-08-30T13:20:49Z",
+    "triggered_by": {
+      "actor_id": "UNITALK-A2-STEP8",
+      "actor_role": "A2 Bounded Pilot Runtime",
+      "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    }
+  }
+}

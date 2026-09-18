@@ -1,0 +1,84 @@
+{
+  "record_type": "a2_fullenrich_name_variant_comparison",
+  "run_id": "A2-LOOKUP-NAME-COMPARE-20260918T101115Z",
+  "trigger": "User requested comparing `Corey Baxter, CJF` and `Corey Baxter` for Baxter Equine and Forge.",
+  "company": {
+    "twenty_company_id": "1ea1f492-9b84-4347-93a5-3c44013327af",
+    "name": "Baxter Equine and Forge",
+    "segment": "FARRIER",
+    "location": {
+      "city": "Weatherford",
+      "region": "TX",
+      "country": "United States"
+    },
+    "domain": null,
+    "professional_network_url": null
+  },
+  "person": {
+    "twenty_person_id": "fca91ebf-466f-432f-a075-7abdc529d30a",
+    "twenty_source_name": "Corey Baxter, CJF",
+    "comparison_names": [
+      "Corey Baxter, CJF",
+      "Corey Baxter"
+    ],
+    "professional_network_url": null,
+    "fullenrich_person_id": null
+  },
+  "lookup_preflight": {
+    "status": "unsupported_identifiers",
+    "reason": "FullEnrich Lookup requires a Person professional-network identifier or person name plus Company domain/network identifier; neither record has those identifiers."
+  },
+  "approved_alternative": {
+    "operation": "FullEnrich People Search",
+    "endpoint": "POST /people/search",
+    "constraints": [
+      "exact Company name",
+      "Weatherford, TX, United States",
+      "approved primary Farrier titles",
+      "one result maximum",
+      "one person-name variant per request"
+    ]
+  },
+  "results": [
+    {
+      "request_id": "search-name-with-suffix",
+      "name_variant": "Corey Baxter, CJF",
+      "terminal_status": "not_found",
+      "candidate_count": 0,
+      "credits": 0,
+      "http_status": 200,
+      "received_at": "2026-09-18T10:14:33Z",
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218"
+    },
+    {
+      "request_id": "search-name-without-suffix",
+      "name_variant": "Corey Baxter",
+      "terminal_status": "not_found",
+      "candidate_count": 0,
+      "credits": 0,
+      "http_status": 200,
+      "received_at": "2026-09-18T10:14:34Z",
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218"
+    }
+  ],
+  "cost": {
+    "reserved_credits": 0.5,
+    "actual_credits": 0,
+    "balance_before": 496.5,
+    "balance_after": 496.5
+  },
+  "decision": "Neither name variant returned a FullEnrich candidate. The result does not verify whether CJF is part of the legal/personal name, a credential suffix, or erroneous data. Preserve the Twenty source value and hold normalization for evidence or review.",
+  "external_actions": {
+    "twenty_reads": 1,
+    "twenty_writes": 0,
+    "fullenrich_account_calls": 3,
+    "fullenrich_people_search_calls": 2,
+    "fullenrich_lookup_calls": 0,
+    "contact_enrichment_calls": 0
+  },
+  "artifacts": {
+    "companies": "companies.json",
+    "requests": "name-comparison-search-requests.json",
+    "results": "name-comparison-search-results.json"
+  }
+}

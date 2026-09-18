@@ -1,0 +1,16 @@
+{
+  "status": "valid",
+  "validated_decisions": [
+    {
+      "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "decision_reason": "Primary-stage FullEnrich People Search returned terminal status not_found: no people with approved primary HORSE_OWNER titles (farm/stable/equestrian owner-manager roles) were found for Quillin Leather & Tack at quillin.com in Paris, Kentucky. No candidate retained. Advance to the exact-Owner fallback stage.",
+      "search_stage": "primary",
+      "selected_target_priority": null,
+      "next_search_stage": "owner"
+    }
+  ],
+  "search_stage": "primary",
+  "errors": []
+}

@@ -1,0 +1,175 @@
+{
+  "version": "0.1.0-draft.1",
+  "cases": [
+    {
+      "name": "official_site_current_role",
+      "source_id": "prospect_official_website",
+      "claim_key": "person.role_title",
+      "identity_match": "exact",
+      "claim_directness": "direct_fact",
+      "freshness": "current_official_undated",
+      "corroboration": "authoritative_or_primary_sufficient",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 96,
+        "confidence_level": "high",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "name": "official_site_business_email",
+      "source_id": "prospect_official_website",
+      "claim_key": "person.business_email",
+      "identity_match": "exact",
+      "claim_directness": "direct_fact",
+      "freshness": "current",
+      "corroboration": "authoritative_or_primary_sufficient",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 98,
+        "confidence_level": "high",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "name": "apify_profile_runtime_blocked",
+      "source_id": "apify_harvestapi_linkedin_profile_search",
+      "claim_key": "person.role_title",
+      "identity_match": "exact",
+      "claim_directness": "direct_fact",
+      "freshness": "current",
+      "corroboration": "one_secondary_source",
+      "consistency": "no_conflict",
+      "source_gate_passed": false,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 0,
+        "confidence_level": "low",
+        "verification_status": "unverified"
+      }
+    },
+    {
+      "name": "apify_email_verified_after_future_gate",
+      "source_id": "apify_harvestapi_email_search",
+      "claim_key": "person.business_email",
+      "identity_match": "exact",
+      "claim_directness": "direct_fact",
+      "freshness": "current",
+      "corroboration": "one_secondary_source",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 87,
+        "confidence_level": "high",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "name": "undated_secondary_role",
+      "source_id": "a1_directory_evidence_reuse",
+      "claim_key": "person.role_title",
+      "identity_match": "probable",
+      "claim_directness": "direct_fact",
+      "freshness": "undated_external",
+      "corroboration": "one_secondary_source",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 63,
+        "confidence_level": "medium",
+        "verification_status": "partially_verified"
+      }
+    },
+    {
+      "name": "inference_only_required",
+      "source_id": "prospect_official_website",
+      "claim_key": "organisation.service_area",
+      "identity_match": "exact",
+      "claim_directness": "reasonable_inference",
+      "freshness": "current_official_undated",
+      "corroboration": "authoritative_or_primary_sufficient",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 59,
+        "confidence_level": "low",
+        "verification_status": "unverified"
+      }
+    },
+    {
+      "name": "material_role_conflict",
+      "source_id": "prospect_official_website",
+      "claim_key": "person.role_title",
+      "identity_match": "exact",
+      "claim_directness": "direct_fact",
+      "freshness": "current",
+      "corroboration": "two_independent_sources",
+      "consistency": "material_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 39,
+        "confidence_level": "low",
+        "verification_status": "contradicted"
+      }
+    },
+    {
+      "name": "stale_professional_status",
+      "source_id": "prospect_official_website",
+      "claim_key": "person.professional_status",
+      "identity_match": "exact",
+      "claim_directness": "direct_fact",
+      "freshness": "stale",
+      "corroboration": "authoritative_or_primary_sufficient",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 59,
+        "confidence_level": "low",
+        "verification_status": "unverified"
+      }
+    },
+    {
+      "name": "search_snippet_discovery_only",
+      "source_id": "search_engine_discovery",
+      "claim_key": "organisation.website",
+      "identity_match": "probable",
+      "claim_directness": "direct_fact",
+      "freshness": "current",
+      "corroboration": "none",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": false,
+      "expected": {
+        "confidence_score": 0,
+        "confidence_level": "low",
+        "verification_status": "unverified"
+      }
+    },
+    {
+      "name": "unresolved_identity",
+      "source_id": "prospect_official_website",
+      "claim_key": "organisation.business_name",
+      "identity_match": "unresolved",
+      "claim_directness": "direct_fact",
+      "freshness": "current",
+      "corroboration": "authoritative_or_primary_sufficient",
+      "consistency": "no_conflict",
+      "source_gate_passed": true,
+      "required_claim": true,
+      "expected": {
+        "confidence_score": 39,
+        "confidence_level": "low",
+        "verification_status": "unverified"
+      }
+    }
+  ]
+}

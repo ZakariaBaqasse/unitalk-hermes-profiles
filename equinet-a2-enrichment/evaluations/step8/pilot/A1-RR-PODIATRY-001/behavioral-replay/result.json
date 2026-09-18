@@ -1,0 +1,39 @@
+{
+  "record_type": "step8_rood_riddle_behavioral_replay",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "profile": "equinet-a2-enrichment",
+  "model": "deepseek-v4-flash",
+  "mode": "stored_page_read_only",
+  "findings": {
+    "person_role_title": "Co-Founder/Farrier",
+    "person_professional_status": "not_found",
+    "organisation_service_area": "not_found",
+    "organisation_disciplines": ["all breeds and disciplines"],
+    "person_business_email": "not_found",
+    "person_business_phone": "not_found",
+    "organisation_phone_available": true,
+    "organisation_phone_is_named_contact_phone": false
+  },
+  "classifications": {
+    "target_role_priority": "primary",
+    "target_role_priority_is_sourced_fact": false,
+    "purchasing_authority_established": false,
+    "disciplines_scope": "organisation_level_not_podiatry_specific"
+  },
+  "minimum_package": {
+    "status": "incomplete",
+    "recommended_record_decision": "held"
+  },
+  "comparison_to_accepted_package": {
+    "material_match": true,
+    "differences": []
+  },
+  "boundaries": {
+    "new_web_calls": 0,
+    "external_actions": 0,
+    "crm_writes": 0,
+    "outreach_actions": 0,
+    "a1_score_changed": false
+  },
+  "status": "pass"
+}

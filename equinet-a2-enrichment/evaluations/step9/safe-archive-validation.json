@@ -1,0 +1,41 @@
+{
+  "record_type": "step9d_safe_archive_validation",
+  "profile": "equinet-a2-enrichment",
+  "release_id": "equinet-a2-no-integration-1.0.0-rc.1",
+  "status": "pass_ready_for_step9e_review",
+  "checks": {
+    "archive_readable": true,
+    "safe_member_paths": true,
+    "member_set_exact": true,
+    "payload_hashes": true,
+    "forbidden_names_absent": true,
+    "profile_secret_values_absent": true,
+    "formats_parse": true,
+    "embedded_manifest_matches_source": true,
+    "manifest_non_recursive": true,
+    "release_candidate_not_promoted": true,
+    "release_manifest_ready_for_step9d": true
+  },
+  "checks_passed": 11,
+  "checks_total": 11,
+  "archive": "evaluations/step9/package/equinet-a2-no-integration-1.0.0-rc.1.zip",
+  "archive_bytes": 448008,
+  "archive_sha256": "2fc6cdac8cf5bdc056cbe8823ce6be8dfb5ae22ce4525dfa0573d2b22479fdd6",
+  "archive_member_count": 144,
+  "payload_member_count": 142,
+  "parsed_counts": {
+    "json": 45,
+    "yaml": 3,
+    "csv": 4,
+    "markdown": 26,
+    "python": 66
+  },
+  "hash_mismatches": [],
+  "forbidden_names": [],
+  "secret_hits": [],
+  "parse_errors": [],
+  "promotion_performed": false,
+  "approval_recorded": false,
+  "external_actions": 0,
+  "errors": []
+}

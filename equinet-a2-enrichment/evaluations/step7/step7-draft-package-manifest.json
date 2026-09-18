@@ -1,0 +1,442 @@
+{
+  "manifest_id": "equinet-a2-step7-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "ready_for_severine_review_not_approved",
+  "files": [
+    {
+      "path": "scripts/run_step7_synthetic_acceptance.py",
+      "bytes": 5930,
+      "sha256": "1383541daad9b92d32b987cae6a877ba4a043972393dfb491dc98cc908c91cca"
+    },
+    {
+      "path": "evaluations/step7/deterministic-acceptance.json",
+      "bytes": 6889,
+      "sha256": "2410404550b91d0bc48fca943f5bd2af38403da48fbf210a8b276a96dc33759d"
+    },
+    {
+      "path": "evaluations/step7/profile-test-input.json",
+      "bytes": 795,
+      "sha256": "74b55b823cf6a08c5dfbc4c0c150ebd1b2fa2089f322afce7bd22d47973fc573"
+    },
+    {
+      "path": "evaluations/step7/technical-validation.json",
+      "bytes": 1074,
+      "sha256": "886bbc8f6111ff1ddc9d6e7fda87193c729b48a29dcd36f0371f5ba1223a9f76"
+    },
+    {
+      "path": "evaluations/step7/A2-STEP-7-REVIEW.md",
+      "bytes": 1595,
+      "sha256": "f75ab427e711677aac7b62059c9164f6a54155eb77579861fcaedae3b3559bde"
+    },
+    {
+      "path": "evaluations/step6/acceptance-record.json",
+      "bytes": 1606,
+      "sha256": "0294a175c20c204b3d4f70cbe1b0489cf9f2018c67c1dd6b6cbe3f0ad9062f5b"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/language-audit.json",
+      "bytes": 286,
+      "sha256": "bb907c587e88e214131f74db8e2bf0a85bf07645312d1fd2aac30dc160773b7c"
+    },
+    {
+      "path": "evaluations/step7/profile-behavioural-result.json",
+      "bytes": 499,
+      "sha256": "5b3f70ac45bb4fb408063ca400c0cdfcbb683ec4b5970ffd0dac250880bbcb65"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/.intake-ledger.json.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/eligibility.input.json",
+      "bytes": 281,
+      "sha256": "8fdab537867ce5e56c6d8057988d1fbb58151793f24bd83688e42778b5916d99"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/eligibility.json",
+      "bytes": 551,
+      "sha256": "fc68db1958483bba3ac7651b33fec10fbcee63c5f0ef61b77f9c6ca00be2e530"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/entity.input.json",
+      "bytes": 399,
+      "sha256": "1efc61193228178fa81078ebe3b906a3d74b36a87d950ccb0e2ff8d775cd26e0"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/entity.json",
+      "bytes": 952,
+      "sha256": "7305a94afec4e8f75f5fece40ccc9beddd5026b1fa603ebbe16a5127d2c06e4a"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/evidence.input.json",
+      "bytes": 3146,
+      "sha256": "4d7db32ed503ec15c4301f8b728390723952b357e5123089cb917e76692c9889"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/evidence.json",
+      "bytes": 1003,
+      "sha256": "7a6f139f862b69dfcf8222eb3eaf1df1daccebbbc713c933d19e0fe5bd6ed6a6"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/gap-plan.json",
+      "bytes": 698,
+      "sha256": "c457d0843d319056b96ca1d77e8248be96eee453af271741ef027c9f4dda22cd"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/gap.input.json",
+      "bytes": 689,
+      "sha256": "5082b670fb7995b7335c7921cec4398f479747401d9da8f962c1db5e6a5c6c40"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/governed-handoff.json",
+      "bytes": 829,
+      "sha256": "b0e4667db6d166ce23ff3b00d25d0d4b46c2c558339adaf944608f1e409f6106"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/initial-record.json",
+      "bytes": 20513,
+      "sha256": "c413bb9bbd330415175f78efbf966b38a9518addb422c7d5909a5a5f68c005b5"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/intake-ledger.json",
+      "bytes": 584,
+      "sha256": "ea0987a0fcdbaf3b41e3fd24c2bd069b0c6fe891ec855a7476122828059243f1"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/minimum-package.input.json",
+      "bytes": 689,
+      "sha256": "5082b670fb7995b7335c7921cec4398f479747401d9da8f962c1db5e6a5c6c40"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/minimum-package.json",
+      "bytes": 582,
+      "sha256": "be0c140ce59edb8124ba9f75e4dc0468d91bfaedde375d7c4d013c8196c04506"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/obs-copy.input.json",
+      "bytes": 1110,
+      "sha256": "c6380818a058f8bece72eef6fab4fbbdba0525b05c128e93dee2e67c7ec2601f"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/observation-preflight-1.input.json",
+      "bytes": 563,
+      "sha256": "e34ceff1668a65dd312b779866a10694835ff96b99ed2b3408f08efb05fcb031"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/observation-preflight-1.json",
+      "bytes": 2501,
+      "sha256": "dd767a35aa1fb4d901c9a21a099c95b7f2a2bc6c0214d1dd6c3ffde209a3b0ed"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/observation-preflight-2.input.json",
+      "bytes": 563,
+      "sha256": "25632eb38eb242516ea6c54868e95c3f5b34c02d87bd335a00151fecde4b2cf5"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/observation-preflight-2.json",
+      "bytes": 2501,
+      "sha256": "cbb9a59749e40b98fa93d1e34241e3a06fd4a79201fb0af5f1b6f8188e95fe2a"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/observations.input.json",
+      "bytes": 7186,
+      "sha256": "4e4087b10c34ddea96d3bc5cf48dc7383c35f9af5ed28fc5dd3ea5c74cd6c1e0"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/observations.json",
+      "bytes": 2851,
+      "sha256": "aaa8799ad30fbdbe32865f674db98582570e9ff0692b0b459eb7c64b7e3a4e15"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/protected.input.json",
+      "bytes": 441,
+      "sha256": "f7dc4397f09cbf0de379551a49ea07d9de5788f52cdbdde941b7525cb4fb9af0"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/protected.json",
+      "bytes": 742,
+      "sha256": "87512dbb2b9a91329c2046a3ffc6cd531aa5ee428e393ba6410baf8cebf74523"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/audit.csv",
+      "bytes": 1406,
+      "sha256": "d5c14eba6a8ef6e610a5add3989733894b55d665aa25233f5f88d908e1467f05"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/evidence.csv",
+      "bytes": 1613,
+      "sha256": "046580db15d351be3318ad35475f55f95282947659525a1724745863e679a052"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/fields.csv",
+      "bytes": 3219,
+      "sha256": "4497ee563e493dcf63005786514e85c9403b4c27bf0921d59d45e1618008154a"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/manifest.json",
+      "bytes": 3110,
+      "sha256": "aeb1e97cdecb5ec5f4c223fd7b7b9ecf445ce68bc1562e507a51eba651127f84"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/requalification.csv",
+      "bytes": 359,
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/review-queue.csv",
+      "bytes": 1712,
+      "sha256": "0e7c7cd789a041d5a1607110336462a256bfc6e7e20569982efe364ba8955fe4"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/review.md",
+      "bytes": 3092,
+      "sha256": "04d20ec58f915268472ecfe88aeda3cafbd1d0e2590821c0981ce41fe1c69ebb"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/review.xlsx",
+      "bytes": 14920,
+      "sha256": "639caa27a429a210a39baaf6c3a21fbef1993ea75a95e3a8f5516e5658d44f13"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-package/summary.csv",
+      "bytes": 576,
+      "sha256": "652ab945e6616cc73e33f8125e2f844c1a80980690439a5d11cf118ceea4fa76"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/review-result.json",
+      "bytes": 996,
+      "sha256": "5ea99d7da978df2a575adc165a48b45757a725c622757f42e1118858038169ae"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/revision.json",
+      "bytes": 39063,
+      "sha256": "730188ab50483127efb4ab3de007c205f524940f5bec0d3875d5979cebb40694"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/social-link.input.json",
+      "bytes": 204,
+      "sha256": "994ac48e2bf5cbb821399e88c2b0e8ef535fb2fbf82e20f8cfd3033abacc5ed0"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/source-preflight.input.json",
+      "bytes": 550,
+      "sha256": "2300914efec02da4ac8ada15f5063ef3f612447b5743f554959f3ef33e3afe46"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/source-preflight.json",
+      "bytes": 2475,
+      "sha256": "4a1096b89e5f6f0de65e66ecee76877077ecb164d952cddb35f1d7585472f28b"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/twenty-preparation.json",
+      "bytes": 856,
+      "sha256": "cb9f9d888418d9addbbb59ce546e3b4436b4d0a06a57698acf4baefa9957ed49"
+    },
+    {
+      "path": "evaluations/step7/workflows/farrier_review/workflow-result.json",
+      "bytes": 3645,
+      "sha256": "7f93005f6220041ad74ef88d61cbafbbda4042c5370547d0fb584cefc1b56b04"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/.intake-ledger.json.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/eligibility.input.json",
+      "bytes": 281,
+      "sha256": "8fdab537867ce5e56c6d8057988d1fbb58151793f24bd83688e42778b5916d99"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/eligibility.json",
+      "bytes": 551,
+      "sha256": "fc68db1958483bba3ac7651b33fec10fbcee63c5f0ef61b77f9c6ca00be2e530"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/entity.input.json",
+      "bytes": 399,
+      "sha256": "1efc61193228178fa81078ebe3b906a3d74b36a87d950ccb0e2ff8d775cd26e0"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/entity.json",
+      "bytes": 952,
+      "sha256": "7305a94afec4e8f75f5fece40ccc9beddd5026b1fa603ebbe16a5127d2c06e4a"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/evidence.input.json",
+      "bytes": 3159,
+      "sha256": "a700a03e562c5856da177a18afbea5bfa48012dcabe552003a5b05a9bb7924e0"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/evidence.json",
+      "bytes": 1003,
+      "sha256": "bb0c10a273b08d2ce48b73fd5150862d06afd0c17bfe983d275827c465429ee3"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/gap-plan.json",
+      "bytes": 2399,
+      "sha256": "72250fbcb901709055e07cf7b435abb50b0800814a4700e6620356adf4b83159"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/gap.input.json",
+      "bytes": 491,
+      "sha256": "4a2e64460801477ae346d2c1314dd569a10d11ca9c225e16cf85b5c8938f31db"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/governed-handoff.json",
+      "bytes": 2387,
+      "sha256": "3394c272a2ed74c6b9601566d7071b541f60c9bb3bbbff244d5f16087ebd826e"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/initial-record.json",
+      "bytes": 20922,
+      "sha256": "fc429a3d83905d48834e42e385b91736b387232a15b1ce85a2670e7c78102f38"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/intake-ledger.json",
+      "bytes": 580,
+      "sha256": "d90681da5485024502080a45c62f978f303e59764a6536b7eaa53d7aa8c6dd49"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/minimum-package.input.json",
+      "bytes": 491,
+      "sha256": "4a2e64460801477ae346d2c1314dd569a10d11ca9c225e16cf85b5c8938f31db"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/minimum-package.json",
+      "bytes": 719,
+      "sha256": "3543cb7794cc243ec1cd6512ee0fb14899c17db79e419cfb3777b4e0e8f02dd4"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/obs-copy.input.json",
+      "bytes": 1110,
+      "sha256": "c6380818a058f8bece72eef6fab4fbbdba0525b05c128e93dee2e67c7ec2601f"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/observation-preflight-1.input.json",
+      "bytes": 576,
+      "sha256": "28c27a87ee07ab85d2a078a70839a38524b1b6edc4561a6aa85d09e6a2c75e18"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/observation-preflight-1.json",
+      "bytes": 2514,
+      "sha256": "e4db6bd0c581f3d0ba35c9e39587c696f5b1cba607fdaae9228de4ecef47efaa"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/observation-preflight-2.input.json",
+      "bytes": 576,
+      "sha256": "cf4aabf6fc6b60d74aec1430d9462fc8c94552499660f43a7c702b29bc98ed9b"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/observation-preflight-2.json",
+      "bytes": 2514,
+      "sha256": "e76d7d2e475ff412316fc6ea4f8fd01681c9614d264387d13f3228f4ae62b5f0"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/observations.input.json",
+      "bytes": 7212,
+      "sha256": "ddf9f261d4ff3b0f7f848da4397f8ba8cdce3ef14fd9a3edc6399903506f0c6e"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/observations.json",
+      "bytes": 2851,
+      "sha256": "aaa8799ad30fbdbe32865f674db98582570e9ff0692b0b459eb7c64b7e3a4e15"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/protected.input.json",
+      "bytes": 441,
+      "sha256": "f7dc4397f09cbf0de379551a49ea07d9de5788f52cdbdde941b7525cb4fb9af0"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/protected.json",
+      "bytes": 742,
+      "sha256": "87512dbb2b9a91329c2046a3ffc6cd531aa5ee428e393ba6410baf8cebf74523"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/audit.csv",
+      "bytes": 492,
+      "sha256": "fd3afed914a53ab9e50ba4d0d27335418541ca27a8501b3f861172b76b56e9f1"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/evidence.csv",
+      "bytes": 1115,
+      "sha256": "439ac3f443bb5f55d61404d665529780885a1a66fac2fa6b8878898b38f0dfb4"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/fields.csv",
+      "bytes": 1058,
+      "sha256": "af7330a11f867fa3d53e778e5a9a08d050ba2c07574cfdc3dad59277fb6fc85e"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/manifest.json",
+      "bytes": 3239,
+      "sha256": "d37f6ea9dec3c299e615f3e1f6b83eb9d2de072f3f4e7a4549ee8dceb6a32e3a"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/requalification.csv",
+      "bytes": 1512,
+      "sha256": "2a814cc589c4e8732db6d6361c34131142561f9f9b731096baf9da6c8812e08c"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/review-queue.csv",
+      "bytes": 974,
+      "sha256": "be7c7a9a365b0671ec0f81a38bb2c030c1d39e772723f93bfcf2f26e80703d27"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/review.md",
+      "bytes": 3105,
+      "sha256": "d76752e60f035f2d25a331e6468b3b9e2b3a89812358d499078c3181d91d9edf"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/review.xlsx",
+      "bytes": 14121,
+      "sha256": "71d9c38fd00ff26b2aa61365dd2d54b4b55989c48414a11eaf22756fe32655af"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-package/summary.csv",
+      "bytes": 623,
+      "sha256": "2f20f92ff2a4c71cdc8126a8d0b3744ed5a41eb04893c9db87496f29a825c8aa"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/review-result.json",
+      "bytes": 1022,
+      "sha256": "6ade92d59e66e1ac5a953c446b047273920a763073dbdce5a7429f60236816c1"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/revision.json",
+      "bytes": 39063,
+      "sha256": "730188ab50483127efb4ab3de007c205f524940f5bec0d3875d5979cebb40694"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/social-link.input.json",
+      "bytes": 204,
+      "sha256": "994ac48e2bf5cbb821399e88c2b0e8ef535fb2fbf82e20f8cfd3033abacc5ed0"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/source-preflight.input.json",
+      "bytes": 563,
+      "sha256": "74857d30db7e7a8d173ded4b1bca4efb984824903aed5a9b14248f65eec48d73"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/source-preflight.json",
+      "bytes": 2488,
+      "sha256": "deb4438aaba7639f04f251de47320f06f966d27634fe9ec2647c318ed74cde64"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/twenty-preparation.json",
+      "bytes": 698,
+      "sha256": "7bb61e4e94e8d8c82d94f470795c91cbee08705d11611eacebdaa2f47a272a8f"
+    },
+    {
+      "path": "evaluations/step7/workflows/horse_owner_requalification/workflow-result.json",
+      "bytes": 3736,
+      "sha256": "ec79eeafd6b0c43a2c5274f0687a6f17396c92e6f42ce97d515ab9c223d0d864"
+    }
+  ],
+  "file_count": 86,
+  "scenarios": 6,
+  "operators": 14,
+  "external_actions": 0,
+  "promotion_performed": false
+}

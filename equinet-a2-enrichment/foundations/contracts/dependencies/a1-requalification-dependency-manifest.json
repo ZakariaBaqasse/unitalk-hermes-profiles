@@ -1,0 +1,36 @@
+{
+  "dependency_set": "equinet-a2-requalification-a1-foundation",
+  "recorded_at": "2026-08-25T22:20:22Z",
+  "source_profile": "equinet-a1-icp-discovery",
+  "dependencies": [
+    {
+      "name": "A1 ICP configuration",
+      "version": "1.0.0",
+      "source_path": "configurations/icp/equinet-icp-v1.yaml",
+      "pinned_path": "foundations/contracts/dependencies/a1-equinet-icp-v1.yaml",
+      "sha256": "4d28bc35d11a458015f08903b30f0560f204476016508135fe2d126014f16169"
+    },
+    {
+      "name": "A1 evidence and confidence rules",
+      "version": "1.0.0",
+      "source_path": "configurations/evidence/evidence-confidence-rules-v1.yaml",
+      "pinned_path": "foundations/contracts/dependencies/a1-evidence-confidence-rules-v1.yaml",
+      "sha256": "5cf2377814ccf3ee635bb279b512778924d2eb42bf1a0a58ec684d90c69c8f80"
+    },
+    {
+      "name": "A1 ICP scoring model",
+      "version": "1.0.0",
+      "source_path": "configurations/scoring/icp-scoring-model-v1.yaml",
+      "pinned_path": "foundations/contracts/dependencies/a1-icp-scoring-model-v1.yaml",
+      "sha256": "2bb426d73971509b7638ccfe55decb428b3fa11d5ce4b8d3bcc05418b6c75841"
+    },
+    {
+      "name": "A1 Prospect Candidate schema",
+      "version": "1.0.0",
+      "source_path": "skills/a1-prospect-data-contract/references/prospect-candidate.schema.json",
+      "pinned_path": "foundations/contracts/dependencies/a1-prospect-candidate.schema.json",
+      "sha256": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de"
+    }
+  ],
+  "rule": "A2 may trigger requalification with evidence, but A1 owns evidence acceptance, deterministic scoring and score-revision creation."
+}

@@ -1,0 +1,28 @@
+{
+  "record_type": "step8_final_closure_validation",
+  "profile": "equinet-a2-enrichment",
+  "status": "pass_approved_for_step9",
+  "checks": {
+    "acceptance_decision": true,
+    "runtime_manifest": true,
+    "acceptance_artifact_hashes": true,
+    "closure_readiness": true,
+    "current_status": true,
+    "deepseek_replay": true,
+    "soul_next_gate": true,
+    "temporary_web_disabled": true,
+    "language_audit": true,
+    "boundaries": true,
+    "profile_not_pilot_ready_yet": true
+  },
+  "checks_passed": 11,
+  "checks_total": 11,
+  "acceptance_record": "evaluations/step8/acceptance-record.json",
+  "acceptance_sha256": "02038536354ea32c7637b202c504ec92ffb8d9ecfa3314430acc0b24caef43eb",
+  "runtime_manifest": "foundations/contracts/runtime/a2-step8-pilot-acceptance-manifest-0.1.0.json",
+  "runtime_manifest_sha256": "0619e919ff5f47245c46036f4fb608648f32f1fccd7af95be2cab385446c708c",
+  "next_gate": "Step 9 — Evaluation, Improvement and No-Integration Freeze",
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "external_actions": 0,
+  "errors": []
+}

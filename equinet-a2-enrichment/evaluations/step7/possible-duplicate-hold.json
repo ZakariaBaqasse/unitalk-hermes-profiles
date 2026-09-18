@@ -1,0 +1,21 @@
+{
+  "command": "a2-duplicate-eligibility",
+  "version": "0.1.0",
+  "a2_eligibility_status": "hold",
+  "outreach_eligibility_status": "unavailable",
+  "owner_routing_status": "needs_owner_review",
+  "reasons": [
+    "identity or duplicate ambiguity requires review"
+  ],
+  "checks": [
+    {
+      "check_type": "batch",
+      "system": "a1",
+      "status": "possible_match",
+      "authoritative": false
+    }
+  ],
+  "crm_write_authorized": false,
+  "outreach_authorized": false,
+  "external_actions": 0
+}

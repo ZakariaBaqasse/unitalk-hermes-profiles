@@ -1,0 +1,69 @@
+{
+  "schema_id": "a2-fullenrich-search-requests",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "company_id": null,
+  "created_at": "2026-09-17T15:27:46Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "search_stage": "secondary",
+  "requests": [
+    {
+      "request_id": "search-secondary-0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "company_name": "Wilkins Farrier & Forge",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "Lawrenceburg, Kentucky, 40342, United States",
+        "city": "Lawrenceburg",
+        "region": "Kentucky",
+        "country": "United States",
+        "postal_code": "40342"
+      },
+      "segment": "FARRIER",
+      "search_stage": "secondary",
+      "target_priority": "SECONDARY",
+      "target_titles": [
+        "associate farrier",
+        "business manager",
+        "farrier at a multi farrier practice",
+        "farrier at a multi-farrier practice",
+        "office manager",
+        "practice manager",
+        "staff farrier"
+      ],
+      "limit": 1
+    },
+    {
+      "request_id": "search-secondary-fd216e4e-287c-4d6b-994e-861278ca3065",
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "company_name": "Ellis Forge LLC",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "3610 Lexington Road, Richmond, Kentucky, 40475, United States",
+        "city": "Richmond",
+        "region": "KY",
+        "country": "United States",
+        "postal_code": "40475"
+      },
+      "segment": "FARRIER",
+      "search_stage": "secondary",
+      "target_priority": "SECONDARY",
+      "target_titles": [
+        "associate farrier",
+        "business manager",
+        "farrier at a multi farrier practice",
+        "farrier at a multi-farrier practice",
+        "office manager",
+        "practice manager",
+        "staff farrier"
+      ],
+      "limit": 1
+    }
+  ],
+  "blocked_requests": [],
+  "artifact_sha256": "717927eaa5d5ce7b4ed243e4455fe8c7d3880767b01e2d43dcc4251207435f95"
+}

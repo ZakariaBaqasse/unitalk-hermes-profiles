@@ -1,0 +1,301 @@
+{
+  "schema_id": "a2-fullenrich-search-results",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "company_id": null,
+  "created_at": "2026-09-17T15:25:34Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "search_stage": "primary",
+  "result_count": 2,
+  "results": [
+    {
+      "request_id": "search-primary-0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "search_stage": "primary",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "co founder",
+        "co-founder",
+        "farrier",
+        "farrier business owner",
+        "founder",
+        "head farrier",
+        "independent farrier",
+        "lead farrier",
+        "professional farrier",
+        "self employed farrier",
+        "self-employed farrier"
+      ],
+      "terminal_status": "not_found",
+      "request_payload": {
+        "limit": 1,
+        "current_position_titles": [
+          {
+            "value": "co founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "co-founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier business owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "head farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "independent farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "lead farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "professional farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self employed farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self-employed farrier",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "current_company_names": [
+          {
+            "value": "Wilkins Farrier & Forge",
+            "exact_match": true,
+            "exclude": false
+          }
+        ],
+        "current_company_headquarters": [
+          {
+            "value": "Lawrenceburg",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "Kentucky",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "United States",
+            "exact_match": false,
+            "exclude": false
+          }
+        ]
+      },
+      "candidates": [],
+      "metadata": {
+        "credits": 0,
+        "offset": 0
+      },
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:25:34Z"
+      }
+    },
+    {
+      "request_id": "search-primary-fd216e4e-287c-4d6b-994e-861278ca3065",
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "search_stage": "primary",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "co founder",
+        "co-founder",
+        "farrier",
+        "farrier business owner",
+        "founder",
+        "head farrier",
+        "independent farrier",
+        "lead farrier",
+        "professional farrier",
+        "self employed farrier",
+        "self-employed farrier"
+      ],
+      "terminal_status": "not_found",
+      "request_payload": {
+        "limit": 1,
+        "current_position_titles": [
+          {
+            "value": "co founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "co-founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "farrier business owner",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "founder",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "head farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "independent farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "lead farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "professional farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self employed farrier",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "self-employed farrier",
+            "exact_match": false,
+            "exclude": false
+          }
+        ],
+        "current_company_names": [
+          {
+            "value": "Ellis Forge LLC",
+            "exact_match": true,
+            "exclude": false
+          }
+        ],
+        "current_company_headquarters": [
+          {
+            "value": "Richmond",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "KY",
+            "exact_match": false,
+            "exclude": false
+          },
+          {
+            "value": "United States",
+            "exact_match": false,
+            "exclude": false
+          }
+        ]
+      },
+      "candidates": [],
+      "metadata": {
+        "credits": 0,
+        "offset": 0
+      },
+      "provider_payload_sha256": "1facb26a6277dc7e14c31ac120975313b378f98ec8e8a66cadad26cf2bf4a218",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:25:34Z"
+      }
+    }
+  ],
+  "preflight": {
+    "workspace_id_present": true,
+    "credits_before": 496.5,
+    "receipts": [
+      {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:25:34Z"
+      },
+      {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:25:34Z"
+      }
+    ]
+  },
+  "budget": {
+    "estimated_max_credits": 0.5,
+    "reservation": {
+      "reservation_id": "FE-RES-E32C3A3D48F49198",
+      "run_id": "run_20260917T152231Z",
+      "action": "people_search",
+      "request_sha256": "80ceb9f806e33a0af4c4406ae12d46cff79cdbe0ec0aa58ca66972dffebc3256",
+      "reserved_credits": 0.5,
+      "actual_credits": null,
+      "status": "reserved",
+      "created_at": "2026-09-17T15:25:34Z",
+      "utc_day": "2026-09-17",
+      "reused": false,
+      "usage_before": {
+        "run": 0,
+        "day": 0,
+        "pilot": 0
+      },
+      "caps": {
+        "run": 50,
+        "day": 100,
+        "pilot": 250
+      }
+    },
+    "settlement": {
+      "reservation_id": "FE-RES-E32C3A3D48F49198",
+      "run_id": "run_20260917T152231Z",
+      "action": "people_search",
+      "request_sha256": "80ceb9f806e33a0af4c4406ae12d46cff79cdbe0ec0aa58ca66972dffebc3256",
+      "reserved_credits": 0.5,
+      "actual_credits": 0,
+      "status": "settled",
+      "created_at": "2026-09-17T15:25:34Z",
+      "utc_day": "2026-09-17",
+      "settled_at": "2026-09-17T15:25:34Z",
+      "over_reservation": false,
+      "reused": false
+    }
+  },
+  "external_calls": 4,
+  "artifact_sha256": "e0952336014eb3459b5bf682685830ae30ee0c40cef6fcd97b94f113deac48a6"
+}

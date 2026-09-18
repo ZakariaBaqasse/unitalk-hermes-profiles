@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-lookup-decisions-0.1.2",
+  "required": [
+    "decisions"
+  ],
+  "properties": {
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "company_id",
+          "person_decisions",
+          "people_search_required"
+        ],
+        "properties": {
+          "company_id": {
+            "type": "string"
+          },
+          "people_search_required": {
+            "type": "boolean"
+          },
+          "person_decisions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "twenty_person_id",
+                "identity_status",
+                "company_match_status",
+                "role_priority",
+                "role_status",
+                "retain_as_target",
+                "evidence_refs",
+                "secondary_fallback_eligible"
+              ],
+              "properties": {
+                "twenty_person_id": {
+                  "type": "string"
+                },
+                "identity_status": {
+                  "enum": [
+                    "VERIFIED",
+                    "AMBIGUOUS",
+                    "CONFLICT",
+                    "NOT_FOUND"
+                  ]
+                },
+                "company_match_status": {
+                  "enum": [
+                    "CONFIRMED",
+                    "PROBABLE",
+                    "AMBIGUOUS",
+                    "MISMATCH"
+                  ]
+                },
+                "role_priority": {
+                  "enum": [
+                    "PRIMARY",
+                    "SECONDARY",
+                    "REVIEW_ONLY",
+                    "EXCLUDED",
+                    "UNKNOWN"
+                  ]
+                },
+                "role_status": {
+                  "enum": [
+                    "CURRENT_AT_COMPANY",
+                    "NOT_CURRENT_AT_COMPANY",
+                    "UNVERIFIED"
+                  ],
+                  "description": "Current relationship between the Person and the target Twenty Company."
+                },
+                "retain_as_target": {
+                  "type": "boolean"
+                },
+                "evidence_refs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "secondary_fallback_eligible": {
+                  "type": "boolean",
+                  "description": "True only for a provider-resolved, verified, current, Company-confirmed SECONDARY linked Person held for use after primary and Owner fail."
+                }
+              },
+              "additionalProperties": true
+            }
+          },
+          "secondary_fallback_second_contact_reason": {
+            "enum": [
+              "large_organisation",
+              "shared_purchasing_or_operational_responsibility"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

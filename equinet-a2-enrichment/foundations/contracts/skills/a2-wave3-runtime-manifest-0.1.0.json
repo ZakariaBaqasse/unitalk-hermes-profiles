@@ -1,0 +1,146 @@
+{
+  "manifest_id": "equinet-a2-wave3-runtime",
+  "version": "0.1.0",
+  "status": "approved_local_no_integration",
+  "approved_at": "2026-08-28T10:15:10Z",
+  "approved_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_decisions": [
+    "W3-1",
+    "W3-2",
+    "W3-3",
+    "W3-4",
+    "W3-5",
+    "W3-6",
+    "W3-7",
+    "W3-8",
+    "W3-9",
+    "W3-10"
+  ],
+  "skills": [
+    {
+      "skill_id": "a2-evidence-confidence-and-freshness",
+      "path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "sha256": "abce4d5742a2b5f8e4832c32c53b372f79cb7b1afb116f8d45a989371efad52f",
+      "evals_path": "skills/a2-evidence-confidence-and-freshness/evals/evals.json",
+      "evals_sha256": "3ebbf7faa2bb0e431ebb70fca3fb301d01050a934aa7e9c734fe69ce0189377b",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-protected-field-conflict-resolution",
+      "path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "sha256": "ab64cc4477de052464572add30f405de4418a9acf6cbb0fed4fc0fb3beaec4a8",
+      "evals_path": "skills/a2-protected-field-conflict-resolution/evals/evals.json",
+      "evals_sha256": "e6da52ca3fb8fa70ea687fd48db080e1bf98161484a7559ddcf42efd908de35b",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-data-quality-and-review-readiness",
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "sha256": "966a16bf9eb8e7903dcae04228325a629f4a92122cae1e1a8d1dda220c006cf4",
+      "evals_path": "skills/a2-data-quality-and-review-readiness/evals/evals.json",
+      "evals_sha256": "eb9a71643994387130a15a4aba1a3671ebd5c6acc62a878459eef6031b2a6662",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-review-package-and-governed-handoffs",
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "sha256": "f8b9c9c2bb08b2546d63005b79bd4af347550dba09cea4faab2cb794919c0bda",
+      "evals_path": "skills/a2-review-package-and-governed-handoffs/evals/evals.json",
+      "evals_sha256": "35e1ed14a5e97c04411332b54dbc7671528be8fd1b03edd49e63bca7772fcbfb",
+      "status": "approved_local_no_integration"
+    }
+  ],
+  "commands": [
+    {
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "sha256": "a684ca81e108c20632b1273ef957876c7ede028533d14a07c650f59856a76ba7",
+      "status": "active_local_no_integration"
+    },
+    {
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "sha256": "7aee880d68e1109db012393b374b84752b780d80b19926d12a5d769165eb12e5",
+      "status": "active_local_no_integration"
+    },
+    {
+      "path": "scripts/create_a2_revision.py",
+      "sha256": "6c5c4c8903efb7f2b9df079e5929299629dd6c7ba6d1ec9966eb2f94fba40a2c",
+      "status": "active_local_no_integration"
+    },
+    {
+      "path": "scripts/render_and_validate_a2_review_package.py",
+      "sha256": "ccf329a893dec19a32b9e4119fce70620ef76a10673b5ce397bb440992758680",
+      "status": "active_local_no_integration"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_twenty_review.py",
+      "sha256": "25f52864d7526dbb95a18a531c51fe9f380ac4b99e486e6fbff73cd850882cd5",
+      "status": "active_local_no_integration"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "sha256": "ba6182fba48b7a779e013e3b0a4cb31aff33e5709089a62b32f19050738c9394",
+      "status": "active_local_no_integration"
+    }
+  ],
+  "supporting_modules": [
+    {
+      "path": "scripts/a2_wave3_contracts.py",
+      "sha256": "3b183d40c756127df60f6f96c3a7db473a07f685051e5f481f22a072d9e02a9b",
+      "status": "active_local_no_integration"
+    }
+  ],
+  "pinned_dependencies": [
+    {
+      "path": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df"
+    },
+    {
+      "path": "foundations/contracts/requalification/a2-requalification-package.schema.json",
+      "sha256": "c6babeb60063d810f0b2f715eae945e1716c4d078df693475ee23ffa9e227ffc"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+      "sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be"
+    },
+    {
+      "path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27"
+    }
+  ],
+  "validation": {
+    "technical": {
+      "path": "evaluations/step5d/technical-validation.json",
+      "sha256": "e4d2048f82ec2a24d6ee10bff19ed86c4b54824230e11197790e65fc3c5e1fd5",
+      "deterministic_cases": "21/21 pass"
+    },
+    "behavioural": {
+      "path": "evaluations/step5d/behavioural-validation.json",
+      "sha256": "308311373c848b8b85703b21be68dae071fadeed57381dfec5edfd18b27e5c9d",
+      "scenarios": "4/4 pass"
+    }
+  },
+  "permissions": {
+    "local_file_processing": true,
+    "synthetic_fixture_processing": true,
+    "review_projection": true,
+    "web_access": false,
+    "apify": false,
+    "twenty": false,
+    "hubspot_read": false,
+    "hubspot_write": false,
+    "n8n": false,
+    "outreach": false,
+    "handoff_delivery": false
+  },
+  "destination_status": {
+    "a1_requalification": "prepared_not_delivered",
+    "twenty": "prepared_not_delivered",
+    "hubspot": "blocked_contract_pending",
+    "a3": "blocked_contract_pending",
+    "a14": "blocked_contract_pending"
+  },
+  "next_gate": "Step 5E — Full Operational Skills Regression and No-Integration Workflow"
+}

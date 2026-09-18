@@ -1,0 +1,26 @@
+{
+  "command": "a2-twenty-review",
+  "mode": "prepare",
+  "version": "0.1.0-draft.1",
+  "status": "prepared_not_delivered",
+  "review_payload_id": "A2-TWENTY-PREP-7FA2C98A6FEB0D01",
+  "a1_candidate_id": "A1-TEST_FARRIER_001",
+  "a2_record_id": "A2-STEP2F_FARRIER_001",
+  "record_revision_id": "A2-REV-STEP2F_FARRIER_004",
+  "canonical_record_sha256": "7fa2c98a6feb0d016ccd2cd3bff433b39748392270fb663ebd6e5a2d186eb0fc",
+  "field_assessment_ids": [
+    "A2-FLD-FARRIER-NAME",
+    "A2-FLD-FARRIER-ROLE",
+    "A2-FLD-FARRIER-BUSINESS",
+    "A2-FLD-FARRIER-WEBSITE",
+    "A2-FLD-FARRIER-EMAIL",
+    "A2-FLD-FARRIER-CREDENTIAL"
+  ],
+  "twenty_candidate_id": null,
+  "twenty_review_id": null,
+  "workspace_mapping_status": "pending_metadata_snapshot",
+  "hubspot_write_authorized": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

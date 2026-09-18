@@ -1,0 +1,67 @@
+{
+  "spec_version": "0.1.0",
+  "renderer_version": "0.1.0",
+  "canonical_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2f/fixtures/valid/horse-owner-gap-held.json",
+  "canonical_record_sha256": "3580e6edd10b40e2593fe15c14715edef3b19ee45bba23b93cd4e597291de5ec",
+  "previous_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2f/fixtures/valid/horse-owner-gap-held-previous.json",
+  "previous_record_sha256": "58324b8c35fcc34792520a036d9088b4dadfc11bdc8a1274a07e535cfac196f6",
+  "spec_path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+  "spec_sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df",
+  "renderer_sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef",
+  "outputs": [
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/review.md",
+      "sha256": "9436181882d3854f87f46b1737a05c6a09b414059328190c39d5ae3b3b2d76ca",
+      "bytes": 1892
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/summary.csv",
+      "sha256": "5e537c54ad3c726752be3656a8eacc1ca8dad93154834ffb0e0e2a03cc56274d",
+      "bytes": 607
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/review-queue.csv",
+      "sha256": "22108f2ea06b85dd2c93e73d9654552e7f8dcfbf0e2e8ccd5a831d2d1ccfef19",
+      "bytes": 593
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/fields.csv",
+      "sha256": "b1355c7ed62e8d96464122bb085c5d2d18bf961ab60931cd61ab528a2446b056",
+      "bytes": 1445
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/evidence.csv",
+      "sha256": "e505acd7fe779e7d316ee16db10c9a764331f1a762fba302a1c8bfb9a4f880ed",
+      "bytes": 750
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6",
+      "bytes": 359
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/audit.csv",
+      "sha256": "4e9e26c8a1c5c36852f3e890460e8e5b0bac5a2c801a4b0ece012d8cdc622420",
+      "bytes": 1087
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/horse-owner-gap-held/review.xlsx",
+      "sha256": "66e3d038124ee9e2dc6ea65f5980f602144e541dcfe321e8896cc7e618fd5293",
+      "bytes": 13586
+    }
+  ],
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 1,
+    "fields": 3,
+    "evidence": 1,
+    "requalification": 0,
+    "audit": 3
+  },
+  "validation": {
+    "canonical_record_valid": true,
+    "read_only_projection": true,
+    "external_actions": 0,
+    "formula_policy": "no_formulas"
+  }
+}

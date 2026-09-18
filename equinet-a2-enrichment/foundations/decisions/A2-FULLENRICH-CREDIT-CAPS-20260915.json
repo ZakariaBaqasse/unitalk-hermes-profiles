@@ -1,0 +1,32 @@
+{
+  "record_type": "a2_fullenrich_credit_cap_decision",
+  "decision_id": "A2-FULLENRICH-CREDIT-CAPS-20260915",
+  "recorded_at": "2026-09-15T10:56:38Z",
+  "status": "approved_for_step10_controlled_pilot",
+  "decision_source": "authorised_chat_user",
+  "credit_caps": {
+    "per_run": 50,
+    "per_utc_day": 100,
+    "total_pilot": 250
+  },
+  "available_balance_at_decision": 499,
+  "ownership": {
+    "spend_approver_required": false,
+    "consumption_owner_required": false,
+    "decision": "explicitly_not_required_by_user"
+  },
+  "controls": {
+    "hard_stop_before_call_when_estimated_max_exceeds_cap": true,
+    "record_actual_provider_credits": true,
+    "reserve_before_paid_action": true,
+    "reuse_idempotent_result": true,
+    "credentials_logged": false
+  },
+  "scope": {
+    "provider": "FullEnrich",
+    "workflow": "Twenty-FullEnrich-Twenty Step 10 controlled pilot",
+    "production_acceptance": false,
+    "twenty_write_authority": false,
+    "external_actions": 0
+  }
+}

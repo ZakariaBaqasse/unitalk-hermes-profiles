@@ -1,0 +1,169 @@
+{
+  "plan_version": "0.2.0",
+  "candidate_id": "SYN-OWNER-GAP-001",
+  "input_record_sha256": null,
+  "segment": "horse_owner",
+  "operating_scope": "synthetic_test",
+  "plan_status": "research_required",
+  "minimum_package": {
+    "package": "horse_owner_review_ready",
+    "required_field_count": 5,
+    "contact_path": "named_target",
+    "research_exhausted": false
+  },
+  "plan_items": [
+    {
+      "plan_item_id": "PLAN-001",
+      "field_key": "organisation.horse_count",
+      "alternative_field_keys": [],
+      "priority": "required",
+      "current_state": "missing",
+      "freshness_status": "not_assessed",
+      "need_type": "gap",
+      "source_candidates": [
+        {
+          "source_id": "a1_approved_handoff",
+          "register_status": "approved",
+          "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "a1_directory_evidence_reuse",
+          "register_status": "approved",
+          "runtime_readiness": "available_through_handoff",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "hubspot_authoritative_records",
+          "register_status": "conditional",
+          "runtime_readiness": "integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_authorized_first_party_data",
+          "register_status": "conditional",
+          "runtime_readiness": "manual_intake_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_representative_confirmation",
+          "register_status": "approved",
+          "runtime_readiness": "manual_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "prospect_official_website",
+          "register_status": "conditional",
+          "runtime_readiness": "runtime_policy_pending",
+          "external_access_planned": false
+        }
+      ],
+      "external_action_authorized": false
+    },
+    {
+      "plan_item_id": "PLAN-002",
+      "field_key": "organisation.breeds",
+      "alternative_field_keys": [],
+      "priority": "required",
+      "current_state": "missing",
+      "freshness_status": "not_assessed",
+      "need_type": "gap",
+      "source_candidates": [
+        {
+          "source_id": "a1_approved_handoff",
+          "register_status": "approved",
+          "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "a1_directory_evidence_reuse",
+          "register_status": "approved",
+          "runtime_readiness": "available_through_handoff",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "hubspot_authoritative_records",
+          "register_status": "conditional",
+          "runtime_readiness": "integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_authorized_first_party_data",
+          "register_status": "conditional",
+          "runtime_readiness": "manual_intake_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_representative_confirmation",
+          "register_status": "approved",
+          "runtime_readiness": "manual_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "prospect_official_website",
+          "register_status": "conditional",
+          "runtime_readiness": "runtime_policy_pending",
+          "external_access_planned": false
+        }
+      ],
+      "external_action_authorized": false
+    },
+    {
+      "plan_item_id": "PLAN-003",
+      "field_key": "person.business_phone",
+      "alternative_field_keys": [],
+      "priority": "optional",
+      "current_state": "missing",
+      "freshness_status": "not_assessed",
+      "need_type": "gap",
+      "source_candidates": [
+        {
+          "source_id": "a1_approved_handoff",
+          "register_status": "approved",
+          "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "a1_directory_evidence_reuse",
+          "register_status": "approved",
+          "runtime_readiness": "available_through_handoff",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "hubspot_authoritative_records",
+          "register_status": "conditional",
+          "runtime_readiness": "integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_authorized_first_party_data",
+          "register_status": "conditional",
+          "runtime_readiness": "manual_intake_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_representative_confirmation",
+          "register_status": "approved",
+          "runtime_readiness": "manual_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "prospect_official_website",
+          "register_status": "conditional",
+          "runtime_readiness": "runtime_policy_pending",
+          "external_access_planned": false
+        }
+      ],
+      "external_action_authorized": false
+    }
+  ],
+  "blocked_fields": [],
+  "errors": [],
+  "automatic_rejection": false,
+  "automatic_a1_score_change": false,
+  "outreach_authorized": false,
+  "crm_write_authorized": false,
+  "external_calls": 0,
+  "external_actions": 0,
+  "plan_sha256": "e3a1bd465e8c361fdf0496704fa1fe7c0cedd7841dfeb68d69201d3783b3ad62"
+}

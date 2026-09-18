@@ -1,0 +1,87 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "company_id": null,
+  "created_at": "2026-09-15T11:17:37Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "d53efe5975d00d4d6158d0b116927b794bbcb75bd1b44dfbce844f68c6ea2005",
+  "requested_batch_size": 2,
+  "company_count": 2,
+  "companies": [
+    {
+      "twenty_company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "name": "Hidden Creek Farm LLC",
+      "segment": "HORSE_OWNER",
+      "domain": "http://hiddencreek.farm",
+      "professional_network_url": null,
+      "location": {
+        "street": "4721 Newtown Pike, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": "0.1.0",
+      "a2_enrichment_run_id": "A2-LIVE-20260915T111736Z",
+      "a2_processing_started_at": "2026-09-15T11:17:36.000Z",
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-15T11:17:36.469Z"
+    },
+    {
+      "twenty_company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "name": "Triple Diamonds Training Center",
+      "segment": "HORSE_OWNER",
+      "domain": null,
+      "professional_network_url": null,
+      "location": {
+        "street": "2501 Russell Cave Rd, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": "0.1.0",
+      "a2_enrichment_run_id": "A2-LIVE-20260915T111736Z",
+      "a2_processing_started_at": "2026-09-15T11:17:36.000Z",
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-15T11:17:36.883Z"
+    }
+  ],
+  "claims": [
+    {
+      "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "claimed": true,
+      "write_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:17:36Z"
+      },
+      "read_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:17:36Z"
+      }
+    },
+    {
+      "company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "claimed": true,
+      "write_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:17:36Z"
+      },
+      "read_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T11:17:37Z"
+      }
+    }
+  ],
+  "external_writes": 2,
+  "artifact_sha256": "f9983ff7116b648c779279f3ae5e115affe0bcd87045de050c54c4aa875ed3c7"
+}

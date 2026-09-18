@@ -1,0 +1,106 @@
+{
+  "contract_id": "equinet-a2-official-website-firecrawl-integration",
+  "version": "0.1.0",
+  "status": "implemented_local_live_acceptance_pending",
+  "credential": {
+    "environment_variable": "FIRECRAWL_API_KEY",
+    "display_or_persist": false
+  },
+  "base_url": "https://api.firecrawl.dev/v2",
+  "operations": {
+    "homepage": {
+      "method": "POST",
+      "path": "/scrape",
+      "formats": [
+        "markdown",
+        "html",
+        "links"
+      ],
+      "onlyMainContent": false,
+      "storeInCache": false,
+      "skipTlsVerification": false,
+      "proxy": "auto",
+      "removeBase64Images": true
+    },
+    "selected_pages": {
+      "method": "POST",
+      "path": "/batch/scrape",
+      "poll_method": "GET",
+      "poll_path": "/batch/scrape/{id}",
+      "formats": [
+        "markdown",
+        "html",
+        "links"
+      ],
+      "onlyMainContent": false,
+      "storeInCache": false,
+      "skipTlsVerification": false,
+      "proxy": "auto",
+      "removeBase64Images": true
+    }
+  },
+  "limits": {
+    "max_pages_per_company": 5,
+    "homepage_pages": 1,
+    "max_selected_pages": 4,
+    "same_domain_only": true,
+    "allow_subdomains": false,
+    "concurrency_per_company": 1,
+    "agent_web_extract_runtime": false
+  },
+  "page_classes": [
+    "home",
+    "contact",
+    "about",
+    "team",
+    "staff"
+  ],
+  "allowed_observations": [
+    "organisation.business_email",
+    "organisation.business_phone",
+    "organisation.public_profile_urls",
+    "person.full_name",
+    "person.role_title",
+    "person.business_email",
+    "person.business_phone",
+    "person.professional_credential"
+  ],
+  "prohibited": [
+    "login",
+    "captcha_bypass",
+    "paywall_bypass",
+    "external_page_scrape",
+    "documents",
+    "media",
+    "inferred_values",
+    "customer_or_testimonial_names"
+  ],
+  "firecrawl_credit_policy": null,
+  "audit": [
+    "run_id",
+    "company_id",
+    "request_hash",
+    "response_id",
+    "page_url",
+    "status",
+    "page_hash",
+    "errors",
+    "page_count"
+  ],
+  "decision_record": "foundations/decisions/A2-WEBSITE-FIRST-FIRECRAWL-FACEBOOK-20260918.json",
+  "person_extraction": {
+    "full_page_usage": "company contacts and social links only",
+    "agent_input": "cleaned bounded semantic blocks from approved pages",
+    "max_blocks_per_page": 12,
+    "max_chars_per_block": 2000,
+    "proposal_validator": "scripts/validate_website_person_observation_proposals.py",
+    "allowed_name_derivations": [
+      "exact",
+      "shared_surname_split",
+      "multiple_full_names"
+    ],
+    "exact_span_required": true,
+    "all_blocks_reviewed_before_completed_no_target": true,
+    "raw_full_markdown_to_agent": false
+  }
+}

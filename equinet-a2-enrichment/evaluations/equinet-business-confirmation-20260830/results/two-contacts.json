@@ -1,0 +1,10 @@
+{
+  "status": "valid",
+  "selected_contact_count": 2,
+  "review_queue_label": null,
+  "workflow_recommendation": "continue_enrichment",
+  "outreach_authorized": false,
+  "crm_write_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

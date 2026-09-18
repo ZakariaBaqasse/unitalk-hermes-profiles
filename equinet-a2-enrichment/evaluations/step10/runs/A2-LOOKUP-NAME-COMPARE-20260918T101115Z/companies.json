@@ -1,0 +1,93 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LOOKUP-NAME-COMPARE-20260918T101115Z",
+  "company_id": null,
+  "created_at": "2026-09-18T10:11:15Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "b4a03eef047741ff46e6496968f2478d771f90139e31e9516c1a41cc3959489a",
+  "requested_batch_size": 1,
+  "company_count": 1,
+  "companies": [
+    {
+      "twenty_company_id": "1ea1f492-9b84-4347-93a5-3c44013327af",
+      "name": "Baxter Equine and Forge",
+      "segment": "FARRIER",
+      "domain": null,
+      "professional_network_url": null,
+      "location": {
+        "street": "1800 Old Authon Rd., Weatherford, Texas, 76088, United States",
+        "city": "Weatherford",
+        "region": "TX",
+        "country": "United States",
+        "postal_code": "76088"
+      },
+      "a2_enrichment_status": null,
+      "a2_enrichment_version": "",
+      "a2_enrichment_run_id": "",
+      "a2_processing_started_at": null,
+      "linked_people": [
+        {
+          "twenty_person_id": "fca91ebf-466f-432f-a075-7abdc529d30a",
+          "company_id": "1ea1f492-9b84-4347-93a5-3c44013327af",
+          "full_name": "Corey Baxter, CJF",
+          "raw_name": {
+            "firstName": "Corey Baxter, CJF",
+            "lastName": ""
+          },
+          "job_title": null,
+          "work_email": "baxterk9@yahoo.com",
+          "phone": "7725302361",
+          "professional_network_url": null,
+          "a2_identity_status": null,
+          "a2_role_status": null,
+          "a2_role_priority": null,
+          "a2_company_match_status": null,
+          "a2_enrichment_status": null,
+          "fullenrich_person_id": "",
+          "last_verified_at": null,
+          "last_enriched_at": null,
+          "updated_at": "2026-09-18T10:02:28.794Z"
+        }
+      ],
+      "snapshot_updated_at": "2026-09-17T17:31:40.935Z"
+    }
+  ],
+  "claims": [],
+  "applied_filters": {
+    "statuses": null,
+    "include_null": false,
+    "allow_any_status": true,
+    "company_ids": [],
+    "company_names": [
+      "Baxter Equine and Forge"
+    ],
+    "segments": [],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "200",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "name[eq]:\"Baxter Equine and Forge\""
+    },
+    "receipt": {
+      "http_status": 200,
+      "attempt": 1,
+      "received_at": "2026-09-18T10:11:15Z"
+    }
+  },
+  "external_writes": 0,
+  "artifact_sha256": "87c16b2981e865f1a04a7cec01f4af8cc7fef48713004729f83d6838b834ab4e"
+}

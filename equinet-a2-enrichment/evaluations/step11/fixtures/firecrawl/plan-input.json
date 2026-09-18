@@ -1,0 +1,8 @@
+{
+  "run_id": "step11-fixture-run",
+  "company": {
+    "company_id": "company-fixture-001",
+    "name": "Example Equine Centre"
+  },
+  "official_url": "https://www.example.com/"
+}

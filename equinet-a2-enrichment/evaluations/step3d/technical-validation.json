@@ -1,0 +1,431 @@
+{
+  "step": "3D",
+  "version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "policy": {
+    "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.0-draft.1.json",
+    "sha256": "23effcd67dbf5e444ebc24eaf95873098927330a037b2d8ad399864529337730"
+  },
+  "policy_validation": {
+    "errors": [],
+    "passed": true
+  },
+  "fixtures": {
+    "total": 10,
+    "passed": 10,
+    "cases": [
+      {
+        "name": "official_site_current_role",
+        "source_id": "prospect_official_website",
+        "claim_key": "person.role_title",
+        "components": {
+          "identity_match": 20,
+          "source_authority": 18,
+          "claim_directness": 20,
+          "freshness": 18,
+          "corroboration": 10,
+          "consistency": 10
+        },
+        "raw_score": 96,
+        "applied_caps": [],
+        "confidence_score": 96,
+        "confidence_level": "high",
+        "verification_status": "verified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 96,
+          "confidence_level": "high",
+          "verification_status": "verified"
+        },
+        "passed": true
+      },
+      {
+        "name": "official_site_business_email",
+        "source_id": "prospect_official_website",
+        "claim_key": "person.business_email",
+        "components": {
+          "identity_match": 20,
+          "source_authority": 18,
+          "claim_directness": 20,
+          "freshness": 20,
+          "corroboration": 10,
+          "consistency": 10
+        },
+        "raw_score": 98,
+        "applied_caps": [],
+        "confidence_score": 98,
+        "confidence_level": "high",
+        "verification_status": "verified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 98,
+          "confidence_level": "high",
+          "verification_status": "verified"
+        },
+        "passed": true
+      },
+      {
+        "name": "apify_profile_runtime_blocked",
+        "source_id": "apify_harvestapi_linkedin_profile_search",
+        "claim_key": "person.role_title",
+        "components": {
+          "identity_match": 20,
+          "source_authority": 12,
+          "claim_directness": 20,
+          "freshness": 20,
+          "corroboration": 5,
+          "consistency": 10
+        },
+        "raw_score": 87,
+        "applied_caps": [
+          {
+            "condition": "source_rights_or_runtime_gate_not_passed",
+            "maximum_score": 0
+          }
+        ],
+        "confidence_score": 0,
+        "confidence_level": "low",
+        "verification_status": "unverified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 0,
+          "confidence_level": "low",
+          "verification_status": "unverified"
+        },
+        "passed": true
+      },
+      {
+        "name": "apify_email_verified_after_future_gate",
+        "source_id": "apify_harvestapi_email_search",
+        "claim_key": "person.business_email",
+        "components": {
+          "identity_match": 20,
+          "source_authority": 12,
+          "claim_directness": 20,
+          "freshness": 20,
+          "corroboration": 5,
+          "consistency": 10
+        },
+        "raw_score": 87,
+        "applied_caps": [],
+        "confidence_score": 87,
+        "confidence_level": "high",
+        "verification_status": "verified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 87,
+          "confidence_level": "high",
+          "verification_status": "verified"
+        },
+        "passed": true
+      },
+      {
+        "name": "undated_secondary_role",
+        "source_id": "a1_directory_evidence_reuse",
+        "claim_key": "person.role_title",
+        "components": {
+          "identity_match": 10,
+          "source_authority": 10,
+          "claim_directness": 20,
+          "freshness": 8,
+          "corroboration": 5,
+          "consistency": 10
+        },
+        "raw_score": 63,
+        "applied_caps": [],
+        "confidence_score": 63,
+        "confidence_level": "medium",
+        "verification_status": "partially_verified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 63,
+          "confidence_level": "medium",
+          "verification_status": "partially_verified"
+        },
+        "passed": true
+      },
+      {
+        "name": "inference_only_required",
+        "source_id": "prospect_official_website",
+        "claim_key": "organisation.service_area",
+        "components": {
+          "identity_match": 20,
+          "source_authority": 18,
+          "claim_directness": 10,
+          "freshness": 18,
+          "corroboration": 10,
+          "consistency": 10
+        },
+        "raw_score": 86,
+        "applied_caps": [
+          {
+            "condition": "required_claim_supported_only_by_reasonable_inference",
+            "maximum_score": 59
+          }
+        ],
+        "confidence_score": 59,
+        "confidence_level": "low",
+        "verification_status": "unverified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 59,
+          "confidence_level": "low",
+          "verification_status": "unverified"
+        },
+        "passed": true
+      },
+      {
+        "name": "material_role_conflict",
+        "source_id": "prospect_official_website",
+        "claim_key": "person.role_title",
+        "components": {
+          "identity_match": 20,
+          "source_authority": 18,
+          "claim_directness": 20,
+          "freshness": 20,
+          "corroboration": 10,
+          "consistency": 0
+        },
+        "raw_score": 88,
+        "applied_caps": [
+          {
+            "condition": "material_conflict",
+            "maximum_score": 39
+          }
+        ],
+        "confidence_score": 39,
+        "confidence_level": "low",
+        "verification_status": "contradicted",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 39,
+          "confidence_level": "low",
+          "verification_status": "contradicted"
+        },
+        "passed": true
+      },
+      {
+        "name": "stale_professional_status",
+        "source_id": "prospect_official_website",
+        "claim_key": "person.professional_status",
+        "components": {
+          "identity_match": 20,
+          "source_authority": 18,
+          "claim_directness": 20,
+          "freshness": 0,
+          "corroboration": 10,
+          "consistency": 10
+        },
+        "raw_score": 78,
+        "applied_caps": [
+          {
+            "condition": "time_sensitive_claim_is_stale",
+            "maximum_score": 59
+          }
+        ],
+        "confidence_score": 59,
+        "confidence_level": "low",
+        "verification_status": "unverified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 59,
+          "confidence_level": "low",
+          "verification_status": "unverified"
+        },
+        "passed": true
+      },
+      {
+        "name": "search_snippet_discovery_only",
+        "source_id": "search_engine_discovery",
+        "claim_key": "organisation.website",
+        "components": {
+          "identity_match": 10,
+          "source_authority": 0,
+          "claim_directness": 20,
+          "freshness": 20,
+          "corroboration": 0,
+          "consistency": 10
+        },
+        "raw_score": 60,
+        "applied_caps": [
+          {
+            "condition": "source_rights_or_runtime_gate_not_passed",
+            "maximum_score": 0
+          }
+        ],
+        "confidence_score": 0,
+        "confidence_level": "low",
+        "verification_status": "unverified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 0,
+          "confidence_level": "low",
+          "verification_status": "unverified"
+        },
+        "passed": true
+      },
+      {
+        "name": "unresolved_identity",
+        "source_id": "prospect_official_website",
+        "claim_key": "organisation.business_name",
+        "components": {
+          "identity_match": 0,
+          "source_authority": 18,
+          "claim_directness": 20,
+          "freshness": 20,
+          "corroboration": 10,
+          "consistency": 10
+        },
+        "raw_score": 78,
+        "applied_caps": [
+          {
+            "condition": "identity_match_unresolved",
+            "maximum_score": 39
+          }
+        ],
+        "confidence_score": 39,
+        "confidence_level": "low",
+        "verification_status": "unverified",
+        "a1_score_changed": false,
+        "outreach_authorized": false,
+        "errors": [],
+        "expected": {
+          "confidence_score": 39,
+          "confidence_level": "low",
+          "verification_status": "unverified"
+        },
+        "passed": true
+      }
+    ]
+  },
+  "negative_regressions": {
+    "total": 11,
+    "passed": 11,
+    "cases": [
+      {
+        "name": "dependency_hash",
+        "expected_error": "dependency hash mismatch",
+        "errors": [
+          "dependency hash mismatch: foundations/contracts/sources/a2-source-register-0.1.0-draft.1.json"
+        ],
+        "passed": true
+      },
+      {
+        "name": "dimension_total",
+        "expected_error": "maximums must total 100",
+        "errors": [
+          "confidence dimension maximums must total 100"
+        ],
+        "passed": true
+      },
+      {
+        "name": "band_overlap",
+        "expected_error": "confidence bands mismatch",
+        "errors": [
+          "confidence bands mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "cap_removed",
+        "expected_error": "confidence caps mismatch",
+        "errors": [
+          "confidence caps mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_source",
+        "expected_error": "unknown source ID",
+        "errors": [
+          "policy references unknown source ID"
+        ],
+        "passed": true
+      },
+      {
+        "name": "linkedin_activated",
+        "expected_error": "runtime-blocked source was activated",
+        "errors": [
+          "runtime-blocked source was activated: apify_harvestapi_linkedin_profile_search"
+        ],
+        "passed": true
+      },
+      {
+        "name": "email_search_activated",
+        "expected_error": "runtime-blocked source was activated",
+        "errors": [
+          "runtime-blocked source was activated: apify_harvestapi_email_search"
+        ],
+        "passed": true
+      },
+      {
+        "name": "snippet_evidence",
+        "expected_error": "search discovery was promoted",
+        "errors": [
+          "search discovery was promoted to retained evidence"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_freshness_field",
+        "expected_error": "freshness policy references unknown fields",
+        "errors": [
+          "freshness policy references unknown fields: ['unknown.field']"
+        ],
+        "passed": true
+      },
+      {
+        "name": "a2_scoring",
+        "expected_error": "required principle missing",
+        "errors": [
+          "required principle missing: a2_never_calculates_a1_score"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approval_removed",
+        "expected_error": "Unitalk approval metadata is invalid",
+        "errors": [
+          "Unitalk approval metadata is invalid"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "confidence_is_not_score": true,
+    "source_gate_zero": true,
+    "review_decisions": true,
+    "review_pending": true
+  },
+  "language_audit": {
+    "files_checked": 410,
+    "findings": 0,
+    "passed": true
+  },
+  "external_actions": 0,
+  "a1_score_changes": 0,
+  "runtime_activation": false,
+  "next_gate_after_approval": "Step 3E — Protected Fields and Conflict Policy",
+  "failures": [],
+  "pass": true
+}

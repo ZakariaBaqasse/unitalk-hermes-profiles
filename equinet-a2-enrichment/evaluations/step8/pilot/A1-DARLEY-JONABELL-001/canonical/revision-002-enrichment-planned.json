@@ -1,0 +1,1472 @@
+{
+  "audit_and_consumption": {
+    "errors": [],
+    "events": [
+      {
+        "actor": {
+          "actor_id": "UNITALK-A2-INITIALISER",
+          "actor_role": "A2 Deterministic Initialiser",
+          "display_name": null,
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "event_id": "A2-EVENT-INIT_D21BC65DDC16BB6B66F3_001",
+        "event_type": "canonical_record_initialised",
+        "external_action": null,
+        "input_references": [
+          "A1A2-PILOT-DARLEY-JONABELL-001",
+          "d21bc65ddc16bb6b66f367b0bce19b27a8f30f9face4f61470ee1c26ec1672d4"
+        ],
+        "model": null,
+        "output_references": [
+          "A2-REV-INIT_87BFA8853FF7180C3F26_001"
+        ],
+        "timestamp": "2026-08-30T10:42:31Z",
+        "tools": [
+          "initialize_a2_record.py"
+        ],
+        "usage": null
+      },
+      {
+        "event_id": "A2-EVENT-STEP8-JONABELL-002",
+        "event_type": "workflow_enrichment_planned",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP8",
+          "actor_role": "A2 Bounded Pilot Runtime",
+          "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-30T12:32:00Z",
+        "input_references": [
+          "A2-REV-INIT_87BFA8853FF7180C3F26_001"
+        ],
+        "output_references": [
+          "A2-REV-STEP8_D21BC65DDC16BB6B66F3_002"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-step8-canonical-builder"
+        ],
+        "usage": null,
+        "external_action": null
+      }
+    ],
+    "total_usage": {
+      "api_calls": 0,
+      "cost_amount": 0,
+      "cost_status": "known",
+      "credits": 0,
+      "currency": "USD",
+      "input_tokens": null,
+      "output_tokens": null,
+      "provider_calls": 0,
+      "total_tokens": null
+    }
+  },
+  "data_quality": {
+    "calculated_at": null,
+    "conflict_field_keys": [],
+    "invalid_field_keys": [],
+    "limitations": [
+      "Target-role classification and current official-site evidence assessment are pending."
+    ],
+    "method_version": "a2-step8-quality-0.1.0",
+    "missing_field_keys": [],
+    "required_field_keys": [],
+    "stale_field_keys": [],
+    "status": "unassessed",
+    "unverified_field_keys": [
+      "organisation.stable_type"
+    ]
+  },
+  "duplicate_and_eligibility": {
+    "a2_eligibility_status": "not_checked",
+    "checks": [],
+    "evaluated_at": null,
+    "method_version": null,
+    "outreach_eligibility_status": "unavailable",
+    "owner_routing_status": "needs_owner_review",
+    "reasons": [
+      "A2 duplicate, CRM eligibility and owner-routing checks have not run."
+    ]
+  },
+  "enrichment_scope": {
+    "field_catalogue_version": "0.1.1-draft.1",
+    "initiated_by": {
+      "actor_id": "UNITALK-A2-STEP8",
+      "actor_role": "A2 Bounded Pilot Runtime",
+      "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "limits": {
+      "max_records": 1,
+      "max_source_calls": 5,
+      "max_provider_calls": 0,
+      "max_retries": 1,
+      "max_concurrency": 1,
+      "max_cost_usd": 0,
+      "policy_version": "a2-step8-bounded-pilot-runtime-0.1.0"
+    },
+    "mode": "default_minimum_package",
+    "operating_scope": "manual_no_integration_pilot",
+    "requested_field_keys": [],
+    "source_register_version": "0.1.1-draft.1"
+  },
+  "evidence_registry": [],
+  "field_assessments": [
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-ORG-NAME",
+      "field_key": "organisation.business_name",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Jonabell Farm",
+        "normalised_value": "Jonabell Farm",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "organisation.business_name",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Jonabell Farm",
+        "normalised_value": "Jonabell Farm",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-LOCATION",
+      "field_key": "organisation.public_business_location",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "structured",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40513"
+            },
+            {
+              "key": "public_address",
+              "value": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA"
+            }
+          ]
+        },
+        "normalised_value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40513"
+            },
+            {
+              "key": "public_address",
+              "value": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA"
+            }
+          ]
+        },
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "organisation.public_business_location",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40513"
+            },
+            {
+              "key": "public_address",
+              "value": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA"
+            }
+          ]
+        },
+        "normalised_value": {
+          "components": [
+            {
+              "key": "country_code",
+              "value": "US"
+            },
+            {
+              "key": "state_region",
+              "value": "Kentucky"
+            },
+            {
+              "key": "city",
+              "value": "Lexington"
+            },
+            {
+              "key": "postal_code",
+              "value": "40513"
+            },
+            {
+              "key": "public_address",
+              "value": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA"
+            }
+          ]
+        },
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-2D64EACA1A6DFF97",
+      "field_key": "organisation.stable_type",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "enum",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "partial",
+      "baseline": {
+        "value": "breeding",
+        "normalised_value": "breeding",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "organisation.stable_type",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "breeding",
+        "normalised_value": "breeding",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "partially_verified",
+        "confidence_level": "medium",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-PERSON-NAME",
+      "field_key": "person.full_name",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Kate Galvin",
+        "normalised_value": "Kate Galvin",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "person.full_name",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Kate Galvin",
+        "normalised_value": "Kate Galvin",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-E65EE5C6BAB67CB0",
+      "field_key": "person.role_title",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Nominations Sales and Operating Manager, Jonabell Farm",
+        "normalised_value": "Nominations Sales and Operating Manager, Jonabell Farm",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "person.role_title",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Nominations Sales and Operating Manager, Jonabell Farm",
+        "normalised_value": "Nominations Sales and Operating Manager, Jonabell Farm",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-4361D5B6055BFC30",
+      "field_key": "person.business_email",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "kgalvin@godolphin.com",
+        "normalised_value": "kgalvin@godolphin.com",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "person.business_email",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "kgalvin@godolphin.com",
+        "normalised_value": "kgalvin@godolphin.com",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-WEBSITE",
+      "field_key": "organisation.website",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+        "normalised_value": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "organisation.website",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+        "normalised_value": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-DOMAIN",
+      "field_key": "organisation.website_domain",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "darleyamerica.com",
+        "normalised_value": "darleyamerica.com",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "organisation.website_domain",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "darleyamerica.com",
+        "normalised_value": "darleyamerica.com",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001",
+          "EV-DARLEY-JONABELL-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-ORG-EMAIL",
+      "field_key": "organisation.business_email",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "us-hello@godolphin.com",
+        "normalised_value": "us-hello@godolphin.com",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "organisation.business_email",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "us-hello@godolphin.com",
+        "normalised_value": "us-hello@godolphin.com",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-ORG-PHONE",
+      "field_key": "organisation.business_phone",
+      "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+      "scope": "organisation",
+      "field_catalogue_version": "0.1.1-draft.1",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "+1 859 255 8537",
+        "normalised_value": "+1 859 255 8537",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-DARLEY-CONTACT-001",
+          "field_reference": "organisation.business_phone",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-30T10:42:29Z",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "+1 859 255 8537",
+        "normalised_value": "+1 859 255 8537",
+        "evidence_ids": [
+          "EV-DARLEY-CONTACT-001"
+        ],
+        "rationale": "Retain the approved A1 handoff value pending or following A2 evidence assessment.",
+        "verification_status": "verified",
+        "confidence_level": "high",
+        "freshness_status": "current",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    }
+  ],
+  "governance": {
+    "approval_matrix_version": null,
+    "consent_check_status": "unavailable",
+    "contains_personal_data": true,
+    "crm_write_authorized": false,
+    "data_categories": [
+      "professional_personal_data"
+    ],
+    "outreach_authorized": false,
+    "policy_limitations": [
+      "No HubSpot, Twenty, n8n, Apify, outreach or downstream delivery.",
+      "Every record requires one final consolidated human review."
+    ],
+    "processing_purpose": "Bounded enrichment of two authorised public-business prospects for human review.",
+    "provider_use_authorized": false,
+    "retention_policy_version": null,
+    "source_register_version": "0.1.1-draft.1",
+    "source_terms_review_status": "approved"
+  },
+  "record_metadata": {
+    "a2_record_id": "A2-INIT_D21BC65DDC16BB6B66F3",
+    "audit_correlation_id": "A1-RP-STEP9-REAL-PILOT:A1-DARLEY-JONABELL-001",
+    "change_reason": "enrichment",
+    "created_at": "2026-08-30T12:32:00Z",
+    "created_by": {
+      "actor_id": "UNITALK-A2-STEP8",
+      "actor_role": "A2 Bounded Pilot Runtime",
+      "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "record_kind": "production",
+    "record_revision_id": "A2-REV-STEP8_D21BC65DDC16BB6B66F3_002",
+    "revision_number": 2,
+    "run_id": "A2-RUN-INIT_87BFA8853FF7180C3F26",
+    "schema_version": "1.0.0",
+    "supersedes_a2_record_id": null,
+    "supersedes_revision_id": "A2-REV-INIT_87BFA8853FF7180C3F26_001"
+  },
+  "requalification": {
+    "returns": [],
+    "score_revision_references": [],
+    "signals": []
+  },
+  "review": {
+    "decided_at": null,
+    "reason": null,
+    "record_decision": "pending",
+    "requested_changes": [],
+    "required_field_decisions_complete": false,
+    "reviewer": null
+  },
+  "source_handoff": {
+    "accepted_at": "2026-08-30T10:42:31Z",
+    "accepted_by": {
+      "actor_id": "UNITALK-A2-MANUAL-INITIALISER",
+      "actor_role": "A2 Manual Initialiser",
+      "display_name": null,
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "candidate_snapshot_sha256": "4610c556e3837e784abf01a2006339959c60533b8c38922cdcb6b08438b2c6d2",
+    "eligibility_status": "eligible",
+    "handoff_id": "A1A2-PILOT-DARLEY-JONABELL-001",
+    "handoff_schema_version": "1.0.1",
+    "handoff_snapshot": {
+      "a2_receipt": null,
+      "approval_event": {
+        "decision": "approved_for_enrichment",
+        "decision_at": "2026-08-30T10:42:29Z",
+        "reviewer": {
+          "actor_id": "UNITALK-SEVERINE-STEP8",
+          "actor_role": "Unitalk Operations A2 Pilot Reviewer",
+          "display_name": "Séverine"
+        },
+        "scope": "a2_enrichment",
+        "source_layer": "manual_review_package",
+        "source_record_id": "A1-DARLEY-JONABELL-001"
+      },
+      "candidate_snapshot": {
+        "candidate_id": "A1-DARLEY-JONABELL-001",
+        "confidence": {
+          "level": "high",
+          "limitations": [
+            "No confidence score cap was triggered.",
+            "Confidence relies on one strong primary source; external claims remain subject to targeted verification."
+          ],
+          "method_version": "evidence-confidence-1.0.0",
+          "reasons": [
+            "identity_certainty: strong_unique_match (20/20)",
+            "source_quality: authoritative_primary_business_source (20/20)",
+            "evidence_directness: mostly_direct (15/20)",
+            "corroboration: one_strong_source (12/20)",
+            "freshness: current_within_claim_window (10/10)",
+            "completeness: minimum_review_package_only (7/10)"
+          ],
+          "score": 84
+        },
+        "data_governance": {
+          "a1_outreach_prohibited": true,
+          "collection_context": "public_business_information",
+          "contains_personal_data": true,
+          "retention_policy_version": null,
+          "source_terms_review_status": "confirmed"
+        },
+        "data_quality": {
+          "conflicts": [],
+          "last_validated_at": "2026-08-15T20:38:58Z",
+          "missing_fields": [],
+          "validation_status": "validated"
+        },
+        "discovered_at": "2026-08-15T20:38:58Z",
+        "duplicate_check": {
+          "batch": {
+            "checked_at": "2026-08-15T20:38:58Z",
+            "matches": [],
+            "method_version": "a1-batch-duplicate-1.0.0",
+            "notes": "No exact or probable match found within the current review batch.",
+            "status": "no_match"
+          },
+          "hubspot": {
+            "checked_at": null,
+            "matches": [],
+            "method_version": null,
+            "notes": "HubSpot is not connected for A1 V1; customer, opportunity, consent and exclusion status are unknown.",
+            "status": "unavailable"
+          },
+          "provided_exclusion_file": {
+            "checked_at": null,
+            "matches": [],
+            "method_version": null,
+            "notes": "No authorised Equinet exclusion file was supplied for this run.",
+            "status": "unavailable"
+          },
+          "twenty": {
+            "checked_at": null,
+            "matches": [],
+            "method_version": null,
+            "notes": "Twenty is not connected for A1 V1.",
+            "status": "unavailable"
+          }
+        },
+        "identity": {
+          "aliases": [
+            "Kate Galvin",
+            "Jonabell Farm"
+          ],
+          "display_name": "Jonabell Farm / Darley America",
+          "organisation": {
+            "domain": "darleyamerica.com",
+            "name": "Jonabell Farm",
+            "website": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours"
+          },
+          "person": {
+            "first_name": null,
+            "full_name": "Kate Galvin",
+            "last_name": null,
+            "role_title": "Nominations Sales and Operating Manager, Jonabell Farm"
+          }
+        },
+        "location": {
+          "city": "Lexington",
+          "country_code": "US",
+          "geography_rule_version": "equinet-a1-icp-1.0.0",
+          "geography_status": "in_scope",
+          "postal_code": "40513",
+          "public_address": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA",
+          "state_region": "Kentucky"
+        },
+        "prospect_type": "breeding_farm",
+        "provenance": {
+          "audit_correlation_id": "A1-RP-STEP9-REAL-PILOT:A1-DARLEY-JONABELL-001",
+          "created_by_profile": "equinet-a1-icp-discovery",
+          "initiated_by": "Séverine — Step 9 approved real-prospect pilot",
+          "model": "deepseek-v4-flash",
+          "synthetic": false,
+          "tools_used": [
+            "Exa web_search",
+            "Firecrawl web_extract",
+            "deterministic qualification builder",
+            "deterministic confidence calculator",
+            "deterministic ICP scorer"
+          ]
+        },
+        "public_contacts": [
+          {
+            "contact_type": "phone",
+            "evidence_ids": [
+              "EV-DARLEY-CONTACT-001"
+            ],
+            "label": "Organisation general contact",
+            "value": "+1 859 255 8537"
+          },
+          {
+            "contact_type": "email",
+            "evidence_ids": [
+              "EV-DARLEY-CONTACT-001"
+            ],
+            "label": "Organisation general contact",
+            "value": "us-hello@godolphin.com"
+          },
+          {
+            "contact_type": "email",
+            "evidence_ids": [
+              "EV-DARLEY-CONTACT-001"
+            ],
+            "label": "Primary named contact — Kate Galvin — Nominations Sales and Operating Manager, Jonabell Farm",
+            "value": "kgalvin@godolphin.com"
+          },
+          {
+            "contact_type": "phone",
+            "evidence_ids": [
+              "EV-DARLEY-CONTACT-001"
+            ],
+            "label": "Primary named contact — Kate Galvin — Nominations Sales and Operating Manager, Jonabell Farm",
+            "value": "+1 859 519 5223"
+          }
+        ],
+        "qualification": {
+          "criteria": [
+            {
+              "category": "fit",
+              "criterion_id": "horse_owner.commercial_operation",
+              "criterion_label": "Professional or commercial equine operation",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "notes": "The official page identifies a privately-owned working thoroughbred farm and international breeding/racing operation.",
+              "status": "confirmed"
+            },
+            {
+              "category": "fit",
+              "criterion_id": "horse_owner.more_than_three_horses",
+              "criterion_label": "Manages more than three horses",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "notes": "The current roster explicitly names seven stallions, establishing more than three horses.",
+              "status": "confirmed"
+            },
+            {
+              "category": "fit",
+              "criterion_id": "horse_owner.purchasing_influence",
+              "criterion_label": "Influences hoof-care purchasing decisions",
+              "evidence_ids": [],
+              "notes": "No named owner, trainer or manager with purchasing responsibility is identified on the retained page.",
+              "status": "unknown"
+            },
+            {
+              "category": "fit",
+              "criterion_id": "horse_owner.product_fit",
+              "criterion_label": "Regular need for hoof-care products or services",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "notes": "A working breeding farm managing multiple current stallions has recurring professional hoof-care needs.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "horse_owner.performance_discipline",
+              "criterion_label": "Performance or competition discipline",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "notes": "The page explicitly describes an international thoroughbred breeding and racing operation and names major race winners.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "horse_owner.breeding_activity",
+              "criterion_label": "Active breeding operation",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "notes": "The page identifies current stallions and a breeding shed.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "horse_owner.professional_network",
+              "criterion_label": "Works with professional equine stakeholders",
+              "evidence_ids": [],
+              "notes": "The global operation is explicit, but the retained page does not state specific professional Farrier or trainer relationships.",
+              "status": "unknown"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "criterion_label": "Located in a high-equine-activity area",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "notes": "Jonabell Farm is explicitly located in Lexington, Kentucky.",
+              "status": "confirmed"
+            },
+            {
+              "category": "priority",
+              "criterion_id": "horse_owner.buying_signal",
+              "criterion_label": "Recent buying or expansion signal",
+              "evidence_ids": [],
+              "notes": "No recent purchase or expansion signal is directly stated.",
+              "status": "unknown"
+            },
+            {
+              "category": "negative",
+              "criterion_id": "horse_owner.single_horse_recreational",
+              "criterion_label": "Single-horse recreational owner without commercial involvement",
+              "evidence_ids": [],
+              "notes": "No retained evidence confirms this negative or exclusion criterion.",
+              "status": "not_confirmed"
+            },
+            {
+              "category": "exclusion",
+              "criterion_id": "horse_owner.no_commercial_evidence",
+              "criterion_label": "No evidence of professional or commercial orientation",
+              "evidence_ids": [],
+              "notes": "No retained evidence confirms this negative or exclusion criterion.",
+              "status": "not_confirmed"
+            }
+          ],
+          "exclusion_reasons": [],
+          "exclusion_status": "eligible",
+          "icp_config_version": "1.0.0",
+          "minimum_data_status": "pass",
+          "missing_minimum_fields": []
+        },
+        "recommendation": {
+          "next_action": "pass_to_a2",
+          "notes": "Authorised by Séverine for the bounded Step 8 A2 pilot. This is a Unitalk test authorisation, not outreach or CRM-write approval.",
+          "priority_rank": 2,
+          "suggested_owner": null,
+          "suggested_territory": "Kentucky"
+        },
+        "record_kind": "production",
+        "run_id": "RUN-20260815T203653Z-28F8CD90",
+        "schema_version": "1.0.0",
+        "scoring": {
+          "band": "high",
+          "block_reason": null,
+          "components": [
+            {
+              "criterion_id": "horse_owner.commercial_operation",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "max_points": 25,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 25
+            },
+            {
+              "criterion_id": "horse_owner.more_than_three_horses",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "max_points": 20,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 20
+            },
+            {
+              "criterion_id": "horse_owner.product_fit",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "max_points": 10,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 10
+            },
+            {
+              "criterion_id": "horse_owner.performance_discipline",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "max_points": 8,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 8
+            },
+            {
+              "criterion_id": "horse_owner.breeding_activity",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "max_points": 7,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 7
+            },
+            {
+              "criterion_id": "horse_owner.high_equine_activity_location",
+              "evidence_ids": [
+                "EV-DARLEY-JONABELL-001"
+              ],
+              "max_points": 5,
+              "notes": "Full V1 weight awarded for confirmed criterion.",
+              "points_awarded": 5
+            }
+          ],
+          "model_version": "1.0.0",
+          "rationale": "Numeric ICP score 75/100 from 6 confirmed weighted criteria. Raw band high; final band high.",
+          "score": 75,
+          "status": "scored"
+        },
+        "segment": "horse_owner",
+        "source_evidence": [
+          {
+            "access_method": "approved_api",
+            "evidence_excerpt": "Jonabell Farm in Lexington, Kentucky is described as one of the leading horse farms in the USA, the American headquarters of the global Godolphin operation, and home to the Darley thoroughbred stallions in the United States. The current roster names Cody’s Wish, Nyquist, Street Sense, Essential Quality, Frosted, Maxfield, and Medaglia d’Oro. The page describes Jonabell as a privately-owned, working thoroughbred horse farm and references its breeding shed.",
+            "evidence_id": "EV-DARLEY-JONABELL-001",
+            "fact_or_inference": "direct_fact",
+            "reliability_level": "high",
+            "retrieved_at": "2026-08-15T20:38:58Z",
+            "source_name": "Darley America — Tours at Jonabell Farm",
+            "source_policy_status": "approved",
+            "source_type": "business_website",
+            "source_url": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+            "supports_claims": [
+              "horse_owner.commercial_operation",
+              "horse_owner.more_than_three_horses",
+              "horse_owner.product_fit",
+              "horse_owner.performance_discipline",
+              "horse_owner.breeding_activity",
+              "horse_owner.high_equine_activity_location"
+            ],
+            "title": "Darley America — Tours at Jonabell Farm"
+          },
+          {
+            "access_method": "approved_api",
+            "evidence_excerpt": "The official Jonabell Farm contact page lists General Enquiries telephone +1 859 255 8537 and email us-hello@godolphin.com; Kate Galvin as Nominations Sales and Operating Manager, Jonabell Farm, with email kgalvin@godolphin.com and mobile +1 859 519 5223; and address 3333 Bowman Mill Road, Lexington, Kentucky 40513, USA.",
+            "evidence_id": "EV-DARLEY-CONTACT-001",
+            "fact_or_inference": "direct_fact",
+            "reliability_level": "high",
+            "retrieved_at": "2026-08-15T20:59:46Z",
+            "source_name": "Darley America — Jonabell Farm Contact",
+            "source_policy_status": "approved",
+            "source_type": "business_website",
+            "source_url": "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+            "supports_claims": [
+              "public_contact.phone",
+              "public_contact.email"
+            ],
+            "title": "Darley America — Jonabell Farm Contact"
+          }
+        ],
+        "system_references": {
+          "a2_handoff_id": "A1A2-PILOT-DARLEY-JONABELL-001",
+          "hubspot_company_id": null,
+          "hubspot_contact_id": null,
+          "hubspot_sync_id": null,
+          "twenty_candidate_id": null
+        },
+        "updated_at": "2026-08-30T10:42:29Z",
+        "workflow": {
+          "decision_at": "2026-08-30T10:42:29Z",
+          "rejection_reason": null,
+          "review_decision": "approved",
+          "reviewer": {
+            "actor_id": "UNITALK-SEVERINE-STEP8",
+            "actor_role": "Unitalk Operations A2 Pilot Reviewer",
+            "display_name": "Séverine"
+          },
+          "stage": "approved_for_a2"
+        }
+      },
+      "constraints": {
+        "a1_score_mutation_authorized": false,
+        "crm_write_authorized": false,
+        "downstream_delivery_authorized": false,
+        "external_action_approval_reference": null,
+        "human_review_required": true,
+        "outreach_authorized": false,
+        "paid_provider_authorized": false,
+        "public_information_creates_consent": false
+      },
+      "created_at": "2026-08-30T10:42:31Z",
+      "delivery": {
+        "attempt_count": 0,
+        "external_event_reference": null,
+        "failure_reason": null,
+        "last_attempt_at": null
+      },
+      "delivery_state": "ready_for_delivery",
+      "eligibility": {
+        "evaluated_at": "2026-08-30T10:42:31Z",
+        "gates": [
+          {
+            "gate_id": "candidate_schema",
+            "reason": "Pinned A1 candidate schema and deterministic validation passed.",
+            "source_path": "candidate_snapshot",
+            "status": "pass"
+          },
+          {
+            "gate_id": "human_approval",
+            "reason": "Séverine authorised this candidate for the bounded A2 pilot.",
+            "source_path": "candidate_snapshot.workflow",
+            "status": "pass"
+          },
+          {
+            "gate_id": "recommendation",
+            "reason": "Candidate recommendation is pass_to_a2.",
+            "source_path": "candidate_snapshot.recommendation.next_action",
+            "status": "pass"
+          },
+          {
+            "gate_id": "exclusion",
+            "reason": "Candidate is eligible and not excluded.",
+            "source_path": "candidate_snapshot.qualification.exclusion_status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "minimum_data",
+            "reason": "A1 minimum data status passed.",
+            "source_path": "candidate_snapshot.qualification.minimum_data_status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "identity_quality",
+            "reason": "A1 data quality is validated.",
+            "source_path": "candidate_snapshot.data_quality.validation_status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "duplicate_batch",
+            "reason": "No current-batch duplicate was found.",
+            "source_path": "candidate_snapshot.duplicate_check.batch",
+            "status": "pass"
+          },
+          {
+            "gate_id": "duplicate_exclusion_file",
+            "reason": "No authoritative exclusion file is available.",
+            "source_path": "candidate_snapshot.duplicate_check.provided_exclusion_file",
+            "status": "unavailable"
+          },
+          {
+            "gate_id": "source_policy",
+            "reason": "No blocked source supports the candidate.",
+            "source_path": "candidate_snapshot.source_evidence",
+            "status": "pass"
+          },
+          {
+            "gate_id": "scoring_state",
+            "reason": "A1 deterministic scoring completed.",
+            "source_path": "candidate_snapshot.scoring.status",
+            "status": "pass"
+          },
+          {
+            "gate_id": "audit_identity",
+            "reason": "A1 audit correlation ID is present.",
+            "source_path": "candidate_snapshot.provenance.audit_correlation_id",
+            "status": "pass"
+          },
+          {
+            "gate_id": "scope_permissions",
+            "reason": "Manual no-integration pilot keeps writes, providers, outreach and downstream delivery disabled.",
+            "source_path": "constraints",
+            "status": "pass"
+          },
+          {
+            "gate_id": "hubspot_duplicate",
+            "reason": "HubSpot duplicate check is unavailable.",
+            "source_path": "candidate_snapshot.duplicate_check.hubspot",
+            "status": "unavailable"
+          },
+          {
+            "gate_id": "hubspot_eligibility",
+            "reason": "HubSpot customer, Deal, consent, suppression and owner checks are unavailable.",
+            "source_path": null,
+            "status": "unavailable"
+          }
+        ],
+        "method_version": "a1-a2-eligibility-1.0.1",
+        "reasons": [
+          "Core A1 approval, quality, source and scoring gates passed.",
+          "Unavailable HubSpot and exclusion-file checks are accepted only for this review-only no-integration pilot; outreach remains unavailable."
+        ],
+        "status": "eligible"
+      },
+      "handoff_id": "A1A2-PILOT-DARLEY-JONABELL-001",
+      "handoff_schema_version": "1.0.1",
+      "idempotency_key": "A1A2-IDEMP-PILOT-DARLEY-JONABELL-001",
+      "integration_availability": {
+        "email_verification": "unavailable",
+        "enrichment_provider": "unavailable",
+        "hubspot_read": "unavailable",
+        "phone_verification": "unavailable",
+        "staging": "unavailable",
+        "workflow": "unavailable"
+      },
+      "operating_scope": "manual_no_integration_pilot",
+      "provenance": {
+        "audit_correlation_id": "A1-RP-STEP9-REAL-PILOT:A1-DARLEY-JONABELL-001",
+        "created_by": "unitalk-a1-a2-handoff-builder",
+        "initiated_by": "Séverine Step 8 authorisation",
+        "synthetic": false,
+        "tools_used": [
+          "deterministic-step8-handoff-builder"
+        ]
+      },
+      "requested_enrichment": {
+        "mode": "default_minimum_package",
+        "request_reason": "Bounded Step 8 A2 pilot using A1 evidence first and approved official-site checks only.",
+        "requested_fields": []
+      },
+      "snapshot_integrity": {
+        "algorithm": "sha256",
+        "candidate_snapshot_sha256": "4610c556e3837e784abf01a2006339959c60533b8c38922cdcb6b08438b2c6d2",
+        "canonicalization": "json_sorted_utf8_v1"
+      },
+      "source_profile": "equinet-a1-icp-discovery",
+      "target_profile": "equinet-a2-enrichment",
+      "trigger_event": {
+        "event_id": "EVENT-A1A2-PILOT-DARLEY-JONABELL-001",
+        "event_type": "a1_candidate_approved_for_a2",
+        "occurred_at": "2026-08-30T10:42:30Z",
+        "source_layer": "manual_review_package",
+        "source_record_id": "A1-DARLEY-JONABELL-001"
+      }
+    },
+    "idempotency_key": "A1A2-IDEMP-PILOT-DARLEY-JONABELL-001",
+    "operating_scope": "manual_no_integration_pilot"
+  },
+  "subject": {
+    "entities": [
+      {
+        "aliases": [],
+        "display_name": "Kate Galvin",
+        "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_PERSON",
+        "entity_type": "person",
+        "external_matches": [],
+        "match_status": "not_checked",
+        "source_identity_reference": "candidate_snapshot.identity.person"
+      },
+      {
+        "aliases": [],
+        "display_name": "Jonabell Farm",
+        "entity_id": "A2-ENT-D21BC65DDC16BB6B66F3_ORGANISATION",
+        "entity_type": "organisation",
+        "external_matches": [],
+        "match_status": "not_checked",
+        "source_identity_reference": "candidate_snapshot.identity.organisation"
+      }
+    ],
+    "identity_resolution_status": "resolved",
+    "material_conflicts": [],
+    "relationships": []
+  },
+  "system_references": {
+    "a14_handoff_id": null,
+    "a1_candidate_id": "A1-DARLEY-JONABELL-001",
+    "a1_handoff_id": "A1A2-PILOT-DARLEY-JONABELL-001",
+    "a1_score_revision_id": null,
+    "a3_handoff_id": null,
+    "hubspot_company_id": null,
+    "hubspot_contact_id": null,
+    "hubspot_deal_ids": null,
+    "hubspot_proposed_patch_id": null,
+    "hubspot_sync_id": null,
+    "n8n_execution_id": null,
+    "n8n_work_item_id": null,
+    "provider_request_ids": null,
+    "requalification_return_id": null,
+    "twenty_record_id": null
+  },
+  "workflow": {
+    "block_reasons": [],
+    "failure": null,
+    "hold_reasons": [],
+    "previous_state": "initialised",
+    "state": "enrichment_planned",
+    "transitioned_at": "2026-08-30T12:32:00Z",
+    "triggered_by": {
+      "actor_id": "UNITALK-A2-STEP8",
+      "actor_role": "A2 Bounded Pilot Runtime",
+      "display_name": "Equinet A2 Enrichment Unitalk AI Collaborator",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    }
+  }
+}

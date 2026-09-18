@@ -1,0 +1,27 @@
+{
+  "source_hashes": {
+    "status": "fa96082eeb69fca75caa3b5ec61723d572e5e8513377802498b109120df754b3",
+    "ownership": "401f48738283c8e1e0ac013be025575893fbf6bc236b3c7c74352fabfbbdacb2",
+    "process": "8212df536e1a5560861b70882fd3031c89758b41b635cf5b97ee802724536bdb"
+  },
+  "status_model_checks": 10,
+  "ownership_model_checks": 9,
+  "process_inventory": {
+    "rows": 68,
+    "asset_types": {
+      "Workflow": 33,
+      "List": 32,
+      "Audit finding": 3
+    },
+    "statuses": {
+      "Disabled": 5,
+      "Enabled": 28,
+      "Dynamic": 19,
+      "Not found": 3,
+      "Static": 13
+    }
+  },
+  "manifest_status": "operational_metadata_snapshot_received_no_live_connection",
+  "errors": [],
+  "pass": true
+}

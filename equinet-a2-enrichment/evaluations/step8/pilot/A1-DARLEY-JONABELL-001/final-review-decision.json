@@ -1,0 +1,29 @@
+{
+  "record_type": "step8_final_review_decision",
+  "profile": "equinet-a2-enrichment",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "decision": "approved_as_step8_test_result",
+  "field_decisions": [
+    {
+      "field_assessment_id": "A2-FLD-STEP8-JONABELL-ROLE-PRIORITY",
+      "field_key": "relationship.target_role_priority",
+      "decision": "approved",
+      "approved_value": "secondary",
+      "decision_type": "human_reviewed_classification_not_sourced_fact"
+    }
+  ],
+  "reviewer": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-30T13:10:32Z",
+  "scope": "bounded_manual_no_integration_pilot_test_only",
+  "limitations": [
+    "No purchasing authority is inferred.",
+    "No outreach, CRM write, downstream delivery or production acceptance is authorised.",
+    "HubSpot authoritative eligibility checks remain unavailable."
+  ],
+  "approved_revision": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-005-record-approved.json",
+  "approved_revision_sha256": "bc2b618e0be5270edef6325b28d205a299c19addf4a18688b3040dc1ca8232bf",
+  "external_actions": 0
+}

@@ -1,0 +1,39 @@
+{
+  "step": "7",
+  "stage": "post_promotion",
+  "status": "approved_synthetic_acceptance",
+  "deterministic_replay": "6/6 pass",
+  "profile_invocation": {
+    "passed": true,
+    "checks": {
+      "profile": true,
+      "suite_pass": true,
+      "scenarios": true,
+      "operators": true,
+      "exports": true,
+      "external_actions": true,
+      "identity": true,
+      "usage": true,
+      "deterministic_hash": true
+    }
+  },
+  "operator_coverage": "14/14",
+  "exports": {
+    "markdown": 2,
+    "csv": 12,
+    "xlsx": 2
+  },
+  "step6_regression": true,
+  "active_foundation_files": 70,
+  "language_audit": {
+    "files_checked": 964,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "real_data_authorized": false,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 8 — Bounded Real No-Integration Pilot Readiness",
+  "failures": [],
+  "pass": true
+}

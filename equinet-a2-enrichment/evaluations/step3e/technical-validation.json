@@ -1,0 +1,235 @@
+{
+  "step": "3E",
+  "version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "policy": {
+    "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.0-draft.1.json",
+    "sha256": "94a54a54e88857adc5d9a65e10f2ed5719dab50beba1fbf26894eee700584c3f"
+  },
+  "protected_field_count": 32,
+  "policy_validation": {
+    "errors": [],
+    "passed": true
+  },
+  "fixtures": {
+    "total": 11,
+    "passed": 11,
+    "cases": [
+      {
+        "name": "same_manual_value",
+        "recommended_action": "no_change",
+        "baseline_preserved": true,
+        "human_review_required": false,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "no_change",
+        "passed": true
+      },
+      {
+        "name": "empty_unprotected_add",
+        "recommended_action": "propose_add",
+        "baseline_preserved": false,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "propose_add",
+        "passed": true
+      },
+      {
+        "name": "different_manual_value",
+        "recommended_action": "preserve_and_hold",
+        "baseline_preserved": true,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "preserve_and_hold",
+        "passed": true
+      },
+      {
+        "name": "consent_conflict",
+        "recommended_action": "preserve_authoritative_and_block",
+        "baseline_preserved": true,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "preserve_authoritative_and_block",
+        "passed": true
+      },
+      {
+        "name": "read_only_sequence",
+        "recommended_action": "read_only_preserve",
+        "baseline_preserved": true,
+        "human_review_required": false,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "read_only_preserve",
+        "passed": true
+      },
+      {
+        "name": "owner_without_approval",
+        "recommended_action": "preserve_or_needs_owner_review",
+        "baseline_preserved": true,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "preserve_or_needs_owner_review",
+        "passed": true
+      },
+      {
+        "name": "low_confidence_proposal",
+        "recommended_action": "reject_proposal",
+        "baseline_preserved": true,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "reject_proposal",
+        "passed": true
+      },
+      {
+        "name": "approved_but_workflow_unknown",
+        "recommended_action": "approved_proposal_write_blocked",
+        "baseline_preserved": true,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "approved_proposal_write_blocked",
+        "passed": true
+      },
+      {
+        "name": "prohibited_personal_data",
+        "recommended_action": "reject_collection",
+        "baseline_preserved": true,
+        "human_review_required": false,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "reject_collection",
+        "passed": true
+      },
+      {
+        "name": "personal_email_candidate",
+        "recommended_action": "hold_for_privacy_review",
+        "baseline_preserved": true,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "hold_for_privacy_review",
+        "passed": true
+      },
+      {
+        "name": "score_related_evidence",
+        "recommended_action": "create_requalification_signal",
+        "baseline_preserved": true,
+        "human_review_required": true,
+        "external_write_allowed": false,
+        "a1_score_changed": false,
+        "errors": [],
+        "expected_action": "create_requalification_signal",
+        "passed": true
+      }
+    ]
+  },
+  "negative_regressions": {
+    "total": 9,
+    "passed": 9,
+    "cases": [
+      {
+        "name": "dependency_hash",
+        "expected_error": "dependency hash mismatch",
+        "errors": [
+          "dependency hash mismatch: foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_protected_field",
+        "expected_error": "not found in supplied HubSpot metadata",
+        "errors": [
+          "protected field not found in supplied HubSpot metadata: Contact.invented_field"
+        ],
+        "passed": true
+      },
+      {
+        "name": "duplicate_protected_field",
+        "expected_error": "duplicate protected HubSpot field",
+        "errors": [
+          "duplicate protected HubSpot field"
+        ],
+        "passed": true
+      },
+      {
+        "name": "manual_overwrite_enabled",
+        "expected_error": "required protection rule missing",
+        "errors": [
+          "required protection rule missing: existing_manual_value_preserved"
+        ],
+        "passed": true
+      },
+      {
+        "name": "hubspot_write_enabled",
+        "expected_error": "write authority must remain false",
+        "errors": [
+          "HubSpot write authority must remain false"
+        ],
+        "passed": true
+      },
+      {
+        "name": "workflow_gate_bypassed",
+        "expected_error": "workflow dependency gate was weakened",
+        "errors": [
+          "workflow dependency gate was weakened"
+        ],
+        "passed": true
+      },
+      {
+        "name": "exception_reviewer_removed",
+        "expected_error": "exception requirements mismatch",
+        "errors": [
+          "field-level exception requirements mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "a1_mutation_enabled",
+        "expected_error": "required protection rule missing",
+        "errors": [
+          "required protection rule missing: a1_snapshot_never_mutated"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approval_removed",
+        "expected_error": "Unitalk approval metadata is invalid",
+        "errors": [
+          "Unitalk approval metadata is invalid"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "review_pending": true,
+    "decisions": true,
+    "write_block": true
+  },
+  "language_audit": {
+    "files_checked": 410,
+    "findings": 0,
+    "passed": true
+  },
+  "hubspot_write_authorized": false,
+  "external_actions": 0,
+  "next_gate_after_approval": "Step 3F — Provider and Cost Policy",
+  "failures": [],
+  "pass": true
+}

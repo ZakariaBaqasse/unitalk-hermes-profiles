@@ -1,0 +1,61 @@
+{
+  "record_type": "step8_pilot_readiness_decision_intake",
+  "profile": "equinet-a2-enrichment",
+  "recorded_at": "2026-08-30T10:42:29Z",
+  "recorded_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "candidate_authorisation": {
+    "status": "approved_for_bounded_a2_pilot",
+    "candidates": [
+      {
+        "candidate_id": "A1-DARLEY-JONABELL-001",
+        "display_name": "Jonabell Farm / Darley America"
+      },
+      {
+        "candidate_id": "A1-RR-PODIATRY-001",
+        "display_name": "Rood & Riddle Equine Hospital — Lexington Podiatry"
+      }
+    ],
+    "approved_at": "2026-08-30T10:42:29Z",
+    "approval_text": "Séverine explicitly authorised Jonabell Farm / Darley America and Rood & Riddle Lexington Podiatry for the bounded real A2 pilot."
+  },
+  "review": {
+    "primary_reviewer": "Séverine",
+    "backup_reviewer": "Séverine",
+    "mode": "single_reviewer_unitalk_test",
+    "independent_backup_available": false,
+    "limitation": "Acceptable for a Unitalk-operated test only; not an independent Equinet business approval or production review arrangement."
+  },
+  "model": {
+    "primary": "deepseek-v4-flash",
+    "public_equinet_data_use_approved_by_unitalk": true,
+    "fallback_enabled_for_real_pilot": false,
+    "on_primary_failure": "save_partial_artifacts_stop_and_notify",
+    "upstream_telemetry": "pending_unavailable_to_severine"
+  },
+  "web": {
+    "bounded_access_approved": true,
+    "allowed_domains": [
+      "darleyamerica.com",
+      "roodandriddle.com",
+      "www.roodandriddle.com"
+    ],
+    "initial_page_targets": 5,
+    "max_firecrawl_calls_including_retries": 10,
+    "max_exa_calls_if_official_url_is_unusable": 2,
+    "concurrency": 1,
+    "social_destination_opening": false,
+    "apify": false
+  },
+  "hubspot_and_actions": {
+    "hubspot_available": false,
+    "hubspot_read": false,
+    "hubspot_write": false,
+    "outreach": false,
+    "authoritative_duplicate_customer_deal_owner_consent_checks": "unavailable_and_accepted_as_pilot_limitation"
+  },
+  "execution_status": "handoffs_valid_local_intake_complete_web_and_model_real_data_gates_pending",
+  "external_actions": 0
+}

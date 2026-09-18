@@ -1,0 +1,17 @@
+{
+  "schema_id": "a2-fullenrich-lookup-results",
+  "schema_version": "0.1.0",
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": null,
+  "created_at": "2026-09-18T16:41:13Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "result_count": 0,
+  "results": [],
+  "budget": {
+    "no_action": true
+  },
+  "external_calls": 0,
+  "artifact_sha256": "0ddc3671040ffaa6f5890fde308bf8c047509ecb0fb5e8fb937846b7cbc9b24d"
+}

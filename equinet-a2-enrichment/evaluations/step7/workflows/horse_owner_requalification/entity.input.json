@@ -1,0 +1,16 @@
+{
+  "source_entity": {
+    "entity_id": "SRC-ORG-001",
+    "entity_type": "organisation",
+    "display_name": "Bluegrass Farrier Services LLC",
+    "website": "https://www.bluegrass.example/"
+  },
+  "candidate_matches": [
+    {
+      "entity_id": "CRM-ORG-001",
+      "entity_type": "organisation",
+      "display_name": "Bluegrass Farrier Services",
+      "domain": "bluegrass.example"
+    }
+  ]
+}

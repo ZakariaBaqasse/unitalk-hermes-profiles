@@ -1,0 +1,45 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "1C",
+  "artifacts": [
+    "foundations/A1-TO-A2-HANDOFF-CONTRACT.md",
+    "foundations/contracts/a1-to-a2-handoff.schema.json"
+  ],
+  "artifact_version": "1.0.0",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-16T15:56:49Z",
+  "version_normalisation": "The approved draft content was promoted atomically to contract and schema version 1.0.0 so the human contract, schema, eligibility method and fixtures use one release version.",
+  "approved_decisions": {
+    "H1": "Carry the full immutable A1 Prospect Candidate snapshot with deterministic SHA-256 integrity.",
+    "H2": "Allow unavailable HubSpot/Twenty checks for the manual no-integration pilot while blocking writes, outreach eligibility and production routing.",
+    "H3": "Require approved_for_a2, approved human decision, reviewer, timestamp and pass_to_a2 recommendation.",
+    "H4": "Block confirmed exclusions, confirmed duplicates and invalid candidates; hold possible duplicates and unresolved material conflicts.",
+    "H5": "Keep A1 score, evidence and approval immutable and return material new evidence through a separate requalification path.",
+    "H6": "Cap manual no-integration handoffs at ready_for_delivery; only durable integration may claim delivered and only A2 may claim accepted_by_a2."
+  },
+  "technical_validation": {
+    "valid_fixtures": 2,
+    "invalid_fixtures": 9,
+    "cases_passed": 11,
+    "cases_failed": 0,
+    "dependency_hashes_match": true
+  },
+  "not_approved": [
+    "Equinet client sign-off",
+    "canonical A2 Enrichment Record",
+    "field catalogue and minimum data packages",
+    "source and provider policies",
+    "integrations",
+    "live enrichment",
+    "pilot approval",
+    "CRM write or outreach",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Canonical A2 Enrichment Record design and deterministic validation"
+}

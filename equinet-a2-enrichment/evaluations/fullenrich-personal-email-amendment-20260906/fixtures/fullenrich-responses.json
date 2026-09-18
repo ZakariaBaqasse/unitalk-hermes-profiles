@@ -1,0 +1,110 @@
+{
+  "people_search_response": {
+    "request": {
+      "operation": "people_search",
+      "candidate_id": "SYN-FE-FARRIER-001",
+      "result_limit": 1,
+      "prior_unique_people_returned": 0
+    },
+    "provider_payload": {
+      "people": [
+        {
+          "id": "fe-person-001",
+          "full_name": "Jordan Example",
+          "headline": "Independent Farrier",
+          "description": "This must not be retained.",
+          "location": {
+            "city": "Lexington",
+            "region": "Kentucky",
+            "country": "United States",
+            "country_code": "US"
+          },
+          "social_profiles": {
+            "professional_network": {
+              "url": "https://www.linkedin.com/in/jordan-example",
+              "connection_count": 500
+            }
+          },
+          "educations": [{"school_name": "Private Example"}],
+          "skills": ["Example skill"],
+          "employment": {
+            "current": {
+              "title": "Independent Farrier",
+              "company": {
+                "name": "Bluegrass Hoof Care",
+                "domain": "bluegrass.example",
+                "headcount": 2
+              }
+            },
+            "all": [{"title": "Past role"}]
+          }
+        }
+      ],
+      "metadata": {"total": 1, "credits": 0.25, "offset": 0}
+    }
+  },
+  "contact_enrichment_response": {
+    "request": {
+      "operation": "contact_enrichment",
+      "candidate_id": "SYN-FE-FARRIER-001",
+      "requested_enrich_fields": ["contact.work_emails", "contact.phones"]
+    },
+    "provider_payload": {
+      "enrichment_id": "11111111-1111-4111-8111-111111111111",
+      "status": "FINISHED",
+      "cost": {"credits": 11},
+      "data": [
+        {
+          "input": {
+            "first_name": "Jordan",
+            "last_name": "Example",
+            "domain": "bluegrass.example"
+          },
+          "custom": {"candidate_id": "SYN-FE-FARRIER-001"},
+          "contact_info": {
+            "most_probable_work_email": {
+              "email": "JORDAN@BLUEGRASS.EXAMPLE",
+              "status": "DELIVERABLE"
+            },
+            "most_probable_personal_email": {
+              "email": "private@example.test",
+              "status": "DELIVERABLE"
+            },
+            "personal_emails": [
+              {"email": "private@example.test", "status": "DELIVERABLE"}
+            ],
+            "most_probable_phone": {
+              "number": "+1 859 555 0101",
+              "region": "US"
+            },
+            "phones": [
+              {"number": "+1 859 555 0101", "region": "US"}
+            ]
+          },
+          "profile": {
+            "id": "fe-person-001",
+            "full_name": "Jordan Example",
+            "description": "This must not be retained.",
+            "skills": ["Example skill"],
+            "social_profiles": {
+              "professional_network": {
+                "url": "https://www.linkedin.com/in/jordan-example",
+                "connection_count": 500
+              }
+            },
+            "employment": {
+              "current": {
+                "title": "Independent Farrier",
+                "company": {
+                  "name": "Bluegrass Hoof Care",
+                  "domain": "bluegrass.example"
+                }
+              },
+              "all": [{"title": "Past role"}]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

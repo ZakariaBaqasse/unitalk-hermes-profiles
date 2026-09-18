@@ -1,0 +1,146 @@
+{
+  "fixture_set": "official-site-social-profile-url-capture",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "official-linkedin-company",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.linkedin.com/company/example-farrier-services/",
+      "page_context": "organisation",
+      "expected_field": "organisation.public_profile_urls",
+      "expected_action": "retain_url_only",
+      "open_social_profile": false
+    },
+    {
+      "id": "official-linkedin-person",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.linkedin.com/in/example-farrier/",
+      "page_context": "person",
+      "expected_field": "person.public_profile_urls",
+      "expected_action": "retain_url_only",
+      "open_social_profile": false
+    },
+    {
+      "id": "official-facebook-business",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.facebook.com/examplefarm/",
+      "page_context": "organisation",
+      "expected_field": "organisation.public_profile_urls",
+      "expected_action": "retain_url_only",
+      "open_social_profile": false
+    },
+    {
+      "id": "official-instagram-business",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.instagram.com/examplefarm/",
+      "page_context": "organisation",
+      "expected_field": "organisation.public_profile_urls",
+      "expected_action": "retain_url_only",
+      "open_social_profile": false
+    },
+    {
+      "id": "official-youtube-business",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.youtube.com/@examplefarm",
+      "page_context": "organisation",
+      "expected_field": "organisation.public_profile_urls",
+      "expected_action": "retain_url_only",
+      "open_social_profile": false
+    },
+    {
+      "id": "ambiguous-social-link",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.facebook.com/example",
+      "page_context": "ambiguous",
+      "expected_field": null,
+      "expected_action": "hold_attribution_for_review",
+      "open_social_profile": false
+    },
+    {
+      "id": "linkedin-company-actor-input",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.linkedin.com/company/example-farm/",
+      "page_context": "organisation",
+      "named_role_gap": true,
+      "expected_actor": "harvestapi/linkedin-profile-search",
+      "expected_input_priority": "exact_linkedin_company_url",
+      "runtime_execution": false
+    },
+    {
+      "id": "company-name-actor-fallback",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": null,
+      "verified_company_name": "Example Farm",
+      "target_role": "Owner",
+      "named_role_gap": true,
+      "expected_actor": "harvestapi/linkedin-profile-search",
+      "expected_input_priority": "verified_company_name_plus_target_role",
+      "runtime_execution": false
+    },
+    {
+      "id": "individual-linkedin-not-search-input",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.linkedin.com/in/example-owner/",
+      "page_context": "person",
+      "named_role_gap": true,
+      "expected_actor": "manual_review_or_separately_approved_profile_scraper",
+      "expected_action": "retain_url_only",
+      "runtime_execution": false
+    },
+    {
+      "id": "social-url-no-consent",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.instagram.com/examplefarm/",
+      "page_context": "organisation",
+      "expected_consent": false,
+      "expected_outreach_eligibility": false,
+      "expected_buying_influence": false
+    },
+    {
+      "id": "broad-social-signals-remain-blocked",
+      "requested_data": ["followers", "posts", "connections", "personal_interests"],
+      "expected_action": "reject_collection"
+    },
+    {
+      "id": "apify-runtime-remains-blocked",
+      "named_role_gap": true,
+      "linkedin_company_url": "https://www.linkedin.com/company/example-farm/",
+      "required_runtime_gates_complete": false,
+      "expected_action": "blocked"
+    },
+    {
+      "id": "unpublished-social-url-rejected",
+      "source": "prospect_official_website",
+      "explicitly_linked": false,
+      "url": "https://www.linkedin.com/company/unpublished-example/",
+      "page_context": "organisation",
+      "expected_action": "reject"
+    },
+    {
+      "id": "linkedin-path-attribution-conflict",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "https://www.linkedin.com/in/example-owner/",
+      "page_context": "organisation",
+      "expected_action": "hold_attribution_for_review"
+    },
+    {
+      "id": "invalid-social-url-rejected",
+      "source": "prospect_official_website",
+      "explicitly_linked": true,
+      "url": "javascript:alert(1)",
+      "page_context": "organisation",
+      "expected_action": "reject"
+    }
+  ]
+}

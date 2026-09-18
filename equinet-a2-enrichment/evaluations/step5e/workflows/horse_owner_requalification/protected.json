@@ -1,0 +1,25 @@
+{
+  "command": "a2-evaluate-protected-field-action",
+  "version": "0.1.0-draft.1",
+  "proposal_id": "A2-PROP-FE443C3F14362123",
+  "field_key": "person.business_email",
+  "target_id": "P-1",
+  "protection_class": "a2_enrichment_candidate",
+  "policy_action": "propose_add",
+  "canonical_proposal_action": "add",
+  "recommended_action": "propose_add",
+  "baseline_value": null,
+  "proposed_value": "owner@example.test",
+  "baseline_preserved": false,
+  "evidence_ids": [
+    "A2-EV-1"
+  ],
+  "human_review_required": true,
+  "workflow_dependency_status": "not_checked",
+  "external_write_allowed": false,
+  "crm_patch_prepared": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "external_actions": 0,
+  "errors": []
+}

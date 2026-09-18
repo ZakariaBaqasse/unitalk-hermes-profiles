@@ -1,0 +1,9 @@
+Equinet A2 architecture: A1 stages Companies/initial People in Twenty. A2 runs bounded official-site research through Firecrawl before FullEnrich, preserves Company contacts/socials, and retains at most two website People regardless of role. Person discovery uses cleaned bounded semantic blocks plus exact page/block/span validation; raw full-page Markdown is not trusted directly, and no-target is held if explicit person prose lacks coverage. An official-site-linked Facebook Apify action may fill missing Company email/phone. Generic Company contacts never populate People; HubSpot/outreach remain disabled.
+§
+Equinet A2 will use a Twenty Company enrichment status to select unprocessed Companies. Batch enrichment is chat-triggered and the LLM must remain the decision-maker: a master skill orchestrates staged connector-script calls, while scripts only perform deterministic batch I/O, async polling, normalization, checkpointing and validated writes. The LLM reviews compact decision packets after Lookup and Search, decides search necessity, role priority and retained People, then approves the write plan; full artifacts persist outside chat for idempotency and resume.
+§
+Twenty A2 metadata uses `a2RoleStatus`: `CURRENT_AT_COMPANY`, `NOT_CURRENT_AT_COMPANY`, `UNVERIFIED`. Provider ID field `a2FullenrichPersonid` is unique. Company/Person writes, associations and status filtering are API-capable; no Twenty webhooks are required.
+§
+Equinet A2 controlled-pilot FullEnrich credit limits are 50 credits per run, 100 per UTC day, and 250 total. The user explicitly decided that no spend approver or consumption owner is required for these caps.
+§
+Equinet A2 People Search order is primary roles → exact generic Owner → verified current linked secondary reuse → paid secondary roles → no target, with validation between stages. Technical failures do not trigger fallback.

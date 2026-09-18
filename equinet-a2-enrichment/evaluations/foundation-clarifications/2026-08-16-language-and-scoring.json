@@ -1,0 +1,46 @@
+{
+  "record_type": "foundation_clarification",
+  "profile": "equinet-a2-enrichment",
+  "recorded_at": "2026-08-16T16:10:17Z",
+  "confirmed_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "language_policy": {
+    "decision": "All authored artifacts stored in the A2 profile are English. French is reserved for implementation conversations with Séverine.",
+    "files_converted": [
+      "evaluations/step1b/A2-IMPLEMENTATION-CONTRACT-REVIEW.md",
+      "evaluations/step1c/A1-TO-A2-HANDOFF-REVIEW.md"
+    ],
+    "configuration_changed": false
+  },
+  "scoring_policy": {
+    "A1_ownership": "A1 owns ICP criteria, evidence validation, the scoring model and deterministic score calculation.",
+    "A2_role": "A2 may create a requalification signal when verified enrichment materially affects an A1 criterion.",
+    "revision_rule": "A score may change only as a new A1-generated, human-approved revision. The original score, components, evidence and approval history remain immutable.",
+    "A2_prohibited_action": "A2 must not award points, calculate a replacement score or silently overwrite an A1 score."
+  },
+  "updated_artifacts": {
+    "A2_implementation_contract": "0.1.1",
+    "A1_to_A2_handoff_contract": "1.0.1",
+    "A1_to_A2_handoff_schema": "1.0.1",
+    "temporary_SOUL": "clarified"
+  },
+  "validation": {
+    "implementation_contract": "pass",
+    "handoff_suite": "11/11 pass",
+    "score_revision_static_check": "pass",
+    "language_audit": "pass",
+    "language_files_checked": 31,
+    "language_findings": 0
+  },
+  "not_approved": [
+    "canonical A2 Enrichment Record",
+    "live requalification workflow",
+    "HubSpot or Twenty score mapping",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Canonical A2 Enrichment Record, including the requalification_signal and score-revision references"
+}

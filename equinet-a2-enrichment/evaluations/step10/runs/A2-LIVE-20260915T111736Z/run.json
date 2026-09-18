@@ -1,0 +1,157 @@
+{
+  "schema_id": "a2-enrichment-run-ledger",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "created_at": "2026-09-15T11:17:36Z",
+  "updated_at": "2026-09-15T11:21:09Z",
+  "stage": "terminal",
+  "company_ids": [
+    "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+    "c288275d-89f8-43d8-8f01-df3bfa62c3a9"
+  ],
+  "artifacts": [
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/companies.json",
+      "sha256": "50e286a9c9a78b0a13a825f01867e7d561e8526e0e3d75678b4fd39d0da6f28b"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/companies.json",
+      "sha256": "50e286a9c9a78b0a13a825f01867e7d561e8526e0e3d75678b4fd39d0da6f28b"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/lookup-results.json",
+      "sha256": "246ba22cbd3367330e2361bcd316e2581aa10916df58954a97c95b6e73920aae"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/lookup-validation.json",
+      "sha256": "1584a29cc21dd8803f7d4be720839f98909356807e1a827518f23cdab1f7aa11"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/search-results.json",
+      "sha256": "4802182d1fe1982031b13d415a5b5a1bcdb018e8916e550deaf3226b79bbdb7a"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/search-owner-results.json",
+      "sha256": "2ba053da03ad4fdf46d1a340597bfa6caf0598251ba365755619112a3f35e8ee"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/selection-validation.json",
+      "sha256": "e1beb14fcef643b3139608f0a88406da52e4e1171920c1f07b5c87517332a840"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/selected-people.json",
+      "sha256": "845c7bb4125e5156241b837036805baa789aebad738c552ad1118aa4bfee52d6"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-plan.json",
+      "sha256": "3dae2fcf4044f6cc9b789e8240f67dc8c4dbb8f77b2cb9df1eafb72d5a62042c"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-write-plan.json",
+      "sha256": "3950187633fa41f8ff7f1585ed81f2414f44276ee8330b3a1ca1bf3bcbeca43d"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-result.json",
+      "sha256": "34b270245b20c63672e4699151a53a4b5ffe24b777ec1aa0691119687397d7df"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-result-final.json",
+      "sha256": "3bac3887b8301ef63b2e1a7d24e332de8f28e4f096a24934414fc758ca4fd0b1"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-write-result-final.json",
+      "sha256": "ab8a7c303fb79d96e9c29c897a8e2ae4924de0b461867d68dc1f55ff85eeabf1"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-reconciliation-validation-final.json",
+      "sha256": "48d207f7c501c02c7b68ddc2a4eb5d3cbcf12d886bd641f3f9c7cfc74eaea726"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-reconciliation-validation-final.json",
+      "sha256": "b7ce296e0bc08ecfd15f8017b0b3ea79cfe4cb98072f4d3a7e7ab1c07d4e8f5a"
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/runs/A2-LIVE-20260915T111736Z/run-summary.json",
+      "sha256": "f020963f4e2c6a2f20944e4ebb59cdc4ef181aa339029ba500752b4b8f7c7061"
+    }
+  ],
+  "audit": [
+    {
+      "at": "2026-09-15T11:21:08Z",
+      "from": "created",
+      "to": "pulled"
+    },
+    {
+      "at": "2026-09-15T11:21:08Z",
+      "from": "pulled",
+      "to": "claimed"
+    },
+    {
+      "at": "2026-09-15T11:21:08Z",
+      "from": "claimed",
+      "to": "lookup_complete"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "lookup_complete",
+      "to": "lookup_decisions_validated"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "lookup_decisions_validated",
+      "to": "search_complete"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "search_complete",
+      "to": "selection_decisions_validated"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "selection_decisions_validated",
+      "to": "contact_enrichment_complete"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "contact_enrichment_complete",
+      "to": "write_plan_validated"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "write_plan_validated",
+      "to": "twenty_written"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "twenty_written",
+      "to": "reconciled"
+    },
+    {
+      "at": "2026-09-15T11:21:09Z",
+      "from": "reconciled",
+      "to": "terminal"
+    }
+  ],
+  "external_actions": 15,
+  "ledger_sha256": "38275b5325031cea6b266b501bcd151c7d38c0f4e21b13b5e5e5ade1137faa33",
+  "issues": [
+    {
+      "code": "TARGET_ROLE_NOT_FOUND",
+      "severity": "review_required",
+      "scope": "both_companies",
+      "detail": "FullEnrich returned no People for either the approved-title Search or the permitted Owner-specific follow-up Search. No named contact could be selected."
+    },
+    {
+      "code": "TIMESTAMP_FORMAT_RECONCILIATION_FALSE_POSITIVE",
+      "severity": "implementation_issue_fixed",
+      "scope": "first_company_first_write",
+      "detail": "Twenty returned an equivalent timestamp with .000Z. String comparison initially reported a mismatch. Reconciliation now compares parsed timestamps; the same idempotent status update was repeated and reconciled."
+    },
+    {
+      "code": "DOMAIN_VALUE_WAS_URL",
+      "severity": "implementation_issue_fixed_before_provider_call",
+      "scope": "Hidden Creek Farm LLC",
+      "detail": "Twenty domainName was a URL. Connector now normalizes it to a hostname before FullEnrich requests."
+    }
+  ]
+}

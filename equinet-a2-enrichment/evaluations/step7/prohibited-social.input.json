@@ -1,0 +1,14 @@
+{
+  "candidate_id": "SYN-FAR-001",
+  "operating_scope": "synthetic_test",
+  "source_id": "prospect_official_website",
+  "field_key": "organisation.public_profile_urls",
+  "named_need": "capture explicit social links",
+  "execution_mode": "preflight_only",
+  "official_site_check": "planned",
+  "open_linked_social_profile": true,
+  "actor_profile": "equinet-a2-enrichment",
+  "trigger": "Step 7 prohibited action test",
+  "requested_at": "2026-08-29T21:20:00Z",
+  "run_id": "STEP7-BLOCK-001"
+}

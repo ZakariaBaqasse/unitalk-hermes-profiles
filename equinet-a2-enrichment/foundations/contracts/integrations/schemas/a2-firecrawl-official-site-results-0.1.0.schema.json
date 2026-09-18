@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "a2-firecrawl-official-site-results-0.1.0",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "run_id",
+    "company_id",
+    "status",
+    "pages",
+    "page_count",
+    "external_calls"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "a2-firecrawl-official-site-fetch"
+    },
+    "status": {
+      "enum": [
+        "succeeded",
+        "partial",
+        "not_found",
+        "blocked",
+        "unavailable",
+        "error"
+      ]
+    },
+    "page_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "pages": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "requested_url",
+          "resolved_url",
+          "category",
+          "status",
+          "markdown",
+          "links",
+          "content_sha256"
+        ],
+        "properties": {
+          "requested_url": {
+            "type": "string"
+          },
+          "resolved_url": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "homepage",
+              "contact",
+              "about",
+              "team",
+              "staff"
+            ]
+          },
+          "status": {
+            "const": "collected"
+          },
+          "markdown": {
+            "type": "string"
+          },
+          "html": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "links": {
+            "type": "array"
+          },
+          "content_sha256": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "external_calls": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "browser_fallback": {
+      "const": false
+    },
+    "web_extract_fallback": {
+      "const": false
+    },
+    "credit_policy_calls": {
+      "const": 0
+    }
+  },
+  "additionalProperties": true
+}

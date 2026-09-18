@@ -1,0 +1,90 @@
+{
+  "schema_id": "a2-company-contact-merge-plan",
+  "schema_version": "0.1.0",
+  "run_id": "step11-fixture-run",
+  "company_id": "company-trigger",
+  "created_at": "2026-09-18T17:40:58Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "baseline_sha256": "e95f2c69e3f5f6ab495f48ff3e1d389ba2ef5736b00af7324235c3ccb354ca41",
+  "company_field_updates": {
+    "email": {
+      "primaryEmail": "contact@bluegrass.example",
+      "additionalEmails": []
+    },
+    "phone": {
+      "primaryPhoneNumber": "+1 555 010 1000",
+      "primaryPhoneCountryCode": "",
+      "primaryPhoneCallingCode": "",
+      "additionalPhones": []
+    }
+  },
+  "merged_fields": {
+    "email": {
+      "primaryEmail": "contact@bluegrass.example",
+      "additionalEmails": []
+    },
+    "phone": {
+      "primaryPhoneNumber": "+1 555 010 1000",
+      "primaryPhoneCountryCode": "",
+      "primaryPhoneCallingCode": "",
+      "additionalPhones": []
+    },
+    "linkedinLink": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "facebook": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    }
+  },
+  "decisions": [
+    {
+      "field": "email",
+      "source": "apify_facebook_page_contact_information",
+      "source_url": "https://www.facebook.com/BluegrassFarm/",
+      "canonical_value": "contact@bluegrass.example",
+      "action": "set_primary",
+      "evidence_refs": [
+        "apify-fb-0b61ce709d0d04366cb3bb6f"
+      ]
+    },
+    {
+      "field": "phone",
+      "source": "apify_facebook_page_contact_information",
+      "source_url": "https://www.facebook.com/BluegrassFarm/",
+      "canonical_value": "+1 555 010 1000",
+      "action": "set_primary",
+      "evidence_refs": [
+        "apify-fb-ad700ff385b4c2f49639e98b"
+      ]
+    }
+  ],
+  "provenance": [],
+  "external_actions": 0,
+  "artifact_sha256": "2dba6235bc68d1008c5050c9610d139371da7f7654e36ad66aa4a075b3e05eff"
+}

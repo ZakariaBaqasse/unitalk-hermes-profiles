@@ -1,0 +1,681 @@
+{
+  "register_id": "equinet-a2-source-register",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_runtime_activation_pending",
+  "profile": "equinet-a2-enrichment",
+  "market_scope": "United States; pilot emphasis inherited from approved A1 handoff",
+  "source_sequence": [
+    "a1_approved_handoff",
+    "hubspot_authoritative_records_when_connected",
+    "equinet_authorized_first_party_data",
+    "prospect_official_website",
+    "linkedin_profile_search_actor_only_after_all_gates",
+    "apify_email_search_provider_action_only_after_all_gates",
+    "search_engine_discovery_only"
+  ],
+  "global_rules": {
+    "a2_is_not_second_discovery_crawl": true,
+    "reuse_a1_evidence_before_new_access": true,
+    "new_access_requires_named_gap_conflict_verification_or_freshness_need": true,
+    "website_check_required_for_each_candidate_when_an_official_site_exists": true,
+    "business_approval_does_not_equal_source_rights_or_runtime_readiness": true,
+    "public_professional_data_does_not_create_outreach_eligibility": true,
+    "no_crm_write": true,
+    "no_outreach": true,
+    "no_additional_commercial_enrichment_provider_selected": true
+  },
+  "sources": [
+    {
+      "source_id": "a1_approved_handoff",
+      "name": "Approved A1-to-A2 handoff",
+      "source_type": "internal_structured_handoff",
+      "canonical_url": null,
+      "purpose": "Reuse approved identity, contacts, evidence and limitations.",
+      "business_approval": "approved",
+      "source_rights_preflight": "approved_internal_contract",
+      "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+      "register_status": "approved",
+      "allowed_access_modes": [
+        "structured_read"
+      ],
+      "permitted_fields": [
+        "all approved handoff fields"
+      ],
+      "prohibited_fields": [
+        "mutation of A1 snapshot",
+        "recollection without a named gap"
+      ],
+      "limits": {
+        "max_handoffs_per_record": 1
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Primary starting source for every A2 record."
+      ]
+    },
+    {
+      "source_id": "hubspot_authoritative_records",
+      "name": "HubSpot authoritative records",
+      "source_type": "crm",
+      "canonical_url": "https://www.hubspot.com/",
+      "purpose": "Read authoritative customer, Deal, consent, suppression, owner and lifecycle state.",
+      "business_approval": "approved_system_of_record",
+      "source_rights_preflight": "oauth_and_source_permissions_required",
+      "runtime_readiness": "integration_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "approved_read_only_api"
+      ],
+      "permitted_fields": [
+        "approved Contact, Company and Deal properties"
+      ],
+      "prohibited_fields": [
+        "write",
+        "unscoped export",
+        "cross-business-unit access"
+      ],
+      "limits": {
+        "read_scope": "least_privilege",
+        "writes": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Metadata snapshots received; live OAuth and records unavailable."
+      ]
+    },
+    {
+      "source_id": "equinet_authorized_first_party_data",
+      "name": "Equinet-authorised files or app records",
+      "source_type": "first_party",
+      "canonical_url": null,
+      "purpose": "Use client-supplied business facts for named fields.",
+      "business_approval": "conditional_per_asset",
+      "source_rights_preflight": "asset_owner_permission_required",
+      "runtime_readiness": "manual_intake_available",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "approved_file_or_export"
+      ],
+      "permitted_fields": [
+        "explicitly authorised fields"
+      ],
+      "prohibited_fields": [
+        "unapproved files",
+        "unscoped Mustad-global data"
+      ],
+      "limits": {
+        "approval_per_asset": true
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Record asset owner, approval and extraction scope."
+      ]
+    },
+    {
+      "source_id": "prospect_official_website",
+      "name": "Prospect official business website",
+      "source_type": "prospect_owned_website",
+      "canonical_url": null,
+      "purpose": "Check every retained candidate for identity, role, professional contacts and approved field gaps.",
+      "business_approval": "approved_by_equinet",
+      "source_rights_preflight": "per_domain_terms_and_robots_preflight",
+      "runtime_readiness": "runtime_policy_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "bounded_public_web_read"
+      ],
+      "permitted_fields": [
+        "business name",
+        "current professional role",
+        "published professional email",
+        "published business phone",
+        "business location",
+        "services",
+        "disciplines",
+        "service area",
+        "credentials claimed by the business",
+        "stable or farm type",
+        "explicit horse count",
+        "dated professional activity",
+        "public professional profile URLs"
+      ],
+      "prohibited_fields": [
+        "login-gated data",
+        "private personal data",
+        "inferred email patterns",
+        "inferred horse count",
+        "named client identities"
+      ],
+      "limits": {
+        "max_pages_per_candidate": 5,
+        "max_retry_per_failed_url": 1,
+        "concurrency": 1,
+        "required_pages": [
+          "home_or_primary",
+          "about_or_team_when_available",
+          "services_when_available",
+          "contact_or_location_when_available"
+        ]
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "If no official site is located, record not_found; do not substitute an unverified directory as the official site."
+      ]
+    },
+    {
+      "source_id": "equinet_representative_confirmation",
+      "name": "Recorded Equinet representative confirmation",
+      "source_type": "first_party_human",
+      "canonical_url": null,
+      "purpose": "Record authorised corrections and business context.",
+      "business_approval": "approved_for_recorded_review",
+      "source_rights_preflight": "authorised_reviewer_required",
+      "runtime_readiness": "manual_available",
+      "register_status": "approved",
+      "allowed_access_modes": [
+        "recorded_human_confirmation"
+      ],
+      "permitted_fields": [
+        "confirmed business facts",
+        "documented correction"
+      ],
+      "prohibited_fields": [
+        "unattributed statement",
+        "outreach consent inference"
+      ],
+      "limits": {
+        "reviewer_required": true
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Must include actor and timestamp."
+      ]
+    },
+    {
+      "source_id": "official_professional_registry",
+      "name": "Additional official professional associations and registries",
+      "source_type": "official_registry",
+      "canonical_url": null,
+      "purpose": "No additional direct A2 registry access is required beyond evidence already collected by A1.",
+      "business_approval": "not_in_scope_except_a1_handoff_reuse",
+      "source_rights_preflight": "not_applicable_until_scope_changes",
+      "runtime_readiness": "not_configured",
+      "register_status": "not_selected",
+      "allowed_access_modes": [],
+      "permitted_fields": [],
+      "prohibited_fields": [
+        "new registry access",
+        "member-only data",
+        "bulk extraction"
+      ],
+      "limits": {
+        "new_source_calls": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Séverine confirmed that A2 has no additional registry or association to visit at this stage."
+      ]
+    },
+    {
+      "source_id": "a1_directory_evidence_reuse",
+      "name": "A1 directory evidence reuse",
+      "source_type": "upstream_evidence",
+      "canonical_url": null,
+      "purpose": "Reuse approved A1 directory evidence already carried in the handoff.",
+      "business_approval": "approved_for_reuse_only",
+      "source_rights_preflight": "inherits_original_evidence_scope",
+      "runtime_readiness": "available_through_handoff",
+      "register_status": "approved",
+      "allowed_access_modes": [
+        "handoff_evidence_reuse"
+      ],
+      "permitted_fields": [
+        "fields already present in the A1 evidence item"
+      ],
+      "prohibited_fields": [
+        "new directory crawl",
+        "broader A2 extraction purpose"
+      ],
+      "limits": {
+        "new_source_calls": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "A1 source approval does not authorise new A2 access."
+      ]
+    },
+    {
+      "source_id": "apify_harvestapi_linkedin_profile_search",
+      "name": "HarvestAPI LinkedIn Profile Search Scraper",
+      "source_type": "apify_community_actor",
+      "canonical_url": "https://apify.com/harvestapi/linkedin-profile-search",
+      "purpose": "Find or verify a minimum current professional role and company match after the official-site check.",
+      "business_approval": "approved_by_equinet_for_a2_business_purpose",
+      "source_rights_preflight": "blocked_pending_linkedin_rights_and_harvestapi_vendor_review",
+      "runtime_readiness": "account_connector_budget_and_build_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "apify_actor_api_after_all_gates"
+      ],
+      "permitted_fields": [
+        "person.full_name",
+        "person.role_title",
+        "organisation.business_name",
+        "organisation.public_business_location",
+        "person.public_profile_urls"
+      ],
+      "prohibited_fields": [
+        "personal email",
+        "phone or mobile",
+        "full career history",
+        "education",
+        "skills",
+        "recommendations",
+        "posts",
+        "followers or connections counts",
+        "photos",
+        "personal interests"
+      ],
+      "limits": {
+        "trigger": "named_role_gap_after_official_website_check",
+        "profile_scraper_mode": "minimum_fields_only_then_output_review",
+        "take_pages": 1,
+        "max_items_per_candidate": 5,
+        "max_retained_contacts_per_candidate": 3,
+        "automatic_query_segmentation": false,
+        "concurrency": 1,
+        "daily_cost_cap_usd": null
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Séverine confirmed the gap-only trigger.",
+        "The minimum profile field allowlist is approved as a starting point and will be reviewed against actual Actor output.",
+        "Apify currently lists pay-per-event pricing.",
+        "The Actor is maintained by HarvestAPI and is treated as a Community Actor.",
+        "Business approval does not resolve target-platform rights, vendor governance, retention or runtime readiness."
+      ]
+    },
+    {
+      "source_id": "apify_harvestapi_email_search",
+      "name": "HarvestAPI independent email search via LinkedIn Profile Search Actor",
+      "source_type": "commercial_email_search",
+      "canonical_url": "https://apify.com/harvestapi/linkedin-profile-search",
+      "purpose": "Search for a professional email for a selected matched profile after the role/company match.",
+      "business_approval": "approved_by_equinet_for_a2_business_purpose",
+      "source_rights_preflight": "blocked_pending_linkedin_rights_email_data_rights_and_harvestapi_vendor_review",
+      "runtime_readiness": "account_connector_budget_and_build_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "apify_actor_full_plus_email_after_all_gates"
+      ],
+      "permitted_fields": [
+        "professional email",
+        "email verification result",
+        "provider provenance",
+        "verification timestamp"
+      ],
+      "prohibited_fields": [
+        "personal email retention",
+        "mislabeling the email as LinkedIn-sourced",
+        "outreach consent inference",
+        "automatic send"
+      ],
+      "limits": {
+        "trigger": "selected_profile_after_role_company_match",
+        "max_email_searches_per_candidate": 3,
+        "daily_cost_cap_usd": null,
+        "concurrency": 1
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "The Actor documentation states that email search is independent from LinkedIn profile extraction.",
+        "Email provenance must identify the independent search method.",
+        "Only professional email is retained by default.",
+        "Deliverability verification does not create consent."
+      ]
+    },
+    {
+      "source_id": "search_engine_discovery",
+      "name": "Search index",
+      "source_type": "search_discovery",
+      "canonical_url": null,
+      "purpose": "Locate an official website when the A1 handoff lacks a usable URL.",
+      "business_approval": "approved_by_equinet_for_official_site_discovery",
+      "source_rights_preflight": "standard_search_terms_apply",
+      "runtime_readiness": "tool_available_not_profile_activated",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "search_results_discovery_only"
+      ],
+      "permitted_fields": [
+        "destination URL",
+        "page title"
+      ],
+      "prohibited_fields": [
+        "search snippet as retained evidence",
+        "bulk person data"
+      ],
+      "limits": {
+        "max_queries_per_candidate": 3
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Only destination pages may become evidence."
+      ]
+    },
+    {
+      "source_id": "commercial_enrichment_provider",
+      "name": "Commercial enrichment provider",
+      "source_type": "commercial_provider",
+      "canonical_url": null,
+      "purpose": "Future field-specific enrichment or verification after Equinet completes testing.",
+      "business_approval": "not_selected",
+      "source_rights_preflight": "provider_dpa_and_data_rights_pending",
+      "runtime_readiness": "not_connected",
+      "register_status": "integration_pending",
+      "allowed_access_modes": [],
+      "permitted_fields": [],
+      "prohibited_fields": [
+        "all live Mustad or Equinet data until approval"
+      ],
+      "limits": {
+        "providers_under_consideration": [
+          "Apollo",
+          "Clay"
+        ],
+        "budget_cap_usd": null
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "No paid enrichment provider is currently confirmed."
+      ]
+    },
+    {
+      "source_id": "other_social_platform_automation",
+      "name": "Other social-platform automation",
+      "source_type": "social_platform",
+      "canonical_url": null,
+      "purpose": "No approved A2 purpose at this stage.",
+      "business_approval": "not_approved",
+      "source_rights_preflight": "platform_permission_required",
+      "runtime_readiness": "not_connected",
+      "register_status": "blocked",
+      "allowed_access_modes": [],
+      "permitted_fields": [],
+      "prohibited_fields": [
+        "automated Facebook access",
+        "automated Instagram access",
+        "social graph extraction",
+        "private profile data"
+      ],
+      "limits": {
+        "calls": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Manual or official API proposals require a later explicit decision."
+      ]
+    }
+  ],
+  "open_activation_inputs": [
+    "Provide the authorised Apify workspace/account, credential route, pinned Actor build and runtime owner.",
+    "Approve an Apify spend or event cap and consumption owner.",
+    "Provide LinkedIn automated-use permission, an approved API route or a documented legal/commercial exception.",
+    "Complete HarvestAPI Community Actor privacy, security, retention, deletion and subprocessor due diligence.",
+    "Confirm raw Actor dataset retention/deletion handling.",
+    "Confirm whether a personal email returned by the independent email-search process must always be discarded; Unitalk default is discard.",
+    "Review a bounded Actor sample output before expanding the minimum profile field allowlist."
+  ]
+}

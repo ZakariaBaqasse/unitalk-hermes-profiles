@@ -1,0 +1,42 @@
+{
+  "status": "reconciliation_failed",
+  "write_plan_sha256": "5ca04ba83fad9ecd226aa4c53c023512fcff3ff7ac7d5625be0518247bab2659",
+  "receipts": [
+    {
+      "operation_id": "update-person-0",
+      "operation_type": "update_person",
+      "target_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:35:35Z"
+      }
+    },
+    {
+      "operation_id": "final-company-status",
+      "operation_type": "update_company_status",
+      "target_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-17T15:35:35Z"
+      }
+    }
+  ],
+  "temporary_person_ids": {},
+  "read_receipt": {
+    "http_status": 200,
+    "attempt": 1,
+    "received_at": "2026-09-17T15:35:35Z"
+  },
+  "mismatches": [
+    {
+      "entity": "company",
+      "field": "a2EnrichmentErrorCode",
+      "expected": null,
+      "observed": ""
+    }
+  ],
+  "external_writes": 2,
+  "completed_at": "2026-09-17T15:35:35Z"
+}

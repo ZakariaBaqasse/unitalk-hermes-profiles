@@ -1,0 +1,60 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2D",
+  "artifact": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+  "artifact_version": "1.0.0-draft.1",
+  "artifact_sha256": "aae2e0c16af015c468cfb88803aa8af6778e42f767fa0e29af3030b5c255afe6",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-26T09:01:26Z",
+  "approved_decisions": {
+    "D1": "Use a2-enrichment-record.schema.json version 1.0.0-draft.1 as the Step 2D Unitalk proposal.",
+    "D2": "Require exactly the fourteen approved canonical sections in every record revision.",
+    "D3": "Apply additionalProperties false to every locally defined structural object.",
+    "D4": "Preserve the complete A1-to-A2 handoff through the approved external schema reference.",
+    "D5": "Use generic strict canonical-value shapes while leaving business value types, units and component keys to the separate Field Catalogue.",
+    "D6": "Reference the complete Step 2C signal, return and A1 score-revision schemas; A2 remains unable to calculate a score.",
+    "D7": "Keep HubSpot, Twenty, n8n, provider and downstream IDs nullable and connector-controlled; null does not prove a check or absence.",
+    "D8": "Enforce structural no-integration and approval ceilings in the schema without claiming integration readiness.",
+    "D9": "Keep business fields, minimum packages, source rules, confidence/freshness rules, protected fields, CRM mappings and retention outside the stable schema.",
+    "D10": "Assign cross-field integrity to the deterministic Step 2E validator and full business variants to the Step 2F regression suite."
+  },
+  "technical_validation": {
+    "schema_compilation": "pass",
+    "canonical_sections": "14/14 pass",
+    "strict_local_object_schemas": "pass; 0 unstrict objects",
+    "dependency_hashes": "8/8 pass",
+    "state_vocabulary_bindings": "39/39 pass",
+    "approved_external_schema_references": "4/4 pass",
+    "crm_mapping_exclusion_checks": "4/4 pass",
+    "valid_smoke_fixtures": "2/2 pass",
+    "negative_smoke_fixtures": "5/5 pass",
+    "total_smoke_cases": "7/7 pass"
+  },
+  "version_lifecycle": {
+    "current": "1.0.0-draft.1",
+    "final_promotion_gate": "Step 2I — Canonical Data Contract Review and Promotion",
+    "target_after_final_promotion": "1.0.0"
+  },
+  "not_approved": [
+    "source access or provider use",
+    "A1/A2 integration",
+    "HubSpot or Twenty connection",
+    "n8n execution",
+    "CRM write",
+    "outreach",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2E — Deterministic Cross-Field Validator",
+  "profile_sync": {
+    "temporary_soul_updated": true,
+    "updated_at": "2026-08-26T09:01:26Z",
+    "status": "complete"
+  }
+}

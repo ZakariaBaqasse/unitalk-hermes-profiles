@@ -1,0 +1,181 @@
+{
+  "run_id": "step11-fixture-run",
+  "company_id": "company-fixture-001",
+  "enrichment_version": "step11-0.1.0",
+  "company_final_status": "PARTIALLY_ENRICHED",
+  "company_merge": {
+    "baseline": {
+      "email": {
+        "primaryEmail": "a1@example.com",
+        "additionalEmails": []
+      },
+      "phone": {
+        "primaryPhoneNumber": "+15550001",
+        "primaryPhoneCountryCode": "US",
+        "primaryPhoneCallingCode": "+1",
+        "additionalPhones": []
+      },
+      "linkedinLink": {
+        "primaryLinkUrl": "",
+        "primaryLinkLabel": "",
+        "secondaryLinks": []
+      },
+      "facebook": {
+        "primaryLinkUrl": "",
+        "primaryLinkLabel": "",
+        "secondaryLinks": []
+      },
+      "instagram": {
+        "primaryLinkUrl": "",
+        "primaryLinkLabel": "",
+        "secondaryLinks": []
+      },
+      "youtube": {
+        "primaryLinkUrl": "",
+        "primaryLinkLabel": "",
+        "secondaryLinks": []
+      },
+      "tiktok": {
+        "primaryLinkUrl": "",
+        "primaryLinkLabel": "",
+        "secondaryLinks": []
+      },
+      "xTwitter": {
+        "primaryLinkUrl": "",
+        "primaryLinkLabel": "",
+        "secondaryLinks": []
+      }
+    },
+    "baseline_sha256": "b5ce66f03724257c87f783ddfecdb9e9e775a197df367cc49322bb7d679cfa2f",
+    "company_field_updates": {
+      "email": {
+        "primaryEmail": "a1@example.com",
+        "additionalEmails": [
+          "office@example.com",
+          "alex.morgan@example.com"
+        ]
+      },
+      "phone": {
+        "primaryPhoneNumber": "+15550001",
+        "primaryPhoneCountryCode": "US",
+        "primaryPhoneCallingCode": "+1",
+        "additionalPhones": [
+          {
+            "number": "+1 (859) 555-0100",
+            "countryCode": "",
+            "callingCode": ""
+          }
+        ]
+      },
+      "linkedinLink": {
+        "primaryLinkUrl": "https://linkedin.com/company/exampleequine",
+        "primaryLinkLabel": "Linkedin",
+        "secondaryLinks": [
+          {
+            "url": "https://linkedin.com/in/alex-morgan-example",
+            "label": "Linkedin"
+          }
+        ]
+      },
+      "facebook": {
+        "primaryLinkUrl": "https://facebook.com/exampleequine",
+        "primaryLinkLabel": "Facebook",
+        "secondaryLinks": []
+      },
+      "instagram": {
+        "primaryLinkUrl": "https://instagram.com/exampleequine",
+        "primaryLinkLabel": "Instagram",
+        "secondaryLinks": []
+      },
+      "youtube": {
+        "primaryLinkUrl": "https://youtube.com/@exampleequine",
+        "primaryLinkLabel": "Youtube",
+        "secondaryLinks": []
+      },
+      "tiktok": {
+        "primaryLinkUrl": "https://tiktok.com/@exampleequine",
+        "primaryLinkLabel": "Tiktok",
+        "secondaryLinks": []
+      },
+      "xTwitter": {
+        "primaryLinkUrl": "https://x.com/exampleequine",
+        "primaryLinkLabel": "X",
+        "secondaryLinks": []
+      }
+    }
+  },
+  "resolved_people": [
+    {
+      "source_kind": "new",
+      "selection_stage": "website",
+      "twenty_person_id": null,
+      "website_person_id": "website-person-7004cbac0675cee8",
+      "provider_person_id": "fe-web-1",
+      "full_name": "Alex Morgan",
+      "first_name": "Alex",
+      "last_name": "Morgan",
+      "exact_current_role": "Stable Operations Coordinator",
+      "merged_work_emails": [
+        {
+          "value": "person1@example.com",
+          "status": "DELIVERABLE"
+        }
+      ],
+      "merged_phones": [
+        {
+          "value": "+15550101",
+          "region": "US",
+          "line_type": "MOBILE",
+          "line_status": "ACTIVE",
+          "ownership_match": "CONFIRMED"
+        }
+      ],
+      "statuses": {
+        "identity": "VERIFIED",
+        "role": "CURRENT_AT_COMPANY",
+        "priority": "UNKNOWN",
+        "company_match": "CONFIRMED",
+        "enrichment": "ENRICHED"
+      },
+      "field_decisions": {
+        "exact_current_role": "add"
+      }
+    },
+    {
+      "source_kind": "new",
+      "selection_stage": "website",
+      "twenty_person_id": null,
+      "website_person_id": "website-person-e6cdf8df308890f6",
+      "provider_person_id": "fe-web-2",
+      "full_name": "Taylor Brooks",
+      "first_name": "Taylor",
+      "last_name": "Brooks",
+      "exact_current_role": "Veterinary Receptionist",
+      "merged_work_emails": [
+        {
+          "value": "person2@example.com",
+          "status": "DELIVERABLE"
+        }
+      ],
+      "merged_phones": [
+        {
+          "value": "+15550102",
+          "region": "US",
+          "line_type": "MOBILE",
+          "line_status": "ACTIVE",
+          "ownership_match": "CONFIRMED"
+        }
+      ],
+      "statuses": {
+        "identity": "VERIFIED",
+        "role": "CURRENT_AT_COMPANY",
+        "priority": "UNKNOWN",
+        "company_match": "CONFIRMED",
+        "enrichment": "ENRICHED"
+      },
+      "field_decisions": {
+        "exact_current_role": "add"
+      }
+    }
+  ]
+}

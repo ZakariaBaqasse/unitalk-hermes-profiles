@@ -1,0 +1,64 @@
+{
+  "schema_id": "a2-fullenrich-search-requests",
+  "schema_version": "0.1.1",
+  "run_id": "A2-LOOKUP-NAME-COMPARE-20260918T101115Z",
+  "search_stage": "primary",
+  "requests": [
+    {
+      "company_id": "1ea1f492-9b84-4347-93a5-3c44013327af",
+      "company_name": "Baxter Equine and Forge",
+      "location": {
+        "city": "Weatherford",
+        "region": "TX",
+        "country": "United States"
+      },
+      "segment": "FARRIER",
+      "search_stage": "primary",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "co founder",
+        "co-founder",
+        "farrier",
+        "farrier business owner",
+        "founder",
+        "head farrier",
+        "independent farrier",
+        "lead farrier",
+        "professional farrier",
+        "self employed farrier",
+        "self-employed farrier"
+      ],
+      "limit": 1,
+      "request_id": "search-name-with-suffix",
+      "person_name": "Corey Baxter, CJF"
+    },
+    {
+      "company_id": "1ea1f492-9b84-4347-93a5-3c44013327af",
+      "company_name": "Baxter Equine and Forge",
+      "location": {
+        "city": "Weatherford",
+        "region": "TX",
+        "country": "United States"
+      },
+      "segment": "FARRIER",
+      "search_stage": "primary",
+      "target_priority": "PRIMARY",
+      "target_titles": [
+        "co founder",
+        "co-founder",
+        "farrier",
+        "farrier business owner",
+        "founder",
+        "head farrier",
+        "independent farrier",
+        "lead farrier",
+        "professional farrier",
+        "self employed farrier",
+        "self-employed farrier"
+      ],
+      "limit": 1,
+      "request_id": "search-name-without-suffix",
+      "person_name": "Corey Baxter"
+    }
+  ]
+}

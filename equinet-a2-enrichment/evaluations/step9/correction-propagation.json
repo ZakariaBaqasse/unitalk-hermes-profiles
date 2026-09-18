@@ -1,0 +1,22 @@
+{
+  "record_type": "step9_correction_propagation",
+  "profile": "equinet-a2-enrichment",
+  "status": "release_candidate_only_not_promoted",
+  "corrections": {
+    "S9-C1": "propagated_to_release_candidate_manifest",
+    "S9-C2": "propagated_to_no_integration_runtime_policy",
+    "S9-C3": "validated_in_generic_preflight_and_pilot_helper",
+    "S9-C4": "propagated_to_soul_and_skills",
+    "S9-C5": "propagated_to_soul_review_skill_and_runtime_policy",
+    "S9-C6": "recorded_as_usage_baseline_with_unknown_cost",
+    "S9-C7": "propagated_to_soul_data_quality_skill_and_runtime_policy",
+    "S9-C8": "propagated_to_runtime_policy_and_review_skill_commands"
+  },
+  "validation": {
+    "path": "evaluations/step9/phase9a-validation.json",
+    "sha256": "a1e74e0a3d26c31119e014248c87ca01fb64a77f77aad398aca343f8103506df"
+  },
+  "active_manifest_overwritten": false,
+  "profile_status_changed": false,
+  "external_actions": 0
+}

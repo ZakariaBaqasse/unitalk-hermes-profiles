@@ -1,0 +1,27 @@
+{
+  "record_type": "approved_foundation_clarification",
+  "profile": "equinet-a2-enrichment",
+  "clarification_id": "A2-PERSONAL-EMAIL-REVIEW-2026-08-26",
+  "approved_by": "Séverine, Unitalk Operations",
+  "approved_at": "2026-08-26T20:14:33Z",
+  "affected_steps": ["3A", "3C", "3D", "3F"],
+  "previous_rule": "Personal email is discarded by default pending Equinet approval.",
+  "approved_rule": {
+    "collection": "may_be_returned_by_the_approved_independent_Apify_email_search_after_all_activation_gates_pass",
+    "storage_state": "held_for_human_privacy_review",
+    "canonical_field": "person.personal_email_candidate",
+    "may_satisfy_professional_contactability_before_review": false,
+    "may_be_written_to_crm_before_review": false,
+    "may_be_used_for_outreach_before_authoritative_consent_checks_and_approval": false,
+    "provenance": "independent_HarvestAPI_email_search_not_LinkedIn",
+    "review_outcomes": ["approve_for_recorded_business_use", "reject_and_delete", "hold_for_more_evidence"],
+    "retention": "pending",
+    "runtime_activation": false
+  },
+  "implementation_status": "approved_clarification_pending_full_dependency_patch",
+  "notes": [
+    "The clarification permits review, not unrestricted operational use.",
+    "Provider rights, privacy, account, budget, retention and connector gates remain mandatory.",
+    "Deliverability verification does not create consent."
+  ]
+}

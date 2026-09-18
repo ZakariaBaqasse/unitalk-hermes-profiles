@@ -1,0 +1,21 @@
+{
+  "skill_id": "a2-field-verification",
+  "version": "0.1.0-draft.1",
+  "evals": [
+    {
+      "id": "professional-contact",
+      "purpose": "Explicit official-site business email and phone are normalised but do not create consent or final confidence.",
+      "expected": {"batch_status": "completed", "field_state": "present_unverified", "outreach_authorized": false}
+    },
+    {
+      "id": "social-url-scope",
+      "purpose": "An explicit organisation LinkedIn URL is retained under the organisation field; a scope conflict is rejected.",
+      "expected": {"valid_action": "accept_for_wave3_evidence_assessment", "invalid_action": "reject_observation"}
+    },
+    {
+      "id": "equine-inference-and-privacy",
+      "purpose": "An inferred horse count is rejected and a personal email is held for privacy review.",
+      "expected": {"horse_count_action": "reject_observation", "personal_email_action": "hold_for_privacy_review", "external_actions": 0}
+    }
+  ]
+}

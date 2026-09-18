@@ -1,0 +1,54 @@
+{
+  "step": "5E",
+  "stage": "post_promotion",
+  "status": "approved_and_promoted",
+  "skills": 10,
+  "operators": 14,
+  "regressions": [
+    {
+      "wave": "wave1",
+      "passed": true,
+      "path": "evaluations/step5b/post-promotion-validation.json",
+      "sha256": "a3963d618f299b7ef859ef97476d986ed3b8d1e2bcf83b08643d48bd4f93f9a7"
+    },
+    {
+      "wave": "wave2",
+      "passed": true,
+      "path": "evaluations/step5c/post-promotion-validation.json",
+      "sha256": "1a2e4cc92745aa0ea6e6866a36c5a33c29aed907ec636e7062bc9ccbfedc556d"
+    },
+    {
+      "wave": "wave3",
+      "passed": true,
+      "path": "evaluations/step5d/post-promotion-validation.json",
+      "sha256": "d7db185aa277567bdef5671a553dc30d1f4dc7c24f108560f4809002958fd1f9"
+    }
+  ],
+  "deterministic_replay": "58/58 pass",
+  "behavioural_replay": "10/10 pass",
+  "workflow_scenarios": [
+    {
+      "scenario": "farrier_review",
+      "passed": true,
+      "result_path": "evaluations/step5e/post-promotion-workflows/farrier_review/workflow-result.json",
+      "sha256": "006c5cb37502887ee6deea5f060670c8a1433d1f216979ca78e48ab4e8813d3e"
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "passed": true,
+      "result_path": "evaluations/step5e/post-promotion-workflows/horse_owner_requalification/workflow-result.json",
+      "sha256": "adf5504f6de3e3d18157c5f7b8ef5b13b88457b64ab788ad0e13a411eb148ed5"
+    }
+  ],
+  "active_foundation_files": 70,
+  "language_audit": {
+    "files_checked": 964,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 6 — Model, Tools, Permissions and Quotas",
+  "failures": [],
+  "pass": true
+}

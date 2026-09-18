@@ -1,0 +1,23 @@
+{
+  "skill_name": "a2-duplicate-and-eligibility-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Evaluate an eligible synthetic record with resolved identity, no local duplicate and unavailable HubSpot duplicate lookup.",
+      "expected_output": "A2 eligibility is eligible for the synthetic scope while outreach remains unavailable.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Evaluate a record with a possible duplicate from a batch or CRM check.",
+      "expected_output": "The record is held for human review and no external action is authorised.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Evaluate a record with a confirmed duplicate or conflicting identity.",
+      "expected_output": "The record is blocked with an explicit reason; outreach and CRM writes remain unauthorised.",
+      "files": []
+    }
+  ]
+}

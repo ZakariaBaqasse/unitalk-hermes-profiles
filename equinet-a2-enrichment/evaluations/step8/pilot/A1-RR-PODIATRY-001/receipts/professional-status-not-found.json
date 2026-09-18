@@ -1,0 +1,69 @@
+{
+  "preflight_version": "0.1.0-step8",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "source_id": "prospect_official_website",
+  "field_key": "person.professional_status",
+  "named_need": "Step 8 verified field observation for person.professional_status",
+  "execution_mode": "bounded_real_pilot_collection",
+  "preflight_status": "completed",
+  "field_gate": "step8_approved_official_site_field_allowlist",
+  "register_status": "conditional",
+  "business_approval": "approved_by_equinet",
+  "source_rights_preflight": "robots_checked_and_allowed",
+  "runtime_readiness": "step8_bounded_pilot",
+  "allowed_access_modes": [
+    "bounded_public_web_read"
+  ],
+  "limits": {
+    "max_pages_per_candidate": 5,
+    "max_retry_per_failed_url": 1,
+    "concurrency": 1
+  },
+  "stop_conditions": [
+    "terms_or_robots_denial",
+    "login_or_paywall",
+    "captcha",
+    "http_403",
+    "http_429",
+    "unexpected_personal_data",
+    "scope_or_budget_limit"
+  ],
+  "provider_missing_activation_gates": [],
+  "live_runtime_blocks": [],
+  "blocks": [],
+  "warnings": [],
+  "audit": {
+    "actor_profile": "equinet-a2-enrichment",
+    "trigger": "Step 8 bounded official-site collection",
+    "timestamp": "2026-08-30T13:19:53Z",
+    "run_id": "STEP8-A1-RR-PODIATRY-001",
+    "source_id": "prospect_official_website",
+    "input_scope": {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "field_key": "person.professional_status",
+      "named_need": "Verify person.professional_status"
+    },
+    "source_urls": [
+      "https://roodandriddle.com/lexington-podiatry-team"
+    ],
+    "output_reference": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+    "approval_state": "approved_bounded_real_pilot",
+    "status": "completed",
+    "retries": 0,
+    "usage_and_cost": {
+      "api_calls": 1,
+      "cost_amount": null,
+      "currency": "USD",
+      "cost_status": "unavailable"
+    }
+  },
+  "audit_complete": true,
+  "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+  "source_content_sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+  "external_call_authorized": false,
+  "external_calls": 1,
+  "external_actions": 0,
+  "outreach_authorized": false,
+  "crm_write_authorized": false,
+  "preflight_sha256": "bb0f886358dc5d74f3bb73a1048181f889464e0dd7ec5f175432f8ad61992378"
+}

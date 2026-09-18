@@ -1,0 +1,643 @@
+{
+  "manifest_id": "equinet-a2-operational-skill-architecture",
+  "version": "0.2.1",
+  "status": "approved_local_no_integration_with_incidental_personal_email_handling",
+  "profile": "equinet-a2-enrichment",
+  "created_at": "2026-08-27T12:00:31Z",
+  "active_foundation": {
+    "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+    "sha256": "4c2693e532663ac17b5347519f5655b66f1b08e1cff66a4ac86e74dc6a78b8d9"
+  },
+  "architecture_principles": {
+    "skill_packages": 10,
+    "dependency_waves": 3,
+    "operator_entrypoints": 14,
+    "canonical_json_is_lossless_source": true,
+    "business_configuration_is_referenced_not_duplicated": true,
+    "deterministic_logic_uses_scripts": true,
+    "external_system_access_requires_integration": true,
+    "default_action_mode": "draft_for_approval",
+    "a1_owns_numeric_scoring": true,
+    "no_integration_mode_has_no_external_actions": true
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "name": "Intake and Identity",
+      "objective": "Create a valid canonical A2 starting point and resolve identity, duplicate and eligibility states before research.",
+      "skill_ids": [
+        "a2-handoff-intake-and-initialisation",
+        "a2-entity-resolution-and-normalisation",
+        "a2-duplicate-and-eligibility-review"
+      ],
+      "external_tools_required": [],
+      "approval_gate": "wave_1_business_and_safety_acceptance"
+    },
+    {
+      "wave": 2,
+      "name": "Planning, Research and Verification",
+      "objective": "Plan only named gaps, apply source preflight and verify bounded observations.",
+      "skill_ids": [
+        "a2-gap-analysis-and-enrichment-planning",
+        "a2-permitted-enrichment-research",
+        "a2-field-verification"
+      ],
+      "external_tools_required": [],
+      "conditional_future_tools": [
+        "bounded official-site web access",
+        "approved FullEnrich n8n connector",
+        "separately approved Apify fallback connector"
+      ],
+      "approval_gate": "wave_2_source_and_field_acceptance"
+    },
+    {
+      "wave": 3,
+      "name": "Decision, Review and Handoffs",
+      "objective": "Create evidence-backed proposals, immutable revisions, review packages and non-executed governed handoffs.",
+      "skill_ids": [
+        "a2-evidence-confidence-and-freshness",
+        "a2-protected-field-conflict-resolution",
+        "a2-data-quality-and-review-readiness",
+        "a2-review-package-and-governed-handoffs"
+      ],
+      "external_tools_required": [],
+      "conditional_future_tools": [
+        "Twenty",
+        "HubSpot",
+        "n8n",
+        "A1/A3/A14 durable handoffs"
+      ],
+      "approval_gate": "wave_3_review_and_handoff_acceptance"
+    }
+  ],
+  "skills": [
+    {
+      "skill_id": "a2-handoff-intake-and-initialisation",
+      "package_path": "skills/a2-handoff-intake-and-initialisation",
+      "wave": 1,
+      "status": "planned_not_created",
+      "mission": "Validate an authorised A1 handoff and create or return the first immutable canonical A2 revision.",
+      "triggers": [
+        "A1 handoff received",
+        "manual no-integration handoff supplied"
+      ],
+      "inputs": [
+        "A1-to-A2 handoff 1.0.1",
+        "operating scope",
+        "idempotency ledger"
+      ],
+      "outputs": [
+        "validated intake result",
+        "canonical initial revision",
+        "receipt or rejection reason"
+      ],
+      "skill_dependencies": [],
+      "script_dependencies": [
+        "a2-intake"
+      ],
+      "boundaries": [
+        "no research",
+        "no handoff mutation",
+        "no external delivery claim without receipt"
+      ],
+      "representative_evaluations": [
+        "accepted organisation-only handoff",
+        "invalid approval/hash rejection",
+        "idempotent retry and collision"
+      ]
+    },
+    {
+      "skill_id": "a2-entity-resolution-and-normalisation",
+      "package_path": "skills/a2-entity-resolution-and-normalisation",
+      "wave": 1,
+      "status": "planned_not_created",
+      "mission": "Normalise person and organisation identity while preserving source values and surfacing ambiguity.",
+      "triggers": [
+        "canonical record initialised",
+        "identity or relationship ambiguity detected"
+      ],
+      "inputs": [
+        "canonical A2 revision",
+        "immutable A1 identity",
+        "approved normalisation rules"
+      ],
+      "outputs": [
+        "normalised identity proposal",
+        "match status",
+        "ambiguity or conflict record"
+      ],
+      "skill_dependencies": [
+        "a2-handoff-intake-and-initialisation"
+      ],
+      "script_dependencies": [
+        "a2-normalise-resolve-entities"
+      ],
+      "boundaries": [
+        "no invented entity",
+        "no unproven relationship",
+        "domain is not a unique key"
+      ],
+      "representative_evaluations": [
+        "exact person-plus-company match",
+        "same-name ambiguous match",
+        "candidate alias not assigned to an entity"
+      ]
+    },
+    {
+      "skill_id": "a2-duplicate-and-eligibility-review",
+      "package_path": "skills/a2-duplicate-and-eligibility-review",
+      "wave": 1,
+      "status": "planned_not_created",
+      "mission": "Evaluate duplicate and eligibility evidence without inferring unavailable CRM checks.",
+      "triggers": [
+        "identity proposal available",
+        "duplicate or exclusion signal present"
+      ],
+      "inputs": [
+        "resolved identity proposal",
+        "A1 duplicate evidence",
+        "authoritative checks when connected"
+      ],
+      "outputs": [
+        "continue, hold or block recommendation",
+        "duplicate checks",
+        "eligibility reasons"
+      ],
+      "skill_dependencies": [
+        "a2-entity-resolution-and-normalisation"
+      ],
+      "script_dependencies": [
+        "a2-duplicate-eligibility"
+      ],
+      "boundaries": [
+        "possible duplicate means hold",
+        "confirmed duplicate or exclusion means block",
+        "unavailable is not clear"
+      ],
+      "representative_evaluations": [
+        "no duplicate",
+        "possible duplicate hold",
+        "confirmed exclusion block"
+      ]
+    },
+    {
+      "skill_id": "a2-gap-analysis-and-enrichment-planning",
+      "package_path": "skills/a2-gap-analysis-and-enrichment-planning",
+      "wave": 2,
+      "status": "planned_not_created",
+      "mission": "Compare reusable evidence with the applicable minimum package and create a bounded field-level plan.",
+      "triggers": [
+        "Wave 1 record can continue",
+        "targeted enrichment fields requested"
+      ],
+      "inputs": [
+        "canonical revision",
+        "Business Field Catalogue",
+        "Minimum Data Packages",
+        "source availability"
+      ],
+      "outputs": [
+        "named gap/conflict/freshness list",
+        "bounded enrichment plan",
+        "no-research decision when complete"
+      ],
+      "skill_dependencies": [
+        "a2-duplicate-and-eligibility-review"
+      ],
+      "script_dependencies": [
+        "a2-build-gap-plan",
+        "a2-evaluate-minimum-package"
+      ],
+      "boundaries": [
+        "reuse A1 first",
+        "optional gaps do not block",
+        "missing required data does not reject or rescore"
+      ],
+      "representative_evaluations": [
+        "complete Farrier needs no research",
+        "required gap creates plan",
+        "exhausted required gap becomes hold"
+      ]
+    },
+    {
+      "skill_id": "a2-permitted-enrichment-research",
+      "package_path": "skills/a2-permitted-enrichment-research",
+      "wave": 2,
+      "status": "planned_not_created",
+      "mission": "Execute or simulate only a source-policy-approved, field-bounded enrichment plan.",
+      "triggers": [
+        "approved enrichment plan contains an authorised source action"
+      ],
+      "inputs": [
+        "enrichment plan",
+        "A2 Source Register",
+        "provider policy",
+        "runtime permissions"
+      ],
+      "outputs": [
+        "source attempts",
+        "raw bounded observations",
+        "blocked/not-found/error states",
+        "audit usage"
+      ],
+      "skill_dependencies": [
+        "a2-gap-analysis-and-enrichment-planning"
+      ],
+      "script_dependencies": [
+        "a2-source-preflight",
+        "a2-social-link-classifier"
+      ],
+      "boundaries": [
+        "no second discovery crawl",
+        "no social-profile opening",
+        "Apify blocked until all gates",
+        "one targeted retry"
+      ],
+      "representative_evaluations": [
+        "official-site bounded plan",
+        "explicit LinkedIn company URL retained",
+        "blocked Apify request"
+      ]
+    },
+    {
+      "skill_id": "a2-field-verification",
+      "package_path": "skills/a2-field-verification",
+      "wave": 2,
+      "status": "planned_not_created",
+      "mission": "Normalise and verify contact, professional and equine-business observations against approved field rules.",
+      "triggers": [
+        "bounded observations are available"
+      ],
+      "inputs": [
+        "observation batch",
+        "Business Field Catalogue",
+        "source and evidence references"
+      ],
+      "outputs": [
+        "field assessments",
+        "normalised proposals",
+        "unresolved or conflicting values"
+      ],
+      "skill_dependencies": [
+        "a2-permitted-enrichment-research"
+      ],
+      "script_dependencies": [
+        "a2-normalise-validate-observations"
+      ],
+      "boundaries": [
+        "no guessed contact",
+        "person and organisation URLs remain separate",
+        "horse count is never inferred"
+      ],
+      "representative_evaluations": [
+        "professional contact verification",
+        "organisation social URL classification",
+        "ambiguous role or horse count"
+      ]
+    },
+    {
+      "skill_id": "a2-evidence-confidence-and-freshness",
+      "package_path": "skills/a2-evidence-confidence-and-freshness",
+      "wave": 3,
+      "status": "planned_not_created",
+      "mission": "Create traceable evidence records and deterministic confidence, verification and freshness results.",
+      "triggers": [
+        "verified observation requires canonical evidence"
+      ],
+      "inputs": [
+        "field observations",
+        "Evidence Policy",
+        "source receipts"
+      ],
+      "outputs": [
+        "evidence records",
+        "confidence score/level",
+        "verification and freshness states"
+      ],
+      "skill_dependencies": [
+        "a2-field-verification"
+      ],
+      "script_dependencies": [
+        "a2-evaluate-evidence-confidence"
+      ],
+      "boundaries": [
+        "confidence is not ICP fit",
+        "blocked sources score zero",
+        "unknown remains unknown"
+      ],
+      "representative_evaluations": [
+        "official-site direct fact",
+        "stale time-sensitive fact",
+        "material conflict cap"
+      ]
+    },
+    {
+      "skill_id": "a2-protected-field-conflict-resolution",
+      "package_path": "skills/a2-protected-field-conflict-resolution",
+      "wave": 3,
+      "status": "planned_not_created",
+      "mission": "Compare observations with baseline values and produce safe field-level proposals without overwriting protected data.",
+      "triggers": [
+        "verified observation differs from a baseline",
+        "protected or manual value encountered"
+      ],
+      "inputs": [
+        "field assessment",
+        "Protected Fields Policy",
+        "evidence result"
+      ],
+      "outputs": [
+        "no-change, add, update, preserve-and-hold or block proposal"
+      ],
+      "skill_dependencies": [
+        "a2-evidence-confidence-and-freshness"
+      ],
+      "script_dependencies": [
+        "a2-evaluate-protected-field-action"
+      ],
+      "boundaries": [
+        "no silent overwrite",
+        "no consent/owner/lifecycle change",
+        "low confidence is not a fact"
+      ],
+      "representative_evaluations": [
+        "empty unprotected field",
+        "different manual value",
+        "authoritative consent conflict"
+      ]
+    },
+    {
+      "skill_id": "a2-data-quality-and-review-readiness",
+      "package_path": "skills/a2-data-quality-and-review-readiness",
+      "wave": 3,
+      "status": "planned_not_created",
+      "mission": "Evaluate record completeness and create the next immutable revision with an explicit review recommendation.",
+      "triggers": [
+        "field proposals are complete",
+        "research is exhausted",
+        "record revision requested"
+      ],
+      "inputs": [
+        "field assessments",
+        "Minimum Data Packages",
+        "prior canonical revision"
+      ],
+      "outputs": [
+        "data-quality result",
+        "workflow recommendation",
+        "new immutable revision"
+      ],
+      "skill_dependencies": [
+        "a2-protected-field-conflict-resolution"
+      ],
+      "script_dependencies": [
+        "a2-evaluate-minimum-package",
+        "a2-create-revision"
+      ],
+      "boundaries": [
+        "no automatic rejection for a gap",
+        "prior revisions remain immutable",
+        "A2 never recalculates A1 score"
+      ],
+      "representative_evaluations": [
+        "review-ready Farrier",
+        "required gap still open",
+        "material conflict held"
+      ]
+    },
+    {
+      "skill_id": "a2-review-package-and-governed-handoffs",
+      "package_path": "skills/a2-review-package-and-governed-handoffs",
+      "wave": 3,
+      "status": "planned_not_created",
+      "mission": "Render lossless review views and prepare, validate or receive strictly gated Twenty, A1, HubSpot, A3 and A14 payloads.",
+      "triggers": [
+        "record is ready for review",
+        "review receipt received",
+        "approved downstream preparation requested"
+      ],
+      "inputs": [
+        "validated canonical revision",
+        "review decision or receipt",
+        "destination contract"
+      ],
+      "outputs": [
+        "Markdown/CSV/XLSX package",
+        "new correction revision",
+        "prepared handoff or proposed patch"
+      ],
+      "skill_dependencies": [
+        "a2-data-quality-and-review-readiness"
+      ],
+      "script_dependencies": [
+        "a2-render-review-package",
+        "a2-twenty-review",
+        "a2-governed-handoff"
+      ],
+      "boundaries": [
+        "canonical JSON remains authoritative",
+        "no delivery/write claim without receipt",
+        "A1 alone produces score revisions"
+      ],
+      "representative_evaluations": [
+        "manual review package",
+        "Twenty receipt mismatch",
+        "A1 requalification and HubSpot proposal remain unexecuted"
+      ]
+    }
+  ],
+  "operator_commands": [
+    {
+      "command_id": "a2-intake",
+      "entrypoint": "scripts/a2_intake.py",
+      "status": "planned_wrapper",
+      "wave": 1,
+      "owner_skill": "a2-handoff-intake-and-initialisation",
+      "uses": [
+        "scripts/validate_a1_to_a2_handoff.py",
+        "scripts/initialize_a2_record.py",
+        "scripts/validate_a2_enrichment_record.py"
+      ]
+    },
+    {
+      "command_id": "a2-normalise-resolve-entities",
+      "entrypoint": "scripts/normalise_and_resolve_a2_entities.py",
+      "status": "to_build",
+      "wave": 1,
+      "owner_skill": "a2-entity-resolution-and-normalisation",
+      "uses": []
+    },
+    {
+      "command_id": "a2-duplicate-eligibility",
+      "entrypoint": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "status": "to_build",
+      "wave": 1,
+      "owner_skill": "a2-duplicate-and-eligibility-review",
+      "uses": []
+    },
+    {
+      "command_id": "a2-build-gap-plan",
+      "entrypoint": "scripts/build_a2_gap_plan.py",
+      "status": "to_build",
+      "wave": 2,
+      "owner_skill": "a2-gap-analysis-and-enrichment-planning",
+      "uses": [
+        "scripts/evaluate_a2_minimum_package.py"
+      ]
+    },
+    {
+      "command_id": "a2-evaluate-minimum-package",
+      "entrypoint": "scripts/evaluate_a2_minimum_package.py",
+      "status": "existing_reuse",
+      "wave": 2,
+      "owner_skill": "a2-gap-analysis-and-enrichment-planning",
+      "uses": []
+    },
+    {
+      "command_id": "a2-source-preflight",
+      "entrypoint": "scripts/preflight_a2_source_action.py",
+      "status": "to_build",
+      "wave": 2,
+      "owner_skill": "a2-permitted-enrichment-research",
+      "uses": []
+    },
+    {
+      "command_id": "a2-social-link-classifier",
+      "entrypoint": "scripts/classify_official_site_social_link.py",
+      "status": "existing_reuse",
+      "wave": 2,
+      "owner_skill": "a2-permitted-enrichment-research",
+      "uses": []
+    },
+    {
+      "command_id": "a2-normalise-validate-observations",
+      "entrypoint": "scripts/normalise_and_validate_a2_observations.py",
+      "status": "to_build",
+      "wave": 2,
+      "owner_skill": "a2-field-verification",
+      "uses": [
+        "scripts/classify_official_site_social_link.py"
+      ]
+    },
+    {
+      "command_id": "a2-evaluate-evidence-confidence",
+      "entrypoint": "scripts/evaluate_a2_evidence_confidence.py",
+      "status": "existing_reuse",
+      "wave": 3,
+      "owner_skill": "a2-evidence-confidence-and-freshness",
+      "uses": []
+    },
+    {
+      "command_id": "a2-evaluate-protected-field-action",
+      "entrypoint": "scripts/evaluate_a2_protected_field_action.py",
+      "status": "existing_reuse",
+      "wave": 3,
+      "owner_skill": "a2-protected-field-conflict-resolution",
+      "uses": []
+    },
+    {
+      "command_id": "a2-create-revision",
+      "entrypoint": "scripts/create_a2_revision.py",
+      "status": "to_build",
+      "wave": 3,
+      "owner_skill": "a2-data-quality-and-review-readiness",
+      "uses": [
+        "scripts/validate_a2_enrichment_record.py"
+      ]
+    },
+    {
+      "command_id": "a2-render-review-package",
+      "entrypoint": "scripts/render_and_validate_a2_review_package.py",
+      "status": "planned_wrapper",
+      "wave": 3,
+      "owner_skill": "a2-review-package-and-governed-handoffs",
+      "uses": [
+        "scripts/render_a2_review_views.py"
+      ]
+    },
+    {
+      "command_id": "a2-twenty-review",
+      "entrypoint": "scripts/build_and_validate_a2_twenty_review.py",
+      "status": "planned_wrapper_integration_disabled",
+      "wave": 3,
+      "owner_skill": "a2-review-package-and-governed-handoffs",
+      "uses": [
+        "scripts/build_step3h_twenty_review.py",
+        "scripts/validate_step3h_twenty_review.py"
+      ]
+    },
+    {
+      "command_id": "a2-governed-handoff",
+      "entrypoint": "scripts/build_and_validate_a2_handoff.py",
+      "status": "to_build_delivery_disabled",
+      "wave": 3,
+      "owner_skill": "a2-review-package-and-governed-handoffs",
+      "uses": []
+    }
+  ],
+  "supporting_modules_not_counted_as_operator_entrypoints": [
+    "scripts/validate_a1_to_a2_handoff.py",
+    "scripts/initialize_a2_record.py",
+    "scripts/validate_a2_enrichment_record.py",
+    "scripts/render_a2_review_views.py",
+    "scripts/classify_official_site_social_link.py"
+  ],
+  "profile_orchestration_entrypoint": {
+    "path": "scripts/run_a2_no_integration_workflow.py",
+    "status": "to_build_after_wave_3",
+    "counted_in_operator_entrypoints": false,
+    "reason": "It orchestrates approved skill commands but is not owned by one business skill package."
+  },
+  "integration_boundary": {
+    "step_5": "Build skills, local deterministic scripts, schemas and fixture-backed outputs without live integrations.",
+    "step_6": "Configure models, tool allowlists, permissions, quotas and runtime controls.",
+    "step_8": "Run bounded official-site checks only after the approved runtime policy is active.",
+    "step_10": "Connect FullEnrich through n8n first, then Twenty, HubSpot and any separately approved Apify fallback; replace preparation-only commands with guarded execution adapters.",
+    "current_external_actions_authorized": false,
+    "apify_runtime_active": false,
+    "hubspot_write_authorized": false,
+    "outreach_authorized": false,
+    "fullenrich_runtime_active": false,
+    "n8n_runtime_active": false
+  },
+  "wave_delivery_method": [
+    "create all skill packages and scripts in the wave",
+    "run package and static validation",
+    "run deterministic positive and negative fixtures",
+    "run two or three targeted profile-level behavioural cases",
+    "present complete business review in chat",
+    "obtain explicit Séverine approval",
+    "promote the whole wave atomically and rerun regression checks"
+  ],
+  "decision_checkpoint": {
+    "decision_ids": [
+      "5A-1",
+      "5A-2",
+      "5A-3",
+      "5A-4",
+      "5A-5",
+      "5A-6",
+      "5A-7",
+      "5A-8",
+      "5A-9",
+      "5A-10"
+    ],
+    "approval_required_before_wave_1_build": false,
+    "next_gate_after_approval": "Step 5B — Wave 1 Intake and Identity",
+    "decision": "approved"
+  },
+  "approved_at": "2026-08-27T12:10:52Z",
+  "approved_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "personal_email_policy": {
+    "requested_by_default": false,
+    "incidental_return_retained": true,
+    "canonical_field": "person.personal_email_candidate",
+    "human_review_required": true,
+    "professional_contactability": false,
+    "automatic_crm_write": false,
+    "outreach_authority": false
+  }
+}

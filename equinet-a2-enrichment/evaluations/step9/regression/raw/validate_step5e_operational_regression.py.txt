@@ -1,0 +1,18 @@
+{
+  "pass": false,
+  "skills": 10,
+  "operators": "14/14",
+  "deterministic": "58/58",
+  "behavioural": "10/10",
+  "workflows": "2/2",
+  "status": "validation_failed",
+  "failures": [
+    "runtime hash mismatch: skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+    "runtime hash mismatch: skills/a2-data-quality-and-review-readiness/SKILL.md",
+    "runtime hash mismatch: skills/a2-review-package-and-governed-handoffs/SKILL.md",
+    "active foundation mismatches: ['SOUL.md', 'skills/a2-gap-analysis-and-enrichment-planning/SKILL.md', 'skills/a2-data-quality-and-review-readiness/SKILL.md', 'skills/a2-review-package-and-governed-handoffs/SKILL.md', 'config.yaml']",
+    "wave1 post-promotion regression failed",
+    "wave2 post-promotion regression failed",
+    "wave3 post-promotion regression failed"
+  ]
+}

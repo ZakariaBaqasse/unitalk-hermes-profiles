@@ -1,0 +1,49 @@
+{
+  "manifest_id": "equinet-a2-step5a-promotion",
+  "version": "0.1.0",
+  "status": "approved_and_promoted",
+  "files": [
+    {
+      "path": "foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json",
+      "bytes": 20646,
+      "sha256": "c91351814a084cffd020c0f6890bca88fb6550f117e5e85c79516294899d1a37"
+    },
+    {
+      "path": "foundations/A2-OPERATIONAL-SKILL-ARCHITECTURE.md",
+      "bytes": 7503,
+      "sha256": "3c3de61e656872b89f54f2dbdfdbcc559987a07862d64d10b338ab69123da806"
+    },
+    {
+      "path": "evaluations/step5a/A2-OPERATIONAL-SKILL-ARCHITECTURE-REVIEW.md",
+      "bytes": 1701,
+      "sha256": "cf79357c3eadaa3811aa4a5d688debabd885e7465c19387d10150c34dfec4c48"
+    },
+    {
+      "path": "evaluations/step5a/technical-validation.json",
+      "bytes": 4779,
+      "sha256": "5066058a39b25e1ac968f0d95b8fd8fb8876815f1eab6f7c25bedf571a30c946"
+    },
+    {
+      "path": "evaluations/step5a/acceptance-record.json",
+      "bytes": 1551,
+      "sha256": "70e93f7e2d5fca84c6280afffb19406f6a9699b412960d2743400d88c385152a"
+    },
+    {
+      "path": "SOUL.md",
+      "bytes": 17510,
+      "sha256": "9de55640849ef2c4abbcf7c2185aa290eb55a25ab6a819939c923d0786cdc5aa"
+    },
+    {
+      "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 9981,
+      "sha256": "4c2693e532663ac17b5347519f5655b66f1b08e1cff66a4ac86e74dc6a78b8d9"
+    }
+  ],
+  "mutable_operational_documents": [
+    {
+      "path": "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "status": "advanced_after_step5a_promotion"
+    }
+  ],
+  "external_actions": 0
+}

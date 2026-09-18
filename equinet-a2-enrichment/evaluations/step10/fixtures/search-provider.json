@@ -1,0 +1,78 @@
+{
+  "search-company": {
+    "people": [
+      {
+        "id": "fe-owner",
+        "full_name": "Jordan Owner",
+        "first_name": "Jordan",
+        "last_name": "Owner",
+        "location": {
+          "city": "Lexington",
+          "region": "Kentucky",
+          "country": "United States",
+          "country_code": "US"
+        },
+        "social_profiles": {
+          "professional_network": {
+            "url": "https://www.linkedin.com/in/fe-owner"
+          }
+        },
+        "employment": {
+          "current": {
+            "title": "Farm Owner",
+            "description": "Responsible for horse care and farm operations.",
+            "is_current": true,
+            "company": {
+              "id": "fe-company-1",
+              "name": "Bluegrass Farm",
+              "domain": null,
+              "social_profiles": {
+                "professional_network": {
+                  "url": "https://www.linkedin.com/company/bluegrass-farm"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "fe-manager",
+        "full_name": "Morgan Manager",
+        "first_name": "Morgan",
+        "last_name": "Manager",
+        "location": {
+          "city": "Lexington",
+          "region": "Kentucky",
+          "country": "United States",
+          "country_code": "US"
+        },
+        "social_profiles": {
+          "professional_network": {
+            "url": "https://www.linkedin.com/in/fe-manager"
+          }
+        },
+        "employment": {
+          "current": {
+            "title": "Stable Manager",
+            "description": "Responsible for horse care and farm operations.",
+            "is_current": true,
+            "company": {
+              "id": "fe-company-1",
+              "name": "Bluegrass Farm",
+              "domain": null,
+              "social_profiles": {
+                "professional_network": {
+                  "url": "https://www.linkedin.com/company/bluegrass-farm"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "metadata": {
+      "total": 2,
+      "credits": 0.5
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema_id": "a2-fullenrich-lookup-requests",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "company_id": null,
+  "created_at": "2026-09-15T12:36:22Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "requests": [],
+  "blocked_requests": [],
+  "artifact_sha256": "02f383952eddd334e40160982756d4672c0fd49b632f23151516dbf5f6d40e20"
+}

@@ -1,0 +1,43 @@
+{
+  "lookup-existing": {
+    "people": [
+      {
+        "id": "fe-existing",
+        "full_name": "Taylor Existing",
+        "first_name": "Taylor",
+        "last_name": "Existing",
+        "location": {
+          "city": "Lexington",
+          "region": "Kentucky",
+          "country": "United States",
+          "country_code": "US"
+        },
+        "social_profiles": {
+          "professional_network": {
+            "url": "https://www.linkedin.com/in/taylor-existing"
+          }
+        },
+        "employment": {
+          "current": {
+            "title": "Trainer",
+            "description": "Responsible for horse care and farm operations.",
+            "is_current": true,
+            "company": {
+              "id": "fe-company-1",
+              "name": "Bluegrass Farm",
+              "domain": null,
+              "social_profiles": {
+                "professional_network": {
+                  "url": "https://www.linkedin.com/company/bluegrass-farm"
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "metadata": {
+      "credits": 0.25
+    }
+  }
+}

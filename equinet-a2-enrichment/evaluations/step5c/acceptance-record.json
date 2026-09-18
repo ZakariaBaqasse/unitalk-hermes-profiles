@@ -1,0 +1,39 @@
+{
+  "record_type": "wave_skill_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "5C",
+  "wave": 2,
+  "decision": "approved_and_promoted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-27T13:32:09Z",
+  "approved_decisions": [
+    "W2-1",
+    "W2-2",
+    "W2-3",
+    "W2-4",
+    "W2-5",
+    "W2-6",
+    "W2-7",
+    "W2-8",
+    "W2-9",
+    "W2-10"
+  ],
+  "runtime_manifest": "foundations/contracts/skills/a2-wave2-runtime-manifest-0.1.0.json",
+  "runtime_manifest_sha256": "34072acbf10a7c14ec7d32b668d8a307a223b04100f41b3be6e862d42a6959bc",
+  "technical_validation": "evaluations/step5c/technical-validation.json",
+  "technical_validation_sha256": "1e9cc54141a51993c48c9313132f8f7537ace6dda1dc48adc78330104b99a150",
+  "behavioural_validation": "evaluations/step5c/behavioural-validation.json",
+  "behavioural_validation_sha256": "2bccfa3c5d3f2cd332c7490826df907b17b3b18588991ecff25ac8bfd36975d6",
+  "active_foundation_manifest": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+  "active_foundation_manifest_sha256": "daf6dbb34cb18e6716d6a4084a5b279e7ff50a4f7a9cd30b846af97d8ef375bb",
+  "skill_count": 3,
+  "deterministic_cases": "24/24 pass",
+  "behavioural_scenarios": "3/3 pass",
+  "external_calls": 0,
+  "external_actions": 0,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 5D — Wave 3 Decision, Review and Handoffs"
+}

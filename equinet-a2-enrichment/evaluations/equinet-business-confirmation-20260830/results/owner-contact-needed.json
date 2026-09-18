@@ -1,0 +1,27 @@
+{
+  "fixture_id": "owner-contact-needed",
+  "segment": "horse_owner",
+  "package": "horse_owner_review_ready",
+  "package_status": "incomplete",
+  "data_quality_status": "incomplete",
+  "workflow_recommendation": "review_required",
+  "missing_required_fields": [],
+  "unsatisfied_contact_requirements": [],
+  "preferred_missing_fields": [],
+  "documented_exception_fields": [],
+  "conflict_field_keys": [],
+  "error_field_keys": [],
+  "automatic_rejection": false,
+  "automatic_a1_score_change": false,
+  "external_action_authorized": false,
+  "human_review_required": true,
+  "review_queue_label": "Contact Needed / Needs Review",
+  "human_dispositions": [
+    "needs_changes",
+    "held",
+    "approved_collect_during_discovery",
+    "rejected_for_explicit_business_reason"
+  ],
+  "outreach_readiness_status": "unavailable",
+  "errors": []
+}

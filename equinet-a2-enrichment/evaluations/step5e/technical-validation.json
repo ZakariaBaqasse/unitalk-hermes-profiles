@@ -1,0 +1,163 @@
+{
+  "step": "5E",
+  "status": "approved_and_promoted",
+  "approved_skills": 10,
+  "operator_commands": 14,
+  "compile_checks": [
+    {
+      "path": "scripts/a2_intake.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/normalise_and_resolve_a2_entities.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/classify_official_site_social_link.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/create_a2_revision.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/render_and_validate_a2_review_package.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/build_and_validate_a2_twenty_review.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/a2_wave2_contracts.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/a2_wave3_contracts.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/run_a2_no_integration_workflow.py",
+      "passed": true
+    }
+  ],
+  "wave_regressions": [
+    {
+      "wave": "wave1",
+      "passed": true,
+      "path": "evaluations/step5b/post-promotion-validation.json",
+      "sha256": "aeeab31f02b8ee23ae0c5a65ff0fcd74356d8fff02e7499cd297fedfd4279c89"
+    },
+    {
+      "wave": "wave2",
+      "passed": true,
+      "path": "evaluations/step5c/post-promotion-validation.json",
+      "sha256": "1ebe7b9d1d5a5bb8b047bfaa6fd7ced5737be01316fdeb2b10712a84ce583eef"
+    },
+    {
+      "wave": "wave3",
+      "passed": true,
+      "path": "evaluations/step5d/post-promotion-validation.json",
+      "sha256": "e855a50ec469ef335d6150cfee1facc669b18315c7ca141de50adbb5c1a5e625"
+    }
+  ],
+  "deterministic_replay": {
+    "passed": 58,
+    "total": 58
+  },
+  "behavioural_replay": {
+    "passed": 10,
+    "total": 10
+  },
+  "workflow_scenarios": [
+    {
+      "scenario": "farrier_review",
+      "passed": true,
+      "result_path": "evaluations/step5e/workflows/farrier_review/workflow-result.json",
+      "result_sha256": "eb699daff4c4c12b88c51b7396b9553e57091f6558e44eb735b2e0b62712ea84",
+      "operator_count": 14,
+      "semantic_checks": {
+        "all_operators_covered": true,
+        "external_actions_zero": true,
+        "review_package_valid": true,
+        "handoff_not_delivered": true,
+        "expected_handoff_state": true
+      }
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "passed": true,
+      "result_path": "evaluations/step5e/workflows/horse_owner_requalification/workflow-result.json",
+      "result_sha256": "75ecc0f2e9bc35e339a870f8b6301767a9a06f2188c2193a8e3e2ee794d23f60",
+      "operator_count": 14,
+      "semantic_checks": {
+        "all_operators_covered": true,
+        "external_actions_zero": true,
+        "review_package_valid": true,
+        "handoff_not_delivered": true,
+        "expected_handoff_state": true
+      }
+    }
+  ],
+  "operator_coverage": [
+    "a2-build-gap-plan",
+    "a2-create-revision",
+    "a2-duplicate-eligibility",
+    "a2-evaluate-evidence-confidence",
+    "a2-evaluate-minimum-package",
+    "a2-evaluate-protected-field-action",
+    "a2-governed-handoff",
+    "a2-intake",
+    "a2-normalise-resolve-entities",
+    "a2-normalise-validate-observations",
+    "a2-render-review-package",
+    "a2-social-link-classifier",
+    "a2-source-preflight",
+    "a2-twenty-review"
+  ],
+  "active_foundation_files": 66,
+  "language_audit": {
+    "files_checked": 791,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "approval_required": false,
+  "promotion_performed": true,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate_after_approval": "Step 6 — Model, Tools, Permissions and Quotas",
+  "failures": [],
+  "pass": true
+}

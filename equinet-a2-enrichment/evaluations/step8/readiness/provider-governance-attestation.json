@@ -1,0 +1,73 @@
+{
+  "record_type": "step8_unitalk_provider_governance_attestation",
+  "profile": "equinet-a2-enrichment",
+  "attested_at": "2026-08-30T11:53:11Z",
+  "attested_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations",
+    "authority_statement": "Authorised to attest the Unitalk AI Gateway configuration for the bounded Equinet A2 pilot."
+  },
+  "scope": "Equinet A2 bounded pilot using approved public business data only",
+  "primary_model_route": {
+    "logical_model": "deepseek-v4-flash",
+    "gateway": "Unitalk AI Gateway / LiteLLM",
+    "upstream_provider": "Microsoft Azure",
+    "processing_region": "Europe",
+    "configuration_attestation": "confirmed",
+    "per_request_telemetry": "unavailable_to_severine",
+    "prompts_used_for_training": false,
+    "azure_prompt_retention": "zero_data_retention_attested"
+  },
+  "fallback": {
+    "logical_model": "Gemini 3.7 Flash",
+    "enabled_for_real_pilot": false,
+    "on_primary_failure": "save_partial_artifacts_stop_and_notify"
+  },
+  "gateway_access": {
+    "access_restricted_to_strictly_authorised_personnel": true,
+    "prompt_content_logging_configuration": "not_independently_verified",
+    "metadata_logging": "permitted_for_audit_and_consumption",
+    "credentials_logged": false
+  },
+  "dpa": {
+    "title": "Unitalk Data Processing Addendum",
+    "effective_date": "2025-05-01",
+    "source_url": "https://unitalkai.notion.site/1d1de781e98f80478ae9ca638094ddcd?v=1d1de781e98f8003baf1000cfe42792e&p=1d1de781e98f80f28f17f2adac72b246&pm=s",
+    "applies_to_equinet": true,
+    "customer_personal_data_categories_include": [
+      "name",
+      "business email",
+      "telephone number",
+      "company",
+      "work location",
+      "professional occupation and position"
+    ],
+    "special_categories_expected": false,
+    "return_or_deletion": "governed by DPA section 10 and applicable legal retention"
+  },
+  "subprocessor_evidence": {
+    "source_url": "https://unitalkai.notion.site/Sub-Processors-1d1de781e98f804baed1f56f3fa5afda",
+    "foundation_model_provider_policy": "Zero Data Retention",
+    "microsoft_azure_foundry": {
+      "listed": true,
+      "processing_activity": "data processing and generation",
+      "location": "EU",
+      "implementation_date": "2026-05-01"
+    },
+    "google": {
+      "listed": true,
+      "location": "EU",
+      "not_used_in_this_pilot": true
+    }
+  },
+  "web_service_evidence": {
+    "exa_and_firecrawl": "previously approved and used in the A1 public-site pilot; global Unitalk credentials and synthetic connectivity verified",
+    "purpose_limitation": "official-site discovery and bounded public-page extraction only"
+  },
+  "decision": "approved_for_two_candidate_bounded_public_data_pilot",
+  "real_data_scope_limited_to": [
+    "A1-DARLEY-JONABELL-001",
+    "A1-RR-PODIATRY-001"
+  ],
+  "external_actions_authorized": false
+}

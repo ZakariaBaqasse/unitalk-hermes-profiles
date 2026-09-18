@@ -1,0 +1,17 @@
+{
+  "handoff_ids": {
+    "A1A2-PILOT-DARLEY-JONABELL-001": {
+      "a2_record_id": "A2-INIT_D21BC65DDC16BB6B66F3",
+      "handoff_sha256": "d21bc65ddc16bb6b66f367b0bce19b27a8f30f9face4f61470ee1c26ec1672d4",
+      "record_revision_id": "A2-REV-INIT_87BFA8853FF7180C3F26_001"
+    }
+  },
+  "idempotency_keys": {
+    "A1A2-IDEMP-PILOT-DARLEY-JONABELL-001": {
+      "a2_record_id": "A2-INIT_D21BC65DDC16BB6B66F3",
+      "handoff_sha256": "d21bc65ddc16bb6b66f367b0bce19b27a8f30f9face4f61470ee1c26ec1672d4",
+      "record_revision_id": "A2-REV-INIT_87BFA8853FF7180C3F26_001"
+    }
+  },
+  "version": "0.1.0"
+}

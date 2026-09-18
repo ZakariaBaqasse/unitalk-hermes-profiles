@@ -1,0 +1,138 @@
+{
+  "record_type": "step9_preflight_audit",
+  "profile": "equinet-a2-enrichment",
+  "step": "9",
+  "status": "started_preflight_corrections_required",
+  "step8_acceptance_valid": true,
+  "active_foundation": {
+    "declared_status": "foundation_configured_not_pilot_ready",
+    "files": 70,
+    "matching": 65,
+    "mismatches": [
+      {
+        "path": "SOUL.md",
+        "exists": true,
+        "declared_sha256": "5eaa390f32c6a31539dc614f81664723c7d76b104a903958d5398c6d7b6ccf65",
+        "actual_sha256": "95ba2f8c88079692569b73234282f56fb35e6eb209cd1036791f1e0d83fccafe",
+        "hash_matches": false,
+        "declared_bytes": 18373,
+        "actual_bytes": 19431
+      },
+      {
+        "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+        "exists": true,
+        "declared_sha256": "cafec340031d65a4e480f2aa8080e851ce60581ebf30768e1a97bf92ca5e84bd",
+        "actual_sha256": "6ab66885e8334439a2063afd641fdada9d6a59a939b17a7e992653512720cf72",
+        "hash_matches": false,
+        "declared_bytes": 2981,
+        "actual_bytes": 3350
+      },
+      {
+        "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+        "exists": true,
+        "declared_sha256": "966a16bf9eb8e7903dcae04228325a629f4a92122cae1e1a8d1dda220c006cf4",
+        "actual_sha256": "a48c31bfad407c60959e9030ae5ba5eaa63248a33f71feb9ae78b2af0decf821",
+        "hash_matches": false,
+        "declared_bytes": 2013,
+        "actual_bytes": 2477
+      },
+      {
+        "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+        "exists": true,
+        "declared_sha256": "f8b9c9c2bb08b2546d63005b79bd4af347550dba09cea4faab2cb794919c0bda",
+        "actual_sha256": "aa6bf9ceffb773e50e5837b4c1294c89181cc60932d85a64fb7f821f10350c80",
+        "hash_matches": false,
+        "declared_bytes": 2090,
+        "actual_bytes": 3496
+      },
+      {
+        "path": "config.yaml",
+        "exists": true,
+        "declared_sha256": "55f28dbe5208e10b53022806880d361b7b0b79a8713013972c9b1bcc6d2977bb",
+        "actual_sha256": "fcf9709b833df9954ff4c2eefcaa71b1ef207270cf16172e32bce8e7ad800dad",
+        "hash_matches": false,
+        "declared_bytes": 833,
+        "actual_bytes": 767
+      }
+    ]
+  },
+  "installed_skills": {
+    "count": 10,
+    "all_versioned": true,
+    "versions": [
+      "0.1.0",
+      "0.1.1-rc.1"
+    ]
+  },
+  "operators": {
+    "count": 14,
+    "orchestrator": "scripts/run_a2_no_integration_workflow.py"
+  },
+  "runtime_reconciliation": {
+    "runtime_policy_status": "approved_for_synthetic_local_testing_gateway_telemetry_pending",
+    "runtime_policy_real_data_status": "blocked_pending_gateway_telemetry_fallback_and_governance",
+    "runtime_policy_fallback_model": "Gemini 3.7 Flash",
+    "effective_config_fallback_count": 0,
+    "effective_config_web_enabled": false,
+    "step8_acceptance": "approved_for_step9_evaluation_and_no_integration_freeze"
+  },
+  "pilot_corrections": [
+    {
+      "id": "S9-C1",
+      "finding": "The active foundation manifest has stale hashes for SOUL.md and config.yaml after approved Step 8 closure changes.",
+      "action": "Build a release-candidate active-foundation manifest with current hashes; do not overwrite the Step 8 historical snapshot.",
+      "status": "required"
+    },
+    {
+      "id": "S9-C2",
+      "finding": "The active Step 6 runtime policy still describes synthetic-only real-data gates and a configured fallback, while the accepted Step 8 route used a named two-candidate policy with fallback disabled.",
+      "action": "Create a consolidated no-integration runtime policy for the release; preserve the historical Step 6 and Step 8 policies.",
+      "status": "required"
+    },
+    {
+      "id": "S9-C3",
+      "finding": "The Step 8 receipt helper omitted person.business_phone from its allowlist despite the authoritative catalogue permitting that field.",
+      "action": "Retain the tested correction and verify the generic runtime preflight already permits the field; keep the Step 8 helper as pilot evidence rather than a core operator.",
+      "status": "implemented_requires_freeze_test"
+    },
+    {
+      "id": "S9-C4",
+      "finding": "The live pilot clarified that selected named contact and target-role priority are separate concepts.",
+      "action": "Propagate unambiguous terminology to the runbook and review guidance; do not change the canonical field model.",
+      "status": "required_documentation"
+    },
+    {
+      "id": "S9-C5",
+      "finding": "Normal A2 operation uses one consolidated final human review; intermediate pilot checks were implementation-test checkpoints only.",
+      "action": "Verify SOUL, review skill and runbook consistently implement the single-final-review model.",
+      "status": "required_regression"
+    },
+    {
+      "id": "S9-C6",
+      "finding": "The Rood & Riddle replay used 234,533 tokens and 9 model API calls; cost remained unknown.",
+      "action": "Record this as an optimisation baseline, reduce redundant path discovery and context loading, and do not treat unknown cost as zero.",
+      "status": "required_evaluation"
+    },
+    {
+      "id": "S9-C7",
+      "finding": "The Rood & Riddle accepted outcome proves that a High A1 score can coexist with an A2 held state when minimum-package evidence is incomplete.",
+      "action": "Preserve held-gap behaviour and add it to the frozen acceptance tests and runbook.",
+      "status": "required_regression"
+    },
+    {
+      "id": "S9-C8",
+      "finding": "The non-interactive profile initially opened outside the requested relative workspace and performed two path-search recovery calls.",
+      "action": "Use exact absolute profile paths in the frozen runbook and replay controller.",
+      "status": "required_documentation"
+    }
+  ],
+  "release_inventory": "evaluations/step9/release-candidate-inventory.json",
+  "freeze_blockers": [
+    "Release-candidate active-foundation manifest not yet built.",
+    "Consolidated no-integration runtime policy not yet built.",
+    "Offline regression and exact accepted-record replay not yet run.",
+    "Delivery documents and safe archive not yet built.",
+    "Step 9 human approval not yet recorded."
+  ],
+  "external_actions": 0
+}

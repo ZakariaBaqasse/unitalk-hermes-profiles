@@ -1,0 +1,24 @@
+{
+  "decisions": [
+    {
+      "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "outcome": "target_role_not_found",
+      "evidence_refs": [
+        "search:search-575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+        "search:search-owner-575f9d4e-9708-40f8-b1d0-0cc940528c3a"
+      ]
+    },
+    {
+      "company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "outcome": "target_role_not_found",
+      "evidence_refs": [
+        "search:search-c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+        "search:search-owner-c288275d-89f8-43d8-8f01-df3bfa62c3a9"
+      ]
+    }
+  ]
+}

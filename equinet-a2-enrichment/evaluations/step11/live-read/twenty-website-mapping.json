@@ -1,0 +1,55 @@
+{
+  "status": "valid",
+  "mapping_version": "0.1.2",
+  "company_object_id": "89cb0885-61c0-4d39-989f-b7f0cf248dc9",
+  "observed": {
+    "domainName": {
+      "id": "e24305cb-0840-4f75-affa-8b224e0cf803",
+      "type": "LINKS",
+      "isUnique": true
+    },
+    "email": {
+      "id": "1257da53-ba20-49ca-ad1c-7c916e8ebd19",
+      "type": "EMAILS",
+      "isUnique": false
+    },
+    "phone": {
+      "id": "652aaa66-5362-4375-8e57-4388a49996f3",
+      "type": "PHONES",
+      "isUnique": false
+    },
+    "linkedinLink": {
+      "id": "2de6e592-68fa-4449-b6d6-eff5a8a82ad1",
+      "type": "LINKS",
+      "isUnique": false
+    },
+    "facebook": {
+      "id": "9d7107e6-448c-4494-a9ff-9420936ea181",
+      "type": "LINKS",
+      "isUnique": false
+    },
+    "instagram": {
+      "id": "ac5813c3-674a-4f1a-9393-f4c049a1f638",
+      "type": "LINKS",
+      "isUnique": false
+    },
+    "youtube": {
+      "id": "d577c03e-8057-4ae6-9119-375ea9bf4c7b",
+      "type": "LINKS",
+      "isUnique": false
+    },
+    "tiktok": {
+      "id": "6f84a3be-36bb-4411-b90a-3349293e0597",
+      "type": "LINKS",
+      "isUnique": false
+    },
+    "xTwitter": {
+      "id": "c06e7c02-0257-4e99-8aa6-6e58d47c33d5",
+      "type": "LINKS",
+      "isUnique": false
+    }
+  },
+  "external_calls": 1,
+  "external_writes": 0,
+  "errors": []
+}

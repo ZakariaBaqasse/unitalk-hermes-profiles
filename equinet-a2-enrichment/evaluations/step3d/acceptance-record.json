@@ -1,0 +1,61 @@
+{
+  "record_type": "foundation_working_baseline_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "3D",
+  "version": "0.1.0-draft.1",
+  "decision": "approved_as_unitalk_working_baseline",
+  "equinet_confirmation": "pending",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-26T18:53:52Z",
+  "approved_decisions": {
+    "3D-1": "Use six confidence dimensions weighted 20/20/20/20/10/10.",
+    "3D-2": "Use High 80-100, Medium 60-79 and Low 0-59 confidence bands.",
+    "3D-3": "Cap unresolved identity and material conflicts at 39.",
+    "3D-4": "Cap Required claims supported only by inference and stale time-sensitive claims at 59.",
+    "3D-5": "Give evidence from a source with an unmet rights/runtime gate a score of 0.",
+    "3D-6": "Allow a current official website to verify explicit self-controlled facts without a visible date.",
+    "3D-7": "Keep search snippets discovery-only and preserve inherited A1 evidence confidence.",
+    "3D-8": "Treat Apify email search as independent provider evidence, require identity/company match and never infer consent.",
+    "3D-9": "Use the proposed field freshness windows pending Equinet confirmation.",
+    "3D-10": "Allow verified material evidence to trigger an A1 requalification signal without A2 calculating a score."
+  },
+  "policy": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.0-draft.1.json",
+  "policy_sha256": "23effcd67dbf5e444ebc24eaf95873098927330a037b2d8ad399864529337730",
+  "technical_validation": "evaluations/step3d/technical-validation.json",
+  "technical_validation_sha256": "f4178217793f2605223255ece08642eae32b9a3e2c07bca69b293d7ed2ec122c",
+  "package_manifest": "evaluations/step3d/step3d-draft-package-manifest.json",
+  "package_manifest_sha256": "463b29fe707d9bea0dcbed1d245e3bcebcb42091f48aefccec4b1ab842064887",
+  "validation_results": {
+    "evidence_cases": "10/10 pass",
+    "negative_regressions": "11/11 pass",
+    "language_audit": "pass",
+    "a1_score_changes": 0,
+    "external_actions": 0
+  },
+  "profile_sync": {
+    "explicit_user_authorization_received": true,
+    "protected_write_result": "completed",
+    "soul_updated": true,
+    "completed_at": "2026-08-26T19:13:56Z"
+  },
+  "authorizes": [
+    "use as the Unitalk working baseline",
+    "prepare Step 3E Protected Fields and Conflict Policy in draft form"
+  ],
+  "does_not_authorize": [
+    "final Step 3D promotion without Equinet confirmation",
+    "source activation",
+    "Apify execution",
+    "provider calls or spend",
+    "HubSpot access or write",
+    "outreach",
+    "pilot readiness",
+    "production readiness",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 3E — Protected Fields and Conflict Policy (draft preparation)",
+  "clarification_applied": "evaluations/foundation-clarifications/step3f-personal-email-review-clarification.json"
+}

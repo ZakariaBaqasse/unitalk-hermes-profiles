@@ -1,0 +1,129 @@
+{
+  "_smoke_test_metadata": {
+    "test_name": "step6-primary-model-smoke-v2",
+    "test_version": "2.0.0",
+    "fixture_set": "equinet-a2-step5c-wave2",
+    "case_name": "complete-farrier-no-research",
+    "case_expected": {"plan_status": "no_research_needed", "plan_item_count": 0},
+    "executed_at": null,
+    "executed_by_profile": "equinet-a2-enrichment",
+    "script": "scripts/build_a2_gap_plan.py",
+    "script_version_sha256": "4abcfdfaa996f8ffa381e50fc9c2727a84009c532d3d65619ee27d77a4bb3012",
+    "foundation_manifest_version": "1.0.0",
+    "active_configuration_version": "0.1.1-draft.1",
+    "contracts_loaded_and_hash_verified": {
+      "a2-business-field-catalogue-0.1.1-draft.1.json": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445",
+      "a2-minimum-data-packages-0.1.1-draft.1.json": "2ddf615e4c2894b97cfa8ef42f73d4437a7e2370e1cefa0d60a2986fb7741b94",
+      "a2-source-register-0.1.1-draft.1.json": "ee5fc77aadd4b511ad8681cde7e5714146fc930072e2d71a1c4e2bba952ddab8"
+    },
+    "external_integrations_used": {
+      "web": false,
+      "apify": false,
+      "hubspot": false,
+      "twenty": false,
+      "n8n": false,
+      "provider_api": false
+    },
+    "source": "local_only",
+    "mode": "deterministic_no_integration",
+    "token_usage": "unavailable",
+    "token_cost_usd": "unavailable",
+    "provider_requests": 0,
+    "hubspot_read_calls": 0,
+    "hubspot_write_calls": 0,
+    "twenty_submissions": 0,
+    "exit_code": 0
+  },
+  "plan": {
+    "plan_version": "0.1.0-draft.1",
+    "candidate_id": "SYN-FAR-001",
+    "input_record_sha256": null,
+    "segment": "farrier",
+    "operating_scope": "synthetic_test",
+    "plan_status": "no_research_needed",
+    "minimum_package": {
+      "package": "farrier_review_ready",
+      "required_field_count": 5,
+      "contact_path": "named_target",
+      "research_exhausted": false
+    },
+    "plan_items": [],
+    "blocked_fields": [],
+    "errors": [],
+    "automatic_rejection": false,
+    "automatic_a1_score_change": false,
+    "outreach_authorized": false,
+    "crm_write_authorized": false,
+    "external_calls": 0,
+    "external_actions": 0,
+    "plan_sha256": "b15f2edf0e5704ceed9bafcd7efa7b24df4b1bd7fbe508c90a9c62aba2fe0a61"
+  },
+  "verification": {
+    "expected_plan_status": "no_research_needed",
+    "actual_plan_status": "no_research_needed",
+    "status_match": true,
+    "expected_plan_item_count": 0,
+    "actual_plan_item_count": 0,
+    "plan_item_count_match": true,
+    "field_states_evaluated": {
+      "person.professional_status": {"input": "verified", "bypassed": "verified_non_stale"},
+      "organisation.business_name": {"input": "verified", "bypassed": "verified_non_stale"},
+      "organisation.public_business_location": {"input": "verified", "bypassed": "verified_non_stale"},
+      "organisation.service_area": {"input": "verified", "bypassed": "verified_non_stale"},
+      "organisation.disciplines": {"input": "verified", "bypassed": "verified_non_stale"},
+      "person.full_name": {"input": "verified", "bypassed": "verified_non_stale"},
+      "person.role_title": {"input": "verified", "bypassed": "verified_non_stale"},
+      "relationship.target_role_priority": {"input": "verified", "bypassed": "verified_non_stale"},
+      "person.business_email": {"input": "verified", "bypassed": "verified_non_stale"},
+      "person.business_phone": {"input": "missing", "bypassed": "alternative_field_verified"}
+    },
+    "contact_path_satisfied": true,
+    "contact_path_field": "named_target",
+    "at_least_one_verified": "person.business_email",
+    "optional_not_applicable_fields": [],
+    "blocked_fields_expected": [],
+    "blocked_fields_actual": [],
+    "errors_expected": [],
+    "errors_actual": [],
+    "zero_action_safety": {
+      "automatic_rejection": false,
+      "automatic_a1_score_change": false,
+      "outreach_authorized": false,
+      "crm_write_authorized": false,
+      "external_calls": 0,
+      "external_actions": 0
+    },
+    "decision_rationale": "All 5 required_verified_fields are verified and non-stale, all 3 named_target required_verified_fields are verified and non-stale, and the at_least_one_verified_field condition is satisfied by person.business_email (verified). person.business_phone (missing) is the only non-verified field in the set but it is covered by the alternative. No plan items needed; status is no_research_needed.",
+    "test_passed": true
+  },
+  "audit": {
+    "profile": "equinet-a2-enrichment",
+    "actor": "Equinet A2 Enrichment AI Collaborator (hermes-agent)",
+    "trigger": "user-requested-step6-smoke-test-v2",
+    "session_timestamp": null,
+    "candidate_run_id": "SYN-FAR-001-V2-SMOKE",
+    "source_references": [
+      "fixtures://wave2-cases.json#gap_cases[0]",
+      "contracts://business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "contracts://business/a2-minimum-data-packages-0.1.1-draft.1.json",
+      "contracts://sources/a2-source-register-0.1.1-draft.1.json"
+    ],
+    "script_executed": "scripts/build_a2_gap_plan.py",
+    "script_args": {
+      "request": "evaluations/step6/gateway-smoke/complete-farrier-no-research-request.json",
+      "output": "evaluations/step6/gateway-smoke/primary-result-v2.json",
+      "catalogue": "default",
+      "packages": "default",
+      "sources": "default"
+    },
+    "load_active_verified": true,
+    "contract_hash_verification": "passed",
+    "external_actions_taken": [],
+    "provider_usage": [],
+    "provider_costs": "unavailable",
+    "retries": 0,
+    "errors": [],
+    "exit_code": 0,
+    "next_required_action": "Proceed to Step 6 — verify primary-model smoke passes integration gate (Twenty/HubSpot preflight readiness)"
+  }
+}

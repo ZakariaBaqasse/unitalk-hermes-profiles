@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "approval_state": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "fixtures": "10/10",
+  "negative_regressions": "11/11",
+  "review": "/opt/data/tmp/equinet-a2-step9-sandbox/evaluations/step3d/A2-EVIDENCE-POLICY-REVIEW.md",
+  "manifest": "/opt/data/tmp/equinet-a2-step9-sandbox/evaluations/step3d/step3d-draft-package-manifest.json",
+  "failures": []
+}

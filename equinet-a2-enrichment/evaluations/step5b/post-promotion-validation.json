@@ -1,0 +1,73 @@
+{
+  "step": "5B",
+  "stage": "post_promotion",
+  "status": "approved_and_promoted",
+  "skills": 3,
+  "deterministic_replay": {
+    "total": 13,
+    "passed": 13,
+    "cases": [
+      {
+        "name": "intake-idempotency",
+        "passed": true
+      },
+      {
+        "name": "organisation-confirmed-name-domain",
+        "passed": true
+      },
+      {
+        "name": "organisation-name-only-possible",
+        "passed": true
+      },
+      {
+        "name": "organisation-material-conflict",
+        "passed": true
+      },
+      {
+        "name": "organisation-two-differences-no-match",
+        "passed": true
+      },
+      {
+        "name": "no-comparison-unresolved",
+        "passed": true
+      },
+      {
+        "name": "synthetic-hubspot-unavailable-can-continue",
+        "passed": true
+      },
+      {
+        "name": "possible-duplicate-hold",
+        "passed": true
+      },
+      {
+        "name": "confirmed-duplicate-block",
+        "passed": true
+      },
+      {
+        "name": "integrated-authoritative-check-unavailable-hold",
+        "passed": true
+      },
+      {
+        "name": "upstream-block-propagates",
+        "passed": true
+      },
+      {
+        "name": "identity-conflict-hold",
+        "passed": true
+      },
+      {
+        "name": "invalid-duplicate-state-rejected",
+        "passed": true
+      }
+    ]
+  },
+  "active_foundation_files": 70,
+  "language_audit": {
+    "files_checked": 964,
+    "passed": true
+  },
+  "external_actions": 0,
+  "next_gate": "Step 5C — Wave 2 Planning, Research and Verification",
+  "failures": [],
+  "pass": true
+}

@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+import json,subprocess,sys,tempfile,unittest
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
+from build_fullenrich_action_requests import role_titles,search
+from classify_a2_target_role_v2 import ALIASES,classify
+CID='11111111-1111-4111-8111-111111111111'
+COMPANIES={'run_id':'STAGED-TEST','companies':[{'twenty_company_id':CID,'name':'Bluegrass Farm','segment':'HORSE_OWNER','domain':None,'professional_network_url':None,'location':{'city':'Lexington'},'linked_people':[]}]}
+def packet(stage,candidates=None,status='succeeded'):
+ return {'run_id':'STAGED-TEST','search_stage':stage,'packets':[{'company':{'twenty_company_id':CID,'name':'Bluegrass Farm','segment':'HORSE_OWNER'},'search_stage':stage,'target_priority':'SECONDARY' if stage=='secondary' else 'PRIMARY','target_titles':role_titles('horse_owner',stage),'existing_people':[],'search_terminal_status':status,'candidates':candidates or [],'evidence_ref':f'search:{stage}'}]}
+def decision(candidate=None,priority=None):
+ selected=[candidate['provider_person_id']] if candidate else [];rows=[] if not candidate else [{'provider_person_id':candidate['provider_person_id'],'company_match_status':'CONFIRMED','role_priority':priority,'retain':True,'rationale':'validated test candidate','evidence_refs':['search:test']}]
+ return {'decisions':[{'company_id':CID,'candidate_decisions':rows,'selected_provider_person_ids':selected}]}
+def validate(pkt,dec):
+ with tempfile.TemporaryDirectory() as td:
+  td=Path(td);(td/'packet.json').write_text(json.dumps(pkt));(td/'dec.json').write_text(json.dumps(dec));out=td/'out.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/validate_person_selection_decisions.py'),str(td/'packet.json'),str(td/'dec.json'),'--output',str(out)],cwd=ROOT,capture_output=True,text=True);return p.returncode,json.loads(out.read_text())
+class Tests(unittest.TestCase):
+ def test_stage_titles(self):
+  primary=[x.casefold() for x in role_titles('horse_owner','primary')];secondary=[x.casefold() for x in role_titles('horse_owner','secondary')];self.assertNotIn('owner',primary);self.assertIn('farm owner',primary);self.assertEqual(role_titles('horse_owner','owner'),['Owner']);self.assertIn('trainer',secondary);self.assertNotIn('owner',secondary)
+ def test_role_groups_match_active_catalogue(self):
+  catalogue=json.loads((ROOT/'foundations/contracts/business/a2-business-field-catalogue-0.3.1.json').read_text())['target_role_model']
+  for segment in ('farrier','horse_owner'):
+   for priority in ('primary','secondary'):
+    self.assertEqual(set(ALIASES[segment][priority]),set(catalogue[segment][priority]))
+ def test_conditional_secondary_requires_catalogue_flag(self):
+  request={'segment':'horse_owner','source_role_title':'Assistant Manager'}
+  self.assertEqual(classify(request)['status'],'needs_review')
+  request['evidence_flags']=['purchasing_responsibility_required']
+  result=classify(request);self.assertEqual(result['status'],'classified');self.assertEqual(result['priority'],'secondary')
+ def test_primary_empty_advances_owner(self):
+  rc,out=validate(packet('primary',[],status='not_found'),decision());self.assertEqual(rc,0);self.assertEqual(out['validated_decisions'][0]['next_search_stage'],'owner');reqs,_=search(COMPANIES,out,'owner');self.assertEqual(reqs[0]['target_titles'],['Owner'])
+ def test_owner_empty_advances_linked_secondary(self):
+  rc,out=validate(packet('owner',[],status='not_found'),decision());self.assertEqual(rc,0);self.assertEqual(out['validated_decisions'][0]['next_search_stage'],'linked_secondary');self.assertEqual(search(COMPANIES,out,'secondary')[0],[])
+ def test_owner_success_stops(self):
+  person={'provider_person_id':'fe-owner','full_name':'Jordan Owner','exact_current_role':'Owner'};rc,out=validate(packet('owner',[person]),decision(person,'PRIMARY'));self.assertEqual(rc,0);self.assertEqual(out['validated_decisions'][0]['next_search_stage'],'contact_enrichment');self.assertEqual(search(COMPANIES,out,'secondary')[0],[])
+ def test_lookup_accepts_verified_linked_secondary_fallback(self):
+  lookup_packet={'run_id':'STAGED-TEST','packets':[{'company':{'twenty_company_id':CID,'name':'Bluegrass Farm','segment':'HORSE_OWNER'},'linked_people':[{'twenty_person':{'twenty_person_id':'tw-linked','full_name':'Taylor Existing'},'lookup_result':{'person':{'provider_person_id':'fe-linked','full_name':'Taylor Existing','exact_current_role':'Trainer'}},'evidence_refs':['lookup:linked']}]}]}
+  lookup_decisions={'decisions':[{'company_id':CID,'person_decisions':[{'twenty_person_id':'tw-linked','identity_status':'VERIFIED','company_match_status':'CONFIRMED','role_priority':'SECONDARY','role_status':'CURRENT_AT_COMPANY','retain_as_target':False,'secondary_fallback_eligible':True,'evidence_refs':['lookup:linked']}],'people_search_required':True}]}
+  with tempfile.TemporaryDirectory() as td:
+   td=Path(td);(td/'packet.json').write_text(json.dumps(lookup_packet));(td/'decisions.json').write_text(json.dumps(lookup_decisions));out=td/'validation.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/validate_lookup_decisions.py'),str(td/'packet.json'),str(td/'decisions.json'),'--output',str(out)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);self.assertEqual(json.loads(out.read_text())['validated_decisions'][0]['linked_secondary_fallback_count'],1)
+ def test_linked_secondary_is_used_before_paid_secondary_search(self):
+  lookup_packet={'run_id':'STAGED-TEST','packets':[{'company':{'twenty_company_id':CID,'name':'Bluegrass Farm','segment':'HORSE_OWNER','domain':None},'linked_people':[{'twenty_person':{'twenty_person_id':'tw-linked','full_name':'Taylor Existing'},'lookup_result':{'person':{'provider_person_id':'fe-linked','full_name':'Taylor Existing','first_name':'Taylor','last_name':'Existing','exact_current_role':'Trainer'}},'evidence_refs':['lookup:linked']}]}]}
+  lookup_validation={'status':'valid','validated_decisions':[{'company_id':CID,'person_decisions':[{'twenty_person_id':'tw-linked','identity_status':'VERIFIED','company_match_status':'CONFIRMED','role_priority':'SECONDARY','role_status':'CURRENT_AT_COMPANY','retain_as_target':False,'secondary_fallback_eligible':True,'evidence_refs':['lookup:linked']}],'people_search_required':True,'linked_secondary_fallback_count':1}]}
+  owner_validation={'status':'valid','validated_decisions':[{'company_id':CID,'selected_provider_person_ids':[],'candidate_decisions':[],'search_stage':'owner','next_search_stage':'linked_secondary'}]}
+  with tempfile.TemporaryDirectory() as td:
+   td=Path(td)
+   for name,data in [('lookup-packet.json',lookup_packet),('lookup-validation.json',lookup_validation),('owner-validation.json',owner_validation)]: (td/name).write_text(json.dumps(data))
+   fallback_packet=td/'fallback-packet.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/build_linked_secondary_fallback_packet.py'),str(td/'lookup-packet.json'),str(td/'lookup-validation.json'),str(td/'owner-validation.json'),'--output',str(fallback_packet)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);fp=json.loads(fallback_packet.read_text());self.assertEqual(fp['external_calls'],0);candidate=fp['packets'][0]['candidates'][0];self.assertEqual(candidate['linked_twenty_person_id'],'tw-linked')
+   fallback_decision={'decisions':[{'company_id':CID,'candidate_decisions':[{'provider_person_id':'fe-linked','company_match_status':'CONFIRMED','role_priority':'SECONDARY','retain':True,'duplicate_of_twenty_person_id':'tw-linked','rationale':'reuse verified linked secondary','evidence_refs':['lookup:linked']}],'selected_provider_person_ids':['fe-linked']}]};(td/'fallback-decisions.json').write_text(json.dumps(fallback_decision));fallback_validation=td/'fallback-validation.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/validate_person_selection_decisions.py'),str(fallback_packet),str(td/'fallback-decisions.json'),'--output',str(fallback_validation)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);fv=json.loads(fallback_validation.read_text());self.assertEqual(fv['validated_decisions'][0]['next_search_stage'],'contact_enrichment');self.assertEqual(search(COMPANIES,fv,'secondary')[0],[])
+   selected=td/'selected.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/build_selected_contact_batch.py'),'--search-packet',str(fallback_packet),'--selection-decisions',str(fallback_validation),'--run-id','STAGED-TEST','--output',str(selected)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);person=json.loads(selected.read_text())['selected_people'][0];self.assertEqual(person['source_kind'],'existing');self.assertEqual(person['twenty_person_id'],'tw-linked');self.assertEqual(person['selection_stage'],'linked_secondary')
+   contact_fixture={'id':'fixture-linked','status':'FINISHED','cost':{'credits':11},'data':[{'input':{'first_name':'Taylor','last_name':'Existing','company_name':'Bluegrass Farm'},'custom':{'request_id':'contact-fe-linked','company_id':CID,'provider_person_id':'fe-linked'},'contact_info':{'most_probable_work_email':{'email':'taylor@bluegrass.example','status':'DELIVERABLE'},'most_probable_phone':{'number':'+15550199','region':'US','line_type':'MOBILE','line_status':'ACTIVE','ownership_match':'CONFIRMED'}},'profile':{}}]};(td/'contact-fixture.json').write_text(json.dumps(contact_fixture));contact_out=td/'contacts.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/fullenrich_contact_enrichment.py'),str(selected),'--fixture',str(td/'contact-fixture.json'),'--output',str(contact_out)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);contact=json.loads(contact_out.read_text())['results'][0];self.assertEqual(contact['twenty_person_id'],'tw-linked');self.assertEqual(contact['source_kind'],'existing');self.assertEqual(contact['selection_stage'],'linked_secondary');self.assertEqual(contact['work_email']['value'],'taylor@bluegrass.example');self.assertEqual(contact['mobile_phone']['value'],'+15550199')
+ def test_paid_secondary_search_runs_when_no_linked_fallback_selected(self):
+  linked=packet('linked_secondary',[],status='not_found');rc,out=validate(linked,decision());self.assertEqual(rc,0);self.assertEqual(out['validated_decisions'][0]['next_search_stage'],'secondary');reqs,_=search(COMPANIES,out,'secondary');self.assertEqual(len(reqs),1);self.assertIn('trainer',[x.casefold() for x in reqs[0]['target_titles']])
+ def test_secondary_success_is_selectable(self):
+  person={'provider_person_id':'fe-trainer','full_name':'Casey Trainer','exact_current_role':'Trainer'};rc,out=validate(packet('secondary',[person]),decision(person,'SECONDARY'));self.assertEqual(rc,0);self.assertEqual(out['validated_decisions'][0]['selected_target_priority'],'SECONDARY');self.assertEqual(out['validated_decisions'][0]['next_search_stage'],'contact_enrichment')
+ def test_secondary_empty_completes_no_target(self):
+  rc,out=validate(packet('secondary',[],status='not_found'),decision());self.assertEqual(rc,0);self.assertEqual(out['validated_decisions'][0]['next_search_stage'],'completed_no_target')
+ def test_secondary_rejects_primary_selection(self):
+  person={'provider_person_id':'fe-owner','full_name':'Jordan Owner','exact_current_role':'Owner'};rc,out=validate(packet('secondary',[person]),decision(person,'PRIMARY'));self.assertEqual(rc,1);self.assertEqual(out['status'],'invalid')
+ def test_failed_search_does_not_fallback(self):
+  rc,out=validate(packet('owner',[],status='failed'),decision());self.assertEqual(rc,1);self.assertTrue(any('cannot progress automatically' in x for x in out['errors']))
+ def test_linked_secondary_existing_person_write_plan_is_valid(self):
+  proposal={'run_id':'STAGED-TEST','company_id':CID,'company_final_status':'PARTIALLY_ENRICHED','resolved_people':[{'source_kind':'existing','selection_stage':'linked_secondary','twenty_person_id':'tw-linked','provider_person_id':'fe-linked','exact_current_role':'Trainer','statuses':{'identity':'VERIFIED','role':'CURRENT_AT_COMPANY','priority':'SECONDARY','company_match':'CONFIRMED','enrichment':'PARTIAL'},'field_decisions':{'exact_current_role':'no_change'}}]}
+  with tempfile.TemporaryDirectory() as td:
+   td=Path(td);(td/'proposal.json').write_text(json.dumps(proposal));out=td/'plan.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/build_twenty_enrichment_write_plan.py'),str(td/'proposal.json'),'--output',str(out)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);plan=json.loads(out.read_text());self.assertEqual(plan['operations'][0]['operation_type'],'update_person');self.assertEqual(plan['operations'][0]['twenty_person_id'],'tw-linked')
+ def test_linked_secondary_cannot_create_new_person(self):
+  proposal={'run_id':'STAGED-TEST','company_id':CID,'company_final_status':'PARTIALLY_ENRICHED','resolved_people':[{'source_kind':'new','selection_stage':'linked_secondary','provider_person_id':'fe-linked','full_name':'Taylor Existing','exact_current_role':'Trainer','statuses':{'identity':'VERIFIED','role':'CURRENT_AT_COMPANY','priority':'SECONDARY','company_match':'CONFIRMED','enrichment':'PARTIAL'},'field_decisions':{'exact_current_role':'add'}}]}
+  with tempfile.TemporaryDirectory() as td:
+   td=Path(td);(td/'proposal.json').write_text(json.dumps(proposal));out=td/'plan.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/build_twenty_enrichment_write_plan.py'),str(td/'proposal.json'),'--output',str(out)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,1);self.assertEqual(json.loads(out.read_text())['status'],'invalid')
+ def test_secondary_write_plan_is_allowed_only_for_secondary_stage(self):
+  base={'run_id':'STAGED-TEST','company_id':CID,'company_final_status':'PARTIALLY_ENRICHED','resolved_people':[{'source_kind':'new','selection_stage':'secondary','provider_person_id':'fe-trainer','full_name':'Casey Trainer','exact_current_role':'Trainer','statuses':{'identity':'VERIFIED','role':'CURRENT_AT_COMPANY','priority':'SECONDARY','company_match':'CONFIRMED','enrichment':'PARTIAL'},'field_decisions':{'exact_current_role':'add'}}]}
+  with tempfile.TemporaryDirectory() as td:
+   td=Path(td);(td/'proposal.json').write_text(json.dumps(base));out=td/'plan.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/build_twenty_enrichment_write_plan.py'),str(td/'proposal.json'),'--output',str(out)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);self.assertEqual(json.loads(out.read_text())['status'],'valid')
+ def test_secondary_priority_rejected_outside_secondary_stage(self):
+  base={'run_id':'STAGED-TEST','company_id':CID,'company_final_status':'PARTIALLY_ENRICHED','resolved_people':[{'source_kind':'new','selection_stage':'owner','provider_person_id':'fe-trainer','full_name':'Casey Trainer','exact_current_role':'Trainer','statuses':{'identity':'VERIFIED','role':'CURRENT_AT_COMPANY','priority':'SECONDARY','company_match':'CONFIRMED','enrichment':'PARTIAL'},'field_decisions':{'exact_current_role':'add'}}]}
+  with tempfile.TemporaryDirectory() as td:
+   td=Path(td);(td/'proposal.json').write_text(json.dumps(base));out=td/'plan.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/build_twenty_enrichment_write_plan.py'),str(td/'proposal.json'),'--output',str(out)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,1);self.assertEqual(json.loads(out.read_text())['status'],'invalid')
+ def test_secondary_selected_contact_batch(self):
+  person={'provider_person_id':'fe-trainer','full_name':'Casey Trainer','first_name':'Casey','last_name':'Trainer','exact_current_role':'Trainer'};rc,val=validate(packet('secondary',[person]),decision(person,'SECONDARY'));self.assertEqual(rc,0)
+  with tempfile.TemporaryDirectory() as td:
+   td=Path(td);(td/'packet.json').write_text(json.dumps(packet('secondary',[person])));(td/'validation.json').write_text(json.dumps(val));out=td/'selected.json';p=subprocess.run([sys.executable,str(ROOT/'scripts/build_selected_contact_batch.py'),'--search-packet',str(td/'packet.json'),'--selection-decisions',str(td/'validation.json'),'--run-id','STAGED-TEST','--output',str(out)],cwd=ROOT,capture_output=True,text=True);self.assertEqual(p.returncode,0,p.stdout+p.stderr);selected=json.loads(out.read_text())['selected_people'];self.assertEqual(selected[0]['selected_target_priority'],'SECONDARY');self.assertEqual(selected[0]['selection_stage'],'secondary')
+if __name__=='__main__':unittest.main(verbosity=2)

@@ -1,0 +1,158 @@
+{
+  "step": "2G",
+  "initialiser_version": "0.1.0",
+  "approval_state": "promoted_in_step_2i",
+  "summary": {
+    "valid_expected": 3,
+    "invalid_expected": 8,
+    "cases_total": 11,
+    "cases_passed": 11,
+    "cases_failed": 0,
+    "deterministic_controls": 15,
+    "deterministic_controls_passed": 15
+  },
+  "coverage": {
+    "segments": [
+      "farrier",
+      "horse_owner"
+    ],
+    "manual_no_integration_positive": "pending_real_approved_handoff",
+    "all_outputs_initialised": true,
+    "all_outputs_zero_external_actions": true,
+    "independent_post_fix_review": "pass"
+  },
+  "deterministic_controls": {
+    "distinct_handoffs_have_distinct_record_ids": true,
+    "first_local_write_created": true,
+    "identical_retry_unchanged": true,
+    "different_content_collision_blocked": true,
+    "concurrent_different_writes_single_winner": true,
+    "idempotency_ledger_first_reserved": true,
+    "idempotency_ledger_repeat_existing": true,
+    "idempotency_ledger_changed_payload_blocked": true,
+    "concurrent_idempotency_reuse_single_winner": true,
+    "cli_first_write_created": true,
+    "cli_retry_unchanged": true,
+    "all_invalid_handoffs_rejected_without_output": true,
+    "duplicate_json_keys_rejected_without_output": true,
+    "non_finite_json_rejected_without_output": true,
+    "key_order_independent_output_bytes": true
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "contract_approved": true,
+    "review_version": true,
+    "decisions_g1_to_g11": true,
+    "manual_limitation": true,
+    "step2h_boundary": true
+  },
+  "acceptance_checks": {
+    "decision": true,
+    "initialiser_version": true,
+    "historical_package_manifest_hash": true,
+    "next_gate": true,
+    "step2i_promotion_approved": true
+  },
+  "package_manifest": {
+    "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2g/step2g-package-manifest.json",
+    "sha256": "469f059e327ad5f7d4f584876fcca0073fe4f2d3eecb264d98b949995119b04d",
+    "file_count": 25
+  },
+  "cases": [
+    {
+      "name": "horse-owner",
+      "kind": "valid",
+      "passed": true,
+      "expected_error": null,
+      "errors": []
+    },
+    {
+      "name": "farrier",
+      "kind": "valid",
+      "passed": true,
+      "expected_error": null,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-targeted",
+      "kind": "valid",
+      "passed": true,
+      "expected_error": null,
+      "errors": []
+    },
+    {
+      "name": "extra-handoff-property",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "Additional properties are not allowed",
+      "errors": [
+        "Invalid A1-to-A2 handoff: schema:/: Additional properties are not allowed ('unexpected' was unexpected)"
+      ]
+    },
+    {
+      "name": "candidate-hash-mismatch",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "snapshot hash mismatch",
+      "errors": [
+        "Invalid A1-to-A2 handoff: snapshot hash mismatch: declared '0000000000000000000000000000000000000000000000000000000000000000', calculated 'bceaa05e8ba32575dcee7352e3f176b1e4d90d74706ae1107d0248166953af2c'"
+      ]
+    },
+    {
+      "name": "wrong-target-profile",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "equinet-a2-enrichment",
+      "errors": [
+        "Invalid A1-to-A2 handoff: schema:/target_profile: 'equinet-a2-enrichment' was expected | handoff target_profile must be equinet-a2-enrichment"
+      ]
+    },
+    {
+      "name": "synthetic-not-accepted",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "requires accepted_by_a2",
+      "errors": [
+        "Invalid A1-to-A2 handoff: synthetic or connected initialisation requires accepted_by_a2"
+      ]
+    },
+    {
+      "name": "handoff-not-eligible",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "handoff eligibility must be eligible",
+      "errors": [
+        "Invalid A1-to-A2 handoff: schema:/eligibility/status: 'eligible' was expected | eligibility.status must be eligible; got 'hold' | handoff eligibility must be eligible"
+      ]
+    },
+    {
+      "name": "recommendation-not-pass-to-a2",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "candidate recommendation.next_action must be pass_to_a2",
+      "errors": [
+        "Invalid A1-to-A2 handoff: candidate recommendation.next_action must be pass_to_a2 | recommendation gate must be fail; got 'pass' | eligibility.status must be blocked; got 'eligible'"
+      ]
+    },
+    {
+      "name": "provider-authority-at-initialisation",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "scope_permissions gate must be fail",
+      "errors": [
+        "Invalid A1-to-A2 handoff: schema:/constraints/paid_provider_authorized: False was expected | scope_permissions gate must be fail; got 'pass' | eligibility.status must be blocked; got 'eligible' | external action permission requires external_action_approval_reference"
+      ]
+    },
+    {
+      "name": "synthetic-manual-scope",
+      "kind": "invalid",
+      "passed": true,
+      "expected_error": "non-synthetic operating scopes require a production A1 candidate",
+      "errors": [
+        "Invalid A1-to-A2 handoff: non-synthetic operating scopes require a production A1 candidate and non-synthetic provenance"
+      ]
+    }
+  ],
+  "failures": [],
+  "pass": true
+}

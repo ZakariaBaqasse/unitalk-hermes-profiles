@@ -1,0 +1,119 @@
+{
+  "catalogue_id": "equinet-a2-step2f-synthetic-catalogue",
+  "version": "synthetic-step2f-0.1.0",
+  "status": "synthetic_test_only",
+  "fields": [
+    {
+      "field_key": "person.full_name",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "farrier": "required",
+        "horse_owner": "optional"
+      }
+    },
+    {
+      "field_key": "person.role_title",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "farrier": "required",
+        "horse_owner": "optional"
+      }
+    },
+    {
+      "field_key": "person.business_email",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "farrier": "required",
+        "horse_owner": "optional"
+      }
+    },
+    {
+      "field_key": "person.professional_credential",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "requirement_by_segment": {
+        "farrier": "optional"
+      }
+    },
+    {
+      "field_key": "organisation.business_name",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "farrier": "required",
+        "horse_owner": "required"
+      }
+    },
+    {
+      "field_key": "organisation.website",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "farrier": "required",
+        "horse_owner": "required"
+      }
+    },
+    {
+      "field_key": "organisation.service_area",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "requirement_by_segment": {
+        "farrier": "optional"
+      }
+    },
+    {
+      "field_key": "organisation.horse_count",
+      "value_type": "integer",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "horse_owner": "required"
+      }
+    },
+    {
+      "field_key": "organisation.disciplines",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "horse_owner": "optional"
+      }
+    },
+    {
+      "field_key": "relationship.role",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "requirement_by_segment": {
+        "farrier": "optional",
+        "horse_owner": "optional"
+      }
+    }
+  ]
+}

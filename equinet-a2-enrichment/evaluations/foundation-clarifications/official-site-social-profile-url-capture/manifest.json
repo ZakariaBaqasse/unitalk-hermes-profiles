@@ -1,0 +1,152 @@
+{
+  "manifest_id": "equinet-a2-official-site-social-profile-url-capture",
+  "version": "0.1.0",
+  "status": "approved_and_applied",
+  "files": [
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "bytes": 41682,
+      "sha256": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.csv",
+      "bytes": 17485,
+      "sha256": "ad4256ed761fc0e578128c3f12221a76d027050cd899a7db32f799f277d8577c"
+    },
+    {
+      "path": "foundations/contracts/business/a2-minimum-data-packages-0.1.1-draft.1.json",
+      "bytes": 5408,
+      "sha256": "2ddf615e4c2894b97cfa8ef42f73d4437a7e2370e1cefa0d60a2986fb7741b94"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.json",
+      "bytes": 23039,
+      "sha256": "ee5fc77aadd4b511ad8681cde7e5714146fc930072e2d71a1c4e2bba952ddab8"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.csv",
+      "bytes": 9263,
+      "sha256": "737fab1faf0b0b4effcdcb4b11a4f7dbc4e433f2e3f00adb8d34ebae1578a656"
+    },
+    {
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.1-draft.1.json",
+      "bytes": 8508,
+      "sha256": "ccecc0aeb6d725bbe74dc73c72648b2f0ec4fe72e3ef402194b4952dc27b869d"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.1-draft.1.json",
+      "bytes": 10311,
+      "sha256": "cae627cd3efe7a21958f9667bb3c214ea6a7ec7fd743eb5e85f2519be9b5e3e7"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.1.1-draft.1.json",
+      "bytes": 5925,
+      "sha256": "3e2b56b7989c523f37219730d266d6b83a9b25f104cc7289697931927ea6d05b"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.json",
+      "bytes": 30550,
+      "sha256": "772d00be0c6c330362c453a324e9c7dc67597dbc48fe74fb26e0311d7d126f75"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.csv",
+      "bytes": 14405,
+      "sha256": "367a3b75184c4a580ce004d34eb006623f4aa10ae362ecb8f368b5c8bf1429de"
+    },
+    {
+      "path": "SOUL.md",
+      "bytes": 17441,
+      "sha256": "7ba186315880f7efd6b962c03ce50197c93848261416492a70cafe6a4e4c71b1"
+    },
+    {
+      "path": "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 26870,
+      "sha256": "67a2e6073eba70d7e41aec28865928096c49e7c9765e574d01b8b0f623c363c0"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/fixtures.json",
+      "bytes": 5146,
+      "sha256": "2cbb29c54adf0f8729f84f9721d08d7dfb191d2c7224761cdf776b7bf812fdf9"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/OFFICIAL-SITE-SOCIAL-PROFILE-URL-CAPTURE.md",
+      "bytes": 4570,
+      "sha256": "02f71d5e742391327c73bd359dd045c85c0405addfe66669190f01007c4e9a9f"
+    },
+    {
+      "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 9981,
+      "sha256": "1a457483d9905a5bb1da597d14351b6523662b1d6b257f8a796cd92c8dc089fb"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/language-audit.json",
+      "bytes": 286,
+      "sha256": "bf00dade573fa09d68358e7c5f72dd525f9d68e800dea4bad9465be92f8f81fc"
+    },
+    {
+      "path": "scripts/apply_official_site_social_profile_url_capture.py",
+      "bytes": 25576,
+      "sha256": "42e4f85996f83e7b024e41667e6a887ef7f57f9d68662e671e25d9874813354a"
+    },
+    {
+      "path": "scripts/classify_official_site_social_link.py",
+      "bytes": 6219,
+      "sha256": "3f1cf0df3b86eb5d2ac0ac29633315a2f3d379809f3e5409c4f5fcd49aeb1211"
+    },
+    {
+      "path": "scripts/validate_official_site_social_profile_url_capture.py",
+      "bytes": 25719,
+      "sha256": "71990bd285b7acb432db20364cc1cb4e4e05a052f480f5a529daceac0af76c15"
+    },
+    {
+      "path": "scripts/build_active_foundation_manifest.py",
+      "bytes": 5030,
+      "sha256": "0872b36fdcd8f9bccf3b0266defafcde1a7a0283cd6195566812aaad3bbd7400"
+    },
+    {
+      "path": "foundations/A2-BUSINESS-FIELD-CATALOGUE.md",
+      "bytes": 8830,
+      "sha256": "96b4f08dea12c67000bf3b5e8bec8100102655743e8db7a99b552005b133fcd0"
+    },
+    {
+      "path": "foundations/A2-MINIMUM-DATA-PACKAGES.md",
+      "bytes": 2908,
+      "sha256": "950b05640168107a86cba7a1c9d74ae3a95c93f08072d216ae98620d68b65f14"
+    },
+    {
+      "path": "foundations/A2-SOURCE-REGISTER.md",
+      "bytes": 5603,
+      "sha256": "797e070fea90f9ef0f2a752ebe54bdc9defd011ce173c25f46d7e826e1d3c461"
+    },
+    {
+      "path": "foundations/A2-EVIDENCE-VERIFICATION-CONFIDENCE-FRESHNESS-POLICY.md",
+      "bytes": 4347,
+      "sha256": "1968a68ab5a9b3c421b246548f764b6d14d4c5ecc33db2c5a2d18f3b7dd456bf"
+    },
+    {
+      "path": "foundations/A2-PROTECTED-FIELDS-AND-CONFLICT-POLICY.md",
+      "bytes": 5673,
+      "sha256": "cbf01ccd1c2f6bc0eca5d0ac0e3c262b46005537c4fc7ce3b7496692b5459051"
+    },
+    {
+      "path": "foundations/A2-PROVIDER-AND-COST-POLICY.md",
+      "bytes": 2742,
+      "sha256": "b7f824b31520930836417aaab9e7258bdd215f057386ed51952db4389cf46cf9"
+    },
+    {
+      "path": "foundations/A2-PRELIMINARY-HUBSPOT-MAPPING.md",
+      "bytes": 5308,
+      "sha256": "cff7a883d52465edc7b120970d4396f2865168de7b66ee6d1a241dd8150cfe88"
+    }
+  ],
+  "technical_validation": {
+    "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/technical-validation.json",
+    "sha256": "b4cd85092193ee725dc46c4f787f1dcf45fa31ddb79f2c1ec29cc97bdb4d5d2e"
+  },
+  "pre_amendment_manifest": {
+    "path": "evaluations/foundation-clarifications/official-site-social-profile-url-capture/pre-amendment-manifest.json",
+    "sha256": "75248d7701b81baa0194617f3278f9211462478e4a9012024438285b320f1720",
+    "file_count": 9
+  },
+  "external_actions": 0
+}

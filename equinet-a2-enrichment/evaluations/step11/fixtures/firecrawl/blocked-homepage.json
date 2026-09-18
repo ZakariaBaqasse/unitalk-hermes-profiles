@@ -1,0 +1,13 @@
+{
+  "calls": [
+    {
+      "method": "POST",
+      "path": "/v2/scrape",
+      "http_status": 403,
+      "response": {
+        "success": false,
+        "error": "robots denied"
+      }
+    }
+  ]
+}

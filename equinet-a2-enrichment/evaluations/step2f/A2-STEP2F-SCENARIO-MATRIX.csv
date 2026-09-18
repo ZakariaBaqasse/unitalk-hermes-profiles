@@ -1,0 +1,30 @@
+scenario,segment,expected_result,workflow_state,data_quality_status,eligibility_status,record_decision,previous_record,expected_error
+farrier-initial,farrier,valid,initialised,unassessed,not_checked,pending,,
+farrier-planned-gap,farrier,valid,enrichment_planned,incomplete,not_checked,pending,valid/farrier-planned-gap-previous.json,
+farrier-enrichment-in-progress,farrier,valid,enrichment_in_progress,review_ready,not_checked,pending,valid/farrier-enrichment-in-progress-previous.json,
+farrier-review-required,farrier,valid,review_required,review_ready,not_checked,pending,valid/farrier-review-required-previous.json,
+farrier-record-approved,farrier,valid,record_approved,review_ready,not_checked,approved,valid/farrier-record-approved-previous.json,
+horse-owner-initial,horse_owner,valid,initialised,unassessed,not_checked,pending,,
+horse-owner-planned-gap,horse_owner,valid,enrichment_planned,incomplete,not_checked,pending,valid/horse-owner-planned-gap-previous.json,
+horse-owner-enrichment-in-progress,horse_owner,valid,enrichment_in_progress,review_ready,not_checked,pending,valid/horse-owner-enrichment-in-progress-previous.json,
+horse-owner-review-required,horse_owner,valid,review_required,review_ready,not_checked,pending,valid/horse-owner-review-required-previous.json,
+horse-owner-record-approved,horse_owner,valid,record_approved,review_ready,not_checked,approved,valid/horse-owner-record-approved-previous.json,
+horse-owner-gap-held,horse_owner,valid,held,incomplete,not_checked,held,valid/horse-owner-gap-held-previous.json,
+farrier-conflict-held,farrier,valid,held,conflict,not_checked,held,valid/farrier-conflict-held-previous.json,
+horse-owner-possible-duplicate-held,horse_owner,valid,held,incomplete,hold,held,valid/horse-owner-possible-duplicate-held-previous.json,
+farrier-confirmed-duplicate-blocked,farrier,valid,blocked,incomplete,blocked,blocked,valid/farrier-confirmed-duplicate-blocked-previous.json,
+farrier-protected-update-awaiting-review,farrier,valid,review_required,review_ready,not_checked,pending,valid/farrier-protected-update-awaiting-review-previous.json,
+horse-owner-complete-requalification,horse_owner,valid,enrichment_planned,needs_review,not_checked,pending,valid/horse-owner-complete-requalification-previous.json,
+missing-evidence,farrier,invalid,enrichment_in_progress,review_ready,not_checked,pending,invalid/missing-evidence-previous.json,references unknown evidence ID
+blocked-source-evidence,farrier,invalid,enrichment_in_progress,review_ready,not_checked,pending,invalid/blocked-source-evidence-previous.json,not approved for evidentiary use
+protected-overwrite-without-approval,farrier,invalid,review_required,review_ready,not_checked,pending,invalid/protected-overwrite-without-approval-previous.json,requires explicit approved review and approval matrix
+false-synthetic-sync,horse_owner,invalid,synced,review_ready,not_checked,pending,invalid/false-synthetic-sync-previous.json,synthetic_test record cannot authorise CRM write or provider use
+a2-score-production,horse_owner,invalid,enrichment_planned,needs_review,not_checked,pending,invalid/a2-score-production-previous.json,Additional properties are not allowed
+prohibited-outreach,horse_owner,invalid,review_required,review_ready,not_checked,pending,invalid/prohibited-outreach-previous.json,A2 must not authorise outreach
+provider-without-approval,farrier,invalid,enrichment_in_progress,review_ready,not_checked,pending,invalid/provider-without-approval-previous.json,claims provider use without authorisation
+cross-segment-field,horse_owner,invalid,review_required,review_ready,not_checked,pending,invalid/cross-segment-field-previous.json,is not allowed for segment horse_owner
+required-package-missing-assessment,horse_owner,invalid,enrichment_planned,incomplete,not_checked,pending,invalid/required-package-missing-assessment-previous.json,references field key without an assessment
+review-ready-with-conflict,horse_owner,invalid,review_required,review_ready,not_checked,pending,invalid/review-ready-with-conflict-previous.json,"review_ready cannot contain missing, conflict or invalid fields"
+confirmed-duplicate-marked-eligible,horse_owner,invalid,review_required,review_ready,eligible,pending,invalid/confirmed-duplicate-marked-eligible-previous.json,confirmed duplicate requires blocked A2 eligibility
+invalid-a1-score-revision,horse_owner,invalid,enrichment_planned,needs_review,not_checked,pending,invalid/invalid-a1-score-revision-previous.json,revised scoring score must equal component total
+record-approved-with-incomplete-field-decisions,farrier,invalid,record_approved,review_ready,not_checked,approved,invalid/record-approved-with-incomplete-field-decisions-previous.json,required_field_decisions_complete is true while field reviews remain unresolved

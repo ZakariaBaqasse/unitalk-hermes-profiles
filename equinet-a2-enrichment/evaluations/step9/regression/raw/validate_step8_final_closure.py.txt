@@ -1,0 +1,7 @@
+{
+  "status": "failed",
+  "checks": "10/11",
+  "acceptance_sha256": "02038536354ea32c7637b202c504ec92ffb8d9ecfa3314430acc0b24caef43eb",
+  "next_gate": "Step 9 \u2014 Evaluation, Improvement and No-Integration Freeze",
+  "external_actions": 0
+}

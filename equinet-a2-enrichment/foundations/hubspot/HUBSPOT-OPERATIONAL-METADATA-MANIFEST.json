@@ -1,0 +1,100 @@
+{
+  "snapshot_id": "equinet-hubspot-operational-metadata-2026-08-25-v1",
+  "parent_snapshot_id": "equinet-hubspot-metadata-2026-08-25-v1",
+  "status": "operational_metadata_snapshot_received_no_live_connection",
+  "recorded_at": "2026-08-25T09:51:49Z",
+  "inputs": {
+    "status_model": {
+      "path": "/opt/data/profiles/equinet/attachments/HubSpot_Status_Model_Overview (1).docx",
+      "size_bytes": 10926,
+      "sha256": "fa96082eeb69fca75caa3b5ec61723d572e5e8513377802498b109120df754b3",
+      "source_statement": "Generated August 18, 2026 from live HubSpot portal data"
+    },
+    "users_teams_ownership": {
+      "path": "/opt/data/profiles/equinet/attachments/HubSpot_Users_Teams_Ownership_Model.docx",
+      "size_bytes": 17996,
+      "sha256": "401f48738283c8e1e0ac013be025575893fbf6bc236b3c7c74352fabfbbdacb2",
+      "source_statement": "Generated August 18, 2026 from live HubSpot portal data for account 145840940"
+    },
+    "sales_marketing_process_inventory": {
+      "path": "/opt/data/profiles/equinet/attachments/Sales_Marketing_Process_Inventory.csv",
+      "size_bytes": 16138,
+      "sha256": "8212df536e1a5560861b70882fd3031c89758b41b635cf5b97ee802724536bdb",
+      "rows": 68,
+      "analysis_artifact": "evaluations/hubspot-intake/process-inventory-summary.json"
+    }
+  },
+  "status_models": {
+    "contact_company_lifecycle": {
+      "property": "lifecyclestage",
+      "stages": ["subscriber", "lead", "marketingqualifiedlead", "salesqualifiedlead", "opportunity", "customer", "evangelist"]
+    },
+    "deal_pipeline": {
+      "name": "Sales Pipeline",
+      "internal_id": "default",
+      "stages": ["appointmentscheduled", "qualifiedtobuy", "presentationscheduled", "decisionmakerboughtin", "contractsent", "closedwon", "closedlost"]
+    },
+    "complaints": {
+      "pipeline": null,
+      "classification_field": "complaint_type",
+      "options": ["product_quality_issue", "wrong_item_received", "damaged_item", "missing_item", "other"]
+    },
+    "sample_requests": {
+      "pipeline": "Sample Request Pipeline",
+      "stages": ["Sample Suggested", "Awaiting Approval", "Approved to Send", "Shipment Arranged", "Sample Sent by CS", "Sample Sent by owner", "Follow-up Complete", "Request Rejected"],
+      "approval_status_options": ["not_needed", "pending_approval", "approved", "rejected"]
+    },
+    "ticket_pipeline": {
+      "name": "Support Pipeline",
+      "stages": ["New", "Rename 1", "Waiting on us", "Closed"],
+      "warning": "Rename 1 appears to be an unfinished placeholder label"
+    },
+    "lead_status": ["NEW", "OPEN", "IN_PROGRESS", "OPEN_DEAL", "UNQUALIFIED", "ATTEMPTED_TO_CONTACT", "CONNECTED", "BAD_TIMING"],
+    "company_account_status": ["Active", "Block", "Ship"]
+  },
+  "users_teams_ownership": {
+    "active_users": 21,
+    "inactive_users": 9,
+    "seat_types_available": ["Core", "Sales Pro", "Partner", "Developer"],
+    "teams": {
+      "EQUINET Team": 6,
+      "Mustad USA Sales Team": 12
+    },
+    "placeholder_or_queue_owners": ["Mustad HubSpot", "Sample Request Mustad USA", "Cetrix Support"],
+    "job_titles_configured": false,
+    "owner_assignment_rules_available": false,
+    "backup_owner_rules_available": false,
+    "ownership_restrictions_configured": false,
+    "territories": ["Northeast", "Southeast", "Midwest", "Southwest", "Animal Health", "LATAM", "EU"]
+  },
+  "process_inventory": {
+    "rows": 68,
+    "workflows": 33,
+    "enabled_workflows": 28,
+    "disabled_workflows": 5,
+    "lists": 32,
+    "dynamic_lists": 19,
+    "static_lists": 13,
+    "audit_findings": 3,
+    "enrichment_review_asset": "not_found",
+    "sequence_resources": "not_found",
+    "deal_approval_workflow": "not_found"
+  },
+  "a2_consequences": {
+    "newly_possible": [
+      "Define exact external lifecycle, Deal, lead, sample-request and ticket state references",
+      "Draft role/team/owner/territory read mappings",
+      "Identify existing exclusion and consent lists for later authoritative checks",
+      "Identify workflow-side-effect risks before any proposed HubSpot write",
+      "Confirm that no current HubSpot enrichment-review asset exists"
+    ],
+    "still_blocked": [
+      "Live HubSpot reads and writes",
+      "A2 reviewer and backup-owner assignment",
+      "Automatic owner assignment",
+      "Exact workflow trigger/action dependency verification",
+      "User-level permissions and seat assignment verification",
+      "Production approval and integration acceptance"
+    ]
+  }
+}

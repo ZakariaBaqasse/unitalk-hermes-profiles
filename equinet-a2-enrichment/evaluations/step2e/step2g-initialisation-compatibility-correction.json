@@ -1,0 +1,21 @@
+{
+  "record_type": "post_approval_validator_correction_proposal",
+  "profile": "equinet-a2-enrichment",
+  "source_step": "2E",
+  "identified_during_step": "2G",
+  "validator_version": "0.1.0",
+  "prior_accepted_validator_sha256": "7a1fa76b413d994d0cf881a4e3a013d8efc5edf57b39b3bb43a6f54af6277743",
+  "prior_accepted_manifest_sha256": "fdf3a495c9dae62a8844ea777b0b260bb4dc5ec0cc7f1520e4e74a566422e8eb",
+  "corrected_validator_sha256": "02acd1aa345dc69c2b990ef4aa77ab066cb078a695f3d09e34a31938d1ed5fe2",
+  "corrected_manifest_sha256": "395d6da0857b0827f20bb7899bb5bad383ab39eab3f6dd35f443993964c9e851",
+  "status": "approved_in_step_2g",
+  "corrections": [
+    "A protected-field update proposal may remain pending human review while application remains not_requested; explicit approval is required before any application attempt.",
+    "A targeted field request may remain without an assessment only while the workflow is initialised; the later planning state must create the assessment."
+  ],
+  "reason": "These compatibility rules are required for approved Step 2F protected-review fixtures and deterministic Step 2G empty-container initialisation.",
+  "approval_route": "Approved through Step 2G decision G11.",
+  "created_at": "2026-08-26T10:38:53Z",
+  "approved_by": "Séverine, Unitalk Operations",
+  "approved_at": "2026-08-26T12:32:41Z"
+}

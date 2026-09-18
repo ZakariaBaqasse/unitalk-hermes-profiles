@@ -1,0 +1,29 @@
+{
+  "record_type": "a2_linked_secondary_fallback_decision",
+  "decision_id": "A2-LINKED-SECONDARY-FALLBACK-20260917",
+  "recorded_at": "2026-09-17T15:01:28Z",
+  "decision_source": "authorised_chat_user",
+  "decision": "Reuse a verified current A1-linked secondary Person after primary and Owner fail, before paid secondary Search.",
+  "sequence": [
+    "primary",
+    "owner",
+    "linked_secondary",
+    "secondary",
+    "completed_no_target"
+  ],
+  "eligibility": {
+    "identity": "VERIFIED",
+    "company_match": "CONFIRMED",
+    "relationship": "CURRENT_AT_COMPANY",
+    "role_priority": "SECONDARY",
+    "provider_person_id_required": true
+  },
+  "actions": {
+    "linked_secondary_selected": "Run Contact Enrichment for work email and phone, then update the existing Twenty Person.",
+    "linked_secondary_not_selected_or_absent": "Proceed to paid secondary Search.",
+    "primary_or_owner_selected": "Do not use the deferred secondary fallback.",
+    "technical_failure": "Stop; do not advance automatically."
+  },
+  "deduplication": "Selection must reference the exact existing Twenty Person ID.",
+  "provider_cost_avoidance": "The linked-secondary resolution stage performs zero provider calls."
+}

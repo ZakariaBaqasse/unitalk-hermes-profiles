@@ -1,0 +1,54 @@
+{
+  "contract_id": "equinet-a2-apify-facebook-page-contact-integration",
+  "version": "0.1.0",
+  "status": "implemented_local_account_rights_and_live_acceptance_pending",
+  "actor": {
+    "name": "apify~facebook-page-contact-information",
+    "store_id": "oJ48ceKNY7ueGPGL0",
+    "owner": "Apify",
+    "build_pin_required_before_live": true
+  },
+  "credential": {
+    "environment_variable": "APIFY_API_KEY",
+    "legacy_alias": "APIFY_TOKEN",
+    "display_or_persist": false
+  },
+  "api_base": "https://api.apify.com/v2",
+  "execution": {
+    "submit": "POST /actors/{actorId}/runs",
+    "poll": "GET /actor-runs/{runId}",
+    "dataset": "GET /datasets/{datasetId}/items",
+    "retries": 0,
+    "resurrect": false
+  },
+  "trigger": {
+    "official_facebook_url_from_website_required": true,
+    "missing_company_email_or_phone_across_a1_and_website": true
+  },
+  "limits": {
+    "actor_calls_per_company": 1,
+    "company_count_cap": null,
+    "automatic_retries": 0
+  },
+  "allowed_output": [
+    "facebookUrl",
+    "pageUrl",
+    "pageName",
+    "title",
+    "email",
+    "phone",
+    "website",
+    "error",
+    "errorDescription"
+  ],
+  "prohibited_output": [
+    "personalProfileData",
+    "posts",
+    "photos",
+    "followers",
+    "likes",
+    "ratings"
+  ],
+  "destination": "Twenty Company only",
+  "decision_record": "foundations/decisions/A2-WEBSITE-FIRST-FIRECRAWL-FACEBOOK-20260918.json"
+}

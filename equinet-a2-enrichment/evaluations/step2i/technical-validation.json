@@ -1,0 +1,486 @@
+{
+  "step": "2I",
+  "stage": "pre_promotion_review",
+  "approval_state": "ready_for_severine_review_not_promoted",
+  "active_schema": {
+    "version": "1.0.0-draft.2",
+    "id": "https://unitalk.ai/schemas/equinet/a2/enrichment-record/1.0.0-draft.2",
+    "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+    "sha256": "f3549e91487571f44ef59cf92e85354af450bbaecd426895548d2b7052f784ee"
+  },
+  "proposed_schema": {
+    "version": "1.0.0",
+    "id": "https://unitalk.ai/schemas/equinet/a2/enrichment-record/1.0.0",
+    "path": "evaluations/step2i/proposed/a2-enrichment-record-1.0.0.schema.json",
+    "sha256": "18e768aba972dc60a16f923cc594d4dc7a64d1947bca12df9d4e3d3d8661b634",
+    "changed_paths": [
+      "$/$id",
+      "$/description",
+      "$/properties/record_metadata/properties/schema_version/const",
+      "$/x-unitalk-contract/status"
+    ],
+    "version_only_change": true,
+    "canonical_structure_hash": "8a5105ae71932b47bf32f621a7292f3435a757ae96a140aab1c37bdd43e8566e"
+  },
+  "prerequisite_validations": {
+    "Step 1B": {
+      "path": "evaluations/step1b/contract-validation.json",
+      "sha256": "e8c5594194eedb5825a91b96f30022f53338c25668037a1b52001d7dee42e363",
+      "passed": true
+    },
+    "Step 2A": {
+      "path": "evaluations/step2a/design-validation.json",
+      "sha256": "81c5bb97408afede488681a61745ef4d6c819160b7ce0292be15a66d91fba76c",
+      "passed": true
+    },
+    "Step 2B": {
+      "path": "evaluations/step2b/technical-validation.json",
+      "sha256": "e056dc4aa12399a75a0e5f9d3cab277d8bca248ea53283cce5aa723968d13d36",
+      "passed": true
+    },
+    "Step 2C": {
+      "path": "evaluations/step2c/technical-validation.json",
+      "sha256": "9185fb1acfe21a25727657c8ef637fba0ac9cb267d36c84001a77634821d33fd",
+      "passed": true
+    },
+    "Step 2D": {
+      "path": "evaluations/step2d/technical-validation.json",
+      "sha256": "09fff71efb20647f60b65d7357b4360e4099c7814b40b9a77d12ea9f2c70e8d7",
+      "passed": true
+    },
+    "Step 2E": {
+      "path": "evaluations/step2e/technical-validation.json",
+      "sha256": "a9ad2cdcb9900502b8799285a4f86b09516e5ea74611db3837f511d2192e8773",
+      "passed": true
+    },
+    "Step 2F": {
+      "path": "evaluations/step2f/technical-validation.json",
+      "sha256": "30dc4e5142afe7a519ac42f6e79965a5703a3d7875cb97b1225d10c86e6890ba",
+      "passed": true
+    },
+    "Step 2G": {
+      "path": "evaluations/step2g/technical-validation.json",
+      "sha256": "65c23102652b72a4a149dc7a9ac0045c9287c150e839c3a51aa1dc4452a69cd7",
+      "passed": true
+    },
+    "Step 2H": {
+      "path": "evaluations/step2h/technical-validation.json",
+      "sha256": "b8e277b89c1e9076617774d201ef6a179fd8db5b6484b6369b35460db566ff6d",
+      "passed": true
+    }
+  },
+  "prerequisite_acceptances": {
+    "Step 2A": {
+      "path": "evaluations/step2a/acceptance-record.json",
+      "sha256": "73181e3bcbe6fc8b750f3c89bd2c62716d3cb3dd58ad78e28ac4298c4e8717fb",
+      "decision": "approved_as_drafted",
+      "passed": true
+    },
+    "Step 2B": {
+      "path": "evaluations/step2b/acceptance-record.json",
+      "sha256": "72a60ed39a025b3e1a8ee5552e48752784d7e8c7b49e51fab00e0c1d90b7db6a",
+      "decision": "approved_as_drafted",
+      "passed": true
+    },
+    "Step 2C": {
+      "path": "evaluations/step2c/acceptance-record.json",
+      "sha256": "0908db37c55cce8d8dec11f0dddc6a2d9f8b7531d20c44a4783744ef33a53a5f",
+      "decision": "approved_as_drafted",
+      "passed": true
+    },
+    "Step 2D": {
+      "path": "evaluations/step2d/acceptance-record.json",
+      "sha256": "ade72e1c078a71957719897f1bbcbd19ad03580412d6186d77afaef9167c5da8",
+      "decision": "approved_as_drafted",
+      "passed": true
+    },
+    "Step 2E": {
+      "path": "evaluations/step2e/acceptance-record.json",
+      "sha256": "2f09337f92d4badf38fad2094a76d4d0e8bd49f96e36a7d56975a14dd367b1ce",
+      "decision": "approved_as_drafted",
+      "passed": true
+    },
+    "Step 2F": {
+      "path": "evaluations/step2f/acceptance-record.json",
+      "sha256": "de816e8d9d724d16ff124a7e2c82a2944aef36f3ba51aa5ae89169640f1d006e",
+      "decision": "approved_as_drafted",
+      "passed": true
+    },
+    "Step 2G": {
+      "path": "evaluations/step2g/acceptance-record.json",
+      "sha256": "dc169fb55e7cb400e1097dc78bd1c7ee8ee831a7d5413a85c9d9f8cffbcf240d",
+      "decision": "approved_as_drafted",
+      "passed": true
+    },
+    "Step 2H": {
+      "path": "evaluations/step2h/acceptance-record.json",
+      "sha256": "a3679ab1e2512acfeec2c859c32ea906a5d2206a9641b0b20bd3b57fb4d1812a",
+      "decision": "approved_as_drafted",
+      "passed": true
+    }
+  },
+  "profile_state_alignment": {
+    "soul_points_to_step2i": true,
+    "roadmap_points_to_step2i": true,
+    "profile_not_pilot_ready": true
+  },
+  "representative_records": {
+    "farrier_review_required": {
+      "source_record": "evaluations/step2f/fixtures/valid/farrier-review-required.json",
+      "source_sha256": "5ce6d2ef7923159b1b2649bffa2c6279cdb3e3c2dc291bc69f7b49a10b0d3e96",
+      "proposed_record": "evaluations/step2i/proposed/records/farrier_review_required/record.json",
+      "proposed_sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194",
+      "proposed_previous_record": "evaluations/step2i/proposed/records/farrier_review_required/previous-record.json",
+      "summary": {
+        "segment": "farrier",
+        "workflow_state": "review_required",
+        "data_quality": "review_ready",
+        "a2_eligibility": "not_checked",
+        "record_decision": "pending",
+        "field_assessments": 6,
+        "evidence_items": 2,
+        "requalification_signals": 0,
+        "requalification_returns": 0,
+        "score_revision_references": 0,
+        "recorded_external_actions": 0
+      },
+      "changed_paths": [
+        "$/record_metadata/schema_version"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    "farrier_conflict_held": {
+      "source_record": "evaluations/step2f/fixtures/valid/farrier-conflict-held.json",
+      "source_sha256": "918d7d40766da1aa000842f4d3dbe173f46260d4d1b8db62c83542597f9dc99c",
+      "proposed_record": "evaluations/step2i/proposed/records/farrier_conflict_held/record.json",
+      "proposed_sha256": "e426b4869d6344a18790dff0d5c64ed9b956630c30a37a847efe03a804f9a1ae",
+      "proposed_previous_record": "evaluations/step2i/proposed/records/farrier_conflict_held/previous-record.json",
+      "summary": {
+        "segment": "farrier",
+        "workflow_state": "held",
+        "data_quality": "conflict",
+        "a2_eligibility": "not_checked",
+        "record_decision": "held",
+        "field_assessments": 6,
+        "evidence_items": 3,
+        "requalification_signals": 0,
+        "requalification_returns": 0,
+        "score_revision_references": 0,
+        "recorded_external_actions": 0
+      },
+      "changed_paths": [
+        "$/record_metadata/schema_version"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    "horse_owner_gap_held": {
+      "source_record": "evaluations/step2f/fixtures/valid/horse-owner-gap-held.json",
+      "source_sha256": "efc3fa863f9e3df9da71c0a2f17b86b96a2dea8955d71f375d91d6dc399dd6d0",
+      "proposed_record": "evaluations/step2i/proposed/records/horse_owner_gap_held/record.json",
+      "proposed_sha256": "0b58e35159d86aceaf61269db38c8d63356c951397c8d80d24abe2358e2eead1",
+      "proposed_previous_record": "evaluations/step2i/proposed/records/horse_owner_gap_held/previous-record.json",
+      "summary": {
+        "segment": "horse_owner",
+        "workflow_state": "held",
+        "data_quality": "incomplete",
+        "a2_eligibility": "not_checked",
+        "record_decision": "held",
+        "field_assessments": 3,
+        "evidence_items": 0,
+        "requalification_signals": 0,
+        "requalification_returns": 0,
+        "score_revision_references": 0,
+        "recorded_external_actions": 0
+      },
+      "changed_paths": [
+        "$/record_metadata/schema_version"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    "horse_owner_requalification": {
+      "source_record": "evaluations/step2f/fixtures/valid/horse-owner-complete-requalification.json",
+      "source_sha256": "61cd7a0e91c2ffcbc8ee76f08653897fb284b79ef17f27ebc9c496b40893cfe3",
+      "proposed_record": "evaluations/step2i/proposed/records/horse_owner_requalification/record.json",
+      "proposed_sha256": "a1f387ff137592b57f326fbe0b798f99eb4ccc49c528442805049a51d34a0eca",
+      "proposed_previous_record": "evaluations/step2i/proposed/records/horse_owner_requalification/previous-record.json",
+      "summary": {
+        "segment": "horse_owner",
+        "workflow_state": "enrichment_planned",
+        "data_quality": "needs_review",
+        "a2_eligibility": "not_checked",
+        "record_decision": "pending",
+        "field_assessments": 1,
+        "evidence_items": 1,
+        "requalification_signals": 1,
+        "requalification_returns": 1,
+        "score_revision_references": 1,
+        "recorded_external_actions": 0
+      },
+      "changed_paths": [
+        "$/record_metadata/schema_version"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    "farrier_protected_update": {
+      "source_record": "evaluations/step2f/fixtures/valid/farrier-protected-update-awaiting-review.json",
+      "source_sha256": "074db80a6332e6a3c0091dcebf996d601e9af48ef3f8f730f71187cc437c4d2f",
+      "proposed_record": "evaluations/step2i/proposed/records/farrier_protected_update/record.json",
+      "proposed_sha256": "d4ac41364a4dc69615a51342488ff8905bb29381bf546732bfad9782464f0b4e",
+      "proposed_previous_record": "evaluations/step2i/proposed/records/farrier_protected_update/previous-record.json",
+      "summary": {
+        "segment": "farrier",
+        "workflow_state": "review_required",
+        "data_quality": "review_ready",
+        "a2_eligibility": "not_checked",
+        "record_decision": "pending",
+        "field_assessments": 6,
+        "evidence_items": 3,
+        "requalification_signals": 0,
+        "requalification_returns": 0,
+        "score_revision_references": 0,
+        "recorded_external_actions": 0
+      },
+      "changed_paths": [
+        "$/record_metadata/schema_version"
+      ],
+      "valid": true,
+      "errors": []
+    },
+    "farrier_confirmed_duplicate": {
+      "source_record": "evaluations/step2f/fixtures/valid/farrier-confirmed-duplicate-blocked.json",
+      "source_sha256": "fbc94a4053e3302ef606ed6ed7d9b6c862b1c0383ad76554c38723d874fd1bfd",
+      "proposed_record": "evaluations/step2i/proposed/records/farrier_confirmed_duplicate/record.json",
+      "proposed_sha256": "aaee1b3691af290d625c5bad799acd8abd23d962f6559bcf8138602d6fe9cdc2",
+      "proposed_previous_record": "evaluations/step2i/proposed/records/farrier_confirmed_duplicate/previous-record.json",
+      "summary": {
+        "segment": "farrier",
+        "workflow_state": "blocked",
+        "data_quality": "incomplete",
+        "a2_eligibility": "blocked",
+        "record_decision": "blocked",
+        "field_assessments": 6,
+        "evidence_items": 0,
+        "requalification_signals": 0,
+        "requalification_returns": 0,
+        "score_revision_references": 0,
+        "recorded_external_actions": 0
+      },
+      "changed_paths": [
+        "$/record_metadata/schema_version"
+      ],
+      "valid": true,
+      "errors": []
+    }
+  },
+  "representative_summary": {
+    "expected": 6,
+    "passed": 6,
+    "failed": 0,
+    "segments": [
+      "farrier",
+      "horse_owner"
+    ],
+    "recorded_external_actions": 0
+  },
+  "promotion_impact": {
+    "draft_reference_file_count": 150,
+    "groups": {
+      "active_foundations": {
+        "count": 14,
+        "paths": [
+          "foundations/A2-CANONICAL-JSON-SCHEMA-CONTRACT.md",
+          "foundations/A2-CROSS-FIELD-VALIDATOR-CONTRACT.md",
+          "foundations/A2-FIXTURES-AND-REGRESSION-CONTRACT.md",
+          "foundations/A2-HANDOFF-TO-RECORD-INITIALISATION-CONTRACT.md",
+          "foundations/A2-REVIEW-VIEW-SPECIFICATION.md",
+          "foundations/contracts/canonical/a2-enrichment-record.dependency-manifest.json",
+          "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+          "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+          "foundations/contracts/canonical/examples/invalid/invalid-a2-score-field.json",
+          "foundations/contracts/canonical/examples/invalid/invalid-extra-nested-property.json",
+          "foundations/contracts/canonical/examples/invalid/invalid-extra-root-property.json",
+          "foundations/contracts/canonical/examples/invalid/invalid-no-integration-sync.json",
+          "foundations/contracts/canonical/examples/valid/valid-synthetic-enriched-record.json",
+          "foundations/contracts/canonical/examples/valid/valid-synthetic-initialised-record.json"
+        ]
+      },
+      "active_scripts": {
+        "count": 7,
+        "paths": [
+          "scripts/build_step2d_schema.py",
+          "scripts/initialize_a2_record.py",
+          "scripts/prepare_step2i_review.py",
+          "scripts/run_step2e_tests.py",
+          "scripts/run_step2f_tests.py",
+          "scripts/run_step2g_tests.py",
+          "scripts/validate_step2d_schema.py"
+        ]
+      },
+      "synthetic_and_generated_evaluations": {
+        "count": 122,
+        "paths": [
+          "evaluations/step2d/technical-validation.json",
+          "evaluations/step2e/fixtures/invalid/invalid-a2-outreach-authorisation.json",
+          "evaluations/step2e/fixtures/invalid/invalid-append-only-evidence-mutation.json",
+          "evaluations/step2e/fixtures/invalid/invalid-application-without-approval.json",
+          "evaluations/step2e/fixtures/invalid/invalid-application-without-audit-receipt.json",
+          "evaluations/step2e/fixtures/invalid/invalid-assessment-entity-reference.json",
+          "evaluations/step2e/fixtures/invalid/invalid-blocked-evidence-use.json",
+          "evaluations/step2e/fixtures/invalid/invalid-blocked-workflow-pending-review.json",
+          "evaluations/step2e/fixtures/invalid/invalid-candidate-hash.json",
+          "evaluations/step2e/fixtures/invalid/invalid-clear-request-normalised-value.json",
+          "evaluations/step2e/fixtures/invalid/invalid-cross-field-previous-record.json",
+          "evaluations/step2e/fixtures/invalid/invalid-duplicate-assessment-target.json",
+          "evaluations/step2e/fixtures/invalid/invalid-duplicate-entity-id.json",
+          "evaluations/step2e/fixtures/invalid/invalid-embedded-handoff-gate.json",
+          "evaluations/step2e/fixtures/invalid/invalid-event-token-arithmetic.json",
+          "evaluations/step2e/fixtures/invalid/invalid-evidence-assessment-reference.json",
+          "evaluations/step2e/fixtures/invalid/invalid-evidence-self-cycle.json",
+          "evaluations/step2e/fixtures/invalid/invalid-external-match-evidence.json",
+          "evaluations/step2e/fixtures/invalid/invalid-failed-application-without-approval.json",
+          "evaluations/step2e/fixtures/invalid/invalid-field-catalogue-key.json",
+          "evaluations/step2e/fixtures/invalid/invalid-field-catalogue-type.json",
+          "evaluations/step2e/fixtures/invalid/invalid-field-catalogue-value.json",
+          "evaluations/step2e/fixtures/invalid/invalid-handoff-mirror.json",
+          "evaluations/step2e/fixtures/invalid/invalid-known-field-marked-missing.json",
+          "evaluations/step2e/fixtures/invalid/invalid-later-revision-without-previous.json",
+          "evaluations/step2e/fixtures/invalid/invalid-nonreciprocal-evidence-link.json",
+          "evaluations/step2e/fixtures/invalid/invalid-observation-evidence-reference.json",
+          "evaluations/step2e/fixtures/invalid/invalid-owner-reassignment-without-approval.json",
+          "evaluations/step2e/fixtures/invalid/invalid-possible-duplicate-eligible.json",
+          "evaluations/step2e/fixtures/invalid/invalid-protected-baseline-downgrade.json",
+          "evaluations/step2e/fixtures/invalid/invalid-protected-update-without-approval.json",
+          "evaluations/step2e/fixtures/invalid/invalid-provider-use-without-authorisation.json",
+          "evaluations/step2e/fixtures/invalid/invalid-quality-field-reference.json",
+          "evaluations/step2e/fixtures/invalid/invalid-record-approved-with-pending-field.json",
+          "evaluations/step2e/fixtures/invalid/invalid-relationship-reference.json",
+          "evaluations/step2e/fixtures/invalid/invalid-requalification-candidate-link.json",
+          "evaluations/step2e/fixtures/invalid/invalid-requalification-lifecycle-jump.json",
+          "evaluations/step2e/fixtures/invalid/invalid-requalification-payload-mutation.json",
+          "evaluations/step2e/fixtures/invalid/invalid-return-signal-snapshot.json",
+          "evaluations/step2e/fixtures/invalid/invalid-reused-revision-id.json",
+          "evaluations/step2e/fixtures/invalid/invalid-review-ready-with-conflict.json",
+          "evaluations/step2e/fixtures/invalid/invalid-score-revision-arithmetic.json",
+          "evaluations/step2e/fixtures/invalid/invalid-score-revision-prior-scoring.json",
+          "evaluations/step2e/fixtures/invalid/invalid-score-revision-return-link.json",
+          "evaluations/step2e/fixtures/invalid/invalid-score-revision-signal-outside-return.json",
+          "evaluations/step2e/fixtures/invalid/invalid-score-revision-unaccepted-return.json",
+          "evaluations/step2e/fixtures/invalid/invalid-source-register-version.json",
+          "evaluations/step2e/fixtures/invalid/invalid-superseded-evidence-reference.json",
+          "evaluations/step2e/fixtures/invalid/invalid-system-candidate-reference.json",
+          "evaluations/step2e/fixtures/invalid/invalid-update-without-evidence.json",
+          "evaluations/step2e/fixtures/invalid/invalid-usage-total.json",
+          "evaluations/step2e/fixtures/invalid/invalid-workflow-review-mismatch.json",
+          "evaluations/step2e/fixtures/invalid/invalid-workflow-transition.json",
+          "evaluations/step2e/fixtures/valid/valid-complete-requalification-record.json",
+          "evaluations/step2e/fixtures/valid/valid-enriched-revision.json",
+          "evaluations/step2e/fixtures/valid/valid-initial-record.json",
+          "evaluations/step2e/fixtures/valid/valid-prior-with-evidence.json",
+          "evaluations/step2e/fixtures/valid/valid-relationship-scoped-assessment.json",
+          "evaluations/step2e/fixtures/valid/valid-requalification-lifecycle-revision.json",
+          "evaluations/step2e/fixtures/valid/valid-requalification-signal-record.json",
+          "evaluations/step2e/technical-validation.json",
+          "evaluations/step2f/fixtures/invalid/a2-score-production-previous.json",
+          "evaluations/step2f/fixtures/invalid/a2-score-production.json",
+          "evaluations/step2f/fixtures/invalid/blocked-source-evidence-previous.json",
+          "evaluations/step2f/fixtures/invalid/blocked-source-evidence.json",
+          "evaluations/step2f/fixtures/invalid/confirmed-duplicate-marked-eligible-previous.json",
+          "evaluations/step2f/fixtures/invalid/confirmed-duplicate-marked-eligible.json",
+          "evaluations/step2f/fixtures/invalid/cross-segment-field-previous.json",
+          "evaluations/step2f/fixtures/invalid/cross-segment-field.json",
+          "evaluations/step2f/fixtures/invalid/false-synthetic-sync-previous.json",
+          "evaluations/step2f/fixtures/invalid/false-synthetic-sync.json",
+          "evaluations/step2f/fixtures/invalid/invalid-a1-score-revision-previous.json",
+          "evaluations/step2f/fixtures/invalid/invalid-a1-score-revision.json",
+          "evaluations/step2f/fixtures/invalid/missing-evidence-previous.json",
+          "evaluations/step2f/fixtures/invalid/missing-evidence.json",
+          "evaluations/step2f/fixtures/invalid/prohibited-outreach-previous.json",
+          "evaluations/step2f/fixtures/invalid/prohibited-outreach.json",
+          "evaluations/step2f/fixtures/invalid/protected-overwrite-without-approval-previous.json",
+          "evaluations/step2f/fixtures/invalid/protected-overwrite-without-approval.json",
+          "evaluations/step2f/fixtures/invalid/provider-without-approval-previous.json",
+          "evaluations/step2f/fixtures/invalid/provider-without-approval.json",
+          "evaluations/step2f/fixtures/invalid/record-approved-with-incomplete-field-decisions-previous.json",
+          "evaluations/step2f/fixtures/invalid/record-approved-with-incomplete-field-decisions.json",
+          "evaluations/step2f/fixtures/invalid/required-package-missing-assessment-previous.json",
+          "evaluations/step2f/fixtures/invalid/required-package-missing-assessment.json",
+          "evaluations/step2f/fixtures/invalid/review-ready-with-conflict-previous.json",
+          "evaluations/step2f/fixtures/invalid/review-ready-with-conflict.json",
+          "evaluations/step2f/fixtures/valid/farrier-confirmed-duplicate-blocked-previous.json",
+          "evaluations/step2f/fixtures/valid/farrier-confirmed-duplicate-blocked.json",
+          "evaluations/step2f/fixtures/valid/farrier-conflict-held-previous.json",
+          "evaluations/step2f/fixtures/valid/farrier-conflict-held.json",
+          "evaluations/step2f/fixtures/valid/farrier-enrichment-in-progress-previous.json",
+          "evaluations/step2f/fixtures/valid/farrier-enrichment-in-progress.json",
+          "evaluations/step2f/fixtures/valid/farrier-initial.json",
+          "evaluations/step2f/fixtures/valid/farrier-planned-gap-previous.json",
+          "evaluations/step2f/fixtures/valid/farrier-planned-gap.json",
+          "evaluations/step2f/fixtures/valid/farrier-protected-update-awaiting-review-previous.json",
+          "evaluations/step2f/fixtures/valid/farrier-protected-update-awaiting-review.json",
+          "evaluations/step2f/fixtures/valid/farrier-record-approved-previous.json",
+          "evaluations/step2f/fixtures/valid/farrier-record-approved.json",
+          "evaluations/step2f/fixtures/valid/farrier-review-required-previous.json",
+          "evaluations/step2f/fixtures/valid/farrier-review-required.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-complete-requalification-previous.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-complete-requalification.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-enrichment-in-progress-previous.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-enrichment-in-progress.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-gap-held-previous.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-gap-held.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-initial.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-planned-gap-previous.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-planned-gap.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-possible-duplicate-held-previous.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-possible-duplicate-held.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-record-approved-previous.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-record-approved.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-review-required-previous.json",
+          "evaluations/step2f/fixtures/valid/horse-owner-review-required.json",
+          "evaluations/step2f/technical-validation.json",
+          "evaluations/step2g/fixtures/valid/farrier-initial-record.json",
+          "evaluations/step2g/fixtures/valid/horse-owner-initial-record.json",
+          "evaluations/step2g/fixtures/valid/horse-owner-targeted-initial-record.json",
+          "evaluations/step2h/fixtures/farrier-application-blocked.json"
+        ]
+      },
+      "historical_acceptance_and_review_evidence": {
+        "count": 5,
+        "paths": [
+          "evaluations/step2d/correction-draft2-record.json",
+          "evaluations/step2e/A2-CROSS-FIELD-VALIDATOR-REVIEW.md",
+          "evaluations/step2e/INDEPENDENT-ADVERSARIAL-REVIEW-RESOLUTION.md",
+          "evaluations/step2e/acceptance-record.json",
+          "evaluations/step2f/A2-FIXTURES-AND-REGRESSION-REVIEW.md"
+        ]
+      },
+      "other": {
+        "count": 2,
+        "paths": [
+          "SOUL.md",
+          "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md"
+        ]
+      }
+    },
+    "promotion_rule": "Update active foundations, active scripts, active synthetic fixtures and generated outputs. Preserve historical acceptance/review evidence in a hashed pre-promotion snapshot and do not reinterpret prior approval as approval of 1.0.0."
+  },
+  "decisions_for_review": {
+    "I1": "Promote the unchanged approved canonical structure from 1.0.0-draft.2 to 1.0.0.",
+    "I2": "Keep exactly fourteen required top-level sections and strict locally defined objects.",
+    "I3": "Keep the Field Catalogue, minimum packages, source/provider policy, confidence/freshness rules, protected-field catalogue, approval matrix, CRM mapping and retention policy outside the stable schema.",
+    "I4": "Preserve the complete A1 handoff and A1-only numeric scoring boundary; A2 may create evidence-backed requalification signals but cannot calculate scores.",
+    "I5": "Keep canonical JSON as the sole lossless record and Markdown, CSV and Excel as read-only derived views.",
+    "I6": "Promote dependent active tooling and synthetic test assets together, while preserving a hashed pre-promotion evidence snapshot.",
+    "I7": "Require all Step 2D–2H regression suites and the deployment-language audit to pass after promotion.",
+    "I8": "Keep all external integrations and actions disabled; schema promotion does not authorise enrichment, provider use, CRM access, writeback, outreach or pilot use.",
+    "I9": "Create a Step 2I acceptance record that pins the final schema, dependency manifest, validation and promotion evidence hashes.",
+    "I10": "After successful promotion, advance the next foundation gate to Step 3A — Business Field Catalogue."
+  },
+  "promotion_performed": false,
+  "external_actions": 0,
+  "failures": [],
+  "pass": true
+}

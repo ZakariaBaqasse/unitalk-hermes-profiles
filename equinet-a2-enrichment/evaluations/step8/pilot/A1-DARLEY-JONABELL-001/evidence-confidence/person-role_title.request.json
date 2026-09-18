@@ -1,0 +1,86 @@
+{
+  "evidence_id": "EV-STAGE1-OFFICIAL-SITE-002",
+  "field_assessment_id": "A2-FLD-E65EE5C6BAB67CB0",
+  "source_id": "prospect_official_website",
+  "claim_key": "person.role_title",
+  "normalised_value": "Nominations Sales and Operating Manager, Jonabell Farm",
+  "source_references": [
+    "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm",
+    "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md"
+  ],
+  "source_preflight": {
+    "preflight_version": "0.1.0-step8",
+    "candidate_id": "A1-DARLEY-JONABELL-001",
+    "source_id": "prospect_official_website",
+    "field_key": "person.role_title",
+    "named_need": "Step 8 verified field observation for person.role_title",
+    "execution_mode": "bounded_real_pilot_collection",
+    "preflight_status": "completed",
+    "field_gate": "step8_approved_official_site_field_allowlist",
+    "register_status": "conditional",
+    "business_approval": "approved_by_equinet",
+    "source_rights_preflight": "robots_checked_and_allowed",
+    "runtime_readiness": "step8_bounded_pilot",
+    "allowed_access_modes": [
+      "bounded_public_web_read"
+    ],
+    "limits": {
+      "max_pages_per_candidate": 5,
+      "max_retry_per_failed_url": 1,
+      "concurrency": 1
+    },
+    "stop_conditions": [
+      "terms_or_robots_denial",
+      "login_or_paywall",
+      "captcha",
+      "http_403",
+      "http_429",
+      "unexpected_personal_data",
+      "scope_or_budget_limit"
+    ],
+    "provider_missing_activation_gates": [],
+    "live_runtime_blocks": [],
+    "blocks": [],
+    "warnings": [],
+    "audit": {
+      "actor_profile": "equinet-a2-enrichment",
+      "trigger": "Step 8 bounded official-site collection",
+      "timestamp": "2026-08-30T12:05:01Z",
+      "run_id": "STEP8-A1-DARLEY-JONABELL-001",
+      "source_id": "prospect_official_website",
+      "input_scope": {
+        "candidate_id": "A1-DARLEY-JONABELL-001",
+        "field_key": "person.role_title",
+        "named_need": "Verify person.role_title"
+      },
+      "source_urls": [
+        "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm"
+      ],
+      "output_reference": "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md",
+      "approval_state": "approved_bounded_real_pilot",
+      "status": "completed",
+      "retries": 0,
+      "usage_and_cost": {
+        "api_calls": 1,
+        "cost_amount": null,
+        "currency": "USD",
+        "cost_status": "unavailable"
+      }
+    },
+    "audit_complete": true,
+    "collection_manifest_sha256": "611de91bb928ca1ad10f05ce77199a91c9ade602bbb688771d79a0a47f4982b7",
+    "source_content_sha256": "1cec71b9e37e56aa79ded1d1f28e11a26a0810c6ce3ba83f75ab7cadbbe34d07",
+    "external_call_authorized": false,
+    "external_calls": 1,
+    "external_actions": 0,
+    "outreach_authorized": false,
+    "crm_write_authorized": false,
+    "preflight_sha256": "a5dc2ad94f65677d8d17f2b5464a4041eb7cec2196426a0ece8089eb6c0a70c4"
+  },
+  "identity_match": "exact",
+  "claim_directness": "direct_fact",
+  "freshness": "current_official_undated",
+  "corroboration": "authoritative_or_primary_sufficient",
+  "consistency": "no_conflict",
+  "required_claim": true
+}

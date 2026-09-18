@@ -1,0 +1,70 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "FILTER-LIVE-VERIFY",
+  "company_id": null,
+  "created_at": "2026-09-15T13:49:02Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "bb32d3391178bce0d97afaf6945f4163e7b8c14ac664301758890b1d5941b056",
+  "requested_batch_size": 1,
+  "company_count": 1,
+  "companies": [
+    {
+      "twenty_company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "name": "Hidden Creek Farm LLC",
+      "segment": "HORSE_OWNER",
+      "domain": "hiddencreek.farm",
+      "professional_network_url": null,
+      "location": {
+        "street": "4721 Newtown Pike, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "a2_enrichment_status": "COMPLETED_NO_TARGET",
+      "a2_enrichment_version": "0.1.0-live-test.1",
+      "a2_enrichment_run_id": "A2-LIVE-20260915T111736Z",
+      "a2_processing_started_at": "2026-09-15T11:17:36.000Z",
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-15T11:20:02.426Z"
+    }
+  ],
+  "claims": [],
+  "applied_filters": {
+    "statuses": null,
+    "include_null": false,
+    "allow_any_status": true,
+    "company_ids": [
+      "575f9d4e-9708-40f8-b1d0-0cc940528c3a"
+    ],
+    "company_names": [],
+    "segments": [],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "1",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "id[eq]:575f9d4e-9708-40f8-b1d0-0cc940528c3a"
+    },
+    "receipt": {
+      "http_status": 200,
+      "attempt": 1,
+      "received_at": "2026-09-15T13:49:02Z"
+    }
+  },
+  "external_writes": 0,
+  "artifact_sha256": "b505d292dee935c83fd3df7d82f3329abfa3fb4ab187cd46968679afbeef3219"
+}

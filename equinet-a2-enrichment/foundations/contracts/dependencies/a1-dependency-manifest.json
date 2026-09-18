@@ -1,0 +1,14 @@
+{
+  "dependency": "Equinet A1 Prospect Candidate",
+  "schema_id": "https://unitalk.ai/schemas/equinet/a1/prospect-candidate/1.0.0",
+  "schema_version": "1.0.0",
+  "source_profile": "equinet-a1-icp-discovery",
+  "source_path": "skills/a1-prospect-data-contract/references/prospect-candidate.schema.json",
+  "pinned_copy": "foundations/contracts/dependencies/a1-prospect-candidate.schema.json",
+  "sha256": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de",
+  "validator_source_path": "skills/a1-prospect-data-contract/scripts/validate_candidate.py",
+  "pinned_validator_copy": "foundations/contracts/dependencies/a1_validate_candidate.py",
+  "validator_sha256": "a7eabd5e3e1789b1d4dcb59008d56fc3f93d32b3a5e6f7d2fef65d438ec7f4b7",
+  "copy_verified": true,
+  "use": "Validate the immutable candidate_snapshot embedded in the A1-to-A2 handoff envelope."
+}

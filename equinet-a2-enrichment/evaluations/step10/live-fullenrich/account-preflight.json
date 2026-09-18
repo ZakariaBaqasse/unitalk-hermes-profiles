@@ -1,0 +1,26 @@
+{
+  "record_type": "a2_fullenrich_account_preflight",
+  "checked_at": "2026-09-15T10:56:38Z",
+  "base_url": "https://app.fullenrich.com/api/v2",
+  "key_present": true,
+  "key_verified": true,
+  "workspace_id_present": true,
+  "credits_available": 499,
+  "http_receipts": [
+    {
+      "endpoint": "/account/keys/verify",
+      "http_status": 200,
+      "attempt": 1
+    },
+    {
+      "endpoint": "/account/credits",
+      "http_status": 200,
+      "attempt": 1
+    }
+  ],
+  "paid_enrichment_calls": 0,
+  "credits_consumed": 0,
+  "external_calls": 2,
+  "credentials_logged": false,
+  "next_gate": "approve provider caps/owner and bounded live provider fixture tests"
+}

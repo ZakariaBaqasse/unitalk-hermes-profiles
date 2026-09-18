@@ -1,0 +1,195 @@
+{
+  "package_contract_id": "equinet-a2-minimum-data-packages",
+  "version": "0.2.0",
+  "status": "equinet_confirmed_unitalk_implemented_no_integration",
+  "profile": "equinet-a2-enrichment",
+  "canonical_schema_version": "1.0.0",
+  "business_field_catalogue": {
+    "path": "foundations/contracts/business/a2-business-field-catalogue-0.2.0.json",
+    "version": "0.2.0",
+    "sha256": "0789d21c3de432fa0c3ba804dfa6d99f4d4d565f0ce1c576745e2aa9190a7d16",
+    "status": "equinet_confirmed_unitalk_implemented_no_integration"
+  },
+  "input_contract": {
+    "field_states": [
+      "verified",
+      "present_unverified",
+      "missing",
+      "unknown",
+      "not_found",
+      "unavailable",
+      "conflict",
+      "error"
+    ],
+    "verified_only_satisfies_required_field": true,
+    "unknown_or_not_found_never_becomes_a_value": true,
+    "record_must_pass_canonical_validation_first": true
+  },
+  "global_rules": {
+    "human_review_required_during_pilot": true,
+    "review_readiness_is_not_outreach_eligibility": true,
+    "review_readiness_is_not_crm_write_authority": true,
+    "missing_required_field": {
+      "field_quality_status": "gap",
+      "record_data_quality_status": "incomplete",
+      "automatic_rejection": false,
+      "automatic_a1_score_change": false,
+      "external_action_authorized": false,
+      "visible_in_review_package": true
+    },
+    "material_conflict": {
+      "record_data_quality_status": "conflict",
+      "workflow_recommendation": "held",
+      "human_resolution_required": true
+    },
+    "research_not_exhausted_workflow": "enrichment_in_progress",
+    "research_exhausted_with_gap_workflow": "review_required",
+    "review_required_even_when_incomplete": true,
+    "human_dispositions": [
+      "needs_changes",
+      "held",
+      "approved_collect_during_discovery",
+      "rejected_for_explicit_business_reason"
+    ],
+    "approved_collect_during_discovery": {
+      "allowed": true,
+      "preserve_data_quality": "incomplete",
+      "automatic_outreach": false,
+      "automatic_crm_write": false
+    }
+  },
+  "packages": {
+    "farrier_review_ready": {
+      "segment": "farrier",
+      "purpose": "Minimum A2 package for human review of a Farrier prospect.",
+      "required_verified_fields": [
+        "person.professional_status",
+        "organisation.business_name",
+        "organisation.public_business_location",
+        "organisation.service_area",
+        "organisation.disciplines"
+      ],
+      "contact_paths": {
+        "named_target": {
+          "required_verified_fields": [
+            "person.full_name",
+            "person.role_title",
+            "relationship.target_role_priority"
+          ],
+          "at_least_one_verified_field": [
+            "person.business_email",
+            "person.business_phone"
+          ],
+          "preferred_verified_fields": [
+            "person.business_email",
+            "person.business_phone"
+          ]
+        },
+        "contact_needed": {
+          "required_flags": {
+            "target_role_not_found": true
+          },
+          "research_target_fields": [
+            "person.full_name",
+            "person.role_title",
+            "relationship.target_role_priority",
+            "person.business_email",
+            "person.business_phone"
+          ],
+          "retained_information_fields": [
+            "organisation.business_email",
+            "organisation.business_phone"
+          ],
+          "review_ready_allowed": false,
+          "review_label": "Contact Needed / Needs Review",
+          "unrelated_role_cannot_satisfy": true,
+          "research_exhausted_workflow": "review_required"
+        }
+      },
+      "optional_fields_do_not_block": true
+    },
+    "horse_owner_review_ready": {
+      "segment": "horse_owner",
+      "purpose": "Minimum A2 package for human review of a Horse Owner organisation prospect.",
+      "required_verified_fields": [
+        "organisation.business_name",
+        "organisation.public_business_location",
+        "organisation.stable_type",
+        "organisation.horse_count",
+        "organisation.breeds"
+      ],
+      "contact_paths": {
+        "named_target": {
+          "required_verified_fields": [
+            "person.full_name",
+            "person.role_title",
+            "relationship.target_role_priority"
+          ],
+          "at_least_one_verified_field": [
+            "person.business_email",
+            "person.business_phone"
+          ],
+          "preferred_verified_fields": [
+            "person.business_email",
+            "person.business_phone"
+          ]
+        },
+        "contact_needed": {
+          "required_flags": {
+            "target_role_not_found": true
+          },
+          "research_target_fields": [
+            "person.full_name",
+            "person.role_title",
+            "relationship.target_role_priority",
+            "person.business_email",
+            "person.business_phone"
+          ],
+          "retained_information_fields": [
+            "organisation.business_email",
+            "organisation.business_phone"
+          ],
+          "review_ready_allowed": false,
+          "review_label": "Contact Needed / Needs Review",
+          "unrelated_role_cannot_satisfy": true,
+          "research_exhausted_workflow": "review_required"
+        }
+      },
+      "explicit_horse_count_required": true,
+      "optional_fields_do_not_block": true,
+      "horse_count_range_used": false,
+      "location_rule": {
+        "attempt_complete_address": true,
+        "minimum_verified_components": [
+          "state",
+          "country"
+        ]
+      }
+    }
+  },
+  "outreach_readiness_boundary": {
+    "separate_from_a2_review_ready": true,
+    "current_status": "unavailable",
+    "reason": "HubSpot authoritative consent, suppression, customer, Deal and sequence checks are not connected.",
+    "required_authoritative_checks": [
+      "consent",
+      "suppression",
+      "customer_status",
+      "deal_status",
+      "sequence_status",
+      "owner_and_business_unit_access"
+    ],
+    "public_contact_data_never_satisfies_outreach_eligibility": true,
+    "send_authorized": false
+  },
+  "approval_boundary": {
+    "unitalk_status": "approved_and_implemented",
+    "unitalk_approver": "Séverine, Unitalk Operations",
+    "unitalk_approved_at": "2026-08-30T17:05:11Z",
+    "equinet_confirmation": "confirmed_via_unitalk_operations",
+    "decision_record": "foundations/decisions/A2-EQUINET-BUSINESS-CONFIRMATION-20260830.json",
+    "live_use_authorized": false,
+    "external_actions_authorized": false,
+    "next_gate_after_approval": "Step 10 — Integrations"
+  }
+}

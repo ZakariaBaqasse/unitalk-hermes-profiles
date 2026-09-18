@@ -1,0 +1,152 @@
+{
+  "manifest_id": "equinet-a2-step8-readiness-package",
+  "version": "0.1.0",
+  "status": "ready_for_jonabell_profile_stage1",
+  "files": [
+    {
+      "path": "evaluations/step8/readiness/pilot-readiness-decision-intake.json",
+      "bytes": 2165,
+      "sha256": "7bdb62318487ab432b1d160fef7ced504d4747d8ba4dedfff668190acf77fd24"
+    },
+    {
+      "path": "evaluations/step8/readiness/web-connectivity-smoke.json",
+      "bytes": 1707,
+      "sha256": "56be5a366de7f75d591e9d5d20c25e17ad962df3d2fbf562ddc999fe509984f5"
+    },
+    {
+      "path": "evaluations/step8/readiness/provider-governance-attestation.json",
+      "bytes": 2858,
+      "sha256": "59b2433f4ebc80093fbf85d0db3193708a509678bf2811c5a84fbf19d9235a23"
+    },
+    {
+      "path": "evaluations/step8/handoffs/manifest.json",
+      "bytes": 1303,
+      "sha256": "3ed02bd206d82d6c45ef5960eb18f2c89e8660009dca2b736318280d41f0bee9"
+    },
+    {
+      "path": "evaluations/step8/readiness/pilot-run-plan.json",
+      "bytes": 4100,
+      "sha256": "92ac9fd22b2ec65f9b61097517e899dfba70474c1766b2f72ff7359c7d6413af"
+    },
+    {
+      "path": "config.yaml",
+      "bytes": 833,
+      "sha256": "55f28dbe5208e10b53022806880d361b7b0b79a8713013972c9b1bcc6d2977bb"
+    },
+    {
+      "path": "foundations/contracts/runtime/a2-step8-pilot-runtime-policy-0.1.0.yaml",
+      "bytes": 2480,
+      "sha256": "9061c967903e94fb8a616d4e72b04f2fca6e23d18b8a7446c7b47466c5c3b3df"
+    },
+    {
+      "path": "evaluations/step8/collection/collection-manifest.json",
+      "bytes": 5544,
+      "sha256": "3a3ffed0404ea78e32b3d739d08070bf0e0e94e6ea486814b421b6248457bfed"
+    },
+    {
+      "path": "evaluations/step8/readiness/technical-validation.json",
+      "bytes": 1277,
+      "sha256": "72928e406cacdfd4856f96b451d133fe71bb8bf6843b064b0579618bc7a48763"
+    },
+    {
+      "path": "evaluations/step8/readiness/A2-STEP-8-READINESS-REVIEW.md",
+      "bytes": 683,
+      "sha256": "cd34200cdd2662581cfec2e781a65a1d7776aadd62d3a7b8d0494e1e37faeb1f"
+    },
+    {
+      "path": "scripts/build_step8_real_handoffs.py",
+      "bytes": 6876,
+      "sha256": "0191aaf87a7b7ec8c59523aa6cd06b8e8b3225041e214e24bb7438e8c5d8faae"
+    },
+    {
+      "path": "scripts/build_step8_a1_reuse_snapshot.py",
+      "bytes": 4515,
+      "sha256": "65fba5a604726c8822caa9fb174250880e143e49357cb40860576be85e848749"
+    },
+    {
+      "path": "scripts/run_step8_official_site_collection.py",
+      "bytes": 6507,
+      "sha256": "c8201f7549e34f17b1874bb51dba26c28bc77a5e37fd8cf3557d7581c39f4878"
+    },
+    {
+      "path": "scripts/build_step8_collection_receipt.py",
+      "bytes": 4222,
+      "sha256": "6ca11ca579d6f35b3383f802662108a38e5f675aba514268ad119f70e24d1de5"
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/STAGE1-INSTRUCTIONS.md",
+      "bytes": 2479,
+      "sha256": "f43ebf2de51a38e807c4f6dc6ab8b57dccdd6e847469eda84a7c03f50fda5549"
+    },
+    {
+      "path": "evaluations/step8/handoffs/A1-DARLEY-JONABELL-001.handoff.json",
+      "bytes": 20617,
+      "sha256": "9c415ceeacec3086f1ccd7bcbd330fd6537cb40649c3fe92599d51744fd759ea"
+    },
+    {
+      "path": "evaluations/step8/handoffs/A1-RR-PODIATRY-001.handoff.json",
+      "bytes": 22863,
+      "sha256": "408957b931e2086d2255b1ad538912833c9de585697ddeb1437798086ba52030"
+    },
+    {
+      "path": "evaluations/step8/intake/A1-DARLEY-JONABELL-001/initial-record.json",
+      "bytes": 29621,
+      "sha256": "8de455931945a73ca5b23090245ef80a024fb858f2bfbfcb8cefb4419dafe8dc"
+    },
+    {
+      "path": "evaluations/step8/intake/A1-RR-PODIATRY-001/initial-record.json",
+      "bytes": 32118,
+      "sha256": "26fb36043cec11ceb0d11a2aed68fbca93b9868380455795fb54e371fc9f537e"
+    },
+    {
+      "path": "evaluations/step8/planning/A1-DARLEY-JONABELL-001.reuse-snapshot.json",
+      "bytes": 4328,
+      "sha256": "fcaeb11e9eb12f22c8ab0843242ac64ab7376de9f9498dbcdce41cc45cfaa626"
+    },
+    {
+      "path": "evaluations/step8/planning/A1-RR-PODIATRY-001.reuse-snapshot.json",
+      "bytes": 3896,
+      "sha256": "f75d531cc90ee41bae73d719233e770317854e98b375576bed5cd90fac491cfb"
+    },
+    {
+      "path": "evaluations/step8/planning/A1-DARLEY-JONABELL-001.gap-plan.json",
+      "bytes": 4132,
+      "sha256": "5e2b5450717e2c7c66266b140fab19d00687004c113b4e9aee263bb647a207c6"
+    },
+    {
+      "path": "evaluations/step8/planning/A1-RR-PODIATRY-001.gap-plan.json",
+      "bytes": 7711,
+      "sha256": "72ebf1c6a53f5f7d4cab21373dbac35304c4161f7b7ceb200b7bf2fa5b69a7ed"
+    },
+    {
+      "path": "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-01.md",
+      "bytes": 5071,
+      "sha256": "a8a4b767e81834e7792075ee42f7b2877d299975ba783b41942858bd0f2c4b52"
+    },
+    {
+      "path": "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-02.md",
+      "bytes": 5247,
+      "sha256": "1cec71b9e37e56aa79ded1d1f28e11a26a0810c6ce3ba83f75ab7cadbbe34d07"
+    },
+    {
+      "path": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+      "bytes": 5123,
+      "sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f"
+    },
+    {
+      "path": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-02.md",
+      "bytes": 2986,
+      "sha256": "a2413050089a5b55e4e35b8002dc2fb6741d5dce518a6b014566f651cfc0974a"
+    },
+    {
+      "path": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-03.md",
+      "bytes": 761,
+      "sha256": "20cd0158d87eb4a9932987fb13422ffc809dc4ef66438396e240761d820e0356"
+    }
+  ],
+  "file_count": 28,
+  "candidate_count": 2,
+  "real_data_model_scope_authorized": true,
+  "real_collection_calls": 8,
+  "external_actions": 0
+}

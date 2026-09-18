@@ -1,0 +1,892 @@
+{
+  "mapping_id": "equinet-a2-hubspot-preliminary-mapping",
+  "version": "0.3.0",
+  "status": "equinet_confirmed_fullenrich_mobile_mapping_live_verification_pending",
+  "profile": "equinet-a2-enrichment",
+  "unitalk_approval": {
+    "approver": "Séverine, Unitalk Operations",
+    "approved_at": "2026-08-27T11:40:17Z",
+    "scope": "decisions_3G_1_through_3G_10_plus_SOC_1_through_SOC_8"
+  },
+  "dependencies": [
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.3.0.json",
+      "sha256": "8e1995048ce786843cf7419191b72a6d597acb1f1b5afa546454810c6c8ffc3d"
+    },
+    {
+      "path": "/opt/data/profiles/equinet/attachments/Property_Definitions (1).csv",
+      "sha256": "3303992627bad953e28913eaf3b19cdc998fc0c6f3f6f29ef455d788e8c9b952"
+    }
+  ],
+  "hubspot_connection": "not_connected",
+  "metadata_snapshot_only": true,
+  "global_write_authorized": false,
+  "object_routing": {
+    "person": "Contact",
+    "organisation": "Company unless an existing Equinet Contact property is the only confirmed candidate",
+    "relationship": "association or reviewed Contact field; exact mapping pending",
+    "network": "no mapping"
+  },
+  "known_mapping_blocks": [
+    "horse_count_range options overlap",
+    "stable_type catalogue includes other but supplied HubSpot options do not",
+    "person.full_name split requires human review",
+    "farrier_certifications has two possible canonical representations",
+    "workflow and list dependencies are not verified",
+    "live values, associations and permissions are not verified"
+  ],
+  "mappings": [
+    {
+      "canonical_field": "person.full_name",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "firstname",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        },
+        {
+          "object": "Contact",
+          "property": "lastname",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "split_first_last_requires_human_review",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.role_title",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "jobtitle",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.business_email",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "work_email",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        },
+        {
+          "object": "Contact",
+          "property": "email",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": true,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.personal_email_candidate",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "review_only_no_hubspot_mapping",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.business_phone",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "phone",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.mobile_phone",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "mobilephone",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "e164_normalisation_then_human_review",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.secondary_email",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "secondary_email",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.professional_status",
+      "scope": "person",
+      "value_type": "enum",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "farrier_active_flag",
+          "metadata_found": true,
+          "hubspot_type": "enumeration",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": "Full Time [Full Time]; Part Time [Part Time]; Student/Apprentice [Student/Apprentice]"
+        }
+      ],
+      "conversion": "explicit_enum_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.professional_credential",
+      "scope": "person",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "mapping_status": "canonical_only_compatibility_field",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.certifications",
+      "scope": "person",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "farrier_certifications",
+          "metadata_found": true,
+          "hubspot_type": "enumeration",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": "CF [CF]; CTF [CTF]; CJF [CJF]; CRP [CRP]; AWCF [AWCF]"
+        }
+      ],
+      "conversion": "enum_or_multivalue_conversion_pending",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.years_experience",
+      "scope": "person",
+      "value_type": "integer",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "years_experience",
+          "metadata_found": true,
+          "hubspot_type": "number",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.public_profile_urls",
+      "scope": "person",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "canonical_only_no_hubspot_mapping",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "enum_or_multivalue_conversion_pending",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.recent_professional_activity",
+      "scope": "person",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "canonical_only_no_hubspot_mapping",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "multi_property_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "person.social_signals",
+      "scope": "person",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "prohibited",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "multi_property_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.business_name",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Company",
+          "property": "name",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        },
+        {
+          "object": "Company",
+          "property": "trade_name",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.website",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Company",
+          "property": "website",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.website_domain",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Company",
+          "property": "domain",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.public_profile_urls",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "canonical_only_no_hubspot_mapping",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "enum_or_multivalue_conversion_pending",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.business_phone",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Company",
+          "property": "phone",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.business_email",
+      "scope": "organisation",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Company",
+          "property": "company_email",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.public_business_location",
+      "scope": "organisation",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Company",
+          "property": "address",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        },
+        {
+          "object": "Company",
+          "property": "city",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        },
+        {
+          "object": "Company",
+          "property": "state",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        },
+        {
+          "object": "Company",
+          "property": "zip",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        },
+        {
+          "object": "Company",
+          "property": "country",
+          "metadata_found": true,
+          "hubspot_type": "string",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "multi_property_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.service_area",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "mapping_status": "canonical_only_no_hubspot_mapping",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "enum_or_multivalue_conversion_pending",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.disciplines",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_segment_specific",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "disciplines_worked_with",
+          "metadata_found": true,
+          "hubspot_type": "enumeration",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": "Recreation/Backyard [recreation_backyard]; Western Performance [western_performance]; English Sport [english_sport]; Racing [racing]; Work [work]; Therapeutic [therapeutic]; Other [other]"
+        },
+        {
+          "object": "Contact",
+          "property": "owner_primary_discipline",
+          "metadata_found": true,
+          "hubspot_type": "enumeration",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": "Racing [Racing]; Sport horse [Sport horse]; Dressage [Dressage]; Show jumping [Show jumping]; Western [Western]; Trail [Trail]; Breeding [Breeding]; Other [Other]"
+        }
+      ],
+      "conversion": "enum_or_multivalue_conversion_pending",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.horse_count",
+      "scope": "organisation",
+      "value_type": "integer",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "mapping_status": "equinet_confirmed_live_verification_pending",
+      "direction": "read_authoritative_existing_or_propose_net_new_after_review",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "owner_horse_count",
+          "metadata_found": true,
+          "hubspot_type": "number",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_integer",
+      "baseline_authority": "hubspot_owner_horse_count_for_existing_match_else_approved_explicit_evidence",
+      "populated_manual_value": "preserve_hubspot_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.horse_count_band",
+      "scope": "organisation",
+      "value_type": "enum",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "mapping_status": "deprecated_ignored",
+      "direction": "none",
+      "hubspot_destinations": [],
+      "conversion": "none",
+      "baseline_authority": "not_applicable",
+      "populated_manual_value": "preserve_historical_only",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.stable_type",
+      "scope": "organisation",
+      "value_type": "enum",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "mapping_status": "mapping_blocked_enum_mismatch",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "stable_type",
+          "metadata_found": true,
+          "hubspot_type": "enumeration",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": "Private Farm [Private Farm]; Boarding [Boarding]; Training [Training]; Breeding [Breeding]; Backyard [Backyard]"
+        }
+      ],
+      "conversion": "explicit_enum_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.breeds",
+      "scope": "organisation",
+      "value_type": "string_array",
+      "allowed_segments": [
+        "horse_owner"
+      ],
+      "mapping_status": "equinet_confirmed_live_conversion_verification_pending",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "owner_breeds",
+          "metadata_found": true,
+          "hubspot_type": "enumeration",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": "Thoroughbred [Thoroughbred]; QH [QH]; Warmblood [Warmblood]; Saddlebred [Saddlebred]; Mixed [Mixed]; Other [Other]"
+        }
+      ],
+      "conversion": "enum_or_multivalue_conversion_pending",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.horses_served_per_month",
+      "scope": "organisation",
+      "value_type": "integer",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "mapping_status": "prohibited",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "farrier_horses_served",
+          "metadata_found": true,
+          "hubspot_type": "number",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": ""
+        }
+      ],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "organisation.client_base_summary",
+      "scope": "organisation",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier"
+      ],
+      "mapping_status": "prohibited",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "multi_property_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "relationship.role",
+      "scope": "relationship",
+      "value_type": "string",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "canonical_only_no_hubspot_mapping",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "direct_string",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "relationship.target_role_priority",
+      "scope": "relationship",
+      "value_type": "enum",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "canonical_only_no_hubspot_mapping",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "explicit_enum_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "relationship.buying_role_recommendation",
+      "scope": "relationship",
+      "value_type": "enum",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "proposed_unverified",
+      "direction": "read_and_propose_only",
+      "hubspot_destinations": [
+        {
+          "object": "Contact",
+          "property": "hs_buying_role",
+          "metadata_found": true,
+          "hubspot_type": "enumeration",
+          "read_only": false,
+          "unique_lookup": false,
+          "enum_options": "Blocker [BLOCKER]; Budget Holder [BUDGET_HOLDER]; Champion [CHAMPION]; Decision Maker [DECISION_MAKER]; End User [END_USER]; Executive Sponsor [EXECUTIVE_SPONSOR]; Influencer [INFLUENCER]; Legal & Compliance [LEGAL_AND_COMPLIANCE]; Other [OTHER]"
+        }
+      ],
+      "conversion": "explicit_enum_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "unverified",
+      "write_authorized": false
+    },
+    {
+      "canonical_field": "network.mutual_connections",
+      "scope": "network",
+      "value_type": "structured",
+      "allowed_segments": [
+        "farrier",
+        "horse_owner"
+      ],
+      "mapping_status": "prohibited",
+      "direction": "canonical_only",
+      "hubspot_destinations": [],
+      "conversion": "multi_property_mapping_required",
+      "baseline_authority": "hubspot_when_connected_else_validated_input",
+      "populated_manual_value": "preserve_and_hold_on_difference",
+      "workflow_dependency_status": "not_applicable",
+      "write_authorized": false
+    }
+  ],
+  "protected_control_reads": "Use Step 3E protected-field register; read-only visibility does not authorise writes.",
+  "approval_gate": {
+    "equinet_confirmation": "pending",
+    "live_read_verification": "pending",
+    "workflow_dependency_review": "pending",
+    "global_write_authorized": false,
+    "next_gate": "Step 4 — Final Specialist SOUL after remaining foundation alignment"
+  },
+  "known_blockers": [],
+  "horse_count_sync_policy": {
+    "existing_record_read_authority": "Contact.owner_horse_count",
+    "net_new_proposal_sources": [
+      "a1_approved_handoff",
+      "equinet_authorized_first_party_data",
+      "equinet_representative_confirmation",
+      "prospect_official_website"
+    ],
+    "write_gate": "final_human_review_plus_active_guarded_hubspot_write_plus_read_back",
+    "horse_count_range": "ignored"
+  }
+}

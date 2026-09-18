@@ -1,0 +1,23 @@
+{
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "url": "https://roodandriddle.com/lexington-podiatry-team",
+  "host": "roodandriddle.com",
+  "robots_allowed": true,
+  "status": "collected",
+  "attempts": [
+    {
+      "attempt": 1,
+      "http_status": 200,
+      "success": true,
+      "error": null
+    }
+  ],
+  "firecrawl_calls": 1,
+  "exa_calls": 0,
+  "resolved_url": "https://roodandriddle.com/lexington-podiatry-team",
+  "title": "Lexington Podiatry - Rood & Riddle Equine Hospital",
+  "markdown_path": "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md",
+  "markdown_bytes": 5123,
+  "markdown_sha256": "d6f144bdccc7f784980c7fe975ab006b0145a16d2be252d0a9abdd6adbc8801f",
+  "discovery_fallback": null
+}

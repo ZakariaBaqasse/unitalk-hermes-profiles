@@ -1,0 +1,36 @@
+{
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+  "company_name": "Quillin Leather & Tack",
+  "completed_at": "2026-09-18T16:47:30Z",
+  "final_status": "COMPLETED_NO_TARGET",
+  "write_outcome": "applied_and_manually_verified",
+  "reconciliation_note": "push_twenty_enrichment.py reported reconciliation_failed on exactly one field: a2EnrichmentErrorCode. The plan sent JSON null (no error); Twenty normalizes this nullable text field to an empty string on read-back (observed \"\"). Every substantive field reconciled exactly, confirmed by a direct depth=0 read: email.primaryEmail=order@quillin.com, facebook/instagram/xTwitter/youtube primary links set, phone unchanged (8599870215), a2EnrichmentStatus=COMPLETED_NO_TARGET, version/runId/attemptedAt correct. The null-vs-empty mismatch is a comparison artifact in equivalent() (push_twenty_enrichment.py:39), not a data error. Recommend treating null and empty-string as equivalent for nullable text fields.",
+  "stages": {
+    "claim": {"status": "claimed", "twenty_write_receipt": 200},
+    "official_site": {
+      "preflight": "allowed_live",
+      "firecrawl": "succeeded",
+      "pages": ["https://www.quillin.com/", "https://www.quillin.com/service/", "https://www.quillin.com/service/about/", "https://www.quillin.com/quillin.com (homepage duplicate)"],
+      "retained_contacts": ["order@quillin.com (Company)", "859-987-0215 (Company, no_change)"],
+      "retained_socials": ["facebook.com/QuillinHalters", "instagram.com/quillinleatherandtack", "twitter.com/QuillinLeather", "youtube.com/@ralphquillin"],
+      "retained_people": 0,
+      "people_note": "All 63 candidate person observations were product/heading false positives. LIMITATION: About-page prose explicitly names 'Ralph and Donna Quillin' (owners) and 'Rob Windels & Vince Grupposo' (shop operators) but the deterministic extractor emitted no person observations for them; the decision contract forbids introducing unobserved values, so they could not be retained in the website stage."
+    },
+    "apify_facebook": {"status": "skipped", "reason": "Company email found on website and phone already present; no missing channel, gate not triggered."},
+    "fullenrich_lookup": {"requests": 0, "reason": "no linked People"},
+    "fullenrich_search_primary": {"terminal_status": "not_found", "candidates": 0},
+    "fullenrich_search_owner": {"terminal_status": "not_found", "candidates": 0},
+    "linked_secondary_reuse": {"candidates": 0, "provider_calls": 0},
+    "fullenrich_search_secondary": {"terminal_status": "not_found", "candidates": 0},
+    "contact_enrichment": {"selected_people": 0, "calls": 0}
+  },
+  "fullenrich_credits_used": 0,
+  "credit_note": "All three People Searches returned not_found; provider-reported credits settled to 0 (run/day/pilot all 0 used). Search calls were made but produced no billable positive results.",
+  "outstanding_gaps": [
+    "target_role_not_found: no verified named contact obtainable from the official website (extractor limitation) or FullEnrich (all staged searches not_found). Record labelled Contact Needed / Needs Review.",
+    "Horse Owner minimum package incomplete: named contact, exact horse count and at least one verified breed remain missing.",
+    "Extractor gap: About-page named individuals (Ralph & Donna Quillin, Rob Windels & Vince Grupposo) not emitted as candidate_person observations."
+  ],
+  "recommendation": "Carry to consolidated human review as COMPLETED_NO_TARGET / Contact Needed - Needs Review. The About-page owner names (Ralph and Donna Quillin) are a strong manual-review lead for a follow-up named-contact attempt; the deterministic website extractor should be extended to surface prose-named individuals before relying on this stage alone."
+}

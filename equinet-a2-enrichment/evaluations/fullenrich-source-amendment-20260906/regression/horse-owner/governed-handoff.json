@@ -1,0 +1,63 @@
+{
+  "command": "a2-governed-handoff",
+  "version": "0.1.0-draft.1",
+  "handoff_id": "A2-HANDOFF-21F4208AF7B60C2D",
+  "destination": "a1_requalification",
+  "status": "prepared_not_delivered",
+  "a2_record_id": "A2-SYNTH_OWNER_001",
+  "record_revision_id": "A2-REV-SYNTH_OWNER_002",
+  "canonical_record_sha256": "1936af2fc43799cfdda90121741cde56ca7f0190a8e1361ae4261aa163f75cd8",
+  "payload": {
+    "signals": [
+      {
+        "schema_version": "0.1.0",
+        "signal_id": "A2-RQ-SIG-HORSE_COUNT_001",
+        "a2_record_id": "A2-SYNTH_OWNER_001",
+        "a2_record_revision_id": "A2-REV-SYNTH_OWNER_002",
+        "a1_candidate_id": "A1-TEST_OWNER_001",
+        "a1_handoff_id": "A1A2-TEST_OWNER_001",
+        "a1_candidate_snapshot_sha256": "015f84c3ae073c65f9a9a8f272d6bcf38f5d6dfcde714a1ef3e14bf27c838b11",
+        "affected_criterion_id": "horse_owner.more_than_three_horses",
+        "prior_criterion_status": "unknown",
+        "proposed_evidence_status": "confirmed",
+        "a1_evidence_ids": [],
+        "a2_evidence_ids": [
+          "A2-EV-HORSE-COUNT"
+        ],
+        "field_assessment_ids": [
+          "A2-FLD-HORSE-COUNT"
+        ],
+        "materiality": "high",
+        "potential_score_direction": "increase",
+        "reason": "An approved direct source explicitly states that the synthetic commercial operation manages more than three horses.",
+        "limitations": [
+          "A1 must validate admissibility and recalculate deterministically."
+        ],
+        "created_by_profile": "equinet-a2-enrichment",
+        "created_at": "2026-08-25T20:00:00Z",
+        "status": "accepted_by_a1",
+        "review": {
+          "decision": "approved",
+          "reviewer": {
+            "actor_id": "UNITALK-RQ-REVIEWER",
+            "actor_role": "A2 Business Reviewer",
+            "display_name": "Synthetic A2 Reviewer"
+          },
+          "decided_at": "2026-08-25T20:05:00Z",
+          "reason": "Synthetic signal approved for A1 requalification test."
+        },
+        "audit_correlation_id": "AUDIT-TEST-0002",
+        "synthetic": true
+      }
+    ],
+    "source_profile": "equinet-a2-enrichment",
+    "target_profile": "equinet-a1-icp-discovery",
+    "delivery_authorized": false
+  },
+  "delivery_receipt": null,
+  "delivered": false,
+  "hubspot_write_authorized": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

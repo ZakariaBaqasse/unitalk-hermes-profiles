@@ -1,0 +1,48 @@
+{
+  "schema_id": "a2-fullenrich-search-requests",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "requests": [
+    {
+      "request_id": "search-owner-575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "company_name": "Hidden Creek Farm LLC",
+      "domain": "http://hiddencreek.farm",
+      "company_professional_network_url": null,
+      "location": {
+        "street": "4721 Newtown Pike, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "target_titles": [
+        "Owner"
+      ],
+      "limit": 2,
+      "is_subsequent_role_search": true,
+      "prior_search_outcome": "not_found"
+    },
+    {
+      "request_id": "search-owner-c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "company_name": "Triple Diamonds Training Center",
+      "domain": null,
+      "company_professional_network_url": null,
+      "location": {
+        "street": "2501 Russell Cave Rd, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "target_titles": [
+        "Owner"
+      ],
+      "limit": 2,
+      "is_subsequent_role_search": true,
+      "prior_search_outcome": "not_found"
+    }
+  ],
+  "follow_up_reason": "Initial approved-title Search returned no suitable person; one role-specific Search is permitted."
+}

@@ -1,0 +1,36 @@
+{
+  "status": "dry_run",
+  "write_plan_sha256": "5ca04ba83fad9ecd226aa4c53c023512fcff3ff7ac7d5625be0518247bab2659",
+  "operation_count": 2,
+  "operations": [
+    {
+      "operation_id": "update-person-0",
+      "operation_type": "update_person",
+      "twenty_person_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+      "fields": {
+        "a2IdentityStatus": "NOT_FOUND",
+        "a2RoleStatus": "UNVERIFIED",
+        "a2RolePriority": "UNKNOWN",
+        "a2CompanyMatchStatus": "AMBIGUOUS",
+        "a2EnrichmentStatus": "NOT_FOUND",
+        "a2LastVerifiedAt": "2026-09-17T15:35:21Z",
+        "a2LastEnrichedAt": "2026-09-17T15:35:21Z",
+        "a2EnrichmentRunId": "run_20260917T152231Z"
+      }
+    },
+    {
+      "operation_id": "final-company-status",
+      "operation_type": "update_company_status",
+      "twenty_company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "fields": {
+        "a2EnrichmentStatus": "COMPLETED_NO_TARGET",
+        "a2EnrichmentVersion": "0.1.0",
+        "a2EnrichmentRunId": "run_20260917T152231Z",
+        "a2LastAttemptedAt": "2026-09-17T15:35:21Z",
+        "a2EnrichmentErrorCode": null
+      }
+    }
+  ],
+  "external_writes": 0,
+  "completed_at": "2026-09-17T15:35:22Z"
+}

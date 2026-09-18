@@ -1,0 +1,37 @@
+{
+  "command": "a2-evaluate-evidence-confidence",
+  "version": "0.1.0-draft.1",
+  "evidence_id": "A2-EV-STEP8-RR-DISCIPLINES",
+  "field_assessment_id": "A2-FLD-559EE482F011D31A",
+  "source_id": "prospect_official_website",
+  "claim_key": "organisation.disciplines",
+  "normalised_value": [
+    "all breeds and disciplines"
+  ],
+  "components": {
+    "identity_match": 20,
+    "source_authority": 18,
+    "claim_directness": 20,
+    "freshness": 18,
+    "corroboration": 10,
+    "consistency": 10
+  },
+  "raw_score": 96,
+  "applied_caps": [],
+  "confidence_score": 96,
+  "confidence_level": "high",
+  "verification_status": "verified",
+  "freshness_status": "current_official_undated",
+  "source_references": [
+    "https://roodandriddle.com/lexington/",
+    "evaluations/step8/collection/A1-RR-PODIATRY-001/page-02.md"
+  ],
+  "source_preflight_sha256": "ba966cc2744195e6c5341734556ab2018994072f98ba89551cce297219764d35",
+  "source_gate_passed": true,
+  "a1_confidence_preserved": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

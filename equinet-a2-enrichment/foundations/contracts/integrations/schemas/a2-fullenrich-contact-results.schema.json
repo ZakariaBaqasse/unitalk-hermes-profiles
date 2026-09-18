@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-fullenrich-contact-results-0.1.0",
+  "required": [
+    "schema_id",
+    "run_id",
+    "terminal_status",
+    "results",
+    "personal_email_requested"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "a2-fullenrich-contact-results"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "terminal_status": {
+      "enum": [
+        "CREATED",
+        "IN_PROGRESS",
+        "CANCELED",
+        "CREDITS_INSUFFICIENT",
+        "FINISHED",
+        "RATE_LIMIT",
+        "UNKNOWN"
+      ]
+    },
+    "personal_email_requested": {
+      "const": false
+    },
+    "results": {
+      "type": "array"
+    }
+  }
+}

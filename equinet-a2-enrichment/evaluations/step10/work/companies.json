@@ -1,0 +1,150 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "STEP10-SYN-001",
+  "company_id": null,
+  "created_at": "2026-09-18T17:41:02Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "59edbc51776b5bb01a8351e58f230c336898b5c9cadc34d5ff51d18d4eb9ce87",
+  "requested_batch_size": 1,
+  "company_count": 1,
+  "companies": [
+    {
+      "twenty_company_id": "11111111-1111-4111-8111-111111111111",
+      "name": "Bluegrass Farm",
+      "segment": "HORSE_OWNER",
+      "website_url": null,
+      "domain": null,
+      "professional_network_url": null,
+      "company_emails": [],
+      "company_phones": [],
+      "social_links": {
+        "linkedin": [],
+        "facebook": [],
+        "instagram": [],
+        "youtube": [],
+        "tiktok": [],
+        "x": []
+      },
+      "company_contact_composites": {
+        "email": {
+          "primaryEmail": "",
+          "additionalEmails": []
+        },
+        "phone": {
+          "primaryPhoneNumber": "",
+          "primaryPhoneCountryCode": "",
+          "primaryPhoneCallingCode": "",
+          "additionalPhones": []
+        },
+        "linkedinLink": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "facebook": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "youtube": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "tiktok": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "xTwitter": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        }
+      },
+      "location": {
+        "street": "1 Stable Lane",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "United States",
+        "postal_code": "40502"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": null,
+      "a2_enrichment_run_id": "STEP10-SYN-001",
+      "a2_processing_started_at": "2026-09-18T17:41:02Z",
+      "linked_people": [
+        {
+          "twenty_person_id": "22222222-2222-4222-8222-222222222222",
+          "company_id": "11111111-1111-4111-8111-111111111111",
+          "full_name": "Taylor Existing",
+          "raw_name": {
+            "firstName": "Taylor Existing",
+            "lastName": ""
+          },
+          "job_title": "Trainer",
+          "work_email": null,
+          "phone": null,
+          "professional_network_url": "https://www.linkedin.com/in/taylor-existing",
+          "a2_identity_status": null,
+          "a2_role_status": null,
+          "a2_role_priority": null,
+          "a2_company_match_status": null,
+          "a2_enrichment_status": null,
+          "fullenrich_person_id": null,
+          "last_verified_at": null,
+          "last_enriched_at": null,
+          "updated_at": "2026-09-14T00:00:00Z"
+        }
+      ],
+      "snapshot_updated_at": "2026-09-14T00:00:00Z"
+    }
+  ],
+  "claims": [
+    {
+      "company_id": "11111111-1111-4111-8111-111111111111",
+      "claimed": true,
+      "fixture": true
+    }
+  ],
+  "applied_filters": {
+    "statuses": [
+      "NOT_ENRICHED"
+    ],
+    "include_null": true,
+    "allow_any_status": false,
+    "company_ids": [],
+    "company_names": [],
+    "segments": [],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "1",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "or(a2EnrichmentStatus[eq]:NOT_ENRICHED,a2EnrichmentStatus[is]:NULL)"
+    },
+    "receipt": {
+      "fixture": true
+    }
+  },
+  "external_writes": 0,
+  "artifact_sha256": "88cef74740b66fdc33417f5419d4fc9a3b47191f14cdd39b0710fac0dd33f758"
+}

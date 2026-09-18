@@ -1,0 +1,458 @@
+policy_id: equinet-a1-evidence-confidence
+policy_version: 1.0.0
+status: approved_by_unitalk_for_a1_v1
+applies_to_profile: equinet-a1-icp-discovery
+owner_role: Unitalk Operations
+candidate_schema_version: 1.0.0
+icp_config_version: 1.0.0
+source_register_version: 1.0.0
+
+approval_record:
+  approved_by: Séverine
+  approver_role: Unitalk Operations
+  approval_scope: A1 Evidence and Confidence Rules V1
+  equinet_formal_signoff: not_separately_recorded
+  approved_decisions:
+    - Confidence dimensions and maximum points: 20/20/20/20/10/10
+    - Confidence bands: High 80-100, Medium 60-79, Low 0-59
+    - Mandatory claim supported only by inference is capped at 59
+    - Unresolved identity, critical conflict or failed minimum data is capped at 39
+    - Current official business websites establish current self-controlled facts without requiring a visible publication date
+    - Google Business Profile may become a primary source only after an approved official Google integration confirms owner-management or verification status
+
+principles:
+  - Confidence measures the reliability of the candidate evidence, not commercial attractiveness.
+  - ICP score and confidence score must never be merged or substituted for each other.
+  - Every confirmed criterion must reference at least one permitted evidence record.
+  - Unknown information is recorded as unknown and does not become a negative or a fact.
+  - Search snippets, Maps listings and human-supplied directory seeds are discovery inputs, not retained evidence.
+  - A1 must distinguish direct facts, reasonable inferences and contradictory evidence.
+  - Public information does not establish outreach consent.
+  - Blocked sources invalidate any claim that depends on them.
+
+freshness_policy:
+  current_official_business_website:
+    applies_when: The current official business website explicitly states a fact the business controls.
+    visible_publication_date_required: false
+    freshness_treatment: current
+    confidence_effect: May receive current freshness points when no stale or contradictory signal exists.
+  current_official_registry_or_association:
+    applies_when: The official service presents an active or current record.
+    visible_publication_date_required: false
+    freshness_treatment: current
+  dated_external_source:
+    applies_when: A third-party source has a visible date or event date.
+    freshness_treatment: Apply the claim-specific maximum age window.
+  undated_external_source:
+    applies_when: A non-primary source has no current-status or date signal.
+    stable_fact_treatment: May support historical or secondary context.
+    time_sensitive_claim_treatment: Does not alone confirm current activity, horse count, client-base size, purchasing influence, certification or membership.
+    confidence_effect: Treat freshness as partly_stale_or_unknown unless another current source resolves it.
+  stale_or_conflicting_signal:
+    examples: [closed website, broken business contact, archived content, explicit retirement, inconsistent current details]
+    action: needs_review_or_lower_confidence
+
+future_google_business_profile:
+  status: integration_pending
+  v1_current_rule: Google Maps listing remains discovery-only and is not retained as evidence.
+  activation_requirements:
+    - Official Google Business Profile or GoogleLocations API integration is approved.
+    - The integration can confirm owner-management, verification status or another approved equivalent signal.
+    - Google terms, attribution, caching, storage, permitted fields, account ownership, billing and downstream CRM use are approved.
+  authoritative_for_when_activated:
+    - business name
+    - business address
+    - public business phone
+    - website
+    - opening hours
+    - business category
+    - explicitly displayed services
+  not_authoritative_for_without_other_evidence:
+    - horse count
+    - client-base size
+    - purchasing influence beyond an explicit approved role
+    - certification or membership validity
+    - CRM status or exclusions
+
+evidence_states:
+  direct_fact:
+    definition: The source explicitly states or visibly presents the fact.
+    may_confirm_mandatory_criterion: true
+  reasonable_inference:
+    definition: The conclusion is plausible from cited facts but is not directly stated.
+    may_confirm_mandatory_criterion: false
+    requires_human_review_for_priority_use: true
+  contradictory_evidence:
+    definition: A source conflicts with another source, candidate identity or material claim.
+    may_confirm_mandatory_criterion: false
+    action: needs_review
+  unknown:
+    definition: Available sources do not establish the claim.
+    may_confirm_mandatory_criterion: false
+
+source_tiers:
+  authoritative_system:
+    rank: 1
+    examples: [HubSpot authoritative CRM field, official government or official governing-body record]
+    default_reliability: high
+  official_registry_or_association:
+    rank: 2
+    examples: [official certification directory, official membership directory, official competition record]
+    default_reliability: high
+  primary_business_source:
+    rank: 3
+    examples: [prospect business website, official business contact page, official team or services page]
+    default_reliability: authoritative_for_facts_the_business_controls_and_explicitly_publishes
+    no_corroboration_required_for:
+      - business identity and organisation name
+      - public business location and service area
+      - publicly displayed professional contact details
+      - stated services and specialisations
+      - current team roles and job titles
+      - business type and explicitly stated operation details
+      - explicitly stated horse count, team size or facility scale when the statement is current and unambiguous
+    external_claims_requiring_authoritative_confirmation:
+      - certification or membership validity
+      - third-party awards and rankings
+      - official competition results
+      - CRM status, consent, customer status or exclusion
+    interpretation_rule: >-
+      The website is authoritative evidence that the business officially makes the statement.
+      Do not silently convert marketing language, vague superlatives or estimates into quantitative facts.
+  dated_public_activity_record:
+    rank: 4
+    examples: [official event entry, public sale record, dated press release]
+    default_reliability: medium_to_high_for_the_dated_event
+  permitted_sector_directory:
+    rank: 5
+    examples: [human-supplied seed from a conditional industry directory]
+    default_reliability: medium_and_requires_destination_verification
+  reputable_editorial_source:
+    rank: 6
+    examples: [reputable news report, trade publication, event report]
+    default_reliability: medium
+  public_social_business_profile:
+    rank: 7
+    examples: [permitted public professional or business social profile]
+    default_reliability: low_to_medium
+  search_or_map_discovery:
+    rank: 8
+    examples: [search result snippet, Google Maps discovery, human-supplied directory seed]
+    default_reliability: discovery_only
+  blocked_or_unverified:
+    rank: 9
+    examples: [blocked source, unknown source permission, inaccessible or unverifiable content]
+    default_reliability: unusable
+
+source_independence_rules:
+  independent_when:
+    - Sources are controlled by different organisations and do not merely copy the same listing.
+    - Each source contributes its own direct observation or authoritative record.
+  not_independent_when:
+    - Two pages are on the same business domain.
+    - A directory profile reproduces text from the business website.
+    - Several search results point to the same underlying page.
+    - Syndicated articles repeat the same original release.
+    - A social profile and website repeat the same self-published claim without external confirmation.
+
+claim_rules:
+  identity:
+    claim_key: identity
+    acceptable_tiers: [authoritative_system, official_registry_or_association, primary_business_source]
+    minimum_standard: >-
+      Display name plus at least one distinguishing identifier such as domain, public business phone,
+      public address, organisation association or official record.
+    inference_allowed: false
+    corroboration: one_strong_source_or_two_independent_medium_sources
+    freshness: current_page_or_record
+    if_unresolved: needs_review
+  location:
+    claim_key: location
+    acceptable_tiers: [authoritative_system, official_registry_or_association, primary_business_source, dated_public_activity_record]
+    minimum_standard: Explicit city/state, service area or public business address.
+    inference_allowed: false
+    corroboration: one_strong_source
+    max_age_days: 365
+    if_unresolved: needs_review
+  public_professional_contact:
+    claim_key: public_professional_contact
+    acceptable_tiers: [authoritative_system, primary_business_source, official_registry_or_association]
+    minimum_standard: Contact detail is plainly displayed for professional or business use and linked to the exact source page.
+    inference_allowed: false
+    corroboration: one_strong_source
+    max_age_days: 180
+    if_unresolved: omit_field
+  professional_activity:
+    claim_key: professional_activity
+    acceptable_tiers: [official_registry_or_association, primary_business_source, dated_public_activity_record, reputable_editorial_source]
+    minimum_standard: Explicit current services, current professional listing or dated recent professional activity.
+    inference_allowed: limited
+    corroboration: one_strong_current_source_or_two_independent_medium_sources
+    max_age_days: 365
+    if_unresolved: needs_review
+  certification_or_membership:
+    claim_key: certification_or_membership
+    acceptable_tiers: [official_registry_or_association, primary_business_source]
+    minimum_standard: Official directory entry or explicit credential with issuing organisation.
+    inference_allowed: false
+    corroboration: official_source_preferred
+    max_age_days: 365
+    if_unresolved: do_not_confirm
+  specialisation_or_discipline:
+    claim_key: specialisation_or_discipline
+    acceptable_tiers: [primary_business_source, official_registry_or_association, dated_public_activity_record, reputable_editorial_source]
+    minimum_standard: Explicitly stated service, discipline, qualification or dated participation.
+    inference_allowed: limited
+    corroboration: one_strong_source
+    max_age_days: 730
+    if_unresolved: neutral
+  horse_count:
+    claim_key: horse_count
+    acceptable_tiers: [authoritative_system, official_registry_or_association, primary_business_source, dated_public_activity_record]
+    minimum_standard: Explicit number, current inventory statement or reliable current record establishing more than three horses.
+    inference_allowed: false
+    prohibited_inferences: [photos, acreage, stable size, social followers, event participation alone]
+    corroboration: one_authoritative_source_or_two_independent_permitted_sources
+    max_age_days: 365
+    if_unresolved: threshold_exception_review_only
+  client_base_size:
+    claim_key: client_base_size
+    acceptable_tiers: [authoritative_system, primary_business_source, reputable_editorial_source]
+    minimum_standard: Explicit client-volume statement or other direct quantitative evidence.
+    inference_allowed: false
+    prohibited_inferences: [review count, follower count, service-area size, years in business alone]
+    corroboration: one_authoritative_source_or_two_independent_permitted_sources
+    max_age_days: 365
+    if_unresolved: neutral
+  purchasing_influence:
+    claim_key: purchasing_influence
+    acceptable_tiers: [authoritative_system, primary_business_source, reputable_editorial_source]
+    minimum_standard: >-
+      Explicit decision-making, recommendation, ownership, management or purchasing responsibility,
+      or a current decision-role title from a reliable source.
+    inference_allowed: role_based
+    job_title_policy:
+      strong_decision_roles:
+        - Owner
+        - Founder
+        - Co-Founder
+        - President
+        - CEO
+        - Managing Director
+        - General Manager
+        - Farm Manager
+        - Stable Manager
+        - Barn Manager
+        - Operations Manager
+        - Purchasing Manager
+        - Head Trainer
+        - Owner / Operator
+        - Self-employed Farrier
+        - Farrier Business Owner
+      possible_influence_roles:
+        - Trainer
+        - Professional Rider
+        - Assistant Trainer
+        - Equestrian Program Manager
+        - Facility Manager
+        - Professional Farrier
+      insufficient_alone:
+        - Apprentice
+        - Assistant
+        - Groom
+        - Rider
+        - Student
+        - Volunteer
+        - Office Assistant
+      wording_rule: State likely purchasing influence based on the current role; do not claim proven budget authority.
+    prohibited_inferences: [social following alone, association membership alone]
+    corroboration: one_current_reliable_job_title_or_explicit_source
+    max_age_days: 365
+    if_unresolved: neutral
+  business_size:
+    claim_key: business_size
+    acceptable_tiers: [authoritative_system, primary_business_source, reputable_editorial_source]
+    minimum_standard: Explicit team, practitioner, facility or operational-scale statement.
+    inference_allowed: limited
+    corroboration: one_strong_source_or_two_independent_medium_sources
+    max_age_days: 365
+    if_unresolved: neutral
+  recent_activity:
+    claim_key: recent_activity
+    acceptable_tiers: [official_registry_or_association, primary_business_source, dated_public_activity_record, reputable_editorial_source, public_social_business_profile]
+    minimum_standard: Dated activity within the applicable freshness window.
+    inference_allowed: false
+    corroboration: one_dated_source
+    max_age_days: 365
+    if_unresolved: neutral
+  commercial_operation:
+    claim_key: commercial_operation
+    acceptable_tiers: [authoritative_system, official_registry_or_association, primary_business_source, reputable_editorial_source]
+    minimum_standard: Explicit sale of services, professional operation type or business role.
+    inference_allowed: limited
+    corroboration: one_strong_source_or_two_independent_medium_sources
+    max_age_days: 365
+    if_unresolved: needs_review
+  crm_status_or_exclusion:
+    claim_key: crm_status_or_exclusion
+    acceptable_tiers: [authoritative_system]
+    minimum_standard: Live authoritative CRM or approved exclusion-source result.
+    inference_allowed: false
+    corroboration: authoritative_source_only
+    freshness: live_at_run
+    if_unavailable: mark_check_unavailable
+
+high_impact_claims:
+  - horse_count
+  - client_base_size
+  - purchasing_influence
+  - professional_activity
+  - commercial_operation
+  - crm_status_or_exclusion
+
+corroboration_rules:
+  high_priority_candidate_requires:
+    - All mandatory ICP claims are direct facts or approved role-based conclusions.
+    - A current primary business website may stand alone for facts the business controls and explicitly publishes.
+    - External claims require the appropriate authoritative source; weak, vague or secondary claims require targeted corroboration.
+    - Candidate identity has no unresolved conflict.
+    - No confirmed claim depends on a blocked or unverified source.
+  one_source_rule:
+    allowed_when: The source is authoritative or a strong current primary business website explicitly stating the fact.
+    confidence_cap_applies: false
+    scoring_effect: The corroboration dimension receives fewer points than two independent sources, but High confidence remains possible.
+  targeted_research_rule:
+    primary_source_minimum: one permitted primary source
+    second_source_when: A material claim is external, vague, stale, secondary, high-impact and unsupported, or requires official validation.
+    third_source_when: Identity or material evidence remains contradictory after two sources.
+  contradiction_handling:
+    action: needs_review
+    do_not_select_preferred_value_silently: true
+    preserve_all_conflicting_evidence: true
+
+confidence_model:
+  method_version: evidence-confidence-1.0.0
+  dimensions:
+    identity_certainty:
+      max_points: 20
+      levels:
+        strong_unique_match: 20
+        good_multi_field_match: 15
+        weak_name_and_location_match: 8
+        unresolved: 0
+    source_quality:
+      max_points: 20
+      levels:
+        authoritative_or_two_strong: 20
+        authoritative_primary_business_source: 20
+        strong_primary: 18
+        permitted_primary_plus_directory: 15
+        single_permitted_secondary: 10
+        weak_or_unassessed: 3
+        none: 0
+    evidence_directness:
+      max_points: 20
+      levels:
+        all_material_claims_direct: 20
+        mostly_direct: 15
+        mixed_direct_and_inferred: 8
+        inference_only_or_unsupported: 0
+    corroboration:
+      max_points: 20
+      levels:
+        two_or_more_independent_sources: 20
+        one_strong_source: 12
+        one_weak_or_secondary_source: 5
+        none_or_conflicting_only: 0
+    freshness:
+      max_points: 10
+      levels:
+        current_within_claim_window: 10
+        mostly_current: 7
+        partly_stale: 3
+        stale_or_unknown: 0
+    completeness:
+      max_points: 10
+      levels:
+        complete_for_review: 10
+        minimum_review_package_only: 7
+        partial_noncritical_gaps: 3
+        critical_fields_missing: 0
+  bands:
+    high:
+      minimum: 80
+      maximum: 100
+    medium:
+      minimum: 60
+      maximum: 79
+    low:
+      minimum: 0
+      maximum: 59
+  score_caps:
+    mandatory_claim_inference_only:
+      maximum_score: 59
+      reason: A mandatory ICP claim supported only by inference cannot exceed Low confidence.
+    unresolved_identity_conflict:
+      maximum_score: 39
+      reason: The candidate identity is not sufficiently resolved.
+    critical_evidence_conflict:
+      maximum_score: 39
+      reason: Material evidence conflicts require human review.
+    minimum_data_failed:
+      maximum_score: 39
+      reason: The candidate does not meet the minimum evidence package required for confidence assessment.
+  invalidating_gates:
+    blocked_source_used: A blocked source supports a retained or confirmed claim.
+    no_evidence: The candidate has no permitted source evidence.
+    fabricated_or_untraceable_evidence: Evidence cannot be traced to the cited source.
+
+confidence_stage_minimum_data:
+  purpose: Defines whether confidence can be calculated before Wave 3 completes the final review package.
+  required:
+    - resolved or explicitly reviewable identity
+    - confirmed segment or segment needs_review state
+    - at least one permitted evidence record with evidence_id and source URL
+    - qualification criteria object for the classified segment
+    - qualification exclusion status
+    - visible conflicts, unknowns and missing evidence
+  not_required_yet:
+    - scoring.status
+    - recommendation.next_action
+    - workflow.stage
+    - final export fields
+    - HubSpot or Twenty checks when integrations are unavailable
+  gate_rule: >-
+    Set minimum_data_failed only when the confidence-stage evidence package is incomplete.
+    Do not set it merely because Wave 2 or Wave 3 has not yet produced scoring, recommendation,
+    workflow or export fields.
+
+confidence_assessment_input:
+  required_dimensions:
+    - identity_certainty
+    - source_quality
+    - evidence_directness
+    - corroboration
+    - freshness
+    - completeness
+  required_gates:
+    - mandatory_claim_inference_only
+    - unresolved_identity_conflict
+    - critical_evidence_conflict
+    - minimum_data_failed
+    - blocked_source_used
+    - no_evidence
+    - fabricated_or_untraceable_evidence
+  assessor_requirements:
+    - Every selected dimension level must be justified by evidence IDs or an explicit data-quality result.
+    - The AI Collaborator may propose assessment inputs but the deterministic calculator assigns points and caps.
+    - The calculator output populates Candidate confidence.level, confidence.score, confidence.method_version, confidence.reasons and confidence.limitations.
+
+review_rules:
+  high_confidence: May enter the normal human review queue if all other eligibility rules pass.
+  medium_confidence: Enters review with limitations clearly shown; additional verification is recommended.
+  low_confidence: Must not be presented as a priority prospect; hold, reject or request more evidence.
+  confidence_never_authorises:
+    - outreach
+    - CRM write
+    - sequence enrolment
+    - removal of human review

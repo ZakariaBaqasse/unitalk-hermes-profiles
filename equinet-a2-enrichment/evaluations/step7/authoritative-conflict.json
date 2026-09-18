@@ -1,0 +1,25 @@
+{
+  "command": "a2-evaluate-protected-field-action",
+  "version": "0.1.0-draft.1",
+  "proposal_id": "A2-PROP-F8AC76E2F8DAE6DF",
+  "field_key": "contact.gdpr_consent",
+  "target_id": "P-1",
+  "protection_class": "authoritative_control",
+  "policy_action": "preserve_authoritative_and_block",
+  "canonical_proposal_action": "hold",
+  "recommended_action": "preserve_authoritative_and_block",
+  "baseline_value": false,
+  "proposed_value": true,
+  "baseline_preserved": true,
+  "evidence_ids": [
+    "A2-EV-3"
+  ],
+  "human_review_required": true,
+  "workflow_dependency_status": "verified_no_side_effect",
+  "external_write_allowed": false,
+  "crm_patch_prepared": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "external_actions": 0,
+  "errors": []
+}

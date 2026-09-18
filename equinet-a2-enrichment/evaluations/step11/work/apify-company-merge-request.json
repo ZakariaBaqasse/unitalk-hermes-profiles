@@ -1,0 +1,68 @@
+{
+  "run_id": "step11-fixture-run",
+  "company_id": "company-trigger",
+  "baseline": {
+    "email": {
+      "primaryEmail": "",
+      "additionalEmails": []
+    },
+    "phone": {
+      "primaryPhoneNumber": "",
+      "primaryPhoneCountryCode": "",
+      "primaryPhoneCallingCode": "",
+      "additionalPhones": []
+    },
+    "linkedinLink": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "facebook": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    }
+  },
+  "observations": [
+    {
+      "field": "email",
+      "value": "contact@bluegrass.example",
+      "accepted": true,
+      "source": "apify_facebook_page_contact_information",
+      "source_url": "https://www.facebook.com/BluegrassFarm/",
+      "evidence_refs": [
+        "apify-fb-0b61ce709d0d04366cb3bb6f"
+      ]
+    },
+    {
+      "field": "phone",
+      "value": "+1 555 010 1000",
+      "accepted": true,
+      "source": "apify_facebook_page_contact_information",
+      "source_url": "https://www.facebook.com/BluegrassFarm/",
+      "evidence_refs": [
+        "apify-fb-ad700ff385b4c2f49639e98b"
+      ]
+    }
+  ]
+}

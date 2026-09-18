@@ -1,0 +1,271 @@
+{
+  "release_id": "equinet-a2-business-confirmation-1.1.0",
+  "configuration_version": "0.2.0",
+  "runtime_overlay_version": "1.1.0",
+  "active_manifest_version": "1.2.0",
+  "created_at": "2026-08-30T17:05:11Z",
+  "status": "approved_implementation_no_integration",
+  "files": [
+    {
+      "path": "SOUL.md",
+      "bytes": 21489,
+      "sha256": "3e8e1077b9f872d4716c6da8b5ee15490c7ae85502242a8cabadd01fc1177500"
+    },
+    {
+      "path": "foundations/decisions/A2-EQUINET-BUSINESS-CONFIRMATION-20260830.json",
+      "bytes": 2117,
+      "sha256": "c71dee9080d6095d62bf73a5a301d8491f5057b898b429ed9591e70afda33fe2"
+    },
+    {
+      "path": "foundations/decisions/A2-EQUINET-BUSINESS-CONFIRMATION-20260830.md",
+      "bytes": 2558,
+      "sha256": "48bc501225aea5829f2486a76fbdeeaac410ce2492581bccff8b3a59659f0d51"
+    },
+    {
+      "path": "foundations/A2-BUSINESS-FIELD-CATALOGUE.md",
+      "bytes": 3834,
+      "sha256": "e5cd6c4cf369ac5d1012d29b96b69785ffb094c5b089006d6787c9616055931e"
+    },
+    {
+      "path": "foundations/A2-MINIMUM-DATA-PACKAGES.md",
+      "bytes": 2747,
+      "sha256": "097b25a1d4a7202662cc92b1462a993504a866ac8b5e691b85d7e8a6edd1938b"
+    },
+    {
+      "path": "foundations/A2-PRELIMINARY-HUBSPOT-MAPPING.md",
+      "bytes": 1798,
+      "sha256": "46aa56c391b9f8d0a17ed464b24a6a4284efc82a3936dd77ee84c9c638aaaf81"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.2.0.json",
+      "bytes": 44475,
+      "sha256": "0789d21c3de432fa0c3ba804dfa6d99f4d4d565f0ce1c576745e2aa9190a7d16"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.2.0.csv",
+      "bytes": 17579,
+      "sha256": "cb50bd0c031a64e8fc399b1633458c97d3e773cb6992bdf2c0f8cb289cad9ac3"
+    },
+    {
+      "path": "foundations/contracts/business/a2-minimum-data-packages-0.2.0.json",
+      "bytes": 6623,
+      "sha256": "0a1bfe5b592dd9cf5cb6b1271e7d4529813a20bc92a27b9122d63f74f5e38efa"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.2.0.json",
+      "bytes": 23698,
+      "sha256": "8bf66ca93e7b9f158bf50260b25944be91728e90185f9dda88a54349ccf6401a"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.2.0.csv",
+      "bytes": 9696,
+      "sha256": "b15ef3c5e831b7d143e3cc781ed7466caafb0146ae654f14fde746056e303a7c"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.2.0.json",
+      "bytes": 5990,
+      "sha256": "e28c31c5911bcea26cb6e61d23e9ee631743c390ad5fe97014a2ffbdc6af49ba"
+    },
+    {
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.2.0.json",
+      "bytes": 10687,
+      "sha256": "7027c33234d545789f66556a9d7a1820a52ae30402bfd143163ef662c3050294"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.2.0.json",
+      "bytes": 10967,
+      "sha256": "fd35f04dbec4411d1a9943067c318d635856e47020526dbc045cb62f54173898"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.2.0.json",
+      "bytes": 30586,
+      "sha256": "3b1dc2bbe758cffe718d86351d0b40c4217354448789cea1032e603cbd0ac4b7"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.2.0.csv",
+      "bytes": 14102,
+      "sha256": "de976a3988edaddde04390caf8f5e97043c11613968601f21d05bd025bb7e04c"
+    },
+    {
+      "path": "foundations/contracts/runtime/a2-no-integration-runtime-policy-1.1.0.yaml",
+      "bytes": 6005,
+      "sha256": "990a11c9e74ff504518f345796d466e68c6eafe4c870e91cf0d3d8228dc7ad1b"
+    },
+    {
+      "path": "foundations/contracts/skills/a2-business-confirmation-runtime-manifest-1.1.0.json",
+      "bytes": 5074,
+      "sha256": "423caa7d8e23b9174e4478c8cb1f822c4d29cd4cea079fe6671d76b17fd2539b"
+    },
+    {
+      "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 18853,
+      "sha256": "12bbd2ecfe60aaaa1d98ab8b9bac8e744b5aac06306ae3c882aae992e382eec4"
+    },
+    {
+      "path": "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 33336,
+      "sha256": "c5ddb64a2ac9499db045efa973edaea03bf4a2e15f7f9802c9138473724dd784"
+    },
+    {
+      "path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "bytes": 2883,
+      "sha256": "37e336023b71c933613e8088975374ae781add08c6eeb930ea533c0f55389ed1"
+    },
+    {
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "bytes": 4322,
+      "sha256": "9186ca8ed7e88eebd0cce13e387940c25233c3365f0f5bf4ee18ebecb1593c47"
+    },
+    {
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "bytes": 4000,
+      "sha256": "557d5d6e312ddde1fb01937614b89c0e8e18aca755ec93fafae07bb4ec6568ea"
+    },
+    {
+      "path": "skills/a2-field-verification/SKILL.md",
+      "bytes": 3382,
+      "sha256": "3ce0c3abf77944218859c5273d390c3d303b149faeec2ca8592b69b78635f517"
+    },
+    {
+      "path": "skills/a2-field-verification/references/contact-verification.md",
+      "bytes": 1194,
+      "sha256": "ff35388a1df0d20491347b42adef99586481a0d780198e443d0add2c2179aa38"
+    },
+    {
+      "path": "skills/a2-field-verification/references/professional-verification.md",
+      "bytes": 1245,
+      "sha256": "d19e6389c410fe4ccebf194ef15f88f822e07980100be931b905b13b087ce36e"
+    },
+    {
+      "path": "skills/a2-field-verification/references/equine-business-verification.md",
+      "bytes": 1425,
+      "sha256": "9c2bf7789cbde2c013b95be9bc63b7126a1213eb85bb201caa00e5df99a501dd"
+    },
+    {
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "bytes": 2611,
+      "sha256": "6093afb2957a619d804cad75bb6e2a3b8fe0487383874ef2593e7a9145cc336e"
+    },
+    {
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "bytes": 3953,
+      "sha256": "f6a61564033e85e27988ec70c3db30ee4003852981d0aafe9ec5916a96636009"
+    },
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "bytes": 15264,
+      "sha256": "643b668ad1ab73b16bd3ce81ad0563459d76cb2531641825f933b80780ca8fe3"
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "bytes": 12564,
+      "sha256": "69aaf9c18292848bce7665733d1a209a04a471bf6e2e91a047811ebffe739bc3"
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "bytes": 18701,
+      "sha256": "51c620ea70b1274b8e303cd4a9f1c4165c30a32f9e180d1b3a9de8bbb8f96205"
+    },
+    {
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "bytes": 6357,
+      "sha256": "98a85588b4993a2072c00ee20996f7344897385cbd17104ff4e87c7f9796eb97"
+    },
+    {
+      "path": "scripts/classify_a2_target_role.py",
+      "bytes": 5935,
+      "sha256": "849f5c4b31d6b619bffc330393a51487862e12853036437ee43a716642b8d9df"
+    },
+    {
+      "path": "scripts/validate_a2_contact_selection.py",
+      "bytes": 3474,
+      "sha256": "b08724970441cbb211468f4897b39320535b490eadf2b7e4468cabdc01f726be"
+    },
+    {
+      "path": "scripts/create_a2_revision.py",
+      "bytes": 3245,
+      "sha256": "79f0154c6d46e30f4586c5d5a8e548d59b3cf28d40ad1773f4092d1b7d87e859"
+    },
+    {
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "bytes": 4096,
+      "sha256": "2e9d2d8047801ea3fc95f1b8fd9e46d40a33919a9aa6970be0c9a0bba8bdc4cf"
+    },
+    {
+      "path": "scripts/validate_a2_enrichment_record.py",
+      "bytes": 52608,
+      "sha256": "ed49f2cb0258afad35c28f86b49c23dc6fd6e1069baf0bd52cff96982404cd74"
+    },
+    {
+      "path": "scripts/run_a2_no_integration_workflow.py",
+      "bytes": 7985,
+      "sha256": "bede109bd5dbf08edc1e5fc4146058671fdf3be43557fb1a7f86f45fad8b7f91"
+    },
+    {
+      "path": "scripts/apply_equinet_business_confirmation_v020.py",
+      "bytes": 22498,
+      "sha256": "71fc9d6caebdad23cccebe3df03b2c62ac6661a0e7427351c5f680afb2890c46"
+    },
+    {
+      "path": "scripts/validate_equinet_business_confirmation_v020.py",
+      "bytes": 15124,
+      "sha256": "66346eb6fa42b2d587ff3dca3b47ef3bf31fc9959a9287223e3995f47e1015a0"
+    },
+    {
+      "path": "scripts/publish_a2_dependency_closure_policies.py",
+      "bytes": 5420,
+      "sha256": "53884ea8b43620e3e00ae791854c0cb451df33ccd5932b64fa97fee99a55845d"
+    },
+    {
+      "path": "scripts/build_a2_business_confirmation_runtime_manifest.py",
+      "bytes": 3052,
+      "sha256": "0b1fd5d9a09f318f1424d54eabecfe9e78500ce66bc59863e09bda2c48f109ab"
+    },
+    {
+      "path": "scripts/build_equinet_business_confirmation_manifest.py",
+      "bytes": 6260,
+      "sha256": "6aa3c3e2692d2dcda6f9dfacdf6466884c12600907b77ddef29c5a829ce22fdf"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/technical-validation.json",
+      "bytes": 9926,
+      "sha256": "e8f21626aea7ff3f669e43fd0ce5ef7afec6d129eea2fe1d087b099028cdf9a7"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/results/farrier-workflow-result.json",
+      "bytes": 3321,
+      "sha256": "69b77315d5a5f93a59631d78afb183f6ceb6727120bb28b9f9d93fd3fcd10519"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/results/horse-owner-workflow-result.json",
+      "bytes": 3322,
+      "sha256": "d97e672313c533b3fb44c43405493f9d62c26704fa723e73dc72cb70e54b2422"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/language-audit.json",
+      "bytes": 287,
+      "sha256": "165fdd5c8873cafe8e868d3f3bc46775ff73fa0c441bb063516cddda44ccc0c5"
+    },
+    {
+      "path": "evaluations/equinet-business-confirmation-20260830/A2-EQUINET-BUSINESS-CONFIRMATION-FINAL-REVIEW.md",
+      "bytes": 3631,
+      "sha256": "46f649561359a286acdaa3ff985c63554c10f6961d60888a36e98ef44c485d73"
+    }
+  ],
+  "validation": {
+    "business_checks": "32/32 PASS",
+    "farrier_workflow": "PASS",
+    "horse_owner_workflow": "PASS",
+    "operator_coverage_each": 14,
+    "language_audit": "PASS",
+    "external_actions": 0
+  },
+  "integration_states": {
+    "hubspot_read": "not_connected",
+    "hubspot_write": "not_connected_not_authorized",
+    "twenty": "not_connected",
+    "n8n": "not_connected",
+    "apify_harvestapi": "not_runtime_active",
+    "web": "disabled_by_default"
+  }
+}

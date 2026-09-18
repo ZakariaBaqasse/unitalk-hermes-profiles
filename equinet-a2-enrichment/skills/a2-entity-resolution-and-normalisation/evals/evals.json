@@ -1,0 +1,23 @@
+{
+  "skill_name": "a2-entity-resolution-and-normalisation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Compare an organisation with the same normalised business name and exact domain against one candidate.",
+      "expected_output": "One confirmed match, resolved identity and no external action.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Compare two organisations that share only a normalised name and provide no other common identifier.",
+      "expected_output": "A possible match requiring human review, not an automatic merge.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Compare an organisation where the name matches but the domain and business phone conflict.",
+      "expected_output": "A conflict requiring review, with every compared signal visible.",
+      "files": []
+    }
+  ]
+}

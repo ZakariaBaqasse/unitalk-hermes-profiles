@@ -1,0 +1,15 @@
+{
+  "candidate_id": "SYN-FAR-001",
+  "operating_scope": "synthetic_test",
+  "source_id": "prospect_official_website",
+  "field_key": "person.business_phone",
+  "named_need": "Verify person.business_phone",
+  "execution_mode": "local_fixture_simulation",
+  "fixture_is_synthetic": true,
+  "fixture_reference": "fixtures://official-site/farrier-team",
+  "official_site_check": "completed_fixture",
+  "actor_profile": "equinet-a2-enrichment",
+  "trigger": "Step 5E synthetic workflow",
+  "requested_at": "2026-08-28T10:00:00Z",
+  "run_id": "STEP5E-farrier_review"
+}

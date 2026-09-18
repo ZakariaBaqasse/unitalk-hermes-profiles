@@ -1,0 +1,12 @@
+{
+  "schema_id": "a2-selected-contact-batch",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "company_id": null,
+  "created_at": "2026-09-15T12:40:52Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "selected_people": [],
+  "artifact_sha256": "4580b0e73a0ceaa0df8c9cbc2a29d13f35b8a53cb4cc14314555fad16b68ccae"
+}

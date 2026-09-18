@@ -1,0 +1,97 @@
+{
+  "suite": "step10_implementation_acceptance",
+  "status": "pass_with_live_fullenrich_pending",
+  "checks": [
+    {
+      "command": [
+        "scripts/run_step10_unit_tests.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_active_role_classifier (__main__.Tests.test_active_role_classifier) ... ok\ntest_domain_normalisation (__main__.Tests.test_domain_normalisation) ... ok\ntest_domainless_search (__main__.Tests.test_domainless_search) ... ok\ntest_email_selection (__main__.Tests.test_email_selection) ... ok\ntest_lookup_identifier_rules (__main__.Tests.test_lookup_identifier_rules) ... ok\ntest_name_split (__main__.Tests.test_name_split) ... ok\ntest_phone_selection (__main__.Tests.test_phone_selection) ... ok\ntest_protected_write_rejected (__main__.Tests.test_protected_write_rejected) ... ok\ntest_search_rejects_role_free (__main__.Tests.test_search_rejects_role_free) ... ok\ntest_status_last (__main__.Tests.test_status_last) ... ok\ntest_timestamp_equivalence (__main__.Tests.test_timestamp_equivalence) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "command": [
+        "scripts/run_step10_twenty_filter_tests.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_ambiguous_name_is_error (__main__.FilterTests.test_ambiguous_name_is_error) ... ok\ntest_completed_id_requires_explicit_reprocess (__main__.FilterTests.test_completed_id_requires_explicit_reprocess) ... ok\ntest_exact_name (__main__.FilterTests.test_exact_name) ... ok\ntest_latest_two_farriers (__main__.FilterTests.test_latest_two_farriers) ... ok\ntest_location_and_date (__main__.FilterTests.test_location_and_date) ... ok\ntest_multiple_status_or_null_filter (__main__.FilterTests.test_multiple_status_or_null_filter) ... ok\ntest_specific_id_default_eligibility (__main__.FilterTests.test_specific_id_default_eligibility) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 1.010s\n\nOK\n"
+    },
+    {
+      "command": [
+        "scripts/run_step10_staged_search_tests.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_conditional_secondary_requires_catalogue_flag (__main__.Tests.test_conditional_secondary_requires_catalogue_flag) ... ok\ntest_failed_search_does_not_fallback (__main__.Tests.test_failed_search_does_not_fallback) ... ok\ntest_linked_secondary_cannot_create_new_person (__main__.Tests.test_linked_secondary_cannot_create_new_person) ... ok\ntest_linked_secondary_existing_person_write_plan_is_valid (__main__.Tests.test_linked_secondary_existing_person_write_plan_is_valid) ... ok\ntest_linked_secondary_is_used_before_paid_secondary_search (__main__.Tests.test_linked_secondary_is_used_before_paid_secondary_search) ... ok\ntest_lookup_accepts_verified_linked_secondary_fallback (__main__.Tests.test_lookup_accepts_verified_linked_secondary_fallback) ... ok\ntest_owner_empty_advances_linked_secondary (__main__.Tests.test_owner_empty_advances_linked_secondary) ... ok\ntest_owner_success_stops (__main__.Tests.test_owner_success_stops) ... ok\ntest_paid_secondary_search_runs_when_no_linked_fallback_selected (__main__.Tests.test_paid_secondary_search_runs_when_no_linked_fallback_selected) ... ok\ntest_primary_empty_advances_owner (__main__.Tests.test_primary_empty_advances_owner) ... ok\ntest_role_groups_match_active_catalogue (__main__.Tests.test_role_groups_match_active_catalogue) ... ok\ntest_secondary_empty_completes_no_target (__main__.Tests.test_secondary_empty_completes_no_target) ... ok\ntest_secondary_priority_rejected_outside_secondary_stage (__main__.Tests.test_secondary_priority_rejected_outside_secondary_stage) ... ok\ntest_secondary_rejects_primary_selection (__main__.Tests.test_secondary_rejects_primary_selection) ... ok\ntest_secondary_selected_contact_batch (__main__.Tests.test_secondary_selected_contact_batch) ... ok\ntest_secondary_success_is_selectable (__main__.Tests.test_secondary_success_is_selectable) ... ok\ntest_secondary_write_plan_is_allowed_only_for_secondary_stage (__main__.Tests.test_secondary_write_plan_is_allowed_only_for_secondary_stage) ... ok\ntest_stage_titles (__main__.Tests.test_stage_titles) ... ok\n\n----------------------------------------------------------------------\nRan 18 tests in 2.383s\n\nOK\n"
+    },
+    {
+      "command": [
+        "scripts/run_step10_budget_tests.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_daily_hard_stop (__main__.BudgetTests.test_daily_hard_stop) ... ok\ntest_estimates (__main__.BudgetTests.test_estimates) ... ok\ntest_idempotent_reservation_and_settlement (__main__.BudgetTests.test_idempotent_reservation_and_settlement) ... ok\ntest_per_run_hard_stop (__main__.BudgetTests.test_per_run_hard_stop) ... ok\ntest_pilot_hard_stop (__main__.BudgetTests.test_pilot_hard_stop) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.010s\n\nOK\n"
+    },
+    {
+      "command": [
+        "scripts/run_step10_connector_integration_tests.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "{\n  \"status\": \"valid\",\n  \"terminal_status\": \"FINISHED\",\n  \"results\": 1,\n  \"output\": \"/tmp/tmplvqo3jje/out.json\"\n}\n",
+      "stderr_tail": "test_contact_submit_poll_and_minimise (__main__.ConnectorTests.test_contact_submit_poll_and_minimise) ... ok\ntest_twenty_apply_and_reconcile (__main__.ConnectorTests.test_twenty_apply_and_reconcile) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.007s\n\nOK\n"
+    },
+    {
+      "command": [
+        "scripts/run_step10_synthetic_acceptance.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "{\n  \"suite\": \"step10_twenty_fullenrich_synthetic_acceptance\",\n  \"status\": \"pass\",\n  \"checks_run\": [\n    \"ledger_start\",\n    \"pull_fixture\",\n    \"company_schema\",\n    \"lookup_fixture\",\n    \"lookup_packet\",\n    \"lookup_decisions\",\n    \"search_fixture\",\n    \"search_packet\",\n    \"selection_decisions\",\n    \"contact_fixture\",\n    \"write_plan\",\n    \"write_plan_schema\",\n    \"write_dry_run\",\n    \"ledger_advance\",\n    \"ledger_schema\"\n  ],\n  \"assertions\": {\n    \"one_company\": true,\n    \"zero_external_twenty_writes\": true,\n    \"lookup_secondary_found\": true,\n    \"two_search_candidates\": true,\n    \"two_contacts\": true,\n    \"personal_email_not_requested\": true,\n    \"five_write_operations\": true,\n    \"final_company_status_last\": true,\n    \"dry_run_no_writes\": true\n  },\n  \"external_calls\": 0,\n  \"external_writes\": 0,\n  \"failures\": []\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "scripts/run_step10_contract_validation.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "{\n  \"status\": \"pass\",\n  \"passed\": 11,\n  \"total\": 11\n}\n",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "preserved_receipt",
+        "twenty_mapping",
+        "evaluations/step10/live-read/twenty-mapping-validation.json"
+      ],
+      "returncode": 0,
+      "stdout_tail": "{\"valid\": true}",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "preserved_receipt",
+        "twenty_live_run",
+        "evaluations/step10/runs/A2-LIVE-20260915T111736Z/run-summary.json"
+      ],
+      "returncode": 0,
+      "stdout_tail": "{\"valid\": true}",
+      "stderr_tail": ""
+    }
+  ],
+  "twenty_live_read_validated": true,
+  "twenty_live_read_current_session": false,
+  "twenty_credentials_available_current_session": false,
+  "twenty_live_writes_executed": 0,
+  "fullenrich_live_calls_executed": 0,
+  "fullenrich_api_key_available_current_session": false,
+  "fullenrich_account_verified": true,
+  "fullenrich_credits_available": 499,
+  "synthetic_external_actions": 0,
+  "remaining_gates": [
+    "FullEnrich live Lookup and Contact Enrichment acceptance",
+    "positive-result FullEnrich actual-rate confirmation",
+    "live Twenty Person create/association reconciliation",
+    "pilot reviewer approval for broader processing"
+  ]
+}

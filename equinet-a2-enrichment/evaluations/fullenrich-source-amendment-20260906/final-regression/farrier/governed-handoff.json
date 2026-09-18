@@ -1,0 +1,25 @@
+{
+  "command": "a2-governed-handoff",
+  "version": "0.1.0-draft.1",
+  "handoff_id": "A2-HANDOFF-4722A5898B718162",
+  "destination": "hubspot_proposed_patch",
+  "status": "blocked_contract_pending",
+  "a2_record_id": "A2-STEP2F_FARRIER_001",
+  "record_revision_id": "A2-REV-STEP2F_FARRIER_004",
+  "canonical_record_sha256": "7fa2c98a6feb0d016ccd2cd3bff433b39748392270fb663ebd6e5a2d186eb0fc",
+  "payload": {
+    "patches": [],
+    "hubspot_write_authorized": false,
+    "delivery_authorized": false
+  },
+  "delivery_receipt": null,
+  "delivered": false,
+  "hubspot_write_authorized": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": [
+    "HubSpot proposed-patch schema and verified mapped destinations are pending",
+    "approved Twenty review receipt required",
+    "no approved field proposals"
+  ]
+}

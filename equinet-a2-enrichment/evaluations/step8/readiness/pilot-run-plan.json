@@ -1,0 +1,92 @@
+{
+  "record_type": "step8_bounded_real_pilot_run_plan",
+  "version": "0.1.0-draft.1",
+  "status": "prepared_not_authorized_for_web_or_model_execution",
+  "profile": "equinet-a2-enrichment",
+  "review_mode": "single_reviewer_unitalk_test",
+  "reviewer": "Séverine",
+  "execution_order": [
+    "A1-DARLEY-JONABELL-001",
+    "A1-RR-PODIATRY-001"
+  ],
+  "candidates": [
+    {
+      "candidate_id": "A1-DARLEY-JONABELL-001",
+      "display_name": "Jonabell Farm / Darley America",
+      "segment": "horse_owner",
+      "handoff": "evaluations/step8/handoffs/A1-DARLEY-JONABELL-001.handoff.json",
+      "initial_record": "evaluations/step8/intake/A1-DARLEY-JONABELL-001/initial-record.json",
+      "initial_pages": [
+        "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+        "https://www.darleyamerica.com/contact-us/united-states/jonabell-farm"
+      ],
+      "expected_focus": [
+        "verify current named role and professional email",
+        "reuse organisation location and contact evidence",
+        "verify stable type and disciplines",
+        "capture explicit official-site social URLs without opening them"
+      ],
+      "prohibited_use": [
+        "do not operationalise the published mobile number as person.mobile_phone",
+        "do not infer purchasing authority",
+        "do not treat seven named stallions as exact total farm horse count"
+      ]
+    },
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "display_name": "Rood & Riddle Equine Hospital — Lexington Podiatry",
+      "segment": "farrier",
+      "handoff": "evaluations/step8/handoffs/A1-RR-PODIATRY-001.handoff.json",
+      "initial_record": "evaluations/step8/intake/A1-RR-PODIATRY-001/initial-record.json",
+      "initial_pages": [
+        "https://roodandriddle.com/lexington-podiatry-team",
+        "https://roodandriddle.com/lexington/",
+        "https://www.roodandriddle.com/contact"
+      ],
+      "expected_focus": [
+        "verify current Farrier role and team",
+        "reuse organisation contact and location evidence",
+        "verify service area and disciplines",
+        "search only for explicitly published named professional contact details",
+        "capture explicit official-site social URLs without opening them"
+      ],
+      "expected_gap": "No direct named-contact email or phone may remain a review-readiness gap.",
+      "material_boundary": "Institutional equine hospital and Podiatry organisation; not a traditional independent Farrier business."
+    }
+  ],
+  "source_policy": {
+    "reuse_a1_first": true,
+    "official_website": "approved_after_runtime_activation",
+    "exa": "maximum two total calls only if a known official URL is unusable; snippets are not evidence",
+    "firecrawl": "five initial public pages, maximum ten total calls including one retry per failed URL",
+    "apify": false,
+    "social_profile_opening": false,
+    "hubspot": false,
+    "twenty": false,
+    "n8n": false,
+    "outreach": false
+  },
+  "completed_readiness_checks": {
+    "candidate_authorisation": true,
+    "handoffs_valid": "2/2",
+    "local_a2_intake": "2/2",
+    "***": true,
+    "firecrawl_connectivity": true,
+    "config_restored_after_connectivity_test": true
+  },
+  "current_blockers": [
+    "Active Web tool permission remains disabled after the synthetic connectivity test.",
+    "The runtime policy still prohibits real-data model processing until provider governance gates are resolved or explicitly amended.",
+    "Initial canonical records contain two entities but no supported person-to-organisation relationship, no field assessments and no A2 evidence records.",
+    "A deterministic A1-evidence-to-A2-baseline projection must run before gap planning to avoid recollecting already approved A1 facts.",
+    "No independent backup reviewer is available for this Unitalk-only test."
+  ],
+  "execution_controls": {
+    "concurrency": 1,
+    "first_candidate": "A1-DARLEY-JONABELL-001",
+    "stop_after_first_candidate_for_review": true,
+    "external_actions": 0,
+    "hubspot_write": false,
+    "outreach": false
+  }
+}

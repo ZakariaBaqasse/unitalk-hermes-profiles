@@ -1,0 +1,148 @@
+{
+  "projection_version": "0.1.0-draft.1",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "segment": "farrier",
+  "operating_scope": "manual_no_integration_pilot",
+  "a2_eligibility_status": "eligible",
+  "enrichment_mode": "default_minimum_package",
+  "contact_path": "named_target",
+  "target_role_not_found": false,
+  "research_exhausted": false,
+  "field_states": {
+    "organisation.business_name": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.website": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.website_domain": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.public_business_location": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "person.full_name": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "person.role_title": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.business_phone": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "relationship.target_role_priority": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "person.professional_status": {
+      "state": "unknown",
+      "freshness_status": "not_assessed"
+    },
+    "organisation.service_area": {
+      "state": "unknown",
+      "freshness_status": "not_assessed"
+    },
+    "organisation.disciplines": {
+      "state": "unknown",
+      "freshness_status": "not_assessed"
+    },
+    "person.business_email": {
+      "state": "unknown",
+      "freshness_status": "not_assessed"
+    },
+    "person.business_phone": {
+      "state": "unknown",
+      "freshness_status": "not_assessed"
+    }
+  },
+  "reused_a1_values": {
+    "organisation.business_name": {
+      "value": "Rood & Riddle Equine Hospital",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001",
+        "EV-RR-LEX-001",
+        "EV-RR-TEAM-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.website": {
+      "value": "https://roodandriddle.com/lexington-podiatry-team",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001",
+        "EV-RR-LEX-001",
+        "EV-RR-TEAM-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.website_domain": {
+      "value": "roodandriddle.com",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001",
+        "EV-RR-LEX-001",
+        "EV-RR-TEAM-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.public_business_location": {
+      "value": {
+        "country_code": "US",
+        "state_region": "Kentucky",
+        "city": "Lexington",
+        "postal_code": "40511",
+        "public_address": "2150 Georgetown Road, Lexington, KY 40511"
+      },
+      "evidence_ids": [
+        "EV-RR-CONTACT-001",
+        "EV-RR-LEX-001",
+        "EV-RR-TEAM-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "person.full_name": {
+      "value": "Manfred Eckert",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001",
+        "EV-RR-LEX-001",
+        "EV-RR-TEAM-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "person.role_title": {
+      "value": "Co-Founder/Farrier",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001",
+        "EV-RR-LEX-001",
+        "EV-RR-TEAM-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.business_phone": {
+      "value": "(859) 233-0371",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "relationship.target_role_priority": {
+      "value": "primary",
+      "evidence_ids": [
+        "EV-RR-CONTACT-001",
+        "EV-RR-LEX-001",
+        "EV-RR-TEAM-001"
+      ],
+      "origin": "a1_handoff"
+    }
+  },
+  "relationship_state": "proposal_only_requires_evidence_review",
+  "package": "farrier_review_ready",
+  "automatic_rejection": false,
+  "automatic_a1_score_change": false,
+  "external_actions": 0
+}

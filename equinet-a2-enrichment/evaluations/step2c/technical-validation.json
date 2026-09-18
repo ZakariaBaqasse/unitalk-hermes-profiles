@@ -1,0 +1,199 @@
+{
+  "step": "2C",
+  "version": "0.1.1",
+  "approval_state": "approved_with_0.1.1_lifecycle_clarification",
+  "dependencies": {
+    "count": 4,
+    "hashes": {
+      "A1 ICP configuration": "4d28bc35d11a458015f08903b30f0560f204476016508135fe2d126014f16169",
+      "A1 evidence and confidence rules": "5cf2377814ccf3ee635bb279b512778924d2eb42bf1a0a58ec684d90c69c8f80",
+      "A1 ICP scoring model": "2bb426d73971509b7638ccfe55decb428b3fa11d5ce4b8d3bcc05418b6c75841",
+      "A1 Prospect Candidate schema": "cf4ea0b3729ecaa2b28fa5330917e32f5d911d5894c9c8d396095d6dcc3eb8de"
+    },
+    "criterion_count": 26,
+    "weighted_criterion_count": 21
+  },
+  "schemas": {
+    "signal": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/requalification/a2-requalification-signal.schema.json",
+    "return": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/requalification/a2-requalification-return.schema.json",
+    "revision": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/requalification/a1-score-revision-reference.schema.json",
+    "package": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/requalification/a2-requalification-package.schema.json"
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "contract_approved": true,
+    "review_version": true,
+    "review_approved": true,
+    "recorded_decision": true,
+    "decisions_c1_to_c10": true,
+    "a2_score_prohibition": true,
+    "a1_only_scoring": true,
+    "no_integration_ceiling": true
+  },
+  "summary": {
+    "valid_expected": 5,
+    "invalid_expected": 10,
+    "cases_total": 15,
+    "cases_passed": 15,
+    "cases_failed": 0
+  },
+  "cases": [
+    {
+      "fixture": "valid-horse-owner-signal.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "fixture": "valid-farrier-signal.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "fixture": "valid-manual-prepared-return.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "fixture": "valid-synthetic-requalification-package.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "fixture": "valid-rejected-signal-package.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "fixture": "invalid-signal-with-points.json",
+      "expected": "invalid",
+      "kind": "signal",
+      "expected_error": "Additional properties are not allowed",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "schema:/: Additional properties are not allowed ('points_awarded' was unexpected)"
+      ]
+    },
+    {
+      "fixture": "invalid-unknown-criterion.json",
+      "expected": "invalid",
+      "kind": "signal",
+      "expected_error": "unknown A1 criterion_id",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "unknown A1 criterion_id 'horse_owner.nonexistent_criterion'"
+      ]
+    },
+    {
+      "fixture": "invalid-signal-missing-evidence.json",
+      "expected": "invalid",
+      "kind": "signal",
+      "expected_error": "signal requires at least one A1 or A2 evidence reference",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "signal requires at least one A1 or A2 evidence reference"
+      ]
+    },
+    {
+      "fixture": "invalid-manual-return-delivered.json",
+      "expected": "invalid",
+      "kind": "return",
+      "expected_error": "manual_no_integration_pilot return must remain prepared",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "schema:/delivery/attempt_count: 0 was expected",
+        "schema:/delivery/external_event_reference: 'fake://delivery' is not of type 'null'",
+        "schema:/delivery/last_attempt_at: '2026-08-25T20:07:00Z' is not of type 'null'",
+        "schema:/status: 'prepared' was expected",
+        "manual_no_integration_pilot return must remain prepared"
+      ]
+    },
+    {
+      "fixture": "invalid-return-signal-hash.json",
+      "expected": "invalid",
+      "kind": "return",
+      "expected_error": "signal snapshot hash mismatch",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "signal snapshot hash mismatch",
+        "A1 receipt signal hash mismatch"
+      ]
+    },
+    {
+      "fixture": "invalid-a2-score-producer.json",
+      "expected": "invalid",
+      "kind": "revision",
+      "expected_error": "score revision must be produced by equinet-a1-icp-discovery",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "schema:/produced_by_profile: 'equinet-a1-icp-discovery' was expected",
+        "score revision must be produced by equinet-a1-icp-discovery"
+      ]
+    },
+    {
+      "fixture": "invalid-score-component-total.json",
+      "expected": "invalid",
+      "kind": "revision",
+      "expected_error": "revised scoring score must equal component total",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "revised scoring score must equal component total",
+        "score revision delta 31 does not equal criterion-change delta 20"
+      ]
+    },
+    {
+      "fixture": "invalid-approved-revision-no-review.json",
+      "expected": "invalid",
+      "kind": "revision",
+      "expected_error": "None is not of type 'object'",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "schema:/review: None is not of type 'object'"
+      ]
+    },
+    {
+      "fixture": "invalid-package-signal-mismatch.json",
+      "expected": "invalid",
+      "kind": "package",
+      "expected_error": "score revision source_signal_ids must equal package signal IDs",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "criteria change horse_owner.more_than_three_horses references signal outside revision source_signal_ids",
+        "score revision source_signal_ids must equal package signal IDs"
+      ]
+    },
+    {
+      "fixture": "invalid-rejected-signal-with-revision.json",
+      "expected": "invalid",
+      "kind": "package",
+      "expected_error": "rejected signals cannot produce a score revision reference",
+      "actual": "invalid",
+      "passed": true,
+      "errors": [
+        "score revision must reference the package requalification return",
+        "score revision requires an accepted_by_a1 return",
+        "rejected signals cannot produce a score revision reference"
+      ]
+    }
+  ],
+  "failures": [],
+  "pass": true
+}

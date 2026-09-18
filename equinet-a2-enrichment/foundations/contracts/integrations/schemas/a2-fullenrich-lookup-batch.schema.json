@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-fullenrich-lookup-batch-0.1.0",
+  "required": [
+    "run_id",
+    "requests"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "requests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "request_id",
+          "company_id",
+          "twenty_person_id"
+        ],
+        "properties": {
+          "request_id": {
+            "type": "string"
+          },
+          "company_id": {
+            "type": "string"
+          },
+          "twenty_person_id": {
+            "type": "string"
+          },
+          "person_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "person_professional_network_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "company_domain": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "company_professional_network_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

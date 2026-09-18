@@ -1,0 +1,90 @@
+{
+  "schema_id": "a2-search-candidate-packet",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "company_id": null,
+  "created_at": "2026-09-17T15:27:47Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "search_stage": "secondary",
+  "packets": [
+    {
+      "company": {
+        "twenty_company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+        "name": "Wilkins Farrier & Forge",
+        "segment": "FARRIER",
+        "domain": null,
+        "professional_network_url": null,
+        "location": {
+          "street": "Lawrenceburg, Kentucky, 40342, United States",
+          "city": "Lawrenceburg",
+          "region": "Kentucky",
+          "country": "United States",
+          "postal_code": "40342"
+        }
+      },
+      "search_stage": "secondary",
+      "target_priority": "SECONDARY",
+      "target_titles": [
+        "associate farrier",
+        "business manager",
+        "farrier at a multi farrier practice",
+        "farrier at a multi-farrier practice",
+        "office manager",
+        "practice manager",
+        "staff farrier"
+      ],
+      "existing_people": [
+        {
+          "twenty_person_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+          "fullenrich_person_id": "",
+          "professional_network_url": null,
+          "normalised_name": "ryan wilkins"
+        }
+      ],
+      "search_terminal_status": "not_found",
+      "candidates": [],
+      "evidence_ref": "search:search-secondary-0abf3519-7590-4ea9-b1ec-c2e6e901d9d4"
+    },
+    {
+      "company": {
+        "twenty_company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+        "name": "Ellis Forge LLC",
+        "segment": "FARRIER",
+        "domain": null,
+        "professional_network_url": null,
+        "location": {
+          "street": "3610 Lexington Road, Richmond, Kentucky, 40475, United States",
+          "city": "Richmond",
+          "region": "KY",
+          "country": "United States",
+          "postal_code": "40475"
+        }
+      },
+      "search_stage": "secondary",
+      "target_priority": "SECONDARY",
+      "target_titles": [
+        "associate farrier",
+        "business manager",
+        "farrier at a multi farrier practice",
+        "farrier at a multi-farrier practice",
+        "office manager",
+        "practice manager",
+        "staff farrier"
+      ],
+      "existing_people": [
+        {
+          "twenty_person_id": "c53ee895-0ce9-4d04-a2fd-908c494a3469",
+          "fullenrich_person_id": "",
+          "professional_network_url": null,
+          "normalised_name": "colton ellis cf"
+        }
+      ],
+      "search_terminal_status": "not_found",
+      "candidates": [],
+      "evidence_ref": "search:search-secondary-fd216e4e-287c-4d6b-994e-861278ca3065"
+    }
+  ],
+  "artifact_sha256": "55b7ffa4afdab65bce4a9e2aba50044c945d4b36e37cdf091de5481edd22a96e"
+}

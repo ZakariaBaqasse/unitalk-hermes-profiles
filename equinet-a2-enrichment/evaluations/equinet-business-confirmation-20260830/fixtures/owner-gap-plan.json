@@ -1,0 +1,22 @@
+{
+  "candidate_id": "SYN-OWNER-GAP-001",
+  "segment": "horse_owner",
+  "operating_scope": "synthetic_test",
+  "a2_eligibility_status": "eligible",
+  "enrichment_mode": "default_minimum_package",
+  "contact_path": "named_target",
+  "target_role_not_found": false,
+  "research_exhausted": false,
+  "field_states": {
+    "organisation.business_name": "verified",
+    "organisation.public_business_location": "verified",
+    "organisation.stable_type": "verified",
+    "organisation.horse_count": "missing",
+    "organisation.breeds": "missing",
+    "person.full_name": "verified",
+    "person.role_title": "verified",
+    "relationship.target_role_priority": "verified",
+    "person.business_email": "verified",
+    "person.business_phone": "missing"
+  }
+}

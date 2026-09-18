@@ -1,0 +1,77 @@
+{
+  "step": "6",
+  "version": "0.1.0-draft.1",
+  "status": "ready_for_promotion_synthetic_local_only",
+  "profile": "equinet-a2-enrichment",
+  "checks": {
+    "step5_approved": true,
+    "unitalk_gateway_pattern": true,
+    "primary_model": true,
+    "fallback_model": true,
+    "fallback_policy": true,
+    "native_controls": true,
+    "local_tool_allowlist": true,
+    "integrations_disabled": true,
+    "local_quotas": true,
+    "budget_governance": true,
+    "access_roles": true,
+    "journalisation": true,
+    "pending_values_explicit": true,
+    "no_secret_in_profile_config": true
+  },
+  "static_checks": {
+    "total": 14,
+    "passed": 14
+  },
+  "model_routing": {
+    "primary": "deepseek-v4-flash",
+    "primary_upstream": "microsoft_azure",
+    "fallback": "Gemini 3.7 Flash",
+    "fallback_upstream": "google",
+    "gateway": "litellm-unitalk"
+  },
+  "live_route_validation": {
+    "primary_model_call": "functional_smoke_pass_upstream_telemetry_pending",
+    "primary_functional_smoke_accepted_for_synthetic": true,
+    "primary_upstream_route_verified": false,
+    "primary_validation_reference": "evaluations/step6/gateway-smoke/primary-validation.json",
+    "fallback_model_call": "configured_not_tested",
+    "promotion_blocked_for_synthetic": false,
+    "real_data_activation_blocked": true,
+    "fallback_route_test_required_before_real_data": true
+  },
+  "enabled_toolsets": [
+    "clarify",
+    "code_execution",
+    "file",
+    "skills",
+    "terminal",
+    "todo"
+  ],
+  "integration_permissions": {
+    "official_site_web_access": false,
+    "search_engine_access": false,
+    "apify_harvestapi": false,
+    "twenty": false,
+    "hubspot_read": false,
+    "hubspot_write": false,
+    "n8n": false,
+    "outreach": false,
+    "durable_handoffs": false
+  },
+  "quota_state": {
+    "configured_local_limits": true,
+    "cumulative_token_thresholds": "pending_baseline",
+    "budget_scope": "unitalk_mustad_global"
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "approval_required": true,
+  "promotion_performed": false,
+  "promotion_scope": "synthetic_local_only",
+  "real_data_authorized": false,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 7 — Synthetic End-to-End Acceptance after Step 6 approval",
+  "failures": [],
+  "pass": true
+}

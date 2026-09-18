@@ -1,0 +1,2 @@
+canonical_record_sha256,a2_record_id,record_revision_id,segment,subject,workflow_state,record_decision,data_quality_status,a2_eligibility_status,a1_score,a1_band,field_count,review_queue_count,evidence_count,signal_count,score_revision_count,limitations_json
+7fa2c98a6feb0d016ccd2cd3bff433b39748392270fb663ebd6e5a2d186eb0fc,A2-STEP2F_FARRIER_001,A2-REV-STEP2F_FARRIER_004,farrier,Jordan Example | Bluegrass Hoof Care — Synthetic,review_required,pending,review_ready,not_checked,72,high,6,2,3,0,0,"[""No live source, provider, CRM or workflow connection is authorised.""]"

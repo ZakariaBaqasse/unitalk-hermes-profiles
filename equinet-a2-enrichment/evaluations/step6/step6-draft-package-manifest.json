@@ -1,0 +1,62 @@
+{
+  "manifest_id": "equinet-a2-step6-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "ready_for_promotion_synthetic_local_only",
+  "files": [
+    {
+      "path": "config.yaml",
+      "bytes": 817,
+      "sha256": "ff52b8a019abe8d2640c755fc107172b21088411685e0e27b001aba0f286235c"
+    },
+    {
+      "path": "foundations/contracts/runtime/a2-runtime-policy-0.1.0-draft.1.yaml",
+      "bytes": 6438,
+      "sha256": "1516bffd8683ef295e88faaed2a6a16e29aca090a0b3bac9338bc91966262a83"
+    },
+    {
+      "path": "evaluations/step6/technical-validation.json",
+      "bytes": 2313,
+      "sha256": "c92cb17a45032942b88864a1284a2cc2b45c3b7ec07d39f89e5d1f17aa9b8b77"
+    },
+    {
+      "path": "evaluations/step6/A2-STEP-6-REVIEW.md",
+      "bytes": 2014,
+      "sha256": "074a9c25ae8d596f045689bad0260d92874d998620a61a283871e60047539c40"
+    },
+    {
+      "path": "evaluations/step5e/acceptance-record.json",
+      "bytes": 1302,
+      "sha256": "f1699aa7524fd6e49b144aa3ec506fb3ad6ce55735d5f5929eba4096669d39c5"
+    },
+    {
+      "path": "/opt/data/config.yaml",
+      "bytes": 4358,
+      "sha256": "c98ca22cceeb64eb97d351dfae3395b0e2f54bbfe57b6abcca93686ad087c36d"
+    },
+    {
+      "path": "scripts/validate_step6_gateway_smoke.py",
+      "bytes": 7998,
+      "sha256": "4a486a7322c911b580146cd292d8c6ea33e8efc5d49d4103995575c4e00565d9"
+    },
+    {
+      "path": "evaluations/step6/gateway-smoke/primary-result.json",
+      "bytes": 5152,
+      "sha256": "60e03a3b22054dabbdd7b23daa8b725e46ca29d54a979aab51deef0fd320863c"
+    },
+    {
+      "path": "evaluations/step6/gateway-smoke/primary-result-v2.json",
+      "bytes": 5690,
+      "sha256": "3486b8b44a3e17db9f060ef0b35a144c9b6166da80dce3c6b3a9eab5b3e74710"
+    },
+    {
+      "path": "evaluations/step6/gateway-smoke/primary-validation.json",
+      "bytes": 2595,
+      "sha256": "b9f83bead112b4808691d0ef060927704ce26ef1a196ea6dbe843c78330dae03"
+    }
+  ],
+  "file_count": 10,
+  "static_checks": "14/14 pass",
+  "live_gateway_smoke": "pending",
+  "external_actions": 0,
+  "promotion_performed": false
+}

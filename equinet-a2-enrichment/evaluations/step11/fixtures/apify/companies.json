@@ -1,0 +1,83 @@
+{
+  "companies": [
+    {
+      "a1": {
+        "company_email": null,
+        "company_phone": null
+      },
+      "company_id": "company-trigger",
+      "company_name": "Bluegrass Farm LLC",
+      "official_site_evidence": [
+        {
+          "evidence_id": "web-bluegrass-facebook",
+          "field_key": "company.facebook_url",
+          "source_type": "prospect_owned_official_site",
+          "source_url": "https://bluegrass.example/contact",
+          "status": "validated",
+          "value": "https://www.facebook.com/BluegrassFarm/"
+        }
+      ],
+      "twenty": {
+        "company_email": null,
+        "company_phone": null
+      },
+      "website": {
+        "company_email": null,
+        "company_phone": null
+      }
+    },
+    {
+      "a1": {
+        "company_email": "office@complete.example",
+        "company_phone": null
+      },
+      "company_id": "company-complete",
+      "company_name": "Complete Farrier Inc",
+      "official_site_evidence": [
+        {
+          "evidence_id": "web-complete-facebook",
+          "field_key": "company.facebook_url",
+          "source_type": "official_website",
+          "source_url": "https://complete.example",
+          "status": "validated",
+          "value": "https://www.facebook.com/CompleteFarrier/"
+        }
+      ],
+      "twenty": {
+        "company_email": null,
+        "company_phone": "+1 555 010 2000"
+      },
+      "website": {
+        "company_email": null,
+        "company_phone": null
+      }
+    },
+    {
+      "a1": {
+        "company_email": "hello@existing.example",
+        "company_phone": null
+      },
+      "company_id": "company-duplicate",
+      "company_name": "Existing Email Farm",
+      "official_site_evidence": [
+        {
+          "evidence_id": "web-existing-facebook",
+          "field_key": "company.facebook_url",
+          "source_type": "official_site",
+          "source_url": "https://existing.example",
+          "status": "validated",
+          "value": "https://www.facebook.com/ExistingEmailFarm/"
+        }
+      ],
+      "twenty": {
+        "company_email": null,
+        "company_phone": null
+      },
+      "website": {
+        "company_email": null,
+        "company_phone": null
+      }
+    }
+  ],
+  "run_id": "STEP11-APIFY-TEST"
+}

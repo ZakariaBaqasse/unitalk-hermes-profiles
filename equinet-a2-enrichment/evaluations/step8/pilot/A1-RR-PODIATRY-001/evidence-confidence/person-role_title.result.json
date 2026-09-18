@@ -1,0 +1,35 @@
+{
+  "command": "a2-evaluate-evidence-confidence",
+  "version": "0.1.0-draft.1",
+  "evidence_id": "A2-EV-STEP8-RR-ROLE",
+  "field_assessment_id": "A2-FLD-5250BDB1758E6551",
+  "source_id": "prospect_official_website",
+  "claim_key": "person.role_title",
+  "normalised_value": "Co-Founder/Farrier",
+  "components": {
+    "identity_match": 20,
+    "source_authority": 18,
+    "claim_directness": 20,
+    "freshness": 18,
+    "corroboration": 10,
+    "consistency": 10
+  },
+  "raw_score": 96,
+  "applied_caps": [],
+  "confidence_score": 96,
+  "confidence_level": "high",
+  "verification_status": "verified",
+  "freshness_status": "current_official_undated",
+  "source_references": [
+    "https://roodandriddle.com/lexington-podiatry-team",
+    "evaluations/step8/collection/A1-RR-PODIATRY-001/page-01.md"
+  ],
+  "source_preflight_sha256": "297c7c501d53172fc2ce68f46c899dbc04083f8a0dbc9c1afd5cea72f5340743",
+  "source_gate_passed": true,
+  "a1_confidence_preserved": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

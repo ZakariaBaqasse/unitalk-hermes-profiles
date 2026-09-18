@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a2/requalification-signal/0.1.0",
+  "title": "Equinet A2 Requalification Signal",
+  "description": "A2 evidence signal that may trigger A1 requalification but contains no replacement score or points.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "signal_id",
+    "a2_record_id",
+    "a2_record_revision_id",
+    "a1_candidate_id",
+    "a1_handoff_id",
+    "a1_candidate_snapshot_sha256",
+    "affected_criterion_id",
+    "prior_criterion_status",
+    "proposed_evidence_status",
+    "a1_evidence_ids",
+    "a2_evidence_ids",
+    "field_assessment_ids",
+    "materiality",
+    "potential_score_direction",
+    "reason",
+    "limitations",
+    "created_by_profile",
+    "created_at",
+    "status",
+    "review",
+    "audit_correlation_id",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "signal_id": {
+      "type": "string",
+      "pattern": "^A2-RQ-SIG-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a2_record_id": {
+      "type": "string",
+      "pattern": "^A2-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a2_record_revision_id": {
+      "type": "string",
+      "pattern": "^A2-REV-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a1_candidate_id": {
+      "type": "string",
+      "pattern": "^A1-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a1_handoff_id": {
+      "type": "string",
+      "pattern": "^A1A2-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a1_candidate_snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "affected_criterion_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_.-]{2,99}$"
+    },
+    "prior_criterion_status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "not_confirmed",
+        "contradicted",
+        "unknown"
+      ]
+    },
+    "proposed_evidence_status": {
+      "type": "string",
+      "enum": [
+        "confirmed",
+        "not_confirmed",
+        "contradicted",
+        "unknown"
+      ]
+    },
+    "a1_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "a2_evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^A2-EV-[A-Z0-9_-]{3,80}$"
+      },
+      "uniqueItems": true
+    },
+    "field_assessment_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^A2-FLD-[A-Z0-9_-]{3,80}$"
+      },
+      "uniqueItems": true
+    },
+    "materiality": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "potential_score_direction": {
+      "type": "string",
+      "enum": [
+        "increase",
+        "decrease",
+        "unchanged",
+        "unknown"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1000
+      },
+      "uniqueItems": true
+    },
+    "created_by_profile": {
+      "const": "equinet-a2-enrichment"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pending_review",
+        "approved_for_return",
+        "rejected",
+        "sent_to_a1",
+        "accepted_by_a1",
+        "rejected_by_a1",
+        "rescored",
+        "error"
+      ]
+    },
+    "review": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/review"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "audit_correlation_id": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 200
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "approved_for_return",
+              "sent_to_a1",
+              "accepted_by_a1",
+              "rescored"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/review"
+              },
+              {
+                "properties": {
+                  "decision": {
+                    "const": "approved"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "rejected"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/review"
+              },
+              {
+                "properties": {
+                  "decision": {
+                    "const": "rejected"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_id",
+        "actor_role",
+        "display_name"
+      ],
+      "properties": {
+        "actor_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actor_role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "reviewer",
+        "decided_at",
+        "reason"
+      ],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approved",
+            "rejected",
+            "needs_changes",
+            "held"
+          ]
+        },
+        "reviewer": {
+          "$ref": "#/$defs/actor"
+        },
+        "decided_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    }
+  }
+}

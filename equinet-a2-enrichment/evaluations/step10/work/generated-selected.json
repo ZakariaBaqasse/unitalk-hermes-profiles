@@ -1,0 +1,43 @@
+{
+  "schema_id": "a2-selected-contact-batch",
+  "schema_version": "0.1.0",
+  "run_id": "STEP10-SYN-001",
+  "company_id": null,
+  "created_at": "2026-09-18T17:41:04Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "selected_people": [
+    {
+      "request_id": "contact-fe-owner",
+      "company_id": "11111111-1111-4111-8111-111111111111",
+      "twenty_person_id": null,
+      "provider_person_id": "fe-owner",
+      "full_name": "Jordan Owner",
+      "first_name": "Jordan",
+      "last_name": "Owner",
+      "professional_network_url": "https://www.linkedin.com/in/fe-owner",
+      "company_name": "Bluegrass Farm",
+      "company_domain": null,
+      "source_kind": "new",
+      "selected_target_priority": "PRIMARY",
+      "selection_stage": "primary"
+    },
+    {
+      "request_id": "contact-fe-manager",
+      "company_id": "11111111-1111-4111-8111-111111111111",
+      "twenty_person_id": null,
+      "provider_person_id": "fe-manager",
+      "full_name": "Morgan Manager",
+      "first_name": "Morgan",
+      "last_name": "Manager",
+      "professional_network_url": "https://www.linkedin.com/in/fe-manager",
+      "company_name": "Bluegrass Farm",
+      "company_domain": null,
+      "source_kind": "new",
+      "selected_target_priority": "PRIMARY",
+      "selection_stage": "primary"
+    }
+  ],
+  "artifact_sha256": "7c37facc90027082cd0a216d0b7901408f90ba4cfbe62ceb95446d11dd90a9d0"
+}

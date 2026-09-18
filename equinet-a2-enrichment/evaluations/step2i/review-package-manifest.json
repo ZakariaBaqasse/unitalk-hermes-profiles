@@ -1,0 +1,85 @@
+{
+  "manifest_id": "equinet-a2-step2i-review-package",
+  "stage": "pre_promotion_review",
+  "approval_state": "ready_for_severine_review_not_promoted",
+  "files": [
+    {
+      "path": "evaluations/step2i/proposed/a2-enrichment-record-1.0.0.schema.json",
+      "bytes": 71701,
+      "sha256": "18e768aba972dc60a16f923cc594d4dc7a64d1947bca12df9d4e3d3d8661b634"
+    },
+    {
+      "path": "evaluations/step2i/technical-validation.json",
+      "bytes": 26154,
+      "sha256": "f218ca6909f6099aecce770c596b2853e13332a04e5f350ad9be4c8f645557bb"
+    },
+    {
+      "path": "evaluations/step2i/A2-CANONICAL-DATA-CONTRACT-PROMOTION-REVIEW.md",
+      "bytes": 6715,
+      "sha256": "1f5c781615f435c61225e74996a8ad4d26af9416fe374a2d703f3913efafd714"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_confirmed_duplicate/record.json",
+      "bytes": 32622,
+      "sha256": "aaee1b3691af290d625c5bad799acd8abd23d962f6559bcf8138602d6fe9cdc2"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_confirmed_duplicate/previous-record.json",
+      "bytes": 31059,
+      "sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_conflict_held/record.json",
+      "bytes": 38532,
+      "sha256": "e426b4869d6344a18790dff0d5c64ed9b956630c30a37a847efe03a804f9a1ae"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_conflict_held/previous-record.json",
+      "bytes": 35599,
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_protected_update/record.json",
+      "bytes": 37896,
+      "sha256": "d4ac41364a4dc69615a51342488ff8905bb29381bf546732bfad9782464f0b4e"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_protected_update/previous-record.json",
+      "bytes": 35599,
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_review_required/record.json",
+      "bytes": 36328,
+      "sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/farrier_review_required/previous-record.json",
+      "bytes": 35599,
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/horse_owner_gap_held/record.json",
+      "bytes": 29891,
+      "sha256": "0b58e35159d86aceaf61269db38c8d63356c951397c8d80d24abe2358e2eead1"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/horse_owner_gap_held/previous-record.json",
+      "bytes": 28785,
+      "sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/horse_owner_requalification/record.json",
+      "bytes": 38368,
+      "sha256": "a1f387ff137592b57f326fbe0b798f99eb4ccc49c528442805049a51d34a0eca"
+    },
+    {
+      "path": "evaluations/step2i/proposed/records/horse_owner_requalification/previous-record.json",
+      "bytes": 23016,
+      "sha256": "4909f1bbb96211439fa53a0e00ada0c8f7809e9968d0d6dfe9ac6340fa183de6"
+    }
+  ],
+  "file_count": 15,
+  "promotion_performed": false,
+  "external_actions": 0
+}

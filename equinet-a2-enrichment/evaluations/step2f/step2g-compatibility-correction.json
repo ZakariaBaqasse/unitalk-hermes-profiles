@@ -1,0 +1,16 @@
+{
+  "record_type": "post_approval_regression_package_correction_proposal",
+  "profile": "equinet-a2-enrichment",
+  "source_step": "2F",
+  "identified_during_step": "2G",
+  "suite_version": "0.1.0",
+  "prior_accepted_package_manifest_sha256": "45bd3eb37ce29e53ec6d22028ab7b643085df671142661e031be79a7a24caafc",
+  "corrected_package_manifest_sha256": "40ced5c9eeee27055de8108f6659b7954cb189db01acfc66ebe88dbaa9f0c80d",
+  "status": "approved_in_step_2g",
+  "reason": "The Step 2F package pins the shared validator. Step 2G added the initialised-state targeted-field compatibility rule without changing Step 2F scenario outcomes.",
+  "regression_result": "29/29 pass",
+  "approval_route": "Approved through Step 2G decision G11.",
+  "created_at": "2026-08-26T10:38:53Z",
+  "approved_by": "Séverine, Unitalk Operations",
+  "approved_at": "2026-08-26T12:32:41Z"
+}

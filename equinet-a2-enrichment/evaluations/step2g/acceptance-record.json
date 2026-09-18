@@ -1,0 +1,57 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2G",
+  "initialiser": "scripts/initialize_a2_record.py",
+  "initialiser_version": "0.1.0",
+  "package_manifest": "evaluations/step2g/step2g-package-manifest.json",
+  "package_manifest_sha256": "786ee42e513bfa3ae11ce2d354a519e7d710e7b1ae17db957e8392b98a1cb31b",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-26T12:32:41Z",
+  "approved_decisions": {
+    "G1": "Validate the complete pinned A1 handoff before initialisation.",
+    "G2": "Derive lineage from the handoff hash and revision/run IDs from the handoff plus schema and initialiser versions.",
+    "G3": "Preserve the complete A1 handoff and candidate snapshot.",
+    "G4": "Create only A1-supported entities; do not assign ambiguous aliases or an unproven relationship.",
+    "G5": "Initialise empty A2 evidence, assessment and requalification containers.",
+    "G6": "Keep review pending and every external action/reference disabled.",
+    "G7": "Preserve targeted requests until the planning stage creates assessments.",
+    "G8": "Enforce strict JSON, ledger-backed idempotency, canonical bytes and atomic collision protection.",
+    "G9": "Defer the positive manual no-integration case until approved real input exists.",
+    "G10": "Proceed to Step 2H review-view specification.",
+    "G11": "Approve the Step 2E and Step 2F initialisation-compatibility corrections."
+  },
+  "technical_validation": {
+    "valid_handoffs": "3/3 pass",
+    "invalid_handoffs": "8/8 pass",
+    "total_fixtures": "11/11 pass",
+    "deterministic_controls": "15/15 pass",
+    "farrier": "pass",
+    "horse_owner": "pass",
+    "targeted_request": "pass",
+    "independent_post_fix_review": "pass",
+    "external_actions": 0
+  },
+  "known_limitation": "Positive manual_no_integration_pilot initialisation awaits an approved real production handoff.",
+  "not_approved": [
+    "live source access",
+    "provider use or spend",
+    "HubSpot or Twenty access",
+    "n8n execution",
+    "CRM write",
+    "outreach",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2H — Review-View Specification",
+  "profile_sync": {
+    "temporary_soul_updated": true,
+    "updated_at": "2026-08-26T12:32:41Z",
+    "status": "complete"
+  }
+}

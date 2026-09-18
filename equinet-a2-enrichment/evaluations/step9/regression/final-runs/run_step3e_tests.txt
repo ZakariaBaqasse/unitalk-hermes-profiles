@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "approval_state": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "protected_fields": 32,
+  "fixtures": "11/11",
+  "negative": "9/9",
+  "review": "/opt/data/tmp/equinet-a2-step9b-final-sandbox/evaluations/step3e/A2-PROTECTED-FIELDS-CONFLICT-REVIEW.md",
+  "failures": []
+}

@@ -1,0 +1,63 @@
+{
+  "record_type": "step9_pre_promotion_snapshot",
+  "created_at": "2026-08-30T14:56:57Z",
+  "files": [
+    {
+      "path": "SOUL.md",
+      "bytes": 19431,
+      "sha256": "95ba2f8c88079692569b73234282f56fb35e6eb209cd1036791f1e0d83fccafe"
+    },
+    {
+      "path": "config.yaml",
+      "bytes": 767,
+      "sha256": "fcf9709b833df9954ff4c2eefcaa71b1ef207270cf16172e32bce8e7ad800dad"
+    },
+    {
+      "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 17379,
+      "sha256": "5bd2bb5cac135bfcca71f2a474018eb628eb430c6103f47f46f62361c5b408ba"
+    },
+    {
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "bytes": 3350,
+      "sha256": "6ab66885e8334439a2063afd641fdada9d6a59a939b17a7e992653512720cf72"
+    },
+    {
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "bytes": 2477,
+      "sha256": "a48c31bfad407c60959e9030ae5ba5eaa63248a33f71feb9ae78b2af0decf821"
+    },
+    {
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "bytes": 3496,
+      "sha256": "aa6bf9ceffb773e50e5837b4c1294c89181cc60932d85a64fb7f821f10350c80"
+    },
+    {
+      "path": "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 32117,
+      "sha256": "8a3b9862b33b8c55569a3de510df711fd2f867c257ac39ffe64eb3590016b0ea"
+    },
+    {
+      "path": "evaluations/step9/release-candidate/a2-no-integration-runtime-policy-1.0.0-rc.1.yaml",
+      "bytes": 5105,
+      "sha256": "a2a1439b73961bdc1fbaf41250b22cce36aa8dc91c3066d6b52adaf307cbfce1"
+    },
+    {
+      "path": "evaluations/step9/release-candidate/A2-ACTIVE-FOUNDATION-MANIFEST-1.1.0-rc.1.json",
+      "bytes": 18917,
+      "sha256": "45e0e843381751fdd96499a336e2251ac5efffbc62d94da055c9d4b27628da8a"
+    },
+    {
+      "path": "evaluations/step9/release-candidate/release-candidate-manifest-1.0.0-rc.1.json",
+      "bytes": 53902,
+      "sha256": "1e4ca8c87dbc13556d7960c4f14ee15c66e387ae838a7b177640f95b8512f10a"
+    },
+    {
+      "path": "evaluations/step9/safe-archive-validation.json",
+      "bytes": 1216,
+      "sha256": "6729474432de20b1d88dfe1cab53cda3dcdf1b61771c7bc70eabaa50d9020213"
+    }
+  ],
+  "file_count": 11,
+  "external_actions": 0
+}

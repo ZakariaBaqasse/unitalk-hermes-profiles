@@ -1,0 +1,158 @@
+# Chat-Controlled Runbook
+
+All paths are relative to `/opt/data/profiles/equinet-a2-enrichment`.
+
+## 1. Start a run
+
+```bash
+python scripts/manage_a2_enrichment_run.py start --run-id <RUN_ID> --ledger evaluations/step10/runs/<RUN_ID>/run.json
+```
+
+## 2. Pull Companies
+
+Translate natural-language scope into explicit filters:
+
+```bash
+# “Enrich the latest 2 Farrier leads”
+python scripts/pull_twenty_companies.py --run-id <RUN_ID> --batch-size 2 --segment FARRIER --claim --output evaluations/step10/runs/<RUN_ID>/companies.json
+
+# “Enrich this Company” using the preferred immutable ID
+python scripts/pull_twenty_companies.py --run-id <RUN_ID> --batch-size 1 --company-id <TWENTY_COMPANY_ID> --claim --output evaluations/step10/runs/<RUN_ID>/companies.json
+
+# Exact-name fallback; ambiguous names stop and require an ID
+python scripts/pull_twenty_companies.py --run-id <RUN_ID> --batch-size 1 --company-name "Exact Company Name" --claim --output evaluations/step10/runs/<RUN_ID>/companies.json
+```
+
+Additional allowlisted filters are repeatable `--status`, `--segment`, `--company-id`, `--company-name`, `--city`, `--state`, and `--country`, plus `--created-after`, `--created-before`, `--updated-after`, `--updated-before`, and `--order-by`. Filters are executed in Twenty and rechecked locally. Default ordering is latest `createdAt` first.
+
+For existing null statuses during migration, add `--include-null`. Reprocessing a Company outside eligible statuses requires explicit `--allow-any-status`. Add `--claim` only when live provider use for this run is approved.
+
+## 3. Run the bounded official-site stage
+
+When a verified website URL exists and the Step 11 live gate is active:
+
+```bash
+python scripts/preflight_step11_source_action.py website-preflight.json --output preflight.json
+python scripts/build_official_site_plan.py website-request.json --output site-plan.json
+python scripts/firecrawl_official_site_fetch.py site-plan.json --output site-fetch.json
+python scripts/extract_official_site_observations.py site-fetch.json --output site-observations.json
+python scripts/build_website_decision_packet.py site-observations.json --output website-packet-preliminary.json
+# Agent reviews bounded person evidence blocks and writes person-proposals.json.
+python scripts/validate_website_person_observation_proposals.py website-packet-preliminary.json person-proposals.json --output website-packet.json
+python scripts/validate_website_decisions.py website-packet.json website-decisions.json --output website-validation.json
+python scripts/build_company_contact_merge_plan.py company-merge-request.json --output company-merge-plan.json
+```
+
+The Firecrawl script—not free-form `web_extract`—enforces the five-page same-domain scope. If Company email or phone remains missing and the website explicitly linked Facebook, run the separately preflighted one-call/no-retry Apify path. Build `website-selected-people.json` with `build_website_people_contact_batch.py`; website People with missing channels proceed to Contact Enrichment. A missing, blocked or insufficient website continues to the existing FullEnrich flow.
+
+## 4. Build and run Lookups
+
+```bash
+python scripts/build_fullenrich_action_requests.py lookup evaluations/step10/runs/<RUN_ID>/companies.json --output evaluations/step10/runs/<RUN_ID>/lookup-requests.json
+python scripts/fullenrich_people_lookup.py evaluations/step10/runs/<RUN_ID>/lookup-requests.json --output evaluations/step10/runs/<RUN_ID>/lookup-results.json
+python scripts/build_lookup_decision_packet.py evaluations/step10/runs/<RUN_ID>/companies.json evaluations/step10/runs/<RUN_ID>/lookup-results.json --output evaluations/step10/runs/<RUN_ID>/lookup-packet.json
+```
+
+The LLM writes `lookup-decisions.json`, then validate it:
+
+```bash
+python scripts/validate_lookup_decisions.py evaluations/step10/runs/<RUN_ID>/lookup-packet.json evaluations/step10/runs/<RUN_ID>/lookup-decisions.json --output evaluations/step10/runs/<RUN_ID>/lookup-validation.json
+```
+
+## 5. Run staged People Search
+
+Run only for Companies whose validated Lookup decision has `people_search_required: true`.
+
+### 5.1 Primary targets
+
+```bash
+python scripts/build_fullenrich_action_requests.py search evaluations/step10/runs/<RUN_ID>/companies.json --decisions evaluations/step10/runs/<RUN_ID>/lookup-validation.json --search-stage primary --output evaluations/step10/runs/<RUN_ID>/search-primary-requests.json
+python scripts/fullenrich_people_search.py evaluations/step10/runs/<RUN_ID>/search-primary-requests.json --output evaluations/step10/runs/<RUN_ID>/search-primary-results.json
+python scripts/build_search_candidate_packet.py evaluations/step10/runs/<RUN_ID>/companies.json evaluations/step10/runs/<RUN_ID>/search-primary-results.json --output evaluations/step10/runs/<RUN_ID>/search-primary-packet.json
+python scripts/validate_person_selection_decisions.py evaluations/step10/runs/<RUN_ID>/search-primary-packet.json evaluations/step10/runs/<RUN_ID>/search-primary-decisions.json --output evaluations/step10/runs/<RUN_ID>/search-primary-validation.json
+```
+
+The primary stage excludes the generic title `Owner`, while retaining approved role-specific titles such as `Farm Owner` and `Stable Owner`.
+
+### 5.2 Generic Owner fallback
+
+Run only for validated primary decisions whose `next_search_stage` is `owner`:
+
+```bash
+python scripts/build_fullenrich_action_requests.py search evaluations/step10/runs/<RUN_ID>/companies.json --decisions evaluations/step10/runs/<RUN_ID>/search-primary-validation.json --search-stage owner --output evaluations/step10/runs/<RUN_ID>/search-owner-requests.json
+python scripts/fullenrich_people_search.py evaluations/step10/runs/<RUN_ID>/search-owner-requests.json --output evaluations/step10/runs/<RUN_ID>/search-owner-results.json
+python scripts/build_search_candidate_packet.py evaluations/step10/runs/<RUN_ID>/companies.json evaluations/step10/runs/<RUN_ID>/search-owner-results.json --output evaluations/step10/runs/<RUN_ID>/search-owner-packet.json
+python scripts/validate_person_selection_decisions.py evaluations/step10/runs/<RUN_ID>/search-owner-packet.json evaluations/step10/runs/<RUN_ID>/search-owner-decisions.json --output evaluations/step10/runs/<RUN_ID>/search-owner-validation.json
+```
+
+### 5.3 Linked-secondary reuse
+
+After Owner returns no selected Person, build a zero-provider-call packet from Lookup-validated linked secondary People:
+
+```bash
+python scripts/build_linked_secondary_fallback_packet.py \
+  evaluations/step10/runs/<RUN_ID>/lookup-packet.json \
+  evaluations/step10/runs/<RUN_ID>/lookup-validation.json \
+  evaluations/step10/runs/<RUN_ID>/search-owner-validation.json \
+  --output evaluations/step10/runs/<RUN_ID>/linked-secondary-packet.json
+python scripts/validate_person_selection_decisions.py \
+  evaluations/step10/runs/<RUN_ID>/linked-secondary-packet.json \
+  evaluations/step10/runs/<RUN_ID>/linked-secondary-decisions.json \
+  --output evaluations/step10/runs/<RUN_ID>/linked-secondary-validation.json
+```
+
+Only Lookup-validated People that are `VERIFIED`, `CONFIRMED`, `CURRENT_AT_COMPANY`, `SECONDARY`, and provider-resolved may enter this packet. A selection must name the exact existing Twenty Person with `duplicate_of_twenty_person_id`. Selection proceeds to Contact Enrichment and updates that existing Person. This stage makes zero FullEnrich Search calls.
+
+### 5.4 Paid secondary-target fallback
+
+Run only when linked-secondary validation emits `next_search_stage: secondary`:
+
+```bash
+python scripts/build_fullenrich_action_requests.py search evaluations/step10/runs/<RUN_ID>/companies.json --decisions evaluations/step10/runs/<RUN_ID>/linked-secondary-validation.json --search-stage secondary --output evaluations/step10/runs/<RUN_ID>/search-secondary-requests.json
+python scripts/fullenrich_people_search.py evaluations/step10/runs/<RUN_ID>/search-secondary-requests.json --output evaluations/step10/runs/<RUN_ID>/search-secondary-results.json
+python scripts/build_search_candidate_packet.py evaluations/step10/runs/<RUN_ID>/companies.json evaluations/step10/runs/<RUN_ID>/search-secondary-results.json --output evaluations/step10/runs/<RUN_ID>/search-secondary-packet.json
+python scripts/validate_person_selection_decisions.py evaluations/step10/runs/<RUN_ID>/search-secondary-packet.json evaluations/step10/runs/<RUN_ID>/search-secondary-decisions.json --output evaluations/step10/runs/<RUN_ID>/search-secondary-validation.json
+```
+
+A confirmed secondary candidate may be selected only during `linked_secondary` reuse or this paid secondary stage. If nobody is retained, the validator emits `next_search_stage: completed_no_target`. A failed or indeterminate provider call stops progression rather than triggering the next stage.
+
+## 6. Contact Enrichment
+
+Pass every stage packet/validation pair. Only the successful stage contributes selected People:
+
+```bash
+python scripts/build_selected_contact_batch.py \
+  --lookup-packet evaluations/step10/runs/<RUN_ID>/lookup-packet.json \
+  --lookup-decisions evaluations/step10/runs/<RUN_ID>/lookup-validation.json \
+  --search-packet evaluations/step10/runs/<RUN_ID>/search-primary-packet.json \
+  --selection-decisions evaluations/step10/runs/<RUN_ID>/search-primary-validation.json \
+  --search-packet evaluations/step10/runs/<RUN_ID>/search-owner-packet.json \
+  --selection-decisions evaluations/step10/runs/<RUN_ID>/search-owner-validation.json \
+  --search-packet evaluations/step10/runs/<RUN_ID>/linked-secondary-packet.json \
+  --selection-decisions evaluations/step10/runs/<RUN_ID>/linked-secondary-validation.json \
+  --search-packet evaluations/step10/runs/<RUN_ID>/search-secondary-packet.json \
+  --selection-decisions evaluations/step10/runs/<RUN_ID>/search-secondary-validation.json \
+  --run-id <RUN_ID> \
+  --output evaluations/step10/runs/<RUN_ID>/selected-people.json
+python scripts/fullenrich_contact_enrichment.py evaluations/step10/runs/<RUN_ID>/selected-people.json --output evaluations/step10/runs/<RUN_ID>/contact-results.json
+```
+
+Omit stage pairs that were not run. Default polling is 300 seconds. Do not request personal email.
+
+## 7. Write planning and application
+
+The LLM produces `write-proposal.json` from validated evidence and field decisions.
+
+```bash
+python scripts/build_twenty_enrichment_write_plan.py evaluations/step10/runs/<RUN_ID>/write-proposal.json --output evaluations/step10/runs/<RUN_ID>/write-plan.json
+python scripts/push_twenty_enrichment.py evaluations/step10/runs/<RUN_ID>/write-plan.json --output evaluations/step10/runs/<RUN_ID>/write-dry-run.json
+```
+
+After the run-specific write gate is approved:
+
+```bash
+python scripts/push_twenty_enrichment.py evaluations/step10/runs/<RUN_ID>/write-plan.json --apply --output evaluations/step10/runs/<RUN_ID>/write-result.json
+python scripts/validate_twenty_reconciliation.py evaluations/step10/runs/<RUN_ID>/write-result.json --output evaluations/step10/runs/<RUN_ID>/reconciliation-validation.json
+```
+
+Never apply a plan that failed validation. Company final status is written last and only reconciled read-back counts as success.

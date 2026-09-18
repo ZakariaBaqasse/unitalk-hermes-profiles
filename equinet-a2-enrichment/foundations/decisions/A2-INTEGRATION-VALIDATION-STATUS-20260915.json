@@ -1,0 +1,39 @@
+{
+  "record_type": "a2_integration_validation_status_decision",
+  "decision_id": "A2-INTEGRATION-VALIDATION-STATUS-20260915",
+  "recorded_at": "2026-09-15T14:03:51Z",
+  "decision_source": "authorised_chat_user",
+  "decision": "remove obsolete PILOT_READY_NO_INTEGRATION status",
+  "new_status": "INTEGRATION_VALIDATION_IN_PROGRESS",
+  "verified_live_capabilities": {
+    "twenty": [
+      "metadata read",
+      "Company read/filter/order",
+      "Company claim",
+      "Company A2 status write",
+      "read-back reconciliation"
+    ],
+    "fullenrich": [
+      "key verification",
+      "credit balance",
+      "People Search",
+      "credit reservation and settlement"
+    ]
+  },
+  "pending_live_acceptance": [
+    "FullEnrich People Lookup",
+    "FullEnrich Contact Enrichment",
+    "positive-result rate confirmation",
+    "Twenty Person create/association through the complete A2 workflow"
+  ],
+  "still_disabled": [
+    "HubSpot read/write",
+    "n8n",
+    "Apify",
+    "official-site web research",
+    "outreach",
+    "delivery"
+  ],
+  "production_acceptance": false,
+  "external_actions_authorized_only_within_bounded_user-approved_validation_runs": true
+}

@@ -1,0 +1,38 @@
+{
+  "record_type": "step9_execution_plan",
+  "profile": "equinet-a2-enrichment",
+  "status": "completed_pilot_ready_no_integration",
+  "release_candidate": "equinet-a2-no-integration-1.0.0-rc.1",
+  "phases": [
+    {
+      "id": "9A",
+      "name": "Pre-freeze audit and correction propagation",
+      "status": "completed"
+    },
+    {
+      "id": "9B",
+      "name": "Offline regression and exact no-Web replay",
+      "status": "completed"
+    },
+    {
+      "id": "9C",
+      "name": "Release manifest and delivery documentation",
+      "status": "completed"
+    },
+    {
+      "id": "9D",
+      "name": "Safe archive and independent verification",
+      "status": "completed"
+    },
+    {
+      "id": "9E",
+      "name": "Séverine approval and atomic promotion",
+      "status": "completed"
+    }
+  ],
+  "promotion_target": "PILOT_READY_NO_INTEGRATION",
+  "promotion_boundary": "Unitalk no-integration pilot readiness only; not production or contractual acceptance.",
+  "external_actions": 0,
+  "final_release_id": "equinet-a2-no-integration-1.0.0",
+  "approved_at": "2026-08-30T14:56:57Z"
+}

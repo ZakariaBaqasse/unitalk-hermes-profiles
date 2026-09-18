@@ -1,0 +1,24 @@
+{
+  "record_type": "a2_equinet_business_confirmation_acceptance",
+  "decision": "approved_and_implemented_no_integration",
+  "decision_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decision_at": "2026-08-30T17:05:11Z",
+  "scope": "Implement Equinet-confirmed A2 roles, contact-selection, Horse Owner completeness, horse-count evidence precedence and final-review behaviour without intermediate approval gates.",
+  "configuration_version": "0.2.0",
+  "runtime_overlay_version": "1.1.0",
+  "active_manifest_version": "1.2.0",
+  "release_manifest": {
+    "path": "evaluations/equinet-business-confirmation-20260830/release-manifest.json",
+    "sha256": "ffd084bc1ce5556913cb8fa591270fb8c0bee57850866f93c1930df56276220f"
+  },
+  "limitations": [
+    "Named Equinet approver and original source reference remain to be attached.",
+    "HubSpot, Twenty, n8n and HarvestAPI integrations remain inactive.",
+    "No CRM write, outreach or durable delivery is authorised."
+  ],
+  "external_actions": 0,
+  "next_gate": "Step 10 — HubSpot, Twenty and n8n integration"
+}

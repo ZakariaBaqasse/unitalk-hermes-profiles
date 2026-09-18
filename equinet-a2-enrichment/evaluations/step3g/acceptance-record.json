@@ -1,0 +1,59 @@
+{
+  "record_type": "foundation_working_baseline_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "3G",
+  "version": "0.1.0-draft.1",
+  "decision": "approved_as_unitalk_working_baseline",
+  "equinet_confirmation": "pending",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-27T09:09:39Z",
+  "approved_decisions": {
+    "3G-1": "Use the supplied HubSpot property export as the preliminary metadata authority.",
+    "3G-2": "Keep all mapping directions read-and-propose only and approve no writes.",
+    "3G-3": "Preserve populated manual CRM values and apply Step 3E conflict rules.",
+    "3G-4": "Prefer work_email for professional email and treat primary email as a reviewed fallback.",
+    "3G-5": "Keep personal-email candidates canonical review-only with no HubSpot mapping.",
+    "3G-6": "Block horse_count_range mapping until overlapping options are resolved.",
+    "3G-7": "Block stable_type mapping until the enum mismatch is resolved.",
+    "3G-8": "Use segment-specific discipline candidates and require explicit enum conversion.",
+    "3G-9": "Keep every mapped field at workflow_dependency_unverified.",
+    "3G-10": "Require live read-only verification of values, associations, permissions and fill rates before final mapping approval."
+  },
+  "mapping": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.0-draft.1.json",
+  "mapping_sha256": "c4177c5b353a58e9c4a24e059b3ed3f3d9ae273723cdc0d38d2257b85871e2af",
+  "csv_projection": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.0-draft.1.csv",
+  "csv_projection_sha256": "7d2f694b79e723e004065b06179a5effd505cff0dc318c355a5168077ab9ef21",
+  "technical_validation": "evaluations/step3g/technical-validation.json",
+  "technical_validation_sha256": "115aa6934d4424cb514ea790be0b395a23246d54577c0213177d7e0f28fc376b",
+  "package_manifest": "evaluations/step3g/step3g-draft-package-manifest.json",
+  "package_manifest_sha256": "da8086ca5ed070790665ac385069670017dc09198fc6e5d94a52c95d5a9af1ad",
+  "validation_results": {
+    "canonical_fields": 32,
+    "fields_with_hubspot_candidates": 22,
+    "negative_regressions": "11/11 pass",
+    "csv_fidelity": "pass",
+    "hubspot_connection": false,
+    "hubspot_write_authorized": false,
+    "external_actions": 0
+  },
+  "profile_sync": {
+    "soul_updated": true,
+    "status": "completed",
+    "explicit_user_authorization_received": true,
+    "last_attempt_at": "2026-08-27T09:22:01Z",
+    "completed_at": "2026-08-27T09:29:19Z"
+  },
+  "remaining_live_verification": [
+    "actual property values and fill rates",
+    "Contact-Company-Deal associations",
+    "user and OAuth read permissions",
+    "workflow and list dependencies",
+    "enum conversion acceptance",
+    "horse_count_range taxonomy resolution",
+    "stable_type enum resolution"
+  ],
+  "next_gate": "Step 4 — Final Specialist SOUL (draft preparation)"
+}

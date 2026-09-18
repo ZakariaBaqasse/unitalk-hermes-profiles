@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-lookup-decisions-0.1.0",
+  "required": [
+    "decisions"
+  ],
+  "properties": {
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "company_id",
+          "person_decisions",
+          "people_search_required"
+        ],
+        "properties": {
+          "company_id": {
+            "type": "string"
+          },
+          "people_search_required": {
+            "type": "boolean"
+          },
+          "person_decisions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "twenty_person_id",
+                "identity_status",
+                "company_match_status",
+                "role_priority",
+                "role_status",
+                "retain_as_target",
+                "evidence_refs"
+              ],
+              "properties": {
+                "twenty_person_id": {
+                  "type": "string"
+                },
+                "identity_status": {
+                  "enum": [
+                    "VERIFIED",
+                    "AMBIGUOUS",
+                    "CONFLICT",
+                    "NOT_FOUND"
+                  ]
+                },
+                "company_match_status": {
+                  "enum": [
+                    "CONFIRMED",
+                    "PROBABLE",
+                    "AMBIGUOUS",
+                    "MISMATCH"
+                  ]
+                },
+                "role_priority": {
+                  "enum": [
+                    "PRIMARY",
+                    "SECONDARY",
+                    "REVIEW_ONLY",
+                    "EXCLUDED",
+                    "UNKNOWN"
+                  ]
+                },
+                "role_status": {
+                  "enum": [
+                    "CURRENT",
+                    "STALE",
+                    "UNKNOWN"
+                  ]
+                },
+                "retain_as_target": {
+                  "type": "boolean"
+                },
+                "evidence_refs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

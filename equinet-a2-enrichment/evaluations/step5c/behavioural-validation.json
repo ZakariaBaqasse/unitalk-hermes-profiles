@@ -1,0 +1,49 @@
+{
+  "record_type": "wave2_targeted_behavioural_validation",
+  "profile": "equinet-a2-enrichment",
+  "step": "5C",
+  "wave": 2,
+  "method": "the exact Wave 2 operator commands were executed through subprocesses against synthetic fixtures in a temporary directory",
+  "scenarios": [
+    {
+      "skill_id": "a2-gap-analysis-and-enrichment-planning",
+      "status": "pass",
+      "checks": {
+        "complete_record_stops_research": true,
+        "required_gap_is_named": true,
+        "required_gap_does_not_reject_or_rescore": true,
+        "external_actions_zero": true
+      }
+    },
+    {
+      "skill_id": "a2-permitted-enrichment-research",
+      "status": "pass",
+      "checks": {
+        "official_site_fixture_allowed": true,
+        "provider_is_runtime_blocked": true,
+        "provider_missing_gates_are_visible": true,
+        "no_external_call_authorised": true,
+        "audit_envelopes_complete": true,
+        "external_actions_zero": true
+      }
+    },
+    {
+      "skill_id": "a2-field-verification",
+      "status": "pass",
+      "checks": {
+        "professional_contact_normalised": true,
+        "inferred_horse_count_rejected": true,
+        "personal_email_held": true,
+        "final_confidence_not_assigned": true,
+        "no_crm_or_outreach_authority": true,
+        "external_actions_zero": true
+      }
+    }
+  ],
+  "scenario_count": 3,
+  "passed": 3,
+  "failed": 0,
+  "overall_status": "pass",
+  "external_calls": 0,
+  "external_actions": 0
+}

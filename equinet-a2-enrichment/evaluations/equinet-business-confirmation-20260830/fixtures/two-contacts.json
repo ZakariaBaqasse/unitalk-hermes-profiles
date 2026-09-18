@@ -1,0 +1,8 @@
+{
+  "selected_contacts": [
+    {"contact_id": "C1", "source_role_title": "Farm Owner", "target_role_priority": "primary", "unrelated_role": false},
+    {"contact_id": "C2", "source_role_title": "Purchasing Manager", "target_role_priority": "secondary", "unrelated_role": false}
+  ],
+  "second_contact_reason": "shared_purchasing_or_operational_responsibility",
+  "target_role_not_found": false
+}

@@ -1,0 +1,19 @@
+{
+  "source_hashes": {
+    "image": "1aac099ce0158752e336e813dfe56728a8b7a66f28448a8d098193072bcfce39",
+    "csv": "3303992627bad953e28913eaf3b19cdc998fc0c6f3f6f29ef455d788e8c9b952"
+  },
+  "property_rows": 950,
+  "object_counts": {
+    "Company": 227,
+    "Complaints": 28,
+    "Contact": 431,
+    "Deal": 145,
+    "Sample Requests": 41,
+    "Ticket": 78
+  },
+  "manifest_status": "partial_metadata_snapshot_received_no_live_connection",
+  "required_audit_statements": 7,
+  "errors": [],
+  "pass": true
+}

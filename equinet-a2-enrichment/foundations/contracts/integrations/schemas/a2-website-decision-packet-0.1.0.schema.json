@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "a2-website-decision-packet-0.1.0",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "status",
+    "run_id",
+    "company_id",
+    "candidate_people",
+    "person_evidence_blocks",
+    "person_extraction_coverage"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "a2-website-decision-packet"
+    },
+    "status": {
+      "enum": [
+        "ready_for_person_observation_proposals",
+        "ready_for_decision",
+        "invalid"
+      ]
+    },
+    "candidate_people": {
+      "type": "array"
+    },
+    "person_evidence_blocks": {
+      "type": "array",
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "required": [
+          "block_id",
+          "page_index",
+          "page_url",
+          "page_content_sha256",
+          "source_index",
+          "text",
+          "untrusted_source_content"
+        ],
+        "properties": {
+          "block_id": {
+            "type": "string"
+          },
+          "page_index": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "page_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "page_content_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_index": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "text": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 2000
+          },
+          "untrusted_source_content": {
+            "const": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "person_extraction_coverage": {
+      "type": "object",
+      "required": [
+        "status",
+        "semantic_block_count",
+        "deterministic_candidate_count",
+        "llm_observation_proposals_validated"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending_llm_observation_proposals",
+            "complete_no_relevant_blocks",
+            "complete"
+          ]
+        },
+        "semantic_block_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "deterministic_candidate_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "llm_observation_proposals_validated": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

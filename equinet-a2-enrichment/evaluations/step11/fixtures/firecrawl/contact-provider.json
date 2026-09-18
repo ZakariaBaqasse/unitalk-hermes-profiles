@@ -1,0 +1,89 @@
+{
+  "id": "step11-contact-fixture",
+  "status": "FINISHED",
+  "cost": {
+    "credits": 22
+  },
+  "data": [
+    {
+      "input": {
+        "first_name": "Alex",
+        "last_name": "Morgan",
+        "company_name": "Example Equine Centre"
+      },
+      "custom": {
+        "request_id": "contact-web-website-person-7004cbac0675cee8",
+        "company_id": "company-fixture-001",
+        "provider_person_id": ""
+      },
+      "contact_info": {
+        "most_probable_work_email": {
+          "email": "person1@example.com",
+          "status": "DELIVERABLE"
+        },
+        "most_probable_phone": {
+          "number": "+15550101",
+          "region": "US",
+          "line_type": "MOBILE",
+          "line_status": "ACTIVE",
+          "ownership_match": "CONFIRMED"
+        }
+      },
+      "profile": {
+        "id": "fe-web-1",
+        "full_name": "Alex Morgan",
+        "first_name": "Alex",
+        "last_name": "Morgan",
+        "employment": {
+          "current": {
+            "title": "Stable Operations Coordinator",
+            "is_current": true,
+            "company": {
+              "name": "Example Equine Centre"
+            }
+          }
+        }
+      }
+    },
+    {
+      "input": {
+        "first_name": "Taylor",
+        "last_name": "Brooks",
+        "company_name": "Example Equine Centre"
+      },
+      "custom": {
+        "request_id": "contact-web-website-person-e6cdf8df308890f6",
+        "company_id": "company-fixture-001",
+        "provider_person_id": ""
+      },
+      "contact_info": {
+        "most_probable_work_email": {
+          "email": "person2@example.com",
+          "status": "DELIVERABLE"
+        },
+        "most_probable_phone": {
+          "number": "+15550102",
+          "region": "US",
+          "line_type": "MOBILE",
+          "line_status": "ACTIVE",
+          "ownership_match": "CONFIRMED"
+        }
+      },
+      "profile": {
+        "id": "fe-web-2",
+        "full_name": "Taylor Brooks",
+        "first_name": "Taylor",
+        "last_name": "Brooks",
+        "employment": {
+          "current": {
+            "title": "Veterinary Receptionist",
+            "is_current": true,
+            "company": {
+              "name": "Example Equine Centre"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

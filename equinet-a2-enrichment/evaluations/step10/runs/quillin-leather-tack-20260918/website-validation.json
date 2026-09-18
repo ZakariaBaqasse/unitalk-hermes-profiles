@@ -1,0 +1,903 @@
+{
+  "schema_id": "a2-validated-website-decisions",
+  "schema_version": "0.1.0",
+  "created_at": "2026-09-18T16:40:13Z",
+  "status": "valid",
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+  "packet_sha256": "ef44879abea72cde3750f2684e98652894b4486be55bd50690784915c84a12a9",
+  "retained_people": [],
+  "retained_contacts": [
+    {
+      "observation_id": "website-contact-22eeb8f6627ea04c",
+      "contact_type": "email",
+      "value": "order@Quillin.com",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5"
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Email: order@Quillin.com",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[Send Us An Email](mailto: order@quillin.com)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email: [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email: [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Tel: 859-987-0215 Email: order@Quillin.com M 8 till 2pm, T-F 8 till 5. Saturday 9 till 1PM Closed Sunday Shipping Worldwide Since 1982",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "order@quillin.com is the best way to reach us with a question",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Call during normal business hours 859 987-0215 or email order@quillin.com for the FASTEST Help.",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859 987-0215 • order@quillin.com",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Email: order@Quillin.com",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**Email:** [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**Email:** [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[order@quillin.com is the best way to reach us with a question](mailto:order@quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[order@quillin.com is the best way to reach us with a question](mailto:order@quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Call during normal business hours [859 987-0215](tel:8599870215) or email order@quillin.com for the FASTEST Help.",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859 987-0215 • [order@quillin.com](mailto:order@quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859 987-0215 • [order@quillin.com](mailto:order@quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[Send Us An Email](mailto: order@quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email:** [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email:** [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Email: order@Quillin.com",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[Send Us An Email](mailto: order@quillin.com)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email:** [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email:** [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Email: order@Quillin.com",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[Send Us An Email](mailto: order@quillin.com)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email: [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Email: [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-64cae5e3100b797f",
+      "contact_type": "phone",
+      "value": "859-987-0215",
+      "attribution": {
+        "entity_type": "Company",
+        "entity_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5"
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Tel: 859-987-0215",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**859-987-0215**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel: [859-987-0215](tel:8599870215)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel: [859-987-0215](tel:8599870215)**",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Tel: 859-987-0215 Email: order@Quillin.com M 8 till 2pm, T-F 8 till 5. Saturday 9 till 1PM Closed Sunday Shipping Worldwide Since 1982",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Call during normal business hours 859 987-0215 or email order@quillin.com for the FASTEST Help.",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859 987-0215 • order@quillin.com",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Tel: 859-987-0215",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**Tel:** [859-987-0215](tel:8599870215)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**Tel:** [859-987-0215](tel:8599870215)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Call during normal business hours [859 987-0215](tel:8599870215) or email order@quillin.com for the FASTEST Help.",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Call during normal business hours [859 987-0215](tel:8599870215) or email order@quillin.com for the FASTEST Help.",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859 987-0215 • [order@quillin.com](mailto:order@quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel:** [859-987-0215](tel:8599870215)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel:** [859-987-0215](tel:8599870215)",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Tel: 859-987-0215",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel:** [859-987-0215](tel:8599870215)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel:** [859-987-0215](tel:8599870215)",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Send Us An Email 859-987-0215 order@Quillin.com",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "859-987-0215 order@Quillin.com",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "Tel: 859-987-0215",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**859-987-0215**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "**[859-987-0215](tel:8599870215) [order@Quillin.com](mailto:order@Quillin.com)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel: [859-987-0215](tel:8599870215)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "- **Tel: [859-987-0215](tel:8599870215)**",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        }
+      ]
+    }
+  ],
+  "retained_social_links": [
+    {
+      "observation_id": "website-social-dfcd420ab56ac054",
+      "platform": "facebook",
+      "url": "https://www.facebook.com/QuillinHalters/",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.facebook.com/QuillinHalters/",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-ee2475e1a67e24b5",
+      "platform": "instagram",
+      "url": "https://www.instagram.com/quillinleatherandtack/",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "This Way",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "This Way",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.instagram.com/quillinleatherandtack/",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-60ce1583b2bb3f73",
+      "platform": "x",
+      "url": "https://twitter.com/QuillinLeather",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://twitter.com/QuillinLeather",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-79b7667c3616fb9c",
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@ralphquillin",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.quillin.com/",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "fe6baef9954e7632832a86563036becfe36d978cb9e9770b1e03a4e723124596"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.quillin.com/service/",
+          "page_title": "Contact Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "73a704ab49ef48245c2dd1e923c58308edfebc38b72c7e2437542f97f6aecacb"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.quillin.com/service/about/",
+          "page_title": "About Quillin Leather & Tack - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "8a6c06dc5fd62e5de68812ce2ebb2d879fae937e3c287ffb2f0f2ebb51f6d13e"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.quillin.com/quillin.com",
+          "page_title": "Handcrafted Leather Goods Made in Kentucky - Custom Leather Horse Halters & Tack | Quillin Leather Paris, KY",
+          "evidence_text": "https://www.youtube.com/@ralphquillin",
+          "page_content_sha256": "27c33e0322ad51481e8413cf574c9046817c437a2d380856f497d69b60f5abaa"
+        }
+      ]
+    }
+  ],
+  "retained_people_count": 0,
+  "role_based_eligibility_filter_applied": false,
+  "external_calls": 0,
+  "external_actions": 0,
+  "errors": [],
+  "artifact_sha256": "bb85a9bbea9d5f899e3aa5848ab4939669e11123b1ed1737ae4cc477d4f55fb7"
+}

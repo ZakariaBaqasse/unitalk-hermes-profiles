@@ -1,0 +1,106 @@
+{
+  "schema_id": "a2-lookup-decision-packet",
+  "schema_version": "0.1.0",
+  "run_id": "STEP10-SYN-001",
+  "company_id": null,
+  "created_at": "2026-09-18T17:41:02Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "packets": [
+    {
+      "company": {
+        "twenty_company_id": "11111111-1111-4111-8111-111111111111",
+        "name": "Bluegrass Farm",
+        "segment": "HORSE_OWNER",
+        "domain": null,
+        "professional_network_url": null,
+        "location": {
+          "street": "1 Stable Lane",
+          "city": "Lexington",
+          "region": "Kentucky",
+          "country": "United States",
+          "postal_code": "40502"
+        }
+      },
+      "linked_people": [
+        {
+          "twenty_person": {
+            "twenty_person_id": "22222222-2222-4222-8222-222222222222",
+            "company_id": "11111111-1111-4111-8111-111111111111",
+            "full_name": "Taylor Existing",
+            "raw_name": {
+              "firstName": "Taylor Existing",
+              "lastName": ""
+            },
+            "job_title": "Trainer",
+            "work_email": null,
+            "phone": null,
+            "professional_network_url": "https://www.linkedin.com/in/taylor-existing",
+            "a2_identity_status": null,
+            "a2_role_status": null,
+            "a2_role_priority": null,
+            "a2_company_match_status": null,
+            "a2_enrichment_status": null,
+            "fullenrich_person_id": null,
+            "last_verified_at": null,
+            "last_enriched_at": null,
+            "updated_at": "2026-09-14T00:00:00Z"
+          },
+          "lookup_result": {
+            "request_id": "lookup-existing",
+            "company_id": "11111111-1111-4111-8111-111111111111",
+            "twenty_person_id": "22222222-2222-4222-8222-222222222222",
+            "terminal_status": "succeeded",
+            "request_payload": {
+              "person_professional_network_url": "https://www.linkedin.com/in/taylor-existing"
+            },
+            "person": {
+              "provider_person_id": "fe-existing",
+              "full_name": "Taylor Existing",
+              "first_name": "Taylor",
+              "last_name": "Existing",
+              "exact_current_role": "Trainer",
+              "current_role_description": "Responsible for horse care and farm operations.",
+              "current_employment_is_current": true,
+              "organisation": {
+                "provider_company_id": "fe-company-1",
+                "name": "Bluegrass Farm",
+                "domain": null,
+                "professional_network_url": "https://www.linkedin.com/company/bluegrass-farm"
+              },
+              "location": {
+                "city": "Lexington",
+                "region": "Kentucky",
+                "country": "United States",
+                "country_code": "US"
+              },
+              "professional_network_url": "https://www.linkedin.com/in/taylor-existing"
+            },
+            "metadata": {
+              "credits": 0.25
+            },
+            "provider_payload_sha256": "593bf2655e2ec617023ea2b7e2b41e6bd7f0160c79573c671bad9792235b8cb2",
+            "receipt": {
+              "fixture": true,
+              "http_status": 200
+            }
+          },
+          "evidence_refs": [
+            "lookup:lookup-existing"
+          ]
+        }
+      ],
+      "decision_required": [
+        "identity_status",
+        "company_match_status",
+        "role_priority",
+        "role_status",
+        "retain_as_target",
+        "secondary_fallback_eligible",
+        "people_search_required"
+      ]
+    }
+  ],
+  "artifact_sha256": "4a3d8d13c9c5fda4d01acd4ad2c54d82e8f635fd9f067c71c9477613e6e1cf0f"
+}

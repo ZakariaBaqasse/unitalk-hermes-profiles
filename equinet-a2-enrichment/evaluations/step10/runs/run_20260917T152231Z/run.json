@@ -1,0 +1,64 @@
+{
+  "schema_id": "a2-enrichment-run-ledger",
+  "schema_version": "0.1.0",
+  "run_id": "run_20260917T152231Z",
+  "created_at": "2026-09-17T15:22:31Z",
+  "updated_at": "2026-09-17T15:37:46Z",
+  "stage": "terminal",
+  "company_ids": [],
+  "artifacts": [],
+  "audit": [
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "created",
+      "to": "pulled"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "pulled",
+      "to": "claimed"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "claimed",
+      "to": "lookup_complete"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "lookup_complete",
+      "to": "lookup_decisions_validated"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "lookup_decisions_validated",
+      "to": "search_complete"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "search_complete",
+      "to": "selection_decisions_validated"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "selection_decisions_validated",
+      "to": "contact_enrichment_complete"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "contact_enrichment_complete",
+      "to": "write_plan_validated"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "write_plan_validated",
+      "to": "twenty_written"
+    },
+    {
+      "at": "2026-09-17T15:37:46Z",
+      "from": "twenty_written",
+      "to": "terminal"
+    }
+  ],
+  "external_actions": 0,
+  "ledger_sha256": "64d6fd8ba9c5d22717873f504888b39bea2c3901c161b29c4034f5776841c088"
+}

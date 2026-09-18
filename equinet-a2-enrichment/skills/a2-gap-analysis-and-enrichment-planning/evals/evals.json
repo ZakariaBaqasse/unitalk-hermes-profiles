@@ -1,0 +1,21 @@
+{
+  "skill_id": "a2-gap-analysis-and-enrichment-planning",
+  "version": "0.1.0-draft.1",
+  "evals": [
+    {
+      "id": "gap-complete-farrier",
+      "purpose": "A complete current Farrier minimum package creates no research plan.",
+      "expected": {"plan_status": "no_research_needed", "plan_items": 0, "external_actions": 0}
+    },
+    {
+      "id": "gap-required-horse-owner",
+      "purpose": "A missing required stable type creates one bounded required gap without rejection or scoring.",
+      "expected": {"plan_status": "research_required", "field_key": "organisation.stable_type", "automatic_rejection": false, "automatic_a1_score_change": false}
+    },
+    {
+      "id": "gap-do-not-collect",
+      "purpose": "A targeted do-not-collect social signal is blocked and never becomes a source plan.",
+      "expected": {"plan_status": "blocked", "blocked_field": "person.social_signals", "external_actions": 0}
+    }
+  ]
+}

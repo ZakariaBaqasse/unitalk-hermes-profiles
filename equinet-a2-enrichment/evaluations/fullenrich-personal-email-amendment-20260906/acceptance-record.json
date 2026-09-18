@@ -1,0 +1,59 @@
+{
+  "record_type": "a2_fullenrich_incidental_personal_email_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "decision_id": "A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906",
+  "approved_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-09-06T13:38:10Z",
+  "decision": "approved_business_configuration_runtime_integration_pending",
+  "approved_scope": [
+    "personal email is not requested by default from FullEnrich",
+    "incidental personal email is retained as person.personal_email_candidate",
+    "provider provenance and verification status are retained",
+    "personal email remains separate from professional email",
+    "personal email does not satisfy professional contactability by itself",
+    "personal email grants no consent or outreach authority",
+    "no automatic HubSpot write"
+  ],
+  "technical_validation": {
+    "path": "evaluations/fullenrich-personal-email-amendment-20260906/technical-validation.json",
+    "checks_passed": 47,
+    "checks_total": 47,
+    "status": "pass"
+  },
+  "regressions": [
+    {
+      "scenario": "farrier_review",
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/workflow-result.json",
+      "operators_passed": 14,
+      "operators_total": 14,
+      "status": "pass"
+    },
+    {
+      "scenario": "horse_owner_requalification",
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/horse-owner/workflow-result.json",
+      "operators_passed": 14,
+      "operators_total": 14,
+      "status": "pass"
+    }
+  ],
+  "language_audit": {
+    "path": "evaluations/foundation-clarifications/language-audit.json",
+    "files_checked": 1651,
+    "findings": 0,
+    "status": "pass"
+  },
+  "final_verification": {
+    "path": "evaluations/fullenrich-personal-email-amendment-20260906/final-verification.json",
+    "checks_passed": 17,
+    "checks_total": 17,
+    "status": "pass"
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "runtime_activation": false,
+  "production_acceptance": false,
+  "next_gate": "FullEnrich n8n connector activation and bounded acceptance"
+}

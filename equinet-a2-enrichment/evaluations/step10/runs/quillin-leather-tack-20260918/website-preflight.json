@@ -1,0 +1,11 @@
+{
+  "source_id": "prospect_official_website",
+  "execution_mode": "live",
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+  "official_url": "https://www.quillin.com",
+  "maximum_pages": 5,
+  "agent_web_extract": false,
+  "integration_validation_approved": true,
+  "approval_basis": "User-selected candidate-specific Step 11 live official-site validation run requested in chat on 2026-09-18 for Quillin Leather & Tack (Twenty Company 98cbdeae-a863-48b9-88e7-9f0ae8099ea5)."
+}

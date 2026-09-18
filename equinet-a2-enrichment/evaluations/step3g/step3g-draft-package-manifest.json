@@ -1,0 +1,44 @@
+{
+  "manifest_id": "equinet-a2-step3g-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_live_verification_pending",
+  "files": [
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.0-draft.1.json",
+      "bytes": 29885,
+      "sha256": "c4177c5b353a58e9c4a24e059b3ed3f3d9ae273723cdc0d38d2257b85871e2af"
+    },
+    {
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.0-draft.1.csv",
+      "bytes": 14126,
+      "sha256": "7d2f694b79e723e004065b06179a5effd505cff0dc318c355a5168077ab9ef21"
+    },
+    {
+      "path": "scripts/build_step3g_hubspot_mapping.py",
+      "bytes": 5174,
+      "sha256": "cea1c526127e1d04106704009323a8adb62199d0032a99e505dda7d39715f696"
+    },
+    {
+      "path": "scripts/validate_step3g_hubspot_mapping.py",
+      "bytes": 10667,
+      "sha256": "5b700d124f623a2231957f2580c1bc19a2f2bd5c1a1c4bff69c3f3e2e45301d9"
+    },
+    {
+      "path": "foundations/A2-PRELIMINARY-HUBSPOT-MAPPING.md",
+      "bytes": 5182,
+      "sha256": "79cd8b3c1d3e5b7684289017499f16a03a18238bd0e0012953217e90f97e54dd"
+    },
+    {
+      "path": "evaluations/step3g/A2-PRELIMINARY-HUBSPOT-MAPPING-REVIEW.md",
+      "bytes": 1330,
+      "sha256": "aedf13a9267edd1711bb110b239fbfeaa4417a76c476986d9c5999683082072d"
+    },
+    {
+      "path": "evaluations/step3g/technical-validation.json",
+      "bytes": 3673,
+      "sha256": "115aa6934d4424cb514ea790be0b395a23246d54577c0213177d7e0f28fc376b"
+    }
+  ],
+  "file_count": 7,
+  "external_actions": 0
+}

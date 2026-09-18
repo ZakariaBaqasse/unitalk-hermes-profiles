@@ -1,0 +1,23 @@
+{
+  "status": "valid",
+  "validated_decisions": [
+    {
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "search_stage": "owner",
+      "selected_candidates": [],
+      "next_search_stage": "linked_secondary",
+      "decision_notes": "Exact Owner People Search returned not_found for Wilkins Farrier & Forge. Advancing to zero-cost linked-secondary reuse evaluation.",
+      "selected_target_priority": null
+    },
+    {
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "search_stage": "owner",
+      "selected_candidates": [],
+      "next_search_stage": "linked_secondary",
+      "decision_notes": "Exact Owner People Search returned not_found for Ellis Forge LLC. Advancing to zero-cost linked-secondary reuse evaluation.",
+      "selected_target_priority": null
+    }
+  ],
+  "search_stage": "owner",
+  "errors": []
+}

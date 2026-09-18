@@ -1,0 +1,422 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a2/requalification-return/0.1.0",
+  "title": "Equinet A2-to-A1 Requalification Return",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "return_id",
+    "idempotency_key",
+    "created_at",
+    "source_profile",
+    "target_profile",
+    "operating_scope",
+    "a2_record_id",
+    "a2_record_revision_id",
+    "a1_candidate_id",
+    "a1_handoff_id",
+    "a1_candidate_snapshot_sha256",
+    "target_icp_config_version",
+    "target_evidence_policy_version",
+    "target_scoring_model_version",
+    "signal_snapshots",
+    "signal_snapshot_sha256",
+    "status",
+    "approval",
+    "delivery",
+    "a1_receipt",
+    "constraints",
+    "audit_correlation_id",
+    "synthetic"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "return_id": {
+      "type": "string",
+      "pattern": "^A2-RQ-RET-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^A2-RQ-IDEMP-[A-Z0-9_-]{6,100}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_profile": {
+      "const": "equinet-a2-enrichment"
+    },
+    "target_profile": {
+      "const": "equinet-a1-icp-discovery"
+    },
+    "operating_scope": {
+      "type": "string",
+      "enum": [
+        "synthetic_test",
+        "manual_no_integration_pilot",
+        "integrated_pilot",
+        "production"
+      ]
+    },
+    "a2_record_id": {
+      "type": "string",
+      "pattern": "^A2-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a2_record_revision_id": {
+      "type": "string",
+      "pattern": "^A2-REV-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a1_candidate_id": {
+      "type": "string",
+      "pattern": "^A1-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a1_handoff_id": {
+      "type": "string",
+      "pattern": "^A1A2-[A-Z0-9][A-Z0-9_-]{5,79}$"
+    },
+    "a1_candidate_snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "target_icp_config_version": {
+      "const": "1.0.0"
+    },
+    "target_evidence_policy_version": {
+      "const": "1.0.0"
+    },
+    "target_scoring_model_version": {
+      "const": "1.0.0"
+    },
+    "signal_snapshots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://unitalk.ai/schemas/equinet/a2/requalification-signal/0.1.0"
+      }
+    },
+    "signal_snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "prepared",
+        "delivered",
+        "accepted_by_a1",
+        "rejected_by_a1",
+        "delivery_failed",
+        "error"
+      ]
+    },
+    "approval": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/review"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "delivery": {
+      "$ref": "#/$defs/delivery"
+    },
+    "a1_receipt": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/a1Receipt"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "constraints": {
+      "$ref": "#/$defs/constraints"
+    },
+    "audit_correlation_id": {
+      "type": "string",
+      "minLength": 6,
+      "maxLength": 200
+    },
+    "synthetic": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "operating_scope": {
+            "const": "manual_no_integration_pilot"
+          }
+        },
+        "required": [
+          "operating_scope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "const": "prepared"
+          },
+          "a1_receipt": {
+            "type": "null"
+          },
+          "delivery": {
+            "properties": {
+              "external_event_reference": {
+                "type": "null"
+              },
+              "attempt_count": {
+                "const": 0
+              },
+              "last_attempt_at": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "delivered",
+              "accepted_by_a1"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "approval": {
+            "allOf": [
+              {
+                "$ref": "#/$defs/review"
+              },
+              {
+                "properties": {
+                  "decision": {
+                    "const": "approved"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "accepted_by_a1",
+              "rejected_by_a1"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "a1_receipt": {
+            "$ref": "#/$defs/a1Receipt"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_id",
+        "actor_role",
+        "display_name"
+      ],
+      "properties": {
+        "actor_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "actor_role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 200
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "reviewer",
+        "decided_at",
+        "reason"
+      ],
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approved",
+            "rejected",
+            "needs_changes",
+            "held"
+          ]
+        },
+        "reviewer": {
+          "$ref": "#/$defs/actor"
+        },
+        "decided_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "external_event_reference",
+        "attempt_count",
+        "last_attempt_at",
+        "failure_reason"
+      ],
+      "properties": {
+        "external_event_reference": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 300
+        },
+        "attempt_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20
+        },
+        "last_attempt_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "failure_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        }
+      }
+    },
+    "a1Receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "receiver_profile",
+        "receiver_id",
+        "received_at",
+        "return_id",
+        "signal_snapshot_sha256",
+        "rejection_reasons"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "rejected"
+          ]
+        },
+        "receiver_profile": {
+          "const": "equinet-a1-icp-discovery"
+        },
+        "receiver_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "received_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "return_id": {
+          "type": "string",
+          "pattern": "^A2-RQ-RET-[A-Z0-9][A-Z0-9_-]{5,79}$"
+        },
+        "signal_snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "rejection_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "a2_replacement_score_prohibited",
+        "a2_points_prohibited",
+        "preserve_original_score_snapshot",
+        "human_approval_required",
+        "crm_write_authorized"
+      ],
+      "properties": {
+        "a2_replacement_score_prohibited": {
+          "const": true
+        },
+        "a2_points_prohibited": {
+          "const": true
+        },
+        "preserve_original_score_snapshot": {
+          "const": true
+        },
+        "human_approval_required": {
+          "const": true
+        },
+        "crm_write_authorized": {
+          "const": false
+        }
+      }
+    }
+  }
+}

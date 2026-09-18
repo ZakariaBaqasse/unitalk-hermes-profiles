@@ -1,0 +1,34 @@
+{
+  "command": "a2-evaluate-evidence-confidence",
+  "version": "0.1.0-draft.1",
+  "evidence_id": "A2-EV-8CA839371127215B",
+  "field_assessment_id": "A2-FLD-001",
+  "source_id": "prospect_official_website",
+  "claim_key": "person.role_title",
+  "normalised_value": "Owner Farrier",
+  "components": {
+    "identity_match": 20,
+    "source_authority": 18,
+    "claim_directness": 20,
+    "freshness": 18,
+    "corroboration": 10,
+    "consistency": 10
+  },
+  "raw_score": 96,
+  "applied_caps": [],
+  "confidence_score": 96,
+  "confidence_level": "high",
+  "verification_status": "verified",
+  "freshness_status": "current_official_undated",
+  "source_references": [
+    "https://example.test/team"
+  ],
+  "source_preflight_sha256": "0b25653ee17a7a55e49ad0c2e4d82477beb6634baae3fa6e7c41da77bc675341",
+  "source_gate_passed": true,
+  "a1_confidence_preserved": false,
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "outreach_authorized": false,
+  "external_actions": 0,
+  "errors": []
+}

@@ -1,0 +1,121 @@
+{
+  "plan_version": "0.1.0-draft.1",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "input_record_sha256": null,
+  "segment": "horse_owner",
+  "operating_scope": "manual_no_integration_pilot",
+  "plan_status": "research_required",
+  "minimum_package": {
+    "package": "horse_owner_review_ready",
+    "required_field_count": 3,
+    "contact_path": "named_target",
+    "research_exhausted": false
+  },
+  "plan_items": [
+    {
+      "plan_item_id": "PLAN-001",
+      "field_key": "organisation.stable_type",
+      "alternative_field_keys": [],
+      "priority": "required",
+      "current_state": "present_unverified",
+      "freshness_status": "current",
+      "need_type": "verification",
+      "source_candidates": [
+        {
+          "source_id": "a1_approved_handoff",
+          "register_status": "approved",
+          "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "a1_directory_evidence_reuse",
+          "register_status": "approved",
+          "runtime_readiness": "available_through_handoff",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "hubspot_authoritative_records",
+          "register_status": "conditional",
+          "runtime_readiness": "integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_authorized_first_party_data",
+          "register_status": "conditional",
+          "runtime_readiness": "manual_intake_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_representative_confirmation",
+          "register_status": "approved",
+          "runtime_readiness": "manual_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "prospect_official_website",
+          "register_status": "conditional",
+          "runtime_readiness": "runtime_policy_pending",
+          "external_access_planned": false
+        }
+      ],
+      "external_action_authorized": false
+    },
+    {
+      "plan_item_id": "PLAN-002",
+      "field_key": "relationship.target_role_priority",
+      "alternative_field_keys": [],
+      "priority": "conditional_required",
+      "current_state": "present_unverified",
+      "freshness_status": "current",
+      "need_type": "verification",
+      "source_candidates": [
+        {
+          "source_id": "a1_approved_handoff",
+          "register_status": "approved",
+          "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "a1_directory_evidence_reuse",
+          "register_status": "approved",
+          "runtime_readiness": "available_through_handoff",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "hubspot_authoritative_records",
+          "register_status": "conditional",
+          "runtime_readiness": "integration_pending",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_authorized_first_party_data",
+          "register_status": "conditional",
+          "runtime_readiness": "manual_intake_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "equinet_representative_confirmation",
+          "register_status": "approved",
+          "runtime_readiness": "manual_available",
+          "external_access_planned": false
+        },
+        {
+          "source_id": "prospect_official_website",
+          "register_status": "conditional",
+          "runtime_readiness": "runtime_policy_pending",
+          "external_access_planned": false
+        }
+      ],
+      "external_action_authorized": false
+    }
+  ],
+  "blocked_fields": [],
+  "errors": [],
+  "automatic_rejection": false,
+  "automatic_a1_score_change": false,
+  "outreach_authorized": false,
+  "crm_write_authorized": false,
+  "external_calls": 0,
+  "external_actions": 0,
+  "plan_sha256": "105148eca25a6f03873a916d4fbdc084f82efd44690147a94462d6e16f6954c6"
+}

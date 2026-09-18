@@ -1,0 +1,13 @@
+{
+  "operating_scope": "synthetic_test",
+  "a1_eligibility_status": "eligible",
+  "identity_resolution_status": "resolved",
+  "checks": [
+    {
+      "check_type": "batch",
+      "system": "a1",
+      "status": "confirmed_duplicate",
+      "authoritative": false
+    }
+  ]
+}

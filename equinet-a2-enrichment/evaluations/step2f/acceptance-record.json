@@ -1,0 +1,56 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2F",
+  "suite_version": "0.1.0",
+  "package_manifest": "evaluations/step2f/step2f-package-manifest.json",
+  "package_manifest_sha256": "5d5dc6a8c14a9f1af6c9f4c0d4b0dad37322eb378dcb709ed73208da86b49514",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-26T10:38:53Z",
+  "approved_decisions": {
+    "F1": "Accept the synthetic Farrier and Horse Owner fixture set as the Step 2F baseline.",
+    "F2": "Validate lifecycle progression through explicit prior-revision pairs.",
+    "F3": "Retain valid gap, conflict, duplicate and protected-field review states.",
+    "F4": "Validate declared business outcomes in addition to schema compliance.",
+    "F5": "Require negative cases to fail for their named expected reason and exact error count.",
+    "F6": "Keep every Step 2F fixture synthetic and perform no external action.",
+    "F7": "Use the synthetic Field Catalogue only to test external catalogue enforcement.",
+    "F8": "Defer the real Equinet Field Catalogue and minimum packages to Step 3.",
+    "F9": "Keep Step 2E adversarial tests and prior foundation checks in regression.",
+    "F10": "Proceed to Step 2G handoff-to-record initialisation."
+  },
+  "technical_validation": {
+    "valid_scenarios": "16/16 pass",
+    "negative_scenarios": "13/13 pass",
+    "total_scenarios": "29/29 pass",
+    "farrier_scenarios": 13,
+    "horse_owner_scenarios": 16,
+    "all_records_synthetic": true,
+    "recorded_external_action_claims": 0,
+    "external_actions_performed": 0,
+    "independent_post_fix_review": "pass"
+  },
+  "not_approved": [
+    "real Equinet Business Field Catalogue",
+    "live source access",
+    "provider use or spend",
+    "A1/A2 production integration",
+    "HubSpot or Twenty access",
+    "n8n execution",
+    "CRM write",
+    "outreach",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2G — Handoff-to-Record Initialisation",
+  "profile_sync": {
+    "temporary_soul_updated": true,
+    "updated_at": "2026-08-26T12:32:41Z",
+    "status": "complete"
+  }
+}

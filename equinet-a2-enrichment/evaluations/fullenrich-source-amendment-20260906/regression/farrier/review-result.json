@@ -1,0 +1,33 @@
+{
+  "command": "a2-render-review-package",
+  "version": "0.1.0-draft.1",
+  "valid": true,
+  "output_dir": "evaluations/fullenrich-source-amendment-20260906/regression/farrier/review-package",
+  "canonical_record_sha256": "7fa2c98a6feb0d016ccd2cd3bff433b39748392270fb663ebd6e5a2d186eb0fc",
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 2,
+    "fields": 6,
+    "evidence": 3,
+    "requalification": 0,
+    "audit": 4
+  },
+  "manifest_path": "evaluations/fullenrich-source-amendment-20260906/regression/farrier/review-package/manifest.json",
+  "review_validation": {
+    "name": "wave3-runtime",
+    "canonical_record_sha256": "7fa2c98a6feb0d016ccd2cd3bff433b39748392270fb663ebd6e5a2d186eb0fc",
+    "row_counts": {
+      "summary": 1,
+      "review_queue": 2,
+      "fields": 6,
+      "evidence": 3,
+      "requalification": 0,
+      "audit": 4
+    },
+    "errors": [],
+    "passed": true
+  },
+  "read_only": true,
+  "external_actions": 0,
+  "errors": []
+}

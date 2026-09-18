@@ -1,0 +1,35 @@
+{
+  "schema_id": "a2-twenty-write-plan",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+  "created_at": "2026-09-15T12:41:34Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "operations": [
+    {
+      "operation_id": "final-company-status",
+      "operation_type": "update_company_status",
+      "twenty_company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "fields": {
+        "a2EnrichmentStatus": "COMPLETED_NO_TARGET",
+        "a2EnrichmentVersion": "0.1.0-live-test.1",
+        "a2EnrichmentRunId": "A2-LIVE-20260915T115914Z",
+        "a2LastAttemptedAt": "2026-09-15T12:41:34Z",
+        "a2EnrichmentErrorCode": "target_role_not_found"
+      }
+    }
+  ],
+  "expected_read_back": {
+    "company_fields": {
+      "a2EnrichmentStatus": "COMPLETED_NO_TARGET",
+      "a2EnrichmentVersion": "0.1.0-live-test.1",
+      "a2EnrichmentRunId": "A2-LIVE-20260915T115914Z",
+      "a2LastAttemptedAt": "2026-09-15T12:41:34Z",
+      "a2EnrichmentErrorCode": "target_role_not_found"
+    },
+    "people": []
+  },
+  "artifact_sha256": "17169540340d860117cdf63ab6cc262257c86a899cbc02482bd7c6533f25f1f6"
+}

@@ -1,0 +1,24 @@
+{
+  "record_type": "a2_role_status_metadata_migration",
+  "executed_at": "2026-09-16T17:14:01Z",
+  "field_id": "de15d350-9c71-4f9a-8fc0-1f106880a24f",
+  "http_status": 200,
+  "before_values": [
+    "CURRENT",
+    "STALE",
+    "UNKNOWN"
+  ],
+  "after_values": [
+    "CURRENT_AT_COMPANY",
+    "NOT_CURRENT_AT_COMPANY",
+    "UNVERIFIED"
+  ],
+  "expected_values": [
+    "CURRENT_AT_COMPANY",
+    "NOT_CURRENT_AT_COMPANY",
+    "UNVERIFIED"
+  ],
+  "read_back_match": true,
+  "populated_records_before": 0,
+  "external_writes": 1
+}

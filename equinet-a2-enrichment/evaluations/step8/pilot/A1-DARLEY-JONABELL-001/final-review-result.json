@@ -1,0 +1,33 @@
+{
+  "command": "a2-render-review-package",
+  "version": "0.1.0-draft.1",
+  "valid": true,
+  "output_dir": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package",
+  "canonical_record_sha256": "f125a7354e5b4635cfd352bc51ff3bed16ff5a0e0485189275685e8bdaa1ad6d",
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 1,
+    "fields": 11,
+    "evidence": 5,
+    "requalification": 0,
+    "audit": 5
+  },
+  "manifest_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/manifest.json",
+  "review_validation": {
+    "name": "wave3-runtime",
+    "canonical_record_sha256": "f125a7354e5b4635cfd352bc51ff3bed16ff5a0e0485189275685e8bdaa1ad6d",
+    "row_counts": {
+      "summary": 1,
+      "review_queue": 1,
+      "fields": 11,
+      "evidence": 5,
+      "requalification": 0,
+      "audit": 5
+    },
+    "errors": [],
+    "passed": true
+  },
+  "read_only": true,
+  "external_actions": 0,
+  "errors": []
+}

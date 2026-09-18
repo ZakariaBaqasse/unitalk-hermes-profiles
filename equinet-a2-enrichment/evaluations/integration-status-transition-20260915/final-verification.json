@@ -1,0 +1,11 @@
+{
+  "soul_status_present": true,
+  "obsolete_primary_status_absent": true,
+  "manifest_version": "1.4.0",
+  "manifest_status": "integration_validation_in_progress",
+  "active_sha256": "9637b9114ecbf653ccadaf0f488672c1e14fe22a988105d7ec9a51bf630557bf",
+  "release_manifest": "foundations/contracts/runtime/a2-integration-validation-release-1.4.0.json",
+  "release_sha256": "3784321ab90a4e983a354405cb9fdf3761aae7fcef9b74a4dab6c3d4e9322c1d",
+  "step10_nested_hash_matches": true,
+  "history_1_3_2_preserved": true
+}

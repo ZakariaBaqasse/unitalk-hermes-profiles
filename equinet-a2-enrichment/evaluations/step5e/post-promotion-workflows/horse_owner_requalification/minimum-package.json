@@ -1,0 +1,25 @@
+{
+  "fixture_id": null,
+  "segment": "horse_owner",
+  "package": "horse_owner_review_ready",
+  "package_status": "incomplete",
+  "data_quality_status": "incomplete",
+  "workflow_recommendation": "enrichment_in_progress",
+  "missing_required_fields": [
+    "organisation.stable_type"
+  ],
+  "unsatisfied_contact_requirements": [],
+  "documented_exception_fields": [
+    "person.full_name",
+    "person.role_title",
+    "relationship.target_role_priority"
+  ],
+  "conflict_field_keys": [],
+  "error_field_keys": [],
+  "automatic_rejection": false,
+  "automatic_a1_score_change": false,
+  "external_action_authorized": false,
+  "human_review_required": true,
+  "outreach_readiness_status": "unavailable",
+  "errors": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "de15d350-9c71-4f9a-8fc0-1f106880a24f",
+  "universalIdentifier": "7e0f7d3d-866c-412c-9283-c88b084f0314",
+  "applicationId": "b4910be3-5e33-4345-801f-24309dcd28c7",
+  "type": "SELECT",
+  "name": "a2RoleStatus",
+  "label": "A2 Role Status",
+  "icon": "IconTag",
+  "isActive": true,
+  "isSystem": false,
+  "isUIEditable": true,
+  "isUIReadOnly": false,
+  "isNullable": true,
+  "isUnique": false,
+  "options": [
+    {
+      "id": "33954e17-edb4-4538-a795-67158fa672ff",
+      "color": "green",
+      "label": "Current at Company",
+      "value": "CURRENT_AT_COMPANY",
+      "position": 0
+    },
+    {
+      "id": "79fff76e-510e-4ec4-a3ae-3a2a97403598",
+      "color": "jade",
+      "label": "Not Current at Company",
+      "value": "NOT_CURRENT_AT_COMPANY",
+      "position": 1
+    },
+    {
+      "id": "998e86ad-56ba-446e-af69-9cf0d644d614",
+      "color": "mint",
+      "label": "Unverified",
+      "value": "UNVERIFIED",
+      "position": 2
+    }
+  ],
+  "workspaceId": "be94ba98-1369-4347-ab0b-07f697b81b74",
+  "objectMetadataId": "4220f12d-d3ec-4268-ad2f-64c4453859fa",
+  "isLabelSyncedWithName": true,
+  "createdAt": "2026-09-14T15:35:31.145Z",
+  "updatedAt": "2026-09-16T17:14:00.076Z"
+}

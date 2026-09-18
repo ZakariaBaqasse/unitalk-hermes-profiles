@@ -1,0 +1,9 @@
+{
+  "status": "invalid",
+  "write_plan_sha256": "5ca04ba83fad9ecd226aa4c53c023512fcff3ff7ac7d5625be0518247bab2659",
+  "external_writes": 2,
+  "errors": [
+    "push result is not reconciled",
+    "read-back mismatches are present"
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "step": "2I",
+  "stage": "post_promotion_validation",
+  "approval_state": "approved_and_promoted",
+  "schema_version": "1.0.0",
+  "schema_path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+  "schema_sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531",
+  "approval_checks": {
+    "decision": true,
+    "promotion_authorized": true,
+    "decisions_i1_i10": true,
+    "approver": true
+  },
+  "schema_checks": {
+    "version": true,
+    "schema_id": true,
+    "status": true,
+    "sections": true,
+    "dependency_manifest_version": true,
+    "dependency_manifest_status": true,
+    "dependency_manifest_schema_hash": true,
+    "validator_manifest_status": true,
+    "review_spec_version": true,
+    "review_spec_status": true
+  },
+  "semantic_promotion": {
+    "approved_proposal_path": "evaluations/step2i/proposed/a2-enrichment-record-1.0.0.schema.json",
+    "only_expected_status_change_after_approval": true,
+    "unexpected_difference_paths": []
+  },
+  "post_promotion_suites": {
+    "step2d": {
+      "path": "evaluations/step2d/technical-validation.json",
+      "sha256": "897642bed1b4ffd3810b00aab880d2d9dbe4cad68498c5924546931e639df47a",
+      "approval_state": "promoted_in_step_2i",
+      "counts": {
+        "smoke_tests.passed": 7
+      },
+      "expected": {
+        "smoke_tests.passed": 7
+      },
+      "passed": true
+    },
+    "step2e": {
+      "path": "evaluations/step2e/technical-validation.json",
+      "sha256": "6c93784f4d9e1dd342316a02eb74fddacf8ff1da0d4e654a72dd5a6d3316cd3a",
+      "approval_state": "promoted_in_step_2i",
+      "counts": {
+        "summary.cases_passed": 59
+      },
+      "expected": {
+        "summary.cases_passed": 59
+      },
+      "passed": true
+    },
+    "step2f": {
+      "path": "evaluations/step2f/technical-validation.json",
+      "sha256": "582899ada89f00daa550a9f9af672f5f50bfbbe48ea53fcae3fa2fb7b748ffd6",
+      "approval_state": "promoted_in_step_2i",
+      "counts": {
+        "summary.cases_passed": 29
+      },
+      "expected": {
+        "summary.cases_passed": 29
+      },
+      "passed": true
+    },
+    "step2g": {
+      "path": "evaluations/step2g/technical-validation.json",
+      "sha256": "1b275f8a72bc6a0b7c9f71405c202fc5f951c5ea9e06b42705da6985e093a2f4",
+      "approval_state": "promoted_in_step_2i",
+      "counts": {
+        "summary.cases_passed": 11,
+        "summary.deterministic_controls_passed": 15
+      },
+      "expected": {
+        "summary.cases_passed": 11,
+        "summary.deterministic_controls_passed": 15
+      },
+      "passed": true
+    },
+    "step2h": {
+      "path": "evaluations/step2h/technical-validation.json",
+      "sha256": "b75d5c35c65ba4547d5f9da65626f64e7d495e103f61cc9baaf6ff8915dc2045",
+      "approval_state": "promoted_in_step_2i",
+      "counts": {
+        "summary.sample_packages_passed": 6,
+        "summary.negative_checks_passed": 11
+      },
+      "expected": {
+        "summary.sample_packages_passed": 6,
+        "summary.negative_checks_passed": 11
+      },
+      "passed": true
+    }
+  },
+  "upstream_regressions": {
+    "step1b": {
+      "path": "evaluations/step1b/contract-validation.json",
+      "sha256": "e8c5594194eedb5825a91b96f30022f53338c25668037a1b52001d7dee42e363",
+      "passed": true
+    },
+    "step2a": {
+      "path": "evaluations/step2a/design-validation.json",
+      "sha256": "81c5bb97408afede488681a61745ef4d6c819160b7ce0292be15a66d91fba76c",
+      "passed": true
+    },
+    "step2b": {
+      "path": "evaluations/step2b/technical-validation.json",
+      "sha256": "e056dc4aa12399a75a0e5f9d3cab277d8bca248ea53283cce5aa723968d13d36",
+      "passed": true
+    },
+    "step2c": {
+      "path": "evaluations/step2c/technical-validation.json",
+      "sha256": "9185fb1acfe21a25727657c8ef637fba0ac9cb267d36c84001a77634821d33fd",
+      "passed": true
+    }
+  },
+  "active_record_versions": {
+    "records_checked": 126,
+    "unexpected_versions": [],
+    "passed": true
+  },
+  "active_state_checks": {
+    "soul_schema": true,
+    "soul_next_gate": true,
+    "roadmap_next_gate": true,
+    "profile_not_pilot_ready": true,
+    "hubspot_not_connected": true,
+    "live_enrichment_prohibited": true,
+    "crm_write_prohibited": true
+  },
+  "snapshot_checks": {
+    "archive_exists": true,
+    "archive_sha256": true,
+    "legacy_schema_hash": true,
+    "legacy_step2f_manifest_hash": true,
+    "legacy_step2g_manifest_hash": true,
+    "legacy_step2h_manifest_hash": true
+  },
+  "language_audit": {
+    "files_checked": 335,
+    "findings": 0,
+    "passed": true
+  },
+  "external_actions": 0,
+  "integrations_activated": [],
+  "profile_status": "FOUNDATION DESIGN IN PROGRESS — NOT PILOT-READY",
+  "next_gate": "Step 3A — Business Field Catalogue",
+  "failures": [],
+  "pass": true
+}

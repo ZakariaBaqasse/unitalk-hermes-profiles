@@ -1,0 +1,34 @@
+{
+  "candidate_id": "SYN-FAR-001",
+  "segment": "farrier",
+  "operating_scope": "synthetic_test",
+  "observations": [
+    {
+      "observation_id": "OBS-EMAIL-1",
+      "field_key": "person.business_email",
+      "entity_id": "P-1",
+      "raw_value": " Owner@Example.com ",
+      "source_id": "prospect_official_website",
+      "source_action_status": "allowed_local_fixture",
+      "source_url": "https://example.com/contact",
+      "evidence_id": "EV-W2-001",
+      "availability_status": "available",
+      "fact_type": "direct_fact",
+      "collection_method": "explicitly_published",
+      "email_kind": "professional"
+    },
+    {
+      "observation_id": "OBS-PHONE-1",
+      "field_key": "person.business_phone",
+      "entity_id": "P-1",
+      "raw_value": "(859) 555-0100",
+      "source_id": "prospect_official_website",
+      "source_action_status": "allowed_local_fixture",
+      "source_url": "https://example.com/contact",
+      "evidence_id": "EV-W2-002",
+      "availability_status": "available",
+      "fact_type": "direct_fact",
+      "collection_method": "explicitly_published"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "a2-website-person-observation-proposals-0.1.0",
+  "type": "object",
+  "required": [
+    "run_id",
+    "company_id",
+    "reviewed_block_ids",
+    "proposals"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "company_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_block_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "proposals": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "proposal_id",
+          "block_id",
+          "person_name",
+          "source_mention",
+          "derivation",
+          "relationship_to_company",
+          "company_relationship_evidence"
+        ],
+        "properties": {
+          "proposal_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "block_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "person_name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "source_mention": {
+            "type": "string",
+            "minLength": 2
+          },
+          "derivation": {
+            "enum": [
+              "exact",
+              "shared_surname_split",
+              "multiple_full_names"
+            ]
+          },
+          "role_text": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "relationship_to_company": {
+            "enum": [
+              "current",
+              "ambiguous",
+              "unrelated"
+            ]
+          },
+          "company_relationship_evidence": {
+            "type": "string",
+            "minLength": 2
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

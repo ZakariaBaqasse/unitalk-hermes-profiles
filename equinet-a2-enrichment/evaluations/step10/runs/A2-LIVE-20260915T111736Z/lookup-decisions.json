@@ -1,0 +1,16 @@
+{
+  "decisions": [
+    {
+      "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "person_decisions": [],
+      "people_search_required": true,
+      "reason": "No linked People exist, so no usable current primary target is available."
+    },
+    {
+      "company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "person_decisions": [],
+      "people_search_required": true,
+      "reason": "No linked People exist, so no usable current primary target is available."
+    }
+  ]
+}

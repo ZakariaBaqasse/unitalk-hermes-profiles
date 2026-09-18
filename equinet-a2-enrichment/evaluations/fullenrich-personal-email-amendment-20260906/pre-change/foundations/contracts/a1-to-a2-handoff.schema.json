@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unitalk.ai/schemas/equinet/a1-a2/handoff/1.0.1",
+  "title": "Equinet A1-to-A2 Handoff Envelope",
+  "description": "Approved strict foundation contract for an A1 Prospect Candidate handed to Equinet A2 Enrichment.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "handoff_schema_version",
+    "handoff_id",
+    "idempotency_key",
+    "created_at",
+    "source_profile",
+    "target_profile",
+    "operating_scope",
+    "delivery_state",
+    "trigger_event",
+    "approval_event",
+    "eligibility",
+    "requested_enrichment",
+    "candidate_snapshot",
+    "snapshot_integrity",
+    "integration_availability",
+    "constraints",
+    "delivery",
+    "a2_receipt",
+    "provenance"
+  ],
+  "properties": {
+    "handoff_schema_version": { "const": "1.0.1" },
+    "handoff_id": { "type": "string", "pattern": "^A1A2-[A-Z0-9][A-Z0-9_-]{5,79}$" },
+    "idempotency_key": { "type": "string", "pattern": "^A1A2-IDEMP-[A-Z0-9_-]{6,100}$" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "source_profile": { "const": "equinet-a1-icp-discovery" },
+    "target_profile": { "const": "equinet-a2-enrichment" },
+    "operating_scope": {
+      "type": "string",
+      "enum": ["synthetic_test", "manual_no_integration_pilot", "integrated_pilot", "production"]
+    },
+    "delivery_state": {
+      "type": "string",
+      "enum": ["prepared", "ready_for_delivery", "delivered", "accepted_by_a2", "rejected_by_a2", "delivery_failed", "expired"]
+    },
+    "trigger_event": { "$ref": "#/$defs/triggerEvent" },
+    "approval_event": { "$ref": "#/$defs/approvalEvent" },
+    "eligibility": { "$ref": "#/$defs/eligibility" },
+    "requested_enrichment": { "$ref": "#/$defs/enrichmentRequest" },
+    "candidate_snapshot": {
+      "$ref": "https://unitalk.ai/schemas/equinet/a1/prospect-candidate/1.0.0"
+    },
+    "snapshot_integrity": { "$ref": "#/$defs/snapshotIntegrity" },
+    "integration_availability": { "$ref": "#/$defs/integrationAvailability" },
+    "constraints": { "$ref": "#/$defs/constraints" },
+    "delivery": { "$ref": "#/$defs/delivery" },
+    "a2_receipt": {
+      "anyOf": [
+        { "$ref": "#/$defs/a2Receipt" },
+        { "type": "null" }
+      ]
+    },
+    "provenance": { "$ref": "#/$defs/provenance" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "operating_scope": { "const": "manual_no_integration_pilot" } },
+        "required": ["operating_scope"]
+      },
+      "then": {
+        "properties": {
+          "delivery_state": { "enum": ["prepared", "ready_for_delivery"] },
+          "a2_receipt": { "type": "null" },
+          "constraints": {
+            "properties": {
+              "crm_write_authorized": { "const": false },
+              "downstream_delivery_authorized": { "const": false },
+              "paid_provider_authorized": { "const": false },
+              "external_action_approval_reference": { "type": "null" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "operating_scope": { "const": "synthetic_test" } },
+        "required": ["operating_scope"]
+      },
+      "then": {
+        "properties": {
+          "constraints": {
+            "properties": {
+              "crm_write_authorized": { "const": false },
+              "downstream_delivery_authorized": { "const": false },
+              "paid_provider_authorized": { "const": false },
+              "external_action_approval_reference": { "type": "null" }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "delivery_state": { "enum": ["ready_for_delivery", "delivered", "accepted_by_a2"] }
+        },
+        "required": ["delivery_state"]
+      },
+      "then": {
+        "properties": {
+          "eligibility": {
+            "properties": { "status": { "const": "eligible" } }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "delivery_state": { "enum": ["prepared", "ready_for_delivery", "delivered", "delivery_failed", "expired"] }
+        },
+        "required": ["delivery_state"]
+      },
+      "then": { "properties": { "a2_receipt": { "type": "null" } } }
+    },
+    {
+      "if": {
+        "properties": { "delivery_state": { "const": "accepted_by_a2" } },
+        "required": ["delivery_state"]
+      },
+      "then": {
+        "properties": {
+          "a2_receipt": {
+            "allOf": [
+              { "$ref": "#/$defs/a2Receipt" },
+              { "properties": { "status": { "const": "accepted" } } }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "delivery_state": { "const": "rejected_by_a2" } },
+        "required": ["delivery_state"]
+      },
+      "then": {
+        "properties": {
+          "a2_receipt": {
+            "allOf": [
+              { "$ref": "#/$defs/a2Receipt" },
+              { "properties": { "status": { "const": "rejected" } } }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actor_id", "actor_role", "display_name"],
+      "properties": {
+        "actor_id": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "actor_role": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "display_name": { "type": ["string", "null"], "maxLength": 200 }
+      }
+    },
+    "triggerEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_type", "event_id", "occurred_at", "source_layer", "source_record_id"],
+      "properties": {
+        "event_type": { "const": "a1_candidate_approved_for_a2" },
+        "event_id": { "type": "string", "minLength": 6, "maxLength": 200 },
+        "occurred_at": { "type": "string", "format": "date-time" },
+        "source_layer": { "type": "string", "enum": ["manual_review_package", "staging_workflow", "durable_event_store"] },
+        "source_record_id": { "type": ["string", "null"], "maxLength": 200 }
+      }
+    },
+    "approvalEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "scope", "reviewer", "decision_at", "source_layer", "source_record_id"],
+      "properties": {
+        "decision": { "const": "approved_for_enrichment" },
+        "scope": { "const": "a2_enrichment" },
+        "reviewer": { "$ref": "#/$defs/actor" },
+        "decision_at": { "type": "string", "format": "date-time" },
+        "source_layer": { "type": "string", "enum": ["manual_review_package", "staging_workflow", "durable_event_store"] },
+        "source_record_id": { "type": ["string", "null"], "maxLength": 200 }
+      }
+    },
+    "gateResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_id", "status", "reason", "source_path"],
+      "properties": {
+        "gate_id": {
+          "type": "string",
+          "enum": [
+            "candidate_schema",
+            "human_approval",
+            "recommendation",
+            "exclusion",
+            "minimum_data",
+            "identity_quality",
+            "duplicate_batch",
+            "duplicate_exclusion_file",
+            "source_policy",
+            "scoring_state",
+            "audit_identity",
+            "scope_permissions",
+            "hubspot_duplicate",
+            "hubspot_eligibility"
+          ]
+        },
+        "status": { "type": "string", "enum": ["pass", "fail", "needs_review", "unavailable", "not_required"] },
+        "reason": { "type": "string", "minLength": 1, "maxLength": 1000 },
+        "source_path": { "type": ["string", "null"], "maxLength": 500 }
+      }
+    },
+    "eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evaluated_at", "method_version", "gates", "reasons"],
+      "properties": {
+        "status": { "type": "string", "enum": ["eligible", "hold", "blocked"] },
+        "evaluated_at": { "type": "string", "format": "date-time" },
+        "method_version": { "const": "a1-a2-eligibility-1.0.1" },
+        "gates": {
+          "type": "array",
+          "minItems": 14,
+          "maxItems": 14,
+          "items": { "$ref": "#/$defs/gateResult" }
+        },
+        "reasons": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 1000 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "enrichmentRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "requested_fields", "request_reason"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["default_minimum_package", "targeted_fields"] },
+        "requested_fields": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]{2,199}$" },
+          "uniqueItems": true
+        },
+        "request_reason": { "type": ["string", "null"], "maxLength": 1000 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "mode": { "const": "default_minimum_package" } }, "required": ["mode"] },
+          "then": { "properties": { "requested_fields": { "maxItems": 0 } } }
+        },
+        {
+          "if": { "properties": { "mode": { "const": "targeted_fields" } }, "required": ["mode"] },
+          "then": { "properties": { "requested_fields": { "minItems": 1 } } }
+        }
+      ]
+    },
+    "snapshotIntegrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "canonicalization", "candidate_snapshot_sha256"],
+      "properties": {
+        "algorithm": { "const": "sha256" },
+        "canonicalization": { "const": "json_sorted_utf8_v1" },
+        "candidate_snapshot_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "integrationState": {
+      "type": "string",
+      "enum": ["connected", "unavailable", "not_checked", "error"]
+    },
+    "integrationAvailability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hubspot_read", "staging", "workflow", "enrichment_provider", "email_verification", "phone_verification"],
+      "properties": {
+        "hubspot_read": { "$ref": "#/$defs/integrationState" },
+        "staging": { "$ref": "#/$defs/integrationState" },
+        "workflow": { "$ref": "#/$defs/integrationState" },
+        "enrichment_provider": { "$ref": "#/$defs/integrationState" },
+        "email_verification": { "$ref": "#/$defs/integrationState" },
+        "phone_verification": { "$ref": "#/$defs/integrationState" }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "a1_score_mutation_authorized",
+        "human_review_required",
+        "outreach_authorized",
+        "crm_write_authorized",
+        "downstream_delivery_authorized",
+        "paid_provider_authorized",
+        "public_information_creates_consent",
+        "external_action_approval_reference"
+      ],
+      "properties": {
+        "a1_score_mutation_authorized": { "const": false },
+        "human_review_required": { "const": true },
+        "outreach_authorized": { "const": false },
+        "crm_write_authorized": { "type": "boolean" },
+        "downstream_delivery_authorized": { "type": "boolean" },
+        "paid_provider_authorized": { "type": "boolean" },
+        "public_information_creates_consent": { "const": false },
+        "external_action_approval_reference": { "type": ["string", "null"], "maxLength": 300 }
+      }
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["external_event_reference", "attempt_count", "last_attempt_at", "failure_reason"],
+      "properties": {
+        "external_event_reference": { "type": ["string", "null"], "maxLength": 300 },
+        "attempt_count": { "type": "integer", "minimum": 0, "maximum": 20 },
+        "last_attempt_at": { "type": ["string", "null"], "format": "date-time" },
+        "failure_reason": { "type": ["string", "null"], "maxLength": 1000 }
+      }
+    },
+    "a2Receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "receiver_profile", "receiver_id", "received_at", "handoff_id", "candidate_snapshot_sha256", "rejection_reasons"],
+      "properties": {
+        "status": { "type": "string", "enum": ["accepted", "rejected"] },
+        "receiver_profile": { "const": "equinet-a2-enrichment" },
+        "receiver_id": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "received_at": { "type": "string", "format": "date-time" },
+        "handoff_id": { "type": "string", "pattern": "^A1A2-[A-Z0-9][A-Z0-9_-]{5,79}$" },
+        "candidate_snapshot_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "rejection_reasons": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 1000 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_by", "initiated_by", "audit_correlation_id", "synthetic", "tools_used"],
+      "properties": {
+        "created_by": { "type": "string", "enum": ["equinet-a1-icp-discovery", "unitalk-a1-a2-handoff-builder"] },
+        "initiated_by": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "audit_correlation_id": { "type": "string", "minLength": 6, "maxLength": 200 },
+        "synthetic": { "type": "boolean" },
+        "tools_used": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

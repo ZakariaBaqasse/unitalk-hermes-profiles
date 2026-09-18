@@ -1,0 +1,67 @@
+{
+  "spec_version": "0.1.0",
+  "renderer_version": "0.1.0",
+  "canonical_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2f/fixtures/valid/farrier-review-required.json",
+  "canonical_record_sha256": "7fa2c98a6feb0d016ccd2cd3bff433b39748392270fb663ebd6e5a2d186eb0fc",
+  "previous_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2f/fixtures/valid/farrier-review-required-previous.json",
+  "previous_record_sha256": "c0fbe959bb0e1b36dff2f5a2540a9e96b116ce378c64061d2184c594a969c73d",
+  "spec_path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+  "spec_sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df",
+  "renderer_sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef",
+  "outputs": [
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/review.md",
+      "sha256": "04d20ec58f915268472ecfe88aeda3cafbd1d0e2590821c0981ce41fe1c69ebb",
+      "bytes": 3092
+    },
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/summary.csv",
+      "sha256": "652ab945e6616cc73e33f8125e2f844c1a80980690439a5d11cf118ceea4fa76",
+      "bytes": 576
+    },
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/review-queue.csv",
+      "sha256": "0e7c7cd789a041d5a1607110336462a256bfc6e7e20569982efe364ba8955fe4",
+      "bytes": 1712
+    },
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/fields.csv",
+      "sha256": "4497ee563e493dcf63005786514e85c9403b4c27bf0921d59d45e1618008154a",
+      "bytes": 3219
+    },
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/evidence.csv",
+      "sha256": "046580db15d351be3318ad35475f55f95282947659525a1724745863e679a052",
+      "bytes": 1613
+    },
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6",
+      "bytes": 359
+    },
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/audit.csv",
+      "sha256": "d5c14eba6a8ef6e610a5add3989733894b55d665aa25233f5f88d908e1467f05",
+      "bytes": 1406
+    },
+    {
+      "path": "evaluations/fullenrich-personal-email-amendment-20260906/regression/farrier/review-package/review.xlsx",
+      "sha256": "6e6a061974de5418927bd0c4c4f2c98774077eb07c40ce3d26e974c9308be6b6",
+      "bytes": 14920
+    }
+  ],
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 2,
+    "fields": 6,
+    "evidence": 3,
+    "requalification": 0,
+    "audit": 4
+  },
+  "validation": {
+    "canonical_record_valid": true,
+    "read_only_projection": true,
+    "external_actions": 0,
+    "formula_policy": "no_formulas"
+  }
+}

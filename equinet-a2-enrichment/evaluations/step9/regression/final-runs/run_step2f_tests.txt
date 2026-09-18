@@ -1,0 +1,423 @@
+{
+  "step": "2F",
+  "suite_version": "0.1.0",
+  "approval_state": "promoted_in_step_2i",
+  "canonical_schema_version": "1.0.0",
+  "validator_version": "0.1.0",
+  "coverage": {
+    "required_valid_scenarios": [
+      "farrier-confirmed-duplicate-blocked",
+      "farrier-conflict-held",
+      "farrier-enrichment-in-progress",
+      "farrier-initial",
+      "farrier-planned-gap",
+      "farrier-protected-update-awaiting-review",
+      "farrier-record-approved",
+      "farrier-review-required",
+      "horse-owner-complete-requalification",
+      "horse-owner-enrichment-in-progress",
+      "horse-owner-gap-held",
+      "horse-owner-initial",
+      "horse-owner-planned-gap",
+      "horse-owner-possible-duplicate-held",
+      "horse-owner-record-approved",
+      "horse-owner-review-required"
+    ],
+    "required_negative_scenarios": [
+      "a2-score-production",
+      "blocked-source-evidence",
+      "confirmed-duplicate-marked-eligible",
+      "cross-segment-field",
+      "false-synthetic-sync",
+      "invalid-a1-score-revision",
+      "missing-evidence",
+      "prohibited-outreach",
+      "protected-overwrite-without-approval",
+      "provider-without-approval",
+      "record-approved-with-incomplete-field-decisions",
+      "required-package-missing-assessment",
+      "review-ready-with-conflict"
+    ],
+    "missing_valid_scenarios": [],
+    "missing_negative_scenarios": [],
+    "semantic_manifest_checks": {
+      "farrier-planned-gap": true,
+      "horse-owner-planned-gap": true,
+      "horse-owner-gap-held": true,
+      "farrier-conflict-held": true,
+      "horse-owner-possible-duplicate-held": true,
+      "farrier-confirmed-duplicate-blocked": true,
+      "farrier-protected-update-awaiting-review": true,
+      "horse-owner-complete-requalification": true
+    },
+    "segment_case_counts": {
+      "farrier": 13,
+      "horse_owner": 16
+    },
+    "all_records_synthetic": true,
+    "recorded_external_action_claims": 0,
+    "external_actions_performed": 0
+  },
+  "documentation_checks": {
+    "contract_version": true,
+    "contract_approved": true,
+    "review_version": true,
+    "decisions_f1_to_f10": true,
+    "synthetic_only_boundary": true,
+    "step2g_boundary": true
+  },
+  "acceptance_checks": {
+    "decision": true,
+    "suite_version": true,
+    "historical_package_manifest_hash": true,
+    "step2g_correction_approved": true,
+    "next_gate": true,
+    "step2i_promotion_approved": true
+  },
+  "summary": {
+    "valid_expected": 16,
+    "invalid_expected": 13,
+    "cases_total": 29,
+    "cases_passed": 29,
+    "cases_failed": 0
+  },
+  "package_manifest": {
+    "path": "/opt/data/tmp/equinet-a2-step9b-final-sandbox/evaluations/step2f/step2f-package-manifest.json",
+    "sha256": "56b1c1aa0dd792f0534036f8d72587c75527da944ba05d6c491380f4fa81469b",
+    "file_count": 67
+  },
+  "cases": [
+    {
+      "name": "farrier-initial",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "farrier-planned-gap",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "farrier-enrichment-in-progress",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "farrier-review-required",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "farrier-record-approved",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-initial",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-planned-gap",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-enrichment-in-progress",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-review-required",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-record-approved",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-gap-held",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "farrier-conflict-held",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-possible-duplicate-held",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "farrier-confirmed-duplicate-blocked",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "farrier-protected-update-awaiting-review",
+      "segment": "farrier",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "horse-owner-complete-requalification",
+      "segment": "horse_owner",
+      "expected": "valid",
+      "actual": "valid",
+      "expected_error": null,
+      "expected_error_count": null,
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "missing-evidence",
+      "segment": "farrier",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "references unknown evidence ID",
+      "expected_error_count": 4,
+      "passed": true,
+      "errors": [
+        "observation A2-OBS-FARRIER-EMAIL references unknown evidence ID A2-EV-STEP2F-FARRIER-EMAIL",
+        "field assessment A2-FLD-FARRIER-EMAIL proposal references unknown evidence ID A2-EV-STEP2F-FARRIER-EMAIL",
+        "observation A2-OBS-FARRIER-CREDENTIAL references unknown evidence ID A2-EV-STEP2F-FARRIER-CREDENTIAL",
+        "field assessment A2-FLD-FARRIER-CREDENTIAL proposal references unknown evidence ID A2-EV-STEP2F-FARRIER-CREDENTIAL"
+      ]
+    },
+    {
+      "name": "blocked-source-evidence",
+      "segment": "farrier",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "not approved for evidentiary use",
+      "expected_error_count": 2,
+      "passed": true,
+      "errors": [
+        "observation A2-OBS-FARRIER-EMAIL uses A2 evidence A2-EV-STEP2F-FARRIER-EMAIL that is not approved for evidentiary use",
+        "field assessment A2-FLD-FARRIER-EMAIL proposal uses A2 evidence A2-EV-STEP2F-FARRIER-EMAIL that is not approved for evidentiary use"
+      ]
+    },
+    {
+      "name": "protected-overwrite-without-approval",
+      "segment": "farrier",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "requires explicit approved review and approval matrix",
+      "expected_error_count": 5,
+      "passed": true,
+      "errors": [
+        "field assessment A2-FLD-FARRIER-WEBSITE application requires approved field review",
+        "field assessment A2-FLD-FARRIER-WEBSITE application requires approved record review",
+        "field assessment A2-FLD-FARRIER-WEBSITE application requires crm_write_authorized",
+        "protected field assessment A2-FLD-FARRIER-WEBSITE requires explicit approved review and approval matrix",
+        "synthetic_test field assessment A2-FLD-FARRIER-WEBSITE cannot apply externally"
+      ]
+    },
+    {
+      "name": "false-synthetic-sync",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "synthetic_test record cannot authorise CRM write or provider use",
+      "expected_error_count": 4,
+      "passed": true,
+      "errors": [
+        "invalid workflow transition enrichment_in_progress -> synced",
+        "canonical CRM-write authority cannot exceed immutable handoff authority",
+        "synthetic_test record cannot authorise CRM write or provider use",
+        "synthetic_test record cannot claim real external-system references"
+      ]
+    },
+    {
+      "name": "a2-score-production",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "Additional properties are not allowed",
+      "expected_error_count": 1,
+      "passed": true,
+      "errors": [
+        "schema:/requalification/signals/0: Additional properties are not allowed ('points_awarded' was unexpected)"
+      ]
+    },
+    {
+      "name": "prohibited-outreach",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "A2 must not authorise outreach",
+      "expected_error_count": 1,
+      "passed": true,
+      "errors": [
+        "A2 must not authorise outreach"
+      ]
+    },
+    {
+      "name": "provider-without-approval",
+      "segment": "farrier",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "claims provider use without authorisation",
+      "expected_error_count": 1,
+      "passed": true,
+      "errors": [
+        "evidence A2-EV-STEP2F-FARRIER-EMAIL claims provider use without authorisation"
+      ]
+    },
+    {
+      "name": "cross-segment-field",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "is not allowed for segment horse_owner",
+      "expected_error_count": 1,
+      "passed": true,
+      "errors": [
+        "field assessment A2-FLD-OWNER-CREDENTIAL is not allowed for segment horse_owner"
+      ]
+    },
+    {
+      "name": "required-package-missing-assessment",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "references field key without an assessment",
+      "expected_error_count": 2,
+      "passed": true,
+      "errors": [
+        "data_quality.required_field_keys references field key without an assessment: organisation.horse_count",
+        "data_quality.missing_field_keys references field key without an assessment: organisation.horse_count"
+      ]
+    },
+    {
+      "name": "review-ready-with-conflict",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "review_ready cannot contain missing, conflict or invalid fields",
+      "expected_error_count": 1,
+      "passed": true,
+      "errors": [
+        "data_quality review_ready cannot contain missing, conflict or invalid fields"
+      ]
+    },
+    {
+      "name": "confirmed-duplicate-marked-eligible",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "confirmed duplicate requires blocked A2 eligibility",
+      "expected_error_count": 1,
+      "passed": true,
+      "errors": [
+        "confirmed duplicate requires blocked A2 eligibility"
+      ]
+    },
+    {
+      "name": "invalid-a1-score-revision",
+      "segment": "horse_owner",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "revised scoring score must equal component total",
+      "expected_error_count": 3,
+      "passed": true,
+      "errors": [
+        "revised scoring score must equal component total",
+        "score revision result hash mismatch",
+        "score revision delta 31 does not equal criterion-change delta 20"
+      ]
+    },
+    {
+      "name": "record-approved-with-incomplete-field-decisions",
+      "segment": "farrier",
+      "expected": "invalid",
+      "actual": "invalid",
+      "expected_error": "required_field_decisions_complete is true while field reviews remain unresolved",
+      "expected_error_count": 1,
+      "passed": true,
+      "errors": [
+        "required_field_decisions_complete is true while field reviews remain unresolved"
+      ]
+    }
+  ],
+  "failures": [],
+  "pass": true
+}

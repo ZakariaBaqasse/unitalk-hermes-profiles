@@ -1,0 +1,12 @@
+{
+  "pack": "/opt/data/profiles/equinet-a2-enrichment/foundations/sources/A2-SOURCE-AND-FIELD-DECISION-PACK.md",
+  "template": "/opt/data/profiles/equinet-a2-enrichment/foundations/sources/A2-EQUINET-FIELD-DECISION-TEMPLATE.csv",
+  "slim_client_template": "/opt/data/profiles/equinet-a2-enrichment/foundations/sources/A2-EQUINET-CLIENT-DECISION-TEMPLATE-SLIM.csv",
+  "required_boundaries_checked": 8,
+  "forbidden_claims_checked": 4,
+  "field_decision_rows": 28,
+  "slim_client_decision_rows": 12,
+  "required_field_candidates": 18,
+  "errors": [],
+  "pass": true
+}

@@ -1,0 +1,23 @@
+{
+  "status": "valid",
+  "validated_decisions": [
+    {
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "search_stage": "linked_secondary",
+      "selected_candidates": [],
+      "next_search_stage": "secondary",
+      "decision_notes": "No eligible linked secondary People for Wilkins Farrier & Forge (sole linked Person is unverified, Lookup blocked). Advancing to paid secondary Search.",
+      "selected_target_priority": null
+    },
+    {
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "search_stage": "linked_secondary",
+      "selected_candidates": [],
+      "next_search_stage": "secondary",
+      "decision_notes": "No eligible linked secondary People for Ellis Forge LLC (sole linked Person is unverified, Lookup blocked). Advancing to paid secondary Search.",
+      "selected_target_priority": null
+    }
+  ],
+  "search_stage": "linked_secondary",
+  "errors": []
+}

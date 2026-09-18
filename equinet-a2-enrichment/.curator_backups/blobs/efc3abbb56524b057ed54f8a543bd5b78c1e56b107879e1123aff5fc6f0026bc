@@ -1,0 +1,116 @@
+---
+name: a2-twenty-fullenrich-enrichment
+description: Use when A2 enriches Twenty records via FullEnrich.
+---
+
+# A2 Twenty–FullEnrich Enrichment
+
+## Delivery status
+
+**Status:** `IMPLEMENTED LOCALLY — TWENTY/FULLENRICH LIVE VALIDATION PARTIAL; STEP 11 WEBSITE/FACEBOOK LIVE ACCEPTANCE PENDING`
+
+This umbrella skill records the Step 10 core plus the locally implemented Step 11 website-first extension. It does not activate Firecrawl, Apify, FullEnrich spend or Twenty business-field writes; those gates remain separate.
+
+## Trigger
+
+Use this skill whenever A2 is asked to retrieve A1-staged Companies from Twenty, assess linked People, use FullEnrich Lookup/Search/Contact Enrichment, select target contacts, or write enrichment results back to Twenty.
+
+## Operating model
+
+- There is no direct A1-to-A2 handoff. A1 stages leads in Twenty.
+- Twenty is the operational system of record for Companies, People and associations.
+- FullEnrich remains the People identity/contact provider for this stage.
+- Bounded official-site research through the Firecrawl connector precedes FullEnrich when a verified website exists; the one-call/no-retry Apify Facebook Actor is limited to missing Company email/phone from an official-site-linked page.
+- HubSpot and all other providers remain out of scope.
+- A Company may have many linked People. Preserve all existing People, retain no more than two selected named contacts overall, and record why a second is needed. Website People are not excluded merely because their role is unknown or non-target.
+- Preserve stale or non-primary linked People and mark their status. Never overwrite one human with another human's data.
+- Company domain is optional. Its absence must not block an enrichment attempt; use other FullEnrich-supported organisation identifiers and stricter attribution handling.
+- The LLM remains the decision-maker. Connector scripts perform deterministic I/O, normalization, asynchronous polling, checkpointing and validated writes only.
+
+## Workflow
+
+1. Resolve the active versions of the Twenty mapping, FullEnrich contract, target-role catalogue, status model, matching policy and write policy.
+2. Pull a bounded batch of Companies whose A2 enrichment status is eligible, including all linked People.
+3. Claim each Company for the run before any live provider action.
+4. When a verified website exists and the Step 11 gate is active, run the bounded Firecrawl official-site stage, validate Company/Person attribution and preserve up to two named People regardless of role.
+5. If Company email or phone remains missing and the official site explicitly linked Facebook, run the separately gated one-call/no-retry Apify Company-contact path.
+6. Continue to FullEnrich Contact Enrichment for retained website People missing channels, or Lookup/Search for remaining contact gaps.
+5. Build a compact Lookup decision packet. The LLM decides identity match, Company match, freshness, role priority, retention and whether Search is required.
+6. Validate every LLM decision against the packet and active role catalogue.
+7. Batch FullEnrich Search only for Companies with no fresh verified primary contact. Search may be domainless when necessary and supported by the verified API contract.
+8. Build a compact candidate packet. The LLM may select zero, one or two verified primary-role People; validate IDs, Company attribution, role evidence and deduplication.
+9. Batch Contact Enrichment only for selected People, requesting work email and phones. Do not request personal email.
+10. Build field-level merge decisions. Values must come from validated provider outputs; protected/manual conflicts are preserved or routed to review.
+11. Build and validate an explicit Twenty write plan, then create/update People, create associations and update statuses.
+12. Read back the exact Company, People and associations. Only reconciled writes count as success.
+13. Finalise Company and Person statuses, audit, provider usage, cost and retry state.
+
+## LLM decision checkpoints
+
+The LLM must reason from compact, schema-validated packets rather than raw provider payloads.
+
+### After Lookup
+
+For each linked Person decide identity status, Company match, exact role and target-role priority, freshness/current-employer status, whether the Person is a usable primary target, and whether People Search is required.
+
+### After Search
+
+For each candidate decide Company attribution, target-role priority, duplicate relationship to existing Twenty People, and retain or reject with rationale. Select at most two new People per Company. A domainless ambiguous match must not be linked automatically.
+
+### Before Twenty write
+
+For each field decide only among: `add`, `update_a2_owned`, `no_change`, `preserve_manual`, `hold_conflict`, `privacy_review`, or `reject_invalid`.
+
+## Connector boundaries
+
+### Twenty connector
+
+- Pull script: metadata-aware filters, pagination, all linked People, snapshots and claims.
+- Push script: accepts only a validated write plan; creates/updates People and associations, performs read-back and returns receipts.
+- Never embed target-role or candidate-selection reasoning in the connector.
+
+### FullEnrich connector
+
+- People Lookup, People Search and Contact Enrichment are separate scripts.
+- Scripts accept bounded arrays and may execute requests concurrently.
+- Contact Enrichment handles asynchronous polling internally.
+- Scripts return normalized results, provider receipts, terminal states, usage and cost; they never write to Twenty.
+
+## Required contracts
+
+Validate all boundary shapes before implementation: common artifact envelope; Twenty metadata/mapping; Company batch and claim; FullEnrich Lookup/Search/Contact requests and results; LLM decision packets and decisions; Company and Person state models; field merge decisions; Twenty write plan, receipt and reconciliation; run ledger, audit and consumption.
+
+See `references/data-contract-checklist.md` for required invariants.
+
+## Status model
+
+A binary enriched flag is insufficient. Company state should distinguish at least `not_enriched`, `processing`, `enriched`, `partially_enriched`, `completed_no_target`, `retryable_error`, and `blocked`.
+
+Keep Person identity, role/freshness, Company match and contact-enrichment statuses separate. Include policy version, run ID and verification/enrichment timestamps so reruns and stale data can be handled safely.
+
+## Batching and conversation control
+
+- The chat is the orchestration and reasoning plane.
+- Batch connector calls, but stop at explicit LLM decision checkpoints.
+- Store raw Twenty and FullEnrich responses outside model context; expose compact decision packets with stable IDs and evidence references.
+- Bound Companies per chat invocation by context, provider budget and rate limits.
+- Persist every stage so an interrupted run can resume without repeating successful paid calls or creating duplicate People.
+- Do not run an autonomous end-to-end script that bypasses LLM role, match or retention decisions.
+
+## Verification and stop rules
+
+Stop before a paid call or write when credentials, permissions, mappings, provider request shapes, domainless Search support, budget caps, decision validation, idempotency or audit are unresolved.
+
+Do not claim Twenty write capability based on readable metadata or UI-editable fields. Verify write scope with an approved synthetic record and read-back receipt.
+
+The current live Twenty schema findings are summarized in `references/twenty-live-schema-2026-09.md`. They are an observed integration snapshot, not a permanent field catalogue.
+
+## Pitfalls
+
+- Do not confuse A1's current maximum of one inserted Person with Twenty relationship cardinality.
+- Do not require a Company domain; most target organisations lack one.
+- Do not reuse A1 discovery, qualification or ICP fields as A2 enrichment state.
+- Do not reuse ad-hoc fields such as `wrongpeople` as a workflow state machine.
+- Do not let a standalone script make business decisions that belong to the LLM.
+- Do not pass raw bulk provider payloads into the chat when a compact decision packet is sufficient.
+- Do not mark a Company enriched until all intended Twenty writes reconcile successfully.

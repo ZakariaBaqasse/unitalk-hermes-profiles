@@ -1,0 +1,44 @@
+{
+  "record_type": "step8_final_review_decision",
+  "profile": "equinet-a2-enrichment",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "decision": "held_as_accepted_step8_test_result",
+  "field_decisions": [
+    {
+      "field_assessment_id": "A2-FLD-STEP8-RR-ROLE-PRIORITY",
+      "field_key": "relationship.target_role_priority",
+      "decision": "approved",
+      "approved_value": "primary",
+      "decision_type": "human_reviewed_classification_not_sourced_fact"
+    },
+    {
+      "field_assessment_id": "A2-FLD-559EE482F011D31A",
+      "field_key": "organisation.disciplines",
+      "decision": "approved",
+      "approved_value": [
+        "all breeds and disciplines"
+      ],
+      "decision_type": "organisation_level_context_not_podiatry_specific"
+    }
+  ],
+  "reviewer": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-30T13:50:40Z",
+  "scope": "bounded_manual_no_integration_pilot_test_only",
+  "hold_reasons": [
+    "Required professional status is not established.",
+    "Required service area is not established.",
+    "The named-target contact path has no verified named email or phone."
+  ],
+  "limitations": [
+    "No purchasing authority is inferred.",
+    "The organisation-wide disciplines wording is not narrowed to a Podiatry-specific claim.",
+    "No outreach, CRM write, downstream delivery or production acceptance is authorised.",
+    "The DeepSeek behavioural replay remains blocked before model invocation by unavailable non-interactive gateway credentials."
+  ],
+  "approved_revision": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-005-held.json",
+  "approved_revision_sha256": "710f0dab47f206eca0dd7fba1658b447509f7f15d35912ec4a6a385bc90f5eb3",
+  "external_actions": 0
+}

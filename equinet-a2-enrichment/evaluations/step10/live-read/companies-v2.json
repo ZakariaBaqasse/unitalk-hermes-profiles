@@ -1,0 +1,104 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "STEP10-LIVE-READ-002",
+  "company_id": null,
+  "created_at": "2026-09-14T18:01:59Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "0968e3144e4062cf1e459033a0078a27407d63e3cfa62d1c19e243916b642d6c",
+  "requested_batch_size": 2,
+  "company_count": 2,
+  "companies": [
+    {
+      "twenty_company_id": "031409fc-7426-426e-adeb-e728d1321296",
+      "name": "Magnus Magnetica",
+      "segment": "FARRIER",
+      "domain": "https://www.magnusmagnetica.com",
+      "professional_network_url": null,
+      "location": {
+        "street": "1555 East New Circle Road, Suite 142-214, Lexington, KY, 40509, United States",
+        "city": "Lexington",
+        "region": "KY",
+        "country": "United States",
+        "postal_code": "40509"
+      },
+      "a2_enrichment_status": null,
+      "a2_enrichment_version": "",
+      "a2_enrichment_run_id": "",
+      "a2_processing_started_at": null,
+      "linked_people": [
+        {
+          "twenty_person_id": "863690f5-04fc-461d-a22f-941f633aa3a4",
+          "company_id": "031409fc-7426-426e-adeb-e728d1321296",
+          "full_name": "Henry Siegel",
+          "raw_name": {
+            "firstName": "Henry Siegel",
+            "lastName": ""
+          },
+          "job_title": null,
+          "work_email": "henry@magnusmagnetica.com",
+          "phone": "3236805411",
+          "professional_network_url": null,
+          "a2_identity_status": null,
+          "a2_role_status": null,
+          "a2_role_priority": null,
+          "a2_company_match_status": null,
+          "a2_enrichment_status": null,
+          "fullenrich_person_id": "",
+          "last_verified_at": null,
+          "last_enriched_at": null,
+          "updated_at": "2026-09-07T20:55:12.291Z"
+        }
+      ],
+      "snapshot_updated_at": "2026-09-07T20:55:13.781Z"
+    },
+    {
+      "twenty_company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "name": "Wilkins Farrier & Forge",
+      "segment": "FARRIER",
+      "domain": null,
+      "professional_network_url": null,
+      "location": {
+        "street": "Lawrenceburg, Kentucky, 40342, United States",
+        "city": "Lawrenceburg",
+        "region": "Kentucky",
+        "country": "United States",
+        "postal_code": "40342"
+      },
+      "a2_enrichment_status": null,
+      "a2_enrichment_version": "",
+      "a2_enrichment_run_id": "",
+      "a2_processing_started_at": null,
+      "linked_people": [
+        {
+          "twenty_person_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+          "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+          "full_name": "Ryan Wilkins",
+          "raw_name": {
+            "firstName": "Ryan Wilkins",
+            "lastName": ""
+          },
+          "job_title": null,
+          "work_email": null,
+          "phone": "3174452402",
+          "professional_network_url": null,
+          "a2_identity_status": null,
+          "a2_role_status": null,
+          "a2_role_priority": null,
+          "a2_company_match_status": null,
+          "a2_enrichment_status": null,
+          "fullenrich_person_id": "",
+          "last_verified_at": null,
+          "last_enriched_at": null,
+          "updated_at": "2026-09-08T16:18:37.058Z"
+        }
+      ],
+      "snapshot_updated_at": "2026-09-08T16:18:38.556Z"
+    }
+  ],
+  "claims": [],
+  "external_writes": 0,
+  "artifact_sha256": "67fe966263b03ae2f18ae3d2ac4367585be7f70b4f65a5b687e916bf12b77d59"
+}

@@ -1,0 +1,59 @@
+{
+  "record_type": "foundation_working_baseline_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "3C",
+  "version": "0.1.0-draft.1",
+  "decision": "approved_as_unitalk_working_baseline",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-26T17:58:25Z",
+  "approved_decisions": {
+    "3C-1": "Check the official website for every retained Farrier and Horse Owner when an official site exists.",
+    "3C-2": "Run harvestapi/linkedin-profile-search only after an official-site role or contact gap.",
+    "3C-3": "Start with name, current title, current company, location and profile URL, then review a bounded output before expanding the allowlist.",
+    "3C-4": "Use the Actor's independent email-search capability as a separately governed provider action for professional email; do not label the email as LinkedIn-sourced.",
+    "3C-5": "Allow search-engine discovery only to locate an official website; search snippets are not evidence.",
+    "3C-6": "Do not add any direct A2 registry or association beyond evidence already collected by A1.",
+    "3C-7": "Keep Apollo, Clay and other enrichment providers unselected and unconnected pending Equinet tests.",
+    "3C-8": "Keep Apify runtime blocked until rights, vendor, account, build, budget, retention and connector gates pass."
+  },
+  "source_register": "foundations/contracts/sources/a2-source-register-0.1.0-draft.1.json",
+  "source_register_sha256": "901dbd504e77a5bf4543c10a32cb05d6e9b723e9368138a2894646dc368fcc3c",
+  "csv_projection": "foundations/contracts/sources/a2-source-register-0.1.0-draft.1.csv",
+  "csv_projection_sha256": "f11704cda5435216a0f3ed12d6f3794b368be35cc9986eb3a3e1cfa45ff9afe9",
+  "technical_validation": "evaluations/step3c/technical-validation.json",
+  "technical_validation_sha256": "e6d277411e8eaaf0e6c8e03b1747ad8d729e9966e52bfeea49294b8ea95033fc",
+  "package_manifest": "evaluations/step3c/step3c-draft-package-manifest.json",
+  "package_manifest_sha256": "a4221a4f1715d526473a03d35b90fb68d2c877570c49b396975e6fab1641d983",
+  "validation_results": {
+    "source_count": 12,
+    "negative_regressions": "13/13 pass",
+    "csv_fidelity": "pass",
+    "language_audit": "pass",
+    "runtime_activation": false,
+    "external_actions": 0
+  },
+  "remaining_activation_inputs": [
+    "authorised Apify workspace/account, credential route, pinned Actor build and runtime owner",
+    "Apify spend or event cap and consumption owner",
+    "approved LinkedIn automated-use rights, API route or documented legal/commercial exception",
+    "HarvestAPI privacy, security, retention, deletion and subprocessor review",
+    "raw Actor dataset retention/deletion handling",
+    "bounded Actor output review before expanding the profile field allowlist"
+  ],
+  "runtime_status": "blocked_pending_linkedin_rights_and_harvestapi_vendor_review",
+  "does_not_authorize": [
+    "live source access",
+    "Apify execution",
+    "provider spend",
+    "HubSpot access or write",
+    "outreach",
+    "pilot readiness",
+    "production readiness",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 3D — Evidence, Verification, Confidence and Freshness Policies (draft preparation)",
+  "clarification_applied": "evaluations/foundation-clarifications/step3f-personal-email-review-clarification.json"
+}

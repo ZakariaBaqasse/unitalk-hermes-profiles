@@ -1,0 +1,114 @@
+{
+  "manifest_id": "equinet-a2-step3b-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "files": [
+    {
+      "path": "evaluations/step3b/A2-MINIMUM-DATA-PACKAGES-REVIEW.md",
+      "bytes": 2570,
+      "sha256": "3fd757da2a645e7232320c4a45fa871a518040dc2d5e8ce8da38dd1cb4f37de0"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/farrier_exhausted_missing_service_area.json",
+      "bytes": 622,
+      "sha256": "7b4e63a26ab10d3a798610dccce72723f6503788b8e21daa0ce26e020ea5c7c5"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/farrier_general_fallback_ready.json",
+      "bytes": 556,
+      "sha256": "5bcb52950b9dfa9fcf02c8063df39c9c5c0791cdd50c08f6ff8b81747476a0ec"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/farrier_missing_all_contact_channels.json",
+      "bytes": 625,
+      "sha256": "bec4d264cf9e45a25f456e96205280b3ad881b372942b4318d4c2cc84300063b"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/farrier_missing_service_area.json",
+      "bytes": 613,
+      "sha256": "15493f21cf49367c15ae496d5a8fe3b38682415f35d7db0504b7ba067f6d5a10"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/farrier_named_email_ready.json",
+      "bytes": 655,
+      "sha256": "1d683db9a801ae4784c84d50f0d8c727334e6f45f740a8c6b8d319b17b73551d"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/farrier_named_phone_ready.json",
+      "bytes": 655,
+      "sha256": "6df6757abfc7e07008d9b57aa6e783cda8563f7e45c5ec95c6e3305a5690b70d"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/fixture-manifest.json",
+      "bytes": 2784,
+      "sha256": "1ec73c10ee2b8b2eb76dd6c83416008f6563ce5e40105d44603460673169f518"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/general_fallback_without_marker.json",
+      "bytes": 471,
+      "sha256": "6d02ebcf4add308b0bccce8976354277c2c2ae03659ec7f0af2015dc1c9bcebe"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/horse_owner_general_fallback_ready.json",
+      "bytes": 473,
+      "sha256": "95d5713c098eac3581735d9fae02fec2cf5d356af09c893a39e8e66e4d2116e4"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/horse_owner_material_conflict.json",
+      "bytes": 606,
+      "sha256": "ce604c2aa0423e6a64b6c16003ad16234832bd25bf30edd159083498973df7ef"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/horse_owner_named_ready_without_horse_count.json",
+      "bytes": 586,
+      "sha256": "1285ce063bff7cdc0fe84ae585de227d69a2d685122ecbd0494ef0832c8756b7"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/horse_owner_optional_fields_missing.json",
+      "bytes": 661,
+      "sha256": "2442f6e267a336cdd11a4bd9e4f0f3348bc128e895f04a80333232b7665054bf"
+    },
+    {
+      "path": "evaluations/step3b/fixtures/invalid_unknown_segment.json",
+      "bytes": 254,
+      "sha256": "274fd49aa9873983b84a2132403f03f57d53d9b35fbc7f574ff9d48b8d17d51a"
+    },
+    {
+      "path": "evaluations/step3b/technical-validation.json",
+      "bytes": 9081,
+      "sha256": "ac7c7547d470c3f4962dc584b37c0002356ae92627136b12ad8d87ec5e30255b"
+    },
+    {
+      "path": "foundations/A2-MINIMUM-DATA-PACKAGES.md",
+      "bytes": 2744,
+      "sha256": "803b1d924158ca44a0a09c4fa84de1fe564bc97a960f9822de354946abbbb18f"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.0-draft.1.json",
+      "bytes": 40025,
+      "sha256": "7ac3ca561dad724a0c390fb50e4905005814382be9ed204d97336d7f965a9d7b"
+    },
+    {
+      "path": "foundations/contracts/business/a2-minimum-data-packages-0.1.0-draft.1.json",
+      "bytes": 5099,
+      "sha256": "fe1dbd2afbc14a05ac289407c22a2f0b3365e17375d7e99def932dec25f85195"
+    },
+    {
+      "path": "scripts/build_step3b_minimum_packages.py",
+      "bytes": 11297,
+      "sha256": "8e2c445a245d19adfb84421d6b01763fc4445d260a79a3d96bc009781e456783"
+    },
+    {
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "bytes": 5664,
+      "sha256": "8bc314215ef71505a1ebb9016a2137a7ea411fae2de0325048ef894cbc1a4bbe"
+    },
+    {
+      "path": "scripts/run_step3b_tests.py",
+      "bytes": 18865,
+      "sha256": "a71a595b07ea2c2e30a87241f3a6f54dc678dab4c83f9b87d1b0b5722d32d82c"
+    }
+  ],
+  "file_count": 21,
+  "external_actions": 0
+}

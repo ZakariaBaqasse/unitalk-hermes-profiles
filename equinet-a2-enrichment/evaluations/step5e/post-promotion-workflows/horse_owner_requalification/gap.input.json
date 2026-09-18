@@ -1,0 +1,15 @@
+{
+  "candidate_id": "SYN-OWN-001",
+  "segment": "horse_owner",
+  "operating_scope": "synthetic_test",
+  "a2_eligibility_status": "eligible",
+  "enrichment_mode": "default_minimum_package",
+  "contact_path": "general_organisation_fallback",
+  "target_role_not_found": true,
+  "field_states": {
+    "organisation.business_name": "verified",
+    "organisation.public_business_location": "verified",
+    "organisation.stable_type": "unknown",
+    "organisation.business_email": "verified"
+  }
+}

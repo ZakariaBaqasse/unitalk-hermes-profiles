@@ -1,0 +1,216 @@
+{
+  "record_type": "a2_live_two_company_test",
+  "run_id": "A2-LIVE-20260915T111736Z",
+  "completed_at": "2026-09-15T11:21:08Z",
+  "selection": {
+    "definition_of_latest": "most recent createdAt among Companies with a2EnrichmentStatus=NOT_ENRICHED",
+    "count": 2,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "companies": [
+    {
+      "company_id": "575f9d4e-9708-40f8-b1d0-0cc940528c3a",
+      "company_name": "Hidden Creek Farm LLC",
+      "created_at": "2026-09-11T18:14:01.217Z",
+      "initial_people": 0,
+      "searches": [
+        {
+          "scope": "approved primary-title set",
+          "status": "not_found",
+          "candidates": 0,
+          "credits": 0
+        },
+        {
+          "scope": "Owner-specific follow-up",
+          "status": "not_found",
+          "candidates": 0,
+          "credits": 0
+        }
+      ],
+      "contact_enrichment": "skipped_no_selected_person",
+      "people_created": 0,
+      "final_status": "COMPLETED_NO_TARGET",
+      "error_code": "target_role_not_found",
+      "twenty_reconciled": true
+    },
+    {
+      "company_id": "c288275d-89f8-43d8-8f01-df3bfa62c3a9",
+      "company_name": "Triple Diamonds Training Center",
+      "created_at": "2026-09-11T17:58:54.615Z",
+      "initial_people": 0,
+      "searches": [
+        {
+          "scope": "approved primary-title set",
+          "status": "not_found",
+          "candidates": 0,
+          "credits": 0
+        },
+        {
+          "scope": "Owner-specific follow-up",
+          "status": "not_found",
+          "candidates": 0,
+          "credits": 0
+        }
+      ],
+      "contact_enrichment": "skipped_no_selected_person",
+      "people_created": 0,
+      "final_status": "COMPLETED_NO_TARGET",
+      "error_code": "target_role_not_found",
+      "twenty_reconciled": true
+    }
+  ],
+  "provider": {
+    "provider": "FullEnrich",
+    "people_lookup_calls": 0,
+    "people_search_calls": 4,
+    "contact_enrichment_calls": 0,
+    "account_preflight_calls_during_run": 6,
+    "total_api_calls_during_run": 10,
+    "credits_reserved_twice": 1,
+    "credits_charged": 0,
+    "balance_before": 499,
+    "balance_after": 499
+  },
+  "twenty": {
+    "claim_writes": 2,
+    "final_status_writes": 3,
+    "extra_idempotent_status_write_due_to_fixed_reconciliation_issue": 1,
+    "total_writes": 5,
+    "person_creates": 0,
+    "association_writes": 0,
+    "final_read_back": "matched"
+  },
+  "issues": [
+    {
+      "code": "TARGET_ROLE_NOT_FOUND",
+      "severity": "review_required",
+      "scope": "both_companies",
+      "detail": "FullEnrich returned no People for either the approved-title Search or the permitted Owner-specific follow-up Search. No named contact could be selected."
+    },
+    {
+      "code": "TIMESTAMP_FORMAT_RECONCILIATION_FALSE_POSITIVE",
+      "severity": "implementation_issue_fixed",
+      "scope": "first_company_first_write",
+      "detail": "Twenty returned an equivalent timestamp with .000Z. String comparison initially reported a mismatch. Reconciliation now compares parsed timestamps; the same idempotent status update was repeated and reconciled."
+    },
+    {
+      "code": "DOMAIN_VALUE_WAS_URL",
+      "severity": "implementation_issue_fixed_before_provider_call",
+      "scope": "Hidden Creek Farm LLC",
+      "detail": "Twenty domainName was a URL. Connector now normalizes it to a hostname before FullEnrich requests."
+    }
+  ],
+  "outcome": "completed_no_target_for_both",
+  "external_actions": {
+    "twenty_writes": 5,
+    "fullenrich_api_calls": 10,
+    "hubspot_actions": 0,
+    "outreach_actions": 0
+  },
+  "artifact_inventory": [
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/companies.json",
+      "sha256": "446901af9d76a32fb3716d5adafc97c176354275b18b574157f2814ceacf802c"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-reconciliation-validation-final.json",
+      "sha256": "7ca6a7b33272099ed836f26cedc2d07d15d700cc2ebb28f3e1c9cbb19ab46714"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-reconciliation-validation.json",
+      "sha256": "a40d685056f7693062c07f11ee5159f4c612d71d7b90872bb659efeee2d48e4f"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-dry-run.json",
+      "sha256": "db9d1be019330d90a6ca186b835665b27f2e6b9afb1c914bfdd4c3a0203db8a9"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-plan.json",
+      "sha256": "5fe4f1c389cd6776cb8bd4234cb13e6b6c26c7000d09f3b7f4b71c9d931c0a47"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-proposal.json",
+      "sha256": "2eb138b7d7c23f3c69a0be3f6e90de49ea65fc3a4fd045c80f4731d0c99cb17c"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-result-final.json",
+      "sha256": "31e0b8e0327803c382b0f8702bfc0c18fad0db1a0f3df2057802eadce33bda55"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-1-write-result.json",
+      "sha256": "54fc1e90e4bed045734b48e1454534504082c549ffa348b92b118768e15487a9"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-reconciliation-validation-final.json",
+      "sha256": "58e899cc95f30a44c3a00827b28a506d074656a9d3c462325a8898386eea25a0"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-write-dry-run.json",
+      "sha256": "63be69bf3ffee4bdbdf5a343735e70d5545066257ec76ac768bf8bb15266d9ee"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-write-plan.json",
+      "sha256": "611a2c51805b8d181c7ca1197d1998fbb829291631457b7d8ff9cd7dd6b303bf"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-write-proposal.json",
+      "sha256": "f2a52a2d5de49f68ea639b6724e0613be7451221f87373262406896d930ee543"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/company-2-write-result-final.json",
+      "sha256": "0b4d7365fabc3254b53a49a98e9a96104f80eedde33104e7df8ccb6e0c83ceb6"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/lookup-decisions.json",
+      "sha256": "7e78a336ab50b585bf0309015ecbb8a1de62b27c95aa3618de4014d69ba206e4"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/lookup-packet.json",
+      "sha256": "5b1e707155bf3120fab7305ed3d6d4fbb6da6b513259c7d214814709821d09bf"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/lookup-requests.json",
+      "sha256": "65dfeee51f067c496efd8b84dca21261fe2e17f92a1cd9702d6408725b7b02ef"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/lookup-results.json",
+      "sha256": "7c915dcefb531d9096b4de30e3c8201d68df600682ee7c6ede49dd1b42c890a1"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/lookup-validation.json",
+      "sha256": "391c64a805e8894232b8939fd9fd74479dd35b8cd7c192404f7b3972aa5120ee"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/search-owner-requests.json",
+      "sha256": "98ae391b575e82d483919b06aeac9163d4c2b4581a90a3a0256427bbc121017d"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/search-owner-results.json",
+      "sha256": "a7675cf371364c0d25222dd53ab9c18b2141c182547fe10f2fcdee4f741d768e"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/search-packet.json",
+      "sha256": "b50466b9efa36a6a608964d1b8c324d1771e7994ab820dcf799fa8782008e02a"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/search-requests.json",
+      "sha256": "d406779ea0dce26c9cfd9908fc5699c838af2de20893c5a3cb40f4b5bb4d0e9e"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/search-results.json",
+      "sha256": "61b9bd7b673b00f29e7130039928abdc8e2626f6600321f3e6dc4d278fb4747d"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/selected-people.json",
+      "sha256": "c3a6693feab707c8d509388ffa7e287d47874c9a958412f2bd84ca5177243669"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/selection-decisions.json",
+      "sha256": "9d63c35283819c8ff3d28bb738c91d51b84876532d43406ce2a58cb40f8299b4"
+    },
+    {
+      "path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/selection-validation.json",
+      "sha256": "ad6dcc3fc567f5b284035ad60997891bfce983113610deee0e7e5f7fe533ed0f"
+    }
+  ]
+}

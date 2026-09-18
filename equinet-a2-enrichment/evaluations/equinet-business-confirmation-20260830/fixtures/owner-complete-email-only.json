@@ -1,0 +1,19 @@
+{
+  "fixture_id": "owner-complete-email-only",
+  "segment": "horse_owner",
+  "contact_path": "named_target",
+  "target_role_not_found": false,
+  "research_exhausted": true,
+  "field_states": {
+    "organisation.business_name": "verified",
+    "organisation.public_business_location": "verified",
+    "organisation.stable_type": "verified",
+    "organisation.horse_count": "verified",
+    "organisation.breeds": "verified",
+    "person.full_name": "verified",
+    "person.role_title": "verified",
+    "relationship.target_role_priority": "verified",
+    "person.business_email": "verified",
+    "person.business_phone": "not_found"
+  }
+}

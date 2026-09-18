@@ -1,0 +1,62 @@
+{
+  "record_type": "wave1_targeted_behavioural_validation",
+  "profile": "equinet-a2-enrichment",
+  "step": "5B",
+  "wave": 1,
+  "executed_at": "2026-08-27T12:23:58Z",
+  "method": "independent read-only evaluators executed the exact skill commands against synthetic inputs in temporary directories",
+  "scenarios": [
+    {
+      "skill_id": "a2-handoff-intake-and-initialisation",
+      "status": "pass_after_targeted_correction",
+      "checks": {
+        "valid_intake_succeeded": true,
+        "record_sha256_present": true,
+        "record_sha256_matches_canonical_record": true,
+        "embedded_a1_handoff_unchanged": true,
+        "retry_idempotent": true,
+        "invalid_recommendation_rejected": true,
+        "invalid_created_no_record_or_ledger": true,
+        "external_actions_zero": true
+      },
+      "observed": {
+        "record_sha256": "ff5b87ded6b163b29f1da03d208219c39db0ead4a3dc8175c256cff423b217d1",
+        "first_write_status": "created",
+        "first_ledger_status": "reserved",
+        "retry_write_status": "unchanged",
+        "retry_ledger_status": "existing",
+        "invalid_return_code": 1
+      },
+      "note": "The first behavioural run identified a missing record_sha256 in the compact result. The command was corrected and the affected scenario was independently rerun successfully."
+    },
+    {
+      "skill_id": "a2-entity-resolution-and-normalisation",
+      "status": "pass",
+      "checks": {
+        "exact_name_and_domain_confirmed": true,
+        "name_only_possible_match": true,
+        "matching_name_with_conflicting_domain_and_phone_conflict": true,
+        "human_review_required_for_possible_or_conflict": true,
+        "canonical_record_mutated": false,
+        "external_actions_zero": true
+      }
+    },
+    {
+      "skill_id": "a2-duplicate-and-eligibility-review",
+      "status": "pass",
+      "checks": {
+        "synthetic_unavailable_hubspot_can_continue": true,
+        "possible_duplicate_held": true,
+        "confirmed_duplicate_blocked": true,
+        "outreach_not_authorised": true,
+        "crm_write_not_authorised": true,
+        "external_actions_zero": true
+      }
+    }
+  ],
+  "scenario_count": 3,
+  "passed": 3,
+  "failed": 0,
+  "overall_status": "pass",
+  "external_actions": 0
+}

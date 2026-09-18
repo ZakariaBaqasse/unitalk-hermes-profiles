@@ -1,0 +1,29 @@
+{
+  "record_type": "step8_field_classification_review_decision",
+  "profile": "equinet-a2-enrichment",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "field_key": "relationship.target_role_priority",
+  "decision": "approved",
+  "approved_value": "secondary",
+  "decision_type": "human_reviewed_classification_not_sourced_fact",
+  "reviewer": {
+    "name": "Séverine",
+    "role": "Unitalk Operations A2 Pilot Reviewer"
+  },
+  "decided_at": "2026-08-30T12:27:09Z",
+  "source_role_title": "Nominations Sales and Operating Manager, Jonabell Farm",
+  "classification_basis": {
+    "target_role_model": "horse_owner",
+    "matched_archetype": "operations_manager",
+    "priority": "secondary"
+  },
+  "boundaries": {
+    "sourced_fact": false,
+    "buying_influence_inferred": false,
+    "a1_score_changed": false,
+    "outreach_authorized": false,
+    "canonical_mutation_authorized": false
+  },
+  "next_authorized_stage": "evidence_confidence_for_three_direct_observations",
+  "external_actions": 0
+}

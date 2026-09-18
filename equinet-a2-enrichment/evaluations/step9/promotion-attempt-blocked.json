@@ -1,0 +1,35 @@
+{
+  "record_type": "step9e_atomic_promotion_attempt",
+  "profile": "equinet-a2-enrichment",
+  "release_candidate": "equinet-a2-no-integration-1.0.0-rc.1",
+  "requested_decisions": [
+    "S9-1",
+    "S9-2",
+    "S9-3",
+    "S9-4",
+    "S9-5",
+    "S9-6",
+    "S9-7",
+    "S9-8",
+    "S9-9",
+    "S9-10"
+  ],
+  "approval_received_from": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approval_received_at": "2026-08-30T14:56:57Z",
+  "intended_status": "PILOT_READY_NO_INTEGRATION",
+  "result": "blocked_before_atomic_promotion",
+  "blocker": "The protected SOUL.md write approval prompt expired before the write was authorised by the execution guard.",
+  "rollback": {
+    "partial_skill_status_changes_reverted": true,
+    "active_foundation_manifest_replaced": false,
+    "final_runtime_policy_activated": false,
+    "final_release_manifest_activated": false,
+    "profile_status_changed": false
+  },
+  "current_status": "STEP 9 RELEASE CANDIDATE — NOT YET PROMOTED",
+  "required_next_action": "Retry the protected SOUL.md update when the approval prompt can be accepted, then execute the staged atomic promotion and final verification.",
+  "external_actions": 0
+}

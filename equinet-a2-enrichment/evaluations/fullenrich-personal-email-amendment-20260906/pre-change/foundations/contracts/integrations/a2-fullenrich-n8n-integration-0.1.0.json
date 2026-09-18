@@ -1,0 +1,164 @@
+{
+  "contract_id": "equinet-a2-fullenrich-n8n-integration",
+  "version": "0.1.0",
+  "status": "design_approved_runtime_not_connected",
+  "profile": "equinet-a2-enrichment",
+  "provider": "FullEnrich API v2",
+  "orchestrator": "n8n",
+  "credential_boundary": {
+    "fullenrich_api_key": "n8n_credential_store_only",
+    "profile_receives_secret": false,
+    "logs_secret": false
+  },
+  "operations": {
+    "people_search": {
+      "method": "POST",
+      "path": "/people/search",
+      "synchronous": true,
+      "required": [
+        "candidate_id",
+        "exact_organisation_domain",
+        "approved_target_roles"
+      ],
+      "default_limit": 1,
+      "max_unique_people_per_prospect": 2
+    },
+    "people_lookup": {
+      "method": "POST",
+      "path": "/people/lookup",
+      "synchronous": true,
+      "required": [
+        "candidate_id",
+        "person_name",
+        "company_identifier"
+      ],
+      "max_results": 1
+    },
+    "contact_enrich": {
+      "method": "POST",
+      "path": "/contact/enrich/bulk",
+      "synchronous": false,
+      "selected_contacts_only": true,
+      "enrich_fields": [
+        "contact.work_emails",
+        "contact.phones"
+      ],
+      "prohibited_enrich_fields": [
+        "contact.personal_emails"
+      ],
+      "max_contacts_per_prospect": 2,
+      "completion": "signed_webhook"
+    },
+    "credit_balance": {
+      "method": "GET",
+      "path": "/account/credits",
+      "before_paid_action": true
+    },
+    "verify_key": {
+      "method": "GET",
+      "path": "/account/keys/verify",
+      "pre_activation_only": true
+    }
+  },
+  "workflow_tools": [
+    "start_a2_fullenrich_action",
+    "get_a2_fullenrich_result"
+  ],
+  "webhook_security": {
+    "signature_header": "X-Signature-SHA1",
+    "algorithm": "HMAC-SHA1",
+    "verify_raw_body_before_json_parse": true,
+    "constant_time_compare": true
+  },
+  "idempotency": {
+    "components": [
+      "candidate_id",
+      "operation",
+      "role_group_or_selected_contact_id",
+      "source_register_version"
+    ],
+    "duplicate_execution": "return_existing_job"
+  },
+  "terminal_states": [
+    "succeeded",
+    "not_found",
+    "insufficient_match",
+    "failed",
+    "blocked",
+    "cancelled",
+    "timed_out"
+  ],
+  "retry": {
+    "transient_technical_failure": 1,
+    "not_found": 0,
+    "invalid_input": 0,
+    "credit_or_policy_block": 0
+  },
+  "output_minimisation": {
+    "people": [
+      "provider_person_id",
+      "full_name",
+      "current_role",
+      "organisation_name",
+      "organisation_domain",
+      "location",
+      "professional_network_url"
+    ],
+    "contact": [
+      "full_name",
+      "current_role",
+      "professional_network_url",
+      "work_email",
+      "work_email_status",
+      "mobile_phone",
+      "mobile_region"
+    ],
+    "discard": [
+      "personal_emails",
+      "education",
+      "skills",
+      "full_employment_history",
+      "connection_counts",
+      "personal_description"
+    ]
+  },
+  "external_actions_authorized": false,
+  "crm_write_authorized": false,
+  "outreach_authorized": false,
+  "activation_requirements": [
+    "approved_account",
+    "api_key_in_n8n_credential_store",
+    "api_key_verification",
+    "current_credit_balance",
+    "premium_plan_rate_verification",
+    "vendor_and_data_route_review",
+    "three_month_retention_review",
+    "test_daily_and_pilot_caps",
+    "spend_and_consumption_owner",
+    "audit_logging",
+    "n8n_connector_test",
+    "signed_webhook_verification"
+  ],
+  "decision_record": {
+    "path": "foundations/decisions/A2-FULLENRICH-SOURCE-ROUTING-20260906.json",
+    "sha256": "1e379a6713b6f22003cae543b3bd28bd9d03a4a67b433fb3b3927ccae4302057"
+  },
+  "dependencies": [
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.3.0.json",
+      "sha256": "008e6f8ffca793f4fe2d9a4cb83d90f9318c7f392d88a64960084a1fd739d527"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.3.0.json",
+      "sha256": "7adf957a3161e1d45a47149167bc66e4387a877908a2ba2ca4e232d01d2c5a09"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.3.0.json",
+      "sha256": "8e1995048ce786843cf7419191b72a6d597acb1f1b5afa546454810c6c8ffc3d"
+    },
+    {
+      "path": "foundations/decisions/A2-FULLENRICH-SOURCE-ROUTING-20260906.json",
+      "sha256": "f653be41561cb77683e728bf5eeef56ea97e04000537a55d426a8b76287d7af0"
+    }
+  ]
+}

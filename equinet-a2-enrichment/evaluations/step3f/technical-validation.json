@@ -1,0 +1,206 @@
+{
+  "step": "3F",
+  "version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_runtime_activation_pending",
+  "policy": {
+    "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.1.0-draft.1.json",
+    "sha256": "54c80c188d9a78510e331a9f65290bad03c9c69c721b9c99b5b8bca96520e9fb"
+  },
+  "policy_validation": {
+    "errors": [],
+    "passed": true
+  },
+  "authorization_cases": {
+    "total": 5,
+    "passed": 5,
+    "cases": [
+      {
+        "name": "current_policy_blocked",
+        "result": {
+          "decision": "blocked",
+          "charge_authorized": false,
+          "missing_gates": [
+            "approved_account",
+            "pinned_actor_build",
+            "rights_or_exception",
+            "vendor_due_diligence",
+            "retention_rule",
+            "test_cap",
+            "daily_cap",
+            "pilot_cap",
+            "spend_approver",
+            "consumption_owner",
+            "audit_logging",
+            "connector_test"
+          ],
+          "reason": "activation gates incomplete"
+        },
+        "expected": "blocked",
+        "passed": true
+      },
+      {
+        "name": "fully_gated_under_cap",
+        "result": {
+          "decision": "approved_for_bounded_test",
+          "charge_authorized": true,
+          "missing_gates": [],
+          "reason": "all gates and caps pass"
+        },
+        "expected": "approved_for_bounded_test",
+        "passed": true
+      },
+      {
+        "name": "over_daily_cap",
+        "result": {
+          "decision": "blocked",
+          "charge_authorized": false,
+          "missing_gates": [],
+          "reason": "cost or prepaid balance cap exceeded"
+        },
+        "expected": "blocked",
+        "passed": true
+      },
+      {
+        "name": "over_remaining_balance",
+        "result": {
+          "decision": "blocked",
+          "charge_authorized": false,
+          "missing_gates": [],
+          "reason": "cost or prepaid balance cap exceeded"
+        },
+        "expected": "blocked",
+        "passed": true
+      },
+      {
+        "name": "idempotent_reuse",
+        "result": {
+          "decision": "reuse_existing_result",
+          "charge_authorized": false,
+          "missing_gates": [],
+          "reason": "successful prior result exists"
+        },
+        "expected": "reuse_existing_result",
+        "passed": true
+      }
+    ]
+  },
+  "negative_regressions": {
+    "total": 12,
+    "passed": 12,
+    "cases": [
+      {
+        "name": "currency_changed",
+        "expected_error": "prepaid-credit boundary",
+        "errors": [
+          "contractual prepaid-credit boundary mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "negative_balance",
+        "expected_error": "prepaid-credit boundary",
+        "errors": [
+          "contractual prepaid-credit boundary mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "invented_budget",
+        "expected_error": "pending budget values were invented",
+        "errors": [
+          "pending budget values were invented"
+        ],
+        "passed": true
+      },
+      {
+        "name": "hard_stop_removed",
+        "expected_error": "hard budget stop is missing",
+        "errors": [
+          "hard budget stop is missing"
+        ],
+        "passed": true
+      },
+      {
+        "name": "apollo_enabled",
+        "expected_error": "unselected provider enabled",
+        "errors": [
+          "unselected provider enabled"
+        ],
+        "passed": true
+      },
+      {
+        "name": "apify_enabled",
+        "expected_error": "runtime status overstated",
+        "errors": [
+          "apify_linkedin_profile_search runtime status overstated"
+        ],
+        "passed": true
+      },
+      {
+        "name": "personal_email_operational",
+        "expected_error": "personal-email review boundary mismatch",
+        "errors": [
+          "personal-email review boundary mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "email_misattributed",
+        "expected_error": "email provenance incorrectly attributed",
+        "errors": [
+          "email provenance incorrectly attributed"
+        ],
+        "passed": true
+      },
+      {
+        "name": "retry_not_found",
+        "expected_error": "retry or fallback controls mismatch",
+        "errors": [
+          "retry or fallback controls mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "retention_invented",
+        "expected_error": "retention was invented",
+        "errors": [
+          "retention was invented"
+        ],
+        "passed": true
+      },
+      {
+        "name": "gate_enabled",
+        "expected_error": "runtime activation gate was weakened",
+        "errors": [
+          "runtime activation gate was weakened"
+        ],
+        "passed": true
+      },
+      {
+        "name": "approval_removed",
+        "expected_error": "Unitalk approval metadata is invalid",
+        "errors": [
+          "Unitalk approval metadata is invalid"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "documentation_checks": {
+    "contract": true,
+    "review": true,
+    "decisions": true,
+    "runtime_block": true
+  },
+  "language_audit": {
+    "files_checked": 410,
+    "findings": 0,
+    "passed": true
+  },
+  "runtime_activation": false,
+  "provider_spend_authorized": false,
+  "external_actions": 0,
+  "next_gate_after_approval": "Step 3G — Preliminary A2-to-HubSpot Mapping",
+  "failures": [],
+  "pass": true
+}

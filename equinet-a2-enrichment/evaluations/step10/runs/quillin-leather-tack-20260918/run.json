@@ -1,0 +1,13 @@
+{
+  "schema_id": "a2-enrichment-run-ledger",
+  "schema_version": "0.1.0",
+  "run_id": "quillin-leather-tack-20260918",
+  "created_at": "2026-09-18T16:33:32Z",
+  "updated_at": "2026-09-18T16:33:32Z",
+  "stage": "created",
+  "company_ids": [],
+  "artifacts": [],
+  "audit": [],
+  "external_actions": 0,
+  "ledger_sha256": "7d34ea5b3db12342f54b46810c6f05b9a005700785a9ce868e5bac93973203a8"
+}

@@ -1,0 +1,15 @@
+{
+  "step": "2A",
+  "artifact": "/opt/data/profiles/equinet-a2-enrichment/foundations/A2-CANONICAL-RECORD-DESIGN.md",
+  "design_version": "0.1.0",
+  "approval_state": "approved_for_step_2b",
+  "checks": {
+    "required_headings": 24,
+    "canonical_sections": 14,
+    "ownership_boundaries": 10,
+    "decisions": 9,
+    "forbidden_claims": 6
+  },
+  "errors": [],
+  "pass": true
+}

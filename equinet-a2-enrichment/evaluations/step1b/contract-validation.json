@@ -1,0 +1,14 @@
+{
+  "artifact": "/opt/data/profiles/equinet-a2-enrichment/foundations/A2-IMPLEMENTATION-CONTRACT.md",
+  "contract_version": "0.1.4",
+  "expected_status": "FOUNDATION DESIGN IN PROGRESS — NOT PILOT-READY",
+  "approval_state": "approved_for_step_1c",
+  "checks": {
+    "required_headings": 22,
+    "required_boundaries": 9,
+    "required_integration_states": 7,
+    "forbidden_active_claims": 6
+  },
+  "errors": [],
+  "pass": true
+}

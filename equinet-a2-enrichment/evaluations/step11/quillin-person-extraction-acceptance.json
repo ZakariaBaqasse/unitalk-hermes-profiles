@@ -1,0 +1,27 @@
+{
+  "suite": "quillin_person_extraction_acceptance",
+  "status": "pass",
+  "fixture": "evaluations/step11/fixtures/firecrawl/quillin-about-fetch.json",
+  "checks": {
+    "exact_people": true,
+    "no_product_false_positives": true,
+    "coverage_complete": true,
+    "all_blocks_reviewed": true
+  },
+  "deterministic_candidate_names": [
+    "Donna Quillin",
+    "Ralph Quillin",
+    "Rob Windels",
+    "Vince Grupposo"
+  ],
+  "validated_candidate_names": [
+    "Donna Quillin",
+    "Ralph Quillin",
+    "Rob Windels",
+    "Vince Grupposo"
+  ],
+  "false_positive_names": [],
+  "semantic_block_count": 9,
+  "external_calls": 0,
+  "external_writes": 0
+}

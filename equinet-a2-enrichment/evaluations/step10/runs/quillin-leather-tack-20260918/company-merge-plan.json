@@ -1,0 +1,144 @@
+{
+  "schema_id": "a2-company-contact-merge-plan",
+  "schema_version": "0.1.0",
+  "run_id": "quillin-leather-tack-20260918",
+  "company_id": "98cbdeae-a863-48b9-88e7-9f0ae8099ea5",
+  "created_at": "2026-09-18T16:40:36Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "baseline_sha256": "a468932e34faa307f99e97990d4f056672ed539ad96f500c3f5c43d4bc6fb726",
+  "company_field_updates": {
+    "email": {
+      "primaryEmail": "order@quillin.com",
+      "additionalEmails": []
+    },
+    "facebook": {
+      "primaryLinkLabel": "Facebook",
+      "primaryLinkUrl": "https://facebook.com/QuillinHalters",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkLabel": "Instagram",
+      "primaryLinkUrl": "https://instagram.com/quillinleatherandtack",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkLabel": "Youtube",
+      "primaryLinkUrl": "https://youtube.com/@ralphquillin",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkLabel": "X",
+      "primaryLinkUrl": "https://twitter.com/QuillinLeather",
+      "secondaryLinks": []
+    }
+  },
+  "merged_fields": {
+    "email": {
+      "primaryEmail": "order@quillin.com",
+      "additionalEmails": []
+    },
+    "phone": {
+      "primaryPhoneNumber": "8599870215",
+      "primaryPhoneCountryCode": "US",
+      "primaryPhoneCallingCode": "+1",
+      "additionalPhones": []
+    },
+    "linkedinLink": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "facebook": {
+      "primaryLinkLabel": "Facebook",
+      "primaryLinkUrl": "https://facebook.com/QuillinHalters",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkLabel": "Instagram",
+      "primaryLinkUrl": "https://instagram.com/quillinleatherandtack",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkLabel": "Youtube",
+      "primaryLinkUrl": "https://youtube.com/@ralphquillin",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkLabel": "X",
+      "primaryLinkUrl": "https://twitter.com/QuillinLeather",
+      "secondaryLinks": []
+    }
+  },
+  "decisions": [
+    {
+      "field": "email",
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "canonical_value": "order@quillin.com",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-contact-22eeb8f6627ea04c"
+      ]
+    },
+    {
+      "field": "phone",
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "canonical_value": "859-987-0215",
+      "action": "no_change",
+      "evidence_refs": [
+        "website-contact-64cae5e3100b797f"
+      ]
+    },
+    {
+      "field": "facebook",
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "canonical_value": "https://facebook.com/QuillinHalters",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-dfcd420ab56ac054"
+      ]
+    },
+    {
+      "field": "instagram",
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "canonical_value": "https://instagram.com/quillinleatherandtack",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-ee2475e1a67e24b5"
+      ]
+    },
+    {
+      "field": "xTwitter",
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "canonical_value": "https://twitter.com/QuillinLeather",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-60ce1583b2bb3f73"
+      ]
+    },
+    {
+      "field": "youtube",
+      "source": "prospect_official_website",
+      "source_url": "https://www.quillin.com/",
+      "canonical_value": "https://youtube.com/@ralphquillin",
+      "action": "set_primary",
+      "evidence_refs": [
+        "website-social-79b7667c3616fb9c"
+      ]
+    }
+  ],
+  "provenance": [],
+  "external_actions": 0,
+  "artifact_sha256": "fcda126435c392f101d2e3ef8f00090220d86675b6bf1ab366092d3a592734e0"
+}

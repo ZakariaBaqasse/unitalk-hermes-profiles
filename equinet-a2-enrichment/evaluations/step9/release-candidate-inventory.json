@@ -1,0 +1,1318 @@
+{
+  "record_type": "step9_release_candidate_inventory",
+  "profile": "equinet-a2-enrichment",
+  "release_candidate": "equinet-a2-no-integration-1.0.0-rc.1",
+  "status": "preflight_inventory_not_frozen",
+  "items": [
+    {
+      "category": "profile_root_or_foundation",
+      "path": "SOUL.md",
+      "exists": true,
+      "bytes": 19431,
+      "sha256": "95ba2f8c88079692569b73234282f56fb35e6eb209cd1036791f1e0d83fccafe",
+      "version": "step8-accepted",
+      "version_source": "release_state",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "profile_root_or_foundation",
+      "path": "config.yaml",
+      "exists": true,
+      "bytes": 767,
+      "sha256": "fcf9709b833df9954ff4c2eefcaa71b1ef207270cf16172e32bce8e7ad800dad",
+      "version": "38",
+      "version_source": "top_level._config_version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "accepted_pilot_evidence",
+      "path": "evaluations/step8/acceptance-record.json",
+      "exists": true,
+      "bytes": 3956,
+      "sha256": "02038536354ea32c7637b202c504ec92ffb8d9ecfa3314430acc0b24caef43eb",
+      "version": "0.1.0",
+      "version_source": "step8_acceptance_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "accepted_pilot_evidence",
+      "path": "evaluations/step8/final-closure-validation.json",
+      "exists": true,
+      "bytes": 1083,
+      "sha256": "645e0d458ae3ee4068f6005ffac6c0ca5863d8ff33deb11624f9eb1a489938da",
+      "version": "0.1.0",
+      "version_source": "step8_acceptance_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-005-record-approved.json",
+      "exists": true,
+      "bytes": 63629,
+      "sha256": "bc2b618e0be5270edef6325b28d205a299c19addf4a18688b3040dc1ca8232bf",
+      "version": "0.1.0",
+      "version_source": "step8_acceptance_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "accepted_pilot_evidence",
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/behavioral-replay/validation.json",
+      "exists": true,
+      "bytes": 998,
+      "sha256": "15fd19d4bb4aecdd56550f6c586874233ba49415dce7a7a4203497664e525df5",
+      "version": "0.1.0",
+      "version_source": "step8_acceptance_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-005-held.json",
+      "exists": true,
+      "bytes": 65920,
+      "sha256": "710f0dab47f206eca0dd7fba1658b447509f7f15d35912ec4a6a385bc90f5eb3",
+      "version": "0.1.0",
+      "version_source": "step8_acceptance_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "profile_root_or_foundation",
+      "path": "foundations/A2-CROSS-FIELD-VALIDATOR-CONTRACT.md",
+      "exists": true,
+      "bytes": 11916,
+      "sha256": "f4d3201876eeca01801b36a15cf18f737a650142daa2e95f73d2e7e24e9a509f",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "profile_root_or_foundation",
+      "path": "foundations/A2-HANDOFF-TO-RECORD-INITIALISATION-CONTRACT.md",
+      "exists": true,
+      "bytes": 6226,
+      "sha256": "ec86fcdacacec204a08b1165c2480a09e070b298d01265674491e9c992e8b3b8",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "profile_root_or_foundation",
+      "path": "foundations/A2-IMPLEMENTATION-CONTRACT.md",
+      "exists": true,
+      "bytes": 29292,
+      "sha256": "869594b53f713a171ead67e62a7898dff8d1ea4782a2e1a9fe2dc1add88d69ed",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "profile_root_or_foundation",
+      "path": "foundations/A2-REVIEW-VIEW-SPECIFICATION.md",
+      "exists": true,
+      "bytes": 6350,
+      "sha256": "3cc49abc27642a3ad5bb4be5a1d7761ada44c3e9f55ffd59d3e35a181c880b1a",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/a1-to-a2-handoff.schema.json",
+      "exists": true,
+      "bytes": 13719,
+      "sha256": "d1cd494b8548afeaf6691283e7ff88daf20689356377a476ff57aafa07b3ce59",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/a2-field-dictionary-0.1.0.csv",
+      "exists": true,
+      "bytes": 41917,
+      "sha256": "902f10c686bd09f00b1243d19a8d1e047a729a9f1ca0c2b991e63283b73a5dd0",
+      "version": "0.1.0",
+      "version_source": "filename",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/a2-state-model-0.1.0.json",
+      "exists": true,
+      "bytes": 36269,
+      "sha256": "e5045b2f52c97ba588c33ac803ef582b8bb5a14cc376575ee86206d6b60d8d11",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.csv",
+      "exists": true,
+      "bytes": 17485,
+      "sha256": "ad4256ed761fc0e578128c3f12221a76d027050cd899a7db32f799f277d8577c",
+      "version": "0.1.1-draft.1.csv",
+      "version_source": "filename",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "exists": true,
+      "bytes": 41682,
+      "sha256": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445",
+      "version": "0.1.1-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/business/a2-minimum-data-packages-0.1.1-draft.1.json",
+      "exists": true,
+      "bytes": 5408,
+      "sha256": "2ddf615e4c2894b97cfa8ef42f73d4437a7e2370e1cefa0d60a2986fb7741b94",
+      "version": "0.1.1-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "exists": true,
+      "bytes": 71694,
+      "sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "exists": true,
+      "bytes": 5383,
+      "sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.1-draft.1.json",
+      "exists": true,
+      "bytes": 8508,
+      "sha256": "ccecc0aeb6d725bbe74dc73c72648b2f0ec4fe72e3ef402194b4952dc27b869d",
+      "version": "0.1.1-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.1-draft.1.json",
+      "exists": true,
+      "bytes": 10311,
+      "sha256": "cae627cd3efe7a21958f9667bb3c214ea6a7ec7fd743eb5e85f2519be9b5e3e7",
+      "version": "0.1.1-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.1.1-draft.1.json",
+      "exists": true,
+      "bytes": 5925,
+      "sha256": "3e2b56b7989c523f37219730d266d6b83a9b25f104cc7289697931927ea6d05b",
+      "version": "0.1.1-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.csv",
+      "exists": true,
+      "bytes": 14405,
+      "sha256": "367a3b75184c4a580ce004d34eb006623f4aa10ae362ecb8f368b5c8bf1429de",
+      "version": "0.1.1-draft.1.csv",
+      "version_source": "filename",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.json",
+      "exists": true,
+      "bytes": 30550,
+      "sha256": "772d00be0c6c330362c453a324e9c7dc67597dbc48fe74fb26e0311d7d126f75",
+      "version": "0.1.1-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/requalification/a1-score-revision-reference.schema.json",
+      "exists": true,
+      "bytes": 7330,
+      "sha256": "c3749ebd5280657c12b312a1050b29fa8a6353dba452ecabecaa691f8611f89b",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/requalification/a2-requalification-package.schema.json",
+      "exists": true,
+      "bytes": 2551,
+      "sha256": "c6babeb60063d810f0b2f715eae945e1716c4d078df693475ee23ffa9e227ffc",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/requalification/a2-requalification-return.schema.json",
+      "exists": true,
+      "bytes": 9134,
+      "sha256": "51803065548da06177b5d4c7d8c5e0250c6c0b6c1ac9604bcb3b30b2b86cfc61",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/requalification/a2-requalification-signal.schema.json",
+      "exists": true,
+      "bytes": 6480,
+      "sha256": "f9bfb37baca8d9cc24d4c56f6cd7c3fc0cfe314de66ee4a6fe6efb83d419e33b",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "runtime_policy_or_manifest",
+      "path": "foundations/contracts/runtime/a2-runtime-policy-0.1.0.yaml",
+      "exists": true,
+      "bytes": 6533,
+      "sha256": "e0323119a45c1d8081eb49a888f1469549e9fe17433e125b98e44264fb00cbcd",
+      "version": "0.1.0",
+      "version_source": "top_level.policy_version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "runtime_policy_or_manifest",
+      "path": "foundations/contracts/runtime/a2-step7-synthetic-acceptance-manifest-0.1.0.json",
+      "exists": true,
+      "bytes": 1130,
+      "sha256": "59a916f6e9113d0b640541868b999b1b3a1401507c5393205a487dea4b7bd50c",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "runtime_policy_or_manifest",
+      "path": "foundations/contracts/runtime/a2-step8-pilot-acceptance-manifest-0.1.0.json",
+      "exists": true,
+      "bytes": 956,
+      "sha256": "0619e919ff5f47245c46036f4fb608648f32f1fccd7af95be2cab385446c708c",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "runtime_policy_or_manifest",
+      "path": "foundations/contracts/runtime/a2-step8-pilot-runtime-policy-0.1.0.yaml",
+      "exists": true,
+      "bytes": 2480,
+      "sha256": "9061c967903e94fb8a616d4e72b04f2fca6e23d18b8a7446c7b47466c5c3b3df",
+      "version": "0.1.0",
+      "version_source": "top_level.policy_version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json",
+      "exists": true,
+      "bytes": 20646,
+      "sha256": "c91351814a084cffd020c0f6890bca88fb6550f117e5e85c79516294899d1a37",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/skills/a2-step5-runtime-manifest-0.1.0.json",
+      "exists": true,
+      "bytes": 10047,
+      "sha256": "c913973a862711559c841c65af08f8fe07d3ced8dd01e5d40f0e227e92ad3d7d",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/skills/a2-wave1-runtime-manifest-0.1.0.json",
+      "exists": true,
+      "bytes": 3097,
+      "sha256": "c9d4ac2f3ec8b93de8171c89557f18dfd881af58eda3338d52b2cce067cafd2e",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/skills/a2-wave2-runtime-manifest-0.1.0.json",
+      "exists": true,
+      "bytes": 4102,
+      "sha256": "34072acbf10a7c14ec7d32b668d8a307a223b04100f41b3be6e862d42a6959bc",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/skills/a2-wave3-runtime-manifest-0.1.0.json",
+      "exists": true,
+      "bytes": 5536,
+      "sha256": "97bbba04d6029621f88ad91c57e0e9f1c1c9b37226f84465ed9ca9c6548b0849",
+      "version": "0.1.0",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.csv",
+      "exists": true,
+      "bytes": 9263,
+      "sha256": "737fab1faf0b0b4effcdcb4b11a4f7dbc4e433f2e3f00adb8d34ebae1578a656",
+      "version": "0.1.1-draft.1.csv",
+      "version_source": "filename",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.json",
+      "exists": true,
+      "bytes": 23039,
+      "sha256": "ee5fc77aadd4b511ad8681cde7e5714146fc930072e2d71a1c4e2bba952ddab8",
+      "version": "0.1.1-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "business_or_governance_contract",
+      "path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "exists": true,
+      "bytes": 5052,
+      "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "schema",
+      "path": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+      "exists": true,
+      "bytes": 4015,
+      "sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/a2_intake.py",
+      "exists": true,
+      "bytes": 2202,
+      "sha256": "d96c088a0600a6e604bc24901e7c9273efc1c094e0244808dbad6aaf64d12370",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/a2_wave2_contracts.py",
+      "exists": true,
+      "bytes": 2518,
+      "sha256": "b189cd98f47cbe7b4e47bc95ba5aee0b6afb9600436bec7bb8f93ccc98e28b7c",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/a2_wave3_contracts.py",
+      "exists": true,
+      "bytes": 1551,
+      "sha256": "3b183d40c756127df60f6f96c3a7db473a07f685051e5f481f22a072d9e02a9b",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/build_a2_gap_plan.py",
+      "exists": true,
+      "bytes": 14880,
+      "sha256": "4abcfdfaa996f8ffa381e50fc9c2727a84009c532d3d65619ee27d77a4bb3012",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/build_and_validate_a2_handoff.py",
+      "exists": true,
+      "bytes": 4104,
+      "sha256": "ba6182fba48b7a779e013e3b0a4cb31aff33e5709089a62b32f19050738c9394",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/build_and_validate_a2_twenty_review.py",
+      "exists": true,
+      "bytes": 2975,
+      "sha256": "25f52864d7526dbb95a18a531c51fe9f380ac4b99e486e6fbff73cd850882cd5",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/build_step9_preflight.py",
+      "exists": true,
+      "bytes": 16732,
+      "sha256": "48ade198103e3629a4bd1b369e458e44b2bc12ca816e65ccb03e5836ebc531d4",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/build_step9_rc_foundation_manifest.py",
+      "exists": true,
+      "bytes": 5367,
+      "sha256": "3a37b42a918ea671ae6ac11dd5f2345e1bd79020a95d9649fecb36316aa6709d",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/build_step9c_delivery_package.py",
+      "exists": true,
+      "bytes": 20159,
+      "sha256": "5080aa644c484cb2e628efc43be0f430a16a52a01b8052077d1cd917a76b1879",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/build_step9d_safe_archive.py",
+      "exists": true,
+      "bytes": 5316,
+      "sha256": "935405a033be9531c18c1e3e1a96c7feac0f31043ef650fa3787b64798df74d3",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/classify_official_site_social_link.py",
+      "exists": true,
+      "bytes": 6219,
+      "sha256": "3f1cf0df3b86eb5d2ac0ac29633315a2f3d379809f3e5409c4f5fcd49aeb1211",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/create_a2_revision.py",
+      "exists": true,
+      "bytes": 3113,
+      "sha256": "6c5c4c8903efb7f2b9df079e5929299629dd6c7ba6d1ec9966eb2f94fba40a2c",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "exists": true,
+      "bytes": 4066,
+      "sha256": "12ea14764c1e5e1bf2e9ae06e8344c52b1ad6db79fa9db5b159af4f47f2b30c4",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "exists": true,
+      "bytes": 5267,
+      "sha256": "a684ca81e108c20632b1273ef957876c7ede028533d14a07c650f59856a76ba7",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/evaluate_a2_minimum_package.py",
+      "exists": true,
+      "bytes": 5664,
+      "sha256": "442a0546d2967d9e9b39b6847513192c2c474c3f8871dc7e9f470bd1455a3a14",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/evaluate_a2_protected_field_action.py",
+      "exists": true,
+      "bytes": 4580,
+      "sha256": "7aee880d68e1109db012393b374b84752b780d80b19926d12a5d769165eb12e5",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/initialize_a2_record.py",
+      "exists": true,
+      "bytes": 16942,
+      "sha256": "2a70a1f12648c655092837b2793ab4f5d6fb40deae89c3106b4e6b747a1741e7",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/normalise_and_resolve_a2_entities.py",
+      "exists": true,
+      "bytes": 7359,
+      "sha256": "06bbeafd438d8021469ce45273cddff6bbf78004f3c456950bc260e366238bed",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "exists": true,
+      "bytes": 17906,
+      "sha256": "d943b9c3b9e9bbbdd4433d726ec3669b803f656f9c20d33d75ca2fc409daf333",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/preflight_a2_source_action.py",
+      "exists": true,
+      "bytes": 12588,
+      "sha256": "8310f9dde39577ca6fd673b0454f804742a6ce8341a8aa7f4a15fa6fb3798343",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/render_a2_review_views.py",
+      "exists": true,
+      "bytes": 29820,
+      "sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/render_and_validate_a2_review_package.py",
+      "exists": true,
+      "bytes": 1805,
+      "sha256": "ccf329a893dec19a32b9e4119fce70620ef76a10673b5ce397bb440992758680",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_a2_no_integration_workflow.py",
+      "exists": true,
+      "bytes": 7855,
+      "sha256": "967fbfc51bd3a363ffe8c4ad51f25a7200362d5cdf180005222c307b9bd7de8a",
+      "version": "0.1.0",
+      "version_source": "step5_runtime_manifest",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step1c_tests.py",
+      "exists": true,
+      "bytes": 6881,
+      "sha256": "926bcdc186ac879115bbc46d9b06da6aa5853e1b4bb75928cb4aab01a0f62b4e",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step2e_tests.py",
+      "exists": true,
+      "bytes": 7668,
+      "sha256": "49a93c3935156b626167cb5b3c0b101eb1b9d358cf1cba4b4fe55c5f329b5704",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step2f_tests.py",
+      "exists": true,
+      "bytes": 15242,
+      "sha256": "65760859c4e510a9a7e67e22c132e304c208a18a877987b6c60ddf12914bf2b9",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step2g_tests.py",
+      "exists": true,
+      "bytes": 21183,
+      "sha256": "a9300fe06c2564fd4df6dd89fc0155a6612bbe8a5978f71a79d905b03f73e2ec",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step3b_tests.py",
+      "exists": true,
+      "bytes": 18865,
+      "sha256": "a71a595b07ea2c2e30a87241f3a6f54dc678dab4c83f9b87d1b0b5722d32d82c",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step3d_tests.py",
+      "exists": true,
+      "bytes": 17259,
+      "sha256": "cfe43e154071ff69f2e4dbcccd7c5a2463d0b3de31ca6a07f2e7bc954346338a",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step3e_tests.py",
+      "exists": true,
+      "bytes": 14485,
+      "sha256": "55ec2cc580994987f9a0472e02a332def0a19cf504e925976afe2a9134c1b94c",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step3f_tests.py",
+      "exists": true,
+      "bytes": 14474,
+      "sha256": "202a60d136373179fbbe2b76899e7c4c03cf9dd067cf8be8bb70d654eddcdd53",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/run_step9b_offline_regression.py",
+      "exists": true,
+      "bytes": 9972,
+      "sha256": "0a78c0a9794b7aecb533cd67d5ad3e3539c601d8f8440371fdb5ad27e0790d30",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_a1_to_a2_handoff.py",
+      "exists": true,
+      "bytes": 15207,
+      "sha256": "7b0fd8154f472349c87c53310dcdd03af5f9a751528d5c8884a04d203dc007c4",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_a2_enrichment_record.py",
+      "exists": true,
+      "bytes": 52569,
+      "sha256": "02acd1aa345dc69c2b990ef4aa77ab066cb078a695f3d09e34a31938d1ed5fe2",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_official_site_social_profile_url_capture.py",
+      "exists": true,
+      "bytes": 25719,
+      "sha256": "71990bd285b7acb432db20364cc1cb4e4e05a052f480f5a529daceac0af76c15",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step2b_artifacts.py",
+      "exists": true,
+      "bytes": 13862,
+      "sha256": "ec49c95888ce4e99c0844234cc3051ea3d6d1d45f25aa99cc84b2e4761ff7497",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step2c_artifacts.py",
+      "exists": true,
+      "bytes": 19031,
+      "sha256": "1ecdd27a1c7f1866fa1dc7541e770b92370ecc62c64c27c8898a4b3bbb53f615",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step2d_schema.py",
+      "exists": true,
+      "bytes": 16711,
+      "sha256": "ebb8befafc100d9908faa01fba47b88b1158b2e2b5031b79926203f5efc38f8c",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step2h_review_views.py",
+      "exists": true,
+      "bytes": 27231,
+      "sha256": "7f4a53444236f580a9f48014d5c49e9c1f0e5ac7d51e70321e52b742d8bf66af",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step2i_promotion.py",
+      "exists": true,
+      "bytes": 15820,
+      "sha256": "d9fda002703fbdcc9810334545c3a8a013c24d52d3f92f1fff7ef3be09fd251b",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step3a_business_field_catalogue.py",
+      "exists": true,
+      "bytes": 28085,
+      "sha256": "969b8b5a32e52bf6db3c0a6b7cfc5db84426ed135af7041fe49616887a6ac0d7",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step3c_source_register.py",
+      "exists": true,
+      "bytes": 18274,
+      "sha256": "b8f3b34a1be2e6874dec8e76b938d8004df8f2b498458abe2e630e1ad0d93a73",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step3g_hubspot_mapping.py",
+      "exists": true,
+      "bytes": 10667,
+      "sha256": "5b700d124f623a2231957f2580c1bc19a2f2bd5c1a1c4bff69c3f3e2e45301d9",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step3h_twenty_review.py",
+      "exists": true,
+      "bytes": 8766,
+      "sha256": "83f0e65247622e4dc49583e5803d42e8ca991a4f111d74d133f5708ee42eefa7",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step4_final_soul.py",
+      "exists": true,
+      "bytes": 7909,
+      "sha256": "1cc42f8f8853c3bcce4bf769c8ab135b2e9b11f003590614bf5a44da8c84a428",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5a_skill_architecture.py",
+      "exists": true,
+      "bytes": 12931,
+      "sha256": "3caf3e2b7e868768c3dde9feab5c2fc46c6b825eaa7d04bda9ad4ee3689bd555",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5b_wave1.py",
+      "exists": true,
+      "bytes": 11797,
+      "sha256": "13cf0f9d673e10fc639e114326b834a4d092c6845dbc9a7020de300a5504231d",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5b_wave1_promotion.py",
+      "exists": true,
+      "bytes": 6913,
+      "sha256": "0ee346b7f655435a3662343e12e60ee1a51edf7c745ba84b2557a4465a82d57d",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5c_wave2.py",
+      "exists": true,
+      "bytes": 22549,
+      "sha256": "704760dc692e3cb2af33b6f54b2e065e58956e6f6bf6cc8e86e4c145ce218af9",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5c_wave2_promotion.py",
+      "exists": true,
+      "bytes": 12606,
+      "sha256": "eefd08439c249388dddfc780734a079ee5a1388e2e03113116ce7c5c94ebf659",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5d_wave3.py",
+      "exists": true,
+      "bytes": 12712,
+      "sha256": "7ee3b78342b9c440d96a34c5673d74a940d4468f5b714c08771bbd43b7d41ca7",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5d_wave3_promotion.py",
+      "exists": true,
+      "bytes": 8472,
+      "sha256": "a1b37935195b5d617aa2cf79b725c8e3d9890fb5f9222f105e5c6f4b9bf3dd62",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5e_operational_regression.py",
+      "exists": true,
+      "bytes": 10923,
+      "sha256": "d2dc4d533eafebb6e41702a7879cd63b7a83e3286db078f2f4e9ffe78fc8359a",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step5e_promotion.py",
+      "exists": true,
+      "bytes": 5025,
+      "sha256": "8190bbef40d2f8d340f59fb44c705e5152994d3ee9e7ba033543e13a0d6c1420",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step6_gateway_smoke.py",
+      "exists": true,
+      "bytes": 7998,
+      "sha256": "4a486a7322c911b580146cd292d8c6ea33e8efc5d49d4103995575c4e00565d9",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step6_promotion.py",
+      "exists": true,
+      "bytes": 5549,
+      "sha256": "5d2f347ca5c37427ff2520931b188ecf4ad5e9c57004b7663438a27f6a7076ef",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step6_runtime_policy.py",
+      "exists": true,
+      "bytes": 10009,
+      "sha256": "9e4cfdfcc8b29d2bdb040586f70ad86f62d107ad6b95c93b7f9804e2f7c58b09",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step7_promotion.py",
+      "exists": true,
+      "bytes": 4458,
+      "sha256": "718e72a35b4807b14ab1f444b774f915e8a761cfe79d345e40360bbbe4aaf073",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step7_synthetic_acceptance.py",
+      "exists": true,
+      "bytes": 7295,
+      "sha256": "74c45e92dc206ec1a56e44f0db2a09d6b8c8d0d28dc2bc79a56987a0f405fdb1",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step8_final_closure.py",
+      "exists": true,
+      "bytes": 5160,
+      "sha256": "8fd9ae7ab458fc4531d227df4eb2e3f8aa918ecf4d9635797b0f9e45125fbe9b",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step8_jonabell_stage1.py",
+      "exists": true,
+      "bytes": 5713,
+      "sha256": "c21a11bd0ac17d3f4458dcaf2dbf781250ea3dba599c153cada090cc0553523b",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step8_readiness.py",
+      "exists": true,
+      "bytes": 6662,
+      "sha256": "ac9837a8380bb4586e309a27aa9fe4e483bcba78827ba06feac039966c522503",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step8_rood_riddle_behavioral_replay.py",
+      "exists": true,
+      "bytes": 4853,
+      "sha256": "0b6b998812710478b6e25812c102641a3eae3871126b37b2cf599b348bce7b18",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step8_rood_riddle_stage1.py",
+      "exists": true,
+      "bytes": 6412,
+      "sha256": "1512bf77d16e9464527d3fccd727545ce308535ea794fbc587b0fec0f34a1f65",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step9a_correction_propagation.py",
+      "exists": true,
+      "bytes": 9195,
+      "sha256": "8e2813d31326082f2d02bd750021b06890d5084fb9f85071c50fff2f8b8f29da",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "operator_or_validator",
+      "path": "scripts/validate_step9d_safe_archive.py",
+      "exists": true,
+      "bytes": 7177,
+      "sha256": "8900a41263e51e5d8d93c881d370f8e5e4bb0388535ebf5fc21793b6a85a1f1c",
+      "version": "1.0.0-rc.1",
+      "version_source": "step9_validation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "exists": true,
+      "bytes": 2477,
+      "sha256": "a48c31bfad407c60959e9030ae5ba5eaa63248a33f71feb9ae78b2af0decf821",
+      "version": "0.1.1-rc.1",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-data-quality-and-review-readiness/evals/evals.json",
+      "exists": true,
+      "bytes": 550,
+      "sha256": "eb9a71643994387130a15a4aba1a3671ebd5c6acc62a878459eef6031b2a6662",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "exists": true,
+      "bytes": 2453,
+      "sha256": "d978d067687d28190a9dd681b5d47c7c9bdc0392e90d64fb49955368c148be63",
+      "version": "0.1.0",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-duplicate-and-eligibility-review/evals/evals.json",
+      "exists": true,
+      "bytes": 871,
+      "sha256": "68bcebde79fa62713a377ca14c6a2bf5093cbce44072aa4dea533ddc69707dc6",
+      "version": "0.1.0",
+      "version_source": "owner_skill:a2-duplicate-and-eligibility-review",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "exists": true,
+      "bytes": 2630,
+      "sha256": "8ea85add0a0d1d86fe2b96026405e1671bdd96901da94238e40bae8cc98373a6",
+      "version": "0.1.0",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-entity-resolution-and-normalisation/evals/evals.json",
+      "exists": true,
+      "bytes": 844,
+      "sha256": "fb8c6c74fdbb414a974f73996af9bc027ce0921461b75f46b68483109fcec864",
+      "version": "0.1.0",
+      "version_source": "owner_skill:a2-entity-resolution-and-normalisation",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "exists": true,
+      "bytes": 2105,
+      "sha256": "abce4d5742a2b5f8e4832c32c53b372f79cb7b1afb116f8d45a989371efad52f",
+      "version": "0.1.0",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-evidence-confidence-and-freshness/evals/evals.json",
+      "exists": true,
+      "bytes": 568,
+      "sha256": "3ebbf7faa2bb0e431ebb70fca3fb301d01050a934aa7e9c734fe69ce0189377b",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-field-verification/SKILL.md",
+      "exists": true,
+      "bytes": 2888,
+      "sha256": "8f0179193f718aa1950561b0a4150063d2b9a4833a25cf564d0265b02e0e2f22",
+      "version": "0.1.0",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-field-verification/evals/evals.json",
+      "exists": true,
+      "bytes": 973,
+      "sha256": "10da6c924e62b422a04a569865861a45dcbf692d46dc1e4b9a430377a5c38f90",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-field-verification/references/contact-verification.md",
+      "exists": true,
+      "bytes": 876,
+      "sha256": "090b87f625f598d21057a6ea18a8b88432ea22cad639a7906af330a2d87707a5",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-field-verification/references/equine-business-verification.md",
+      "exists": true,
+      "bytes": 814,
+      "sha256": "c26149ba97ec20bd29cafd6539347859128ed2298a8a083877fdaa6778e03502",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-field-verification/references/professional-verification.md",
+      "exists": true,
+      "bytes": 783,
+      "sha256": "c2306cf263041f7c37e8d040270ed586e82d8bf588e241e1006a70dabffda06a",
+      "version": "1.0.0",
+      "version_source": "active_foundation_bundle",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "exists": true,
+      "bytes": 3350,
+      "sha256": "6ab66885e8334439a2063afd641fdada9d6a59a939b17a7e992653512720cf72",
+      "version": "0.1.1-rc.1",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/evals/evals.json",
+      "exists": true,
+      "bytes": 931,
+      "sha256": "b27f0966fa036707ec9f8c1f5077ac63b7923596fd39fe1fe591c18029e33d9b",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "exists": true,
+      "bytes": 3098,
+      "sha256": "cf7cdec99a61b9206e4560ab9f7e551b9cc0a162b7dcff7245dbc9742b969812",
+      "version": "0.1.0",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-handoff-intake-and-initialisation/evals/evals.json",
+      "exists": true,
+      "bytes": 1161,
+      "sha256": "d03c9488cfa0aa74a4b7e21edd39403a7b8824812936f796f1c43e05c6e33377",
+      "version": "0.1.0",
+      "version_source": "owner_skill:a2-handoff-intake-and-initialisation",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "exists": true,
+      "bytes": 3422,
+      "sha256": "bf5c1e969646f9e0800df42f0159cf2c033f91a902b2b4a75f4916e622ef69ea",
+      "version": "0.1.0",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-permitted-enrichment-research/evals/evals.json",
+      "exists": true,
+      "bytes": 1040,
+      "sha256": "9dc3401aee35523e76c95a3eddf7aa690619ba0a7eba7408ff2ce36c9cb22514",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "exists": true,
+      "bytes": 2119,
+      "sha256": "ab64cc4477de052464572add30f405de4418a9acf6cbb0fed4fc0fb3beaec4a8",
+      "version": "0.1.0",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-protected-field-conflict-resolution/evals/evals.json",
+      "exists": true,
+      "bytes": 653,
+      "sha256": "e6da52ca3fb8fa70ea687fd48db080e1bf98161484a7559ddcf42efd908de35b",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "exists": true,
+      "bytes": 3496,
+      "sha256": "aa6bf9ceffb773e50e5837b4c1294c89181cc60932d85a64fb7f821f10350c80",
+      "version": "0.1.1-rc.1",
+      "version_source": "skill_body",
+      "freeze_status": "candidate"
+    },
+    {
+      "category": "skill",
+      "path": "skills/a2-review-package-and-governed-handoffs/evals/evals.json",
+      "exists": true,
+      "bytes": 592,
+      "sha256": "35e1ed14a5e97c04411332b54dbc7671528be8fd1b03edd49e63bca7772fcbfb",
+      "version": "0.1.0-draft.1",
+      "version_source": "top_level.version",
+      "freeze_status": "candidate"
+    }
+  ],
+  "counts": {
+    "total": 130,
+    "skills": 10,
+    "operators_and_validators": 66,
+    "missing": 0,
+    "unversioned": 0
+  },
+  "missing_paths": [],
+  "unversioned_paths": [],
+  "external_actions": 0
+}

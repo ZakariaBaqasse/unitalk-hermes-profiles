@@ -1,0 +1,77 @@
+{
+  "version": "0.1.0-draft.1",
+  "cases": [
+    {
+      "name": "farrier_named_email_ready",
+      "fixture": "farrier_named_email_ready.json",
+      "expected_package_status": "review_ready",
+      "expected_workflow_recommendation": "review_required"
+    },
+    {
+      "name": "farrier_named_phone_ready",
+      "fixture": "farrier_named_phone_ready.json",
+      "expected_package_status": "review_ready",
+      "expected_workflow_recommendation": "review_required"
+    },
+    {
+      "name": "farrier_general_fallback_ready",
+      "fixture": "farrier_general_fallback_ready.json",
+      "expected_package_status": "review_ready",
+      "expected_workflow_recommendation": "review_required"
+    },
+    {
+      "name": "horse_owner_named_ready_without_horse_count",
+      "fixture": "horse_owner_named_ready_without_horse_count.json",
+      "expected_package_status": "review_ready",
+      "expected_workflow_recommendation": "review_required"
+    },
+    {
+      "name": "horse_owner_general_fallback_ready",
+      "fixture": "horse_owner_general_fallback_ready.json",
+      "expected_package_status": "review_ready",
+      "expected_workflow_recommendation": "review_required"
+    },
+    {
+      "name": "farrier_missing_service_area",
+      "fixture": "farrier_missing_service_area.json",
+      "expected_package_status": "incomplete",
+      "expected_workflow_recommendation": "enrichment_in_progress"
+    },
+    {
+      "name": "farrier_exhausted_missing_service_area",
+      "fixture": "farrier_exhausted_missing_service_area.json",
+      "expected_package_status": "incomplete",
+      "expected_workflow_recommendation": "held"
+    },
+    {
+      "name": "farrier_missing_all_contact_channels",
+      "fixture": "farrier_missing_all_contact_channels.json",
+      "expected_package_status": "incomplete",
+      "expected_workflow_recommendation": "enrichment_in_progress"
+    },
+    {
+      "name": "horse_owner_optional_fields_missing",
+      "fixture": "horse_owner_optional_fields_missing.json",
+      "expected_package_status": "review_ready",
+      "expected_workflow_recommendation": "review_required"
+    },
+    {
+      "name": "horse_owner_material_conflict",
+      "fixture": "horse_owner_material_conflict.json",
+      "expected_package_status": "needs_review",
+      "expected_workflow_recommendation": "held"
+    },
+    {
+      "name": "general_fallback_without_marker",
+      "fixture": "general_fallback_without_marker.json",
+      "expected_package_status": "incomplete",
+      "expected_workflow_recommendation": "enrichment_in_progress"
+    },
+    {
+      "name": "invalid_unknown_segment",
+      "fixture": "invalid_unknown_segment.json",
+      "expected_package_status": "invalid",
+      "expected_workflow_recommendation": "processing_failed"
+    }
+  ]
+}

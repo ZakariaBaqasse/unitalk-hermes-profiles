@@ -1,0 +1,35 @@
+{
+  "record_type": "step8_real_handoff_package",
+  "status": "valid_ready_for_local_a2_intake",
+  "source_package": "/opt/data/profiles/equinet-a1-icp-discovery/evaluations/step9/final/exports/step9-real-prospects.json",
+  "source_package_sha256": "52478bb32921807bfe12fb5fa7bea880643ad6177be665fbfe5e8c81932b2fd9",
+  "approval": {
+    "reviewer": "Séverine",
+    "approved_at": "2026-08-30T10:42:29Z",
+    "scope": "bounded_a2_pilot_for_two_named_candidates"
+  },
+  "handoffs": [
+    {
+      "candidate_id": "A1-DARLEY-JONABELL-001",
+      "handoff_id": "A1A2-PILOT-DARLEY-JONABELL-001",
+      "path": "evaluations/step8/handoffs/A1-DARLEY-JONABELL-001.handoff.json",
+      "sha256": "9c415ceeacec3086f1ccd7bcbd330fd6537cb40649c3fe92599d51744fd759ea",
+      "valid": true,
+      "eligibility": "eligible",
+      "errors": []
+    },
+    {
+      "candidate_id": "A1-RR-PODIATRY-001",
+      "handoff_id": "A1A2-PILOT-RR-PODIATRY-001",
+      "path": "evaluations/step8/handoffs/A1-RR-PODIATRY-001.handoff.json",
+      "sha256": "408957b931e2086d2255b1ad538912833c9de585697ddeb1437798086ba52030",
+      "valid": true,
+      "eligibility": "eligible",
+      "errors": []
+    }
+  ],
+  "hubspot_available": false,
+  "outreach_authorized": false,
+  "paid_provider_authorized": false,
+  "external_actions": 0
+}

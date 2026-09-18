@@ -1,0 +1,25 @@
+{
+  "options": [
+    {
+      "id": "33954e17-edb4-4538-a795-67158fa672ff",
+      "color": "green",
+      "label": "Current at Company",
+      "value": "CURRENT_AT_COMPANY",
+      "position": 0
+    },
+    {
+      "id": "79fff76e-510e-4ec4-a3ae-3a2a97403598",
+      "color": "jade",
+      "label": "Not Current at Company",
+      "value": "NOT_CURRENT_AT_COMPANY",
+      "position": 1
+    },
+    {
+      "id": "998e86ad-56ba-446e-af69-9cf0d644d614",
+      "color": "mint",
+      "label": "Unverified",
+      "value": "UNVERIFIED",
+      "position": 2
+    }
+  ]
+}

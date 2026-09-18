@@ -1,0 +1,60 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2E",
+  "validator": "scripts/validate_a2_enrichment_record.py",
+  "validator_version": "0.1.0",
+  "validator_sha256": "02acd1aa345dc69c2b990ef4aa77ab066cb078a695f3d09e34a31938d1ed5fe2",
+  "validator_manifest": "foundations/contracts/canonical/a2-cross-field-validator.manifest.json",
+  "validator_manifest_sha256": "395d6da0857b0827f20bb7899bb5bad383ab39eab3f6dd35f443993964c9e851",
+  "canonical_schema_version": "1.0.0-draft.2",
+  "canonical_schema_sha256": "f3549e91487571f44ef59cf92e85354af450bbaecd426895548d2b7052f784ee",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-26T10:00:06Z",
+  "approved_decisions": {
+    "E1": "Run strict JSON Schema validation before any cross-field checks.",
+    "E2": "Require handoff wrappers, hashes, candidate IDs, system references and audit correlation IDs to match their authoritative embedded values.",
+    "E3": "Require unique identifiers across all repeatable canonical collections.",
+    "E4": "Require all cross-record evidence and entity references to resolve.",
+    "E5": "Enforce field baseline, observation, proposal, review and application consistency.",
+    "E6": "Validate the separate Field Catalogue only when it is supplied.",
+    "E7": "Enforce data-quality and duplicate/eligibility consistency.",
+    "E8": "Validate requalification linkage while preserving A1-only numeric scoring.",
+    "E9": "Require explicit human approval and write authority before application.",
+    "E10": "Validate state transitions, revision lineage and append-only history.",
+    "E11": "Enforce synthetic/real separation and no-integration ceilings.",
+    "E12": "Reconcile available audit usage and never repair or execute an invalid record.",
+    "E13": "Approve corrective schema 1.0.0-draft.2 and Step 2C lifecycle clarification 0.1.1."
+  },
+  "technical_validation": {
+    "valid_cases": "7/7 pass",
+    "negative_cases": "52/52 pass",
+    "total_cases": "59/59 pass",
+    "pinned_dependencies": "15/15 pass",
+    "independent_adversarial_findings": "resolved and covered by regression",
+    "prior_foundation_regressions": "pass",
+    "language_audit": "pass"
+  },
+  "not_approved": [
+    "source activation",
+    "provider account or spend",
+    "A1/A2 production integration",
+    "HubSpot or Twenty access",
+    "n8n execution",
+    "CRM write",
+    "outreach",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2F — Fixtures and Regression Tests",
+  "profile_sync": {
+    "temporary_soul_updated": true,
+    "updated_at": "2026-08-26T10:00:06Z",
+    "status": "complete"
+  }
+}

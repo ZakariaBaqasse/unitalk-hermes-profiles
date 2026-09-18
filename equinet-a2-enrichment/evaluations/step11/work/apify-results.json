@@ -1,0 +1,283 @@
+{
+  "actor_id": "apify~facebook-page-contact-information",
+  "append_candidates": [
+    {
+      "candidate_id": "apify-fb-0b61ce709d0d04366cb3bb6f",
+      "company_id": "company-trigger",
+      "default_dataset_id": "dataset-trigger",
+      "entity_type": "Company",
+      "field_key": "company.company_email",
+      "official_site_evidence_id": "web-bluegrass-facebook",
+      "operation": "append_candidate",
+      "outreach_authorized": false,
+      "provider_output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+      "provider_run_id": "run-trigger",
+      "source_id": "apify_facebook_page_contact_information",
+      "source_url": "https://www.facebook.com/BluegrassFarm/",
+      "value": "contact@bluegrass.example",
+      "verification_status": "present_unverified",
+      "write_authorized": false
+    },
+    {
+      "candidate_id": "apify-fb-ad700ff385b4c2f49639e98b",
+      "company_id": "company-trigger",
+      "default_dataset_id": "dataset-trigger",
+      "entity_type": "Company",
+      "field_key": "company.company_phone",
+      "official_site_evidence_id": "web-bluegrass-facebook",
+      "operation": "append_candidate",
+      "outreach_authorized": false,
+      "provider_output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+      "provider_run_id": "run-trigger",
+      "source_id": "apify_facebook_page_contact_information",
+      "source_url": "https://www.facebook.com/BluegrassFarm/",
+      "value": "+1 555 010 1000",
+      "verification_status": "present_unverified",
+      "write_authorized": false
+    }
+  ],
+  "artifact_sha256": "eb9c9899abb59d9b1b828898a3a11968e23d504c5e85fb550207a96d9e4bf3e6",
+  "audit": {
+    "provider_artifact_sha256": "9936bba16549c2f37bb9d4e096108edd9b9eaf3df31c46ab6836a7b7568e2384",
+    "validation_input_sha256": "815affaf63b894b99726f799ca3e0f40f6d87383cb311f30b0be64ccda46ecda",
+    "validation_output_sha256": "5b2feea583fceda54b926684df712a01249931aef62180804df4e06cd2876ce5",
+    "validator_sha256": "ef3e0f619880e973d5c4415181f2f50b13cb21407291f2d6825bf3b5de6a99ee"
+  },
+  "candidate_count": 2,
+  "companies": [
+    {
+      "append_candidates": [
+        {
+          "candidate_id": "apify-fb-0b61ce709d0d04366cb3bb6f",
+          "company_id": "company-trigger",
+          "default_dataset_id": "dataset-trigger",
+          "entity_type": "Company",
+          "field_key": "company.company_email",
+          "official_site_evidence_id": "web-bluegrass-facebook",
+          "operation": "append_candidate",
+          "outreach_authorized": false,
+          "provider_output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+          "provider_run_id": "run-trigger",
+          "source_id": "apify_facebook_page_contact_information",
+          "source_url": "https://www.facebook.com/BluegrassFarm/",
+          "value": "contact@bluegrass.example",
+          "verification_status": "present_unverified",
+          "write_authorized": false
+        },
+        {
+          "candidate_id": "apify-fb-ad700ff385b4c2f49639e98b",
+          "company_id": "company-trigger",
+          "default_dataset_id": "dataset-trigger",
+          "entity_type": "Company",
+          "field_key": "company.company_phone",
+          "official_site_evidence_id": "web-bluegrass-facebook",
+          "operation": "append_candidate",
+          "outreach_authorized": false,
+          "provider_output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+          "provider_run_id": "run-trigger",
+          "source_id": "apify_facebook_page_contact_information",
+          "source_url": "https://www.facebook.com/BluegrassFarm/",
+          "value": "+1 555 010 1000",
+          "verification_status": "present_unverified",
+          "write_authorized": false
+        }
+      ],
+      "audit": {
+        "actor_id": "apify~facebook-page-contact-information",
+        "build_id": "build-official-1",
+        "build_sha256": "c7beed643d02fc4b388a47a44bfb68540df8b848a1ce8509e070f65522c7b6ba",
+        "cost": {
+          "usage": {
+            "ACTOR_COMPUTE_UNITS": 0.001
+          },
+          "usageTotalUsd": 0.0066
+        },
+        "dataset_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+        "default_dataset_id": "dataset-trigger",
+        "input_sha256": "4f0b44b92ee580155ae6f3db1c4b779ece2cd0c73cc4c7ec6e2e04d2f5ef3ac5",
+        "operation_counts": {
+          "actor_run_posts": 1,
+          "dataset_gets": 1,
+          "status_polls": 1
+        },
+        "output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+        "provider_run_id": "run-trigger",
+        "run_response_sha256": "72afe4bd0a9b2e4920498e624cc940c033ba06d7452f5e1c862b62398fce7a23",
+        "start_response_sha256": "686b80fa8616705773b39e0ef18a53dae2adbca725bd14c377f26c71c30e718e",
+        "status_responses_sha256": "f6549f6cdfd0fda6bf429a21d59cb984807865bcfd4bcbffc61d7f5ed0d8fe7c"
+      },
+      "company_candidates": {
+        "email": "contact@bluegrass.example",
+        "phone": "+1 555 010 1000"
+      },
+      "company_id": "company-trigger",
+      "company_name": "Bluegrass Farm LLC",
+      "entity_type": "Company",
+      "errors": [],
+      "facebook_url": "https://www.facebook.com/BluegrassFarm/",
+      "request_id": "apify-facebook-company-trigger",
+      "status": "candidates_ready",
+      "terminal_status": "succeeded"
+    },
+    {
+      "append_candidates": [],
+      "audit": {
+        "actor_id": "apify~facebook-page-contact-information",
+        "build_id": "build-official-1",
+        "build_sha256": "c7beed643d02fc4b388a47a44bfb68540df8b848a1ce8509e070f65522c7b6ba",
+        "cost": {
+          "usageTotalUsd": 0.0066
+        },
+        "dataset_sha256": "d40463d7e3b9e9265e183250556f2ed17e8f130b37546b2a5937f0339cb21a62",
+        "default_dataset_id": "dataset-duplicate",
+        "input_sha256": "3c58fc438cc5b31ad3df9eb518b1742b870b4414950fbe0a557ac5db50220055",
+        "operation_counts": {
+          "actor_run_posts": 1,
+          "dataset_gets": 1,
+          "status_polls": 1
+        },
+        "output_sha256": "d40463d7e3b9e9265e183250556f2ed17e8f130b37546b2a5937f0339cb21a62",
+        "provider_run_id": "run-duplicate",
+        "run_response_sha256": "d2d1d2f79fb44159119cc84c0b504ec368252c3956d65ee106b222db47f2bac7",
+        "start_response_sha256": "c9c8a9cd2e8130a02c8490f935298196971a48026d02e0e8ed5d1468f6debeaf",
+        "status_responses_sha256": "d3cc1e780e48ccfc4c1e325be5d4ab0aecce52fb95c534d30db4dd33153f1c7a"
+      },
+      "company_candidates": {
+        "email": null,
+        "phone": null
+      },
+      "company_id": "company-duplicate",
+      "company_name": "Existing Email Farm",
+      "entity_type": "Company",
+      "errors": [],
+      "facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+      "request_id": "apify-facebook-company-duplicate",
+      "status": "no_change",
+      "terminal_status": "succeeded"
+    }
+  ],
+  "company_count": 2,
+  "controls": {
+    "append_only": true,
+    "company_only": true,
+    "external_calls": 0,
+    "writes": 0
+  },
+  "kind": "a2-apify-official-facebook-company-candidates",
+  "rejection_count": 0,
+  "results": [
+    {
+      "append_candidates": [
+        {
+          "candidate_id": "apify-fb-0b61ce709d0d04366cb3bb6f",
+          "company_id": "company-trigger",
+          "default_dataset_id": "dataset-trigger",
+          "entity_type": "Company",
+          "field_key": "company.company_email",
+          "official_site_evidence_id": "web-bluegrass-facebook",
+          "operation": "append_candidate",
+          "outreach_authorized": false,
+          "provider_output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+          "provider_run_id": "run-trigger",
+          "source_id": "apify_facebook_page_contact_information",
+          "source_url": "https://www.facebook.com/BluegrassFarm/",
+          "value": "contact@bluegrass.example",
+          "verification_status": "present_unverified",
+          "write_authorized": false
+        },
+        {
+          "candidate_id": "apify-fb-ad700ff385b4c2f49639e98b",
+          "company_id": "company-trigger",
+          "default_dataset_id": "dataset-trigger",
+          "entity_type": "Company",
+          "field_key": "company.company_phone",
+          "official_site_evidence_id": "web-bluegrass-facebook",
+          "operation": "append_candidate",
+          "outreach_authorized": false,
+          "provider_output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+          "provider_run_id": "run-trigger",
+          "source_id": "apify_facebook_page_contact_information",
+          "source_url": "https://www.facebook.com/BluegrassFarm/",
+          "value": "+1 555 010 1000",
+          "verification_status": "present_unverified",
+          "write_authorized": false
+        }
+      ],
+      "audit": {
+        "actor_id": "apify~facebook-page-contact-information",
+        "build_id": "build-official-1",
+        "build_sha256": "c7beed643d02fc4b388a47a44bfb68540df8b848a1ce8509e070f65522c7b6ba",
+        "cost": {
+          "usage": {
+            "ACTOR_COMPUTE_UNITS": 0.001
+          },
+          "usageTotalUsd": 0.0066
+        },
+        "dataset_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+        "default_dataset_id": "dataset-trigger",
+        "input_sha256": "4f0b44b92ee580155ae6f3db1c4b779ece2cd0c73cc4c7ec6e2e04d2f5ef3ac5",
+        "operation_counts": {
+          "actor_run_posts": 1,
+          "dataset_gets": 1,
+          "status_polls": 1
+        },
+        "output_sha256": "a7b51ea34189f1b5edca1bce02521d3dd81acdafb6bb9885c8daa2bd25375be8",
+        "provider_run_id": "run-trigger",
+        "run_response_sha256": "72afe4bd0a9b2e4920498e624cc940c033ba06d7452f5e1c862b62398fce7a23",
+        "start_response_sha256": "686b80fa8616705773b39e0ef18a53dae2adbca725bd14c377f26c71c30e718e",
+        "status_responses_sha256": "f6549f6cdfd0fda6bf429a21d59cb984807865bcfd4bcbffc61d7f5ed0d8fe7c"
+      },
+      "company_candidates": {
+        "email": "contact@bluegrass.example",
+        "phone": "+1 555 010 1000"
+      },
+      "company_id": "company-trigger",
+      "company_name": "Bluegrass Farm LLC",
+      "entity_type": "Company",
+      "errors": [],
+      "facebook_url": "https://www.facebook.com/BluegrassFarm/",
+      "request_id": "apify-facebook-company-trigger",
+      "status": "candidates_ready",
+      "terminal_status": "succeeded"
+    },
+    {
+      "append_candidates": [],
+      "audit": {
+        "actor_id": "apify~facebook-page-contact-information",
+        "build_id": "build-official-1",
+        "build_sha256": "c7beed643d02fc4b388a47a44bfb68540df8b848a1ce8509e070f65522c7b6ba",
+        "cost": {
+          "usageTotalUsd": 0.0066
+        },
+        "dataset_sha256": "d40463d7e3b9e9265e183250556f2ed17e8f130b37546b2a5937f0339cb21a62",
+        "default_dataset_id": "dataset-duplicate",
+        "input_sha256": "3c58fc438cc5b31ad3df9eb518b1742b870b4414950fbe0a557ac5db50220055",
+        "operation_counts": {
+          "actor_run_posts": 1,
+          "dataset_gets": 1,
+          "status_polls": 1
+        },
+        "output_sha256": "d40463d7e3b9e9265e183250556f2ed17e8f130b37546b2a5937f0339cb21a62",
+        "provider_run_id": "run-duplicate",
+        "run_response_sha256": "d2d1d2f79fb44159119cc84c0b504ec368252c3956d65ee106b222db47f2bac7",
+        "start_response_sha256": "c9c8a9cd2e8130a02c8490f935298196971a48026d02e0e8ed5d1468f6debeaf",
+        "status_responses_sha256": "d3cc1e780e48ccfc4c1e325be5d4ab0aecce52fb95c534d30db4dd33153f1c7a"
+      },
+      "company_candidates": {
+        "email": null,
+        "phone": null
+      },
+      "company_id": "company-duplicate",
+      "company_name": "Existing Email Farm",
+      "entity_type": "Company",
+      "errors": [],
+      "facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+      "request_id": "apify-facebook-company-duplicate",
+      "status": "no_change",
+      "terminal_status": "succeeded"
+    }
+  ],
+  "run_id": "STEP11-APIFY-TEST",
+  "schema_version": "1.0.0",
+  "status": "valid"
+}

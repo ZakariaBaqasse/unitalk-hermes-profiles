@@ -1,0 +1,99 @@
+{
+  "record_type": "step8_bounded_real_no_integration_pilot_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "8",
+  "decision": "approved_for_step9_evaluation_and_no_integration_freeze",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "accepted_at": "2026-08-30T14:10:45Z",
+  "approved_scope": "Two-candidate bounded real no-integration pilot with stored public-business evidence, no production write and no outreach.",
+  "candidate_decisions": {
+    "A1-DARLEY-JONABELL-001": {
+      "decision": "approved_as_step8_test_result",
+      "canonical_state": "record_approved",
+      "target_role_priority": "secondary"
+    },
+    "A1-RR-PODIATRY-001": {
+      "decision": "held_as_accepted_step8_test_result",
+      "canonical_state": "held",
+      "target_role_priority": "primary",
+      "disciplines": [
+        "all breeds and disciplines"
+      ],
+      "hold_reasons": [
+        "Required professional status is not established.",
+        "Required service area is not established.",
+        "The named-target contact path has no verified named email or phone."
+      ]
+    }
+  },
+  "validation": {
+    "current_status_checks": "11/11 pass",
+    "closure_checks": "8/8 pass",
+    "deepseek_behavioral_replay": "13/13 pass",
+    "language_audit": "1062 files, 0 findings",
+    "temporary_web_disabled": true,
+    "credential_route_present_without_values_recorded": true,
+    "external_actions": 0
+  },
+  "replay_usage": {
+    "input_tokens": 232286,
+    "output_tokens": 2247,
+    "total_tokens": 234533,
+    "api_calls": 9,
+    "model": "deepseek-v4-flash",
+    "provider": "openai-api",
+    "cost_amount": 0.0,
+    "cost_status": "unknown"
+  },
+  "limitations": [
+    "This is Unitalk Step 8 pilot acceptance, not Equinet production acceptance or contractual delivery acceptance.",
+    "The profile remains FOUNDATION CONFIGURED — NOT PILOT-READY until Step 9 freeze is approved and promoted.",
+    "Rood & Riddle remains held until approved evidence or an Equinet-approved exception resolves the minimum-package gaps.",
+    "HubSpot, Twenty, n8n, Apify, outreach and downstream delivery remain unavailable or disabled.",
+    "Replay cost is undetermined; estimated cost 0.0 with cost_status unknown must not be interpreted as free usage."
+  ],
+  "authoritative_artifacts": [
+    {
+      "path": "evaluations/step8/step8-closure-readiness.json",
+      "sha256": "1d37d9205cd24c03240e1dc1d1fab1668db13b59bad49c695f85cb18f09063c5"
+    },
+    {
+      "path": "evaluations/step8/step8-current-status.json",
+      "sha256": "ea72a85016519ad6b0495ca0653b067b6e0a55a0343a13eb4978c9d654b85916"
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/behavioral-replay/validation.json",
+      "sha256": "15fd19d4bb4aecdd56550f6c586874233ba49415dce7a7a4203497664e525df5"
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-decision.json",
+      "sha256": "97dc28ae71ef8c5370f8d93214ff3b9b11244250cdf6e31d0310d46af104f169"
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/final-review-decision.json",
+      "sha256": "8a6e89ee5bc077a6c60e46a4f0af9afcc8345b6b159415a7ff2531a728d60c96"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/language-audit.json",
+      "sha256": "6dd2334f84f15d3e89651990c02032a26e49ea77e33e9dd3e6cbda040daae1d0"
+    },
+    {
+      "path": "SOUL.md",
+      "sha256": "440d7c1fd81034bf3ea5e99d24f6f7f19a568b7fc505f467f601a1dd23a8e723"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "fcf9709b833df9954ff4c2eefcaa71b1ef207270cf16172e32bce8e7ad800dad"
+    },
+    {
+      "path": "evaluations/step8/receipt-scope-correction.json",
+      "sha256": "441fc41bec5cab0a026892040917cc5f10d2901636e0937b53300c7154dc360d"
+    }
+  ],
+  "next_gate": "Step 9 — Evaluation, Improvement and No-Integration Freeze",
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "external_actions": 0
+}

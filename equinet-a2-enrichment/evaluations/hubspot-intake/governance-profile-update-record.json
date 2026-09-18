@@ -1,0 +1,32 @@
+{
+  "record_type": "hubspot_governance_profile_update",
+  "profile": "equinet-a2-enrichment",
+  "recorded_at": "2026-08-25T10:28:44Z",
+  "source": "Confirmed by Séverine from Equinet-provided responses",
+  "object_confirmations": {
+    "creator": "absent",
+    "campaign": "standard_hubspot_object",
+    "custom_objects": ["Complaints", "Sample Requests"]
+  },
+  "governance_confirmations": {
+    "super_admins": ["Tahmineh Goljan", "Faezeh Yazdani", "Lucija Batarelo", "Mustad HubSpot"],
+    "crm_business_owners": ["Tahmineh Goljan", "Lucija Batarelo"],
+    "property_object_workflow_approvers": ["Tahmineh Goljan", "Lucija Batarelo"],
+    "oauth_approvers": ["Tahmineh Goljan", "Faezeh Yazdani", "Lucija Batarelo"]
+  },
+  "profile_changes": {
+    "implementation_contract": "0.1.4",
+    "soul_governance_boundary": "updated",
+    "governance_register": "foundations/hubspot/HUBSPOT-GOVERNANCE-CONFIRMATIONS.json",
+    "human_readable_confirmation": "foundations/hubspot/HUBSPOT-OBJECT-AND-GOVERNANCE-CONFIRMATIONS.md"
+  },
+  "unchanged_boundaries": [
+    "No OAuth connection is active",
+    "No HubSpot write is authorised",
+    "A2 business reviewer and backup remain unconfirmed",
+    "Super Admin status does not approve A2 actions",
+    "Provider and budget approval remain pending",
+    "Pilot and production approval remain pending"
+  ],
+  "next_gate": "Step 2B Field Dictionary and State Model"
+}

@@ -1,0 +1,35 @@
+{
+  "record_type": "step8_rood_riddle_stage1_validation",
+  "status": "accepted_for_canonical_review_build",
+  "checks": {
+    "candidate": true,
+    "required_direct_observations": true,
+    "required_gaps_explicit": true,
+    "no_unexpected_contact_value": true,
+    "contact_form_placeholder_excluded": true,
+    "zero_external_actions": true,
+    "no_external_runtime_calls": true,
+    "role_priority_is_reviewable": true,
+    "minimum_package_incomplete": true,
+    "receipt_hashes": true,
+    "source_content_hashes": true,
+    "audit_file_hashes": true,
+    "execution_identity": true,
+    "usage_file_present": true
+  },
+  "checks_passed": 14,
+  "checks_total": 14,
+  "accepted_field_keys": [
+    "organisation.disciplines",
+    "person.role_title"
+  ],
+  "gap_field_keys": [
+    "organisation.service_area",
+    "person.business_email",
+    "person.business_phone",
+    "person.professional_status"
+  ],
+  "required_corrections": [],
+  "canonical_revision_authorized": true,
+  "external_actions": 0
+}

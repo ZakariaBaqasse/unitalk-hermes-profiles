@@ -1,0 +1,6 @@
+{
+  "status": "error",
+  "error": "TWENTY_BASE_URL and TWENTY_API_KEY are required",
+  "code": "missing_credentials",
+  "external_writes": 0
+}

@@ -1,0 +1,25 @@
+{
+  "record_type": "a2_role_status_semantics_decision",
+  "decision_id": "A2-ROLE-STATUS-SEMANTICS-20260915",
+  "recorded_at": "2026-09-15T14:03:51Z",
+  "decision_source": "authorised_chat_user",
+  "field": "a2RoleStatus",
+  "decision": "replace ambiguous CURRENT, STALE, UNKNOWN values with a minimal three-value model",
+  "values": {
+    "CURRENT_AT_COMPANY": "Reliable current evidence places the Person at the target Company.",
+    "NOT_CURRENT_AT_COMPANY": "Reliable evidence shows the Person is not currently at the target Company. This does not by itself prove prior employment.",
+    "UNVERIFIED": "Current relationship with the target Company could not be verified."
+  },
+  "migration": {
+    "CURRENT": "CURRENT_AT_COMPANY",
+    "STALE": "NOT_CURRENT_AT_COMPANY",
+    "UNKNOWN": "UNVERIFIED"
+  },
+  "cross_field_rules": [
+    "CURRENT_AT_COMPANY requires a2CompanyMatchStatus CONFIRMED",
+    "NOT_CURRENT_AT_COMPANY normally requires a2CompanyMatchStatus MISMATCH",
+    "UNVERIFIED is used with PROBABLE or AMBIGUOUS when current relationship is not established"
+  ],
+  "role_priority_remains_separate": true,
+  "no_live_records_required_migration": true
+}

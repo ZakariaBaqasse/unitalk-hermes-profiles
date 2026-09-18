@@ -1,0 +1,115 @@
+{
+  "manifest_id": "equinet-a2-wave2-runtime",
+  "version": "0.1.0",
+  "status": "approved_local_no_integration",
+  "approved_at": "2026-08-27T13:32:09Z",
+  "approved_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_decisions": [
+    "W2-1",
+    "W2-2",
+    "W2-3",
+    "W2-4",
+    "W2-5",
+    "W2-6",
+    "W2-7",
+    "W2-8",
+    "W2-9",
+    "W2-10"
+  ],
+  "skills": [
+    {
+      "skill_id": "a2-gap-analysis-and-enrichment-planning",
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "sha256": "cafec340031d65a4e480f2aa8080e851ce60581ebf30768e1a97bf92ca5e84bd",
+      "evals_path": "skills/a2-gap-analysis-and-enrichment-planning/evals/evals.json",
+      "evals_sha256": "b27f0966fa036707ec9f8c1f5077ac63b7923596fd39fe1fe591c18029e33d9b",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-permitted-enrichment-research",
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "sha256": "bf5c1e969646f9e0800df42f0159cf2c033f91a902b2b4a75f4916e622ef69ea",
+      "evals_path": "skills/a2-permitted-enrichment-research/evals/evals.json",
+      "evals_sha256": "9dc3401aee35523e76c95a3eddf7aa690619ba0a7eba7408ff2ce36c9cb22514",
+      "status": "approved_local_no_integration"
+    },
+    {
+      "skill_id": "a2-field-verification",
+      "path": "skills/a2-field-verification/SKILL.md",
+      "sha256": "8f0179193f718aa1950561b0a4150063d2b9a4833a25cf564d0265b02e0e2f22",
+      "evals_path": "skills/a2-field-verification/evals/evals.json",
+      "evals_sha256": "10da6c924e62b422a04a569865861a45dcbf692d46dc1e4b9a430377a5c38f90",
+      "status": "approved_local_no_integration"
+    }
+  ],
+  "references": [
+    {
+      "path": "skills/a2-field-verification/references/contact-verification.md",
+      "sha256": "090b87f625f598d21057a6ea18a8b88432ea22cad639a7906af330a2d87707a5"
+    },
+    {
+      "path": "skills/a2-field-verification/references/professional-verification.md",
+      "sha256": "c2306cf263041f7c37e8d040270ed586e82d8bf588e241e1006a70dabffda06a"
+    },
+    {
+      "path": "skills/a2-field-verification/references/equine-business-verification.md",
+      "sha256": "c26149ba97ec20bd29cafd6539347859128ed2298a8a083877fdaa6778e03502"
+    }
+  ],
+  "commands": [
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "sha256": "4abcfdfaa996f8ffa381e50fc9c2727a84009c532d3d65619ee27d77a4bb3012",
+      "status": "active_local_no_integration"
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "sha256": "8310f9dde39577ca6fd673b0454f804742a6ce8341a8aa7f4a15fa6fb3798343",
+      "status": "active_local_no_integration"
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "sha256": "d943b9c3b9e9bbbdd4433d726ec3669b803f656f9c20d33d75ca2fc409daf333",
+      "status": "active_local_no_integration"
+    }
+  ],
+  "supporting_modules": [
+    {
+      "path": "scripts/a2_wave2_contracts.py",
+      "sha256": "b189cd98f47cbe7b4e47bc95ba5aee0b6afb9600436bec7bb8f93ccc98e28b7c",
+      "status": "active_local_no_integration"
+    }
+  ],
+  "validation": {
+    "technical": {
+      "path": "evaluations/step5c/technical-validation.json",
+      "sha256": "1e9cc54141a51993c48c9313132f8f7537ace6dda1dc48adc78330104b99a150",
+      "deterministic_cases": "24/24 pass"
+    },
+    "behavioural": {
+      "path": "evaluations/step5c/behavioural-validation.json",
+      "sha256": "2bccfa3c5d3f2cd332c7490826df907b17b3b18588991ecff25ac8bfd36975d6",
+      "scenarios": "3/3 pass"
+    }
+  },
+  "permissions": {
+    "local_file_processing": true,
+    "synthetic_fixture_processing": true,
+    "web_access": false,
+    "apify": false,
+    "twenty": false,
+    "hubspot_read": false,
+    "hubspot_write": false,
+    "n8n": false,
+    "outreach": false
+  },
+  "limitations": [
+    "Final evidence confidence and freshness are assigned in Wave 3.",
+    "Canonical record mutation is not authorised in Wave 2.",
+    "Provider fixtures do not satisfy live provider activation gates."
+  ],
+  "next_gate": "Step 5D — Wave 3 Decision, Review and Handoffs"
+}

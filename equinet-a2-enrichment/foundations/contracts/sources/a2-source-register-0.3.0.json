@@ -1,0 +1,949 @@
+{
+  "register_id": "equinet-a2-source-register",
+  "version": "0.3.0",
+  "status": "equinet_confirmed_fullenrich_scope_runtime_integration_pending",
+  "profile": "equinet-a2-enrichment",
+  "market_scope": "United States; pilot emphasis inherited from approved A1 handoff",
+  "source_sequence": [
+    "a1_approved_handoff",
+    "hubspot_authoritative_records",
+    "prospect_official_website",
+    "fullenrich_people_search",
+    "fullenrich_people_lookup",
+    "fullenrich_contact_enrichment",
+    "apify_harvestapi_linkedin_profile_search",
+    "apify_harvestapi_email_search",
+    "search_engine_discovery"
+  ],
+  "global_rules": {
+    "a2_is_not_second_discovery_crawl": true,
+    "reuse_a1_evidence_before_new_access": true,
+    "new_access_requires_named_gap_conflict_verification_or_freshness_need": true,
+    "website_check_required_for_each_candidate_when_an_official_site_exists": true,
+    "business_approval_does_not_equal_source_rights_or_runtime_readiness": true,
+    "public_professional_data_does_not_create_outreach_eligibility": true,
+    "no_crm_write": true,
+    "no_outreach": true,
+    "capture_explicit_official_site_professional_social_links": true,
+    "do_not_open_or_extract_social_profiles_without_separate_approval": true,
+    "social_links_do_not_create_consent_outreach_or_buying_influence": true,
+    "equinet_first_party_enrichment_dataset_available": false,
+    "fullenrich_precedes_apify": true,
+    "fullenrich_people_search_default_result_limit": 1,
+    "fullenrich_max_unique_people_returned_and_retained_per_prospect": 2,
+    "fullenrich_personal_email_requested": false,
+    "fullenrich_mobile_phone_permitted": true,
+    "fullenrich_contact_enrichment_selected_contacts_only": true,
+    "apify_fallback_requires_separate_preflight": true
+  },
+  "sources": [
+    {
+      "source_id": "a1_approved_handoff",
+      "name": "Approved A1-to-A2 handoff",
+      "source_type": "internal_structured_handoff",
+      "canonical_url": null,
+      "purpose": "Reuse approved identity, contacts, evidence and limitations.",
+      "business_approval": "approved",
+      "source_rights_preflight": "approved_internal_contract",
+      "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+      "register_status": "approved",
+      "allowed_access_modes": [
+        "structured_read"
+      ],
+      "permitted_fields": [
+        "all approved handoff fields"
+      ],
+      "prohibited_fields": [
+        "mutation of A1 snapshot",
+        "recollection without a named gap"
+      ],
+      "limits": {
+        "max_handoffs_per_record": 1
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Primary starting source for every A2 record."
+      ]
+    },
+    {
+      "source_id": "hubspot_authoritative_records",
+      "name": "HubSpot authoritative records",
+      "source_type": "crm",
+      "canonical_url": "https://www.hubspot.com/",
+      "purpose": "Read authoritative customer, Deal, consent, suppression, owner and lifecycle state.",
+      "business_approval": "approved_system_of_record",
+      "source_rights_preflight": "oauth_and_source_permissions_required",
+      "runtime_readiness": "integration_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "approved_read_only_api"
+      ],
+      "permitted_fields": [
+        "approved Contact, Company and Deal properties",
+        "Contact.owner_horse_count",
+        "Contact.owner_breeds"
+      ],
+      "prohibited_fields": [
+        "write",
+        "unscoped export",
+        "cross-business-unit access"
+      ],
+      "limits": {
+        "read_scope": "least_privilege",
+        "writes": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Metadata snapshots received; live OAuth and records unavailable.",
+        "For an existing matched record, Contact.owner_horse_count is authoritative for horse count."
+      ]
+    },
+    {
+      "source_id": "equinet_authorized_first_party_data",
+      "name": "Equinet first-party enrichment dataset",
+      "source_type": "first_party",
+      "canonical_url": null,
+      "purpose": "Record that Equinet has no separate first-party dataset for A2 enrichment.",
+      "business_approval": "confirmed_not_available_for_a2_enrichment",
+      "source_rights_preflight": "not_applicable",
+      "runtime_readiness": "not_available",
+      "register_status": "not_available",
+      "allowed_access_modes": [],
+      "permitted_fields": [],
+      "prohibited_fields": [
+        "use as a planned enrichment source"
+      ],
+      "limits": {
+        "new_source_calls": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Séverine confirmed that Equinet will not provide separate first-party enrichment data. FullEnrich is a third-party provider, not first-party data."
+      ]
+    },
+    {
+      "source_id": "prospect_official_website",
+      "name": "Prospect official business website",
+      "source_type": "prospect_owned_website",
+      "canonical_url": null,
+      "purpose": "Check every retained candidate for identity, role, professional contacts and approved field gaps.",
+      "business_approval": "approved_by_equinet",
+      "source_rights_preflight": "per_domain_terms_and_robots_preflight",
+      "runtime_readiness": "runtime_policy_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "bounded_public_web_read"
+      ],
+      "permitted_fields": [
+        "business name",
+        "current professional role",
+        "published professional email",
+        "published business phone",
+        "business location",
+        "services",
+        "disciplines",
+        "service area",
+        "credentials claimed by the business",
+        "stable or farm type",
+        "explicit horse count",
+        "dated professional activity",
+        "public professional profile URLs",
+        "explicit horse breeds"
+      ],
+      "prohibited_fields": [
+        "login-gated data",
+        "private personal data",
+        "inferred email patterns",
+        "inferred horse count",
+        "named client identities"
+      ],
+      "limits": {
+        "max_pages_per_candidate": 5,
+        "max_retry_per_failed_url": 1,
+        "concurrency": 1,
+        "required_pages": [
+          "home_or_primary",
+          "about_or_team_when_available",
+          "services_when_available",
+          "contact_or_location_when_available"
+        ],
+        "capture_explicit_outbound_professional_social_links": true,
+        "open_or_extract_linked_social_profiles": false
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "If no official site is located, record not_found; do not substitute an unverified directory as the official site.",
+        "Capture explicit outbound LinkedIn, Facebook, Instagram, YouTube and other clearly professional social-profile URLs found on approved official-site pages.",
+        "Classify a link as person or organisation only when the official-page context supports that attribution; otherwise hold it as ambiguous.",
+        "Retaining the URL does not authorise opening, crawling or extracting the linked social profile.",
+        "An explicit horse count may support a net-new prospect only; an existing matched HubSpot owner_horse_count remains authoritative."
+      ]
+    },
+    {
+      "source_id": "equinet_representative_confirmation",
+      "name": "Recorded Equinet representative confirmation",
+      "source_type": "first_party_human",
+      "canonical_url": null,
+      "purpose": "Record authorised corrections and business context.",
+      "business_approval": "approved_for_recorded_review",
+      "source_rights_preflight": "authorised_reviewer_required",
+      "runtime_readiness": "manual_available",
+      "register_status": "approved",
+      "allowed_access_modes": [
+        "recorded_human_confirmation"
+      ],
+      "permitted_fields": [
+        "confirmed business facts",
+        "documented correction"
+      ],
+      "prohibited_fields": [
+        "unattributed statement",
+        "outreach consent inference"
+      ],
+      "limits": {
+        "reviewer_required": true
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Must include actor and timestamp."
+      ]
+    },
+    {
+      "source_id": "official_professional_registry",
+      "name": "Additional official professional associations and registries",
+      "source_type": "official_registry",
+      "canonical_url": null,
+      "purpose": "No additional direct A2 registry access is required beyond evidence already collected by A1.",
+      "business_approval": "not_in_scope_except_a1_handoff_reuse",
+      "source_rights_preflight": "not_applicable_until_scope_changes",
+      "runtime_readiness": "not_configured",
+      "register_status": "not_selected",
+      "allowed_access_modes": [],
+      "permitted_fields": [],
+      "prohibited_fields": [
+        "new registry access",
+        "member-only data",
+        "bulk extraction"
+      ],
+      "limits": {
+        "new_source_calls": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Séverine confirmed that A2 has no additional registry or association to visit at this stage."
+      ]
+    },
+    {
+      "source_id": "a1_directory_evidence_reuse",
+      "name": "A1 directory evidence reuse",
+      "source_type": "upstream_evidence",
+      "canonical_url": null,
+      "purpose": "Reuse approved A1 directory evidence already carried in the handoff.",
+      "business_approval": "approved_for_reuse_only",
+      "source_rights_preflight": "inherits_original_evidence_scope",
+      "runtime_readiness": "available_through_handoff",
+      "register_status": "approved",
+      "allowed_access_modes": [
+        "handoff_evidence_reuse"
+      ],
+      "permitted_fields": [
+        "fields already present in the A1 evidence item"
+      ],
+      "prohibited_fields": [
+        "new directory crawl",
+        "broader A2 extraction purpose"
+      ],
+      "limits": {
+        "new_source_calls": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "A1 source approval does not authorise new A2 access."
+      ]
+    },
+    {
+      "source_id": "fullenrich_people_search",
+      "name": "FullEnrich People Search",
+      "source_type": "commercial_people_search_provider",
+      "canonical_url": "https://app.fullenrich.com/api/v2/people/search",
+      "purpose": "Find a role-relevant named person inside the exact approved prospect organisation when the official website does not provide one.",
+      "business_approval": "approved_by_equinet_for_a2_business_purpose",
+      "source_rights_preflight": "provider_dpa_retention_and_data_route_review_pending",
+      "runtime_readiness": "api_key_n8n_connector_budget_and_account_test_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "fullenrich_api_v2_via_approved_n8n_workflow_after_all_gates"
+      ],
+      "permitted_fields": [
+        "person.full_name",
+        "person.role_title",
+        "person.public_profile_urls",
+        "organisation.business_name",
+        "organisation.public_business_location"
+      ],
+      "prohibited_fields": [
+        "email or phone from Search response",
+        "personal email",
+        "full career history",
+        "education",
+        "skills",
+        "connection counts",
+        "personal description",
+        "role-free broad search",
+        "cross-organisation search"
+      ],
+      "limits": {
+        "trigger": "no_suitable_named_contact_after_official_website_check",
+        "exact_organisation_domain_required": true,
+        "approved_target_role_required": true,
+        "default_result_limit": 1,
+        "subsequent_role_specific_search_only_when_no_suitable_person_returned": true,
+        "max_unique_people_returned_per_prospect": 2,
+        "max_retained_contacts_per_prospect": 2,
+        "second_contact_requires_reason": [
+          "large_organisation",
+          "shared_purchasing_or_operational_responsibility"
+        ],
+        "broad_role_free_search": false,
+        "concurrency": 1,
+        "documented_default_credit_per_returned_person": 0.25,
+        "actual_premium_plan_rate_must_be_verified": true
+      },
+      "notes": [
+        "Search returns professional profile data, not contact email or phone.",
+        "Use approved A2 target-role aliases and preserve the returned source title.",
+        "Stop once a suitable person is found unless the second-contact rule is already satisfied."
+      ],
+      "stop_conditions": [
+        "authentication_failure",
+        "rate_limit",
+        "unexpected_personal_data",
+        "scope_or_credit_limit",
+        "provider_policy_failure",
+        "integration_error"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "provider_endpoint",
+        "input_scope",
+        "provider_request_id",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "credits_before",
+        "credits_used",
+        "credits_after"
+      ]
+    },
+    {
+      "source_id": "fullenrich_people_lookup",
+      "name": "FullEnrich People Lookup",
+      "source_type": "commercial_people_lookup_provider",
+      "canonical_url": "https://app.fullenrich.com/api/v2/people/lookup",
+      "purpose": "Resolve a known person's identity, current role and organisation before contact enrichment when those facts remain uncertain.",
+      "business_approval": "approved_by_equinet_for_a2_business_purpose",
+      "source_rights_preflight": "provider_dpa_retention_and_data_route_review_pending",
+      "runtime_readiness": "api_key_n8n_connector_budget_and_account_test_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "fullenrich_api_v2_via_approved_n8n_workflow_after_all_gates"
+      ],
+      "permitted_fields": [
+        "person.full_name",
+        "person.role_title",
+        "person.public_profile_urls",
+        "organisation.business_name",
+        "organisation.public_business_location"
+      ],
+      "prohibited_fields": [
+        "email or phone from Lookup response",
+        "personal email",
+        "full career history",
+        "education",
+        "skills",
+        "connection counts",
+        "personal description"
+      ],
+      "limits": {
+        "trigger": "known_contact_identity_or_current_role_requires_verification",
+        "max_results": 1,
+        "skip_when_name_role_and_organisation_already_verified": true,
+        "exact_company_identifier_required_with_name": true,
+        "concurrency": 1,
+        "documented_default_credit_per_returned_person": 0.25,
+        "actual_premium_plan_rate_must_be_verified": true
+      },
+      "notes": [
+        "Lookup returns at most one professional profile and does not return email or phone.",
+        "Prefer a person professional-network URL; otherwise use full name plus exact company domain or company professional-network identifier."
+      ],
+      "stop_conditions": [
+        "authentication_failure",
+        "rate_limit",
+        "unexpected_personal_data",
+        "scope_or_credit_limit",
+        "provider_policy_failure",
+        "integration_error"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "provider_endpoint",
+        "input_scope",
+        "provider_request_id",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "credits_before",
+        "credits_used",
+        "credits_after"
+      ]
+    },
+    {
+      "source_id": "fullenrich_contact_enrichment",
+      "name": "FullEnrich Contact Enrichment",
+      "source_type": "commercial_contact_enrichment_provider",
+      "canonical_url": "https://app.fullenrich.com/api/v2/contact/enrich/bulk",
+      "purpose": "Find a selected person's professional email and mobile phone after identity and role selection.",
+      "business_approval": "approved_by_equinet_for_a2_business_purpose",
+      "source_rights_preflight": "provider_dpa_retention_and_data_route_review_pending",
+      "runtime_readiness": "api_key_n8n_webhook_budget_and_account_test_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "fullenrich_api_v2_async_via_approved_n8n_workflow_after_all_gates"
+      ],
+      "permitted_fields": [
+        "person.business_email",
+        "person.mobile_phone",
+        "email verification result",
+        "provider provenance",
+        "verification timestamp"
+      ],
+      "prohibited_fields": [
+        "contact.personal_emails request",
+        "personal email retention",
+        "unselected-person enrichment",
+        "full career history",
+        "education",
+        "skills",
+        "connection counts",
+        "personal description",
+        "outreach consent inference",
+        "automatic send"
+      ],
+      "limits": {
+        "trigger": "selected_contact_after_role_and_company_match",
+        "selected_contacts_only": true,
+        "requested_enrich_fields": [
+          "contact.work_emails",
+          "contact.phones"
+        ],
+        "personal_email_requested": false,
+        "max_contacts_per_prospect": 2,
+        "second_contact_requires_reason": [
+          "large_organisation",
+          "shared_purchasing_or_operational_responsibility"
+        ],
+        "concurrency": 1,
+        "max_retry_on_transient_failure": 1,
+        "documented_default_work_email_credit_if_found": 1,
+        "documented_default_mobile_credit_if_found": 10,
+        "actual_premium_plan_rate_must_be_verified": true,
+        "asynchronous": true,
+        "webhook_signature_required": "X-Signature-SHA1"
+      },
+      "notes": [
+        "The API request must omit contact.personal_emails.",
+        "A returned phone is stored as person.mobile_phone and is not relabelled as person.business_phone.",
+        "The absence of a mobile does not by itself block review.",
+        "Only field-minimised normalised evidence may leave the n8n integration boundary."
+      ],
+      "stop_conditions": [
+        "authentication_failure",
+        "rate_limit",
+        "unexpected_personal_data",
+        "scope_or_credit_limit",
+        "provider_policy_failure",
+        "integration_error"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "provider_endpoint",
+        "input_scope",
+        "provider_request_id",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "credits_before",
+        "credits_used",
+        "credits_after"
+      ]
+    },
+    {
+      "source_id": "apify_harvestapi_linkedin_profile_search",
+      "name": "HarvestAPI LinkedIn Profile Search Scraper",
+      "source_type": "apify_community_actor",
+      "canonical_url": "https://apify.com/harvestapi/linkedin-profile-search",
+      "purpose": "Fallback role/contact search after the official website and FullEnrich return no suitable person or an approved technical exhaustion state.",
+      "business_approval": "approved_by_equinet_for_a2_business_purpose",
+      "source_rights_preflight": "blocked_pending_linkedin_rights_and_harvestapi_vendor_review",
+      "runtime_readiness": "account_connector_budget_and_build_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "apify_actor_api_after_all_gates"
+      ],
+      "permitted_fields": [
+        "person.full_name",
+        "person.role_title",
+        "organisation.business_name",
+        "organisation.public_business_location",
+        "person.public_profile_urls"
+      ],
+      "prohibited_fields": [
+        "personal email",
+        "phone or mobile",
+        "full career history",
+        "education",
+        "skills",
+        "recommendations",
+        "posts",
+        "followers or connections counts",
+        "photos",
+        "personal interests"
+      ],
+      "limits": {
+        "trigger": "named_role_gap_after_official_website_and_fullenrich",
+        "profile_scraper_mode": "minimum_fields_only_then_output_review",
+        "take_pages": 1,
+        "max_items_per_candidate": 5,
+        "max_retained_contacts_per_candidate": 2,
+        "automatic_query_segmentation": false,
+        "concurrency": 1,
+        "daily_cost_cap_usd": null,
+        "input_preference": [
+          "exact_linkedin_company_url",
+          "verified_company_name_plus_target_role"
+        ],
+        "individual_linkedin_profile_url_route": "manual_review_or_separately_approved_profile_scraper",
+        "fullenrich_precondition": [
+          "not_found",
+          "insufficient_match",
+          "unavailable_after_approved_retry"
+        ]
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Séverine confirmed the gap-only trigger.",
+        "The minimum profile field allowlist is approved as a starting point and will be reviewed against actual Actor output.",
+        "Apify currently lists pay-per-event pricing.",
+        "The Actor is maintained by HarvestAPI and is treated as a Community Actor.",
+        "Business approval does not resolve target-platform rights, vendor governance, retention or runtime readiness.",
+        "Prefer an exact LinkedIn company URL explicitly published on the official website over company-name resolution.",
+        "An individual LinkedIn profile URL is not routed to this search Actor; retain it for authorised human review or a separately approved profile-scraper action.",
+        "Retain one named contact by default and at most two when a large organisation or shared responsibility is documented.",
+        "FullEnrich must be attempted first. Apify fallback is not automatic and requires a new source preflight."
+      ]
+    },
+    {
+      "source_id": "apify_harvestapi_email_search",
+      "name": "HarvestAPI independent email search via LinkedIn Profile Search Actor",
+      "source_type": "commercial_email_search",
+      "canonical_url": "https://apify.com/harvestapi/linkedin-profile-search",
+      "purpose": "Fallback professional-email search for a selected matched profile after FullEnrich returns no usable work email.",
+      "business_approval": "approved_by_equinet_for_a2_business_purpose",
+      "source_rights_preflight": "blocked_pending_linkedin_rights_email_data_rights_and_harvestapi_vendor_review",
+      "runtime_readiness": "account_connector_budget_and_build_pending",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "apify_actor_full_plus_email_after_all_gates"
+      ],
+      "permitted_fields": [
+        "professional email",
+        "email verification result",
+        "provider provenance",
+        "verification timestamp"
+      ],
+      "prohibited_fields": [
+        "personal email retention",
+        "mislabeling the email as LinkedIn-sourced",
+        "outreach consent inference",
+        "automatic send"
+      ],
+      "limits": {
+        "trigger": "selected_profile_after_fullenrich_work_email_not_found",
+        "max_email_searches_per_candidate": 3,
+        "daily_cost_cap_usd": null,
+        "concurrency": 1,
+        "fullenrich_precondition": [
+          "not_found",
+          "unavailable_after_approved_retry"
+        ]
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "The Actor documentation states that email search is independent from LinkedIn profile extraction.",
+        "Email provenance must identify the independent search method.",
+        "Only professional email is retained by default.",
+        "Deliverability verification does not create consent."
+      ]
+    },
+    {
+      "source_id": "search_engine_discovery",
+      "name": "Search index",
+      "source_type": "search_discovery",
+      "canonical_url": null,
+      "purpose": "Locate an official website when the A1 handoff lacks a usable URL.",
+      "business_approval": "approved_by_equinet_for_official_site_discovery",
+      "source_rights_preflight": "standard_search_terms_apply",
+      "runtime_readiness": "tool_available_not_profile_activated",
+      "register_status": "conditional",
+      "allowed_access_modes": [
+        "search_results_discovery_only"
+      ],
+      "permitted_fields": [
+        "destination URL",
+        "page title"
+      ],
+      "prohibited_fields": [
+        "search snippet as retained evidence",
+        "bulk person data"
+      ],
+      "limits": {
+        "max_queries_per_candidate": 3
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Only destination pages may become evidence."
+      ]
+    },
+    {
+      "source_id": "commercial_enrichment_provider",
+      "name": "Other commercial enrichment providers",
+      "source_type": "commercial_provider",
+      "canonical_url": null,
+      "purpose": "Future providers other than the separately approved FullEnrich and Apify actions.",
+      "business_approval": "not_selected",
+      "source_rights_preflight": "provider_dpa_and_data_rights_pending",
+      "runtime_readiness": "not_connected",
+      "register_status": "integration_pending",
+      "allowed_access_modes": [],
+      "permitted_fields": [],
+      "prohibited_fields": [
+        "all live Mustad or Equinet data until approval"
+      ],
+      "limits": {
+        "providers_under_consideration": [
+          "Apollo",
+          "Clay"
+        ],
+        "budget_cap_usd": null
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "FullEnrich is modelled through three separate approved actions. Apollo, Clay and any other provider remain unselected."
+      ]
+    },
+    {
+      "source_id": "other_social_platform_automation",
+      "name": "Other social-platform automation",
+      "source_type": "social_platform",
+      "canonical_url": null,
+      "purpose": "No approved A2 purpose at this stage.",
+      "business_approval": "not_approved",
+      "source_rights_preflight": "platform_permission_required",
+      "runtime_readiness": "not_connected",
+      "register_status": "blocked",
+      "allowed_access_modes": [],
+      "permitted_fields": [],
+      "prohibited_fields": [
+        "automated Facebook access",
+        "automated Instagram access",
+        "social graph extraction",
+        "private profile data"
+      ],
+      "limits": {
+        "calls": 0
+      },
+      "stop_conditions": [
+        "terms_or_robots_denial",
+        "login_or_paywall",
+        "captcha",
+        "http_403",
+        "http_429",
+        "unexpected_personal_data",
+        "scope_or_budget_limit"
+      ],
+      "audit_requirements": [
+        "actor_profile",
+        "trigger",
+        "timestamp",
+        "source_id",
+        "input_scope",
+        "source_urls",
+        "output_reference",
+        "approval_state",
+        "status",
+        "retries",
+        "usage_and_cost"
+      ],
+      "notes": [
+        "Manual or official API proposals require a later explicit decision."
+      ]
+    }
+  ],
+  "open_activation_inputs": [
+    "Receive and store the Equinet FullEnrich API key in the approved n8n credential store.",
+    "Verify the authorised FullEnrich workspace, API-key validity, current credit balance and actual Premium-plan rates.",
+    "Complete FullEnrich privacy, security, DPA/subprocessor, three-month provider-retention and deletion review.",
+    "Approve FullEnrich test, daily and pilot credit caps plus the spend/consumption owner.",
+    "Deploy and test the bounded n8n Search, Lookup, Enrich and signed-webhook workflow.",
+    "Provide the authorised Apify workspace/account, credential route, pinned Actor build and runtime owner before any fallback activation.",
+    "Complete LinkedIn/HarvestAPI rights and vendor review before any Apify fallback."
+  ],
+  "decision_record": {
+    "path": "foundations/decisions/A2-FULLENRICH-SOURCE-ROUTING-20260906.json",
+    "sha256": "f653be41561cb77683e728bf5eeef56ea97e04000537a55d426a8b76287d7af0"
+  }
+}

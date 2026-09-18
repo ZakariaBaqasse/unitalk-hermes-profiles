@@ -1,0 +1,373 @@
+{
+  "step": "2E",
+  "validator_version": "0.1.0",
+  "cases": [
+    {
+      "name": "valid_initial_record",
+      "record": "valid/valid-initial-record.json",
+      "expected_valid": true
+    },
+    {
+      "name": "valid_enriched_revision",
+      "record": "valid/valid-enriched-revision.json",
+      "previous_record": "valid/valid-initial-record.json",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json",
+      "expected_valid": true
+    },
+    {
+      "name": "valid_requalification_signal",
+      "record": "valid/valid-requalification-signal-record.json",
+      "previous_record": "valid/valid-initial-record.json",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json",
+      "expected_valid": true
+    },
+    {
+      "name": "valid_complete_requalification",
+      "record": "valid/valid-complete-requalification-record.json",
+      "previous_record": "valid/valid-initial-record.json",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json",
+      "expected_valid": true
+    },
+    {
+      "name": "valid_requalification_lifecycle_revision",
+      "record": "valid/valid-requalification-lifecycle-revision.json",
+      "previous_record": "valid/valid-requalification-signal-record.json",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json",
+      "expected_valid": true
+    },
+    {
+      "name": "valid_relationship_scoped_assessment",
+      "record": "valid/valid-relationship-scoped-assessment.json",
+      "previous_record": "valid/valid-initial-record.json",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json",
+      "expected_valid": true
+    },
+    {
+      "name": "invalid-handoff-mirror",
+      "record": "invalid/invalid-handoff-mirror.json",
+      "expected_valid": false,
+      "expected_error": "source_handoff.handoff_id does not match its authoritative source"
+    },
+    {
+      "name": "invalid-candidate-hash",
+      "record": "invalid/invalid-candidate-hash.json",
+      "expected_valid": false,
+      "expected_error": "source_handoff candidate snapshot hash mismatch"
+    },
+    {
+      "name": "invalid-system-candidate-reference",
+      "record": "invalid/invalid-system-candidate-reference.json",
+      "expected_valid": false,
+      "expected_error": "system_references.a1_candidate_id does not match its authoritative source"
+    },
+    {
+      "name": "invalid-duplicate-entity-id",
+      "record": "invalid/invalid-duplicate-entity-id.json",
+      "expected_valid": false,
+      "expected_error": "duplicate entity_id"
+    },
+    {
+      "name": "invalid-relationship-reference",
+      "record": "invalid/invalid-relationship-reference.json",
+      "expected_valid": false,
+      "expected_error": "references unknown to_entity_id"
+    },
+    {
+      "name": "invalid-assessment-entity-reference",
+      "record": "invalid/invalid-assessment-entity-reference.json",
+      "expected_valid": false,
+      "expected_error": "references unknown entity"
+    },
+    {
+      "name": "invalid-duplicate-assessment-target",
+      "record": "invalid/invalid-duplicate-assessment-target.json",
+      "expected_valid": false,
+      "expected_error": "duplicate field assessment target"
+    },
+    {
+      "name": "invalid-observation-evidence-reference",
+      "record": "invalid/invalid-observation-evidence-reference.json",
+      "expected_valid": false,
+      "expected_error": "references unknown evidence ID A2-EV-MISSING"
+    },
+    {
+      "name": "invalid-evidence-assessment-reference",
+      "record": "invalid/invalid-evidence-assessment-reference.json",
+      "expected_valid": false,
+      "expected_error": "supports unknown field assessment A2-FLD-MISSING"
+    },
+    {
+      "name": "invalid-update-without-evidence",
+      "record": "invalid/invalid-update-without-evidence.json",
+      "expected_valid": false,
+      "expected_error": "add/update proposal requires evidence"
+    },
+    {
+      "name": "invalid-protected-update-without-approval",
+      "record": "invalid/invalid-protected-update-without-approval.json",
+      "expected_valid": false,
+      "expected_error": "requires explicit approved review and approval matrix"
+    },
+    {
+      "name": "invalid-application-without-approval",
+      "record": "invalid/invalid-application-without-approval.json",
+      "expected_valid": false,
+      "expected_error": "application requires approved field review"
+    },
+    {
+      "name": "invalid-workflow-transition",
+      "record": "invalid/invalid-workflow-transition.json",
+      "expected_valid": false,
+      "expected_error": "invalid workflow transition initialised -> review_required",
+      "previous_record": "valid/valid-initial-record.json"
+    },
+    {
+      "name": "invalid-workflow-review-mismatch",
+      "record": "invalid/invalid-workflow-review-mismatch.json",
+      "expected_valid": false,
+      "expected_error": "workflow state changes_requested requires record review decision needs_changes"
+    },
+    {
+      "name": "invalid-possible-duplicate-eligible",
+      "record": "invalid/invalid-possible-duplicate-eligible.json",
+      "expected_valid": false,
+      "expected_error": "possible duplicate requires hold or blocked A2 eligibility"
+    },
+    {
+      "name": "invalid-quality-field-reference",
+      "record": "invalid/invalid-quality-field-reference.json",
+      "expected_valid": false,
+      "expected_error": "references field key without an assessment"
+    },
+    {
+      "name": "invalid-known-field-marked-missing",
+      "record": "invalid/invalid-known-field-marked-missing.json",
+      "expected_valid": false,
+      "expected_error": "marks known usable field as missing"
+    },
+    {
+      "name": "invalid-review-ready-with-conflict",
+      "record": "invalid/invalid-review-ready-with-conflict.json",
+      "expected_valid": false,
+      "expected_error": "review_ready cannot contain missing, conflict or invalid fields"
+    },
+    {
+      "name": "invalid-requalification-candidate-link",
+      "record": "invalid/invalid-requalification-candidate-link.json",
+      "expected_valid": false,
+      "expected_error": "a1_candidate_id mismatch"
+    },
+    {
+      "name": "invalid-return-signal-snapshot",
+      "record": "invalid/invalid-return-signal-snapshot.json",
+      "expected_valid": false,
+      "expected_error": "signal snapshot differs from canonical signal"
+    },
+    {
+      "name": "invalid-score-revision-return-link",
+      "record": "invalid/invalid-score-revision-return-link.json",
+      "expected_valid": false,
+      "expected_error": "references unknown requalification return"
+    },
+    {
+      "name": "invalid-usage-total",
+      "record": "invalid/invalid-usage-total.json",
+      "expected_valid": false,
+      "expected_error": "audit total_usage.total_tokens does not equal event usage total"
+    },
+    {
+      "name": "invalid-field-catalogue-key",
+      "record": "invalid/invalid-field-catalogue-key.json",
+      "expected_valid": false,
+      "expected_error": "uses unknown Field Catalogue key",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json"
+    },
+    {
+      "name": "invalid-field-catalogue-type",
+      "record": "invalid/invalid-field-catalogue-type.json",
+      "expected_valid": false,
+      "expected_error": "value_type does not match Field Catalogue",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json"
+    },
+    {
+      "name": "invalid-field-catalogue-value",
+      "record": "invalid/invalid-field-catalogue-value.json",
+      "expected_valid": false,
+      "expected_error": "normalised_value does not match Field Catalogue type integer",
+      "field_catalogue": "catalogues/synthetic-field-catalogue.json"
+    },
+    {
+      "name": "invalid-source-register-version",
+      "record": "invalid/invalid-source-register-version.json",
+      "expected_valid": false,
+      "expected_error": "source_register_version values must match"
+    },
+    {
+      "name": "invalid-nonreciprocal-evidence-link",
+      "record": "invalid/invalid-nonreciprocal-evidence-link.json",
+      "expected_valid": false,
+      "expected_error": "without reciprocal field-assessment support"
+    },
+    {
+      "name": "invalid-blocked-evidence-use",
+      "record": "invalid/invalid-blocked-evidence-use.json",
+      "expected_valid": false,
+      "expected_error": "not approved for evidentiary use"
+    },
+    {
+      "name": "invalid-score-revision-unaccepted-return",
+      "record": "invalid/invalid-score-revision-unaccepted-return.json",
+      "expected_valid": false,
+      "expected_error": "requires an accepted_by_a1 return"
+    },
+    {
+      "name": "invalid-score-revision-arithmetic",
+      "record": "invalid/invalid-score-revision-arithmetic.json",
+      "expected_valid": false,
+      "expected_error": "revised scoring score must equal component total"
+    },
+    {
+      "name": "invalid-score-revision-prior-scoring",
+      "record": "invalid/invalid-score-revision-prior-scoring.json",
+      "expected_valid": false,
+      "expected_error": "prior_scoring does not match immutable A1 handoff scoring"
+    },
+    {
+      "name": "invalid-score-revision-signal-outside-return",
+      "record": "invalid/invalid-score-revision-signal-outside-return.json",
+      "expected_valid": false,
+      "expected_error": "uses signals outside its referenced return"
+    },
+    {
+      "name": "invalid-event-token-arithmetic",
+      "record": "invalid/invalid-event-token-arithmetic.json",
+      "expected_valid": false,
+      "expected_error": "total_tokens does not equal input_tokens plus output_tokens"
+    },
+    {
+      "name": "invalid-a2-outreach-authorisation",
+      "record": "invalid/invalid-a2-outreach-authorisation.json",
+      "expected_valid": false,
+      "expected_error": "A2 must not authorise outreach"
+    },
+    {
+      "name": "invalid-later-revision-without-previous",
+      "record": "invalid/invalid-later-revision-without-previous.json",
+      "expected_valid": false,
+      "expected_error": "later revision requires the previous record"
+    },
+    {
+      "name": "invalid-reused-revision-id",
+      "record": "invalid/invalid-reused-revision-id.json",
+      "expected_valid": false,
+      "expected_error": "record_revision_id must be new",
+      "previous_record": "valid/valid-initial-record.json"
+    },
+    {
+      "name": "invalid-embedded-handoff-gate",
+      "record": "invalid/invalid-embedded-handoff-gate.json",
+      "expected_valid": false,
+      "expected_error": "embedded handoff invalid: candidate recommendation.next_action must be pass_to_a2"
+    },
+    {
+      "name": "invalid-external-match-evidence",
+      "record": "invalid/invalid-external-match-evidence.json",
+      "expected_valid": false,
+      "expected_error": "external match A2-MATCH-UNKNOWN-001 references unknown evidence ID"
+    },
+    {
+      "name": "invalid-superseded-evidence-reference",
+      "record": "invalid/invalid-superseded-evidence-reference.json",
+      "expected_valid": false,
+      "expected_error": "supersedes unknown A2 evidence"
+    },
+    {
+      "name": "invalid-evidence-self-cycle",
+      "record": "invalid/invalid-evidence-self-cycle.json",
+      "expected_valid": false,
+      "expected_error": "evidence supersession cycle detected"
+    },
+    {
+      "name": "invalid-provider-use-without-authorisation",
+      "record": "invalid/invalid-provider-use-without-authorisation.json",
+      "expected_valid": false,
+      "expected_error": "claims provider use without authorisation"
+    },
+    {
+      "name": "invalid-protected-baseline-downgrade",
+      "record": "invalid/invalid-protected-baseline-downgrade.json",
+      "expected_valid": false,
+      "expected_error": "cannot downgrade a protected baseline"
+    },
+    {
+      "name": "invalid-clear-request-normalised-value",
+      "record": "invalid/invalid-clear-request-normalised-value.json",
+      "expected_valid": false,
+      "expected_error": "clear_request proposal must not contain a normalised replacement value"
+    },
+    {
+      "name": "invalid-failed-application-without-approval",
+      "record": "invalid/invalid-failed-application-without-approval.json",
+      "expected_valid": false,
+      "expected_error": "application requires approved field review"
+    },
+    {
+      "name": "invalid-owner-reassignment-without-approval",
+      "record": "invalid/invalid-owner-reassignment-without-approval.json",
+      "expected_valid": false,
+      "expected_error": "approved owner reassignment requires approved record review and approval matrix"
+    },
+    {
+      "name": "invalid-record-approved-with-pending-field",
+      "record": "invalid/invalid-record-approved-with-pending-field.json",
+      "expected_valid": false,
+      "expected_error": "required_field_decisions_complete is true while field reviews remain unresolved"
+    },
+    {
+      "name": "invalid-blocked-workflow-pending-review",
+      "record": "invalid/invalid-blocked-workflow-pending-review.json",
+      "expected_valid": false,
+      "expected_error": "workflow state blocked requires record review decision blocked"
+    },
+    {
+      "name": "invalid-application-without-audit-receipt",
+      "record": "invalid/invalid-application-without-audit-receipt.json",
+      "expected_valid": false,
+      "expected_error": "application lacks a matching successful audit action"
+    },
+    {
+      "name": "invalid-cross-field-previous-record",
+      "record": "invalid/invalid-cross-field-previous-record.json",
+      "expected_valid": false,
+      "expected_error": "previous:source_handoff.handoff_id does not match its authoritative source",
+      "previous_record": "invalid/invalid-handoff-mirror.json"
+    },
+    {
+      "name": "invalid-requalification-lifecycle-jump",
+      "record": "invalid/invalid-requalification-lifecycle-jump.json",
+      "expected_valid": false,
+      "expected_error": "invalid signals lifecycle transition approved_for_return -> rescored",
+      "previous_record": "valid/valid-requalification-signal-record.json"
+    },
+    {
+      "name": "invalid-requalification-payload-mutation",
+      "record": "invalid/invalid-requalification-payload-mutation.json",
+      "expected_valid": false,
+      "expected_error": "requalification signals immutable payload mutated",
+      "previous_record": "valid/valid-requalification-signal-record.json"
+    },
+    {
+      "name": "valid_prior_with_evidence",
+      "record": "valid/valid-prior-with-evidence.json",
+      "previous_record": "valid/valid-initial-record.json",
+      "expected_valid": true
+    },
+    {
+      "name": "invalid-append-only-evidence-mutation",
+      "record": "invalid/invalid-append-only-evidence-mutation.json",
+      "expected_valid": false,
+      "expected_error": "append-only collection evidence_registry mutated",
+      "previous_record": "valid/valid-prior-with-evidence.json"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "manifest_version": "1.4.1",
+  "manifest_status": "integration_validation_in_progress",
+  "active_sha256": "9b2d17e7be9ad32249744587ceda6e19e47869ae9c7d358d21f0377151e7d472",
+  "role_status_values": [
+    "CURRENT_AT_COMPANY",
+    "NOT_CURRENT_AT_COMPANY",
+    "UNVERIFIED"
+  ],
+  "expected_values": [
+    "CURRENT_AT_COMPANY",
+    "NOT_CURRENT_AT_COMPANY",
+    "UNVERIFIED"
+  ],
+  "metadata_match": true,
+  "populated_people": 0,
+  "people_count": 35,
+  "step10_hash_drift": 0,
+  "release_manifest": "foundations/contracts/runtime/a2-role-status-clarity-release-1.4.1.json",
+  "release_sha256": "5bfa2ed15876444baec6a8c0897c04759fa51526842754c99a0adb58011ba139"
+}

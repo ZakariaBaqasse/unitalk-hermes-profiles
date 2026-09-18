@@ -1,0 +1,122 @@
+{
+  "step": "2B",
+  "version": "0.1.0",
+  "approval_state": "approved_for_step_2c",
+  "field_dictionary": {
+    "path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/a2-field-dictionary-0.1.0.csv",
+    "rows": 216,
+    "sections": [
+      "audit_and_consumption",
+      "data_quality",
+      "duplicate_and_eligibility",
+      "enrichment_scope",
+      "evidence_registry",
+      "field_assessments",
+      "governance",
+      "record_metadata",
+      "requalification",
+      "review",
+      "source_handoff",
+      "subject",
+      "system_references",
+      "workflow"
+    ]
+  },
+  "state_model": {
+    "path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/a2-state-model-0.1.0.json",
+    "vocabularies": 37,
+    "workflow_states": 16,
+    "cross_state_rules": 12
+  },
+  "documentation_checks": {
+    "field_document_version": true,
+    "state_document_version": true,
+    "field_document_approved": true,
+    "state_document_approved": true,
+    "recorded_decision": true,
+    "critical_state_distinctions": true,
+    "field_row_count": true
+  },
+  "negative_regressions": {
+    "total": 9,
+    "passed": 9,
+    "failed": [],
+    "cases": [
+      {
+        "name": "duplicate_field_path",
+        "expected_error": "duplicate field_path",
+        "errors": [
+          "duplicate field_path values are not allowed"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing_section",
+        "expected_error": "section set mismatch",
+        "errors": [
+          "section set mismatch: missing=['review'], extra=[]",
+          "missing required field paths: review.record_decision"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_state_vocabulary",
+        "expected_error": "unknown state vocabulary",
+        "errors": [
+          "record_metadata.schema_version: unknown state vocabulary 'does_not_exist'"
+        ],
+        "passed": true
+      },
+      {
+        "name": "duplicate_state",
+        "expected_error": "duplicate state values",
+        "errors": [
+          "availability_status: duplicate state values"
+        ],
+        "passed": true
+      },
+      {
+        "name": "unknown_transition",
+        "expected_error": "unknown targets",
+        "errors": [
+          "workflow transition initialised has unknown targets: ['hubspot_customer']"
+        ],
+        "passed": true
+      },
+      {
+        "name": "mutable_source_handoff",
+        "expected_error": "source_handoff field must be immutable_input",
+        "errors": [
+          "every source_handoff field must be immutable_input"
+        ],
+        "passed": true
+      },
+      {
+        "name": "nonnullable_future_reference",
+        "expected_error": "future external system references must remain nullable",
+        "errors": [
+          "future external system references must remain nullable"
+        ],
+        "passed": true
+      },
+      {
+        "name": "a2_score_producer",
+        "expected_error": "A1 deterministic scorer must be the only",
+        "errors": [
+          "A1 deterministic scorer must be the only score-revision score producer"
+        ],
+        "passed": true
+      },
+      {
+        "name": "missing_no_integration_rule",
+        "expected_error": "manual_no_integration_pilot records cannot enter ready_for_sync",
+        "errors": [
+          "missing cross-state rule: manual_no_integration_pilot records cannot enter ready_for_sync"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "errors": [],
+  "pass": true
+}

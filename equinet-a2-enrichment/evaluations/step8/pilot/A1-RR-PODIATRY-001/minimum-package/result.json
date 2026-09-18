@@ -1,0 +1,26 @@
+{
+  "fixture_id": "step8-rood-riddle-final",
+  "segment": "farrier",
+  "package": "farrier_review_ready",
+  "package_status": "incomplete",
+  "data_quality_status": "incomplete",
+  "workflow_recommendation": "held",
+  "missing_required_fields": [
+    "organisation.service_area",
+    "person.professional_status",
+    "relationship.target_role_priority"
+  ],
+  "unsatisfied_contact_requirements": [
+    "person.business_email",
+    "person.business_phone"
+  ],
+  "documented_exception_fields": [],
+  "conflict_field_keys": [],
+  "error_field_keys": [],
+  "automatic_rejection": false,
+  "automatic_a1_score_change": false,
+  "external_action_authorized": false,
+  "human_review_required": true,
+  "outreach_readiness_status": "unavailable",
+  "errors": []
+}

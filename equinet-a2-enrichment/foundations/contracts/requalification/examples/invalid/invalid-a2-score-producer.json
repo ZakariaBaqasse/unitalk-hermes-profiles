@@ -1,0 +1,186 @@
+{
+  "schema_version": "0.1.0",
+  "score_revision_id": "A1-SCORE-REV-HORSE_COUNT_001",
+  "a1_candidate_id": "A1-SYNTH_OWNER_001",
+  "prior_revision_id": "A1-SCORE-ORIGINAL-HORSE_COUNT_001",
+  "source_requalification_return_id": "A2-RQ-RET-HORSE_COUNT_001",
+  "source_signal_ids": [
+    "A2-RQ-SIG-HORSE_COUNT_001"
+  ],
+  "produced_by_profile": "equinet-a2-enrichment",
+  "calculation_method": "deterministic_a1_scoring",
+  "scoring_model_version": "1.0.0",
+  "icp_config_version": "1.0.0",
+  "evidence_policy_version": "1.0.0",
+  "validated_evidence_ids": [
+    "A2-EV-HORSE-COUNT"
+  ],
+  "criteria_changes": [
+    {
+      "criterion_id": "horse_owner.more_than_three_horses",
+      "before_status": "unknown",
+      "after_status": "confirmed",
+      "before_evidence_ids": [],
+      "after_evidence_ids": [
+        "A2-EV-HORSE-COUNT"
+      ],
+      "source_signal_ids": [
+        "A2-RQ-SIG-HORSE_COUNT_001"
+      ],
+      "change_reason": "A1 accepted returned direct evidence that the synthetic operation manages more than three horses."
+    }
+  ],
+  "prior_scoring": {
+    "status": "scored",
+    "score": 68,
+    "band": "medium",
+    "model_version": "1.0.0",
+    "components": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "points_awarded": 25,
+        "max_points": 25,
+        "evidence_ids": [
+          "A1-EV-COMMERCIAL"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.purchasing_influence",
+        "points_awarded": 15,
+        "max_points": 15,
+        "evidence_ids": [
+          "A1-EV-INFLUENCE"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "points_awarded": 10,
+        "max_points": 10,
+        "evidence_ids": [
+          "A1-EV-PRODUCT"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "points_awarded": 8,
+        "max_points": 8,
+        "evidence_ids": [
+          "A1-EV-DISCIPLINE"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.professional_network",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "A1-EV-NETWORK"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "A1-EV-LOCATION"
+        ],
+        "notes": "Synthetic confirmed component."
+      }
+    ],
+    "rationale": "Synthetic prior score with horse count unknown and no horse-count points awarded.",
+    "block_reason": null
+  },
+  "revised_scoring": {
+    "status": "scored",
+    "score": 88,
+    "band": "high",
+    "model_version": "1.0.0",
+    "components": [
+      {
+        "criterion_id": "horse_owner.commercial_operation",
+        "points_awarded": 25,
+        "max_points": 25,
+        "evidence_ids": [
+          "A1-EV-COMMERCIAL"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.purchasing_influence",
+        "points_awarded": 15,
+        "max_points": 15,
+        "evidence_ids": [
+          "A1-EV-INFLUENCE"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.product_fit",
+        "points_awarded": 10,
+        "max_points": 10,
+        "evidence_ids": [
+          "A1-EV-PRODUCT"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.performance_discipline",
+        "points_awarded": 8,
+        "max_points": 8,
+        "evidence_ids": [
+          "A1-EV-DISCIPLINE"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.professional_network",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "A1-EV-NETWORK"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.high_equine_activity_location",
+        "points_awarded": 5,
+        "max_points": 5,
+        "evidence_ids": [
+          "A1-EV-LOCATION"
+        ],
+        "notes": "Synthetic confirmed component."
+      },
+      {
+        "criterion_id": "horse_owner.more_than_three_horses",
+        "points_awarded": 20,
+        "max_points": 20,
+        "evidence_ids": [
+          "A2-EV-HORSE-COUNT"
+        ],
+        "notes": "Full V1 weight awarded after A1 accepted returned evidence."
+      }
+    ],
+    "rationale": "Synthetic revised score after A1 confirmed more than three horses from returned A2 evidence.",
+    "block_reason": null
+  },
+  "calculated_at": "2026-08-25T20:10:00Z",
+  "revision_status": "approved",
+  "review": {
+    "decision": "approved",
+    "reviewer": {
+      "actor_id": "UNITALK-A1-REVIEWER",
+      "actor_role": "A1 Business Reviewer",
+      "display_name": "Synthetic A1 Reviewer"
+    },
+    "decided_at": "2026-08-25T20:12:00Z",
+    "reason": "Synthetic deterministic score revision approved."
+  },
+  "result_reference": "synthetic://a1-score-revision/horse-count-001",
+  "result_sha256": "0eea72735a022bf33da32d90b872d085bcb06f2f38d4ba56011628bec0820ea4",
+  "audit_correlation_id": "AUDIT-RQ-SYNTH-001",
+  "synthetic": true
+}

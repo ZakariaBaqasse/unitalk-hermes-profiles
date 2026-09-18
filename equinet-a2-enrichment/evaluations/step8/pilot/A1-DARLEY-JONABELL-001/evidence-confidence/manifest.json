@@ -1,0 +1,56 @@
+{
+  "record_type": "step8_jonabell_evidence_confidence",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "status": "pass",
+  "stage1_validated_observations_sha256": "ac5668d263cb8709821fe86520975f4671768d1cae636f58c8a8fabc82d28be5",
+  "target_role_review_sha256": "976c2dc4f7e39f92ceb73b41a1d82bc76657816a54dd503adc59b39df2257fbc",
+  "results": [
+    {
+      "field_key": "organisation.stable_type",
+      "request_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/evidence-confidence/organisation-stable_type.request.json",
+      "request_sha256": "e30cd1a7b73983b649bd3c27f0e403bd44a538d2a24921d35ba817816b02743a",
+      "result_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/evidence-confidence/organisation-stable_type.result.json",
+      "result_sha256": "e2d84a2f1bfadceca4c102077b632b63cfc2e04e7c1a9cd3856329c00899318b",
+      "confidence_score": 98,
+      "confidence_level": "high",
+      "verification_status": "verified",
+      "freshness_status": "current",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "field_key": "person.role_title",
+      "request_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/evidence-confidence/person-role_title.request.json",
+      "request_sha256": "27ffcb6b5044052e9e86a5b787221487d70ca6af32967fe73e8a85994912f617",
+      "result_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/evidence-confidence/person-role_title.result.json",
+      "result_sha256": "ad706c443dfd5123c62524a873361b8c786752c8a0cea314c8c56bb49d2695f8",
+      "confidence_score": 96,
+      "confidence_level": "high",
+      "verification_status": "verified",
+      "freshness_status": "current_official_undated",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "field_key": "person.business_email",
+      "request_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/evidence-confidence/person-business_email.request.json",
+      "request_sha256": "42830f538c271725c24ff888b9b408998e6c0df6449e3e5764961d2eef82bfb3",
+      "result_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/evidence-confidence/person-business_email.result.json",
+      "result_sha256": "0ea5fdf4124ab4e26adf32bcd7c95874b2fc1a074b6ae463ef375912098b2952",
+      "confidence_score": 96,
+      "confidence_level": "high",
+      "verification_status": "verified",
+      "freshness_status": "current_official_undated",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "relationship_target_role_priority": {
+    "value": "secondary",
+    "source": "human_review",
+    "confidence_scoring_not_applicable": true
+  },
+  "a1_score_changed": false,
+  "canonical_record_mutated": false,
+  "external_actions": 0
+}

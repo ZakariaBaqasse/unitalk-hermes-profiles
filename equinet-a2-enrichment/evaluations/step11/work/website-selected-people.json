@@ -1,0 +1,78 @@
+{
+  "schema_id": "a2-website-selected-contact-batch",
+  "schema_version": "0.1.0",
+  "run_id": "step11-fixture-run",
+  "company_id": null,
+  "created_at": "2026-09-18T17:40:57Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "selected_people": [
+    {
+      "request_id": "contact-web-website-person-7004cbac0675cee8",
+      "company_id": "company-fixture-001",
+      "twenty_person_id": null,
+      "website_person_id": "website-person-7004cbac0675cee8",
+      "provider_person_id": null,
+      "full_name": "Alex Morgan",
+      "source_full_name": "Alex Morgan",
+      "first_name": "Alex",
+      "last_name": "Morgan",
+      "professional_network_url": null,
+      "company_name": "Example Equine Centre",
+      "company_domain": "example.com",
+      "source_kind": "new",
+      "selection_stage": "website",
+      "selected_target_priority": "UNKNOWN",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "exact_current_role": "Stable Operations Coordinator",
+      "website_work_email": null,
+      "website_phone": null,
+      "evidence_refs": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.example.com/team",
+          "page_title": "Our Team",
+          "evidence_text": "Alex Morgan — Stable Operations Coordinator",
+          "page_content_sha256": "251dd130afc5e462437f9b884c01ed80d85715717a628c685089df5e844afbc9"
+        }
+      ]
+    },
+    {
+      "request_id": "contact-web-website-person-e6cdf8df308890f6",
+      "company_id": "company-fixture-001",
+      "twenty_person_id": null,
+      "website_person_id": "website-person-e6cdf8df308890f6",
+      "provider_person_id": null,
+      "full_name": "Taylor Brooks",
+      "source_full_name": "Taylor Brooks",
+      "first_name": "Taylor",
+      "last_name": "Brooks",
+      "professional_network_url": null,
+      "company_name": "Example Equine Centre",
+      "company_domain": "example.com",
+      "source_kind": "new",
+      "selection_stage": "website",
+      "selected_target_priority": "UNKNOWN",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "exact_current_role": "Veterinary Receptionist",
+      "website_work_email": null,
+      "website_phone": null,
+      "evidence_refs": [
+        {
+          "page_index": 5,
+          "page_url": "https://www.example.com/staff",
+          "page_title": "Staff Directory",
+          "evidence_text": "Taylor Brooks — Veterinary Receptionist",
+          "page_content_sha256": "9744796371cd54ba73385694d8363b2780553f0873883ae99e07907bdbe4b6f3"
+        }
+      ]
+    }
+  ],
+  "complete_people": [],
+  "artifact_sha256": "69d775ccd1f52ff31139e3e3ee9cf3ccb005542efe353b065b97745a446fa1d0"
+}

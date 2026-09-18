@@ -1,0 +1,73 @@
+{
+  "record_type": "equinet_a2_fullenrich_source_routing_confirmation",
+  "decision_id": "A2-FULLENRICH-SOURCE-ROUTING-20260906",
+  "recorded_at": "2026-09-06T13:07:00Z",
+  "recorded_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "client_authority": "Equinet-confirmed requirements relayed by Séverine",
+  "scope": [
+    "source_sequence",
+    "fullenrich_operations",
+    "target_role_search",
+    "contact_limits",
+    "mobile_phone",
+    "personal_email",
+    "n8n_integration_direction"
+  ],
+  "decisions": {
+    "equinet_first_party_enrichment_data": "not_available",
+    "new_external_source_sequence": [
+      "prospect_official_website",
+      "fullenrich",
+      "apify_harvestapi_if_separately_gated"
+    ],
+    "people_search": {
+      "trigger": "no_suitable_named_contact_after_official_website",
+      "exact_organisation_domain_required": true,
+      "approved_target_role_required": true,
+      "default_result_limit": 1,
+      "next_role_specific_search_allowed_when_no_suitable_person_returned": true,
+      "maximum_unique_people_returned_and_retained_per_prospect": 2,
+      "second_contact_requires": [
+        "large_organisation",
+        "shared_purchasing_or_operational_responsibility"
+      ],
+      "broad_role_free_search": false
+    },
+    "people_lookup": {
+      "trigger": "known_contact_name_with_identity_or_current_role_not_sufficiently_verified",
+      "maximum_results": 1,
+      "skip_when_name_role_and_organisation_are_already_verified": true
+    },
+    "contact_enrichment": {
+      "selected_contacts_only": true,
+      "requested_fields": [
+        "contact.work_emails",
+        "contact.phones"
+      ],
+      "personal_email_requested": false,
+      "mobile_phone_permitted_and_desired": true,
+      "mobile_absence_blocks_review_by_itself": false
+    },
+    "retained_contact_limit": {
+      "default": 1,
+      "maximum": 2,
+      "second_contact_requires_reason": true
+    },
+    "apify_fallback": "not_automatic; separate preflight after FullEnrich not_found, insufficient_match or approved technical exhaustion",
+    "n8n": "approved target orchestration layer; not connected or runtime-active"
+  },
+  "external_actions_authorized": false,
+  "production_acceptance": false,
+  "supersedes": {
+    "decision_id": "A2-EQUINET-ROLES-CONTACTS-HORSEOWNER-20260830",
+    "scopes": [
+      "equinet_first_party_enrichment_source_availability",
+      "contact_channel_provider_rules",
+      "mobile_phone_collection",
+      "personal_email_provider_collection"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "decisions": [
+    {
+      "company_id": "0abf3519-7590-4ea9-b1ec-c2e6e901d9d4",
+      "people_search_required": true,
+      "person_decisions": [
+        {
+          "twenty_person_id": "18855312-e7a7-41fa-b92f-ce06f5776d21",
+          "identity_status": "NOT_FOUND",
+          "company_match_status": "AMBIGUOUS",
+          "role_priority": "UNKNOWN",
+          "role_status": "UNVERIFIED",
+          "retain_as_target": false,
+          "secondary_fallback_eligible": false,
+          "evidence_flags": ["lookup_blocked_no_supported_identifier"]
+        }
+      ]
+    },
+    {
+      "company_id": "fd216e4e-287c-4d6b-994e-861278ca3065",
+      "people_search_required": true,
+      "person_decisions": [
+        {
+          "twenty_person_id": "c53ee895-0ce9-4d04-a2fd-908c494a3469",
+          "identity_status": "NOT_FOUND",
+          "company_match_status": "AMBIGUOUS",
+          "role_priority": "UNKNOWN",
+          "role_status": "UNVERIFIED",
+          "retain_as_target": false,
+          "secondary_fallback_eligible": false,
+          "evidence_flags": ["lookup_blocked_no_supported_identifier"]
+        }
+      ]
+    }
+  ]
+}

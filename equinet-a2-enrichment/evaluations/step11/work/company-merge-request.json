@@ -1,0 +1,156 @@
+{
+  "run_id": "step11-fixture-run",
+  "company_id": "company-fixture-001",
+  "baseline": {
+    "email": {
+      "primaryEmail": "a1@example.com",
+      "additionalEmails": []
+    },
+    "phone": {
+      "primaryPhoneNumber": "+15550001",
+      "primaryPhoneCountryCode": "US",
+      "primaryPhoneCallingCode": "+1",
+      "additionalPhones": []
+    },
+    "linkedinLink": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "facebook": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkUrl": "",
+      "primaryLinkLabel": "",
+      "secondaryLinks": []
+    }
+  },
+  "observations": [
+    {
+      "field": "phone",
+      "value": "+1 (859) 555-0100",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-contact-388270b7e2479fbc"
+      ]
+    },
+    {
+      "field": "email",
+      "value": "office@example.com",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-contact-ce27a575d652b66b"
+      ]
+    },
+    {
+      "field": "email",
+      "value": "alex.morgan@example.com",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/team",
+      "evidence_refs": [
+        "website-contact-f624041796afcd72"
+      ]
+    },
+    {
+      "field": "tiktok",
+      "value": "https://www.tiktok.com/@exampleequine",
+      "label": "Tiktok",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-social-0d65762f6704abe5"
+      ]
+    },
+    {
+      "field": "linkedinLink",
+      "value": "https://www.linkedin.com/company/exampleequine",
+      "label": "Linkedin",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-social-2d8936bb8a53ace3"
+      ]
+    },
+    {
+      "field": "instagram",
+      "value": "https://www.instagram.com/exampleequine",
+      "label": "Instagram",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-social-3865ad7abc90039a"
+      ]
+    },
+    {
+      "field": "youtube",
+      "value": "https://www.youtube.com/@exampleequine",
+      "label": "Youtube",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-social-45a0c648ce570b62"
+      ]
+    },
+    {
+      "field": "xTwitter",
+      "value": "https://x.com/exampleequine",
+      "label": "X",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-social-a1b11e9d1a424b85"
+      ]
+    },
+    {
+      "field": "facebook",
+      "value": "https://www.facebook.com/exampleequine",
+      "label": "Facebook",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/",
+      "evidence_refs": [
+        "website-social-a6ffb9e611643cda"
+      ]
+    },
+    {
+      "field": "linkedinLink",
+      "value": "https://www.linkedin.com/in/alex-morgan-example",
+      "label": "Linkedin",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.example.com/team",
+      "evidence_refs": [
+        "website-social-b2eb6e7505b6ec57"
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,139 @@
+{
+  "status": "valid",
+  "mapping_version": "0.1.1",
+  "observed": {
+    "company": {
+      "object_id": "89cb0885-61c0-4d39-989f-b7f0cf248dc9",
+      "a2_fields": {
+        "a2ProcessingStartedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2EnrichmentStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "NOT_ENRICHED",
+            "PROCESSING",
+            "ENRICHED",
+            "PARTIALLY_ENRICHED",
+            "COMPLETED_NO_TARGET",
+            "RETRYABLE_ERROR",
+            "BLOCKED"
+          ]
+        },
+        "a2EnrichmentErrorCode": {
+          "type": "TEXT",
+          "isUnique": false,
+          "options": []
+        },
+        "a2NextRetryAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2LastAttemptedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2EnrichmentVersion": {
+          "type": "TEXT",
+          "isUnique": false,
+          "options": []
+        },
+        "a2LastEnrichedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2EnrichmentRunId": {
+          "type": "TEXT",
+          "isUnique": false,
+          "options": []
+        }
+      }
+    },
+    "person": {
+      "object_id": "4220f12d-d3ec-4268-ad2f-64c4453859fa",
+      "a2_fields": {
+        "a2LastVerifiedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2EnrichmentRunId": {
+          "type": "TEXT",
+          "isUnique": false,
+          "options": []
+        },
+        "a2RoleStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "CURRENT_AT_COMPANY",
+            "NOT_CURRENT_AT_COMPANY",
+            "UNVERIFIED"
+          ]
+        },
+        "a2EnrichmentStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "PENDING",
+            "ENRICHED",
+            "PARTIAL",
+            "NOT_FOUND",
+            "ERROR"
+          ]
+        },
+        "a2IdentityStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "VERIFIED",
+            "AMBIGUOUS",
+            "CONFLICT",
+            "NOT_FOUND"
+          ]
+        },
+        "a2FullenrichPersonid": {
+          "type": "TEXT",
+          "isUnique": true,
+          "options": []
+        },
+        "a2LastEnrichedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2CompanyMatchStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "CONFIRMED",
+            "PROBABLE",
+            "AMBIGUOUS",
+            "MISMATCH"
+          ]
+        },
+        "a2RolePriority": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "PRIMARY",
+            "SECONDARY",
+            "REVIEW_ONLY",
+            "EXCLUDED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    }
+  },
+  "metadata_sha256": "d8f81b4f0c51f4ae35ff9474ed4c1057f26e50672146e797dce82a4169d23559",
+  "external_calls": 1,
+  "external_writes": 0,
+  "errors": []
+}

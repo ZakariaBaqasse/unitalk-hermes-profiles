@@ -1,0 +1,159 @@
+{
+  "projection_version": "0.1.0-draft.1",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "segment": "horse_owner",
+  "operating_scope": "manual_no_integration_pilot",
+  "a2_eligibility_status": "eligible",
+  "enrichment_mode": "default_minimum_package",
+  "contact_path": "named_target",
+  "target_role_not_found": false,
+  "research_exhausted": false,
+  "field_states": {
+    "organisation.business_name": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.website": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.website_domain": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.public_business_location": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "person.full_name": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "person.role_title": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.business_phone": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.business_email": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "person.business_email": {
+      "state": "verified",
+      "freshness_status": "current"
+    },
+    "organisation.stable_type": {
+      "state": "present_unverified",
+      "freshness_status": "current"
+    },
+    "relationship.target_role_priority": {
+      "state": "present_unverified",
+      "freshness_status": "current"
+    },
+    "person.business_phone": {
+      "state": "unknown",
+      "freshness_status": "not_assessed"
+    }
+  },
+  "reused_a1_values": {
+    "organisation.business_name": {
+      "value": "Jonabell Farm",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.website": {
+      "value": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.website_domain": {
+      "value": "darleyamerica.com",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.public_business_location": {
+      "value": {
+        "country_code": "US",
+        "state_region": "Kentucky",
+        "city": "Lexington",
+        "postal_code": "40513",
+        "public_address": "3333 Bowman Mill Road, Lexington, Kentucky 40513, USA"
+      },
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "person.full_name": {
+      "value": "Kate Galvin",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "person.role_title": {
+      "value": "Nominations Sales and Operating Manager, Jonabell Farm",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.business_phone": {
+      "value": "+1 859 255 8537",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.business_email": {
+      "value": "us-hello@godolphin.com",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "person.business_email": {
+      "value": "kgalvin@godolphin.com",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "organisation.stable_type": {
+      "value": "breeding",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    },
+    "relationship.target_role_priority": {
+      "value": "secondary",
+      "evidence_ids": [
+        "EV-DARLEY-CONTACT-001",
+        "EV-DARLEY-JONABELL-001"
+      ],
+      "origin": "a1_handoff"
+    }
+  },
+  "relationship_state": "proposal_only_requires_evidence_review",
+  "package": "horse_owner_review_ready",
+  "automatic_rejection": false,
+  "automatic_a1_score_change": false,
+  "external_actions": 0
+}

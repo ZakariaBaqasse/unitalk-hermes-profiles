@@ -1,0 +1,61 @@
+{
+  "record_type": "step8_synthetic_web_connectivity_smoke",
+  "profile": "equinet-a2-enrichment",
+  "executed_at": "2026-08-29T22:12:10.254186Z",
+  "scope": "synthetic_connectivity_only",
+  "test_target": "example.com",
+  "config_activation": {
+    "before_sha256": "ff52b8a019abe8d2640c755fc107172b21088411685e0e27b001aba0f286235c",
+    "proposed_sha256": "4bcb0c371f7e97aec20efdeff0b30dfb6e86e6e5bd8999b30a3b29283f18fc87",
+    "temporarily_applied": true,
+    "restored": true,
+    "after_sha256": "ff52b8a019abe8d2640c755fc107172b21088411685e0e27b001aba0f286235c"
+  },
+  "credential_checks": {
+    "EXA_API_KEY": {
+      "occurrences": 20,
+      "all_identical": true,
+      "configured": true
+    },
+    "FIRECRAWL_API_KEY": {
+      "occurrences": 20,
+      "all_identical": true,
+      "configured": true
+    }
+  },
+  "exa": {
+    "request_count": 1,
+    "http_status": 200,
+    "success": true,
+    "result_count": 1,
+    "first_result": {
+      "title": "Example Domain",
+      "url": "https://example.com/"
+    },
+    "cost": {
+      "total": 0.007,
+      "search": {
+        "neural": 0.007
+      }
+    },
+    "error": null
+  },
+  "firecrawl": {
+    "request_count": 1,
+    "http_status": 200,
+    "success": true,
+    "source_url": "https://example.com/",
+    "resolved_url": "https://example.com/",
+    "title": "Example Domain",
+    "markdown_bytes": 167,
+    "markdown_sha256": "5945db6fd8137aa377638814ca9bb1ac0a663fd90a97f11f86c3f5c09cfb40e3",
+    "cost": "unavailable",
+    "error": null
+  },
+  "external_calls": 2,
+  "external_actions": 0,
+  "real_mustad_or_equinet_data_used": false,
+  "secrets_logged": false,
+  "pass": true,
+  "next_state": "web_connectivity_validated_not_activated"
+}

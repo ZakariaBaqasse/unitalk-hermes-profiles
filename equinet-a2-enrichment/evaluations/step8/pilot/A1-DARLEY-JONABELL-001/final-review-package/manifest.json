@@ -1,0 +1,67 @@
+{
+  "spec_version": "0.1.0",
+  "renderer_version": "0.1.0",
+  "canonical_record_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-005-record-approved.json",
+  "canonical_record_sha256": "f125a7354e5b4635cfd352bc51ff3bed16ff5a0e0485189275685e8bdaa1ad6d",
+  "previous_record_path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-004-review-required.json",
+  "previous_record_sha256": "ed97760edf2c16ecf727d12d0db4ab3a0fb02410fb03bd0690248d9e552416f4",
+  "spec_path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+  "spec_sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df",
+  "renderer_sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef",
+  "outputs": [
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/review.md",
+      "sha256": "6848f6f0e96d85c68a191a53e37bde8bfbaf224d838f8609dd79b980846a0109",
+      "bytes": 3846
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/summary.csv",
+      "sha256": "caefb35fdafff6608588b9a54ed8c8f69892565fd4b81a67712407df5206d76f",
+      "bytes": 882
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/review-queue.csv",
+      "sha256": "b83b0223b8a3054eaa4611b0e52b99a934134172658c226ae01fe886c9a65611",
+      "bytes": 729
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/fields.csv",
+      "sha256": "f1df4a3716aff532d3e7377c0a92b5bc899a80017fc0b32747c4d605e3b95525",
+      "bytes": 6768
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/evidence.csv",
+      "sha256": "38517b2a976c37147f3da140906f803c70164fb354a9e513d82005b5df36b9c0",
+      "bytes": 4062
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6",
+      "bytes": 359
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/audit.csv",
+      "sha256": "006f736b5665d7b58f89c65947dbe7a841607903e4dafe86ed01ec338398c29f",
+      "bytes": 2345
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-package/review.xlsx",
+      "sha256": "73f4514c044f48c0a06c6604088d1a68e94cc18ec13bcfbb54297b638f2fe92d",
+      "bytes": 17161
+    }
+  ],
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 1,
+    "fields": 11,
+    "evidence": 5,
+    "requalification": 0,
+    "audit": 5
+  },
+  "validation": {
+    "canonical_record_valid": true,
+    "read_only_projection": true,
+    "external_actions": 0,
+    "formula_policy": "no_formulas"
+  }
+}

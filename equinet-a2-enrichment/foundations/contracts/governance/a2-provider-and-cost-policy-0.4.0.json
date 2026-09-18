@@ -1,0 +1,41 @@
+{
+  "policy_id": "equinet-a2-provider-and-cost-policy",
+  "version": "0.4.0",
+  "status": "active_for_bounded_integration_validation",
+  "provider": "FullEnrich",
+  "documented_reference_rates": {
+    "people_search_or_lookup_per_returned_person_credits": 0.25,
+    "work_email_if_found_credits": 1,
+    "mobile_if_found_credits": 10,
+    "actual_plan_rate_verification_required": true
+  },
+  "controls": {
+    "verify_key_before_live_action": true,
+    "read_credit_balance_before_live_action": true,
+    "balance_must_not_be_negative": true,
+    "per_run_cap_credits": 50,
+    "daily_cap_credits": 100,
+    "pilot_cap_credits": 250,
+    "spend_approver": "not_required_by_user_decision",
+    "consumption_owner": "not_required_by_user_decision",
+    "reuse_idempotent_success": true,
+    "transient_retries": 1,
+    "not_found_retries": 0,
+    "policy_or_budget_retries": 0,
+    "spend_approver_required": false,
+    "consumption_owner_required": false,
+    "decision_record": "foundations/decisions/A2-FULLENRICH-CREDIT-CAPS-20260915.json",
+    "hard_stop_before_paid_call": true,
+    "reservation_required": true,
+    "actual_usage_settlement_required": true
+  },
+  "activation_allowed": true,
+  "credit_control_acceptance": {
+    "test_path": "scripts/run_step10_budget_tests.py",
+    "tests_passed": 5,
+    "tests_total": 5,
+    "status": "pass"
+  },
+  "activation_scope": "chat-triggered bounded integration validation only",
+  "production_acceptance": false
+}

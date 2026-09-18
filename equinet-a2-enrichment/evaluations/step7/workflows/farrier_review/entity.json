@@ -1,0 +1,36 @@
+{
+  "command": "a2-normalise-resolve-entities",
+  "version": "0.1.0",
+  "source_entity": {
+    "entity_id": "SRC-ORG-001",
+    "entity_type": "organisation",
+    "display_name": "Bluegrass Farrier Services LLC",
+    "normalised_name": "bluegrass farrier services",
+    "domain": "bluegrass.example",
+    "business_email": null,
+    "business_phone": null,
+    "organisation_name": null,
+    "public_profile_urls": []
+  },
+  "candidate_results": [
+    {
+      "candidate_id": "CRM-ORG-001",
+      "status": "confirmed_match",
+      "signals": [
+        {
+          "signal": "normalised_name",
+          "match": true
+        },
+        {
+          "signal": "domain",
+          "match": true
+        }
+      ],
+      "reason": "matching name and strong identifier with no conflicting compared field"
+    }
+  ],
+  "identity_resolution_status": "resolved",
+  "human_review_required": false,
+  "canonical_record_mutated": false,
+  "external_actions": 0
+}

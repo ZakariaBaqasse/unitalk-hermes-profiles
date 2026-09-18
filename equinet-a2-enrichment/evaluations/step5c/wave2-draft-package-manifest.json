@@ -1,0 +1,141 @@
+{
+  "manifest_id": "equinet-a2-wave2-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "validation_failed",
+  "files": [
+    {
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "bytes": 2981,
+      "sha256": "cafec340031d65a4e480f2aa8080e851ce60581ebf30768e1a97bf92ca5e84bd"
+    },
+    {
+      "path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "bytes": 3422,
+      "sha256": "bf5c1e969646f9e0800df42f0159cf2c033f91a902b2b4a75f4916e622ef69ea"
+    },
+    {
+      "path": "skills/a2-field-verification/SKILL.md",
+      "bytes": 2888,
+      "sha256": "8f0179193f718aa1950561b0a4150063d2b9a4833a25cf564d0265b02e0e2f22"
+    },
+    {
+      "path": "skills/a2-gap-analysis-and-enrichment-planning/evals/evals.json",
+      "bytes": 931,
+      "sha256": "b27f0966fa036707ec9f8c1f5077ac63b7923596fd39fe1fe591c18029e33d9b"
+    },
+    {
+      "path": "skills/a2-permitted-enrichment-research/evals/evals.json",
+      "bytes": 1040,
+      "sha256": "9dc3401aee35523e76c95a3eddf7aa690619ba0a7eba7408ff2ce36c9cb22514"
+    },
+    {
+      "path": "skills/a2-field-verification/evals/evals.json",
+      "bytes": 973,
+      "sha256": "10da6c924e62b422a04a569865861a45dcbf692d46dc1e4b9a430377a5c38f90"
+    },
+    {
+      "path": "skills/a2-field-verification/references/contact-verification.md",
+      "bytes": 876,
+      "sha256": "090b87f625f598d21057a6ea18a8b88432ea22cad639a7906af330a2d87707a5"
+    },
+    {
+      "path": "skills/a2-field-verification/references/professional-verification.md",
+      "bytes": 783,
+      "sha256": "c2306cf263041f7c37e8d040270ed586e82d8bf588e241e1006a70dabffda06a"
+    },
+    {
+      "path": "skills/a2-field-verification/references/equine-business-verification.md",
+      "bytes": 814,
+      "sha256": "c26149ba97ec20bd29cafd6539347859128ed2298a8a083877fdaa6778e03502"
+    },
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "bytes": 14880,
+      "sha256": "4abcfdfaa996f8ffa381e50fc9c2727a84009c532d3d65619ee27d77a4bb3012"
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "bytes": 12588,
+      "sha256": "8310f9dde39577ca6fd673b0454f804742a6ce8341a8aa7f4a15fa6fb3798343"
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "bytes": 17906,
+      "sha256": "d943b9c3b9e9bbbdd4433d726ec3669b803f656f9c20d33d75ca2fc409daf333"
+    },
+    {
+      "path": "scripts/a2_wave2_contracts.py",
+      "bytes": 2518,
+      "sha256": "b189cd98f47cbe7b4e47bc95ba5aee0b6afb9600436bec7bb8f93ccc98e28b7c"
+    },
+    {
+      "path": "evaluations/step5c/fixtures/wave2-cases.json",
+      "bytes": 15862,
+      "sha256": "ea49c6ad30ffe4d1323563aa9d08d2aed82939f90f2b1ea13186989d06ec3897"
+    },
+    {
+      "path": "evaluations/step5c/behavioural-validation.json",
+      "bytes": 1477,
+      "sha256": "2bccfa3c5d3f2cd332c7490826df907b17b3b18588991ecff25ac8bfd36975d6"
+    },
+    {
+      "path": "evaluations/step5c/technical-validation.json",
+      "bytes": 73927,
+      "sha256": "5182a9b03a8ad1042cb8cf7d6e61dd876c1ea8344fe9a55fe9bbcd34722fd815"
+    },
+    {
+      "path": "evaluations/step5c/A2-WAVE-2-REVIEW.md",
+      "bytes": 2639,
+      "sha256": "f7241f5a8e8cf34be558412677f3c026aed4ae7cd88701dfd1d74036559cdbf5"
+    },
+    {
+      "path": "evaluations/step5c/A2-WAVE-2-IMPLEMENTATION-PLAN.md",
+      "bytes": 3976,
+      "sha256": "0a7544af4874ca115d83d01411a83a2808c34800481efa063ff68ff942d6e0ab"
+    },
+    {
+      "path": "evaluations/step5b/acceptance-record.json",
+      "bytes": 1426,
+      "sha256": "ab6ff0092de372bae81731322c5c3a67b683563198fdec509e81ca58f42f0e9a"
+    },
+    {
+      "path": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+      "bytes": 13481,
+      "sha256": "624650b26131baadfd39e8dd2fd8d57eb1187e02442c6d15b97450f5468794f4"
+    },
+    {
+      "path": "foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json",
+      "bytes": 20646,
+      "sha256": "c91351814a084cffd020c0f6890bca88fb6550f117e5e85c79516294899d1a37"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "bytes": 41682,
+      "sha256": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445"
+    },
+    {
+      "path": "foundations/contracts/business/a2-minimum-data-packages-0.1.1-draft.1.json",
+      "bytes": 5408,
+      "sha256": "2ddf615e4c2894b97cfa8ef42f73d4437a7e2370e1cefa0d60a2986fb7741b94"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.json",
+      "bytes": 23039,
+      "sha256": "ee5fc77aadd4b511ad8681cde7e5714146fc930072e2d71a1c4e2bba952ddab8"
+    },
+    {
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.1.1-draft.1.json",
+      "bytes": 5925,
+      "sha256": "3e2b56b7989c523f37219730d266d6b83a9b25f104cc7289697931927ea6d05b"
+    }
+  ],
+  "file_count": 25,
+  "skills": 3,
+  "commands": 3,
+  "supporting_modules": 1,
+  "references": 3,
+  "deterministic_cases": "24/24 pass",
+  "external_calls": 0,
+  "external_actions": 0,
+  "promotion_performed": false
+}

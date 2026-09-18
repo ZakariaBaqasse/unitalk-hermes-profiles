@@ -1,0 +1,19 @@
+{
+  "field_key": "contact.gdpr_consent",
+  "target_id": "P-1",
+  "hubspot_object": "Contact",
+  "hubspot_property": "gdpr_consent",
+  "protection_class": "authoritative_control",
+  "baseline_state": "populated",
+  "baseline_value": false,
+  "proposal_state": "different",
+  "proposed_value": true,
+  "confidence": "high",
+  "conflict": "material",
+  "review_decision": "approved",
+  "workflow_dependency_status": "verified_no_side_effect",
+  "crm_write_authorized": true,
+  "evidence_ids": [
+    "A2-EV-3"
+  ]
+}

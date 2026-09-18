@@ -1,0 +1,14 @@
+{
+  "object_confirmations": {
+    "creator_absent": true,
+    "campaign_standard": true,
+    "custom_objects": [
+      "Complaints",
+      "Sample Requests"
+    ]
+  },
+  "governance_lists_checked": 3,
+  "authority_boundaries_checked": 4,
+  "errors": [],
+  "pass": true
+}

@@ -1,0 +1,27 @@
+{
+  "record_type": "a2_staged_people_search_decision",
+  "decision_id": "A2-STAGED-PEOPLE-SEARCH-20260917",
+  "recorded_at": "2026-09-17T13:42:29Z",
+  "decision_source": "authorised_chat_user",
+  "sequence": [
+    "primary",
+    "owner",
+    "secondary",
+    "completed_no_target"
+  ],
+  "rules": {
+    "primary": "Search approved primary titles except generic Owner; role-specific owner titles remain primary.",
+    "owner": "Search exact generic Owner only when no primary candidate was retained.",
+    "secondary": "Search approved secondary titles only when no Owner candidate was retained.",
+    "completed_no_target": "Use only after the secondary stage yields no acceptable retained Person."
+  },
+  "selection": {
+    "primary_stage_required_priority": "PRIMARY",
+    "owner_stage_required_priority": "PRIMARY",
+    "secondary_stage_required_priority": "SECONDARY",
+    "maximum_retained_people": 2,
+    "company_match_required": "CONFIRMED"
+  },
+  "technical_failure": "Do not advance automatically after failed or indeterminate Search.",
+  "role_source": "foundations/contracts/business/a2-business-field-catalogue-0.3.1.json"
+}

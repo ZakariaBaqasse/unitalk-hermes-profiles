@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-person-selection-decisions-0.1.2",
+  "required": [
+    "decisions"
+  ],
+  "properties": {
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "company_id",
+          "candidate_decisions",
+          "selected_provider_person_ids"
+        ],
+        "properties": {
+          "company_id": {
+            "type": "string"
+          },
+          "selected_provider_person_ids": {
+            "type": "array",
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "candidate_decisions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "provider_person_id",
+                "company_match_status",
+                "role_priority",
+                "retain",
+                "rationale",
+                "evidence_refs"
+              ],
+              "properties": {
+                "provider_person_id": {
+                  "type": "string"
+                },
+                "company_match_status": {
+                  "enum": [
+                    "CONFIRMED",
+                    "PROBABLE",
+                    "AMBIGUOUS",
+                    "MISMATCH"
+                  ]
+                },
+                "role_priority": {
+                  "enum": [
+                    "PRIMARY",
+                    "SECONDARY",
+                    "REVIEW_ONLY",
+                    "EXCLUDED",
+                    "UNKNOWN"
+                  ]
+                },
+                "retain": {
+                  "type": "boolean"
+                },
+                "rationale": {
+                  "type": "string"
+                },
+                "evidence_refs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "description": "LLM decisions for primary, owner, validated linked-secondary, or paid secondary candidate packets."
+}

@@ -1,0 +1,158 @@
+{
+  "step": "3C",
+  "version": "0.1.0-draft.1",
+  "approval_state": "approved_unitalk_working_baseline_runtime_activation_pending",
+  "register": {
+    "path": "foundations/contracts/sources/a2-source-register-0.1.0-draft.1.json",
+    "sha256": "901dbd504e77a5bf4543c10a32cb05d6e9b723e9368138a2894646dc368fcc3c"
+  },
+  "source_count": 12,
+  "status_counts": {
+    "approved": 3,
+    "conditional": 6,
+    "proposed": 0,
+    "not_selected": 1,
+    "integration_pending": 1,
+    "blocked": 1
+  },
+  "validation": {
+    "errors": [],
+    "passed": true
+  },
+  "csv_fidelity": {
+    "checks": {
+      "row_count": true,
+      "source_order": true,
+      "statuses": true
+    },
+    "passed": true
+  },
+  "negative_regressions": {
+    "total": 13,
+    "passed": 13,
+    "cases": [
+      {
+        "name": "duplicate_source",
+        "expected_error": "inventory mismatch",
+        "errors": [
+          "source inventory mismatch or duplicate source_id"
+        ],
+        "passed": true
+      },
+      {
+        "name": "website_not_approved",
+        "expected_error": "website business approval",
+        "errors": [
+          "official website business approval is not recorded"
+        ],
+        "passed": true
+      },
+      {
+        "name": "website_unbounded",
+        "expected_error": "website bounded limits",
+        "errors": [
+          "official website bounded limits mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "apify_url_changed",
+        "expected_error": "Actor URL mismatch",
+        "errors": [
+          "Apify Actor URL mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "name": "apify_rights_bypassed",
+        "expected_error": "rights gate was weakened",
+        "errors": [
+          "Apify rights gate was weakened"
+        ],
+        "passed": true
+      },
+      {
+        "name": "apify_runtime_overstated",
+        "expected_error": "runtime status is overstated",
+        "errors": [
+          "Apify runtime status is overstated"
+        ],
+        "passed": true
+      },
+      {
+        "name": "profile_personal_email_enabled",
+        "expected_error": "prohibited field missing",
+        "errors": [
+          "Apify prohibited field missing: personal email"
+        ],
+        "passed": true
+      },
+      {
+        "name": "apify_segmentation_enabled",
+        "expected_error": "Apify limit mismatch",
+        "errors": [
+          "Apify limit mismatch: automatic_query_segmentation"
+        ],
+        "passed": true
+      },
+      {
+        "name": "provider_selected_early",
+        "expected_error": "provider status is overstated",
+        "errors": [
+          "commercial provider status is overstated"
+        ],
+        "passed": true
+      },
+      {
+        "name": "a1_directory_recrawl",
+        "expected_error": "permits a new crawl",
+        "errors": [
+          "A1 directory reuse source permits a new crawl"
+        ],
+        "passed": true
+      },
+      {
+        "name": "email_source_removed",
+        "expected_error": "inventory mismatch",
+        "errors": [
+          "source inventory mismatch or duplicate source_id",
+          "Apify email-search business approval is not recorded",
+          "Apify email-search activation gate was weakened",
+          "Apify email-search permitted fields mismatch",
+          "Apify email-search prohibition missing: personal email retention",
+          "Apify email-search prohibition missing: mislabeling the email as LinkedIn-sourced",
+          "Apify email-search prohibition missing: outreach consent inference",
+          "Apify email-search prohibition missing: automatic send"
+        ],
+        "passed": true
+      },
+      {
+        "name": "personal_email_retention_enabled",
+        "expected_error": "email-search prohibition missing",
+        "errors": [
+          "Apify email-search prohibition missing: personal email retention"
+        ],
+        "passed": true
+      },
+      {
+        "name": "extra_registry_enabled",
+        "expected_error": "registries must remain not selected",
+        "errors": [
+          "additional professional registries must remain not selected"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "language_audit": {
+    "files_checked": 410,
+    "findings": 0,
+    "passed": true
+  },
+  "apify_business_approval": "approved",
+  "apify_execution_status": "blocked_pending_linkedin_rights_and_harvestapi_vendor_review",
+  "runtime_activation": false,
+  "external_actions": 0,
+  "failures": [],
+  "pass": true
+}

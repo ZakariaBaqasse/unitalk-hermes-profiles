@@ -1,0 +1,42 @@
+{
+  "record_type": "hubspot_operational_metadata_intake_update",
+  "profile": "equinet-a2-enrichment",
+  "recorded_at": "2026-08-25T09:51:49Z",
+  "inputs": {
+    "status_model_sha256": "fa96082eeb69fca75caa3b5ec61723d572e5e8513377802498b109120df754b3",
+    "users_teams_ownership_sha256": "401f48738283c8e1e0ac013be025575893fbf6bc236b3c7c74352fabfbbdacb2",
+    "process_inventory_sha256": "8212df536e1a5560861b70882fd3031c89758b41b635cf5b97ee802724536bdb",
+    "process_inventory_rows": 68
+  },
+  "profile_changes": {
+    "implementation_contract": "0.1.3",
+    "soul_integration_status": "updated",
+    "workflow_dependency_write_block": "added",
+    "owner_assignment_fallback": "needs_owner_review",
+    "operational_metadata_manifest": "foundations/hubspot/HUBSPOT-OPERATIONAL-METADATA-MANIFEST.json",
+    "operational_intake_audit": "foundations/hubspot/HUBSPOT-OPERATIONAL-MODEL-INTAKE-AUDIT.md"
+  },
+  "unchanged_foundations": [
+    "A1-to-A2 handoff schema",
+    "Canonical A2 record design decisions R1-R9",
+    "A1 scoring ownership and score revision lifecycle",
+    "No-integration CRM-write and outreach prohibitions"
+  ],
+  "newly_possible": [
+    "Exact external lifecycle, lead, Deal, custom-object approval and ticket-state references",
+    "Draft owner/team/territory mapping with needs_owner_review fallback",
+    "Future consent, exclusion, customer, Deal and sequence checks using identified lists and fields",
+    "Workflow-side-effect risk register",
+    "Confirmed need for a new A2 review layer because no enrichment-review asset exists"
+  ],
+  "still_blocked": [
+    "Live HubSpot reads and writes",
+    "Exact Contact-Company-Deal/custom-object association verification",
+    "Full workflow criteria/action and field-dependency verification",
+    "User-level seat and permission verification",
+    "Named A2 reviewer and backup owner",
+    "Automatic owner or territory assignment",
+    "Production integration acceptance"
+  ],
+  "next_gate": "Step 2B Field Dictionary and State Model using property and operational metadata snapshots"
+}

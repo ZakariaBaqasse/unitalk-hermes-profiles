@@ -1,0 +1,61 @@
+{
+  "record_type": "foundation_working_baseline_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "3E",
+  "version": "0.1.0-draft.1",
+  "decision": "approved_as_unitalk_working_baseline",
+  "equinet_confirmation": "pending",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-26T19:39:20Z",
+  "approved_decisions": {
+    "3E-1": "Treat consent, suppression, customer, lifecycle, Deal and sequence fields as authoritative controls or system-read-only.",
+    "3E-2": "Preserve all populated manual CRM values; A2 may propose but never silently overwrite.",
+    "3E-3": "Preserve owner fields and route unresolved assignments to needs_owner_review.",
+    "3E-4": "Treat contact_verified, data_quality and mailing_verified as protected mapping candidates until semantics are approved.",
+    "3E-5": "Apply the documented conflict-precedence order while preserving every conflict in the audit trail.",
+    "3E-6": "Require a complete field-level exception record for any future protected-field change.",
+    "3E-7": "Block every write while workflow or list dependencies remain unverified.",
+    "3E-8": "Require future approved writes to be idempotent, receipted, read back and reconcilable.",
+    "3E-9": "Keep the A1 snapshot immutable and route score-related evidence through requalification.",
+    "3E-10": "Keep current HubSpot write authority false."
+  },
+  "policy": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.0-draft.1.json",
+  "policy_sha256": "94a54a54e88857adc5d9a65e10f2ed5719dab50beba1fbf26894eee700584c3f",
+  "technical_validation": "evaluations/step3e/technical-validation.json",
+  "technical_validation_sha256": "97dad8da40c21c675301a4efb2c33dccf190adea2170cf455440e835ab7c0d44",
+  "package_manifest": "evaluations/step3e/step3e-draft-package-manifest.json",
+  "package_manifest_sha256": "adbf83558851fa8b01f45ac82cd1419bec54637065e52bb8921fc53ed00bd24e",
+  "validation_results": {
+    "protected_hubspot_fields": 32,
+    "deterministic_cases": "10/10 pass",
+    "negative_regressions": "9/9 pass",
+    "language_audit": "pass",
+    "hubspot_write_authorized": false,
+    "external_actions": 0
+  },
+  "profile_sync": {
+    "soul_updated": true,
+    "status": "completed",
+    "explicit_user_authorization_received": true,
+    "completed_at": "2026-08-26T19:42:48Z"
+  },
+  "authorizes": [
+    "use as the Unitalk working baseline",
+    "prepare Step 3F Provider and Cost Policy in draft form"
+  ],
+  "does_not_authorize": [
+    "final Step 3E promotion without Equinet confirmation",
+    "HubSpot connection or write",
+    "owner reassignment",
+    "consent or suppression change",
+    "outreach",
+    "pilot readiness",
+    "production readiness",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 3F — Provider and Cost Policy (draft preparation)",
+  "clarification_applied": "evaluations/foundation-clarifications/step3f-personal-email-review-clarification.json"
+}

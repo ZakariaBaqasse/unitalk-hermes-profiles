@@ -1,0 +1,81 @@
+{
+  "stage": "step8_rood_riddle_stored_page_recovery",
+  "candidate_id": "A1-RR-PODIATRY-001",
+  "executed_at": "2026-08-30T13:19:51Z",
+  "mode": "deterministic_recovery_from_collected_pages",
+  "profile": "equinet-a2-enrichment",
+  "model_execution": {
+    "intended_model": "deepseek-v4-flash",
+    "status": "blocked_before_model_call",
+    "reason": "The non-interactive profile process had no usable openai-api credential. No model output is claimed."
+  },
+  "accepted_direct_observations": [
+    {
+      "field_key": "person.role_title",
+      "value": "Co-Founder/Farrier",
+      "evidence_id": "A2-EV-STEP8-RR-ROLE",
+      "state": "present_unverified_ready_for_evidence_assessment"
+    },
+    {
+      "field_key": "organisation.disciplines",
+      "value": [
+        "all breeds and disciplines"
+      ],
+      "evidence_id": "A2-EV-STEP8-RR-DISCIPLINES",
+      "state": "present_unverified_ready_for_evidence_assessment",
+      "scope_note": "Organisation-wide hospital wording; not narrowed to a Podiatry-only discipline."
+    }
+  ],
+  "unresolved_required_fields": [
+    {
+      "field_key": "person.professional_status",
+      "state": "not_found",
+      "reason": "Full-time, part-time or apprentice status is not explicitly published."
+    },
+    {
+      "field_key": "organisation.service_area",
+      "state": "not_found",
+      "reason": "The Lexington location does not prove the service area."
+    },
+    {
+      "field_key": "person.business_email",
+      "state": "not_found",
+      "reason": "No named professional email was published in the bounded pages."
+    },
+    {
+      "field_key": "person.business_phone",
+      "state": "not_found",
+      "reason": "No named professional phone was published in the bounded pages."
+    }
+  ],
+  "target_role_priority_recommendation": {
+    "field_key": "relationship.target_role_priority",
+    "recommendation": "primary",
+    "recommendation_type": "human_reviewable_classification",
+    "not_a_sourced_fact": true,
+    "human_review_required": true,
+    "rationale": "The verified Co-Founder/Farrier role matches the approved Farrier primary-role model; it does not prove purchasing authority."
+  },
+  "contact_path": {
+    "selected": "named_target",
+    "status": "unsatisfied",
+    "organisation_fallback_available": true,
+    "organisation_phone": "(859) 233-0371",
+    "note": "The organisation phone is not attributed to Manfred Eckert and therefore does not satisfy the selected named-target path."
+  },
+  "minimum_package": {
+    "status": "incomplete",
+    "research_exhausted_for_bounded_pages": true,
+    "recommended_record_decision": "held"
+  },
+  "boundaries_verified": [
+    "No service area inferred from the location.",
+    "No full-time or part-time status inferred from the role or team listing.",
+    "No form placeholder retained as contact data.",
+    "No organisation phone attributed to the named person.",
+    "No purchasing authority inferred.",
+    "No A1 score change.",
+    "No Web, provider, CRM, workflow, outreach or delivery action."
+  ],
+  "external_actions": 0
+}

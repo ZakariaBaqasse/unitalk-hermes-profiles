@@ -1,0 +1,1932 @@
+{
+  "step": "5C",
+  "wave": 2,
+  "status": "approved_and_promoted",
+  "prerequisite_checks": {
+    "step5b_approved": true,
+    "step5b_next_gate": true,
+    "active:foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json": true,
+    "active:foundations/contracts/business/a2-minimum-data-packages-0.1.1-draft.1.json": true,
+    "active:foundations/contracts/sources/a2-source-register-0.1.1-draft.1.json": true,
+    "active:foundations/contracts/governance/a2-provider-and-cost-policy-0.1.1-draft.1.json": true,
+    "active:foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json": true
+  },
+  "skill_count": 3,
+  "command_count": 3,
+  "supporting_module_count": 1,
+  "reference_count": 3,
+  "package_checks": [
+    {
+      "skill_id": "a2-gap-analysis-and-enrichment-planning",
+      "checks": {
+        "frontmatter_name": true,
+        "concise_description": true,
+        "delivery_status": true,
+        "mission": true,
+        "dependencies": true,
+        "inputs": true,
+        "command": true,
+        "workflow_or_order": true,
+        "boundaries": true,
+        "outputs": true,
+        "handoff": true,
+        "three_evals": true
+      },
+      "passed": true
+    },
+    {
+      "skill_id": "a2-permitted-enrichment-research",
+      "checks": {
+        "frontmatter_name": true,
+        "concise_description": true,
+        "delivery_status": true,
+        "mission": true,
+        "dependencies": true,
+        "inputs": true,
+        "command": true,
+        "workflow_or_order": true,
+        "boundaries": true,
+        "outputs": true,
+        "handoff": true,
+        "three_evals": true
+      },
+      "passed": true
+    },
+    {
+      "skill_id": "a2-field-verification",
+      "checks": {
+        "frontmatter_name": true,
+        "concise_description": true,
+        "delivery_status": true,
+        "mission": true,
+        "dependencies": true,
+        "inputs": true,
+        "command": true,
+        "workflow_or_order": true,
+        "boundaries": true,
+        "outputs": true,
+        "handoff": true,
+        "three_evals": true
+      },
+      "passed": true
+    }
+  ],
+  "compile_checks": [
+    {
+      "path": "scripts/build_a2_gap_plan.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/preflight_a2_source_action.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/normalise_and_validate_a2_observations.py",
+      "passed": true
+    },
+    {
+      "path": "scripts/a2_wave2_contracts.py",
+      "passed": true
+    }
+  ],
+  "deterministic_cases": {
+    "total": 24,
+    "passed": 24,
+    "cases": [
+      {
+        "name": "complete-farrier-no-research",
+        "expected": {
+          "plan_status": "no_research_needed",
+          "plan_item_count": 0
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-001",
+          "input_record_sha256": null,
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "plan_status": "no_research_needed",
+          "minimum_package": {
+            "package": "farrier_review_ready",
+            "required_field_count": 5,
+            "contact_path": "named_target",
+            "research_exhausted": false
+          },
+          "plan_items": [],
+          "blocked_fields": [],
+          "errors": [],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "b15f2edf0e5704ceed9bafcd7efa7b24df4b1bd7fbe508c90a9c62aba2fe0a61"
+        },
+        "passed": true
+      },
+      {
+        "name": "horse-owner-required-gap",
+        "expected": {
+          "plan_status": "research_required",
+          "contains_field": "organisation.stable_type",
+          "need_type": "gap"
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-OWN-001",
+          "input_record_sha256": null,
+          "segment": "horse_owner",
+          "operating_scope": "synthetic_test",
+          "plan_status": "research_required",
+          "minimum_package": {
+            "package": "horse_owner_review_ready",
+            "required_field_count": 3,
+            "contact_path": "general_organisation_fallback",
+            "research_exhausted": false
+          },
+          "plan_items": [
+            {
+              "plan_item_id": "PLAN-001",
+              "field_key": "organisation.stable_type",
+              "alternative_field_keys": [],
+              "priority": "required",
+              "current_state": "unknown",
+              "freshness_status": "not_assessed",
+              "need_type": "gap",
+              "source_candidates": [
+                {
+                  "source_id": "a1_approved_handoff",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "a1_directory_evidence_reuse",
+                  "register_status": "approved",
+                  "runtime_readiness": "available_through_handoff",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "hubspot_authoritative_records",
+                  "register_status": "conditional",
+                  "runtime_readiness": "integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_authorized_first_party_data",
+                  "register_status": "conditional",
+                  "runtime_readiness": "manual_intake_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_representative_confirmation",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "prospect_official_website",
+                  "register_status": "conditional",
+                  "runtime_readiness": "runtime_policy_pending",
+                  "external_access_planned": false
+                }
+              ],
+              "external_action_authorized": false
+            }
+          ],
+          "blocked_fields": [],
+          "errors": [],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "2f0f80ad8fda6096c8712a2cb256ff44208b052b1262e4d889d0416c2c8511c5"
+        },
+        "passed": true
+      },
+      {
+        "name": "targeted-do-not-collect-blocked",
+        "expected": {
+          "plan_status": "blocked",
+          "blocked_field": "person.social_signals"
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-002",
+          "input_record_sha256": null,
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "plan_status": "blocked",
+          "minimum_package": {
+            "package": "farrier_review_ready",
+            "required_field_count": 5,
+            "contact_path": "named_target",
+            "research_exhausted": false
+          },
+          "plan_items": [],
+          "blocked_fields": [
+            {
+              "field_key": "person.social_signals",
+              "reason": "do_not_collect"
+            }
+          ],
+          "errors": [],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "817e853bca644abf883da6fae38525da6ac887ec0266ae490eb46ae2d9eb291f"
+        },
+        "passed": true
+      },
+      {
+        "name": "research-exhausted-required-gap-held",
+        "expected": {
+          "plan_status": "held",
+          "contains_field": "person.role_title",
+          "need_type": "gap"
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-003",
+          "input_record_sha256": null,
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "plan_status": "held",
+          "minimum_package": {
+            "package": "farrier_review_ready",
+            "required_field_count": 5,
+            "contact_path": "named_target",
+            "research_exhausted": true
+          },
+          "plan_items": [
+            {
+              "plan_item_id": "PLAN-001",
+              "field_key": "person.role_title",
+              "alternative_field_keys": [],
+              "priority": "required",
+              "current_state": "not_found",
+              "freshness_status": "not_assessed",
+              "need_type": "gap",
+              "source_candidates": [
+                {
+                  "source_id": "a1_approved_handoff",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "a1_directory_evidence_reuse",
+                  "register_status": "approved",
+                  "runtime_readiness": "available_through_handoff",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "hubspot_authoritative_records",
+                  "register_status": "conditional",
+                  "runtime_readiness": "integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_authorized_first_party_data",
+                  "register_status": "conditional",
+                  "runtime_readiness": "manual_intake_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_representative_confirmation",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "prospect_official_website",
+                  "register_status": "conditional",
+                  "runtime_readiness": "runtime_policy_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "apify_harvestapi_linkedin_profile_search",
+                  "register_status": "conditional",
+                  "runtime_readiness": "account_connector_budget_and_build_pending",
+                  "external_access_planned": false
+                }
+              ],
+              "external_action_authorized": false
+            }
+          ],
+          "blocked_fields": [],
+          "errors": [],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "f95cbc5bb6ad46b0724b919a9b00d75608b5922e6906d9bda7d233f6e99f1c8c"
+        },
+        "passed": true
+      },
+      {
+        "name": "optional-not-requested-does-not-block",
+        "expected": {
+          "plan_status": "no_research_needed",
+          "excluded_field": "organisation.horse_count"
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-OWN-002",
+          "input_record_sha256": null,
+          "segment": "horse_owner",
+          "operating_scope": "synthetic_test",
+          "plan_status": "no_research_needed",
+          "minimum_package": {
+            "package": "horse_owner_review_ready",
+            "required_field_count": 3,
+            "contact_path": "general_organisation_fallback",
+            "research_exhausted": false
+          },
+          "plan_items": [],
+          "blocked_fields": [],
+          "errors": [],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "1b4f24cb35d315465811ffbe1afb84d4fa3999be351af35e2b7336bfde9f6d28"
+        },
+        "passed": true
+      },
+      {
+        "name": "wave1-hold-stops-planning",
+        "expected": {
+          "plan_status": "held",
+          "plan_item_count": 0
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-004",
+          "input_record_sha256": null,
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "plan_status": "held",
+          "minimum_package": null,
+          "plan_items": [],
+          "blocked_fields": [],
+          "errors": [
+            "Wave 1 eligibility requires resolution before research"
+          ],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "de259493461718df78063f11761cebc6115bbc1efe52b451153792f1168afde4"
+        },
+        "passed": true
+      },
+      {
+        "name": "official-site-synthetic-fixture-allowed",
+        "expected": {
+          "preflight_status": "allowed_local_fixture",
+          "field_gate": "official_site_business_field_boundary"
+        },
+        "result": {
+          "preflight_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-001",
+          "source_id": "prospect_official_website",
+          "field_key": "person.role_title",
+          "named_need": "verify current role",
+          "execution_mode": "local_fixture_simulation",
+          "preflight_status": "allowed_local_fixture",
+          "field_gate": "official_site_business_field_boundary",
+          "register_status": "conditional",
+          "business_approval": "approved_by_equinet",
+          "source_rights_preflight": "per_domain_terms_and_robots_preflight",
+          "runtime_readiness": "runtime_policy_pending",
+          "allowed_access_modes": [
+            "bounded_public_web_read"
+          ],
+          "limits": {
+            "max_pages_per_candidate": 5,
+            "max_retry_per_failed_url": 1,
+            "concurrency": 1,
+            "required_pages": [
+              "home_or_primary",
+              "about_or_team_when_available",
+              "services_when_available",
+              "contact_or_location_when_available"
+            ],
+            "capture_explicit_outbound_professional_social_links": true,
+            "open_or_extract_linked_social_profiles": false
+          },
+          "stop_conditions": [
+            "terms_or_robots_denial",
+            "login_or_paywall",
+            "captcha",
+            "http_403",
+            "http_429",
+            "unexpected_personal_data",
+            "scope_or_budget_limit"
+          ],
+          "audit_requirements": [
+            "actor_profile",
+            "trigger",
+            "timestamp",
+            "source_id",
+            "input_scope",
+            "source_urls",
+            "output_reference",
+            "approval_state",
+            "status",
+            "retries",
+            "usage_and_cost"
+          ],
+          "provider_missing_activation_gates": [],
+          "live_runtime_blocks": [],
+          "blocks": [],
+          "warnings": [],
+          "audit": {
+            "actor_profile": "equinet-a2-enrichment",
+            "trigger": "verify current role",
+            "timestamp": "2026-08-27T13:00:00Z",
+            "run_id": "W2-SYN-FAR-001",
+            "source_id": "prospect_official_website",
+            "input_scope": {
+              "candidate_id": "SYN-FAR-001",
+              "field_key": "person.role_title",
+              "named_need": "verify current role"
+            },
+            "source_urls": [],
+            "output_reference": null,
+            "approval_state": "fixture_only",
+            "status": "allowed_local_fixture",
+            "retries": 0,
+            "usage_and_cost": {
+              "api_calls": 0,
+              "cost_amount": 0,
+              "currency": "USD",
+              "cost_status": "no_external_call"
+            }
+          },
+          "audit_complete": true,
+          "external_call_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "preflight_sha256": "49ee0c06dc1e4403475e7d708fdb0b73cd013c50852669da2ded3e9439695413"
+        },
+        "passed": true
+      },
+      {
+        "name": "apify-profile-runtime-blocked",
+        "expected": {
+          "preflight_status": "prepared_runtime_blocked",
+          "contains_block": "provider_runtime_activation_gate_blocked"
+        },
+        "result": {
+          "preflight_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-001",
+          "source_id": "apify_harvestapi_linkedin_profile_search",
+          "field_key": "person.role_title",
+          "named_need": "role remains missing after official site",
+          "execution_mode": "preflight_only",
+          "preflight_status": "prepared_runtime_blocked",
+          "field_gate": "exact_field_allowlist_match",
+          "register_status": "conditional",
+          "business_approval": "approved_by_equinet_for_a2_business_purpose",
+          "source_rights_preflight": "blocked_pending_linkedin_rights_and_harvestapi_vendor_review",
+          "runtime_readiness": "account_connector_budget_and_build_pending",
+          "allowed_access_modes": [
+            "apify_actor_api_after_all_gates"
+          ],
+          "limits": {
+            "trigger": "named_role_gap_after_official_website_check",
+            "profile_scraper_mode": "minimum_fields_only_then_output_review",
+            "take_pages": 1,
+            "max_items_per_candidate": 5,
+            "max_retained_contacts_per_candidate": 3,
+            "automatic_query_segmentation": false,
+            "concurrency": 1,
+            "daily_cost_cap_usd": null,
+            "input_preference": [
+              "exact_linkedin_company_url",
+              "verified_company_name_plus_target_role"
+            ],
+            "individual_linkedin_profile_url_route": "manual_review_or_separately_approved_profile_scraper"
+          },
+          "stop_conditions": [
+            "terms_or_robots_denial",
+            "login_or_paywall",
+            "captcha",
+            "http_403",
+            "http_429",
+            "unexpected_personal_data",
+            "scope_or_budget_limit"
+          ],
+          "audit_requirements": [
+            "actor_profile",
+            "trigger",
+            "timestamp",
+            "source_id",
+            "input_scope",
+            "source_urls",
+            "output_reference",
+            "approval_state",
+            "status",
+            "retries",
+            "usage_and_cost"
+          ],
+          "provider_missing_activation_gates": [
+            "approved_account",
+            "pinned_actor_build",
+            "rights_or_exception",
+            "vendor_due_diligence",
+            "retention_rule",
+            "test_cap",
+            "daily_cap",
+            "pilot_cap",
+            "spend_approver",
+            "consumption_owner",
+            "audit_logging",
+            "connector_test"
+          ],
+          "live_runtime_blocks": [
+            "provider_external_calls_not_authorized",
+            "provider_runtime_activation_gate_blocked"
+          ],
+          "blocks": [
+            "provider_external_calls_not_authorized",
+            "provider_runtime_activation_gate_blocked"
+          ],
+          "warnings": [],
+          "audit": {
+            "actor_profile": "equinet-a2-enrichment",
+            "trigger": "role remains missing after official site",
+            "timestamp": "2026-08-27T13:00:00Z",
+            "run_id": "W2-SYN-FAR-001",
+            "source_id": "apify_harvestapi_linkedin_profile_search",
+            "input_scope": {
+              "candidate_id": "SYN-FAR-001",
+              "field_key": "person.role_title",
+              "named_need": "role remains missing after official site"
+            },
+            "source_urls": [],
+            "output_reference": null,
+            "approval_state": "approved_by_equinet_for_a2_business_purpose",
+            "status": "prepared_runtime_blocked",
+            "retries": 0,
+            "usage_and_cost": {
+              "api_calls": 0,
+              "cost_amount": 0,
+              "currency": "USD",
+              "cost_status": "no_external_call"
+            }
+          },
+          "audit_complete": true,
+          "external_call_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "preflight_sha256": "027de4ed9c9096492f62962e6cfa5a6888a3f4a18f1271c4784be219d45b0f73"
+        },
+        "passed": true
+      },
+      {
+        "name": "official-site-social-opening-blocked",
+        "expected": {
+          "preflight_status": "blocked",
+          "contains_block": "opening_linked_social_profile_is_not_authorised"
+        },
+        "result": {
+          "preflight_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-001",
+          "source_id": "prospect_official_website",
+          "field_key": "organisation.public_profile_urls",
+          "named_need": "capture explicit social links",
+          "execution_mode": "preflight_only",
+          "preflight_status": "blocked",
+          "field_gate": "official_site_business_field_boundary",
+          "register_status": "conditional",
+          "business_approval": "approved_by_equinet",
+          "source_rights_preflight": "per_domain_terms_and_robots_preflight",
+          "runtime_readiness": "runtime_policy_pending",
+          "allowed_access_modes": [
+            "bounded_public_web_read"
+          ],
+          "limits": {
+            "max_pages_per_candidate": 5,
+            "max_retry_per_failed_url": 1,
+            "concurrency": 1,
+            "required_pages": [
+              "home_or_primary",
+              "about_or_team_when_available",
+              "services_when_available",
+              "contact_or_location_when_available"
+            ],
+            "capture_explicit_outbound_professional_social_links": true,
+            "open_or_extract_linked_social_profiles": false
+          },
+          "stop_conditions": [
+            "terms_or_robots_denial",
+            "login_or_paywall",
+            "captcha",
+            "http_403",
+            "http_429",
+            "unexpected_personal_data",
+            "scope_or_budget_limit"
+          ],
+          "audit_requirements": [
+            "actor_profile",
+            "trigger",
+            "timestamp",
+            "source_id",
+            "input_scope",
+            "source_urls",
+            "output_reference",
+            "approval_state",
+            "status",
+            "retries",
+            "usage_and_cost"
+          ],
+          "provider_missing_activation_gates": [],
+          "live_runtime_blocks": [],
+          "blocks": [
+            "opening_linked_social_profile_is_not_authorised"
+          ],
+          "warnings": [],
+          "audit": {
+            "actor_profile": "equinet-a2-enrichment",
+            "trigger": "capture explicit social links",
+            "timestamp": "2026-08-27T13:00:00Z",
+            "run_id": "W2-SYN-FAR-001",
+            "source_id": "prospect_official_website",
+            "input_scope": {
+              "candidate_id": "SYN-FAR-001",
+              "field_key": "organisation.public_profile_urls",
+              "named_need": "capture explicit social links"
+            },
+            "source_urls": [],
+            "output_reference": null,
+            "approval_state": "approved_by_equinet",
+            "status": "blocked",
+            "retries": 0,
+            "usage_and_cost": {
+              "api_calls": 0,
+              "cost_amount": 0,
+              "currency": "USD",
+              "cost_status": "no_external_call"
+            }
+          },
+          "audit_complete": true,
+          "external_call_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "preflight_sha256": "1407b3207ad40fa9bd1c9b050f9c9b9ae98cad09adaa18e832f45d4ba41ca180"
+        },
+        "passed": true
+      },
+      {
+        "name": "search-snippet-evidence-blocked",
+        "expected": {
+          "preflight_status": "blocked",
+          "contains_block": "search_snippet_cannot_be_retained_as_evidence"
+        },
+        "result": {
+          "preflight_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-OWN-001",
+          "source_id": "search_engine_discovery",
+          "field_key": "organisation.website",
+          "named_need": "locate official website",
+          "execution_mode": "preflight_only",
+          "preflight_status": "blocked",
+          "field_gate": "destination_discovery_only",
+          "register_status": "conditional",
+          "business_approval": "approved_by_equinet_for_official_site_discovery",
+          "source_rights_preflight": "standard_search_terms_apply",
+          "runtime_readiness": "tool_available_not_profile_activated",
+          "allowed_access_modes": [
+            "search_results_discovery_only"
+          ],
+          "limits": {
+            "max_queries_per_candidate": 3
+          },
+          "stop_conditions": [
+            "terms_or_robots_denial",
+            "login_or_paywall",
+            "captcha",
+            "http_403",
+            "http_429",
+            "unexpected_personal_data",
+            "scope_or_budget_limit"
+          ],
+          "audit_requirements": [
+            "actor_profile",
+            "trigger",
+            "timestamp",
+            "source_id",
+            "input_scope",
+            "source_urls",
+            "output_reference",
+            "approval_state",
+            "status",
+            "retries",
+            "usage_and_cost"
+          ],
+          "provider_missing_activation_gates": [],
+          "live_runtime_blocks": [],
+          "blocks": [
+            "search_snippet_cannot_be_retained_as_evidence"
+          ],
+          "warnings": [],
+          "audit": {
+            "actor_profile": "equinet-a2-enrichment",
+            "trigger": "locate official website",
+            "timestamp": "2026-08-27T13:00:00Z",
+            "run_id": "W2-SYN-OWN-001",
+            "source_id": "search_engine_discovery",
+            "input_scope": {
+              "candidate_id": "SYN-OWN-001",
+              "field_key": "organisation.website",
+              "named_need": "locate official website"
+            },
+            "source_urls": [],
+            "output_reference": null,
+            "approval_state": "approved_by_equinet_for_official_site_discovery",
+            "status": "blocked",
+            "retries": 0,
+            "usage_and_cost": {
+              "api_calls": 0,
+              "cost_amount": 0,
+              "currency": "USD",
+              "cost_status": "no_external_call"
+            }
+          },
+          "audit_complete": true,
+          "external_call_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "preflight_sha256": "68ac8bc04d94ecb5a8c42e80f3d9eccca9350bd6ee72e083df8eb2ce7dd8eee2"
+        },
+        "passed": true
+      },
+      {
+        "name": "unknown-source-invalid",
+        "expected": {
+          "preflight_status": "invalid_request"
+        },
+        "result": {
+          "preflight_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-X-001",
+          "source_id": "invented_provider",
+          "field_key": "person.role_title",
+          "named_need": "role gap",
+          "execution_mode": "preflight_only",
+          "preflight_status": "invalid_request",
+          "field_gate": "not_evaluated",
+          "register_status": null,
+          "business_approval": null,
+          "source_rights_preflight": null,
+          "runtime_readiness": null,
+          "allowed_access_modes": [],
+          "limits": {},
+          "stop_conditions": [],
+          "audit_requirements": [],
+          "provider_missing_activation_gates": [],
+          "live_runtime_blocks": [],
+          "blocks": [],
+          "warnings": [],
+          "audit": {
+            "actor_profile": "equinet-a2-enrichment",
+            "trigger": "role gap",
+            "timestamp": "2026-08-27T13:00:00Z",
+            "run_id": "W2-SYN-X-001",
+            "source_id": "invented_provider",
+            "input_scope": {
+              "candidate_id": "SYN-X-001",
+              "field_key": "person.role_title",
+              "named_need": "role gap"
+            },
+            "source_urls": [],
+            "output_reference": null,
+            "approval_state": null,
+            "status": "invalid_request",
+            "retries": 0,
+            "usage_and_cost": {
+              "api_calls": 0,
+              "cost_amount": 0,
+              "currency": "USD",
+              "cost_status": "no_external_call"
+            }
+          },
+          "audit_complete": true,
+          "external_call_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "preflight_sha256": "ae67a699ee131389e4504141eb155414d92b34f4883d66a7bd3f389615c0b6b5"
+        },
+        "passed": true
+      },
+      {
+        "name": "personal-email-provider-runtime-blocked",
+        "expected": {
+          "preflight_status": "prepared_runtime_blocked",
+          "contains_block": "provider_runtime_activation_gate_blocked"
+        },
+        "result": {
+          "preflight_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-001",
+          "source_id": "apify_harvestapi_email_search",
+          "field_key": "person.personal_email_candidate",
+          "named_need": "email gap",
+          "execution_mode": "preflight_only",
+          "preflight_status": "prepared_runtime_blocked",
+          "field_gate": "personal_email_privacy_review_only",
+          "register_status": "conditional",
+          "business_approval": "approved_by_equinet_for_a2_business_purpose",
+          "source_rights_preflight": "blocked_pending_linkedin_rights_email_data_rights_and_harvestapi_vendor_review",
+          "runtime_readiness": "account_connector_budget_and_build_pending",
+          "allowed_access_modes": [
+            "apify_actor_full_plus_email_after_all_gates"
+          ],
+          "limits": {
+            "trigger": "selected_profile_after_role_company_match",
+            "max_email_searches_per_candidate": 3,
+            "daily_cost_cap_usd": null,
+            "concurrency": 1
+          },
+          "stop_conditions": [
+            "terms_or_robots_denial",
+            "login_or_paywall",
+            "captcha",
+            "http_403",
+            "http_429",
+            "unexpected_personal_data",
+            "scope_or_budget_limit"
+          ],
+          "audit_requirements": [
+            "actor_profile",
+            "trigger",
+            "timestamp",
+            "source_id",
+            "input_scope",
+            "source_urls",
+            "output_reference",
+            "approval_state",
+            "status",
+            "retries",
+            "usage_and_cost"
+          ],
+          "provider_missing_activation_gates": [
+            "approved_account",
+            "pinned_actor_build",
+            "rights_or_exception",
+            "vendor_due_diligence",
+            "retention_rule",
+            "test_cap",
+            "daily_cap",
+            "pilot_cap",
+            "spend_approver",
+            "consumption_owner",
+            "audit_logging",
+            "connector_test"
+          ],
+          "live_runtime_blocks": [
+            "provider_external_calls_not_authorized",
+            "provider_runtime_activation_gate_blocked"
+          ],
+          "blocks": [
+            "provider_external_calls_not_authorized",
+            "provider_runtime_activation_gate_blocked"
+          ],
+          "warnings": [],
+          "audit": {
+            "actor_profile": "equinet-a2-enrichment",
+            "trigger": "email gap",
+            "timestamp": "2026-08-27T13:00:00Z",
+            "run_id": "W2-SYN-FAR-001",
+            "source_id": "apify_harvestapi_email_search",
+            "input_scope": {
+              "candidate_id": "SYN-FAR-001",
+              "field_key": "person.personal_email_candidate",
+              "named_need": "email gap"
+            },
+            "source_urls": [],
+            "output_reference": null,
+            "approval_state": "approved_by_equinet_for_a2_business_purpose",
+            "status": "prepared_runtime_blocked",
+            "retries": 0,
+            "usage_and_cost": {
+              "api_calls": 0,
+              "cost_amount": 0,
+              "currency": "USD",
+              "cost_status": "no_external_call"
+            }
+          },
+          "audit_complete": true,
+          "external_call_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "preflight_sha256": "169b3a5c6c1bc37d7acc44441bd860a53082c11ce2b6787493edfa95edb6a2fa"
+        },
+        "passed": true
+      },
+      {
+        "name": "professional-contact-normalised",
+        "expected": {
+          "batch_status": "completed",
+          "accepted_count": 2,
+          "email": "owner@example.com",
+          "phone": "+185****0100"
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-001",
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed",
+          "observation_count": 2,
+          "accepted_count": 2,
+          "held_count": 0,
+          "rejected_count": 0,
+          "observations": [
+            {
+              "observation_id": "OBS-EMAIL-1",
+              "field_key": "person.business_email",
+              "entity_id": "P-1",
+              "raw_value": " Owner@Example.com ",
+              "normalised_value": "owner@example.com",
+              "availability_status": "available",
+              "field_state": "present_unverified",
+              "preliminary_verification_status": "ready_for_evidence_assessment",
+              "action": "accept_for_wave3_evidence_assessment",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/contact",
+              "evidence_id": "EV-W2-001",
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-92563D652FA70D0B",
+                "field_key": "person.business_email",
+                "entity_id": "P-1",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "known",
+                "availability_status": "available",
+                "field_quality_status": "partial",
+                "canonical_mutation_authorized": false
+              }
+            },
+            {
+              "observation_id": "OBS-PHONE-1",
+              "field_key": "person.business_phone",
+              "entity_id": "P-1",
+              "raw_value": "(859) 555-0100",
+              "normalised_value": "+185****0100",
+              "availability_status": "available",
+              "field_state": "present_unverified",
+              "preliminary_verification_status": "ready_for_evidence_assessment",
+              "action": "accept_for_wave3_evidence_assessment",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/contact",
+              "evidence_id": "EV-W2-002",
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-B1DB7B9587E8F05F",
+                "field_key": "person.business_phone",
+                "entity_id": "P-1",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "known",
+                "availability_status": "available",
+                "field_quality_status": "partial",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "f101dfdbe4f260fc2580601ec8795677288c57e235e830bca0699b4a31416445"
+        },
+        "passed": true
+      },
+      {
+        "name": "organisation-social-link-retained",
+        "expected": {
+          "batch_status": "completed",
+          "accepted_count": 1,
+          "normalised_value": [
+            "https://linkedin.com/company/example-farm?utm_source=test"
+          ]
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-OWN-001",
+          "segment": "horse_owner",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed",
+          "observation_count": 1,
+          "accepted_count": 1,
+          "held_count": 0,
+          "rejected_count": 0,
+          "observations": [
+            {
+              "observation_id": "OBS-SOCIAL-1",
+              "field_key": "organisation.public_profile_urls",
+              "entity_id": "ORG-1",
+              "raw_value": "https://www.linkedin.com/company/example-farm/?utm_source=test",
+              "normalised_value": [
+                "https://linkedin.com/company/example-farm?utm_source=test"
+              ],
+              "availability_status": "available",
+              "field_state": "present_unverified",
+              "preliminary_verification_status": "ready_for_evidence_assessment",
+              "action": "accept_for_wave3_evidence_assessment",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/about",
+              "evidence_id": "EV-W2-003",
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-BC2AAEB11E3F7E0A",
+                "field_key": "organisation.public_profile_urls",
+                "entity_id": "ORG-1",
+                "scope": "organisation",
+                "value_type": "string_array",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "known",
+                "availability_status": "available",
+                "field_quality_status": "partial",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "27c5899acbf52c6923f37616b285b10b20e0938b5a6407578d54e3f0943ca56b"
+        },
+        "passed": true
+      },
+      {
+        "name": "social-link-scope-conflict-rejected",
+        "expected": {
+          "batch_status": "completed_with_holds",
+          "held_count": 1
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-OWN-001",
+          "segment": "horse_owner",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed_with_holds",
+          "observation_count": 1,
+          "accepted_count": 0,
+          "held_count": 1,
+          "rejected_count": 0,
+          "observations": [
+            {
+              "observation_id": "OBS-SOCIAL-2",
+              "field_key": "person.public_profile_urls",
+              "entity_id": "P-1",
+              "raw_value": "https://linkedin.com/company/example-farm",
+              "normalised_value": null,
+              "availability_status": "available",
+              "field_state": "present_unverified",
+              "preliminary_verification_status": "review_required",
+              "action": "hold_for_human_review",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/about",
+              "evidence_id": "EV-W2-004",
+              "errors": [
+                "LinkedIn URL path conflicts with official-page attribution"
+              ],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-FC34B25CE548951A",
+                "field_key": "person.public_profile_urls",
+                "entity_id": "P-1",
+                "scope": "person",
+                "value_type": "string_array",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "unknown",
+                "availability_status": "available",
+                "field_quality_status": "gap",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "3babd09577d2d12d2e4ccb2974c401e711adc9cda8a8c5bdc4e58b7ca5df1159"
+        },
+        "passed": true
+      },
+      {
+        "name": "inferred-horse-count-rejected-personal-email-held",
+        "expected": {
+          "batch_status": "completed_with_holds_and_rejections",
+          "rejected_count": 1,
+          "held_count": 1
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-OWN-002",
+          "segment": "horse_owner",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed_with_holds_and_rejections",
+          "observation_count": 2,
+          "accepted_count": 0,
+          "held_count": 1,
+          "rejected_count": 1,
+          "observations": [
+            {
+              "observation_id": "OBS-HORSE-1",
+              "field_key": "organisation.horse_count",
+              "entity_id": "ORG-2",
+              "raw_value": 20,
+              "normalised_value": null,
+              "availability_status": "available",
+              "field_state": "error",
+              "preliminary_verification_status": "invalid",
+              "action": "reject_observation",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/gallery",
+              "evidence_id": "EV-W2-005",
+              "errors": [
+                "inference is prohibited for this field"
+              ],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-78889A195E1A8DB0",
+                "field_key": "organisation.horse_count",
+                "entity_id": "ORG-2",
+                "scope": "organisation",
+                "value_type": "integer",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "unknown",
+                "availability_status": "available",
+                "field_quality_status": "invalid",
+                "canonical_mutation_authorized": false
+              }
+            },
+            {
+              "observation_id": "OBS-EMAIL-2",
+              "field_key": "person.personal_email_candidate",
+              "entity_id": "P-2",
+              "raw_value": "private@example.test",
+              "normalised_value": "private@example.test",
+              "availability_status": "available",
+              "field_state": "present_unverified",
+              "preliminary_verification_status": "privacy_review_required",
+              "action": "hold_for_privacy_review",
+              "privacy_state": "held_for_human_privacy_review",
+              "source_id": "apify_harvestapi_email_search",
+              "source_url": "fixture://apify-email-search",
+              "evidence_id": "EV-W2-006",
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-86586066E9071675",
+                "field_key": "person.personal_email_candidate",
+                "entity_id": "P-2",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "personal_contact_data",
+                "presence_status": "known",
+                "availability_status": "available",
+                "field_quality_status": "partial",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "b393a32ffd1ffc99315e1c7c8449b2bdd343333c9ef18f52b48c9a87fb029d31"
+        },
+        "passed": true
+      },
+      {
+        "name": "ambiguous-current-role-held",
+        "expected": {
+          "batch_status": "completed_with_holds",
+          "held_count": 1
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-002",
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed_with_holds",
+          "observation_count": 1,
+          "accepted_count": 0,
+          "held_count": 1,
+          "rejected_count": 0,
+          "observations": [
+            {
+              "observation_id": "OBS-ROLE-1",
+              "field_key": "person.role_title",
+              "entity_id": "P-3",
+              "raw_value": "Farrier",
+              "normalised_value": "Farrier",
+              "availability_status": "available",
+              "field_state": "present_unverified",
+              "preliminary_verification_status": "current_role_not_established",
+              "action": "hold_for_human_review",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/team",
+              "evidence_id": "EV-W2-007",
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-4CDE3DDD2E64A88B",
+                "field_key": "person.role_title",
+                "entity_id": "P-3",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "known",
+                "availability_status": "available",
+                "field_quality_status": "partial",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "ce29bdaf11771efaa35a8fc7c198436578a0d63ca1a48241e979ae412ec80b4c"
+        },
+        "passed": true
+      },
+      {
+        "name": "absence-states-remain-distinct",
+        "expected": {
+          "batch_status": "completed",
+          "field_states": [
+            "unknown",
+            "not_found",
+            "unavailable",
+            "error"
+          ]
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-003",
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed",
+          "observation_count": 4,
+          "accepted_count": 4,
+          "held_count": 0,
+          "rejected_count": 0,
+          "observations": [
+            {
+              "observation_id": "OBS-NC",
+              "field_key": "person.business_email",
+              "entity_id": "P-4",
+              "raw_value": null,
+              "normalised_value": null,
+              "availability_status": "not_checked",
+              "field_state": "unknown",
+              "preliminary_verification_status": "not_applicable",
+              "action": "retain_state_only",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": null,
+              "evidence_id": null,
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-01B78762CD4C47F8",
+                "field_key": "person.business_email",
+                "entity_id": "P-4",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "unknown",
+                "availability_status": "not_checked",
+                "field_quality_status": "gap",
+                "canonical_mutation_authorized": false
+              }
+            },
+            {
+              "observation_id": "OBS-NF",
+              "field_key": "person.business_phone",
+              "entity_id": "P-4",
+              "raw_value": null,
+              "normalised_value": null,
+              "availability_status": "not_found",
+              "field_state": "not_found",
+              "preliminary_verification_status": "not_applicable",
+              "action": "retain_state_only",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": null,
+              "evidence_id": null,
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-8E91B774F4FB2D20",
+                "field_key": "person.business_phone",
+                "entity_id": "P-4",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "unknown",
+                "availability_status": "not_found",
+                "field_quality_status": "gap",
+                "canonical_mutation_authorized": false
+              }
+            },
+            {
+              "observation_id": "OBS-UA",
+              "field_key": "person.role_title",
+              "entity_id": "P-4",
+              "raw_value": null,
+              "normalised_value": null,
+              "availability_status": "unavailable",
+              "field_state": "unavailable",
+              "preliminary_verification_status": "not_applicable",
+              "action": "retain_state_only",
+              "privacy_state": "not_sensitive",
+              "source_id": "hubspot_authoritative_records",
+              "source_url": null,
+              "evidence_id": null,
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-028D4E2F6AB08032",
+                "field_key": "person.role_title",
+                "entity_id": "P-4",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "unknown",
+                "availability_status": "unavailable",
+                "field_quality_status": "gap",
+                "canonical_mutation_authorized": false
+              }
+            },
+            {
+              "observation_id": "OBS-ER",
+              "field_key": "person.full_name",
+              "entity_id": "P-4",
+              "raw_value": null,
+              "normalised_value": null,
+              "availability_status": "error",
+              "field_state": "error",
+              "preliminary_verification_status": "not_applicable",
+              "action": "retain_state_only",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": null,
+              "evidence_id": null,
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-4FA304CB9EEE9BE2",
+                "field_key": "person.full_name",
+                "entity_id": "P-4",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "unknown",
+                "availability_status": "error",
+                "field_quality_status": "gap",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "a6f2f87083922487773b549d1ef5f31c5d3557a8ea455aad01598733a91e3c97"
+        },
+        "passed": true
+      },
+      {
+        "name": "conflicting-values-held",
+        "expected": {
+          "batch_status": "completed_with_holds",
+          "held_count": 2,
+          "field_state": "conflict"
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FAR-004",
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed_with_holds",
+          "observation_count": 2,
+          "accepted_count": 0,
+          "held_count": 2,
+          "rejected_count": 0,
+          "observations": [
+            {
+              "observation_id": "OBS-T1",
+              "field_key": "person.role_title",
+              "entity_id": "P-5",
+              "raw_value": "Owner Farrier",
+              "normalised_value": "Owner Farrier",
+              "availability_status": "available",
+              "field_state": "conflict",
+              "preliminary_verification_status": "conflict_requires_review",
+              "action": "hold_for_human_review",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/team",
+              "evidence_id": "EV-W2-008",
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-6515B15B2F8CDA50",
+                "field_key": "person.role_title",
+                "entity_id": "P-5",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "known",
+                "availability_status": "available",
+                "field_quality_status": "conflict",
+                "canonical_mutation_authorized": false
+              }
+            },
+            {
+              "observation_id": "OBS-T2",
+              "field_key": "person.role_title",
+              "entity_id": "P-5",
+              "raw_value": "Apprentice",
+              "normalised_value": "Apprentice",
+              "availability_status": "available",
+              "field_state": "conflict",
+              "preliminary_verification_status": "conflict_requires_review",
+              "action": "hold_for_human_review",
+              "privacy_state": "not_sensitive",
+              "source_id": "a1_approved_handoff",
+              "source_url": "fixture://a1",
+              "evidence_id": "EV-W2-009",
+              "errors": [],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-6515B15B2F8CDA50",
+                "field_key": "person.role_title",
+                "entity_id": "P-5",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "known",
+                "availability_status": "available",
+                "field_quality_status": "conflict",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "a88eed7b3aea2d1bacc2fc427dc83698b088c6684eefe2a06df686c16f61664f"
+        },
+        "passed": true
+      },
+      {
+        "name": "forged-source-preflight-rejected",
+        "expected": {
+          "batch_status": "completed_with_rejections",
+          "reason": "source_preflight receipt hash mismatch"
+        },
+        "result": {
+          "batch_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FORGE-001",
+          "segment": "farrier",
+          "operating_scope": "synthetic_test",
+          "batch_status": "completed_with_rejections",
+          "observation_count": 1,
+          "accepted_count": 0,
+          "held_count": 0,
+          "rejected_count": 1,
+          "observations": [
+            {
+              "observation_id": "OBS-FORGED",
+              "field_key": "person.role_title",
+              "entity_id": "P-FORGED",
+              "raw_value": "Owner",
+              "normalised_value": null,
+              "availability_status": "available",
+              "field_state": "error",
+              "preliminary_verification_status": "invalid",
+              "action": "reject_observation",
+              "privacy_state": "not_sensitive",
+              "source_id": "prospect_official_website",
+              "source_url": "https://example.com/team",
+              "evidence_id": "EV-FORGED",
+              "errors": [
+                "source_preflight receipt hash mismatch",
+                "source_preflight receipt does not match observation scope",
+                "source_preflight receipt exceeds Step 5C action boundary"
+              ],
+              "external_actions": 0,
+              "field_assessment_candidate": {
+                "field_assessment_id": "A2-FLD-856AC6FFCC14F91B",
+                "field_key": "person.role_title",
+                "entity_id": "P-FORGED",
+                "scope": "person",
+                "value_type": "string",
+                "sensitivity_classification": "professional_business_data",
+                "presence_status": "unknown",
+                "availability_status": "available",
+                "field_quality_status": "invalid",
+                "canonical_mutation_authorized": false
+              }
+            }
+          ],
+          "batch_errors": [],
+          "final_confidence_assigned": false,
+          "canonical_record_mutated": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "batch_sha256": "73a09300d779e31458b269a60511dc6145a2973c6b3f3c5c6b663bc0baab796a"
+        },
+        "passed": true
+      },
+      {
+        "name": "fallback-without-target-role-search-held",
+        "expected": {
+          "plan_status": "held",
+          "reason": "target_role_not_found prerequisite"
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "SYN-FALLBACK-001",
+          "input_record_sha256": null,
+          "segment": "horse_owner",
+          "operating_scope": "synthetic_test",
+          "plan_status": "held",
+          "minimum_package": {
+            "package": "horse_owner_review_ready",
+            "contact_path": "general_organisation_fallback",
+            "research_exhausted": false
+          },
+          "plan_items": [],
+          "blocked_fields": [],
+          "errors": [
+            "contact-path prerequisite not established: target_role_not_found"
+          ],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "bfd8812b38ad30d6feabbdc96e831d410d4dbfe24b4485e0a98fe49effd29919"
+        },
+        "passed": true
+      },
+      {
+        "name": "canonical-record-input-idempotent",
+        "expected": {
+          "plan_status": "research_required",
+          "input_record_hash": "present",
+          "idempotent": true
+        },
+        "result": {
+          "plan_version": "0.1.0-draft.1",
+          "candidate_id": "A1-TEST_OWNER_001",
+          "input_record_sha256": "1541bba1eb3fdd4524455d1a98e46144da94cb2d5eb834b235abb1b8a808839e",
+          "segment": "horse_owner",
+          "operating_scope": "synthetic_test",
+          "plan_status": "research_required",
+          "minimum_package": {
+            "package": "horse_owner_review_ready",
+            "required_field_count": 3,
+            "contact_path": "general_organisation_fallback",
+            "research_exhausted": false
+          },
+          "plan_items": [
+            {
+              "plan_item_id": "PLAN-001",
+              "field_key": "organisation.business_name",
+              "alternative_field_keys": [],
+              "priority": "required",
+              "current_state": "unknown",
+              "freshness_status": "not_assessed",
+              "need_type": "gap",
+              "source_candidates": [
+                {
+                  "source_id": "a1_approved_handoff",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "a1_directory_evidence_reuse",
+                  "register_status": "approved",
+                  "runtime_readiness": "available_through_handoff",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "hubspot_authoritative_records",
+                  "register_status": "conditional",
+                  "runtime_readiness": "integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_authorized_first_party_data",
+                  "register_status": "conditional",
+                  "runtime_readiness": "manual_intake_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_representative_confirmation",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "prospect_official_website",
+                  "register_status": "conditional",
+                  "runtime_readiness": "runtime_policy_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "apify_harvestapi_linkedin_profile_search",
+                  "register_status": "conditional",
+                  "runtime_readiness": "account_connector_budget_and_build_pending",
+                  "external_access_planned": false
+                }
+              ],
+              "external_action_authorized": false
+            },
+            {
+              "plan_item_id": "PLAN-002",
+              "field_key": "organisation.public_business_location",
+              "alternative_field_keys": [],
+              "priority": "required",
+              "current_state": "unknown",
+              "freshness_status": "not_assessed",
+              "need_type": "gap",
+              "source_candidates": [
+                {
+                  "source_id": "a1_approved_handoff",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "a1_directory_evidence_reuse",
+                  "register_status": "approved",
+                  "runtime_readiness": "available_through_handoff",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "hubspot_authoritative_records",
+                  "register_status": "conditional",
+                  "runtime_readiness": "integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_authorized_first_party_data",
+                  "register_status": "conditional",
+                  "runtime_readiness": "manual_intake_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_representative_confirmation",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "prospect_official_website",
+                  "register_status": "conditional",
+                  "runtime_readiness": "runtime_policy_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "apify_harvestapi_linkedin_profile_search",
+                  "register_status": "conditional",
+                  "runtime_readiness": "account_connector_budget_and_build_pending",
+                  "external_access_planned": false
+                }
+              ],
+              "external_action_authorized": false
+            },
+            {
+              "plan_item_id": "PLAN-003",
+              "field_key": "organisation.stable_type",
+              "alternative_field_keys": [],
+              "priority": "required",
+              "current_state": "unknown",
+              "freshness_status": "not_assessed",
+              "need_type": "gap",
+              "source_candidates": [
+                {
+                  "source_id": "a1_approved_handoff",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "a1_directory_evidence_reuse",
+                  "register_status": "approved",
+                  "runtime_readiness": "available_through_handoff",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "hubspot_authoritative_records",
+                  "register_status": "conditional",
+                  "runtime_readiness": "integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_authorized_first_party_data",
+                  "register_status": "conditional",
+                  "runtime_readiness": "manual_intake_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_representative_confirmation",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "prospect_official_website",
+                  "register_status": "conditional",
+                  "runtime_readiness": "runtime_policy_pending",
+                  "external_access_planned": false
+                }
+              ],
+              "external_action_authorized": false
+            },
+            {
+              "plan_item_id": "PLAN-004",
+              "field_key": "organisation.business_email",
+              "alternative_field_keys": [
+                "organisation.business_phone"
+              ],
+              "priority": "conditional_required",
+              "current_state": "unknown",
+              "freshness_status": "not_assessed",
+              "need_type": "gap",
+              "source_candidates": [
+                {
+                  "source_id": "a1_approved_handoff",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_fixture_ready_durable_integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "a1_directory_evidence_reuse",
+                  "register_status": "approved",
+                  "runtime_readiness": "available_through_handoff",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "hubspot_authoritative_records",
+                  "register_status": "conditional",
+                  "runtime_readiness": "integration_pending",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_authorized_first_party_data",
+                  "register_status": "conditional",
+                  "runtime_readiness": "manual_intake_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "equinet_representative_confirmation",
+                  "register_status": "approved",
+                  "runtime_readiness": "manual_available",
+                  "external_access_planned": false
+                },
+                {
+                  "source_id": "prospect_official_website",
+                  "register_status": "conditional",
+                  "runtime_readiness": "runtime_policy_pending",
+                  "external_access_planned": false
+                }
+              ],
+              "external_action_authorized": false
+            }
+          ],
+          "blocked_fields": [],
+          "errors": [],
+          "automatic_rejection": false,
+          "automatic_a1_score_change": false,
+          "outreach_authorized": false,
+          "crm_write_authorized": false,
+          "external_calls": 0,
+          "external_actions": 0,
+          "plan_sha256": "60165d600333e5c21e1edbda1e974ea0f9be6e89ad5fe43b88ab315b26dfa4ef"
+        },
+        "passed": true
+      },
+      {
+        "name": "duplicate-json-key-rejected",
+        "expected": {
+          "error_contains": "duplicate JSON key"
+        },
+        "result": {
+          "error": "duplicate JSON key: candidate_id"
+        },
+        "passed": true
+      },
+      {
+        "name": "non-finite-json-number-rejected",
+        "expected": {
+          "error_contains": "non-finite JSON number"
+        },
+        "result": {
+          "error": "non-finite JSON number is not allowed: NaN"
+        },
+        "passed": true
+      }
+    ]
+  },
+  "targeted_behavioural_validation": {
+    "available": true,
+    "overall_pass": true,
+    "three_scenarios": true,
+    "external_actions_zero": true
+  },
+  "language_audit": {
+    "files_checked": 586,
+    "passed": true
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "approval_required": false,
+  "promotion_performed": true,
+  "next_gate_after_approval": "Step 5D — Wave 3 Decision, Review and Handoffs",
+  "failures": [],
+  "pass": true
+}

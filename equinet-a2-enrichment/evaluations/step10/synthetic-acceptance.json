@@ -1,0 +1,35 @@
+{
+  "suite": "step10_twenty_fullenrich_synthetic_acceptance",
+  "status": "pass",
+  "checks_run": [
+    "ledger_start",
+    "pull_fixture",
+    "company_schema",
+    "lookup_fixture",
+    "lookup_packet",
+    "lookup_decisions",
+    "search_fixture",
+    "search_packet",
+    "selection_decisions",
+    "contact_fixture",
+    "write_plan",
+    "write_plan_schema",
+    "write_dry_run",
+    "ledger_advance",
+    "ledger_schema"
+  ],
+  "assertions": {
+    "one_company": true,
+    "zero_external_twenty_writes": true,
+    "lookup_secondary_found": true,
+    "two_search_candidates": true,
+    "two_contacts": true,
+    "personal_email_not_requested": true,
+    "five_write_operations": true,
+    "final_company_status_last": true,
+    "dry_run_no_writes": true
+  },
+  "external_calls": 0,
+  "external_writes": 0,
+  "failures": []
+}

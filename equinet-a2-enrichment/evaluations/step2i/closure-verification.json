@@ -1,0 +1,60 @@
+{
+  "step": "2I",
+  "status": "closed_approved_and_promoted",
+  "acceptance_record": "evaluations/step2i/acceptance-record.json",
+  "acceptance_record_sha256": "504f485f71df407684a927e8b47d3fbbccef508e499a47a88df99c018d505e8c",
+  "reference_checks": {
+    "schema": {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "expected": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531",
+      "actual": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531",
+      "passed": true
+    },
+    "dependency_manifest": {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.dependency-manifest.json",
+      "expected": "a832f9156792a86dd2da360f4fef8169f8fd94f9d49f41d3bf6b9e285ebf54c1",
+      "actual": "a832f9156792a86dd2da360f4fef8169f8fd94f9d49f41d3bf6b9e285ebf54c1",
+      "passed": true
+    },
+    "validator_manifest": {
+      "path": "foundations/contracts/canonical/a2-cross-field-validator.manifest.json",
+      "expected": "a11f4a8a204c63574c7a21c1c01308e708cbb8bc18b41b14e30bfc89e56280b5",
+      "actual": "a11f4a8a204c63574c7a21c1c01308e708cbb8bc18b41b14e30bfc89e56280b5",
+      "passed": true
+    },
+    "promotion_manifest": {
+      "path": "evaluations/step2i/promotion-manifest.json",
+      "expected": "116cad5759d355a552c557ac698516e5bc3dbcdbd9bd40d75a60f4bfe8cd1091",
+      "actual": "116cad5759d355a552c557ac698516e5bc3dbcdbd9bd40d75a60f4bfe8cd1091",
+      "passed": true
+    },
+    "technical_validation": {
+      "path": "evaluations/step2i/post-promotion-technical-validation.json",
+      "expected": "d178d88489c49aef45316fc5a16c884224a7333cb1c4dd8d5a4f016eccfc1aa3",
+      "actual": "d178d88489c49aef45316fc5a16c884224a7333cb1c4dd8d5a4f016eccfc1aa3",
+      "passed": true
+    },
+    "pre_promotion_snapshot": {
+      "path": "evaluations/step2i/pre-promotion-snapshot.tar.gz",
+      "expected": "907ad381e494efbdb14091cb6a029bd344ecd6322b5d74df554143f13511b5ae",
+      "actual": "907ad381e494efbdb14091cb6a029bd344ecd6322b5d74df554143f13511b5ae",
+      "passed": true
+    }
+  },
+  "state_checks": {
+    "decision": true,
+    "schema_version": true,
+    "decisions_i1_i10": true,
+    "technical_validation": true,
+    "promotion_manifest": true,
+    "review_evidence_preserved": true,
+    "next_gate": true,
+    "profile_status": true,
+    "external_actions": true,
+    "integrations_activated": true
+  },
+  "external_actions": 0,
+  "next_gate": "Step 3A — Business Field Catalogue",
+  "failures": [],
+  "pass": true
+}

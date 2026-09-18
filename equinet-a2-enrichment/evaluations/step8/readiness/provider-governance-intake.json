@@ -1,0 +1,54 @@
+{
+  "record_type": "step8_provider_governance_intake",
+  "profile": "equinet-a2-enrichment",
+  "recorded_at": "2026-08-30T10:59:00Z",
+  "recorded_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "primary": {
+    "logical_model": "deepseek-v4-flash",
+    "gateway": "litellm-unitalk",
+    "upstream_provider": "microsoft_azure",
+    "processing_region": "Europe",
+    "region_confirmation_status": "confirmed_by_severine",
+    "per_request_telemetry": "unavailable_to_severine",
+    "acceptable_alternative_evidence": "authorised_gateway_or_security_attestation",
+    "retention_configuration": "pending",
+    "training_with_mustad_data": "prohibited"
+  },
+  "fallback": {
+    "logical_model": "Gemini 3.7 Flash",
+    "upstream_provider": "google",
+    "real_pilot_status": "disabled",
+    "test_status": "not_required_for_step8_when_disabled",
+    "future_activation_requires": [
+      "availability smoke test",
+      "controlled failover test",
+      "region and retention confirmation",
+      "approved provider governance evidence"
+    ]
+  },
+  "web_services": {
+    "exa": {
+      "unitalk_global_credential": true,
+      "synthetic_connectivity": "passed",
+      "a1_retention_terms": "accepted",
+      "step8_purpose": "official-site discovery only"
+    },
+    "firecrawl": {
+      "unitalk_global_credential": true,
+      "synthetic_connectivity": "passed",
+      "a1_retention_terms": "accepted",
+      "step8_purpose": "bounded official-site extraction"
+    }
+  },
+  "remaining_governance_evidence": [
+    "Azure/LiteLLM retention and prompt-logging configuration",
+    "confirmation that Microsoft Azure is covered by the applicable Unitalk-Mustad subprocessor/DPA framework",
+    "confirmation that public business contact data may be processed for the bounded pilot",
+    "reference to the approving Unitalk security/legal owner and approval date"
+  ],
+  "real_data_model_processing_authorized": false,
+  "collection_only_option_available": true
+}

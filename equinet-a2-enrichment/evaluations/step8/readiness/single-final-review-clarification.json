@@ -1,0 +1,66 @@
+{
+  "record_type": "approved_operating_model_clarification",
+  "profile": "equinet-a2-enrichment",
+  "clarification_id": "A2-SINGLE-FINAL-REVIEW-2026-08-30",
+  "confirmed_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "confirmed_at": "2026-08-30T12:35:55Z",
+  "business_requirement": "The normal A2 workflow has one consolidated human review at the end, after all permitted enrichment, evidence, confidence, conflict, quality and proposed-update processing is complete. Routine intermediate human approvals are prohibited.",
+  "test_phase_boundary": {
+    "current_intermediate_checkpoints": "Unitalk implementation-test checkpoints only",
+    "become_runtime_human_gates": false,
+    "purpose": "Verify each new stage before accepting the complete automated workflow."
+  },
+  "normal_runtime_flow": [
+    "approved A1 handoff",
+    "automated intake and identity controls",
+    "automated gap planning and permitted research",
+    "automated observation normalisation",
+    "automated evidence/confidence/freshness assessment",
+    "automated protected-field and data-quality proposals",
+    "automated canonical revision and consolidated review package",
+    "one final human review",
+    "guarded HubSpot write when the exact reviewed patch, permissions and integration gates are active",
+    "authoritative read-back and reconciliation"
+  ],
+  "final_review_scope": {
+    "record_decision": true,
+    "field_decisions": true,
+    "corrected_values": true,
+    "exact_hubspot_patch_preview": true,
+    "may_authorize_exact_hubspot_write_in_same_review": true,
+    "requires_authorized_reviewer": true
+  },
+  "no_second_human_review_required_when": [
+    "the executed patch is byte-for-byte or semantically identical to the reviewed patch",
+    "the reviewer has HubSpot-write approval authority",
+    "workflow and list dependencies are verified",
+    "idempotency and duplicate-execution controls pass",
+    "the guarded write succeeds and read-back reconciles"
+  ],
+  "mandatory_exception_holds": [
+    "unresolved or conflicting identity",
+    "possible or confirmed duplicate",
+    "unexpected personal or sensitive data",
+    "source-policy or permission failure",
+    "material protected or authoritative-field conflict",
+    "budget or prepaid-balance risk",
+    "proposed write differs from the reviewed patch",
+    "write or reconciliation failure"
+  ],
+  "current_pilot": {
+    "intermediate_severine_reviews": "test validation only",
+    "canonical_business_review": "must occur once at the final consolidated Jonabell package",
+    "hubspot_write": false,
+    "outreach": false
+  },
+  "affected_artifacts_to_amend": [
+    "Step 3H Twenty review approval effects",
+    "Wave 3 review-package and governed-handoff skill",
+    "SOUL review instructions",
+    "Step 8 pilot runbook and acceptance tests"
+  ],
+  "external_actions": 0
+}

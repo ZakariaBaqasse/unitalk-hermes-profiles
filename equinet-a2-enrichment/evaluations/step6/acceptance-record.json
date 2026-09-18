@@ -1,0 +1,40 @@
+{
+  "record_type": "step6_runtime_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "6",
+  "decision": "approved_for_synthetic_local_testing",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "approved_at": "2026-08-29T21:10:52Z",
+  "approved_decisions": [
+    "S6-1",
+    "S6-2",
+    "S6-3",
+    "S6-4",
+    "S6-5",
+    "S6-6",
+    "S6-7",
+    "S6-8",
+    "S6-9",
+    "S6-10-revised"
+  ],
+  "config": "config.yaml",
+  "config_sha256": "ff52b8a019abe8d2640c755fc107172b21088411685e0e27b001aba0f286235c",
+  "runtime_policy": "foundations/contracts/runtime/a2-runtime-policy-0.1.0.yaml",
+  "runtime_policy_sha256": "e0323119a45c1d8081eb49a888f1469549e9fe17433e125b98e44264fb00cbcd",
+  "technical_validation": "evaluations/step6/technical-validation.json",
+  "technical_validation_sha256": "eb3c12b64f05f02a1a188719b6651bde04c9c225ef387a7aaeabb30c52fe0617",
+  "primary_validation": "evaluations/step6/gateway-smoke/primary-validation.json",
+  "primary_validation_sha256": "b9f83bead112b4808691d0ef060927704ce26ef1a196ea6dbe843c78330dae03",
+  "active_foundation_manifest": "foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json",
+  "active_foundation_manifest_sha256": "3b56387bba56d64dd6c3b703e44ba1021a18ef39f718553a38f5eb87dc7e0229",
+  "primary_functional_smoke": "passed_for_synthetic",
+  "primary_upstream_telemetry": "pending",
+  "fallback_route": "configured_not_tested",
+  "real_data_authorized": false,
+  "external_actions": 0,
+  "profile_status": "FOUNDATION CONFIGURED — NOT PILOT-READY",
+  "next_gate": "Step 7 — Synthetic End-to-End Acceptance"
+}

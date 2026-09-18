@@ -1,0 +1,20 @@
+{
+  "candidate_id": "SYN-FAR-001",
+  "segment": "farrier",
+  "operating_scope": "synthetic_test",
+  "a2_eligibility_status": "eligible",
+  "enrichment_mode": "default_minimum_package",
+  "contact_path": "named_target",
+  "field_states": {
+    "person.professional_status": "verified",
+    "organisation.business_name": "verified",
+    "organisation.public_business_location": "verified",
+    "organisation.service_area": "verified",
+    "organisation.disciplines": "verified",
+    "person.full_name": "verified",
+    "person.role_title": "verified",
+    "relationship.target_role_priority": "verified",
+    "person.business_email": "verified",
+    "person.business_phone": "missing"
+  }
+}

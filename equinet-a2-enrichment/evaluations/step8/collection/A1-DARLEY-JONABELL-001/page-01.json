@@ -1,0 +1,23 @@
+{
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "url": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+  "host": "www.darleyamerica.com",
+  "robots_allowed": true,
+  "status": "collected",
+  "attempts": [
+    {
+      "attempt": 1,
+      "http_status": 200,
+      "success": true,
+      "error": null
+    }
+  ],
+  "firecrawl_calls": 1,
+  "exa_calls": 0,
+  "resolved_url": "https://www.darleyamerica.com/about-us/kentucky-thoroughbred-horse-farm-tours",
+  "title": "Darley - thoroughbred horse farm tours in Lexington, Kentucky",
+  "markdown_path": "evaluations/step8/collection/A1-DARLEY-JONABELL-001/page-01.md",
+  "markdown_bytes": 5071,
+  "markdown_sha256": "a8a4b767e81834e7792075ee42f7b2877d299975ba783b41942858bd0f2c4b52",
+  "discovery_fallback": null
+}

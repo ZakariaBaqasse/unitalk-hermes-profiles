@@ -1,0 +1,93 @@
+{
+  "snapshot_id": "equinet-hubspot-metadata-2026-08-25-v1",
+  "status": "partial_metadata_snapshot_received_no_live_connection",
+  "recorded_at": "2026-08-25T09:51:49Z",
+  "inputs": {
+    "data_model_image": {
+      "path": "/opt/data/profiles/equinet/attachments/data-model-objects (1).png",
+      "size_bytes": 172932,
+      "sha256": "1aac099ce0158752e336e813dfe56728a8b7a66f28448a8d098193072bcfce39",
+      "image_size": [2116, 1248],
+      "extraction_method": "RapidOCR tiled extraction with manual object-name normalisation",
+      "ocr_artifact": "evaluations/hubspot-intake/data-model-tiled-ocr.json"
+    },
+    "property_definitions": {
+      "path": "/opt/data/profiles/equinet/attachments/Property_Definitions (1).csv",
+      "size_bytes": 264431,
+      "sha256": "3303992627bad953e28913eaf3b19cdc998fc0c6f3f6f29ef455d788e8c9b952",
+      "rows": 950,
+      "columns": 14,
+      "analysis_artifact": "evaluations/hubspot-intake/property-inventory-summary.json",
+      "a2_relevant_extract": "evaluations/hubspot-intake/a2-relevant-properties.csv"
+    }
+  },
+  "image_object_inventory": {
+    "crm_objects": [
+      "Appointments",
+      "Campaigns",
+      "Carts",
+      "Companies",
+      "Contacts",
+      "Courses",
+      "Listings",
+      "Marketing events",
+      "Orders",
+      "Projects",
+      "Services",
+      "Tickets",
+      "Users"
+    ],
+    "sales_objects": [
+      "Contracts",
+      "Credit memos",
+      "Deals",
+      "Invoices",
+      "Leads",
+      "Line items",
+      "Payments",
+      "Quotes",
+      "Subscriptions"
+    ],
+    "activity_objects": [
+      "Calls",
+      "Communications",
+      "Emails",
+      "Meetings",
+      "Notes",
+      "Postal Mail",
+      "Tasks"
+    ],
+    "custom_objects": [
+      "Complaints",
+      "Sample Requests"
+    ],
+    "association_note": "The image confirms a broad object model, but the screenshot/OCR does not provide a reliable association-label export. Exact association labels and cardinalities still require metadata export or read-only API verification."
+  },
+  "property_export_objects": {
+    "Company": {"object_type_id": "0-2", "properties": 227},
+    "Contact": {"object_type_id": "0-1", "properties": 431},
+    "Deal": {"object_type_id": "0-3", "properties": 145},
+    "Ticket": {"object_type_id": "0-5", "properties": 78},
+    "Complaints": {"object_type_id": "2-251550468", "properties": 28},
+    "Sample Requests": {"object_type_id": "2-204687032", "properties": 41}
+  },
+  "coverage": {
+    "sufficient_for": [
+      "Draft A2 Contact/Company/Deal property mapping",
+      "Exact internal-name, type, enum and read-only analysis for exported objects",
+      "Protected-field and authoritative-read candidate register",
+      "Draft duplicate, consent, customer and sequence eligibility mapping",
+      "Step 2B external mapping references"
+    ],
+    "not_sufficient_for": [
+      "Live record values or fill-rate validation",
+      "Confirmed association labels and cardinalities",
+      "Workflow/list usage and hidden update dependencies",
+      "OAuth scopes or user-level permissions",
+      "Live duplicate, customer, Deal, consent or suppression checks",
+      "HubSpot reads or writes",
+      "Production integration acceptance"
+    ]
+  },
+  "source_precedence": "This snapshot supports design and proposed mapping only. Live authorised HubSpot metadata and records remain authoritative after connection."
+}

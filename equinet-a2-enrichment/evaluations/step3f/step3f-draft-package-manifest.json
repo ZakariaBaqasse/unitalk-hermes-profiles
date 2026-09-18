@@ -1,0 +1,40 @@
+{
+  "manifest_id": "equinet-a2-step3f-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_runtime_activation_pending",
+  "files": [
+    {
+      "path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.1.0-draft.1.json",
+      "bytes": 5565,
+      "sha256": "54c80c188d9a78510e331a9f65290bad03c9c69c721b9c99b5b8bca96520e9fb"
+    },
+    {
+      "path": "scripts/build_step3f_provider_cost_policy.py",
+      "bytes": 5265,
+      "sha256": "fc5532117b067db49e141245eb959fc534aa6dc94ddd8ccd35a54b280aa8b517"
+    },
+    {
+      "path": "scripts/run_step3f_tests.py",
+      "bytes": 14474,
+      "sha256": "202a60d136373179fbbe2b76899e7c4c03cf9dd067cf8be8bb70d654eddcdd53"
+    },
+    {
+      "path": "foundations/A2-PROVIDER-AND-COST-POLICY.md",
+      "bytes": 2393,
+      "sha256": "c5c84d58d74bc7f664c627f4a67cc449b93474cd8bb33e97581c2d0fcbdb4ca8"
+    },
+    {
+      "path": "evaluations/step3f/A2-PROVIDER-COST-POLICY-REVIEW.md",
+      "bytes": 1419,
+      "sha256": "d4d9268584c01ab62e0cbeb503e149e06a5f6a8ab6a1d17713959aa0c28c80e1"
+    },
+    {
+      "path": "evaluations/step3f/technical-validation.json",
+      "bytes": 5519,
+      "sha256": "eb16c048fc5ff54b5acacd111924c7c822ab90b4506899b224309cf4cc6ac3bc"
+    }
+  ],
+  "file_count": 6,
+  "provider_spend": 0,
+  "external_actions": 0
+}

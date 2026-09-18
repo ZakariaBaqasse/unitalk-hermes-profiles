@@ -1,0 +1,68 @@
+{
+  "requests": {
+    "apify-facebook-company-duplicate": {
+      "dataset": [
+        {
+          "email": "HELLO@EXISTING.EXAMPLE",
+          "pageName": "ExistingEmailFarm",
+          "pageUrl": "https://www.facebook.com/ExistingEmailFarm/",
+          "phone": null,
+          "title": "Existing Email Farm",
+          "website": "https://existing.example"
+        }
+      ],
+      "polls": [
+        {
+          "data": {
+            "buildId": "build-official-1",
+            "defaultDatasetId": "dataset-duplicate",
+            "id": "run-duplicate",
+            "status": "SUCCEEDED",
+            "usageTotalUsd": 0.0066
+          }
+        }
+      ],
+      "start": {
+        "data": {
+          "buildId": "build-official-1",
+          "id": "run-duplicate",
+          "status": "RUNNING"
+        }
+      }
+    },
+    "apify-facebook-company-trigger": {
+      "dataset": [
+        {
+          "email": "Contact@Bluegrass.Example",
+          "facebookUrl": "https://www.facebook.com/BluegrassFarm/",
+          "pageName": "BluegrassFarm",
+          "pageUrl": "https://facebook.com/BluegrassFarm",
+          "phone": "+1 555 010 1000",
+          "title": "Bluegrass Farm",
+          "website": "https://bluegrass.example"
+        }
+      ],
+      "polls": [
+        {
+          "data": {
+            "buildId": "build-official-1",
+            "defaultDatasetId": "dataset-trigger",
+            "id": "run-trigger",
+            "status": "SUCCEEDED",
+            "usage": {
+              "ACTOR_COMPUTE_UNITS": 0.001
+            },
+            "usageTotalUsd": 0.0066
+          }
+        }
+      ],
+      "start": {
+        "data": {
+          "buildId": "build-official-1",
+          "id": "run-trigger",
+          "status": "RUNNING"
+        }
+      }
+    }
+  }
+}

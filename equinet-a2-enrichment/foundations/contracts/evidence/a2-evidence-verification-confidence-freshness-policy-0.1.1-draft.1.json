@@ -1,0 +1,245 @@
+{
+  "policy_id": "equinet-a2-evidence-verification-confidence-freshness",
+  "version": "0.1.1-draft.1",
+  "status": "approved_by_unitalk_as_working_baseline_pending_equinet_confirmation",
+  "profile": "equinet-a2-enrichment",
+  "unitalk_approval": {
+    "approver": "Séverine, Unitalk Operations",
+    "approved_at": "2026-08-27T11:40:17Z",
+    "scope": "decisions_3D_1_through_3D_10_plus_SOC_1_through_SOC_8"
+  },
+  "dependencies": [
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.json",
+      "sha256": "ee5fc77aadd4b511ad8681cde7e5714146fc930072e2d71a1c4e2bba952ddab8"
+    },
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "sha256": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445"
+    },
+    {
+      "path": "foundations/contracts/a2-state-model-0.1.0.json",
+      "sha256": "e5045b2f52c97ba588c33ac803ef582b8bb5a14cc376575ee86206d6b60d8d11"
+    }
+  ],
+  "principles": {
+    "confidence_is_not_icp_score": true,
+    "a2_never_calculates_a1_score": true,
+    "unknown_is_not_negative_or_fact": true,
+    "blocked_source_cannot_support_a_claim": true,
+    "search_snippet_is_discovery_only": true,
+    "professional_contact_does_not_create_outreach_consent": true,
+    "a1_evidence_keeps_original_provenance_and_confidence": true,
+    "official_website_can_confirm_explicit_self_controlled_fact_without_visible_date": true,
+    "official_site_outbound_professional_social_link_is_a_url_claim_not_social_profile_content": true,
+    "public_profile_url_does_not_create_consent_outreach_or_buying_influence": true
+  },
+  "confidence_dimensions": {
+    "identity_match": {
+      "maximum": 20,
+      "levels": {
+        "exact": 20,
+        "probable": 10,
+        "unresolved": 0
+      }
+    },
+    "source_authority": {
+      "maximum": 20,
+      "levels": {
+        "authoritative_system": 20,
+        "authorised_first_party": 20,
+        "official_business_website": 18,
+        "official_registry": 18,
+        "apify_linkedin_profile": 12,
+        "apify_email_search": 12,
+        "reused_a1_directory_evidence": 10,
+        "search_discovery": 0,
+        "blocked_or_unverified": 0
+      }
+    },
+    "claim_directness": {
+      "maximum": 20,
+      "levels": {
+        "direct_fact": 20,
+        "reasonable_inference": 10,
+        "contradictory_evidence": 0
+      }
+    },
+    "freshness": {
+      "maximum": 20,
+      "levels": {
+        "current": 20,
+        "current_official_undated": 18,
+        "undated_external": 8,
+        "stale": 0,
+        "not_applicable": 20,
+        "error": 0
+      }
+    },
+    "corroboration": {
+      "maximum": 10,
+      "levels": {
+        "authoritative_or_primary_sufficient": 10,
+        "two_independent_sources": 10,
+        "one_secondary_source": 5,
+        "none": 0
+      }
+    },
+    "consistency": {
+      "maximum": 10,
+      "levels": {
+        "no_conflict": 10,
+        "possible_conflict": 5,
+        "material_conflict": 0
+      }
+    }
+  },
+  "confidence_bands": [
+    {
+      "level": "high",
+      "minimum": 80,
+      "maximum": 100
+    },
+    {
+      "level": "medium",
+      "minimum": 60,
+      "maximum": 79
+    },
+    {
+      "level": "low",
+      "minimum": 0,
+      "maximum": 59
+    }
+  ],
+  "caps": [
+    {
+      "condition": "identity_match_unresolved",
+      "maximum_score": 39
+    },
+    {
+      "condition": "material_conflict",
+      "maximum_score": 39
+    },
+    {
+      "condition": "required_claim_supported_only_by_reasonable_inference",
+      "maximum_score": 59
+    },
+    {
+      "condition": "time_sensitive_claim_is_stale",
+      "maximum_score": 59
+    },
+    {
+      "condition": "source_rights_or_runtime_gate_not_passed",
+      "maximum_score": 0
+    }
+  ],
+  "verification_rules": {
+    "verified": "High confidence, direct fact, exact identity, permitted source, applicable freshness passed and no material conflict.",
+    "partially_verified": "Medium confidence or a usable direct fact with a documented freshness, corroboration or identity limitation.",
+    "unverified": "Low confidence or evidence insufficient for the proposed value.",
+    "contradicted": "Material permitted evidence conflicts with the proposed or baseline value.",
+    "not_applicable": "The field does not apply under the approved package or documented fallback.",
+    "error": "Deterministic verification failed technically."
+  },
+  "source_rules": {
+    "a1_approved_handoff": {
+      "authority": "preserve_inherited",
+      "freshness": "preserve_inherited",
+      "usable_when": "handoff validation passes"
+    },
+    "hubspot_authoritative_records": {
+      "authority": "authoritative_system",
+      "usable_when": "read-only connection and source permissions pass"
+    },
+    "equinet_authorized_first_party_data": {
+      "authority": "authorised_first_party",
+      "usable_when": "asset approval and actor are recorded"
+    },
+    "prospect_official_website": {
+      "authority": "official_business_website",
+      "usable_when": "per-domain preflight passes",
+      "undated_self_controlled_fact": "current_official_undated"
+    },
+    "a1_directory_evidence_reuse": {
+      "authority": "reused_a1_directory_evidence",
+      "usable_when": "original evidence remains approved and applicable"
+    },
+    "apify_harvestapi_linkedin_profile_search": {
+      "authority": "apify_linkedin_profile",
+      "usable_when": "all rights, vendor and runtime gates pass",
+      "current_status": "blocked"
+    },
+    "apify_harvestapi_email_search": {
+      "authority": "apify_email_search",
+      "usable_when": "all rights, vendor, privacy, budget and runtime gates pass",
+      "current_status": "blocked",
+      "email_provenance": "independent_provider_search_not_linkedin"
+    },
+    "search_engine_discovery": {
+      "authority": "search_discovery",
+      "usable_when": "destination discovery only",
+      "retained_evidence": false
+    }
+  },
+  "field_freshness_days": {
+    "person.role_title": 180,
+    "person.business_email": 180,
+    "person.personal_email_candidate": 180,
+    "person.business_phone": 180,
+    "organisation.business_email": 180,
+    "organisation.business_phone": 180,
+    "person.professional_status": 365,
+    "person.certifications": 365,
+    "person.professional_credential": 365,
+    "organisation.public_business_location": 365,
+    "organisation.service_area": 365,
+    "organisation.horse_count": 365,
+    "organisation.stable_type": 730,
+    "organisation.disciplines": 730,
+    "organisation.breeds": 730,
+    "person.recent_professional_activity": 365,
+    "person.public_profile_urls": 365,
+    "organisation.public_profile_urls": 365
+  },
+  "conflict_policy": {
+    "authoritative_system_overrides_non_authoritative_source": "propose_authoritative_value_but_preserve_conflict_and_require_review_if_material",
+    "official_website_vs_linkedin_current_role": "material_conflict_hold",
+    "same_domain_pages_are_independent": false,
+    "syndicated_or_copied_content_is_independent": false,
+    "material_conflict_blocks_verified_status": true,
+    "resolved_conflict_requires_reviewer_and_reason": true
+  },
+  "email_specific_rules": {
+    "officially_published_professional_email": "may_be_verified_from_one_exact_official_source",
+    "apify_email_search": "requires_exact_identity_and_company_match_plus_provider_verification",
+    "personal_email": "held_for_human_privacy_review_no_operational_use_before_approval",
+    "deliverability_does_not_create_consent": true,
+    "email_source_must_not_be_mislabeled_as_linkedin": true
+  },
+  "outcomes": {
+    "required_field_unsatisfied": {
+      "field_quality": "gap",
+      "record_quality": "incomplete",
+      "automatic_rejection": false
+    },
+    "optional_field_unsatisfied": {
+      "field_quality": "gap",
+      "record_quality_change": "none_by_itself"
+    },
+    "material_conflict": {
+      "field_quality": "conflict",
+      "record_quality": "conflict",
+      "workflow": "held"
+    },
+    "verified_new_a1_material_evidence": {
+      "action": "create_requalification_signal",
+      "a2_score_calculation": false
+    }
+  },
+  "open_confirmations": [
+    "Approve or correct the proposed field freshness windows.",
+    "Confirm whether personal email must always be discarded; Unitalk default is discard.",
+    "Confirm which dated professional activities are commercially relevant.",
+    "Complete source-specific rights and runtime gates before evidence from a conditional source is usable."
+  ]
+}

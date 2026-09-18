@@ -1,0 +1,29 @@
+{
+  "record_type": "a2_personal_email_correction_final_verification",
+  "verified_at": "2026-09-06T13:38:10Z",
+  "checks": {
+    "active_version": true,
+    "active_count": true,
+    "active_hashes": true,
+    "active_json_parse": true,
+    "source_csv_count": true,
+    "source_csv_identity_order": true,
+    "catalogue_csv_count": true,
+    "catalogue_csv_identity_order": true,
+    "mapping_csv_identity_order": true,
+    "dependency_hashes": true,
+    "technical_validation": true,
+    "acceptance_scope": true,
+    "release_active_hash": true,
+    "release_validation_hash": true,
+    "release_acceptance_hash": true,
+    "no_live_integrations": true,
+    "no_external_actions": true
+  },
+  "checks_passed": 17,
+  "checks_total": 17,
+  "hash_mismatches": [],
+  "dependency_hash_errors": [],
+  "json_errors": [],
+  "status": "pass"
+}

@@ -1,0 +1,50 @@
+{
+  "companies": [
+    {
+      "twenty_company_id": "company-fixture-001",
+      "name": "Example Equine Centre",
+      "company_contact_composites": {
+        "email": {
+          "primaryEmail": "a1@example.com",
+          "additionalEmails": []
+        },
+        "phone": {
+          "primaryPhoneNumber": "+15550001",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "+1",
+          "additionalPhones": []
+        },
+        "linkedinLink": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "facebook": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "youtube": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "tiktok": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "xTwitter": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        }
+      }
+    }
+  ]
+}

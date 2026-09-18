@@ -1,0 +1,15 @@
+{
+  "catalogue_id": "synthetic-step2e-field-catalogue",
+  "version": "unitalk-placeholder-0.0.0",
+  "status": "synthetic_validator_fixture_only",
+  "fields": [
+    {
+      "field_key": "organisation.horse_count",
+      "value_type": "integer"
+    },
+    {
+      "field_key": "relationship.role",
+      "value_type": "string"
+    }
+  ]
+}

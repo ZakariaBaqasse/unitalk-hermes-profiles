@@ -1,0 +1,1108 @@
+{
+  "record_metadata": {
+    "schema_version": "1.0.0",
+    "record_kind": "synthetic_test",
+    "a2_record_id": "A2-STEP2F_FARRIER_001",
+    "record_revision_id": "A2-REV-STEP2F_FARRIER_PROTECTED_004",
+    "revision_number": 4,
+    "supersedes_revision_id": "A2-REV-STEP2F_FARRIER_003",
+    "supersedes_a2_record_id": null,
+    "run_id": "A2-RUN-STEP2F_FARRIER_001",
+    "audit_correlation_id": "AUDIT-TEST-0001",
+    "created_at": "2026-08-26T11:04:00Z",
+    "created_by": {
+      "actor_id": "UNITALK-A2-SCHEMA-TEST",
+      "actor_role": "A2 Contract Test Runtime",
+      "display_name": "Synthetic A2 Runtime",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "change_reason": "enrichment"
+  },
+  "source_handoff": {
+    "handoff_schema_version": "1.0.1",
+    "handoff_id": "A1A2-TEST_FARRIER_001",
+    "idempotency_key": "A1A2-IDEMP-TEST_FARRIER_001",
+    "operating_scope": "synthetic_test",
+    "eligibility_status": "eligible",
+    "accepted_at": "2026-08-16T15:30:20Z",
+    "accepted_by": {
+      "actor_id": "UNITALK-A2-STEP2F",
+      "actor_role": "A2 Synthetic Runtime",
+      "display_name": "Synthetic Step 2F Actor",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "candidate_snapshot_sha256": "6d0134bfc8d8c99b0efbe2c25947c25534b6e5513dbd51f859725c41ec466056",
+    "handoff_snapshot": {
+      "handoff_schema_version": "1.0.1",
+      "handoff_id": "A1A2-TEST_FARRIER_001",
+      "idempotency_key": "A1A2-IDEMP-TEST_FARRIER_001",
+      "created_at": "2026-08-16T15:30:10Z",
+      "source_profile": "equinet-a1-icp-discovery",
+      "target_profile": "equinet-a2-enrichment",
+      "operating_scope": "synthetic_test",
+      "delivery_state": "accepted_by_a2",
+      "trigger_event": {
+        "event_type": "a1_candidate_approved_for_a2",
+        "event_id": "EVENT-TEST_FARRIER_001",
+        "occurred_at": "2026-08-16T15:30:05Z",
+        "source_layer": "manual_review_package",
+        "source_record_id": "REVIEW-TEST_FARRIER_001"
+      },
+      "approval_event": {
+        "decision": "approved_for_enrichment",
+        "scope": "a2_enrichment",
+        "reviewer": {
+          "actor_id": "UNITALK-A1-REVIEWER-TEST",
+          "actor_role": "A1 Business Reviewer",
+          "display_name": "Synthetic A1 Reviewer"
+        },
+        "decision_at": "2026-08-16T15:30:00Z",
+        "source_layer": "manual_review_package",
+        "source_record_id": "REVIEW-TEST_FARRIER_001"
+      },
+      "eligibility": {
+        "status": "eligible",
+        "evaluated_at": "2026-08-16T15:30:10Z",
+        "method_version": "a1-a2-eligibility-1.0.1",
+        "gates": [
+          {
+            "gate_id": "candidate_schema",
+            "status": "pass",
+            "reason": "Pinned A1 schema and cross-field validation passed.",
+            "source_path": "candidate_snapshot"
+          },
+          {
+            "gate_id": "human_approval",
+            "status": "pass",
+            "reason": "A1 human approval is recorded and consistent.",
+            "source_path": "candidate_snapshot.workflow"
+          },
+          {
+            "gate_id": "recommendation",
+            "status": "pass",
+            "reason": "A1 recommends pass_to_a2.",
+            "source_path": "candidate_snapshot.recommendation.next_action"
+          },
+          {
+            "gate_id": "exclusion",
+            "status": "pass",
+            "reason": "Candidate is eligible and not excluded.",
+            "source_path": "candidate_snapshot.qualification.exclusion_status"
+          },
+          {
+            "gate_id": "minimum_data",
+            "status": "pass",
+            "reason": "A1 minimum data status passed.",
+            "source_path": "candidate_snapshot.qualification.minimum_data_status"
+          },
+          {
+            "gate_id": "identity_quality",
+            "status": "pass",
+            "reason": "A1 data quality is validated.",
+            "source_path": "candidate_snapshot.data_quality.validation_status"
+          },
+          {
+            "gate_id": "duplicate_batch",
+            "status": "pass",
+            "reason": "No current-batch duplicate was found.",
+            "source_path": "candidate_snapshot.duplicate_check.batch"
+          },
+          {
+            "gate_id": "duplicate_exclusion_file",
+            "status": "unavailable",
+            "reason": "No exclusion file was supplied for the synthetic fixture.",
+            "source_path": "candidate_snapshot.duplicate_check.provided_exclusion_file"
+          },
+          {
+            "gate_id": "source_policy",
+            "status": "pass",
+            "reason": "No blocked source supports the candidate.",
+            "source_path": "candidate_snapshot.source_evidence"
+          },
+          {
+            "gate_id": "scoring_state",
+            "status": "pass",
+            "reason": "A1 deterministic scoring completed.",
+            "source_path": "candidate_snapshot.scoring.status"
+          },
+          {
+            "gate_id": "audit_identity",
+            "status": "pass",
+            "reason": "A1 audit correlation ID is present.",
+            "source_path": "candidate_snapshot.provenance.audit_correlation_id"
+          },
+          {
+            "gate_id": "scope_permissions",
+            "status": "pass",
+            "reason": "Synthetic scope prohibits every external action.",
+            "source_path": "constraints"
+          },
+          {
+            "gate_id": "hubspot_duplicate",
+            "status": "unavailable",
+            "reason": "HubSpot is not connected for the synthetic fixture.",
+            "source_path": "candidate_snapshot.duplicate_check.hubspot"
+          },
+          {
+            "gate_id": "hubspot_eligibility",
+            "status": "unavailable",
+            "reason": "Authoritative HubSpot eligibility checks are unavailable and not required for synthetic contract validation.",
+            "source_path": null
+          }
+        ],
+        "reasons": [
+          "Core A1 approval and quality gates passed.",
+          "Unavailable HubSpot checks are permitted only for synthetic contract validation."
+        ]
+      },
+      "requested_enrichment": {
+        "mode": "default_minimum_package",
+        "requested_fields": [],
+        "request_reason": "Synthetic end-to-end handoff validation."
+      },
+      "candidate_snapshot": {
+        "schema_version": "1.0.0",
+        "record_kind": "synthetic_test",
+        "candidate_id": "A1-TEST_FARRIER_001",
+        "run_id": "RUN-TEST-0001",
+        "discovered_at": "2026-08-11T10:00:00Z",
+        "updated_at": "2026-08-16T15:30:00Z",
+        "segment": "farrier",
+        "prospect_type": "farrier_business",
+        "identity": {
+          "display_name": "Bluegrass Hoof Care — Synthetic Test Record",
+          "person": {
+            "full_name": "Jordan Example",
+            "first_name": "Jordan",
+            "last_name": "Example",
+            "role_title": "Professional Farrier"
+          },
+          "organisation": {
+            "name": "Bluegrass Hoof Care — Synthetic",
+            "website": "https://example.com/bluegrass-hoof-care",
+            "domain": "example.com"
+          },
+          "aliases": []
+        },
+        "location": {
+          "country_code": "US",
+          "state_region": "Kentucky",
+          "city": "Lexington",
+          "postal_code": null,
+          "public_address": null,
+          "geography_status": "in_scope",
+          "geography_rule_version": "pilot-lexington-0.1"
+        },
+        "public_contacts": [],
+        "source_evidence": [
+          {
+            "evidence_id": "EV-TEST001",
+            "source_url": "https://example.com/bluegrass-hoof-care",
+            "source_name": "Synthetic business website fixture",
+            "source_type": "business_website",
+            "source_policy_status": "approved",
+            "access_method": "manual_browser",
+            "retrieved_at": "2026-08-11T10:00:00Z",
+            "title": "Synthetic Professional Farrier Service",
+            "evidence_excerpt": "Synthetic fixture: professional farrier service in Lexington supporting sport-horse clients.",
+            "fact_or_inference": "direct_fact",
+            "supports_claims": [
+              "farrier.professional_activity",
+              "farrier.sport_horse_focus"
+            ],
+            "reliability_level": "high"
+          }
+        ],
+        "qualification": {
+          "icp_config_version": "proposed-0.1",
+          "criteria": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "criterion_label": "Active professional Farrier",
+              "category": "fit",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-TEST001"
+              ],
+              "notes": "Supported by the synthetic business-site fixture."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "criterion_label": "Works with sport or competition horses",
+              "category": "priority",
+              "status": "confirmed",
+              "evidence_ids": [
+                "EV-TEST001"
+              ],
+              "notes": null
+            }
+          ],
+          "minimum_data_status": "pass",
+          "missing_minimum_fields": [],
+          "exclusion_status": "eligible",
+          "exclusion_reasons": []
+        },
+        "scoring": {
+          "status": "scored",
+          "score": 72,
+          "band": "high",
+          "model_version": "synthetic-test-score-0.1",
+          "components": [
+            {
+              "criterion_id": "farrier.professional_activity",
+              "points_awarded": 50,
+              "max_points": 50,
+              "evidence_ids": [
+                "EV-TEST001"
+              ],
+              "notes": "Synthetic test contribution."
+            },
+            {
+              "criterion_id": "farrier.sport_horse_focus",
+              "points_awarded": 22,
+              "max_points": 30,
+              "evidence_ids": [
+                "EV-TEST001"
+              ],
+              "notes": "Synthetic test contribution."
+            }
+          ],
+          "rationale": "Synthetic score based on professional activity, Lexington location and sport-horse focus.",
+          "block_reason": null
+        },
+        "confidence": {
+          "level": "medium",
+          "score": 65,
+          "method_version": "proposed-confidence-0.1",
+          "reasons": [
+            "The synthetic source directly supports the core qualification claims."
+          ],
+          "limitations": [
+            "Only one synthetic source is present."
+          ]
+        },
+        "duplicate_check": {
+          "batch": {
+            "status": "no_match",
+            "checked_at": "2026-08-11T10:08:00Z",
+            "method_version": "local-dedup-0.1",
+            "matches": [],
+            "notes": null
+          },
+          "provided_exclusion_file": {
+            "status": "unavailable",
+            "checked_at": null,
+            "method_version": null,
+            "matches": [],
+            "notes": "No exclusion file supplied for this synthetic test."
+          },
+          "twenty": {
+            "status": "unavailable",
+            "checked_at": null,
+            "method_version": null,
+            "matches": [],
+            "notes": "Twenty is not connected."
+          },
+          "hubspot": {
+            "status": "unavailable",
+            "checked_at": null,
+            "method_version": null,
+            "matches": [],
+            "notes": "HubSpot is not connected."
+          }
+        },
+        "data_quality": {
+          "validation_status": "validated",
+          "missing_fields": [],
+          "conflicts": [],
+          "last_validated_at": "2026-08-11T10:10:00Z"
+        },
+        "data_governance": {
+          "contains_personal_data": true,
+          "collection_context": "public_business_information",
+          "source_terms_review_status": "confirmed",
+          "retention_policy_version": null,
+          "a1_outreach_prohibited": true
+        },
+        "recommendation": {
+          "next_action": "pass_to_a2",
+          "priority_rank": 1,
+          "suggested_owner": null,
+          "suggested_territory": "Kentucky",
+          "notes": "Synthetic candidate approved for A2 handoff contract testing."
+        },
+        "workflow": {
+          "stage": "approved_for_a2",
+          "review_decision": "approved",
+          "reviewer": {
+            "actor_id": "UNITALK-A1-REVIEWER-TEST",
+            "actor_role": "A1 Business Reviewer",
+            "display_name": "Synthetic A1 Reviewer"
+          },
+          "decision_at": "2026-08-16T15:30:00Z",
+          "rejection_reason": null
+        },
+        "system_references": {
+          "twenty_candidate_id": null,
+          "a2_handoff_id": "A1A2-TEST_FARRIER_001",
+          "hubspot_contact_id": null,
+          "hubspot_company_id": null,
+          "hubspot_sync_id": null
+        },
+        "provenance": {
+          "created_by_profile": "equinet-a1-icp-discovery",
+          "initiated_by": "unitalk-contract-test",
+          "model": null,
+          "tools_used": [
+            "synthetic-fixture-generator"
+          ],
+          "audit_correlation_id": "AUDIT-TEST-0001",
+          "synthetic": true
+        }
+      },
+      "snapshot_integrity": {
+        "algorithm": "sha256",
+        "canonicalization": "json_sorted_utf8_v1",
+        "candidate_snapshot_sha256": "6d0134bfc8d8c99b0efbe2c25947c25534b6e5513dbd51f859725c41ec466056"
+      },
+      "integration_availability": {
+        "hubspot_read": "unavailable",
+        "staging": "unavailable",
+        "workflow": "unavailable",
+        "enrichment_provider": "unavailable",
+        "email_verification": "unavailable",
+        "phone_verification": "unavailable"
+      },
+      "constraints": {
+        "a1_score_mutation_authorized": false,
+        "human_review_required": true,
+        "outreach_authorized": false,
+        "crm_write_authorized": false,
+        "downstream_delivery_authorized": false,
+        "paid_provider_authorized": false,
+        "public_information_creates_consent": false,
+        "external_action_approval_reference": null
+      },
+      "delivery": {
+        "external_event_reference": "synthetic://a1-a2/TEST_FARRIER_001",
+        "attempt_count": 1,
+        "last_attempt_at": "2026-08-16T15:30:20Z",
+        "failure_reason": null
+      },
+      "a2_receipt": {
+        "status": "accepted",
+        "receiver_profile": "equinet-a2-enrichment",
+        "receiver_id": "A2-SYNTHETIC-VALIDATOR",
+        "received_at": "2026-08-16T15:30:20Z",
+        "handoff_id": "A1A2-TEST_FARRIER_001",
+        "candidate_snapshot_sha256": "6d0134bfc8d8c99b0efbe2c25947c25534b6e5513dbd51f859725c41ec466056",
+        "rejection_reasons": []
+      },
+      "provenance": {
+        "created_by": "unitalk-a1-a2-handoff-builder",
+        "initiated_by": "unitalk-step1c-test",
+        "audit_correlation_id": "AUDIT-TEST-0001",
+        "synthetic": true,
+        "tools_used": [
+          "deterministic-fixture-builder"
+        ]
+      }
+    }
+  },
+  "subject": {
+    "identity_resolution_status": "resolved",
+    "entities": [
+      {
+        "entity_id": "A2-ENT-STEP2F_FARRIER_PERSON",
+        "entity_type": "person",
+        "source_identity_reference": "candidate_snapshot.identity.person",
+        "display_name": "Jordan Example",
+        "aliases": [],
+        "match_status": "not_checked",
+        "external_matches": []
+      },
+      {
+        "entity_id": "A2-ENT-STEP2F_FARRIER_ORG",
+        "entity_type": "organisation",
+        "source_identity_reference": "candidate_snapshot.identity.organisation",
+        "display_name": "Bluegrass Hoof Care — Synthetic",
+        "aliases": [],
+        "match_status": "not_checked",
+        "external_matches": []
+      }
+    ],
+    "relationships": [
+      {
+        "relationship_id": "A2-REL-STEP2F_FARRIER_WORKS",
+        "from_entity_id": "A2-ENT-STEP2F_FARRIER_PERSON",
+        "to_entity_id": "A2-ENT-STEP2F_FARRIER_ORG",
+        "relationship_type": "works_for",
+        "evidence_ids": [
+          "EV-TEST001"
+        ]
+      }
+    ],
+    "material_conflicts": []
+  },
+  "enrichment_scope": {
+    "mode": "default_minimum_package",
+    "requested_field_keys": [],
+    "field_catalogue_version": "synthetic-step2f-0.1.0",
+    "source_register_version": null,
+    "operating_scope": "synthetic_test",
+    "limits": {
+      "max_records": 1,
+      "max_source_calls": 0,
+      "max_provider_calls": 0,
+      "max_retries": 0,
+      "max_concurrency": 1,
+      "max_cost_usd": 0,
+      "policy_version": null
+    },
+    "initiated_by": {
+      "actor_id": "UNITALK-A2-STEP2F",
+      "actor_role": "A2 Synthetic Runtime",
+      "display_name": "Synthetic Step 2F Actor",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    }
+  },
+  "field_assessments": [
+    {
+      "field_assessment_id": "A2-FLD-FARRIER-NAME",
+      "field_key": "person.full_name",
+      "entity_id": "A2-ENT-STEP2F_FARRIER_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "synthetic-step2f-0.1.0",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Jordan Example",
+        "normalised_value": "Jordan Example",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-TEST001",
+          "field_reference": "person.full_name",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-16T15:30:00Z",
+        "evidence_ids": [
+          "EV-TEST001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Jordan Example",
+        "normalised_value": "Jordan Example",
+        "evidence_ids": [
+          "EV-TEST001"
+        ],
+        "rationale": "Retain the value supplied by the approved A1 handoff.",
+        "verification_status": "verified",
+        "confidence_level": "medium",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-FARRIER-ROLE",
+      "field_key": "person.role_title",
+      "entity_id": "A2-ENT-STEP2F_FARRIER_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "synthetic-step2f-0.1.0",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Professional Farrier",
+        "normalised_value": "Professional Farrier",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-TEST001",
+          "field_reference": "person.role_title",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-16T15:30:00Z",
+        "evidence_ids": [
+          "EV-TEST001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Professional Farrier",
+        "normalised_value": "Professional Farrier",
+        "evidence_ids": [
+          "EV-TEST001"
+        ],
+        "rationale": "Retain the value supplied by the approved A1 handoff.",
+        "verification_status": "verified",
+        "confidence_level": "medium",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-FARRIER-BUSINESS",
+      "field_key": "organisation.business_name",
+      "entity_id": "A2-ENT-STEP2F_FARRIER_ORG",
+      "scope": "organisation",
+      "field_catalogue_version": "synthetic-step2f-0.1.0",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "Bluegrass Hoof Care — Synthetic",
+        "normalised_value": "Bluegrass Hoof Care — Synthetic",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-TEST001",
+          "field_reference": "organisation.business_name",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-16T15:30:00Z",
+        "evidence_ids": [
+          "EV-TEST001"
+        ],
+        "protected_status": "unassessed"
+      },
+      "observations": [],
+      "proposed_resolution": {
+        "action": "retain",
+        "value": "Bluegrass Hoof Care — Synthetic",
+        "normalised_value": "Bluegrass Hoof Care — Synthetic",
+        "evidence_ids": [
+          "EV-TEST001"
+        ],
+        "rationale": "Retain the value supplied by the approved A1 handoff.",
+        "verification_status": "verified",
+        "confidence_level": "medium",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "unassessed"
+      },
+      "field_review": {
+        "decision": "not_required",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-FARRIER-WEBSITE",
+      "field_key": "organisation.website",
+      "entity_id": "A2-ENT-STEP2F_FARRIER_ORG",
+      "scope": "organisation",
+      "field_catalogue_version": "synthetic-step2f-0.1.0",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": {
+        "value": "https://example.com/bluegrass-hoof-care",
+        "normalised_value": "https://example.com/bluegrass-hoof-care",
+        "origin": {
+          "system": "a1_handoff",
+          "record_reference": "EV-TEST001",
+          "field_reference": "organisation.website",
+          "source_kind": "a1_handoff"
+        },
+        "observed_at": "2026-08-16T15:30:00Z",
+        "evidence_ids": [
+          "EV-TEST001"
+        ],
+        "protected_status": "protected_manual"
+      },
+      "observations": [
+        {
+          "observation_id": "A2-OBS-FARRIER-WEBSITE-NEW",
+          "raw_value": "https://example.org/bluegrass-hoof-care-new",
+          "normalised_value": "https://example.org/bluegrass-hoof-care-new",
+          "evidence_ids": [
+            "A2-EV-STEP2F-FARRIER-WEBSITE-NEW"
+          ],
+          "verification_status": "verified",
+          "confidence_level": "medium",
+          "freshness_status": "undated",
+          "claim_type": "direct_fact",
+          "error": null
+        }
+      ],
+      "proposed_resolution": {
+        "action": "update",
+        "value": "https://example.org/bluegrass-hoof-care-new",
+        "normalised_value": "https://example.org/bluegrass-hoof-care-new",
+        "evidence_ids": [
+          "A2-EV-STEP2F-FARRIER-WEBSITE-NEW"
+        ],
+        "rationale": "Retain the value supplied by the approved A1 handoff.",
+        "verification_status": "verified",
+        "confidence_level": "medium",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "protected_manual"
+      },
+      "field_review": {
+        "decision": "pending",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "pending",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-FARRIER-EMAIL",
+      "field_key": "person.business_email",
+      "entity_id": "A2-ENT-STEP2F_FARRIER_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "synthetic-step2f-0.1.0",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": null,
+      "observations": [
+        {
+          "observation_id": "A2-OBS-FARRIER-EMAIL",
+          "raw_value": "farrier@example.com",
+          "normalised_value": "farrier@example.com",
+          "evidence_ids": [
+            "A2-EV-STEP2F-FARRIER-EMAIL"
+          ],
+          "verification_status": "verified",
+          "confidence_level": "medium",
+          "freshness_status": "undated",
+          "claim_type": "direct_fact",
+          "error": null
+        }
+      ],
+      "proposed_resolution": {
+        "action": "add",
+        "value": "farrier@example.com",
+        "normalised_value": "farrier@example.com",
+        "evidence_ids": [
+          "A2-EV-STEP2F-FARRIER-EMAIL"
+        ],
+        "rationale": "Synthetic evidence supports the proposed field value.",
+        "verification_status": "verified",
+        "confidence_level": "medium",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "not_protected"
+      },
+      "field_review": {
+        "decision": "pending",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    },
+    {
+      "field_assessment_id": "A2-FLD-FARRIER-CREDENTIAL",
+      "field_key": "person.professional_credential",
+      "entity_id": "A2-ENT-STEP2F_FARRIER_PERSON",
+      "scope": "person",
+      "field_catalogue_version": "synthetic-step2f-0.1.0",
+      "value_type": "string",
+      "sensitivity_classification": "professional_business_data",
+      "presence_status": "known",
+      "availability_status": "available",
+      "field_quality_status": "complete",
+      "baseline": null,
+      "observations": [
+        {
+          "observation_id": "A2-OBS-FARRIER-CREDENTIAL",
+          "raw_value": "Synthetic Certified Farrier",
+          "normalised_value": "Synthetic Certified Farrier",
+          "evidence_ids": [
+            "A2-EV-STEP2F-FARRIER-CREDENTIAL"
+          ],
+          "verification_status": "verified",
+          "confidence_level": "medium",
+          "freshness_status": "undated",
+          "claim_type": "direct_fact",
+          "error": null
+        }
+      ],
+      "proposed_resolution": {
+        "action": "add",
+        "value": "Synthetic Certified Farrier",
+        "normalised_value": "Synthetic Certified Farrier",
+        "evidence_ids": [
+          "A2-EV-STEP2F-FARRIER-CREDENTIAL"
+        ],
+        "rationale": "Synthetic evidence supports the proposed field value.",
+        "verification_status": "verified",
+        "confidence_level": "medium",
+        "freshness_status": "undated",
+        "conflict_status": "none",
+        "protected_status": "not_protected"
+      },
+      "field_review": {
+        "decision": "pending",
+        "reviewer": null,
+        "decided_at": null,
+        "reason": null,
+        "corrected_value": null
+      },
+      "application": {
+        "status": "not_requested",
+        "destination": null,
+        "external_action_reference": null,
+        "workflow_dependency_status": "not_checked",
+        "applied_at": null,
+        "error": null
+      }
+    }
+  ],
+  "evidence_registry": [
+    {
+      "evidence_id": "A2-EV-STEP2F-FARRIER-EMAIL",
+      "namespace": "a2",
+      "source_id": "synthetic_step2f_primary_site",
+      "source_type": "synthetic_business_website",
+      "source_policy_status": "approved",
+      "source_url": "https://example.com/step2f-primary",
+      "provider_reference": null,
+      "access_method": "synthetic_fixture",
+      "retrieved_at": "2026-08-26T11:20:00Z",
+      "source_date": null,
+      "title": "Synthetic Step 2F Evidence",
+      "excerpt_or_result_summary": "Synthetic official site publishes a professional email address.",
+      "claim_type": "direct_fact",
+      "supports_field_assessment_ids": [
+        "A2-FLD-FARRIER-EMAIL"
+      ],
+      "supports_requalification_signal_ids": [],
+      "reliability_level": "medium",
+      "independence_group_id": "synthetic-source-primary",
+      "provider_cost": null,
+      "supersedes_evidence_id": null,
+      "data_minimisation_notes": "Synthetic fixture only."
+    },
+    {
+      "evidence_id": "A2-EV-STEP2F-FARRIER-CREDENTIAL",
+      "namespace": "a2",
+      "source_id": "synthetic_step2f_registry",
+      "source_type": "synthetic_business_website",
+      "source_policy_status": "approved",
+      "source_url": "https://example.org/step2f-registry",
+      "provider_reference": null,
+      "access_method": "synthetic_fixture",
+      "retrieved_at": "2026-08-26T11:20:00Z",
+      "source_date": null,
+      "title": "Synthetic Step 2F Evidence",
+      "excerpt_or_result_summary": "Synthetic official registry confirms a professional credential.",
+      "claim_type": "direct_fact",
+      "supports_field_assessment_ids": [
+        "A2-FLD-FARRIER-CREDENTIAL"
+      ],
+      "supports_requalification_signal_ids": [],
+      "reliability_level": "medium",
+      "independence_group_id": "synthetic-source-registry",
+      "provider_cost": null,
+      "supersedes_evidence_id": null,
+      "data_minimisation_notes": "Synthetic fixture only."
+    },
+    {
+      "evidence_id": "A2-EV-STEP2F-FARRIER-WEBSITE-NEW",
+      "namespace": "a2",
+      "source_id": "synthetic_step2f_alternate_site",
+      "source_type": "synthetic_business_website",
+      "source_policy_status": "approved",
+      "source_url": "https://example.org/bluegrass-hoof-care-new",
+      "provider_reference": null,
+      "access_method": "synthetic_fixture",
+      "retrieved_at": "2026-08-26T11:20:00Z",
+      "source_date": null,
+      "title": "Synthetic Alternate Business Website",
+      "excerpt_or_result_summary": "A distinct synthetic source publishes the proposed replacement website.",
+      "claim_type": "direct_fact",
+      "supports_field_assessment_ids": [
+        "A2-FLD-FARRIER-WEBSITE"
+      ],
+      "supports_requalification_signal_ids": [],
+      "reliability_level": "medium",
+      "independence_group_id": null,
+      "provider_cost": null,
+      "supersedes_evidence_id": null,
+      "data_minimisation_notes": "Synthetic fixture only."
+    }
+  ],
+  "data_quality": {
+    "status": "review_ready",
+    "method_version": null,
+    "calculated_at": "2026-08-26T11:30:00Z",
+    "required_field_keys": [
+      "person.full_name",
+      "person.role_title",
+      "person.business_email",
+      "organisation.business_name",
+      "organisation.website"
+    ],
+    "missing_field_keys": [],
+    "unverified_field_keys": [],
+    "conflict_field_keys": [],
+    "stale_field_keys": [],
+    "invalid_field_keys": [],
+    "limitations": []
+  },
+  "duplicate_and_eligibility": {
+    "checks": [],
+    "a2_eligibility_status": "not_checked",
+    "outreach_eligibility_status": "unavailable",
+    "owner_routing_status": "needs_owner_review",
+    "reasons": [
+      "HubSpot is not connected."
+    ],
+    "evaluated_at": null,
+    "method_version": null
+  },
+  "requalification": {
+    "signals": [],
+    "returns": [],
+    "score_revision_references": []
+  },
+  "review": {
+    "record_decision": "pending",
+    "reviewer": null,
+    "decided_at": null,
+    "reason": null,
+    "required_field_decisions_complete": false,
+    "requested_changes": []
+  },
+  "workflow": {
+    "state": "review_required",
+    "previous_state": "enrichment_in_progress",
+    "transitioned_at": "2026-08-26T11:04:00Z",
+    "triggered_by": {
+      "actor_id": "UNITALK-A2-STEP2F",
+      "actor_role": "A2 Synthetic Runtime",
+      "display_name": "Synthetic Step 2F Actor",
+      "profile_id": "equinet-a2-enrichment",
+      "workflow_id": null
+    },
+    "hold_reasons": [],
+    "block_reasons": [],
+    "failure": null
+  },
+  "system_references": {
+    "a1_candidate_id": "A1-TEST_FARRIER_001",
+    "a1_handoff_id": "A1A2-TEST_FARRIER_001",
+    "twenty_record_id": null,
+    "hubspot_contact_id": null,
+    "hubspot_company_id": null,
+    "hubspot_deal_ids": null,
+    "hubspot_proposed_patch_id": null,
+    "hubspot_sync_id": null,
+    "n8n_work_item_id": null,
+    "n8n_execution_id": null,
+    "provider_request_ids": null,
+    "a3_handoff_id": null,
+    "a14_handoff_id": null,
+    "requalification_return_id": null,
+    "a1_score_revision_id": null
+  },
+  "governance": {
+    "processing_purpose": "Synthetic schema validation only.",
+    "contains_personal_data": true,
+    "data_categories": [
+      "synthetic_professional_contact_data"
+    ],
+    "source_register_version": null,
+    "source_terms_review_status": "unavailable",
+    "retention_policy_version": null,
+    "approval_matrix_version": null,
+    "consent_check_status": "unavailable",
+    "outreach_authorized": false,
+    "crm_write_authorized": false,
+    "provider_use_authorized": false,
+    "policy_limitations": [
+      "No live source, provider, CRM or workflow connection is authorised."
+    ]
+  },
+  "audit_and_consumption": {
+    "events": [
+      {
+        "event_id": "A2-EVENT-STEP2F_FARRIER_001",
+        "event_type": "canonical_record_initialised",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP2F",
+          "actor_role": "A2 Synthetic Runtime",
+          "display_name": "Synthetic Step 2F Actor",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-26T10:00:00Z",
+        "input_references": [
+          "A1A2-TEST_FARRIER_001"
+        ],
+        "output_references": [
+          "A2-REV-STEP2F_FARRIER_001"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-schema-fixture-builder"
+        ],
+        "usage": null,
+        "external_action": null
+      },
+      {
+        "event_id": "A2-EVENT-STEP2F_FARRIER_002",
+        "event_type": "workflow_enrichment_planned",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP2F",
+          "actor_role": "A2 Synthetic Runtime",
+          "display_name": "Synthetic Step 2F Actor",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-26T11:02:00Z",
+        "input_references": [
+          "A2-REV-STEP2F_FARRIER_001"
+        ],
+        "output_references": [
+          "A2-REV-STEP2F_FARRIER_002"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-step2f-fixture-builder"
+        ],
+        "usage": null,
+        "external_action": null
+      },
+      {
+        "event_id": "A2-EVENT-STEP2F_FARRIER_003",
+        "event_type": "workflow_enrichment_in_progress",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP2F",
+          "actor_role": "A2 Synthetic Runtime",
+          "display_name": "Synthetic Step 2F Actor",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-26T11:03:00Z",
+        "input_references": [
+          "A2-REV-STEP2F_FARRIER_002"
+        ],
+        "output_references": [
+          "A2-REV-STEP2F_FARRIER_003"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-step2f-fixture-builder"
+        ],
+        "usage": null,
+        "external_action": null
+      },
+      {
+        "event_id": "A2-EVENT-STEP2F_FARRIER_PROTECTED_004",
+        "event_type": "workflow_review_required",
+        "actor": {
+          "actor_id": "UNITALK-A2-STEP2F",
+          "actor_role": "A2 Synthetic Runtime",
+          "display_name": "Synthetic Step 2F Actor",
+          "profile_id": "equinet-a2-enrichment",
+          "workflow_id": null
+        },
+        "timestamp": "2026-08-26T11:04:00Z",
+        "input_references": [
+          "A2-REV-STEP2F_FARRIER_003"
+        ],
+        "output_references": [
+          "A2-REV-STEP2F_FARRIER_PROTECTED_004"
+        ],
+        "model": null,
+        "tools": [
+          "deterministic-step2f-fixture-builder"
+        ],
+        "usage": null,
+        "external_action": null
+      }
+    ],
+    "total_usage": {
+      "input_tokens": null,
+      "output_tokens": null,
+      "total_tokens": null,
+      "api_calls": 0,
+      "provider_calls": 0,
+      "credits": 0,
+      "cost_amount": 0,
+      "currency": "USD",
+      "cost_status": "known"
+    },
+    "errors": []
+  }
+}

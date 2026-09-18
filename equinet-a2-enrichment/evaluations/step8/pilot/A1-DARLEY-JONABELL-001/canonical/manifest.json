@@ -1,0 +1,46 @@
+{
+  "record_type": "step8_jonabell_canonical_revision_chain",
+  "candidate_id": "A1-DARLEY-JONABELL-001",
+  "status": "jonabell_accepted_as_step8_test_result",
+  "records": [
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-002-enrichment-planned.json",
+      "sha256": "42f051e14e9ffcf3ec5845ab9bc546d21d591cd15519de04970bd4d2a9ba3838",
+      "revision_id": "A2-REV-STEP8_D21BC65DDC16BB6B66F3_002",
+      "workflow": "enrichment_planned",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-003-enrichment-in-progress.json",
+      "sha256": "c0313d31010b46155f6d5eba34879f5138db0608da89984fcc3468e7a6e90b07",
+      "revision_id": "A2-REV-STEP8_D21BC65DDC16BB6B66F3_003",
+      "workflow": "enrichment_in_progress",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-004-review-required.json",
+      "sha256": "73a2d593cbcaa878528d5a52cb40e8397c16963085302595f5c917bc8e7c2739",
+      "revision_id": "A2-REV-STEP8_D21BC65DDC16BB6B66F3_004",
+      "workflow": "review_required",
+      "valid": true,
+      "errors": []
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-005-record-approved.json",
+      "sha256": "bc2b618e0be5270edef6325b28d205a299c19addf4a18688b3040dc1ca8232bf",
+      "revision_id": "A2-REV-STEP8_D21BC65DDC16BB6B66F3_005",
+      "workflow": "record_approved",
+      "valid": true,
+      "errors": []
+    }
+  ],
+  "final_record": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/canonical/revision-005-record-approved.json",
+  "final_review_decision": "approved",
+  "rood_and_riddle_processed": false,
+  "hubspot_write": false,
+  "outreach": false,
+  "external_actions": 0,
+  "final_review_decision_record": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-decision.json"
+}

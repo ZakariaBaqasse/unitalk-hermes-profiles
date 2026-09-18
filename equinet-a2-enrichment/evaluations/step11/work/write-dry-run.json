@@ -1,0 +1,205 @@
+{
+  "status": "dry_run",
+  "write_plan_sha256": "be428362e58b67654e7908415f9dde096373f01cb3156b89b8e95907c4e7ceb8",
+  "operation_count": 6,
+  "operations": [
+    {
+      "operation_id": "update-company-business-fields",
+      "operation_type": "update_company_fields",
+      "twenty_company_id": "company-fixture-001",
+      "baseline_sha256": "b5ce66f03724257c87f783ddfecdb9e9e775a197df367cc49322bb7d679cfa2f",
+      "baseline_fields": {
+        "email": {
+          "primaryEmail": "a1@example.com",
+          "additionalEmails": []
+        },
+        "phone": {
+          "primaryPhoneNumber": "+15550001",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "+1",
+          "additionalPhones": []
+        },
+        "linkedinLink": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "facebook": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "youtube": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "tiktok": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        },
+        "xTwitter": {
+          "primaryLinkUrl": "",
+          "primaryLinkLabel": "",
+          "secondaryLinks": []
+        }
+      },
+      "fields": {
+        "email": {
+          "primaryEmail": "a1@example.com",
+          "additionalEmails": [
+            "office@example.com",
+            "alex.morgan@example.com"
+          ]
+        },
+        "phone": {
+          "primaryPhoneNumber": "+15550001",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "+1",
+          "additionalPhones": [
+            {
+              "number": "+1 (859) 555-0100",
+              "countryCode": "",
+              "callingCode": ""
+            }
+          ]
+        },
+        "linkedinLink": {
+          "primaryLinkUrl": "https://linkedin.com/company/exampleequine",
+          "primaryLinkLabel": "Linkedin",
+          "secondaryLinks": [
+            {
+              "url": "https://linkedin.com/in/alex-morgan-example",
+              "label": "Linkedin"
+            }
+          ]
+        },
+        "facebook": {
+          "primaryLinkUrl": "https://facebook.com/exampleequine",
+          "primaryLinkLabel": "Facebook",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkUrl": "https://instagram.com/exampleequine",
+          "primaryLinkLabel": "Instagram",
+          "secondaryLinks": []
+        },
+        "youtube": {
+          "primaryLinkUrl": "https://youtube.com/@exampleequine",
+          "primaryLinkLabel": "Youtube",
+          "secondaryLinks": []
+        },
+        "tiktok": {
+          "primaryLinkUrl": "https://tiktok.com/@exampleequine",
+          "primaryLinkLabel": "Tiktok",
+          "secondaryLinks": []
+        },
+        "xTwitter": {
+          "primaryLinkUrl": "https://x.com/exampleequine",
+          "primaryLinkLabel": "X",
+          "secondaryLinks": []
+        }
+      }
+    },
+    {
+      "operation_id": "create-person-0",
+      "operation_type": "create_person",
+      "temporary_person_key": "new-0-fe-web-1",
+      "source_provider_person_id": "fe-web-1",
+      "source_website_person_id": "website-person-7004cbac0675cee8",
+      "fields": {
+        "a2IdentityStatus": "VERIFIED",
+        "a2RoleStatus": "CURRENT_AT_COMPANY",
+        "a2RolePriority": "UNKNOWN",
+        "a2CompanyMatchStatus": "CONFIRMED",
+        "a2EnrichmentStatus": "ENRICHED",
+        "a2FullenrichPersonid": "fe-web-1",
+        "a2LastVerifiedAt": "2026-09-18T17:40:57Z",
+        "a2LastEnrichedAt": "2026-09-18T17:40:57Z",
+        "a2EnrichmentRunId": "step11-fixture-run",
+        "name": {
+          "firstName": "Alex",
+          "lastName": "Morgan"
+        },
+        "jobTitle": "Stable Operations Coordinator",
+        "emails": {
+          "primaryEmail": "person1@example.com",
+          "additionalEmails": []
+        },
+        "phones": {
+          "primaryPhoneNumber": "+15550101",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "",
+          "additionalPhones": []
+        }
+      }
+    },
+    {
+      "operation_id": "associate-person-0",
+      "operation_type": "associate_person_company",
+      "temporary_person_key": "new-0-fe-web-1",
+      "twenty_company_id": "company-fixture-001",
+      "fields": {}
+    },
+    {
+      "operation_id": "create-person-1",
+      "operation_type": "create_person",
+      "temporary_person_key": "new-1-fe-web-2",
+      "source_provider_person_id": "fe-web-2",
+      "source_website_person_id": "website-person-e6cdf8df308890f6",
+      "fields": {
+        "a2IdentityStatus": "VERIFIED",
+        "a2RoleStatus": "CURRENT_AT_COMPANY",
+        "a2RolePriority": "UNKNOWN",
+        "a2CompanyMatchStatus": "CONFIRMED",
+        "a2EnrichmentStatus": "ENRICHED",
+        "a2FullenrichPersonid": "fe-web-2",
+        "a2LastVerifiedAt": "2026-09-18T17:40:57Z",
+        "a2LastEnrichedAt": "2026-09-18T17:40:57Z",
+        "a2EnrichmentRunId": "step11-fixture-run",
+        "name": {
+          "firstName": "Taylor",
+          "lastName": "Brooks"
+        },
+        "jobTitle": "Veterinary Receptionist",
+        "emails": {
+          "primaryEmail": "person2@example.com",
+          "additionalEmails": []
+        },
+        "phones": {
+          "primaryPhoneNumber": "+15550102",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "",
+          "additionalPhones": []
+        }
+      }
+    },
+    {
+      "operation_id": "associate-person-1",
+      "operation_type": "associate_person_company",
+      "temporary_person_key": "new-1-fe-web-2",
+      "twenty_company_id": "company-fixture-001",
+      "fields": {}
+    },
+    {
+      "operation_id": "final-company-status",
+      "operation_type": "update_company_status",
+      "twenty_company_id": "company-fixture-001",
+      "fields": {
+        "a2EnrichmentStatus": "PARTIALLY_ENRICHED",
+        "a2EnrichmentVersion": "step11-0.1.0",
+        "a2EnrichmentRunId": "step11-fixture-run",
+        "a2LastAttemptedAt": "2026-09-18T17:40:57Z",
+        "a2EnrichmentErrorCode": null
+      }
+    }
+  ],
+  "external_writes": 0,
+  "completed_at": "2026-09-18T17:40:57Z"
+}

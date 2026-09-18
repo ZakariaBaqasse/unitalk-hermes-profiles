@@ -1,0 +1,37 @@
+{
+  "record_type": "a2_active_foundation_integrity_repair_decision",
+  "decision_id": "A2-ACTIVE-MANIFEST-INTEGRITY-REPAIR-20260915",
+  "recorded_at": "2026-09-15T10:24:25Z",
+  "status": "approved_for_implementation_by_user_instruction",
+  "problem": {
+    "active_manifest_version": "1.3.1",
+    "hash_mismatch_count": 8,
+    "causes": [
+      "secret-redaction transformed code tokens and policy scalar values after publication",
+      "mutable config.yaml changed after publication"
+    ],
+    "operational_effect": "six active Python files did not compile and the active manifest integrity check failed"
+  },
+  "resolution": {
+    "restore_exact_published_bytes": [
+      "scripts/initialize_a2_record.py",
+      "scripts/validate_a2_enrichment_record.py",
+      "scripts/build_a2_gap_plan.py",
+      "scripts/preflight_a2_source_action.py",
+      "scripts/normalise_and_validate_a2_observations.py",
+      "scripts/evaluate_a2_minimum_package.py",
+      "foundations/contracts/runtime/a2-no-integration-runtime-policy-1.2.1.yaml"
+    ],
+    "do_not_restore_live_config": true,
+    "remove_live_config_from_active_hash_set": true,
+    "replacement_runtime_requirements": "foundations/contracts/runtime/a2-profile-runtime-requirements-1.0.0.yaml",
+    "publish_successor_manifest_version": "1.3.2"
+  },
+  "scope": {
+    "integration_permissions_changed": false,
+    "production_acceptance_granted": false,
+    "fullenrich_runtime_activated": false,
+    "twenty_write_activated": false,
+    "external_actions": 0
+  }
+}

@@ -1,0 +1,368 @@
+{
+  "source": "/opt/data/profiles/equinet/attachments/Property_Definitions (1).csv",
+  "row_count": 950,
+  "column_count": 14,
+  "columns": [
+    "Object",
+    "Object Type ID",
+    "Property label",
+    "Internal name",
+    "Type",
+    "Field type",
+    "Group",
+    "Description",
+    "Data entry instructions",
+    "Options (label [value])",
+    "Pipeline stages (pipeline > stage [value])",
+    "Read only",
+    "Aggregation only",
+    "Unique lookup property"
+  ],
+  "objects": {
+    "Company": {
+      "object_type_ids": [
+        "0-2"
+      ],
+      "property_count": 227,
+      "read_only_count": 116,
+      "writable_count": 111,
+      "aggregation_only_count": 13,
+      "unique_lookup_count": 0,
+      "enumeration_count": 40,
+      "with_options_count": 63,
+      "with_pipeline_stages_count": 1,
+      "missing_description_count": 227,
+      "missing_group_count": 227
+    },
+    "Complaints": {
+      "object_type_ids": [
+        "2-251550468"
+      ],
+      "property_count": 28,
+      "read_only_count": 14,
+      "writable_count": 14,
+      "aggregation_only_count": 1,
+      "unique_lookup_count": 0,
+      "enumeration_count": 11,
+      "with_options_count": 12,
+      "with_pipeline_stages_count": 0,
+      "missing_description_count": 28,
+      "missing_group_count": 28
+    },
+    "Contact": {
+      "object_type_ids": [
+        "0-1"
+      ],
+      "property_count": 431,
+      "read_only_count": 175,
+      "writable_count": 256,
+      "aggregation_only_count": 12,
+      "unique_lookup_count": 1,
+      "enumeration_count": 121,
+      "with_options_count": 156,
+      "with_pipeline_stages_count": 1,
+      "missing_description_count": 431,
+      "missing_group_count": 431
+    },
+    "Deal": {
+      "object_type_ids": [
+        "0-3"
+      ],
+      "property_count": 145,
+      "read_only_count": 115,
+      "writable_count": 30,
+      "aggregation_only_count": 25,
+      "unique_lookup_count": 0,
+      "enumeration_count": 23,
+      "with_options_count": 32,
+      "with_pipeline_stages_count": 1,
+      "missing_description_count": 145,
+      "missing_group_count": 145
+    },
+    "Sample Requests": {
+      "object_type_ids": [
+        "2-204687032"
+      ],
+      "property_count": 41,
+      "read_only_count": 16,
+      "writable_count": 25,
+      "aggregation_only_count": 1,
+      "unique_lookup_count": 0,
+      "enumeration_count": 21,
+      "with_options_count": 21,
+      "with_pipeline_stages_count": 1,
+      "missing_description_count": 41,
+      "missing_group_count": 41
+    },
+    "Ticket": {
+      "object_type_ids": [
+        "0-5"
+      ],
+      "property_count": 78,
+      "read_only_count": 58,
+      "writable_count": 20,
+      "aggregation_only_count": 13,
+      "unique_lookup_count": 0,
+      "enumeration_count": 24,
+      "with_options_count": 27,
+      "with_pipeline_stages_count": 1,
+      "missing_description_count": 78,
+      "missing_group_count": 78
+    }
+  },
+  "object_count": 6,
+  "object_type_ids": [
+    [
+      "Company",
+      "0-2"
+    ],
+    [
+      "Complaints",
+      "2-251550468"
+    ],
+    [
+      "Contact",
+      "0-1"
+    ],
+    [
+      "Deal",
+      "0-3"
+    ],
+    [
+      "Sample Requests",
+      "2-204687032"
+    ],
+    [
+      "Ticket",
+      "0-5"
+    ]
+  ],
+  "property_types": {
+    "string": 264,
+    "enumeration": 240,
+    "bool": 66,
+    "number": 199,
+    "datetime": 156,
+    "date": 23,
+    "object_coordinates": 2
+  },
+  "field_types": {
+    "<blank>": 950
+  },
+  "duplicate_internal_names": [],
+  "duplicate_labels": [
+    {
+      "object": "Contact",
+      "label": "Cumulative conversion",
+      "internal_names": [
+        "funnel.cumulativeConversion",
+        "pipeline.cumulativeConversion"
+      ]
+    },
+    {
+      "object": "Contact",
+      "label": "Opted out of email: Marketing Information",
+      "internal_names": [
+        "hs_email_optout_2585761664",
+        "hs_email_optout_627076427"
+      ]
+    },
+    {
+      "object": "Deal",
+      "label": "Cumulative conversion",
+      "internal_names": [
+        "funnel.cumulativeConversion",
+        "pipeline.cumulativeConversion"
+      ]
+    }
+  ],
+  "relevant_property_count": 395,
+  "relevant_category_counts": {
+    "customer_and_exclusion": 71,
+    "explicit_a2_candidate": 125,
+    "identity_and_contact": 111,
+    "quality_and_enrichment": 18,
+    "ownership_and_routing": 52,
+    "external_ids_and_associations": 37,
+    "qualification_and_score": 22,
+    "activity_and_freshness": 40,
+    "consent_and_suppression": 23,
+    "equine_and_professional": 54
+  },
+  "exact_checks": {
+    "Contact.email": {
+      "label": "Email",
+      "type": "string",
+      "read_only": false,
+      "unique_lookup": true,
+      "options": "",
+      "pipeline_stages": ""
+    },
+    "Contact.contact_verified": {
+      "label": "Contact Info Verified",
+      "type": "bool",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Yes [true]; No [false]",
+      "pipeline_stages": ""
+    },
+    "Contact.data_quality": {
+      "label": "Data Quality Score",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Complete [Complete]; Partial [Partial]; Needs Review [Needs Review]",
+      "pipeline_stages": ""
+    },
+    "Contact.hs_contact_enrichment_opt_out": {
+      "label": "Enrichment opt out",
+      "type": "bool",
+      "read_only": true,
+      "unique_lookup": false,
+      "options": "Yes [true]; No [false]",
+      "pipeline_stages": ""
+    },
+    "Contact.do_not_contact": {
+      "label": "Do Not Contact",
+      "type": "bool",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Yes [true]; No [false]",
+      "pipeline_stages": ""
+    },
+    "Contact.gdpr_consent": {
+      "label": "GDPR / CAN-SPAM Consent",
+      "type": "bool",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Yes [true]; No [false]",
+      "pipeline_stages": ""
+    },
+    "Contact.hs_legal_basis": {
+      "label": "Legal basis for processing contact's data",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Legitimate interest - Lead [Legitimate interest – prospect/lead]; Legitimate interest - Customer [Legitimate interest – existing customer]; Legitimate interest - Other [Legitimate interest - other]; Performance of a contract [Performance of a contract]; Freely given consent from contact [Freely given consent from contact]; Not applicable [Not applicable]",
+      "pipeline_stages": ""
+    },
+    "Contact.hs_email_optout": {
+      "label": "Unsubscribed from all email",
+      "type": "bool",
+      "read_only": true,
+      "unique_lookup": false,
+      "options": "True [true]; False [false]",
+      "pipeline_stages": ""
+    },
+    "Contact.hs_current_customer": {
+      "label": "Current Customer",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Yes [yes]; No [no]",
+      "pipeline_stages": ""
+    },
+    "Contact.lifecyclestage": {
+      "label": "Lifecycle Stage",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "",
+      "pipeline_stages": "Lifecycle Stage Pipeline > Lead [lead]; Lifecycle Stage Pipeline > Marketing Qualified Lead [marketingqualifiedlead]; Lifecycle Stage Pipeline > Sales Qualified Lead [salesqualifiedlead]; Lifecycle Stage Pipeline > Opportunity [opportunity]; Lifecycle Stage Pipeline > Customer [customer]; Lifecycle Stage Pipeline > Evangelist [evangelist]; Lifecycle Stage Pipeline > Subscriber [subscriber]"
+    },
+    "Contact.hs_sequences_is_enrolled": {
+      "label": "Currently in Sequence",
+      "type": "bool",
+      "read_only": true,
+      "unique_lookup": false,
+      "options": "True [true]; False [false]",
+      "pipeline_stages": ""
+    },
+    "Contact.owner_horse_count": {
+      "label": "Number of Horses",
+      "type": "number",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "",
+      "pipeline_stages": ""
+    },
+    "Contact.horse_count_range": {
+      "label": "Horse Count Range",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "1 horse [1 horse]; 2 - 4 horses [2 - 4 horses]; 5 - 20 horses [5 - 20 horses]; 11 - 25 horses [11 - 25 horses]; 26 - 50 horses [26 - 50 horses]; 50+ horses [50+ horses]",
+      "pipeline_stages": ""
+    },
+    "Contact.farrier_horses_served": {
+      "label": "Horses Served / Month",
+      "type": "number",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "",
+      "pipeline_stages": ""
+    },
+    "Contact.disciplines_worked_with": {
+      "label": "Disciplines worked with",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Recreation/Backyard [recreation_backyard]; Western Performance [western_performance]; English Sport [english_sport]; Racing [racing]; Work [work]; Therapeutic [therapeutic]; Other [other]",
+      "pipeline_stages": ""
+    },
+    "Company.domain": {
+      "label": "Company Domain Name",
+      "type": "string",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "",
+      "pipeline_stages": ""
+    },
+    "Company.data_quality": {
+      "label": "Data Quality Score",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Complete [Complete]; Partial [Partial]; Needs Review [Needs Review]",
+      "pipeline_stages": ""
+    },
+    "Company.do_not_contact": {
+      "label": "Do Not Contact",
+      "type": "bool",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Yes [true]; No [false]",
+      "pipeline_stages": ""
+    },
+    "Company.hs_current_customer": {
+      "label": "Current Customer",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Yes [yes]; No [no]",
+      "pipeline_stages": ""
+    },
+    "Company.company_type": {
+      "label": "Company Type",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "Dealer [Dealer]; Clinic [Clinic]; Farrier Business [Farrier Business]; Trainer [Trainer]; Veterinarian [Veterinarian]; Breeder [Breeder]; Farrier [Farrier]; Facility [Facility]; Farm [Farm]; Other [Other]; Media [Media]; Organization [Organization]; Retail & Supply [Retail & Supply]; Service Provider [Service Provider]",
+      "pipeline_stages": ""
+    },
+    "Deal.dealstage": {
+      "label": "Deal Stage",
+      "type": "enumeration",
+      "read_only": false,
+      "unique_lookup": false,
+      "options": "",
+      "pipeline_stages": "Sales Pipeline > Appointment Scheduled [appointmentscheduled]; Sales Pipeline > Qualified To Buy [qualifiedtobuy]; Sales Pipeline > Presentation Scheduled [presentationscheduled]; Sales Pipeline > Decision Maker Bought-In [decisionmakerboughtin]; Sales Pipeline > Contract Sent [contractsent]; Sales Pipeline > Closed Won [closedwon]; Sales Pipeline > Closed Lost [closedlost]"
+    }
+  },
+  "coverage_limitations": [
+    "The export contains property definitions for six objects only.",
+    "The export does not include live records, fill rates, property history, workflow usage or access scopes.",
+    "Descriptions, groups and data-entry instructions are mostly empty and cannot establish business meaning by themselves.",
+    "The image contains additional HubSpot objects not represented in this property export."
+  ]
+}

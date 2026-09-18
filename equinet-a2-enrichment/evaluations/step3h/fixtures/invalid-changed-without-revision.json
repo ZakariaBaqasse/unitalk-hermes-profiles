@@ -1,0 +1,44 @@
+{
+  "receipt_version": "0.1.0-draft.1",
+  "review_receipt_id": "TWENTY-RCPT-TEST-001",
+  "idempotency_key": "TWENTY-IDEMP-TEST-001",
+  "twenty_candidate_id": "TWENTY-CANDIDATE-001",
+  "twenty_review_id": "TWENTY-A2-REVIEW-001",
+  "a1_candidate_id": "A1-CANDIDATE-001",
+  "a2_record_id": "A2-RECORD-001",
+  "record_revision_id": "A2-REV-001",
+  "canonical_record_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "review_status": "needs_changes",
+  "field_decisions": [
+    {
+      "field_assessment_id": "A2-FLD-NAME",
+      "decision": "needs_changes",
+      "corrected_value": "Corrected value",
+      "reason": "Verified."
+    },
+    {
+      "field_assessment_id": "A2-FLD-EMAIL",
+      "decision": "approved",
+      "corrected_value": null,
+      "reason": "Verified professional email."
+    }
+  ],
+  "record_decision": "needs_changes",
+  "corrected_values_create_new_revision": false,
+  "reviewer": {
+    "actor_id": "TWENTY-REVIEWER-001",
+    "actor_role": "A2 Business Reviewer",
+    "display_name": "Synthetic Reviewer"
+  },
+  "decided_at": "2026-08-27T10:00:00Z",
+  "reason": "Synthetic review decision.",
+  "approval_scope": "a2_review_only",
+  "proposed_hubspot_patch_authorized": false,
+  "hubspot_write_authorized": false,
+  "source_event": {
+    "event_type": "a2EnrichmentReview.updated",
+    "event_id": "TWENTY-EVENT-001",
+    "occurred_at": "2026-08-27T10:00:00Z"
+  },
+  "audit_correlation_id": "A2-AUDIT-001"
+}

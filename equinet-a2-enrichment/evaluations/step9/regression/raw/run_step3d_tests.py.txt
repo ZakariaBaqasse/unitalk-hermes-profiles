@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3d_tests.py", line 282, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3d_tests.py", line 245, in main
+    render(policy, fixture_results)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3d_tests.py", line 114, in render
+    rows = "\n".join(f"| `{item['name']}` | {item['source_id']} | {item['confidence_score']} | {item['confidence_level']} | {item['verification_status']} | {'PASS' if item['passed'] else 'FAIL'} |" for item in cases)
+  File "/opt/data/tmp/equinet-a2-step9-sandbox/scripts/run_step3d_tests.py", line 114, in <genexpr>
+    rows = "\n".join(f"| `{item['name']}` | {item['source_id']} | {item['confidence_score']} | {item['confidence_level']} | {item['verification_status']} | {'PASS' if item['passed'] else 'FAIL'} |" for item in cases)
+                           ~~~~^^^^^^^^
+KeyError: 'name'

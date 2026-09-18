@@ -1,0 +1,334 @@
+{
+  "policy_id": "equinet-a2-provider-and-cost-policy",
+  "version": "0.3.1",
+  "status": "equinet_confirmed_fullenrich_personal_email_correction_runtime_pending",
+  "profile": "equinet-a2-enrichment",
+  "unitalk_approval": {
+    "approver": "Séverine, Unitalk Operations",
+    "approved_at": "2026-09-06T13:38:10Z",
+    "scope": "Incidental FullEnrich personal-email retention; no default personal-email request"
+  },
+  "dependencies": [
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.3.1.json",
+      "sha256": "ec83d19d82eb31b59f55b6e36023cff238263ed33c4138f57c6730093b89ae0b"
+    },
+    {
+      "path": "foundations/decisions/A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906.json",
+      "sha256": "1ef4ece1845d267391b9ebc71645280e2ec75cf11c6bee2731163984f5792596"
+    }
+  ],
+  "contractual_budget_boundary": {
+    "advance_token_credit_currency": "USD",
+    "advance_token_credit_initial_amount": 5000,
+    "negative_balance_permitted": false,
+    "a2_provider_allocation_usd": null,
+    "daily_visibility_required": true,
+    "monthly_statement_required": true
+  },
+  "providers": {
+    "apify_linkedin_profile_search": {
+      "actor_id": "harvestapi/linkedin-profile-search",
+      "purpose": "fallback_role_and_company_match_after_official_site_and_fullenrich",
+      "business_approval": "approved",
+      "runtime_status": "blocked_pending_rights_vendor_account_budget_retention_and_connector",
+      "billing_model": "pay_per_event_verify_in_live_console",
+      "limits": {
+        "take_pages": 1,
+        "max_items_per_candidate": 5,
+        "max_retained_contacts": 2,
+        "concurrency": 1,
+        "automatic_query_segmentation": false,
+        "default_retained_contacts": 1,
+        "second_contact_requires_reason": true
+      },
+      "allowed_fields": [
+        "name",
+        "current_title",
+        "current_company",
+        "professional_location",
+        "profile_url"
+      ],
+      "prohibited_fields": [
+        "full_career_history",
+        "education",
+        "skills",
+        "posts",
+        "followers",
+        "connections",
+        "photos",
+        "personal_interests"
+      ],
+      "input_strategy": {
+        "preferred": "exact_linkedin_company_url_from_official_website",
+        "fallback": "verified_company_name_plus_target_role",
+        "individual_profile_url": "manual_review_or_separately_approved_harvestapi_linkedin_profile_scraper",
+        "no_broad_search_without_named_role_gap": true,
+        "fullenrich_precondition": [
+          "not_found",
+          "insufficient_match",
+          "unavailable_after_approved_retry"
+        ]
+      }
+    },
+    "apify_independent_email_search": {
+      "actor_id": "harvestapi/linkedin-profile-search",
+      "mode": "full_plus_email_search",
+      "purpose": "fallback_professional_email_after_fullenrich_not_found",
+      "business_approval": "approved",
+      "runtime_status": "blocked_pending_rights_vendor_account_budget_retention_and_connector",
+      "max_searches_per_candidate": 3,
+      "professional_email": "eligible_for_verification",
+      "personal_email": "held_for_human_privacy_review",
+      "personal_email_contactability_before_review": false,
+      "crm_write_before_review": false,
+      "outreach_before_authoritative_checks": false,
+      "provenance": "independent_HarvestAPI_email_search_not_LinkedIn",
+      "fullenrich_precondition": [
+        "not_found",
+        "unavailable_after_approved_retry"
+      ]
+    },
+    "apollo": {
+      "status": "equinet_test_pending_not_selected",
+      "runtime_enabled": false
+    },
+    "clay": {
+      "status": "equinet_test_pending_not_selected",
+      "runtime_enabled": false
+    },
+    "fullenrich_people_search": {
+      "endpoint": "POST https://app.fullenrich.com/api/v2/people/search",
+      "purpose": "find_named_contact_by_exact_organisation_domain_and_approved_target_role",
+      "business_approval": "approved",
+      "runtime_status": "integration_pending_api_key_n8n_vendor_budget_and_account_test",
+      "billing_model": "documented_0.25_credit_per_returned_person_verify_premium_plan",
+      "limits": {
+        "default_result_limit": 1,
+        "maximum_unique_people_returned_and_retained_per_prospect": 2,
+        "second_contact_requires_reason": true,
+        "broad_role_free_search": false,
+        "concurrency": 1
+      },
+      "allowed_fields": [
+        "full_name",
+        "employment.current.title",
+        "employment.current.company.name",
+        "employment.current.company.domain",
+        "location",
+        "social_profiles.professional_network.url"
+      ],
+      "prohibited_fields": [
+        "contact email",
+        "contact phone",
+        "education",
+        "skills",
+        "full employment history",
+        "connection counts",
+        "personal description"
+      ]
+    },
+    "fullenrich_people_lookup": {
+      "endpoint": "POST https://app.fullenrich.com/api/v2/people/lookup",
+      "purpose": "resolve_known_person_identity_current_role_and_company",
+      "business_approval": "approved",
+      "runtime_status": "integration_pending_api_key_n8n_vendor_budget_and_account_test",
+      "billing_model": "documented_0.25_credit_per_returned_person_verify_premium_plan",
+      "limits": {
+        "maximum_results": 1,
+        "skip_when_name_role_and_organisation_already_verified": true,
+        "concurrency": 1
+      },
+      "allowed_fields": [
+        "full_name",
+        "employment.current.title",
+        "employment.current.company.name",
+        "employment.current.company.domain",
+        "location",
+        "social_profiles.professional_network.url"
+      ],
+      "prohibited_fields": [
+        "contact email",
+        "contact phone",
+        "education",
+        "skills",
+        "full employment history",
+        "connection counts",
+        "personal description"
+      ]
+    },
+    "fullenrich_contact_enrichment": {
+      "endpoint": "POST https://app.fullenrich.com/api/v2/contact/enrich/bulk",
+      "purpose": "selected_contact_work_email_and_mobile_enrichment",
+      "business_approval": "approved",
+      "runtime_status": "integration_pending_api_key_n8n_webhook_vendor_budget_and_account_test",
+      "billing_model": {
+        "documented_work_email_if_found_credits": 1,
+        "documented_mobile_if_found_credits": 10,
+        "personal_email_not_requested": true,
+        "actual_premium_plan_rates_must_be_verified": true
+      },
+      "limits": {
+        "max_contacts_per_prospect": 2,
+        "second_contact_requires_reason": true,
+        "max_retry_on_transient_failure": 1,
+        "concurrency": 1
+      },
+      "requested_enrich_fields": [
+        "contact.work_emails",
+        "contact.phones"
+      ],
+      "allowed_fields": [
+        "most_probable_work_email.email",
+        "most_probable_work_email.status",
+        "work_emails[].email",
+        "work_emails[].status",
+        "most_probable_phone.number",
+        "most_probable_phone.region",
+        "phones[].number",
+        "phones[].region"
+      ],
+      "prohibited_fields": [
+        "contact.personal_emails request",
+        "unselected-person enrichment",
+        "unapproved profile fields",
+        "automatic outreach",
+        "dedicated personal-email request by default"
+      ],
+      "asynchronous": true,
+      "result_delivery": "signed_webhook_via_n8n",
+      "webhook_signature_header": "X-Signature-SHA1",
+      "allowed_incidental_fields": [
+        "most_probable_personal_email.email",
+        "most_probable_personal_email.status",
+        "personal_emails[].email",
+        "personal_emails[].status"
+      ]
+    }
+  },
+  "benchmark": {
+    "candidate_count": 10,
+    "segments": [
+      "farrier",
+      "horse_owner"
+    ],
+    "dataset": "approved_fixed_dataset",
+    "live_crm_write": false,
+    "outreach": false,
+    "success_metrics": [
+      "identity_match_precision",
+      "role_company_match_precision",
+      "professional_email_precision",
+      "coverage_by_segment",
+      "false_positive_rate",
+      "cost_per_usable_verified_field",
+      "provenance_completeness",
+      "latency"
+    ],
+    "acceptance_thresholds": "pending_after_first_bounded_output_review"
+  },
+  "budget_controls": {
+    "test_cap_usd": null,
+    "daily_cap_usd": null,
+    "pilot_cap_usd": null,
+    "spend_approver": null,
+    "consumption_owner": null,
+    "warning_percent": 50,
+    "escalation_percent": 80,
+    "hard_stop_percent": 100,
+    "run_blocked_when_any_required_cap_is_null": true,
+    "never_exceed_remaining_prepaid_balance": true
+  },
+  "execution_controls": {
+    "idempotency_key_components": [
+      "candidate_id",
+      "provider_action",
+      "field_key",
+      "policy_version"
+    ],
+    "successful_lookup_reuse_required": true,
+    "retry_on_not_found": 0,
+    "retry_on_policy_or_budget_block": 0,
+    "max_retry_on_transient_technical_failure": 1,
+    "no_automatic_provider_fallback": true,
+    "provider_result_requires_audit_record": true,
+    "fullenrich_search_default_result_limit": 1,
+    "maximum_unique_people_returned_and_retained_per_prospect": 2,
+    "contact_enrichment_selected_contacts_only": true,
+    "personal_email_requested": false
+  },
+  "data_governance": {
+    "raw_dataset_retention_days": null,
+    "retention_policy_status": "pending",
+    "minimum_normalised_evidence_only": true,
+    "credentials_in_secret_store_only": true,
+    "provider_output_not_authoritative_without_validation": true,
+    "deliverability_is_not_consent": true,
+    "personal_email_review_state": "held_for_human_privacy_review",
+    "documented_fullenrich_provider_retention_days": 90,
+    "fullenrich_retention_acceptance_status": "pending_review",
+    "personal_email_requested": false,
+    "incidental_personal_email": "retain_separately_with_provenance_verification_status_and_human_review"
+  },
+  "runtime_activation_gate": {
+    "all_required": [
+      "approved_account",
+      "api_key_in_n8n_credential_store",
+      "api_key_verification",
+      "current_credit_balance",
+      "premium_plan_rate_verification",
+      "vendor_and_data_route_review",
+      "three_month_retention_review",
+      "test_daily_and_pilot_caps",
+      "spend_and_consumption_owner",
+      "audit_logging",
+      "n8n_connector_test",
+      "signed_webhook_verification"
+    ],
+    "current_status": "blocked_pending_integration",
+    "external_calls_authorized": false
+  },
+  "open_inputs": [
+    "Equinet FullEnrich API key stored in the approved n8n credential store",
+    "FullEnrich API-key verification and current credit balance",
+    "actual Premium-plan Search, work-email and mobile credit rates",
+    "FullEnrich vendor, DPA/subprocessor, data-route, retention and deletion approval",
+    "FullEnrich test, daily and pilot credit caps plus spend/consumption owner",
+    "published n8n workflow and signed-webhook test",
+    "bounded synthetic then approved real-data connector acceptance",
+    "remaining Apify fallback gates before any fallback execution"
+  ],
+  "provider_sequence": [
+    "fullenrich_people_search_or_lookup",
+    "fullenrich_contact_enrichment_for_selected_contacts",
+    "apify_harvestapi_separately_preflighted_fallback"
+  ],
+  "provider_activation_gates": {
+    "fullenrich": [
+      "approved_account",
+      "api_key_in_n8n_credential_store",
+      "api_key_verification",
+      "current_credit_balance",
+      "premium_plan_rate_verification",
+      "vendor_and_data_route_review",
+      "three_month_retention_review",
+      "test_daily_and_pilot_caps",
+      "spend_and_consumption_owner",
+      "audit_logging",
+      "n8n_connector_test",
+      "signed_webhook_verification"
+    ],
+    "apify_harvestapi": [
+      "approved_account",
+      "pinned_actor_build",
+      "rights_or_exception",
+      "vendor_due_diligence",
+      "retention_rule",
+      "test_daily_and_pilot_caps",
+      "spend_and_consumption_owner",
+      "audit_logging",
+      "connector_test",
+      "fullenrich_precondition_receipt"
+    ]
+  }
+}

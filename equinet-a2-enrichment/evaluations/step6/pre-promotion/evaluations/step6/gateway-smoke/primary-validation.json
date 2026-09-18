@@ -1,0 +1,72 @@
+{
+  "record_type": "step6_primary_smoke_validation",
+  "profile": "equinet-a2-enrichment",
+  "source_path": "evaluations/step6/gateway-smoke/primary-result.json",
+  "source_sha256": "60e03a3b22054dabbdd7b23daa8b725e46ca29d54a979aab51deef0fd320863c",
+  "status": "partial_pass_gateway_telemetry_pending",
+  "routing_configuration_pass": true,
+  "session_response_observed": true,
+  "external_safety_pass": true,
+  "gateway_route_verified": false,
+  "business_task_valid": true,
+  "checks": {
+    "profile": true,
+    "logical_model_config": true,
+    "profile_provider_config": true,
+    "gateway_config": true,
+    "response_observed": true,
+    "fallback_not_activated": true,
+    "external_actions_zero": true,
+    "gateway_telemetry_present": false,
+    "azure_route_verified": false,
+    "usage_numeric": false,
+    "cost_not_falsely_zero": false,
+    "provenance_claims_accurate": false,
+    "business_task_uses_canonical_fields": false,
+    "minimum_package_not_self_invented": false,
+    "equinet_us_market_scope": false
+  },
+  "invalid_business_field_keys": [
+    "current_employer",
+    "current_job_title",
+    "email_address",
+    "location_city",
+    "location_country",
+    "location_region",
+    "organisation_legal_name",
+    "organisation_website_url",
+    "phone_number",
+    "prospect_first_name",
+    "prospect_last_name",
+    "prospect_linkedin_url"
+  ],
+  "limitations": [
+    "The upstream provider claim is copied from runtime policy, not proved by LiteLLM telemetry.",
+    "The synthetic reasoning task does not use the approved A2 canonical field catalogue or minimum package and uses a United Kingdom prospect outside Equinet’s United States market scope; it is not accepted as business validation.",
+    "Token and cost usage are unavailable; cost must not be treated as zero."
+  ],
+  "primary_smoke_accepted": false,
+  "external_actions": 0,
+  "v2_validation": {
+    "source_path": "evaluations/step6/gateway-smoke/primary-result-v2.1.json",
+    "source_sha256": "44ca12f8db66eaacb88cdb3bb2470afe0c2f0fbfa96a8f817ca2e1568d46e06d",
+    "business_contract_pass": true,
+    "audit_pass": true,
+    "checks": {
+      "fixture_case": true,
+      "script_exit_zero": true,
+      "plan_status": true,
+      "plan_items_empty": true,
+      "errors_empty": true,
+      "zero_action_safety": true,
+      "script_hash": true,
+      "contract_hashes": true,
+      "plan_hash": true,
+      "usage_unavailable_not_zero": true,
+      "audit_timestamp_present": true,
+      "unitalk_identity_wording": true,
+      "next_action_relevant": true
+    },
+    "status": "accepted"
+  }
+}

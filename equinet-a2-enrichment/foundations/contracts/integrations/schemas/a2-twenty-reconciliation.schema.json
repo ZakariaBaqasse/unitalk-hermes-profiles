@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "$id": "a2-twenty-reconciliation-0.1.0",
+  "required": [
+    "status",
+    "write_plan_sha256",
+    "mismatches",
+    "external_writes"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "reconciled",
+        "reconciliation_failed",
+        "dry_run",
+        "error"
+      ]
+    },
+    "write_plan_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mismatches": {
+      "type": "array"
+    },
+    "external_writes": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

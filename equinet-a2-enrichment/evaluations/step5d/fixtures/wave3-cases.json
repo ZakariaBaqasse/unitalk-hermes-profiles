@@ -1,0 +1,26 @@
+{
+  "fixture_set": "equinet-a2-step5d-wave3",
+  "version": "0.1.0-draft.1",
+  "synthetic_only": true,
+  "evidence_cases": [
+    {"name":"official-site-direct-verified","request":{"field_assessment_id":"A2-FLD-001","source_id":"prospect_official_website","claim_key":"person.role_title","normalised_value":"Owner Farrier","identity_match":"exact","claim_directness":"direct_fact","freshness":"current_official_undated","corroboration":"authoritative_or_primary_sufficient","consistency":"no_conflict","source_gate_passed":true,"required_claim":true,"source_references":["https://example.test/team"]},"expected":{"verification_status":"verified","confidence_level":"high"}},
+    {"name":"stale-required-capped","request":{"field_assessment_id":"A2-FLD-002","source_id":"prospect_official_website","claim_key":"person.business_email","normalised_value":"owner@example.test","identity_match":"exact","claim_directness":"direct_fact","freshness":"stale","corroboration":"authoritative_or_primary_sufficient","consistency":"no_conflict","source_gate_passed":true,"required_claim":true},"expected":{"verification_status":"unverified","maximum_score":59}},
+    {"name":"material-conflict-contradicted","request":{"field_assessment_id":"A2-FLD-003","source_id":"prospect_official_website","claim_key":"person.role_title","normalised_value":"Owner","identity_match":"exact","claim_directness":"direct_fact","freshness":"current","corroboration":"two_independent_sources","consistency":"material_conflict","source_gate_passed":true,"required_claim":true},"expected":{"verification_status":"contradicted","maximum_score":39}},
+    {"name":"blocked-provider-zero","request":{"field_assessment_id":"A2-FLD-004","source_id":"apify_harvestapi_linkedin_profile_search","claim_key":"person.role_title","normalised_value":"Manager","identity_match":"exact","claim_directness":"direct_fact","freshness":"current","corroboration":"one_secondary_source","consistency":"no_conflict","source_gate_passed":false,"required_claim":true},"expected":{"verification_status":"unverified","maximum_score":0}}
+  ],
+  "protected_cases": [
+    {"name":"empty-unprotected-add","request":{"field_key":"person.business_email","target_id":"P-1","protection_class":"a2_enrichment_candidate","baseline_state":"empty","baseline_value":null,"proposal_state":"different","proposed_value":"owner@example.test","confidence":"high","conflict":"none","review_decision":"pending","workflow_dependency_status":"not_checked","crm_write_authorized":false,"evidence_ids":["A2-EV-1"]},"expected":"propose_add"},
+    {"name":"manual-value-hold","request":{"field_key":"person.role_title","target_id":"P-1","protection_class":"manual_business_value","baseline_state":"populated","baseline_value":"Owner","proposal_state":"different","proposed_value":"Manager","confidence":"high","conflict":"material","review_decision":"pending","workflow_dependency_status":"not_checked","crm_write_authorized":false,"evidence_ids":["A2-EV-2"]},"expected":"preserve_and_hold"},
+    {"name":"authoritative-block","request":{"field_key":"contact.gdpr_consent","target_id":"P-1","hubspot_object":"Contact","hubspot_property":"gdpr_consent","protection_class":"authoritative_control","baseline_state":"populated","baseline_value":false,"proposal_state":"different","proposed_value":true,"confidence":"high","conflict":"material","review_decision":"approved","workflow_dependency_status":"verified_no_side_effect","crm_write_authorized":true,"evidence_ids":["A2-EV-3"]},"expected":"preserve_authoritative_and_block"},
+    {"name":"personal-email-privacy-hold","request":{"field_key":"person.personal_email_candidate","target_id":"P-1","protection_class":"review_only_personal_data","baseline_state":"empty","baseline_value":null,"proposal_state":"different","proposed_value":"private@example.test","confidence":"high","conflict":"none","review_decision":"pending","workflow_dependency_status":"not_checked","crm_write_authorized":false,"evidence_ids":["A2-EV-4"]},"expected":"hold_for_privacy_review"},
+    {"name":"score-signal-not-score","request":{"field_key":"organisation.horse_count","target_id":"ORG-1","protection_class":"a2_enrichment_candidate","baseline_state":"empty","baseline_value":null,"proposal_state":"different","proposed_value":12,"confidence":"high","conflict":"none","review_decision":"pending","workflow_dependency_status":"not_checked","crm_write_authorized":false,"a1_requalification_required":true,"evidence_ids":["A2-EV-5"]},"expected":"create_requalification_signal"}
+  ],
+  "records": {
+    "review_previous":"evaluations/step2f/fixtures/valid/farrier-review-required-previous.json",
+    "review_current":"evaluations/step2f/fixtures/valid/farrier-review-required.json",
+    "approved_previous":"evaluations/step2f/fixtures/valid/farrier-record-approved-previous.json",
+    "approved_current":"evaluations/step2f/fixtures/valid/farrier-record-approved.json",
+    "requalification_previous":"evaluations/step2f/fixtures/valid/horse-owner-complete-requalification-previous.json",
+    "requalification_current":"evaluations/step2f/fixtures/valid/horse-owner-complete-requalification.json"
+  }
+}

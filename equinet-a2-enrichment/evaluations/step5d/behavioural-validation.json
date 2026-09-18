@@ -1,0 +1,52 @@
+{
+  "record_type": "wave3_targeted_behavioural_validation",
+  "profile": "equinet-a2-enrichment",
+  "step": "5D",
+  "wave": 3,
+  "method": "exact operator commands against synthetic fixtures in temporary directories",
+  "scenarios": [
+    {
+      "skill_id": "a2-evidence-confidence-and-freshness",
+      "status": "pass",
+      "checks": {
+        "verified_high": true,
+        "no_score_change": true,
+        "zero_actions": true
+      }
+    },
+    {
+      "skill_id": "a2-protected-field-conflict-resolution",
+      "status": "pass",
+      "checks": {
+        "authoritative_preserved": true,
+        "no_write": true,
+        "zero_actions": true
+      }
+    },
+    {
+      "skill_id": "a2-data-quality-and-review-readiness",
+      "status": "pass",
+      "checks": {
+        "revision_valid": true,
+        "lineage": true,
+        "zero_actions": true
+      }
+    },
+    {
+      "skill_id": "a2-review-package-and-governed-handoffs",
+      "status": "pass",
+      "checks": {
+        "review_package_valid": true,
+        "a1_handoff_prepared": true,
+        "not_delivered": true,
+        "zero_actions": true
+      }
+    }
+  ],
+  "scenario_count": 4,
+  "passed": 4,
+  "failed": 0,
+  "overall_status": "pass",
+  "external_calls": 0,
+  "external_actions": 0
+}

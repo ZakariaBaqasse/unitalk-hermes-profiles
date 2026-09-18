@@ -1,0 +1,61 @@
+{
+  "record_type": "step8_closure_readiness",
+  "profile": "equinet-a2-enrichment",
+  "status": "ready_for_formal_acceptance",
+  "checks": {
+    "jonabell_business_decision": true,
+    "rood_riddle_business_decision": true,
+    "current_artifacts": true,
+    "deepseek_behavioral_replay": true,
+    "gateway_route_present": true,
+    "temporary_web_disabled": true,
+    "language_audit": true,
+    "external_actions_zero": true
+  },
+  "checks_passed": 8,
+  "checks_total": 8,
+  "protected_soul_sync": {
+    "completed": true,
+    "required_text": "Step 8 is completed and approved for Step 9",
+    "last_attempt": "blocked because the protected-file approval prompt expired"
+  },
+  "credential_route": {
+    "openai_api_key_present": true,
+    "openai_base_url_present": true,
+    "values_recorded": false
+  },
+  "runtime": {
+    "temporary_web_disabled": true,
+    "fallback_enabled": false,
+    "primary_model": "deepseek-v4-flash"
+  },
+  "artifacts": [
+    {
+      "path": "evaluations/step8/step8-current-status.json",
+      "sha256": "ea72a85016519ad6b0495ca0653b067b6e0a55a0343a13eb4978c9d654b85916"
+    },
+    {
+      "path": "evaluations/foundation-clarifications/language-audit.json",
+      "sha256": "6dd2334f84f15d3e89651990c02032a26e49ea77e33e9dd3e6cbda040daae1d0"
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/behavioral-replay/validation.json",
+      "sha256": "15fd19d4bb4aecdd56550f6c586874233ba49415dce7a7a4203497664e525df5"
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-DARLEY-JONABELL-001/final-review-decision.json",
+      "sha256": "97dc28ae71ef8c5370f8d93214ff3b9b11244250cdf6e31d0310d46af104f169"
+    },
+    {
+      "path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/final-review-decision.json",
+      "sha256": "8a6e89ee5bc077a6c60e46a4f0af9afcc8345b6b159415a7ff2531a728d60c96"
+    },
+    {
+      "path": "config.yaml",
+      "sha256": "fcf9709b833df9954ff4c2eefcaa71b1ef207270cf16172e32bce8e7ad800dad"
+    }
+  ],
+  "formal_acceptance_recorded": false,
+  "next_gate": "Apply protected SOUL sync, then record Step 8 acceptance for Step 9.",
+  "external_actions": 0
+}

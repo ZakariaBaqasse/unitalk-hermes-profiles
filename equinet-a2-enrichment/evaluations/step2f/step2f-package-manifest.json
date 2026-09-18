@@ -1,0 +1,275 @@
+{
+  "manifest_id": "equinet-a2-step2f-regression-package",
+  "version": "0.1.0",
+  "status": "approved_by_unitalk_for_step_2g",
+  "files": [
+    {
+      "path": "scripts/validate_a2_enrichment_record.py",
+      "sha256": "02acd1aa345dc69c2b990ef4aa77ab066cb078a695f3d09e34a31938d1ed5fe2"
+    },
+    {
+      "path": "scripts/build_step2f_fixtures.py",
+      "sha256": "efcf129fd3c76236446f8fd535e46a60c6fb275b48508ffc14748a241c3c0bfb"
+    },
+    {
+      "path": "scripts/run_step2f_tests.py",
+      "sha256": "65760859c4e510a9a7e67e22c132e304c208a18a877987b6c60ddf12914bf2b9"
+    },
+    {
+      "path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/scenario-manifest.json",
+      "sha256": "50ec6d820811ffe8bbd3e21d71025bd6c27ffa752aefe2b906bf50ebb1005856"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/a2-step2f-synthetic-field-catalogue.json",
+      "sha256": "607e85b31694db6797e2973aa10fe9da03e014da44c66871237c7113db997d6e"
+    },
+    {
+      "path": "evaluations/step2e/technical-validation.json",
+      "sha256": "6c93784f4d9e1dd342316a02eb74fddacf8ff1da0d4e654a72dd5a6d3316cd3a"
+    },
+    {
+      "path": "foundations/A2-FIXTURES-AND-REGRESSION-CONTRACT.md",
+      "sha256": "61271ab4a813481795a92296ef2389c49fe51bd1682f7526813c57452d8e6bbc"
+    },
+    {
+      "path": "evaluations/step2f/A2-FIXTURES-AND-REGRESSION-REVIEW.md",
+      "sha256": "ab2a2d57efb35f0e17a4a5cca0d457bdf7c88682d47a0681985b7849860c9248"
+    },
+    {
+      "path": "evaluations/step2f/INDEPENDENT-ADVERSARIAL-REVIEW-RESOLUTION.md",
+      "sha256": "0687a5ecfa2194eec9ba79e23d11e4cdc52d01eba3c05bf380c1016d512651ad"
+    },
+    {
+      "path": "evaluations/step2f/A2-STEP2F-SCENARIO-MATRIX.csv",
+      "sha256": "68e71b9c906fe85c6a5e991de475a04c4a1dfbc38d64c5d029bfe0cc0d8ee488"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/a2-score-production-previous.json",
+      "sha256": "4909f1bbb96211439fa53a0e00ada0c8f7809e9968d0d6dfe9ac6340fa183de6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/a2-score-production.json",
+      "sha256": "58498400c2b9845b770da64d9266fe09c2164e7552788b6c624847e37ee1261c"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/blocked-source-evidence-previous.json",
+      "sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/blocked-source-evidence.json",
+      "sha256": "04d28f8fce6db9ca997bf2a784d7a9d0f8fe95fba420805f1cf3d34f6213b3a6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/confirmed-duplicate-marked-eligible-previous.json",
+      "sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/confirmed-duplicate-marked-eligible.json",
+      "sha256": "7a5c8bc37fbe207870ff3cc16ca99c3d5ddeef4869cf6dc9f61c4fc3472eeedd"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/cross-segment-field-previous.json",
+      "sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/cross-segment-field.json",
+      "sha256": "884ed75fbc8958626cd4cb92fe1d925c38dc2414b2269d05c6eca44d0ae2e0c4"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/false-synthetic-sync-previous.json",
+      "sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/false-synthetic-sync.json",
+      "sha256": "4a14ae5134fd3ddae69f3b74038d34440d49970804d54d396f8d7cd476479a51"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/invalid-a1-score-revision-previous.json",
+      "sha256": "4909f1bbb96211439fa53a0e00ada0c8f7809e9968d0d6dfe9ac6340fa183de6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/invalid-a1-score-revision.json",
+      "sha256": "33cb1793ab3186abd510418b76550f2b51bd816b5ab59781a50aec0ef613f774"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/missing-evidence-previous.json",
+      "sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/missing-evidence.json",
+      "sha256": "139271f935d81a9fbf3409bfd51825af6fff389bbb749b0fb37e20ebd38bbb45"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/prohibited-outreach-previous.json",
+      "sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/prohibited-outreach.json",
+      "sha256": "6e9c9a910f51d7b3b40debdefab67d40055e8efa4b5191c4f0bd57b6858bc52e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/protected-overwrite-without-approval-previous.json",
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/protected-overwrite-without-approval.json",
+      "sha256": "cd920ce0536795f2d26e684f9224e827c444c0ef66eabbbd206f6582a02be80c"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/provider-without-approval-previous.json",
+      "sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/provider-without-approval.json",
+      "sha256": "b9f89e0eca0331733e56b1ff2ccda4877c63dbf3e4b6ee1a0bf3c974b501f5a6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/record-approved-with-incomplete-field-decisions-previous.json",
+      "sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/record-approved-with-incomplete-field-decisions.json",
+      "sha256": "6e4b7494c2cb4df312762d733f0f05a68fdb6ef43ec4de06e2d0c880065fcfd6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/required-package-missing-assessment-previous.json",
+      "sha256": "fc9f634564edc2f9df035c3c9bce8dbf84bb1b6f97fe69a3e982db058c7d1329"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/required-package-missing-assessment.json",
+      "sha256": "6c5b006fcc187046c48566cc37f07fd19bc5502539f38480abd01fe0ffdd5ca0"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/review-ready-with-conflict-previous.json",
+      "sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/invalid/review-ready-with-conflict.json",
+      "sha256": "f698d018f4e8c76915faedba90a853b644927c9ec6a8d6ea77c262c01694f41a"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-confirmed-duplicate-blocked-previous.json",
+      "sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-confirmed-duplicate-blocked.json",
+      "sha256": "aaee1b3691af290d625c5bad799acd8abd23d962f6559bcf8138602d6fe9cdc2"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-conflict-held-previous.json",
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-conflict-held.json",
+      "sha256": "e426b4869d6344a18790dff0d5c64ed9b956630c30a37a847efe03a804f9a1ae"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-enrichment-in-progress-previous.json",
+      "sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-enrichment-in-progress.json",
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-initial.json",
+      "sha256": "dadd94ee185b41922f40aa85b2b5fbc786cb7966f6caf6897f33dd07378a24a6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-planned-gap-previous.json",
+      "sha256": "dadd94ee185b41922f40aa85b2b5fbc786cb7966f6caf6897f33dd07378a24a6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-planned-gap.json",
+      "sha256": "93c086cd9e1c7a95b6bbe95257aed2cde1624b306428218684039240b0e17d0e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-protected-update-awaiting-review-previous.json",
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-protected-update-awaiting-review.json",
+      "sha256": "d4ac41364a4dc69615a51342488ff8905bb29381bf546732bfad9782464f0b4e"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-record-approved-previous.json",
+      "sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-record-approved.json",
+      "sha256": "82e2db70900164847fb4ce68a04bf2271a48ccdee8515e448a6383ae5b912ca2"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-review-required-previous.json",
+      "sha256": "6c45c87f0ed5c7ab19893dc12f052b9db0aaf510f76e224cdc53f1cc95f02702"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/farrier-review-required.json",
+      "sha256": "a4650e42016ddc1bfd2a7823c1d5248058fc5b573b60d2e8fd69d3f83ae62194"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-complete-requalification-previous.json",
+      "sha256": "4909f1bbb96211439fa53a0e00ada0c8f7809e9968d0d6dfe9ac6340fa183de6"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-complete-requalification.json",
+      "sha256": "a1f387ff137592b57f326fbe0b798f99eb4ccc49c528442805049a51d34a0eca"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-enrichment-in-progress-previous.json",
+      "sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-enrichment-in-progress.json",
+      "sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-gap-held-previous.json",
+      "sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-gap-held.json",
+      "sha256": "0b58e35159d86aceaf61269db38c8d63356c951397c8d80d24abe2358e2eead1"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-initial.json",
+      "sha256": "fc9f634564edc2f9df035c3c9bce8dbf84bb1b6f97fe69a3e982db058c7d1329"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-planned-gap-previous.json",
+      "sha256": "fc9f634564edc2f9df035c3c9bce8dbf84bb1b6f97fe69a3e982db058c7d1329"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-planned-gap.json",
+      "sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-possible-duplicate-held-previous.json",
+      "sha256": "776e9880c5061e066c29f6361e008a892fa992e8b880fcc1b1c1af728dbc9217"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-possible-duplicate-held.json",
+      "sha256": "96b65025a6b5fcbf98941b260f895494bd6f069430f43a9e5a7d9468dcd58516"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-record-approved-previous.json",
+      "sha256": "723ba5d1033f80a0d7e19ce77d4e91f0568ba906a8d4b8445ca1ceec3a53de39"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-record-approved.json",
+      "sha256": "7cf9baacaa699fe9328dde169095d5c8bf2f735a9368742fd8050bc400a39dd2"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-review-required-previous.json",
+      "sha256": "4ecacc7dbe79fc2bbac2b7b256ec578c8357ea8ccff0f009c8190d47b4702115"
+    },
+    {
+      "path": "evaluations/step2f/fixtures/valid/horse-owner-review-required.json",
+      "sha256": "723ba5d1033f80a0d7e19ce77d4e91f0568ba906a8d4b8445ca1ceec3a53de39"
+    }
+  ]
+}

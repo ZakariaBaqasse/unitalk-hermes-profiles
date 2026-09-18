@@ -1,0 +1,83 @@
+# Twenty Live Schema Snapshot — 2026-09
+
+Observed through authenticated, read-only Twenty REST calls. No write was attempted. This is an integration snapshot, not a permanent field catalogue; refresh it before implementation if workspace metadata changes.
+
+## Connectivity
+
+- `TWENTY_BASE_URL` and `TWENTY_API_KEY` were present.
+- `GET /rest/metadata/objects`, `GET /rest/metadata/fields`, `GET /rest/companies` and `GET /rest/people` returned HTTP 200.
+- Write scope, custom-field creation, Person creation, association creation and read-back reconciliation remain unverified.
+
+## Objects and relationship
+
+- Company object ID: `89cb0885-61c0-4d39-989f-b7f0cf248dc9`; 39 active fields.
+- Person object ID: `4220f12d-d3ec-4268-ad2f-64c4453859fa`; 24 active fields.
+- `Company.people`: `ONE_TO_MANY`.
+- `Person.company`: `MANY_TO_ONE`, joined by `companyId`; Company deletion sets the relation to null.
+
+Observed records: 40 Companies and 35 People. Thirty-five Companies had one linked Person and five had none; all People were linked. The live schema supports multiple People even though the current A1 population showed at most one.
+
+## Relevant Company fields
+
+Existing business fields include `name`, `domainName`, `address`, `linkedinLink`, `phone`, `email`, `country`, `state`, `city`, `sourceUrl`, `segment`, `discoveryStatus`, `discoverySourceNotes`, `discoveryFingerprint`, `qualificationStatus`, `icpScoreStatus`, `icpScore`, `icpBand`, `icpOutcome`, `evidenceConfidenceScore`, `evidenceConfidenceLevel`, `websitemissing`, `wrongpeople`, and relation `people`.
+
+Meaningful coverage observed:
+
+- name, segment and structured address: 40/40;
+- domain URL: 6/40;
+- Company phone number: 3/40;
+- Company email: 0/40;
+- Company LinkedIn URL: 0/40;
+- custom city: 20/40; custom state/country: 40/40.
+
+The low domain coverage confirms that domain cannot be a required enrichment gate. Prefer structured address components over the less-complete custom city field for domainless matching inputs when the provider supports them.
+
+## Relevant Person fields
+
+Existing fields include `name`, `emails`, `linkedinLink`, `jobTitle`, `phones`, and relation `company`/`companyId`.
+
+Meaningful coverage observed:
+
+- names and Company links: 35/35;
+- phone number: 30/35;
+- email: 7/35;
+- job title: 0/35;
+- LinkedIn URL: 0/35.
+
+Name normalization issue: all 35 People had an empty `lastName`; 34 had whitespace inside `firstName`, indicating that a full name is usually stored in `firstName`. Preserve the source object, derive a normalized lookup name, and create new People with correct first/last components when supported by verified provider data.
+
+## Missing A2 tracking fields
+
+No A2 enrichment field was found on Company or Person.
+
+Recommended Company fields:
+
+- `a2EnrichmentStatus`
+- `a2EnrichmentVersion`
+- `a2EnrichmentRunId`
+- `a2ProcessingStartedAt`
+- `a2LastAttemptedAt`
+- `a2LastEnrichedAt`
+- `a2NextRetryAt`
+- `a2EnrichmentErrorCode`
+
+Recommended Person fields:
+
+- `a2IdentityStatus`
+- `a2RolePriority`
+- `a2RoleStatus`
+- `a2CompanyMatchStatus`
+- `a2EnrichmentStatus`
+- `a2FullEnrichPersonId`
+- `a2LastVerifiedAt`
+- `a2LastEnrichedAt`
+- `a2EnrichmentRunId`
+
+Do not repurpose A1-owned `discoveryStatus`, `qualificationStatus`, ICP fields, `websitemissing`, or the ambiguous `wrongpeople` field as the A2 state machine.
+
+## Mapping decisions still open
+
+- Whether `Person.emails` is designated professional-email-only or a dedicated work-email field is added.
+- Whether `Person.phones` may store FullEnrich mobile/direct values or a dedicated mobile field is required.
+- Incidental personal email should remain outside Twenty unless a separate protected review field is approved.
+- Null Company A2 status must either be backfilled to `NOT_ENRICHED` or treated as eligible by the initial pull filter.

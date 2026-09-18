@@ -1,0 +1,44 @@
+{
+  "manifest_id": "equinet-a2-step3c-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_runtime_activation_pending",
+  "files": [
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.0-draft.1.json",
+      "bytes": 21738,
+      "sha256": "901dbd504e77a5bf4543c10a32cb05d6e9b723e9368138a2894646dc368fcc3c"
+    },
+    {
+      "path": "foundations/contracts/sources/a2-source-register-0.1.0-draft.1.csv",
+      "bytes": 8243,
+      "sha256": "f11704cda5435216a0f3ed12d6f3794b368be35cc9986eb3a3e1cfa45ff9afe9"
+    },
+    {
+      "path": "scripts/validate_step3c_source_register.py",
+      "bytes": 18274,
+      "sha256": "b8f3b34a1be2e6874dec8e76b938d8004df8f2b498458abe2e630e1ad0d93a73"
+    },
+    {
+      "path": "scripts/build_step3c_source_register.py",
+      "bytes": 13454,
+      "sha256": "31b5f85dc7ec5c494b206b5c00127ad2872b4955146dcacd9acb82858aecf473"
+    },
+    {
+      "path": "foundations/A2-SOURCE-REGISTER.md",
+      "bytes": 4952,
+      "sha256": "a7a64876db7961535ea7d741a0111716bb052a39323bc79a9fd8cd4f049dec2d"
+    },
+    {
+      "path": "evaluations/step3c/A2-SOURCE-REGISTER-REVIEW.md",
+      "bytes": 1845,
+      "sha256": "21153cade3b54bde0176d40e0fe5abde1ac4d85678138a3649a6cab62d197e79"
+    },
+    {
+      "path": "evaluations/step3c/technical-validation.json",
+      "bytes": 4527,
+      "sha256": "e6d277411e8eaaf0e6c8e03b1747ad8d729e9966e52bfeea49294b8ea95033fc"
+    }
+  ],
+  "file_count": 7,
+  "external_actions": 0
+}

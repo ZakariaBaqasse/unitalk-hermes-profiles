@@ -1,0 +1,22 @@
+{
+  "test_id": "equinet-a2-step7-profile-invocation",
+  "profile": "equinet-a2-enrichment",
+  "operating_scope": "synthetic_test",
+  "command": "scripts/run_step7_synthetic_acceptance.py",
+  "expected": {
+    "pass": true,
+    "scenarios": "6/6",
+    "markdown_exports": 2,
+    "csv_exports": 12,
+    "xlsx_exports": 2,
+    "external_actions": 0
+  },
+  "instructions": [
+    "Run only the deterministic Step 7 wrapper.",
+    "Do not use Web, providers, HubSpot, Twenty, n8n or outreach.",
+    "Do not stream detailed regression artifacts into model context.",
+    "Save a concise audit result to evaluations/step7/profile-behavioural-result.json.",
+    "Record unavailable model usage or cost as unavailable, never zero.",
+    "Use Unitalk AI Collaborator wording in the stored artifact."
+  ]
+}

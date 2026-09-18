@@ -1,0 +1,24 @@
+{
+  "record_type": "step9c_delivery_package_validation",
+  "profile": "equinet-a2-enrichment",
+  "status": "pass_ready_for_step9d",
+  "checks": {
+    "phase9a": true,
+    "phase9b": true,
+    "language_audit": true,
+    "inventory_complete": true,
+    "foundation_hashes": true,
+    "documents": true,
+    "web_disabled": true,
+    "fallback_disabled": true,
+    "not_promoted": true,
+    "external_actions_zero": true
+  },
+  "checks_passed": 10,
+  "checks_total": 10,
+  "manifest": "evaluations/step9/release-candidate/release-candidate-manifest-1.0.0-rc.1.json",
+  "manifest_sha256": "1e4ca8c87dbc13556d7960c4f14ee15c66e387ae838a7b177640f95b8512f10a",
+  "documents": 5,
+  "external_actions": 0,
+  "errors": []
+}

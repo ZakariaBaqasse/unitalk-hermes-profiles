@@ -1,0 +1,57 @@
+{
+  "record_type": "foundation_acceptance",
+  "profile": "equinet-a2-enrichment",
+  "step": "2C",
+  "artifacts": [
+    "foundations/A2-REQUALIFICATION-AND-SCORE-REVISION-CONTRACT.md",
+    "foundations/contracts/requalification/a2-requalification-signal.schema.json",
+    "foundations/contracts/requalification/a2-requalification-return.schema.json",
+    "foundations/contracts/requalification/a1-score-revision-reference.schema.json",
+    "foundations/contracts/requalification/a2-requalification-package.schema.json"
+  ],
+  "artifact_version": "0.1.0",
+  "decision": "approved_as_drafted",
+  "approver": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "decided_at": "2026-08-26T08:37:46Z",
+  "approved_decisions": {
+    "C1": "A2 signals reference existing A1 criteria and traceable evidence.",
+    "C2": "A2 may propose evidence status and direction only; points, score and band are prohibited.",
+    "C3": "A2 human approval is required before a return to A1.",
+    "C4": "Manual no-integration returns stop at prepared and cannot claim delivery or receipt.",
+    "C5": "A1 alone validates evidence and produces numeric score revisions.",
+    "C6": "Criterion changes, configured weights and score delta reconcile deterministically.",
+    "C7": "A1 human review is required before a revision becomes approved/current.",
+    "C8": "Rejected signals do not change the score and remain auditable.",
+    "C9": "Original and later score revisions remain immutable; supersession is operational only.",
+    "C10": "Retries are idempotent and require matching IDs, hashes and receipts."
+  },
+  "technical_validation": {
+    "pinned_a1_dependencies": 4,
+    "a1_criteria": 26,
+    "weighted_a1_criteria": 21,
+    "schemas": 4,
+    "valid_fixtures": "5/5 pass",
+    "negative_fixtures": "10/10 pass",
+    "total_cases": "15/15 pass",
+    "language_audit": "pass"
+  },
+  "not_approved": [
+    "A1/A2 integration",
+    "source access or provider use",
+    "live requalification",
+    "HubSpot mapping or write",
+    "outreach",
+    "pilot approval",
+    "production approval",
+    "contractual acceptance"
+  ],
+  "next_gate": "Step 2D — Canonical A2 JSON Schema",
+  "profile_sync": {
+    "temporary_soul_updated": true,
+    "updated_at": "2026-08-26T08:37:46Z",
+    "status": "complete"
+  }
+}

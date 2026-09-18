@@ -1,0 +1,542 @@
+{
+  "record_type": "step9_final_safe_package_manifest",
+  "release_id": "equinet-a2-no-integration-1.0.0",
+  "status": "pilot_ready_no_integration",
+  "payload_member_count": 88,
+  "payload_total_bytes": 845571,
+  "members": [
+    {
+      "source_path": "SOUL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/SOUL.md",
+      "bytes": 19301,
+      "sha256": "3acb24d2b2cb03037bf57b92c21aa60b864a2ff064a6a3ea608f7496c45b17ef"
+    },
+    {
+      "source_path": "config.yaml",
+      "archive_path": "equinet-a2-no-integration-1.0.0/config.yaml",
+      "bytes": 767,
+      "sha256": "fcf9709b833df9954ff4c2eefcaa71b1ef207270cf16172e32bce8e7ad800dad"
+    },
+    {
+      "source_path": "deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/deliverables/A2-DELIVERY-STATUS-AND-ROADMAP.md",
+      "bytes": 32240,
+      "sha256": "9244097cc2777d99cf03d2da853300c821158ff9de3d383c74a8c1d1c80c8e41"
+    },
+    {
+      "source_path": "evaluations/step8/STEP-8-FINAL-ACCEPTANCE.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step8/STEP-8-FINAL-ACCEPTANCE.md",
+      "bytes": 956,
+      "sha256": "24cb0ab231091fcde574109f4bf7a3049ffe3d35f6d6b6a0f67f33c85fb89e48"
+    },
+    {
+      "source_path": "evaluations/step8/acceptance-record.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step8/acceptance-record.json",
+      "bytes": 3956,
+      "sha256": "02038536354ea32c7637b202c504ec92ffb8d9ecfa3314430acc0b24caef43eb"
+    },
+    {
+      "source_path": "evaluations/step8/final-closure-validation.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step8/final-closure-validation.json",
+      "bytes": 1083,
+      "sha256": "645e0d458ae3ee4068f6005ffac6c0ca5863d8ff33deb11624f9eb1a489938da"
+    },
+    {
+      "source_path": "evaluations/step9/STEP-9A-CORRECTION-PROPAGATION-REVIEW.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/STEP-9A-CORRECTION-PROPAGATION-REVIEW.md",
+      "bytes": 1277,
+      "sha256": "39b7f36d2294cfc179136d8e8a1d6f6afa4f04cf8195ed765456c05b49f6d3f6"
+    },
+    {
+      "source_path": "evaluations/step9/STEP-9B-OFFLINE-REGRESSION-REVIEW.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/STEP-9B-OFFLINE-REGRESSION-REVIEW.md",
+      "bytes": 1225,
+      "sha256": "5ec787ebee0f7a04d39001cabb7025927c62a9c3c6e8a5f0ed631be89bf543e0"
+    },
+    {
+      "source_path": "evaluations/step9/acceptance-record.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/acceptance-record.json",
+      "bytes": 1488,
+      "sha256": "59f16290f7986ae059f64a697bc62b07b7b7dae6f39033631d7340fba6305d45"
+    },
+    {
+      "source_path": "evaluations/step9/delivery/A2-MANUAL-NO-INTEGRATION-RUNBOOK.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/delivery/A2-MANUAL-NO-INTEGRATION-RUNBOOK.md",
+      "bytes": 4300,
+      "sha256": "f127db41754caabcc6a8bc82abb919bfc867d763adb5b062551cc268c2e59460"
+    },
+    {
+      "source_path": "evaluations/step9/delivery/A2-NO-INTEGRATION-CONFIGURATION-PACKAGE.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/delivery/A2-NO-INTEGRATION-CONFIGURATION-PACKAGE.md",
+      "bytes": 3013,
+      "sha256": "97d02a2d398805c9689b1b891fe22c3bc6b4eb0e588565135a26b005a00f66de"
+    },
+    {
+      "source_path": "evaluations/step9/delivery/A2-OPEN-ITEMS-REGISTER.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/delivery/A2-OPEN-ITEMS-REGISTER.md",
+      "bytes": 2170,
+      "sha256": "4059ef37a4440a76eb953f6a4ef79b7dd14195fdbf069abffa3e5b189084945e"
+    },
+    {
+      "source_path": "evaluations/step9/delivery/A2-STEP9-ACCEPTANCE-REVIEW.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/delivery/A2-STEP9-ACCEPTANCE-REVIEW.md",
+      "bytes": 1578,
+      "sha256": "b7dc04754a9fa564c0ae3729fa0e8fb693a4b878029e2fb6dadd6f61f0933b91"
+    },
+    {
+      "source_path": "evaluations/step9/delivery/A2-STEP9-EVALUATION-REPORT.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/delivery/A2-STEP9-EVALUATION-REPORT.md",
+      "bytes": 2354,
+      "sha256": "118c3a7e10cced67548356770917a156c302d5115856cb9b7ca7e14902df3790"
+    },
+    {
+      "source_path": "evaluations/step9/phase9a-validation.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/phase9a-validation.json",
+      "bytes": 1779,
+      "sha256": "a1e74e0a3d26c31119e014248c87ca01fb64a77f77aad398aca343f8103506df"
+    },
+    {
+      "source_path": "evaluations/step9/phase9c-validation.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/phase9c-validation.json",
+      "bytes": 714,
+      "sha256": "447ffa6a6dd8d7717c8c5467e474cd6a08861b758874dd534641366c634689d3"
+    },
+    {
+      "source_path": "evaluations/step9/regression/phase9b-regression.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/regression/phase9b-regression.json",
+      "bytes": 8252,
+      "sha256": "995f08ce29f69669311818f7c8f3538f8ea9e1beb275c6909696dc1b8458521a"
+    },
+    {
+      "source_path": "evaluations/step9/replay/replay-manifest.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/replay/replay-manifest.json",
+      "bytes": 3850,
+      "sha256": "4d6ca01b78f89f0b34b3f210f93352f01b818379a87d36002b22db05806f437e"
+    },
+    {
+      "source_path": "evaluations/step9/safe-archive-validation.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/evaluations/step9/safe-archive-validation.json",
+      "bytes": 1216,
+      "sha256": "6729474432de20b1d88dfe1cab53cda3dcdf1b61771c7bc70eabaa50d9020213"
+    },
+    {
+      "source_path": "foundations/A2-CROSS-FIELD-VALIDATOR-CONTRACT.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/A2-CROSS-FIELD-VALIDATOR-CONTRACT.md",
+      "bytes": 11916,
+      "sha256": "f4d3201876eeca01801b36a15cf18f737a650142daa2e95f73d2e7e24e9a509f"
+    },
+    {
+      "source_path": "foundations/A2-HANDOFF-TO-RECORD-INITIALISATION-CONTRACT.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/A2-HANDOFF-TO-RECORD-INITIALISATION-CONTRACT.md",
+      "bytes": 6226,
+      "sha256": "ec86fcdacacec204a08b1165c2480a09e070b298d01265674491e9c992e8b3b8"
+    },
+    {
+      "source_path": "foundations/A2-IMPLEMENTATION-CONTRACT.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/A2-IMPLEMENTATION-CONTRACT.md",
+      "bytes": 29292,
+      "sha256": "869594b53f713a171ead67e62a7898dff8d1ea4782a2e1a9fe2dc1add88d69ed"
+    },
+    {
+      "source_path": "foundations/A2-REVIEW-VIEW-SPECIFICATION.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/A2-REVIEW-VIEW-SPECIFICATION.md",
+      "bytes": 6350,
+      "sha256": "3cc49abc27642a3ad5bb4be5a1d7761ada44c3e9f55ffd59d3e35a181c880b1a"
+    },
+    {
+      "source_path": "foundations/contracts/a1-to-a2-handoff.schema.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/a1-to-a2-handoff.schema.json",
+      "bytes": 13719,
+      "sha256": "d1cd494b8548afeaf6691283e7ff88daf20689356377a476ff57aafa07b3ce59"
+    },
+    {
+      "source_path": "foundations/contracts/a2-field-dictionary-0.1.0.csv",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/a2-field-dictionary-0.1.0.csv",
+      "bytes": 41917,
+      "sha256": "902f10c686bd09f00b1243d19a8d1e047a729a9f1ca0c2b991e63283b73a5dd0"
+    },
+    {
+      "source_path": "foundations/contracts/a2-state-model-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/a2-state-model-0.1.0.json",
+      "bytes": 36269,
+      "sha256": "e5045b2f52c97ba588c33ac803ef582b8bb5a14cc376575ee86206d6b60d8d11"
+    },
+    {
+      "source_path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.csv",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.csv",
+      "bytes": 17485,
+      "sha256": "ad4256ed761fc0e578128c3f12221a76d027050cd899a7db32f799f277d8577c"
+    },
+    {
+      "source_path": "foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/business/a2-business-field-catalogue-0.1.1-draft.1.json",
+      "bytes": 41682,
+      "sha256": "3f3958a1a9caaee71cb3c18f753a402053d2683b2a37bfa77e9221b13b289445"
+    },
+    {
+      "source_path": "foundations/contracts/business/a2-minimum-data-packages-0.1.1-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/business/a2-minimum-data-packages-0.1.1-draft.1.json",
+      "bytes": 5408,
+      "sha256": "2ddf615e4c2894b97cfa8ef42f73d4437a7e2370e1cefa0d60a2986fb7741b94"
+    },
+    {
+      "source_path": "foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/canonical/a2-enrichment-record.schema.json",
+      "bytes": 71694,
+      "sha256": "2d3fb023ca1721b7d584b2b457fce51cd44f44d268ab06e9fc119cba1ec13531"
+    },
+    {
+      "source_path": "foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+      "bytes": 5383,
+      "sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df"
+    },
+    {
+      "source_path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.1-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.1-draft.1.json",
+      "bytes": 8508,
+      "sha256": "ccecc0aeb6d725bbe74dc73c72648b2f0ec4fe72e3ef402194b4952dc27b869d"
+    },
+    {
+      "source_path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.1-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.1.1-draft.1.json",
+      "bytes": 10311,
+      "sha256": "cae627cd3efe7a21958f9667bb3c214ea6a7ec7fd743eb5e85f2519be9b5e3e7"
+    },
+    {
+      "source_path": "foundations/contracts/governance/a2-provider-and-cost-policy-0.1.1-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/governance/a2-provider-and-cost-policy-0.1.1-draft.1.json",
+      "bytes": 5925,
+      "sha256": "3e2b56b7989c523f37219730d266d6b83a9b25f104cc7289697931927ea6d05b"
+    },
+    {
+      "source_path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.csv",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.csv",
+      "bytes": 14405,
+      "sha256": "367a3b75184c4a580ce004d34eb006623f4aa10ae362ecb8f368b5c8bf1429de"
+    },
+    {
+      "source_path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.1.1-draft.1.json",
+      "bytes": 30550,
+      "sha256": "772d00be0c6c330362c453a324e9c7dc67597dbc48fe74fb26e0311d7d126f75"
+    },
+    {
+      "source_path": "foundations/contracts/requalification/a1-score-revision-reference.schema.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/requalification/a1-score-revision-reference.schema.json",
+      "bytes": 7330,
+      "sha256": "c3749ebd5280657c12b312a1050b29fa8a6353dba452ecabecaa691f8611f89b"
+    },
+    {
+      "source_path": "foundations/contracts/requalification/a2-requalification-package.schema.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/requalification/a2-requalification-package.schema.json",
+      "bytes": 2551,
+      "sha256": "c6babeb60063d810f0b2f715eae945e1716c4d078df693475ee23ffa9e227ffc"
+    },
+    {
+      "source_path": "foundations/contracts/requalification/a2-requalification-return.schema.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/requalification/a2-requalification-return.schema.json",
+      "bytes": 9134,
+      "sha256": "51803065548da06177b5d4c7d8c5e0250c6c0b6c1ac9604bcb3b30b2b86cfc61"
+    },
+    {
+      "source_path": "foundations/contracts/requalification/a2-requalification-signal.schema.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/requalification/a2-requalification-signal.schema.json",
+      "bytes": 6480,
+      "sha256": "f9bfb37baca8d9cc24d4c56f6cd7c3fc0cfe314de66ee4a6fe6efb83d419e33b"
+    },
+    {
+      "source_path": "foundations/contracts/runtime/a2-no-integration-release-manifest-1.0.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/runtime/a2-no-integration-release-manifest-1.0.0.json",
+      "bytes": 4129,
+      "sha256": "63da98a96a005a994d49b88409e5491c91c9fa2ed41882061457e761f7b19a00"
+    },
+    {
+      "source_path": "foundations/contracts/runtime/a2-no-integration-runtime-policy-1.0.0.yaml",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/runtime/a2-no-integration-runtime-policy-1.0.0.yaml",
+      "bytes": 5157,
+      "sha256": "f83c89df8cb7a726ff0696b0de5fd2958703bb56702768e844e61f066c7226ab"
+    },
+    {
+      "source_path": "foundations/contracts/runtime/a2-step7-synthetic-acceptance-manifest-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/runtime/a2-step7-synthetic-acceptance-manifest-0.1.0.json",
+      "bytes": 1130,
+      "sha256": "59a916f6e9113d0b640541868b999b1b3a1401507c5393205a487dea4b7bd50c"
+    },
+    {
+      "source_path": "foundations/contracts/runtime/a2-step8-pilot-acceptance-manifest-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/runtime/a2-step8-pilot-acceptance-manifest-0.1.0.json",
+      "bytes": 956,
+      "sha256": "0619e919ff5f47245c46036f4fb608648f32f1fccd7af95be2cab385446c708c"
+    },
+    {
+      "source_path": "foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/skills/a2-operational-skill-manifest-0.1.0.json",
+      "bytes": 20646,
+      "sha256": "c91351814a084cffd020c0f6890bca88fb6550f117e5e85c79516294899d1a37"
+    },
+    {
+      "source_path": "foundations/contracts/skills/a2-step5-runtime-manifest-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/skills/a2-step5-runtime-manifest-0.1.0.json",
+      "bytes": 10047,
+      "sha256": "c913973a862711559c841c65af08f8fe07d3ced8dd01e5d40f0e227e92ad3d7d"
+    },
+    {
+      "source_path": "foundations/contracts/skills/a2-wave1-runtime-manifest-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/skills/a2-wave1-runtime-manifest-0.1.0.json",
+      "bytes": 3097,
+      "sha256": "c9d4ac2f3ec8b93de8171c89557f18dfd881af58eda3338d52b2cce067cafd2e"
+    },
+    {
+      "source_path": "foundations/contracts/skills/a2-wave2-runtime-manifest-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/skills/a2-wave2-runtime-manifest-0.1.0.json",
+      "bytes": 4102,
+      "sha256": "34072acbf10a7c14ec7d32b668d8a307a223b04100f41b3be6e862d42a6959bc"
+    },
+    {
+      "source_path": "foundations/contracts/skills/a2-wave3-runtime-manifest-0.1.0.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/skills/a2-wave3-runtime-manifest-0.1.0.json",
+      "bytes": 5536,
+      "sha256": "97bbba04d6029621f88ad91c57e0e9f1c1c9b37226f84465ed9ca9c6548b0849"
+    },
+    {
+      "source_path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.csv",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/sources/a2-source-register-0.1.1-draft.1.csv",
+      "bytes": 9263,
+      "sha256": "737fab1faf0b0b4effcdcb4b11a4f7dbc4e433f2e3f00adb8d34ebae1578a656"
+    },
+    {
+      "source_path": "foundations/contracts/sources/a2-source-register-0.1.1-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/sources/a2-source-register-0.1.1-draft.1.json",
+      "bytes": 23039,
+      "sha256": "ee5fc77aadd4b511ad8681cde7e5714146fc930072e2d71a1c4e2bba952ddab8"
+    },
+    {
+      "source_path": "foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/twenty/a2-twenty-review-layer-contract-0.1.0-draft.1.json",
+      "bytes": 5052,
+      "sha256": "ea1fe1eeb408bd8dad0b333984902171e062c1c735f7b1c454ffe4a297eeef27"
+    },
+    {
+      "source_path": "foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+      "archive_path": "equinet-a2-no-integration-1.0.0/foundations/contracts/twenty/a2-twenty-review-receipt.schema.json",
+      "bytes": 4015,
+      "sha256": "bd8536c8e7f9d564a71dba4bb4b434cbde0258e242ed155887a099f2f9bf37be"
+    },
+    {
+      "source_path": "scripts/a2_intake.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/a2_intake.py",
+      "bytes": 2202,
+      "sha256": "d96c088a0600a6e604bc24901e7c9273efc1c094e0244808dbad6aaf64d12370"
+    },
+    {
+      "source_path": "scripts/a2_wave2_contracts.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/a2_wave2_contracts.py",
+      "bytes": 2518,
+      "sha256": "b189cd98f47cbe7b4e47bc95ba5aee0b6afb9600436bec7bb8f93ccc98e28b7c"
+    },
+    {
+      "source_path": "scripts/a2_wave3_contracts.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/a2_wave3_contracts.py",
+      "bytes": 1551,
+      "sha256": "3b183d40c756127df60f6f96c3a7db473a07f685051e5f481f22a072d9e02a9b"
+    },
+    {
+      "source_path": "scripts/build_a2_gap_plan.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/build_a2_gap_plan.py",
+      "bytes": 14880,
+      "sha256": "4abcfdfaa996f8ffa381e50fc9c2727a84009c532d3d65619ee27d77a4bb3012"
+    },
+    {
+      "source_path": "scripts/build_and_validate_a2_handoff.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/build_and_validate_a2_handoff.py",
+      "bytes": 4104,
+      "sha256": "ba6182fba48b7a779e013e3b0a4cb31aff33e5709089a62b32f19050738c9394"
+    },
+    {
+      "source_path": "scripts/build_and_validate_a2_twenty_review.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/build_and_validate_a2_twenty_review.py",
+      "bytes": 2975,
+      "sha256": "25f52864d7526dbb95a18a531c51fe9f380ac4b99e486e6fbff73cd850882cd5"
+    },
+    {
+      "source_path": "scripts/classify_official_site_social_link.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/classify_official_site_social_link.py",
+      "bytes": 6219,
+      "sha256": "3f1cf0df3b86eb5d2ac0ac29633315a2f3d379809f3e5409c4f5fcd49aeb1211"
+    },
+    {
+      "source_path": "scripts/create_a2_revision.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/create_a2_revision.py",
+      "bytes": 3113,
+      "sha256": "6c5c4c8903efb7f2b9df079e5929299629dd6c7ba6d1ec9966eb2f94fba40a2c"
+    },
+    {
+      "source_path": "scripts/evaluate_a2_duplicate_eligibility.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/evaluate_a2_duplicate_eligibility.py",
+      "bytes": 4066,
+      "sha256": "12ea14764c1e5e1bf2e9ae06e8344c52b1ad6db79fa9db5b159af4f47f2b30c4"
+    },
+    {
+      "source_path": "scripts/evaluate_a2_evidence_confidence.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/evaluate_a2_evidence_confidence.py",
+      "bytes": 5267,
+      "sha256": "a684ca81e108c20632b1273ef957876c7ede028533d14a07c650f59856a76ba7"
+    },
+    {
+      "source_path": "scripts/evaluate_a2_minimum_package.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/evaluate_a2_minimum_package.py",
+      "bytes": 5664,
+      "sha256": "442a0546d2967d9e9b39b6847513192c2c474c3f8871dc7e9f470bd1455a3a14"
+    },
+    {
+      "source_path": "scripts/evaluate_a2_protected_field_action.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/evaluate_a2_protected_field_action.py",
+      "bytes": 4580,
+      "sha256": "7aee880d68e1109db012393b374b84752b780d80b19926d12a5d769165eb12e5"
+    },
+    {
+      "source_path": "scripts/initialize_a2_record.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/initialize_a2_record.py",
+      "bytes": 16942,
+      "sha256": "2a70a1f12648c655092837b2793ab4f5d6fb40deae89c3106b4e6b747a1741e7"
+    },
+    {
+      "source_path": "scripts/normalise_and_resolve_a2_entities.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/normalise_and_resolve_a2_entities.py",
+      "bytes": 7359,
+      "sha256": "06bbeafd438d8021469ce45273cddff6bbf78004f3c456950bc260e366238bed"
+    },
+    {
+      "source_path": "scripts/normalise_and_validate_a2_observations.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/normalise_and_validate_a2_observations.py",
+      "bytes": 17906,
+      "sha256": "d943b9c3b9e9bbbdd4433d726ec3669b803f656f9c20d33d75ca2fc409daf333"
+    },
+    {
+      "source_path": "scripts/preflight_a2_source_action.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/preflight_a2_source_action.py",
+      "bytes": 12588,
+      "sha256": "8310f9dde39577ca6fd673b0454f804742a6ce8341a8aa7f4a15fa6fb3798343"
+    },
+    {
+      "source_path": "scripts/render_a2_review_views.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/render_a2_review_views.py",
+      "bytes": 29820,
+      "sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef"
+    },
+    {
+      "source_path": "scripts/render_and_validate_a2_review_package.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/render_and_validate_a2_review_package.py",
+      "bytes": 1805,
+      "sha256": "ccf329a893dec19a32b9e4119fce70620ef76a10673b5ce397bb440992758680"
+    },
+    {
+      "source_path": "scripts/run_a2_no_integration_workflow.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/run_a2_no_integration_workflow.py",
+      "bytes": 7855,
+      "sha256": "967fbfc51bd3a363ffe8c4ad51f25a7200362d5cdf180005222c307b9bd7de8a"
+    },
+    {
+      "source_path": "scripts/validate_a1_to_a2_handoff.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/validate_a1_to_a2_handoff.py",
+      "bytes": 15207,
+      "sha256": "7b0fd8154f472349c87c53310dcdd03af5f9a751528d5c8884a04d203dc007c4"
+    },
+    {
+      "source_path": "scripts/validate_a2_enrichment_record.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/validate_a2_enrichment_record.py",
+      "bytes": 52569,
+      "sha256": "02acd1aa345dc69c2b990ef4aa77ab066cb078a695f3d09e34a31938d1ed5fe2"
+    },
+    {
+      "source_path": "scripts/validate_official_site_social_profile_url_capture.py",
+      "archive_path": "equinet-a2-no-integration-1.0.0/scripts/validate_official_site_social_profile_url_capture.py",
+      "bytes": 25719,
+      "sha256": "71990bd285b7acb432db20364cc1cb4e4e05a052f480f5a529daceac0af76c15"
+    },
+    {
+      "source_path": "skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-data-quality-and-review-readiness/SKILL.md",
+      "bytes": 2453,
+      "sha256": "457cdd015d00f3fc0312211f9976e3ddf48021d7fe306164997a8d34154bbc11"
+    },
+    {
+      "source_path": "skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-duplicate-and-eligibility-review/SKILL.md",
+      "bytes": 2453,
+      "sha256": "d978d067687d28190a9dd681b5d47c7c9bdc0392e90d64fb49955368c148be63"
+    },
+    {
+      "source_path": "skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-entity-resolution-and-normalisation/SKILL.md",
+      "bytes": 2630,
+      "sha256": "8ea85add0a0d1d86fe2b96026405e1671bdd96901da94238e40bae8cc98373a6"
+    },
+    {
+      "source_path": "skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-evidence-confidence-and-freshness/SKILL.md",
+      "bytes": 2105,
+      "sha256": "abce4d5742a2b5f8e4832c32c53b372f79cb7b1afb116f8d45a989371efad52f"
+    },
+    {
+      "source_path": "skills/a2-field-verification/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-field-verification/SKILL.md",
+      "bytes": 2888,
+      "sha256": "8f0179193f718aa1950561b0a4150063d2b9a4833a25cf564d0265b02e0e2f22"
+    },
+    {
+      "source_path": "skills/a2-field-verification/references/contact-verification.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-field-verification/references/contact-verification.md",
+      "bytes": 876,
+      "sha256": "090b87f625f598d21057a6ea18a8b88432ea22cad639a7906af330a2d87707a5"
+    },
+    {
+      "source_path": "skills/a2-field-verification/references/equine-business-verification.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-field-verification/references/equine-business-verification.md",
+      "bytes": 814,
+      "sha256": "c26149ba97ec20bd29cafd6539347859128ed2298a8a083877fdaa6778e03502"
+    },
+    {
+      "source_path": "skills/a2-field-verification/references/professional-verification.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-field-verification/references/professional-verification.md",
+      "bytes": 783,
+      "sha256": "c2306cf263041f7c37e8d040270ed586e82d8bf588e241e1006a70dabffda06a"
+    },
+    {
+      "source_path": "skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-gap-analysis-and-enrichment-planning/SKILL.md",
+      "bytes": 3326,
+      "sha256": "4a846cc711adf8078e6077e456a236a678b6d2304577ad123dc6c012984480cb"
+    },
+    {
+      "source_path": "skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-handoff-intake-and-initialisation/SKILL.md",
+      "bytes": 3098,
+      "sha256": "cf7cdec99a61b9206e4560ab9f7e551b9cc0a162b7dcff7245dbc9742b969812"
+    },
+    {
+      "source_path": "skills/a2-permitted-enrichment-research/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-permitted-enrichment-research/SKILL.md",
+      "bytes": 3422,
+      "sha256": "bf5c1e969646f9e0800df42f0159cf2c033f91a902b2b4a75f4916e622ef69ea"
+    },
+    {
+      "source_path": "skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-protected-field-conflict-resolution/SKILL.md",
+      "bytes": 2119,
+      "sha256": "ab64cc4477de052464572add30f405de4418a9acf6cbb0fed4fc0fb3beaec4a8"
+    },
+    {
+      "source_path": "skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "archive_path": "equinet-a2-no-integration-1.0.0/skills/a2-review-package-and-governed-handoffs/SKILL.md",
+      "bytes": 3472,
+      "sha256": "2556277c7781e0590d25f80f581b9a83a3adabf050b9dd88ec11b48b3093a1d2"
+    }
+  ],
+  "manifest_self_hash_included": false,
+  "archive_hash_included": false,
+  "production_acceptance": false,
+  "contractual_acceptance": false,
+  "external_actions": 0
+}

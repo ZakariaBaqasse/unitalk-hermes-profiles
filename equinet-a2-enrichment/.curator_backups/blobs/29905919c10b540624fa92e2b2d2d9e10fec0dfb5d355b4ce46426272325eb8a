@@ -1,0 +1,34 @@
+---
+name: a2-twenty-connector
+description: "Use when A2 reads or writes Companies and People in Twenty."
+version: 0.1.0
+author: Unitalk
+license: Proprietary
+metadata:
+  hermes:
+    tags: [equinet, a2, twenty]
+    related_skills: [a2-twenty-fullenrich-workflow, a2-twenty-write-governance]
+---
+
+# A2 Twenty Connector
+
+## When to Use
+
+Use for bounded retrieval, claim, create, update, association and read-back reconciliation against Twenty.
+
+## Status
+
+`IMPLEMENTED — LIVE WRITE ACCEPTANCE PENDING`
+
+## Commands
+
+```bash
+python scripts/pull_twenty_companies.py --run-id <id> --batch-size <n> --include-null --output <batch.json>
+python scripts/pull_twenty_companies.py --run-id <id> --batch-size <n> --claim --output <batch.json>
+python scripts/push_twenty_enrichment.py <write-plan.json> --output <dry-run.json>
+python scripts/push_twenty_enrichment.py <write-plan.json> --apply --output <result.json>
+```
+
+## Rules
+
+Pull only eligible Companies and include direct People relations with `depth=1`. Claim before paid actions and verify the claim. Accept only validated write plans. A1 fields are read-only. Create associations through `companyId`. Use literal field token `a2FullenrichPersonid`. Never auto-write personal email. Reconcile every live write.

@@ -1,0 +1,49 @@
+{
+  "manifest_id": "equinet-a2-step3d-draft-package",
+  "version": "0.1.0-draft.1",
+  "status": "approved_unitalk_working_baseline_pending_equinet_confirmation",
+  "files": [
+    {
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.1.0-draft.1.json",
+      "bytes": 8274,
+      "sha256": "23effcd67dbf5e444ebc24eaf95873098927330a037b2d8ad399864529337730"
+    },
+    {
+      "path": "evaluations/step3d/fixtures/evidence-cases.json",
+      "bytes": 5596,
+      "sha256": "65228e5d2a2ccacc7cb7de04893be253aae209e147c10968b18013d3adffb0f8"
+    },
+    {
+      "path": "scripts/build_step3d_evidence_policy.py",
+      "bytes": 12753,
+      "sha256": "8963773121b69f4b835bdbde2ad0785e68d30bdb53bd16992334d3d57ec44774"
+    },
+    {
+      "path": "scripts/evaluate_a2_evidence_confidence.py",
+      "bytes": 4332,
+      "sha256": "7a957db12f399ba251ba52c5954e75941ec686c71945bacf1793927905726f97"
+    },
+    {
+      "path": "scripts/run_step3d_tests.py",
+      "bytes": 16465,
+      "sha256": "f2d0187a1ed7763ed18fd7f70d01cdfd65f07bf4bb7dd4f8457f408ee3ea97c7"
+    },
+    {
+      "path": "foundations/A2-EVIDENCE-VERIFICATION-CONFIDENCE-FRESHNESS-POLICY.md",
+      "bytes": 4068,
+      "sha256": "7bbd808df9f939fe7f867491e17af3d929b2e7b5c66f4e14066545e3881f0ccb"
+    },
+    {
+      "path": "evaluations/step3d/A2-EVIDENCE-POLICY-REVIEW.md",
+      "bytes": 2495,
+      "sha256": "00f077615faddad6bcdae5851ac1c1c438ade0372ac706ca00c017e9157c0923"
+    },
+    {
+      "path": "evaluations/step3d/technical-validation.json",
+      "bytes": 12512,
+      "sha256": "f4178217793f2605223255ece08642eae32b9a3e2c07bca69b293d7ed2ec122c"
+    }
+  ],
+  "file_count": 8,
+  "external_actions": 0
+}

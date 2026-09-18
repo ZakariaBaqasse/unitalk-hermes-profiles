@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "a2-apify-facebook-results-0.1.0",
+  "type": "object",
+  "required": [
+    "actor_id",
+    "run_id",
+    "status",
+    "results",
+    "append_candidates"
+  ],
+  "properties": {
+    "actor_id": {
+      "const": "apify~facebook-page-contact-information"
+    },
+    "status": {
+      "enum": [
+        "valid",
+        "invalid"
+      ]
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "company_id",
+          "facebook_url",
+          "terminal_status",
+          "company_candidates"
+        ],
+        "properties": {
+          "entity_type": {
+            "const": "Company"
+          },
+          "terminal_status": {
+            "enum": [
+              "succeeded",
+              "not_found",
+              "failed",
+              "blocked",
+              "output_mismatch"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "append_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entity_type": {
+            "const": "Company"
+          },
+          "field_key": {
+            "enum": [
+              "company.company_email",
+              "company.company_phone"
+            ]
+          },
+          "operation": {
+            "const": "append_candidate"
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

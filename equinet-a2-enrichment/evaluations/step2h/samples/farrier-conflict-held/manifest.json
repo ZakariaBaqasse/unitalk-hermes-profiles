@@ -1,0 +1,67 @@
+{
+  "spec_version": "0.1.0",
+  "renderer_version": "0.1.0",
+  "canonical_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2f/fixtures/valid/farrier-conflict-held.json",
+  "canonical_record_sha256": "cba702550a01c5943a58acee389f59ad25496d45a3b4f997e352f26b57f0d377",
+  "previous_record_path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2f/fixtures/valid/farrier-conflict-held-previous.json",
+  "previous_record_sha256": "c0fbe959bb0e1b36dff2f5a2540a9e96b116ce378c64061d2184c594a969c73d",
+  "spec_path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+  "spec_sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df",
+  "renderer_sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef",
+  "outputs": [
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/review.md",
+      "sha256": "2e0d6e9ccc6d9597c786bbcd0afbc062fdf22c52d812f8aba327231b3d597cd9",
+      "bytes": 3693
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/summary.csv",
+      "sha256": "369ca140fc0ebddc5de015db067ccffc98c994a40972d600137f6fb10588acc8",
+      "bytes": 610
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/review-queue.csv",
+      "sha256": "6e31a7da9c20de9fab7c0468f2345f1675722778db6c6d20952cfa5a960d46c4",
+      "bytes": 2087
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/fields.csv",
+      "sha256": "01caafa70763510ed07b3c27b1c35510c691a85e11df2c41abf79d297ef5586c",
+      "bytes": 3645
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/evidence.csv",
+      "sha256": "acef33d8062eaf7df38025461dd25c39689b43c753274f358396be2860bd5468",
+      "bytes": 2042
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6",
+      "bytes": 359
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/audit.csv",
+      "sha256": "bf0e83a071a11c040838bac4e97c08a20aabe388951bd6392652788e6150d361",
+      "bytes": 1413
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step2h/samples/farrier-conflict-held/review.xlsx",
+      "sha256": "0d5bbc226cc62f1bc561ac2c10bbcb6cc3066ae2db6407614c6401b9d7c5f4ed",
+      "bytes": 15266
+    }
+  ],
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 2,
+    "fields": 6,
+    "evidence": 4,
+    "requalification": 0,
+    "audit": 4
+  },
+  "validation": {
+    "canonical_record_valid": true,
+    "read_only_projection": true,
+    "external_actions": 0,
+    "formula_policy": "no_formulas"
+  }
+}

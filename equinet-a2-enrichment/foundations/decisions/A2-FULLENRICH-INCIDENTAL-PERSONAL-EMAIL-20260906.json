@@ -1,0 +1,29 @@
+{
+  "record_type": "equinet_a2_fullenrich_personal_email_correction",
+  "decision_id": "A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906",
+  "recorded_at": "2026-09-06T13:38:10Z",
+  "recorded_by": {
+    "name": "Séverine",
+    "role": "Unitalk Operations"
+  },
+  "client_authority": "Equinet-confirmed requirement relayed by Séverine",
+  "decision": {
+    "personal_email_requested_by_default": false,
+    "incidental_personal_email_retained": true,
+    "canonical_field": "person.personal_email_candidate",
+    "retain_provider_provenance_and_verification_status": true,
+    "distinct_from_professional_email": true,
+    "satisfies_professional_contactability": false,
+    "creates_consent_or_outreach_authority": false,
+    "automatic_hubspot_write": false,
+    "human_review_required": true
+  },
+  "supersedes": {
+    "decision_id": "A2-FULLENRICH-SOURCE-ROUTING-20260906",
+    "scope": [
+      "unexpected_personal_email_handling"
+    ]
+  },
+  "external_actions_authorized": false,
+  "production_acceptance": false
+}

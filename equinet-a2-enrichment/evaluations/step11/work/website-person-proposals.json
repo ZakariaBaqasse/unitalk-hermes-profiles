@@ -1,0 +1,11 @@
+{
+  "run_id": "step11-fixture-run",
+  "company_id": "company-fixture-001",
+  "reviewed_block_ids": [
+    "website-person-block-ab5124fe87c08f2f",
+    "website-person-block-63dd7e0772b71986",
+    "website-person-block-543157ec8e6904fb",
+    "website-person-block-e1cd4e25b3bb9f80"
+  ],
+  "proposals": []
+}

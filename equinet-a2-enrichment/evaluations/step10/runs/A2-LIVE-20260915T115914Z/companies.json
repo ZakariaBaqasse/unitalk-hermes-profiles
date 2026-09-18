@@ -1,0 +1,87 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "company_id": null,
+  "created_at": "2026-09-15T12:36:11Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "725dc2c5533799fea7dcfb4cf93459c66d3ca8f6ef9886d592b36dd2c944e08c",
+  "requested_batch_size": 2,
+  "company_count": 2,
+  "companies": [
+    {
+      "twenty_company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "name": "Consignors & Commercial Breeders",
+      "segment": "HORSE_OWNER",
+      "domain": null,
+      "professional_network_url": null,
+      "location": {
+        "street": "3600 Georgetown Rd, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": "0.1.0",
+      "a2_enrichment_run_id": "A2-LIVE-20260915T115914Z",
+      "a2_processing_started_at": "2026-09-15T12:36:11.000Z",
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-15T12:36:11.305Z"
+    },
+    {
+      "twenty_company_id": "8d7f70a7-f176-437c-ac66-55484d19bee6",
+      "name": "Equestrian Event Inc",
+      "segment": "HORSE_OWNER",
+      "domain": null,
+      "professional_network_url": null,
+      "location": {
+        "street": "3960 Marks Ln, Lexington, KY 40511",
+        "city": "Lexington",
+        "region": "Kentucky",
+        "country": "US",
+        "postal_code": "40511"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": "0.1.0",
+      "a2_enrichment_run_id": "A2-LIVE-20260915T115914Z",
+      "a2_processing_started_at": "2026-09-15T12:36:11.000Z",
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-15T12:36:11.684Z"
+    }
+  ],
+  "claims": [
+    {
+      "company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "claimed": true,
+      "write_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T12:36:11Z"
+      },
+      "read_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T12:36:11Z"
+      }
+    },
+    {
+      "company_id": "8d7f70a7-f176-437c-ac66-55484d19bee6",
+      "claimed": true,
+      "write_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T12:36:11Z"
+      },
+      "read_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-15T12:36:11Z"
+      }
+    }
+  ],
+  "external_writes": 2,
+  "artifact_sha256": "4bb2fdebf951b31d7cedeb6b2df11f492b5a26ddb48dbfce076da58226921570"
+}

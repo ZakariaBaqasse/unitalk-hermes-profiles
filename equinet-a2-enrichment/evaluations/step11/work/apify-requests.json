@@ -1,0 +1,115 @@
+{
+  "actor_id": "apify~facebook-page-contact-information",
+  "artifact_sha256": "96f7571b58826c3af1aec11240a8d6dd174fc6dc1902700fbf96ab78211778dd",
+  "audit": {
+    "build_input_sha256": "e2c72d1c40493cd23afa3b18dce9f393b39129465ab3560f6650aa10ee82fcdb",
+    "builder_sha256": "7bbc49b0d0e7d982313c890637a6fe844348368889c21d843ef111bce2dae632"
+  },
+  "blocked_requests": [
+    {
+      "company_id": "company-complete",
+      "company_name": "Complete Farrier Inc",
+      "missing_fields": [],
+      "reasons": [
+        "company_email_and_phone_already_present_across_a1_twenty_and_website"
+      ]
+    }
+  ],
+  "controls": {
+    "company_count_max": null,
+    "external_calls": 0,
+    "fallback_actor": null,
+    "max_retries": 0,
+    "one_actor_run_per_company": true,
+    "resurrection": false,
+    "writes": 0
+  },
+  "kind": "a2-apify-official-facebook-requests",
+  "request_count": 2,
+  "requests": [
+    {
+      "actor_id": "apify~facebook-page-contact-information",
+      "actor_input": {
+        "language": "en-US",
+        "pages": [
+          "https://www.facebook.com/BluegrassFarm/"
+        ]
+      },
+      "actor_input_sha256": "4f0b44b92ee580155ae6f3db1c4b779ece2cd0c73cc4c7ec6e2e04d2f5ef3ac5",
+      "company_id": "company-trigger",
+      "company_name": "Bluegrass Farm LLC",
+      "current_values": {
+        "company.company_email": [],
+        "company.company_phone": []
+      },
+      "entity_type": "Company",
+      "exact_facebook_url": "https://www.facebook.com/BluegrassFarm/",
+      "facebook_url": "https://www.facebook.com/BluegrassFarm/",
+      "missing_channels": [
+        "email",
+        "phone"
+      ],
+      "missing_fields": [
+        "company.company_email",
+        "company.company_phone"
+      ],
+      "official_site_evidence": {
+        "evidence_id": "web-bluegrass-facebook",
+        "facebook_url": "https://www.facebook.com/BluegrassFarm/",
+        "field_key": "company.facebook_url",
+        "source_type": "prospect_owned_official_site",
+        "source_url": "https://bluegrass.example/contact",
+        "status": "validated"
+      },
+      "request_id": "apify-facebook-company-trigger",
+      "retry_policy": {
+        "fallback_actor": null,
+        "max_retries": 0,
+        "resurrection": false
+      }
+    },
+    {
+      "actor_id": "apify~facebook-page-contact-information",
+      "actor_input": {
+        "language": "en-US",
+        "pages": [
+          "https://www.facebook.com/ExistingEmailFarm/"
+        ]
+      },
+      "actor_input_sha256": "3c58fc438cc5b31ad3df9eb518b1742b870b4414950fbe0a557ac5db50220055",
+      "company_id": "company-duplicate",
+      "company_name": "Existing Email Farm",
+      "current_values": {
+        "company.company_email": [
+          "hello@existing.example"
+        ],
+        "company.company_phone": []
+      },
+      "entity_type": "Company",
+      "exact_facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+      "facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+      "missing_channels": [
+        "phone"
+      ],
+      "missing_fields": [
+        "company.company_phone"
+      ],
+      "official_site_evidence": {
+        "evidence_id": "web-existing-facebook",
+        "facebook_url": "https://www.facebook.com/ExistingEmailFarm/",
+        "field_key": "company.facebook_url",
+        "source_type": "official_site",
+        "source_url": "https://existing.example",
+        "status": "validated"
+      },
+      "request_id": "apify-facebook-company-duplicate",
+      "retry_policy": {
+        "fallback_actor": null,
+        "max_retries": 0,
+        "resurrection": false
+      }
+    }
+  ],
+  "run_id": "STEP11-APIFY-TEST",
+  "schema_version": "1.0.0"
+}

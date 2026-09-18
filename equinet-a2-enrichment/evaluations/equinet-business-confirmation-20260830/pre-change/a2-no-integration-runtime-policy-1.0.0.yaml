@@ -1,0 +1,174 @@
+policy_id: equinet-a2-no-integration-runtime
+policy_version: 1.0.0
+status: approved_pilot_ready_no_integration
+applies_to_profile: equinet-a2-enrichment
+release_candidate: equinet-a2-no-integration-1.0.0
+operating_scope:
+  default_mode: manual_no_integration_pilot
+  external_business_actions: 0
+  production_status: false
+  contractual_acceptance: false
+model_routing:
+  primary:
+    logical_model: deepseek-v4-flash
+    profile_provider: openai-api
+    gateway: litellm-unitalk
+    upstream_provider: microsoft_azure
+    processing_region: Europe
+    prompts_used_for_training: false
+    prompt_retention: zero_data_retention_attested
+    per_request_telemetry: unavailable_to_severine
+  fallback:
+    enabled: false
+    on_primary_failure: save_partial_artifacts_stop_and_notify
+credential_policy:
+  source: isolated_profile_env
+  required_variables:
+  - OPENAI_API_KEY
+  - OPENAI_BASE_URL
+  values_logged: false
+  file_permission: '0600'
+  customer_api_key_required: ***
+tool_policy:
+  default_enabled:
+  - clarify
+  - code_execution
+  - file
+  - skills
+  - terminal
+  - todo
+  default_disabled:
+  - web
+  - browser
+  - computer_use
+  - memory
+  - session_search
+  - delegation
+  - cronjob
+  - vision
+  - image_gen
+  - tts
+  conditional_official_site_web:
+    enabled_by_default: false
+    activation_requires:
+    - candidate_specific_authorisation
+    - approved_source_and_domain
+    - source_rights_preflight
+    - bounded_page_and_retry_plan
+    - active_cost_and_audit_capture
+    stop_conditions:
+    - terms_or_robots_denial
+    - login_or_paywall
+    - captcha
+    - http_403
+    - http_429
+    - unexpected_personal_data
+    - scope_or_budget_limit
+integrations:
+  hubspot_read: false
+  hubspot_write: false
+  twenty: false
+  n8n: false
+  apify: false
+  outreach: false
+  durable_handoffs: false
+review_model:
+  normal_human_reviews: 1
+  timing: after_all_permitted_processing
+  review_scope:
+  - field_decisions
+  - corrected_values
+  - record_decision
+  - exact_future_patch_preview_when_available
+  intermediate_implementation_checkpoints_are_runtime_gates: false
+  exception_holds:
+  - unresolved_or_conflicting_identity
+  - possible_or_confirmed_duplicate
+  - unexpected_personal_or_sensitive_data
+  - source_policy_or_permission_failure
+  - material_protected_or_authoritative_conflict
+  - budget_or_prepaid_balance_risk
+  - proposed_write_differs_from_reviewed_patch
+  - write_or_reconciliation_failure
+contact_semantics:
+  selected_named_contact: named_person_retained_for_the_record
+  target_role_priority: independent_role_classification
+  primary_role_does_not_prove:
+  - purchasing_authority
+  - named_contactability
+  - consent
+  - outreach_eligibility
+  secondary_role_may_still_be_selected_named_contact: true
+minimum_package_behavior:
+  a1_score_and_a2_readiness_are_independent: true
+  high_a1_score_can_be_held_in_a2: true
+  missing_required_field_creates_gap_not_rejection: true
+  research_exhausted_with_required_gap: held
+  a1_score_mutation_authorized: false
+runtime_controls:
+  profile_root: /opt/data/profiles/equinet-a2-enrichment
+  deterministic_python: /opt/data/profiles/equinet-a2-enrichment/.venv/bin/python
+  absolute_paths_required_for_noninteractive_runs: true
+  model_max_output_tokens_per_call: ***
+  max_model_iterations_per_turn: 50
+  api_max_retries: 1
+  automatic_full_run_retry: false
+  max_tool_retry_per_failed_call: 1
+  concurrency: 1
+usage_monitoring:
+  baseline:
+    scenario: rood_riddle_stored_page_replay
+    total_tokens: ***
+    model_api_calls: 9
+    cost_amount: 0.0
+    cost_status: unknown
+  provisional_thresholds:
+    per_candidate_token_warning: ***
+    per_candidate_token_escalation: ***
+    per_candidate_local_hard_stop: null
+    model_call_warning: 12
+    model_call_escalation: 25
+    technical_iteration_circuit_breaker: 50
+  enforcement: monitoring_and_escalation_except_global_prepaid_balance
+budget_governance:
+  budget_scope: unitalk_mustad_global
+  initial_prepaid_credit_usd: 5000
+  warning_percent: 50
+  escalation_percent: 80
+  hard_stop_percent: 100
+  negative_balance_permitted: false
+  economic_hard_stop: unitalk_gateway_prepaid_balance
+journalisation:
+  required: true
+  current_mode: local_tamper_evident_artifacts
+  external_audit_sink: pending_integration
+  credentials_logged: ***
+  usage_and_cost_required: true
+  unknown_cost_must_not_be_reported_as_zero: true
+open_governance_items:
+- named_equinet_primary_and_backup_reviewer
+- equinet_business_and_provider_spend_approvers
+- administrator_visibility_rules
+- detailed_retention_and_deletion_rules
+- global_gateway_balance_visibility_and_hard_stop_evidence
+- candidate_scope_beyond_explicitly_approved_runs
+approved_evidence:
+  step8_acceptance: evaluations/step8/acceptance-record.json
+  provider_attestation: evaluations/step8/readiness/provider-governance-attestation.json
+  behavioral_replay: evaluations/step8/pilot/A1-RR-PODIATRY-001/behavioral-replay/validation.json
+next_gate: Step 10 — Integrations
+approved_at: '2026-08-30T14:56:57Z'
+approved_by:
+  name: Séverine
+  role: Unitalk Operations
+approved_decisions:
+- S9-1
+- S9-2
+- S9-3
+- S9-4
+- S9-5
+- S9-6
+- S9-7
+- S9-8
+- S9-9
+- S9-10

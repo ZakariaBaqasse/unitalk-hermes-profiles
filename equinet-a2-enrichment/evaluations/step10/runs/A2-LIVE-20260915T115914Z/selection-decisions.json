@@ -1,0 +1,21 @@
+{
+  "schema_id": "a2-person-selection-decisions",
+  "schema_version": "0.1.0",
+  "run_id": "A2-LIVE-20260915T115914Z",
+  "decisions": [
+    {
+      "company_id": "0b2d2cea-bd65-481f-b60f-234dfcfc362a",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "outcome": "target_role_not_found",
+      "rationale": "Approved-title Search and permitted Owner-specific follow-up both returned not_found with zero candidates. No suitable person to select."
+    },
+    {
+      "company_id": "8d7f70a7-f176-437c-ac66-55484d19bee6",
+      "selected_provider_person_ids": [],
+      "candidate_decisions": [],
+      "outcome": "target_role_not_found",
+      "rationale": "Approved-title Search and permitted Owner-specific follow-up both returned not_found with zero candidates. No suitable person to select."
+    }
+  ]
+}

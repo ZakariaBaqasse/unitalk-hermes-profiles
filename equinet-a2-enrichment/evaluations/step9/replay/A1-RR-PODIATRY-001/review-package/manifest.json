@@ -1,0 +1,67 @@
+{
+  "spec_version": "0.1.0",
+  "renderer_version": "0.1.0",
+  "canonical_record_path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-005-held.json",
+  "canonical_record_sha256": "6b5588934629edc1a590d91709dd40d6f9f8dcf6d59634a52d3bc0c185c4ed0e",
+  "previous_record_path": "evaluations/step8/pilot/A1-RR-PODIATRY-001/canonical/revision-004-review-required.json",
+  "previous_record_sha256": "f85f210f9da584bc180b8ee32c61a6394b8302363b0f7c6eb694c80932a4ba02",
+  "spec_path": "/opt/data/profiles/equinet-a2-enrichment/foundations/contracts/canonical/a2-review-view-spec-0.1.0.json",
+  "spec_sha256": "d02e1780b3bac736f1f8ff9fca8b0f640defbfdde9758fbcbb274529d27504df",
+  "renderer_sha256": "e4da318ebfe3a30456cfb0a142194c9bb6c546137e3892ac8954261e39e33eef",
+  "outputs": [
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/review.md",
+      "sha256": "0064be2ac13781678ac9e9e658bc0d8c79df3c3d0ab36314f0ba186f979da436",
+      "bytes": 5180
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/summary.csv",
+      "sha256": "415d3f7996d841a4b5500fef8b3bfce3bead9b53d4a86715bd3894de6e28fb54",
+      "bytes": 1386
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/review-queue.csv",
+      "sha256": "2a4510c3854e1d95627b290cbd4d852aa07ed418e30cc2164ae884c296bd7a47",
+      "bytes": 2339
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/fields.csv",
+      "sha256": "a525a3730b1429182ba1790593defacba4f0e31d07d9c78586881dba41e2fea1",
+      "bytes": 6523
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/evidence.csv",
+      "sha256": "726a7eb4ba64071ee41a75294b5180464f303badcb5d003ce1f6304444428c0e",
+      "bytes": 3849
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/requalification.csv",
+      "sha256": "78cdf52c4b41a89e3062c6ca6e81606d467c0df9f01796afb73aa97ef81b19f6",
+      "bytes": 359
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/audit.csv",
+      "sha256": "fde275765dc9b52d8e37042961d5b215ae80f953ca79460db79bce06afe35942",
+      "bytes": 2353
+    },
+    {
+      "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step9/replay/A1-RR-PODIATRY-001/review-package/review.xlsx",
+      "sha256": "23bb4eb8e2bd33f4ae9b60fe6856e5bdac54972355c05829be598793869a1c63",
+      "bytes": 18441
+    }
+  ],
+  "row_counts": {
+    "summary": 1,
+    "review_queue": 6,
+    "fields": 13,
+    "evidence": 5,
+    "requalification": 0,
+    "audit": 5
+  },
+  "validation": {
+    "canonical_record_valid": true,
+    "read_only_projection": true,
+    "external_actions": 0,
+    "formula_policy": "no_formulas"
+  }
+}

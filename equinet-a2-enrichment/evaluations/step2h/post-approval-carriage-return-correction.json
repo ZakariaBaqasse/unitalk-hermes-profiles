@@ -1,0 +1,15 @@
+{
+  "record_type": "post_approval_review_view_correction",
+  "profile": "equinet-a2-enrichment",
+  "source_step": "2H",
+  "identified_after_approval": true,
+  "spec_version": "0.1.0",
+  "prior_accepted_package_manifest_sha256": "aa3f95f93b5f1422f74b6d69747c869cbf228b992abc980bf10c79888ccd887c",
+  "corrected_package_manifest_sha256": "61a6ea643866c6dc806bf41803c355d27e55e905cc569a03412ee405a67b4613",
+  "status": "approved_under_h9",
+  "finding": "SpreadsheetML normalises carriage-return-prefixed string content when stored directly.",
+  "correction": "Leading tab and carriage-return values now use the reversible Base64-prefixed text encoding in Excel as well as CSV. Formula prefixes =, +, - and @ remain exact explicit Excel string cells.",
+  "approval_basis": "Step 2H decision H9 requires formula-free, error-free and formula-injection-safe Excel output.",
+  "verified_by": "carriage_return_prefix_roundtrip",
+  "created_at": "2026-08-26T13:32:09Z"
+}
