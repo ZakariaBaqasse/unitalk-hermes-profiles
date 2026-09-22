@@ -71,6 +71,39 @@
               "secondary",
               "website"
             ]
+          },
+          "work_email": {
+            "type": ["object", "string", "null"],
+            "properties": {
+              "value": {"type": "string", "format": "email"},
+              "status": {"type": ["string", "null"], "maxLength": 100},
+              "provider_status": {"type": ["string", "null"], "maxLength": 100},
+              "source": {"type": "string"}
+            },
+            "additionalProperties": true
+          },
+          "fullenrich_email_status": {
+            "type": ["string", "null"],
+            "maxLength": 100
+          },
+          "merged_work_emails": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {"type": "string", "format": "email"},
+                {
+                  "type": "object",
+                  "required": ["value"],
+                  "properties": {
+                    "value": {"type": "string", "format": "email"},
+                    "status": {"type": ["string", "null"], "maxLength": 100},
+                    "provider_status": {"type": ["string", "null"], "maxLength": 100},
+                    "source": {"type": "string"}
+                  },
+                  "additionalProperties": true
+                }
+              ]
+            }
           }
         },
         "additionalProperties": true,

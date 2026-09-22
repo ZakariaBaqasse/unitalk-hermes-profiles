@@ -6,9 +6,9 @@ from datetime import datetime,timezone
 from pathlib import Path
 from typing import Any
 ROOT=Path(__file__).resolve().parents[1]
-TWENTY_MAPPING=ROOT/'foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.2.json'
-FULLENRICH_CONTRACT=ROOT/'foundations/contracts/integrations/a2-fullenrich-direct-integration-0.1.2.json'
-STATE_MODEL=ROOT/'foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.4.json'
+TWENTY_MAPPING=ROOT/'foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.3.json'
+FULLENRICH_CONTRACT=ROOT/'foundations/contracts/integrations/a2-fullenrich-direct-integration-0.1.4.json'
+STATE_MODEL=ROOT/'foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.6.json'
 FIRECRAWL_CONTRACT=ROOT/'foundations/contracts/integrations/a2-official-website-firecrawl-integration-0.1.0.json'
 APIFY_FACEBOOK_CONTRACT=ROOT/'foundations/contracts/integrations/a2-apify-facebook-page-contact-integration-0.1.0.json'
 class IntegrationError(RuntimeError):
@@ -152,7 +152,7 @@ def fullenrich_env()->tuple[str,str]:
  return base.rstrip('/'),key
 
 def normalise_twenty_person(r:dict[str,Any])->dict[str,Any]:
- return {'twenty_person_id':r.get('id'),'company_id':r.get('companyId'),'full_name':full_name(r.get('name')),'raw_name':r.get('name'),'job_title':clean(r.get('jobTitle')),'work_email':primary_email(r.get('emails')),'phone':primary_phone(r.get('phones')),'professional_network_url':link_url(r.get('linkedinLink')),'a2_identity_status':r.get('a2IdentityStatus'),'a2_role_status':r.get('a2RoleStatus'),'a2_role_priority':r.get('a2RolePriority'),'a2_company_match_status':r.get('a2CompanyMatchStatus'),'a2_enrichment_status':r.get('a2EnrichmentStatus'),'fullenrich_person_id':r.get('a2FullenrichPersonid'),'last_verified_at':r.get('a2LastVerifiedAt'),'last_enriched_at':r.get('a2LastEnrichedAt'),'updated_at':r.get('updatedAt')}
+ return {'twenty_person_id':r.get('id'),'company_id':r.get('companyId'),'full_name':full_name(r.get('name')),'raw_name':r.get('name'),'job_title':clean(r.get('jobTitle')),'work_email':primary_email(r.get('emails')),'email_status':clean(r.get('emailStatus')),'phone':primary_phone(r.get('phones')),'professional_network_url':link_url(r.get('linkedinLink')),'a2_identity_status':r.get('a2IdentityStatus'),'a2_role_status':r.get('a2RoleStatus'),'a2_role_priority':r.get('a2RolePriority'),'a2_company_match_status':r.get('a2CompanyMatchStatus'),'a2_enrichment_status':r.get('a2EnrichmentStatus'),'fullenrich_person_id':r.get('a2FullenrichPersonid'),'last_verified_at':r.get('a2LastVerifiedAt'),'last_enriched_at':r.get('a2LastEnrichedAt'),'updated_at':r.get('updatedAt')}
 def normalise_twenty_company(r:dict[str,Any])->dict[str,Any]:
  a=r.get('address') if isinstance(r.get('address'),dict) else {}
  return {'twenty_company_id':r.get('id'),'name':clean(r.get('name')),'segment':r.get('segment'),'website_url':link_url(r.get('domainName')),'domain':domain_name(link_url(r.get('domainName'))),'professional_network_url':link_url(r.get('linkedinLink')),'company_emails':email_values(r.get('email')),'company_phones':phone_values(r.get('phone')),'social_links':{'linkedin':link_values(r.get('linkedinLink')),'facebook':link_values(r.get('facebook')),'instagram':link_values(r.get('instagram')),'youtube':link_values(r.get('youtube')),'tiktok':link_values(r.get('tiktok')),'x':link_values(r.get('xTwitter'))},'company_contact_composites':{'email':r.get('email') or {'primaryEmail':'','additionalEmails':[]},'phone':r.get('phone') or {'primaryPhoneNumber':'','primaryPhoneCountryCode':'','primaryPhoneCallingCode':'','additionalPhones':[]},'linkedinLink':r.get('linkedinLink') or {'primaryLinkUrl':'','primaryLinkLabel':'','secondaryLinks':[]},'facebook':r.get('facebook') or {'primaryLinkUrl':'','primaryLinkLabel':'','secondaryLinks':[]},'instagram':r.get('instagram') or {'primaryLinkUrl':'','primaryLinkLabel':'','secondaryLinks':[]},'youtube':r.get('youtube') or {'primaryLinkUrl':'','primaryLinkLabel':'','secondaryLinks':[]},'tiktok':r.get('tiktok') or {'primaryLinkUrl':'','primaryLinkLabel':'','secondaryLinks':[]},'xTwitter':r.get('xTwitter') or {'primaryLinkUrl':'','primaryLinkLabel':'','secondaryLinks':[]}},'location':{'street':clean(a.get('addressStreet1')),'city':clean(a.get('addressCity')) or clean(r.get('city')),'region':clean(a.get('addressState')) or clean(r.get('state')),'country':clean(a.get('addressCountry')) or clean(r.get('country')),'postal_code':clean(a.get('addressPostcode'))},'a2_enrichment_status':r.get('a2EnrichmentStatus'),'a2_enrichment_version':r.get('a2EnrichmentVersion'),'a2_enrichment_run_id':r.get('a2EnrichmentRunId'),'a2_processing_started_at':r.get('a2ProcessingStartedAt'),'linked_people':[normalise_twenty_person(x) for x in (r.get('people') or []) if isinstance(x,dict)],'snapshot_updated_at':r.get('updatedAt')}
@@ -170,13 +170,13 @@ def normalise_fullenrich_person(profile:dict[str,Any])->dict[str,Any]:
  social=nested(profile,'social_profiles','professional_network')
  return {'provider_person_id':clean(profile.get('id')),'full_name':clean(profile.get('full_name')),'first_name':clean(profile.get('first_name')),'last_name':clean(profile.get('last_name')),'exact_current_role':clean(employment.get('title')),'current_role_description':clean(employment.get('description')),'current_employment_is_current':employment.get('is_current'),'organisation':{'provider_company_id':clean(company.get('id')),'name':clean(company.get('name')),'domain':clean(company.get('domain')),'professional_network_url':clean(nested(company,'social_profiles','professional_network','url'))},'location':{k:clean(location.get(k)) for k in ('city','region','country','country_code') if clean(location.get(k))},'professional_network_url':clean(social.get('url')) if isinstance(social,dict) else None}
 def select_work_email(contact:dict[str,Any])->dict[str,Any]|None:
- accepted={'DELIVERABLE','HIGH_PROBABILITY','CATCH_ALL','CATCH_All'}
  values=[]
  if isinstance(contact.get('most_probable_work_email'),dict):values.append(contact['most_probable_work_email'])
  values.extend(x for x in (contact.get('work_emails') or []) if isinstance(x,dict))
  for x in values:
   email,status=clean(x.get('email')),clean(x.get('status'))
-  if email and status in accepted:return {'value':email.casefold(),'status':'CATCH_ALL' if status=='CATCH_All' else status}
+  if email and re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+",email):
+   return {'value':email.casefold(),'status':status or 'unknown','provider_status':status,'status_source':'fullenrich' if status else 'a2_missing_provider_status_fallback','source':'fullenrich_contact_enrichment'}
  return None
 def select_mobile(contact:dict[str,Any])->dict[str,Any]|None:
  values=[]

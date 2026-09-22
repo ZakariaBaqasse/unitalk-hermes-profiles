@@ -1,0 +1,149 @@
+{
+ "run_id": "switch-willo-stables-20260922",
+ "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+ "enrichment_version": "0.1.0",
+ "company_merge": {
+  "baseline_sha256": "fd8b068303c22f784f8c0d1d6db79fed17da9d3fbcf851b4be4e6da6447e9d58",
+  "baseline": {
+   "email": {
+    "primaryEmail": "camp@switchwillo.com",
+    "additionalEmails": [
+     "lessons@switchwillo.com",
+     "boarding@switchwillo.com"
+    ]
+   },
+   "phone": {
+    "primaryPhoneNumber": "5126955269",
+    "primaryPhoneCountryCode": "US",
+    "primaryPhoneCallingCode": "+1",
+    "additionalPhones": [
+     {
+      "number": "5125655983",
+      "callingCode": "+1",
+      "countryCode": "US"
+     },
+     {
+      "number": "7609081301",
+      "callingCode": "+1",
+      "countryCode": "US"
+     }
+    ]
+   },
+   "linkedinLink": {
+    "primaryLinkLabel": "",
+    "primaryLinkUrl": "",
+    "secondaryLinks": []
+   },
+   "facebook": {
+    "primaryLinkLabel": "Facebook",
+    "primaryLinkUrl": "https://facebook.com/switchwillo",
+    "secondaryLinks": []
+   },
+   "instagram": {
+    "primaryLinkLabel": "Instagram",
+    "primaryLinkUrl": "https://instagram.com/switchwillo",
+    "secondaryLinks": [
+     {
+      "url": "https://instagram.com/campswitchwillo",
+      "label": "Instagram"
+     }
+    ]
+   },
+   "youtube": {
+    "primaryLinkLabel": "",
+    "primaryLinkUrl": "",
+    "secondaryLinks": []
+   },
+   "tiktok": {
+    "primaryLinkLabel": "",
+    "primaryLinkUrl": "",
+    "secondaryLinks": []
+   },
+   "xTwitter": {
+    "primaryLinkLabel": "",
+    "primaryLinkUrl": "",
+    "secondaryLinks": []
+   }
+  },
+  "company_field_updates": {
+   "email": {
+    "primaryEmail": "camp@switchwillo.com",
+    "additionalEmails": [
+     "lessons@switchwillo.com",
+     "boarding@switchwillo.com"
+    ]
+   },
+   "phone": {
+    "primaryPhoneNumber": "5126955269",
+    "primaryPhoneCountryCode": "US",
+    "primaryPhoneCallingCode": "+1",
+    "additionalPhones": [
+     {
+      "number": "5125655983",
+      "countryCode": "US",
+      "callingCode": "+1"
+     },
+     {
+      "number": "7609081301",
+      "countryCode": "US",
+      "callingCode": "+1"
+     }
+    ]
+   },
+   "facebook": {
+    "primaryLinkLabel": "Facebook",
+    "primaryLinkUrl": "https://facebook.com/switchwillo",
+    "secondaryLinks": []
+   },
+   "instagram": {
+    "primaryLinkLabel": "Instagram",
+    "primaryLinkUrl": "https://instagram.com/switchwillo",
+    "secondaryLinks": [
+     {
+      "url": "https://instagram.com/campswitchwillo",
+      "label": "Instagram"
+     }
+    ]
+   }
+  }
+ },
+ "resolved_people": [
+  {
+   "source_kind": "new",
+   "selection_stage": "website",
+   "website_person_id": "website-person-9aeeda74bf3e832a",
+   "provider_person_id": null,
+   "full_name": "Phoebe Johnson",
+   "first_name": "Phoebe",
+   "last_name": "Johnson",
+   "exact_current_role": "FOUNDER, OWNER & TRAINER",
+   "statuses": {
+    "identity": "VERIFIED",
+    "role": "CURRENT_AT_COMPANY",
+    "priority": "PRIMARY",
+    "company_match": "CONFIRMED",
+    "enrichment": "PENDING"
+   },
+   "field_decisions": {}
+  },
+  {
+   "source_kind": "new",
+   "selection_stage": "website",
+   "website_person_id": "website-person-c22d6d20ca61e218",
+   "provider_person_id": null,
+   "full_name": "Glenn Johnson",
+   "first_name": "Glenn",
+   "last_name": "Johnson",
+   "exact_current_role": "OWNER & TRAINER",
+   "statuses": {
+    "identity": "VERIFIED",
+    "role": "CURRENT_AT_COMPANY",
+    "priority": "PRIMARY",
+    "company_match": "CONFIRMED",
+    "enrichment": "PENDING"
+   },
+   "field_decisions": {}
+  }
+ ],
+ "company_final_status": "PARTIALLY_ENRICHED"
+}

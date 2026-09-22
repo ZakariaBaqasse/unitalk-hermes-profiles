@@ -1,7 +1,7 @@
 {
   "schema_id": "a2-official-site-observations",
   "schema_version": "0.1.0",
-  "created_at": "2026-09-18T17:40:56Z",
+  "created_at": "2026-09-21T16:42:32Z",
   "status": "observed",
   "run_id": "step11-fixture-run",
   "company_id": "company-fixture-001",
@@ -11,7 +11,7 @@
   },
   "official_url": "https://www.example.com/",
   "source_id": "prospect_official_website",
-  "source_fetch_sha256": "0c2ba9c5b7a0d350975581fe612d003464ad5d2e714024760891cac1fb90a3cf",
+  "source_fetch_sha256": "c87994954a6a21c73a9da11f9b40d3a32cc7c464c3a294f7beef4dc24d2b509d",
   "source_pages": [
     {
       "page_index": 1,
@@ -357,5 +357,5 @@
   "external_calls": 0,
   "external_actions": 0,
   "errors": [],
-  "artifact_sha256": "2aed4ed693b415bf93be71e6e27b131dd8ccfdd232bb5c1ceaccdb9eee3c5275"
+  "artifact_sha256": "96048db3db83df4d7d844c56f4d8b8b10acfe04e5fe7c7fc6d5f02d8de8a0e04"
 }

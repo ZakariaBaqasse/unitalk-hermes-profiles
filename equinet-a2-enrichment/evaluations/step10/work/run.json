@@ -2,8 +2,8 @@
   "schema_id": "a2-enrichment-run-ledger",
   "schema_version": "0.1.0",
   "run_id": "STEP10-SYN-001",
-  "created_at": "2026-09-18T17:41:02Z",
-  "updated_at": "2026-09-18T17:41:04Z",
+  "created_at": "2026-09-21T16:42:38Z",
+  "updated_at": "2026-09-21T16:42:40Z",
   "stage": "write_plan_validated",
   "company_ids": [
     "11111111-1111-4111-8111-111111111111"
@@ -11,16 +11,16 @@
   "artifacts": [
     {
       "path": "/opt/data/profiles/equinet-a2-enrichment/evaluations/step10/work/write-plan.json",
-      "sha256": "16c6c018a30eaadcb44812f42d316f375c771fe1660c839bf30395bef0e01f21"
+      "sha256": "8554bf9cec2389737206c5ea5a966f8bbf31d0d0c977dca79c39aff649a132dd"
     }
   ],
   "audit": [
     {
-      "at": "2026-09-18T17:41:04Z",
+      "at": "2026-09-21T16:42:40Z",
       "from": "created",
       "to": "write_plan_validated"
     }
   ],
   "external_actions": 0,
-  "ledger_sha256": "33504e5b4d7148f9573ddebc036541bb80a766572611f22cc10a9f07c08889a5"
+  "ledger_sha256": "e5b7399fb0de731c1f661882b9acab00faed11f6dfc3a61baaf6c996c45da42b"
 }

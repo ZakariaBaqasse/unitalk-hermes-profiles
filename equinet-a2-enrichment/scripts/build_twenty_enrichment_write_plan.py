@@ -31,6 +31,23 @@ def allowed_value(person,key):
  value=person.get(key)
  if isinstance(value,dict):return value.get('value')
  return value
+def provider_work_email(person):
+ value=person.get('work_email')
+ if isinstance(value,dict) and value.get('value'):
+  return value
+ for item in person.get('merged_work_emails') or []:
+  if isinstance(item,dict) and item.get('value') and (item.get('source')=='fullenrich_contact_enrichment' or item.get('provider_status') is not None):return item
+ return None
+def provider_email_status(person):
+ email=provider_work_email(person)
+ candidates=[person.get('fullenrich_email_status'),person.get('work_email_status'),person.get('business_email_status')]
+ if isinstance(email,dict):candidates.extend([email.get('provider_status'),email.get('status')])
+ for value in candidates:
+  if isinstance(value,str) and value.strip():
+   status=value.strip()
+   if len(status)>100 or any(ch in status for ch in '\r\n\x00'):raise ValueError('FullEnrich email status must be bounded plain text')
+   return status
+ return 'unknown' if email else None
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('proposal',type=Path);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args();req=load_json(a.proposal);errors=[];ops=[];expected_people=[];cid=req.get('company_id');run_id=req.get('run_id');expected_company={}
  merge=req.get('company_merge') or {}
@@ -47,6 +64,9 @@ def main():
   if any(x not in BUSINESS_ACTIONS for x in decisions.values()):errors.append(f'person[{index}] has invalid field decision');continue
   if p.get('personal_email_candidate') and decisions.get('personal_email_candidate') in {'add','update_a2_owned'}:errors.append(f'person[{index}] cannot auto-write personal email')
   statuses=p.get('statuses') or {}
+  try:provider_email=provider_work_email(p);email_status=provider_email_status(p)
+  except ValueError as exc:errors.append(f'person[{index}] {exc}');continue
+  if provider_email and not email_status:errors.append(f'person[{index}] FullEnrich work email requires its provider-returned status');continue
   if statuses.get('role') not in ROLE_RELATIONSHIPS:errors.append(f'person[{index}] has invalid role relationship status');continue
   if statuses.get('role')=='CURRENT_AT_COMPANY' and statuses.get('company_match')!='CONFIRMED':errors.append(f'person[{index}] CURRENT_AT_COMPANY requires CONFIRMED company match');continue
   if statuses.get('role')=='NOT_CURRENT_AT_COMPANY' and statuses.get('company_match')!='MISMATCH':errors.append(f'person[{index}] NOT_CURRENT_AT_COMPANY requires MISMATCH company match');continue
@@ -65,6 +85,7 @@ def main():
    if allowed_value(p,'exact_current_role'):fields['jobTitle']=allowed_value(p,'exact_current_role')
    if p.get('merged_work_emails'):fields['emails']=composite_emails(p.get('merged_work_emails'))
    elif allowed_value(p,'work_email'):fields['emails']=composite_email(allowed_value(p,'work_email'))
+   if provider_email and email_status:fields['emailStatus']=email_status
    if p.get('merged_phones'):fields['phones']=composite_phones(p.get('merged_phones'))
    elif allowed_value(p,'mobile_phone'):fields['phones']=composite_phone(allowed_value(p,'mobile_phone'),(p.get('mobile_phone') or {}).get('region') if isinstance(p.get('mobile_phone'),dict) else None)
    if allowed_value(p,'professional_network_url'):fields['linkedinLink']=composite_link(allowed_value(p,'professional_network_url'))
@@ -80,6 +101,9 @@ def main():
     if key=='work_email' and p.get('merged_work_emails'):continue
     if key=='mobile_phone' and p.get('merged_phones'):continue
     if decisions.get(key) in {'add','update_a2_owned'} and allowed_value(p,key):fields[target]=convert(allowed_value(p,key))
+   if provider_email:
+    if 'emails' not in fields:errors.append(f'person[{index}] FullEnrich work email must be retained in Twenty');continue
+    fields['emailStatus']=email_status
    ops.append({'operation_id':f'update-person-{index}','operation_type':'update_person','twenty_person_id':pid,'fields':fields});expected_people.append({'twenty_person_id':pid,'fields':fields})
  final=req.get('company_final_status')
  if final not in {'ENRICHED','PARTIALLY_ENRICHED','COMPLETED_NO_TARGET','RETRYABLE_ERROR','BLOCKED'}:errors.append('invalid company_final_status')

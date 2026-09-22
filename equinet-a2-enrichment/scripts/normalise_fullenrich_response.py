@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -57,19 +58,16 @@ def minimise_person(profile: dict[str, Any]) -> dict[str, Any]:
 
 
 def select_work_email(contact_info: dict[str, Any]) -> tuple[str | None, str | None]:
+    values = []
     best = contact_info.get("most_probable_work_email")
     if isinstance(best, dict):
-        email = clean_string(best.get("email"))
-        status = clean_string(best.get("status"))
-        if email and status in ACCEPTED_EMAIL_STATUSES and status != "INVALID":
-            return email.casefold(), status
-    for item in contact_info.get("work_emails") or []:
-        if not isinstance(item, dict):
-            continue
+        values.append(best)
+    values.extend(item for item in (contact_info.get("work_emails") or []) if isinstance(item, dict))
+    for item in values:
         email = clean_string(item.get("email"))
         status = clean_string(item.get("status"))
-        if email and status in ACCEPTED_EMAIL_STATUSES and status != "INVALID":
-            return email.casefold(), status
+        if email and re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email):
+            return email.casefold(), status or "unknown"
     return None, None
 
 

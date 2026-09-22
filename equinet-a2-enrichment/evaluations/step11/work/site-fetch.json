@@ -1,7 +1,7 @@
 {
   "schema_id": "a2-firecrawl-official-site-fetch",
   "schema_version": "0.1.0",
-  "created_at": "2026-09-18T17:40:56Z",
+  "created_at": "2026-09-21T16:42:32Z",
   "status": "succeeded",
   "run_id": "step11-fixture-run",
   "company_id": "company-fixture-001",
@@ -11,7 +11,7 @@
   },
   "official_url": "https://www.example.com/",
   "official_host": "www.example.com",
-  "plan_sha256": "4bab5288d07dfcbf4182b2e2d5c82262b4af596e45f2840d23f272799271329e",
+  "plan_sha256": "ce54308512b12e4e9c173bf6de28f4a495b1189b1d44b7565360f2b2eb50be7b",
   "page_limit": 5,
   "discovered_links": [
     {
@@ -109,8 +109,8 @@
       "method": "POST",
       "endpoint": "/v2/scrape",
       "http_status": 200,
-      "requested_at": "2026-09-18T17:40:56Z",
-      "received_at": "2026-09-18T17:40:56Z",
+      "requested_at": "2026-09-21T16:42:32Z",
+      "received_at": "2026-09-21T16:42:32Z",
       "request_sha256": "155ff9a6730a3efdec9c2d907229c2114c3fd82a1c6804bc94d3e06ffb4df83d",
       "response_sha256": "7a909fa66b9a8939b669ff5586a8a70ea7af9614ddf3f8c2ea91f468b2d8fefe",
       "external": false
@@ -119,8 +119,8 @@
       "method": "POST",
       "endpoint": "/v2/batch/scrape",
       "http_status": 200,
-      "requested_at": "2026-09-18T17:40:56Z",
-      "received_at": "2026-09-18T17:40:56Z",
+      "requested_at": "2026-09-21T16:42:32Z",
+      "received_at": "2026-09-21T16:42:32Z",
       "request_sha256": "c553fc31c7f611c395d34f24e71ed57b6545bdd67712b144cee1d776bd76b872",
       "response_sha256": "37be07e106d2589723b0a84b5ebd959de715819326115862bf9e7cfa7db09fba",
       "external": false
@@ -129,8 +129,8 @@
       "method": "GET",
       "endpoint": "/v2/batch/scrape/fixture-batch-001",
       "http_status": 200,
-      "requested_at": "2026-09-18T17:40:56Z",
-      "received_at": "2026-09-18T17:40:56Z",
+      "requested_at": "2026-09-21T16:42:32Z",
+      "received_at": "2026-09-21T16:42:32Z",
       "request_sha256": null,
       "response_sha256": "16d7e8a3a084b6a25dcc7b07dfb443d3a38c61039efc3508b2042fb05e823378",
       "external": false
@@ -145,5 +145,5 @@
   "credit_policy_calls": 0,
   "llm_or_json_extraction": false,
   "errors": [],
-  "artifact_sha256": "0c2ba9c5b7a0d350975581fe612d003464ad5d2e714024760891cac1fb90a3cf"
+  "artifact_sha256": "c87994954a6a21c73a9da11f9b40d3a32cc7c464c3a294f7beef4dc24d2b509d"
 }

@@ -1,7 +1,8 @@
 {
   "status": "valid",
-  "mapping_version": "0.1.2",
+  "mapping_version": "0.1.3",
   "company_object_id": "89cb0885-61c0-4d39-989f-b7f0cf248dc9",
+  "person_object_id": "4220f12d-d3ec-4268-ad2f-64c4453859fa",
   "observed": {
     "domainName": {
       "id": "e24305cb-0840-4f75-affa-8b224e0cf803",
@@ -46,6 +47,11 @@
     "xTwitter": {
       "id": "c06e7c02-0257-4e99-8aa6-6e58d47c33d5",
       "type": "LINKS",
+      "isUnique": false
+    },
+    "person.emailStatus": {
+      "id": "ea8ba52d-a58b-4fa9-af43-7ca62e04ce31",
+      "type": "TEXT",
       "isUnique": false
     }
   },

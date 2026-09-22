@@ -1,0 +1,14 @@
+{
+  "decision_id": "A2-FULLENRICH-MISSING-EMAIL-STATUS-20260921",
+  "recorded_at": "2026-09-21T16:14:13Z",
+  "profile": "equinet-a2-enrichment",
+  "status": "CONFIRMED_BY_EQUINET_USER",
+  "decision": "When FullEnrich returns a syntactically valid work email without an email status, retain the email and write literal unknown to Twenty Person emailStatus.",
+  "rules": [
+    "The literal value is lowercase unknown.",
+    "The absence of a provider status is preserved through status_source=a2_missing_provider_status_fallback.",
+    "unknown does not by itself satisfy verified named-email contactability or authorise outreach.",
+    "Email and emailStatus are written and reconciled together."
+  ],
+  "external_writes_authorized": false
+}

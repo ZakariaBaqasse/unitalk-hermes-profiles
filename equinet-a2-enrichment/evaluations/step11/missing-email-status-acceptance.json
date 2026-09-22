@@ -1,0 +1,23 @@
+{
+  "suite": "missing_fullenrich_email_status_acceptance",
+  "created_at": "2026-09-21T16:43:55Z",
+  "status": "pass",
+  "normalised_work_email": {
+    "value": "missing-status@example.test",
+    "status": "unknown",
+    "provider_status": null,
+    "status_source": "a2_missing_provider_status_fallback",
+    "source": "fullenrich_contact_enrichment"
+  },
+  "planned_person_fields": {
+    "emails": {
+      "primaryEmail": "missing-status@example.test",
+      "additionalEmails": []
+    },
+    "emailStatus": "unknown"
+  },
+  "company_status_operation_last": true,
+  "external_calls": 0,
+  "external_writes": 0,
+  "errors": []
+}

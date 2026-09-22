@@ -1,7 +1,7 @@
 {
   "schema_id": "a2-official-site-plan",
   "schema_version": "0.1.0",
-  "created_at": "2026-09-18T17:40:56Z",
+  "created_at": "2026-09-21T16:42:31Z",
   "status": "ready",
   "run_id": "step11-fixture-run",
   "company_id": "company-fixture-001",
@@ -45,5 +45,5 @@
   "external_calls": 0,
   "external_actions": 0,
   "errors": [],
-  "artifact_sha256": "4bab5288d07dfcbf4182b2e2d5c82262b4af596e45f2840d23f272799271329e"
+  "artifact_sha256": "ce54308512b12e4e9c173bf6de28f4a495b1189b1d44b7565360f2b2eb50be7b"
 }

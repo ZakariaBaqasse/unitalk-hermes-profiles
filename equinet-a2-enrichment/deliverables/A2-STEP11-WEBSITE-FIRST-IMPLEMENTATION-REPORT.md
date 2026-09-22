@@ -25,6 +25,7 @@ This release candidate adds bounded Firecrawl official-site research before Full
 
 - bounded Firecrawl official-site plan, fetch, extraction, decision-packet and decision-validation scripts;
 - cleaned semantic Person evidence blocks, prose-aware shared-name extraction and exact-span LLM proposal validation;
+- FullEnrich work-email retention with exact returned status—or literal lowercase `unknown` when omitted—and atomic Twenty Person `emails` + `emailStatus` planning and read-back reconciliation;
 - same-domain/SSRF/robots/page-limit controls;
 - official-Facebook Apify request, async polling and result-validation scripts;
 - Company multi-value email/phone/social merge planning;
@@ -35,10 +36,10 @@ This release candidate adds bounded Firecrawl official-site research before Full
 
 ## Validation results
 
-- focused Step 11 unit tests: **67/67 passed**;
+- focused Step 11 unit tests: **71/71 passed**;
 - Firecrawl and Person-extraction tests: **29/29 passed**;
 - Apify Facebook tests: **12/12 passed**;
-- Company merge/write tests: **11/11 passed**;
+- Company merge/write tests: **15/15 passed**;
 - website People tests: **4/4 passed**;
 - source-preflight tests: **5/5 passed**;
 - contract tests: **6/6 passed**;
@@ -46,6 +47,7 @@ This release candidate adds bounded Firecrawl official-site research before Full
 - Quillin real-page regression: **passed** with Ralph Quillin, Donna Quillin, Rob Windels and Vince Grupposo recovered and zero product-name false positives;
 - consolidated Step 11 groups, including Step 10 regressions: **13/13 passed**;
 - live Twenty Company contact/social metadata validation: **passed, zero writes**.
+- live Twenty Person `emailStatus` metadata validation: **TEXT field verified, zero writes**.
 
 ## Live metadata validation
 

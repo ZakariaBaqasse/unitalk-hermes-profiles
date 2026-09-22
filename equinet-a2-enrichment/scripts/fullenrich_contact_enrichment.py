@@ -3,7 +3,7 @@
 from __future__ import annotations
 import argparse,json,time,urllib.parse
 from pathlib import Path
-from a2_twenty_fullenrich_common import domain_name,IntegrationError,fullenrich_env,fullenrich_preflight,http_json,load_json,make_envelope,normalise_fullenrich_person,select_mobile,select_work_email,sha256_json,split_name,write_json_atomic
+from a2_twenty_fullenrich_common import domain_name,IntegrationError,fullenrich_env,fullenrich_preflight,http_json,load_json,make_envelope,normalise_fullenrich_person,select_mobile,select_work_email,sha256_json,split_name,utc_now,write_json_atomic
 from a2_fullenrich_budget import estimate_credits,reserve_credits,settle_credits
 TERMINAL={'CANCELED','CREDITS_INSUFFICIENT','FINISHED'};INDETERMINATE={'RATE_LIMIT','UNKNOWN'}
 def build_contact(x):
@@ -24,8 +24,16 @@ def minimise(raw):
   if not isinstance(row,dict):continue
   contact=row.get('contact_info') if isinstance(row.get('contact_info'),dict) else {};profile=row.get('profile') if isinstance(row.get('profile'),dict) else {};inp=row.get('input') if isinstance(row.get('input'),dict) else {};custom=row.get('custom') if isinstance(row.get('custom'),dict) else {}
   personal=contact.get('most_probable_personal_email') or ((contact.get('personal_emails') or [None])[0])
-  out.append({'request_id':custom.get('request_id'),'company_id':custom.get('company_id'),'provider_person_id':custom.get('provider_person_id') or profile.get('id'),'input':{'full_name':inp.get('full_name') or ' '.join(filter(None,[inp.get('first_name'),inp.get('last_name')])),'company_name':inp.get('company_name'),'company_domain':inp.get('company_domain'),'professional_network_url':inp.get('professional_network_url')},'profile':normalise_fullenrich_person(profile) if profile else None,'work_email':select_work_email(contact),'mobile_phone':select_mobile(contact),'personal_email_candidate':personal if isinstance(personal,dict) else None,'personal_email_requested':False})
+  work_email=select_work_email(contact)
+  out.append({'request_id':custom.get('request_id'),'company_id':custom.get('company_id'),'provider_person_id':custom.get('provider_person_id') or profile.get('id'),'input':{'full_name':inp.get('full_name') or ' '.join(filter(None,[inp.get('first_name'),inp.get('last_name')])),'company_name':inp.get('company_name'),'company_domain':inp.get('company_domain'),'professional_network_url':inp.get('professional_network_url')},'profile':normalise_fullenrich_person(profile) if profile else None,'work_email':work_email,'work_email_status':work_email.get('status') if work_email else None,'work_email_status_source':work_email.get('status_source') if work_email else None,'work_email_retention':'retain_with_status' if work_email else 'not_returned','work_email_qualifies_as_verified_channel':bool(work_email and work_email.get('provider_status') in {'DELIVERABLE','HIGH_PROBABILITY'}),'mobile_phone':select_mobile(contact),'personal_email_candidate':personal if isinstance(personal,dict) else None,'personal_email_requested':False})
  return out
+def _state_path(output:Path)->Path:
+ return output.with_suffix('.provider-state.json')
+def _load_state(output:Path)->dict:
+ p=_state_path(output)
+ return load_json(p) if p.is_file() else {}
+def _save_state(output:Path,state:dict)->None:
+ write_json_atomic(_state_path(output),state)
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('request',type=Path);ap.add_argument('--fixture',type=Path);ap.add_argument('--poll-seconds',type=int,default=300);ap.add_argument('--max-polls',type=int,default=10);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args();req=load_json(a.request);people=req.get('selected_people') or [];run_id=req.get('run_id','unknown')
  if not people or len(people)>100:raise SystemExit('selected_people must contain 1..100 items')
@@ -37,10 +45,21 @@ def main():
   if a.fixture:raw=load_json(a.fixture);enrichment_id=raw.get('id','fixture');external_calls=0;preflight={'fixture':True}
   else:
    base,key=fullenrich_env();preflight=fullenrich_preflight(base,key,estimated);reservation=reserve_credits(run_id=run_id,action='contact_enrichment',maximum_credits=estimated,request=req)
-   if reservation.get('reused'):raise IntegrationError('An existing credit reservation/result exists for this exact run and request; reuse the prior result artifact instead of repeating a paid call',code='idempotent_reuse_required')
-   start,receipt=http_json('POST',base+'/contact/enrich/bulk?'+urllib.parse.urlencode({'silentFail':'true'}),token=key,body=payload,retries=1);enrichment_id=start.get('enrichment_id')
-   if not enrichment_id:raise ValueError('FullEnrich start response missing enrichment_id')
-   raw=None;external_calls=1
+   state=_load_state(a.output)
+   if state and state.get('run_id')==run_id and state.get('request_sha256')==reservation.get('request_sha256'):
+    enrichment_id=state.get('enrichment_id');start_receipt=state.get('start_receipt')
+   else:
+    enrichment_id=None;start_receipt=None
+   if reservation.get('reused') and not enrichment_id:
+    raise IntegrationError('A credit reservation exists for this exact run and request, but no provider enrichment_id was persisted. Recover the result from the FullEnrich dashboard (enrichment name "A2 '+run_id+'") or reuse a prior result artifact; the script will not start a duplicate paid call.',code='idempotent_reuse_required')
+   if enrichment_id:
+    external_calls=0
+   else:
+    start,receipt=http_json('POST',base+'/contact/enrich/bulk?'+urllib.parse.urlencode({'silentFail':'true'}),token=key,body=payload,retries=1);enrichment_id=start.get('enrichment_id')
+    if not enrichment_id:raise ValueError('FullEnrich start response missing enrichment_id')
+    start_receipt=receipt;_save_state(a.output,{'enrichment_id':enrichment_id,'run_id':run_id,'action':'contact_enrichment','start_receipt':start_receipt,'payload_name':payload['name'],'reservation_id':reservation.get('reservation_id'),'request_sha256':reservation.get('request_sha256'),'saved_at':utc_now()})
+    external_calls=1
+   raw=None
    for poll in range(1,a.max_polls+1):
     try:
      candidate,pr=http_json('GET',base+f'/contact/enrich/bulk/{enrichment_id}',token=key,retries=1);external_calls+=1;polls.append({'poll':poll,'http_status':pr['http_status'],'status':candidate.get('status')})

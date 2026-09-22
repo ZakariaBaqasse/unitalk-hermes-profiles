@@ -1,0 +1,114 @@
+{
+  "schema_id": "a2-enrichment-run-ledger",
+  "schema_version": "0.1.0",
+  "run_id": "switch-willo-stables-20260922",
+  "created_at": "2026-09-22T10:16:09Z",
+  "updated_at": "2026-09-22T11:42:44Z",
+  "stage": "terminal",
+  "company_ids": [],
+  "artifacts": [
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/companies.json",
+      "sha256": "d6db13221cd77e49df2533dbde9046422c0e62ccaa317927796add312844f0cb"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/companies.json",
+      "sha256": "d6db13221cd77e49df2533dbde9046422c0e62ccaa317927796add312844f0cb"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/site-plan.json",
+      "sha256": "dfd1837ded9f9c7531168c551c2b3c0a57f35538f3fa9cd65699baceacc53924"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/site-fetch.json",
+      "sha256": "51606c111231a9f3268519e6a463a684f45735ab99b3ac36eaa4af4ea2a715a3"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/website-packet.json",
+      "sha256": "f651c3f971b99b00ec4318c0e12313e79eb0957da900d3f79ae7cbcbfc673d83"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/website-validation.json",
+      "sha256": "f0bd346c2dc2066a32012e0d8b5d1714fe93b7c1a87e9a8605b79e9045b18b37"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/selected-people.json",
+      "sha256": "b5c3f38c1d9814b2535eb7b8ae279fde28af2a8926996166abb801b66eec96e8"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/write-plan.json",
+      "sha256": "93939ce840c9d8dc03d19d426b18adc9a4e0585e0f8885910923227b39b1becc"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/write-result.json",
+      "sha256": "4087cff8cfb7cd133de6be32d603be92abba1de5b2fd400e37fa381d90f09924"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/write-result.json",
+      "sha256": "4087cff8cfb7cd133de6be32d603be92abba1de5b2fd400e37fa381d90f09924"
+    },
+    {
+      "path": "evaluations/step10/runs/switch-willo-stables-20260922/write-result.json",
+      "sha256": "4087cff8cfb7cd133de6be32d603be92abba1de5b2fd400e37fa381d90f09924"
+    }
+  ],
+  "audit": [
+    {
+      "at": "2026-09-22T11:17:01Z",
+      "from": "created",
+      "to": "pulled"
+    },
+    {
+      "at": "2026-09-22T11:17:01Z",
+      "from": "pulled",
+      "to": "claimed"
+    },
+    {
+      "at": "2026-09-22T11:17:01Z",
+      "from": "claimed",
+      "to": "website_planned"
+    },
+    {
+      "at": "2026-09-22T11:17:02Z",
+      "from": "website_planned",
+      "to": "website_fetched"
+    },
+    {
+      "at": "2026-09-22T11:17:02Z",
+      "from": "website_fetched",
+      "to": "website_person_observations_validated"
+    },
+    {
+      "at": "2026-09-22T11:17:02Z",
+      "from": "website_person_observations_validated",
+      "to": "website_decisions_validated"
+    },
+    {
+      "at": "2026-09-22T11:17:02Z",
+      "from": "website_decisions_validated",
+      "to": "website_people_selected"
+    },
+    {
+      "at": "2026-09-22T11:17:02Z",
+      "from": "website_people_selected",
+      "to": "write_plan_validated"
+    },
+    {
+      "at": "2026-09-22T11:42:43Z",
+      "from": "write_plan_validated",
+      "to": "twenty_written"
+    },
+    {
+      "at": "2026-09-22T11:42:44Z",
+      "from": "twenty_written",
+      "to": "reconciled"
+    },
+    {
+      "at": "2026-09-22T11:42:44Z",
+      "from": "reconciled",
+      "to": "terminal"
+    }
+  ],
+  "external_actions": 0,
+  "ledger_sha256": "7032e76815ed898e082c3f7f052f35eea2895830a15f53aff774b207fdb3f754"
+}

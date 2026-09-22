@@ -1,0 +1,392 @@
+{
+  "policy_id": "equinet-a2-protected-fields-and-conflicts",
+  "version": "0.3.4",
+  "status": "implementation_candidate_multi_value_company_merge",
+  "profile": "equinet-a2-enrichment",
+  "unitalk_approval": {
+    "approver": "S\u00e9verine, Unitalk Operations",
+    "approved_at": "2026-08-30T17:05:11Z",
+    "scope": "Dependency refresh and owner_horse_count authority/write boundary"
+  },
+  "dependencies": [
+    {
+      "path": "foundations/contracts/business/a2-business-field-catalogue-0.3.1.json",
+      "sha256": "33db1fd42f15ac00d58afdeb63e39de5f135dbc74750b0f02de1b571961ffbed"
+    },
+    {
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.3.4.json",
+      "sha256": "e3ff5461a3cce252b405bed7769ecf337dca753a483b248486433762c762119f"
+    },
+    {
+      "path": "/opt/data/profiles/equinet/attachments/Property_Definitions (1).csv",
+      "sha256": "3303992627bad953e28913eaf3b19cdc998fc0c6f3f6f29ef455d788e8c9b952"
+    }
+  ],
+  "global_rules": {
+    "current_hubspot_write_authorized": false,
+    "existing_manual_value_preserved": true,
+    "protected_field_never_overwritten_automatically": true,
+    "null_or_missing_connector_reference_is_not_a_negative_check_result": true,
+    "workflow_dependency_verification_required_before_write": true,
+    "list_membership_impact_verification_required_before_write": true,
+    "idempotency_receipt_and_readback_required_for_future_write": true,
+    "a1_snapshot_never_mutated": true,
+    "a2_numeric_score_change_prohibited": true
+  },
+  "protection_classes": {
+    "authoritative_control": {
+      "default_action": "read_only_preserve",
+      "exception_allowed": false
+    },
+    "system_read_only": {
+      "default_action": "read_only_preserve",
+      "exception_allowed": false
+    },
+    "owner_and_routing": {
+      "default_action": "preserve_or_needs_owner_review",
+      "exception_allowed": true
+    },
+    "manual_business_value": {
+      "default_action": "preserve_and_propose_with_review",
+      "exception_allowed": true
+    },
+    "a2_enrichment_candidate": {
+      "default_action": "propose_only",
+      "exception_allowed": true
+    },
+    "review_only_personal_data": {
+      "default_action": "hold_for_privacy_review",
+      "exception_allowed": true
+    },
+    "prohibited_personal_or_sensitive": {
+      "default_action": "reject_collection",
+      "exception_allowed": false
+    }
+  },
+  "hubspot_protected_fields": [
+    {
+      "object": "Contact",
+      "property": "do_not_contact",
+      "class": "authoritative_control",
+      "reason": "contact prohibition"
+    },
+    {
+      "object": "Company",
+      "property": "do_not_contact",
+      "class": "authoritative_control",
+      "reason": "company prohibition"
+    },
+    {
+      "object": "Contact",
+      "property": "gdpr_consent",
+      "class": "authoritative_control",
+      "reason": "consent"
+    },
+    {
+      "object": "Company",
+      "property": "gdpr_consent",
+      "class": "authoritative_control",
+      "reason": "consent"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_legal_basis",
+      "class": "authoritative_control",
+      "reason": "legal basis"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_marketable_status",
+      "class": "system_read_only",
+      "reason": "marketing-contact status"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_current_customer",
+      "class": "authoritative_control",
+      "reason": "customer status"
+    },
+    {
+      "object": "Company",
+      "property": "hs_current_customer",
+      "class": "authoritative_control",
+      "reason": "customer status"
+    },
+    {
+      "object": "Contact",
+      "property": "lifecyclestage",
+      "class": "authoritative_control",
+      "reason": "lifecycle"
+    },
+    {
+      "object": "Company",
+      "property": "lifecyclestage",
+      "class": "authoritative_control",
+      "reason": "lifecycle"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_lead_status",
+      "class": "authoritative_control",
+      "reason": "lead status"
+    },
+    {
+      "object": "Company",
+      "property": "hs_lead_status",
+      "class": "authoritative_control",
+      "reason": "lead status"
+    },
+    {
+      "object": "Contact",
+      "property": "hubspot_owner_id",
+      "class": "owner_and_routing",
+      "reason": "record owner"
+    },
+    {
+      "object": "Company",
+      "property": "hubspot_owner_id",
+      "class": "owner_and_routing",
+      "reason": "record owner"
+    },
+    {
+      "object": "Deal",
+      "property": "hubspot_owner_id",
+      "class": "owner_and_routing",
+      "reason": "deal owner"
+    },
+    {
+      "object": "Deal",
+      "property": "dealstage",
+      "class": "authoritative_control",
+      "reason": "deal state"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_sequences_is_enrolled",
+      "class": "system_read_only",
+      "reason": "sequence state"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_sequences_enrolled_count",
+      "class": "system_read_only",
+      "reason": "sequence state"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_latest_sequence_enrolled",
+      "class": "system_read_only",
+      "reason": "sequence state"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_latest_sequence_enrolled_date",
+      "class": "system_read_only",
+      "reason": "sequence state"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_latest_sequence_ended_date",
+      "class": "system_read_only",
+      "reason": "sequence state"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_contact_enrichment_opt_out",
+      "class": "system_read_only",
+      "reason": "enrichment opt-out"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_contact_enrichment_opt_out_timestamp",
+      "class": "system_read_only",
+      "reason": "enrichment opt-out timestamp"
+    },
+    {
+      "object": "Contact",
+      "property": "business_unit_optout_18640656",
+      "class": "system_read_only",
+      "reason": "Mustad USA email opt-out"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_email_optout_2431422236",
+      "class": "system_read_only",
+      "reason": "Customer Service Communication opt-out"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_email_optout_2585761664",
+      "class": "system_read_only",
+      "reason": "Marketing Information opt-out; duplicate label exists"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_email_optout_627076427",
+      "class": "system_read_only",
+      "reason": "Marketing Information opt-out; duplicate label exists"
+    },
+    {
+      "object": "Contact",
+      "property": "hs_email_optout_627076428",
+      "class": "system_read_only",
+      "reason": "One-to-One opt-out"
+    },
+    {
+      "object": "Contact",
+      "property": "contact_verified",
+      "class": "manual_business_value",
+      "reason": "semantics not yet aligned with A2 verification"
+    },
+    {
+      "object": "Contact",
+      "property": "data_quality",
+      "class": "manual_business_value",
+      "reason": "semantics not yet aligned with A2 quality"
+    },
+    {
+      "object": "Company",
+      "property": "data_quality",
+      "class": "manual_business_value",
+      "reason": "semantics not yet aligned with A2 quality"
+    },
+    {
+      "object": "Company",
+      "property": "mailing_verified",
+      "class": "manual_business_value",
+      "reason": "verification semantics require approval"
+    },
+    {
+      "object": "Contact",
+      "property": "owner_horse_count",
+      "class": "a2_enrichment_candidate",
+      "reason": "authoritative existing horse-count value; reviewed proposal permitted only when empty or through an approved field exception"
+    }
+  ],
+  "manual_value_rule": {
+    "applies_to": "any populated HubSpot field not proven system-generated",
+    "on_same_value": "no_change",
+    "on_empty_baseline_and_verified_proposal": "propose_add_for_human_review",
+    "on_different_value": "preserve_baseline_create_conflict_and_hold",
+    "silent_overwrite": false
+  },
+  "conflict_precedence": [
+    "authoritative_control_or_system_read_only",
+    "authorised_current_first_party_record",
+    "existing_manual_crm_value",
+    "current_explicit_official_business_website_fact",
+    "approved_official_registry_fact",
+    "approved_linkedin_profile_evidence",
+    "approved_email_provider_result",
+    "reused_directory_context",
+    "search_discovery_never_evidence"
+  ],
+  "field_level_exception_requirements": [
+    "field_key",
+    "current_value",
+    "proposed_value",
+    "evidence_ids",
+    "reason",
+    "approval_matrix_version",
+    "reviewer_id",
+    "reviewer_role",
+    "approved_at",
+    "approved_action",
+    "scope",
+    "expiry_or_single_use",
+    "workflow_dependency_status"
+  ],
+  "workflow_dependency_gate": {
+    "enabled_workflows_observed": 28,
+    "lists_observed": 32,
+    "exact_trigger_action_dependencies_verified": false,
+    "default_status": "workflow_dependency_unverified",
+    "write_action": "blocked"
+  },
+  "decision_matrix": [
+    {
+      "case": "same_value",
+      "action": "no_change",
+      "review": "not_required"
+    },
+    {
+      "case": "empty_unprotected_baseline_verified_proposal",
+      "action": "propose_add",
+      "review": "required"
+    },
+    {
+      "case": "different_manual_or_protected_baseline",
+      "action": "preserve_and_hold",
+      "review": "required"
+    },
+    {
+      "case": "authoritative_control_conflict",
+      "action": "preserve_authoritative_and_block",
+      "review": "required"
+    },
+    {
+      "case": "material_non_authoritative_conflict",
+      "action": "hold",
+      "review": "required"
+    },
+    {
+      "case": "unverified_or_low_confidence_proposal",
+      "action": "reject_proposal",
+      "review": "visible"
+    },
+    {
+      "case": "approved_exception_but_workflow_unverified",
+      "action": "approved_proposal_write_blocked",
+      "review": "recorded"
+    },
+    {
+      "case": "a1_score_related_evidence",
+      "action": "create_requalification_signal",
+      "review": "required"
+    }
+  ],
+  "open_confirmations": [
+    "Name the A2 business reviewer and backup.",
+    "Approve the action-level exception matrix.",
+    "Confirm which non-control HubSpot values are always treated as manually protected.",
+    "Verify exact workflow and list dependencies before any future mapped write.",
+    "Confirm owner and territory reassignment rules."
+  ],
+  "owner_horse_count_rule": {
+    "existing_populated_value": "preserve_as_authoritative",
+    "same_verified_value": "no_change",
+    "empty_baseline_verified_net_new_proposal": "propose_add_for_human_review",
+    "different_verified_proposal": "preserve_and_hold_for_human_review",
+    "write_requires_final_review": true,
+    "workflow_dependency_and_readback_required": true,
+    "horse_count_range": "ignored"
+  },
+  "fullenrich_contact_rules": {
+    "mobile_phone": "propose_only_preserve_existing_manual_value_and_require_review",
+    "business_email": "propose_only_preserve_existing_manual_value_and_require_review",
+    "personal_email": "retain_as_person.personal_email_candidate_with_human_review_no_automatic_crm_write_or_outreach",
+    "crm_write_authorized": false
+  },
+  "company_contact_merge_rule": {
+    "preserve_existing_primary": true,
+    "empty_primary_may_use_official_website": true,
+    "append_unique_website_values": true,
+    "append_unique_official_facebook_values": true,
+    "different_valid_values_are_multi_value_not_overwrite": true,
+    "generic_company_to_person": false,
+    "baseline_hash_and_readback_required": true
+  },
+  "decision_record": "foundations/decisions/A2-WEBSITE-FIRST-FIRECRAWL-FACEBOOK-20260918.json",
+  "supersedes": "0.3.3",
+  "person_field_rules": {
+    "emailStatus": {
+      "ownership": "a2_provider_evidence",
+      "write_with": "corresponding FullEnrich work email",
+      "preserve_exact_provider_status": true,
+      "do_not_clear_without_provider_email": true,
+      "read_back_required": true,
+      "does_not_override_email_contactability_assessment": true,
+      "missing_provider_status": "write_literal_unknown"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+  "decision_notes": "Website stage decisions for Switch Willo Stables (HORSE_OWNER). All 24 person evidence blocks reviewed; two owner People retained. Phoebe Johnson is observed as FOUNDER, OWNER & TRAINER on the official About/Team pages and as 'Phoebe & Glenn Johnson Facility Owners' on the Contact page — satisfies the Horse Owner target-role model as primary contact. Glenn Johnson is observed as OWNER & TRAINER on About/Team (homepage 'Head Trainer') — retained as the second selected contact because the official site documents shared facility ownership and operational responsibility (large multi-program stable: lessons, boarding, camp). The homepage 'Pheobe Johnson — Owner' is a misspelling duplicate of Phoebe Johnson and is not retained separately. CONTACTS: Company phone 512-695-5269 corroborates the existing Twenty primary exactly (no_change expected). Program emails camp@/lessons@/boarding@switchwillo.com and program phones 512-565-5983 / 760-908-1301 are generic Company program contacts — retained for Company composite append only; they never populate Person fields and do not satisfy named-contact contactability. ckw.sws@gmail.com (listed beside Cindi Wallace, Barn Manager) is a personal webmail address — REJECTED for canonical write; flagged as a personal-email candidate for human review only, consistent with the personal-data boundary. Image-URL artifacts extracted as phones (1784.../1778.../2026-07-17 etc.) are rejected as extraction noise. SOCIALS: official facebook.com/switchwillo, instagram.com/switchwillo and instagram.com/campswitchwillo retained for Company composite append; instagram.com/averyfletcherphotography is a third-party photographer credit, rejected. No website Person carries a professional email/phone, so both retained People proceed to FullEnrich Contact Enrichment; no FullEnrich Search is needed because website-verified owners were retained.",
+  "people": [
+    {
+      "observation_id": "website-person-9aeeda74bf3e832a",
+      "retain": true,
+      "name": "Phoebe Johnson",
+      "role": "FOUNDER, OWNER & TRAINER",
+      "role_priority": "PRIMARY",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "retention_reason": "Official-site verified Founder, Owner & Trainer (also 'Facility Owner' on Contact page). Primary selected named contact for the Horse Owner target-role model."
+    },
+    {
+      "observation_id": "website-person-c22d6d20ca61e218",
+      "retain": true,
+      "name": "Glenn Johnson",
+      "role": "Head Trainer",
+      "role_priority": "PRIMARY",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "retention_reason": "Official-site verified co-owner (About/Team list 'OWNER & TRAINER'; Contact page lists 'Phoebe & Glenn Johnson Facility Owners'). Second selected contact justified by documented shared facility ownership and shared operational responsibility at a large multi-program stable."
+    }
+  ],
+  "contacts": [
+    {"observation_id": "website-contact-0d1a23a9273120a2", "retain": true, "attribution": {"entity_type": "Company", "entity_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe"}},
+    {"observation_id": "website-contact-0e7223186fba3806", "retain": true, "attribution": {"entity_type": "Company", "entity_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe"}},
+    {"observation_id": "website-contact-10e1df0bc7ea709f", "retain": true, "attribution": {"entity_type": "Company", "entity_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe"}},
+    {"observation_id": "website-contact-172629a640aaf841", "retain": true, "attribution": {"entity_type": "Company", "entity_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe"}},
+    {"observation_id": "website-contact-f46a9fdcd8af9a1c", "retain": true, "attribution": {"entity_type": "Company", "entity_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe"}},
+    {"observation_id": "website-contact-f499dddb193c3f3a", "retain": true, "attribution": {"entity_type": "Company", "entity_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe"}},
+    {"observation_id": "website-contact-644669ace0782775", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-29be54fd6b877c01", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-35e6750d48bde34d", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-439e97c39d66dd8e", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-5dcf1a47a3e8899d", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-6c05007bb2db9072", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-764989982ed5aed7", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-7b19cc089f94a601", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-8eec644f5994586a", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-d27e853df9120b73", "retain": false, "attribution": null},
+    {"observation_id": "website-contact-ff1772d58aee80db", "retain": false, "attribution": null}
+  ],
+  "social_links": [
+    {"observation_id": "website-social-de9892282311a7e1", "retain": true},
+    {"observation_id": "website-social-4c60e4ed73670ba4", "retain": true},
+    {"observation_id": "website-social-f6118a745e2a4816", "retain": true},
+    {"observation_id": "website-social-b6bef146ac83fb57", "retain": false}
+  ]
+}

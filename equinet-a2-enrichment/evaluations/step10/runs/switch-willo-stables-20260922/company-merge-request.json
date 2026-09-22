@@ -1,0 +1,123 @@
+{
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+  "baseline": {
+    "email": {
+      "primaryEmail": "",
+      "additionalEmails": []
+    },
+    "phone": {
+      "primaryPhoneNumber": "5126955269",
+      "primaryPhoneCountryCode": "US",
+      "primaryPhoneCallingCode": "+1",
+      "additionalPhones": []
+    },
+    "linkedinLink": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "facebook": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "instagram": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "youtube": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "tiktok": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    },
+    "xTwitter": {
+      "primaryLinkLabel": "",
+      "primaryLinkUrl": "",
+      "secondaryLinks": []
+    }
+  },
+  "observations": [
+    {
+      "field": "phone",
+      "value": "512-695-5269",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/",
+      "evidence_refs": ["website-contact-0d1a23a9273120a2"]
+    },
+    {
+      "field": "phone",
+      "value": "512-565-5983",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/contact-us",
+      "evidence_refs": ["website-contact-0e7223186fba3806"]
+    },
+    {
+      "field": "phone",
+      "value": "760-908-1301",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/contact-us",
+      "evidence_refs": ["website-contact-10e1df0bc7ea709f"]
+    },
+    {
+      "field": "email",
+      "value": "camp@switchwillo.com",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/",
+      "evidence_refs": ["website-contact-172629a640aaf841"]
+    },
+    {
+      "field": "email",
+      "value": "lessons@switchwillo.com",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/",
+      "evidence_refs": ["website-contact-f46a9fdcd8af9a1c"]
+    },
+    {
+      "field": "email",
+      "value": "boarding@switchwillo.com",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/",
+      "evidence_refs": ["website-contact-f499dddb193c3f3a"]
+    },
+    {
+      "field": "facebook",
+      "value": "https://www.facebook.com/switchwillo",
+      "label": "Facebook",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/",
+      "evidence_refs": ["website-social-de9892282311a7e1"]
+    },
+    {
+      "field": "instagram",
+      "value": "https://www.instagram.com/switchwillo/",
+      "label": "Instagram",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/",
+      "evidence_refs": ["website-social-4c60e4ed73670ba4"]
+    },
+    {
+      "field": "instagram",
+      "value": "https://www.instagram.com/campswitchwillo/",
+      "label": "Instagram",
+      "accepted": true,
+      "source": "prospect_official_website",
+      "source_url": "https://www.switchwillostable.com/",
+      "evidence_refs": ["website-social-f6118a745e2a4816"]
+    }
+  ]
+}

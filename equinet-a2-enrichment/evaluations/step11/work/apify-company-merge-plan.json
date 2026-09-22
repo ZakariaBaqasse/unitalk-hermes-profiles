@@ -3,7 +3,7 @@
   "schema_version": "0.1.0",
   "run_id": "step11-fixture-run",
   "company_id": "company-trigger",
-  "created_at": "2026-09-18T17:40:58Z",
+  "created_at": "2026-09-21T16:42:33Z",
   "status": "valid",
   "errors": [],
   "warnings": [],
@@ -86,5 +86,5 @@
   ],
   "provenance": [],
   "external_actions": 0,
-  "artifact_sha256": "2dba6235bc68d1008c5050c9610d139371da7f7654e36ad66aa4a075b3e05eff"
+  "artifact_sha256": "9fe4d23ee10e279d3705c8854bca7aca189183a68adba0e3b8e0573c7265cf37"
 }

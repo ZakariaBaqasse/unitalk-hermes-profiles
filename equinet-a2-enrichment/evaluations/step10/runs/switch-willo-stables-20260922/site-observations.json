@@ -1,0 +1,2085 @@
+{
+  "schema_id": "a2-official-site-observations",
+  "schema_version": "0.1.0",
+  "created_at": "2026-09-22T10:22:59Z",
+  "status": "observed",
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+  "company": {
+    "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+    "name": "Switch Willo Stables",
+    "segment": "HORSE_OWNER",
+    "website": "https://www.switchwillostable.com",
+    "domain": "switchwillostable.com"
+  },
+  "official_url": "https://www.switchwillostable.com/",
+  "source_id": "prospect_official_website",
+  "source_fetch_sha256": "7bea4536677a6ca75a73d50b6e4aedc8f18e6114df23e01b605bf72b38321ac8",
+  "source_pages": [
+    {
+      "page_index": 1,
+      "category": "homepage",
+      "resolved_url": "https://www.switchwillostable.com/",
+      "title": "Switch Willo Stables",
+      "content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+    },
+    {
+      "page_index": 2,
+      "category": "contact",
+      "resolved_url": "https://www.switchwillostable.com/contact-us",
+      "title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+      "content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+    },
+    {
+      "page_index": 3,
+      "category": "about",
+      "resolved_url": "https://www.switchwillostable.com/about-2",
+      "title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+    },
+    {
+      "page_index": 4,
+      "category": "team",
+      "resolved_url": "https://www.switchwillostable.com/team",
+      "title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+    }
+  ],
+  "contacts": [
+    {
+      "observation_id": "website-contact-0d1a23a9273120a2",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "512-695-5269",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "512-695-5269",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "Phoebe & Glenn Johnson Facility Owners 512-695-5269",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "512-695-5269",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "512-695-5269",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "512-695-5269",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-0e7223186fba3806",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "512-565-5983",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer Lesson Program Information lessons@switchwillo.com 512-565-5983",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "512-565-5983",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-10e1df0bc7ea709f",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "760-908-1301",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "Riley Wooding Camp Program Information camp@switchwillo.com 760-908-1301",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "760-908-1301",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-172629a640aaf841",
+      "observation_type": "contact",
+      "contact_type": "email",
+      "observed_value": "camp@switchwillo.com",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "camp@switchwillo.com Riley Wooding; Camp Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "Riley Wooding Camp Program Information camp@switchwillo.com 760-908-1301",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "camp@switchwillo.com Riley Wooding; Camp Director",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com?subject=Question%20from%20Website)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com?subject=Question%20from%20Website)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "camp@switchwillo.com Riley Wooding; Camp Director",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "camp@switchwillo.com Riley Wooding; Camp Director",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[camp@switchwillo.com](mailto:camp@switchwillo.com) Riley Wooding; Camp Director",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-29be54fd6b877c01",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "1784324897604",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/de513b5a-22c1-4707-ac6d-644ca2fa745a/Remove_background_from_image-1784324897604.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-35e6750d48bde34d",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "1778624354943",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "- ![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/aa117766-daca-4938-ac74-59a143473b5e/Edit_this_portrait_replace_the_gray_SWS_sweatshir-1778624354943.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![A smiling woman with long, blonde hair wearing a gray sweatshirt with red lettering standing outdoors.](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/058c5515-4309-4a0a-8ed0-2155109f6612/Edit_this_portrait_replace_the_gray_SWS_sweatshir-1778624354943.png)",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![A smiling woman with long, blonde hair wearing a gray sweatshirt with red lettering standing outdoors.](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/058c5515-4309-4a0a-8ed0-2155109f6612/Edit_this_portrait_replace_the_gray_SWS_sweatshir-1778624354943.png)",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-439e97c39d66dd8e",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "2026-07-17",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/af3321d8-ec83-4f26-b70b-d3e05b98097b/Screenshot+2026-07-17+at+3.59.33%E2%80%AFPM.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/d05a17b6-79b5-4dfd-8c9d-65bf317ff311/Screenshot+2026-07-17+at+5.53.10%E2%80%AFPM.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/d05a17b6-79b5-4dfd-8c9d-65bf317ff311/Screenshot+2026-07-17+at+5.53.10%E2%80%AFPM.png)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/d05a17b6-79b5-4dfd-8c9d-65bf317ff311/Screenshot+2026-07-17+at+5.53.10%E2%80%AFPM.png)",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/d05a17b6-79b5-4dfd-8c9d-65bf317ff311/Screenshot+2026-07-17+at+5.53.10%E2%80%AFPM.png)",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-5dcf1a47a3e8899d",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "1778124633986",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "- ![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/4e851a01-7db9-46fe-b41a-c67c1ecc5e26/Edit_the_sweatshirt_text_in_this_image_change_the-1778124633986.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![A woman with long blond hair smiling outdoors, wearing a gray jacket with a colorful logo on the chest, and a blue patterned shirt underneath.](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/4e851a01-7db9-46fe-b41a-c67c1ecc5e26/Edit_the_sweatshirt_text_in_this_image_change_the-1778124633986.png)",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![A woman with long blond hair smiling outdoors, wearing a gray jacket with a colorful logo on the chest, and a blue patterned shirt underneath.](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/4e851a01-7db9-46fe-b41a-c67c1ecc5e26/Edit_the_sweatshirt_text_in_this_image_change_the-1778124633986.png)",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-644669ace0782775",
+      "observation_type": "contact",
+      "contact_type": "email",
+      "observed_value": "ckw.sws@gmail.com",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "ckw.sws@gmail.com Cindi Wallace; Barn Manager",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "ckw.sws@gmail.com Cindi Wallace; Barn Manager",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "ckw.sws@gmail.com Cindi Wallace; Barn Manager",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "ckw.sws@gmail.com Cindi Wallace; Barn Manager",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[ckw.sws@gmail.com](mailto:ckw.sws@gmail.com)",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-6c05007bb2db9072",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "2025-07-06",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "![Glenn Johnson competing at Switch Willo Stables](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/c27dbbf9-15e9-4ca2-a114-5a4e53ff5efc/Screenshot+2025-07-06+at+7.00.44+AM.remini-enhanced.jpg)Glenn Johnson, Head Trainer",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-764989982ed5aed7",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "1784328042962",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/7001aac5-b3d0-4df4-8591-32002d57c2de/Remove_background_from_image_keeping_only_the_ver-1784328042962.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-7b19cc089f94a601",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "1778625530584",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "- ![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/c8fb48fc-2845-4a25-bc1a-96969297c3c2/Edit_this_portrait_slim_down_the_mans_cheeks_a_b-1778625530584.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![A smiling man with a beard wearing a black cap and a dark grey polo shirt outdoors.](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/c8fb48fc-2845-4a25-bc1a-96969297c3c2/Edit_this_portrait_slim_down_the_mans_cheeks_a_b-1778625530584.png)",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![A smiling man with a beard wearing a black cap and a dark grey polo shirt outdoors.](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/c8fb48fc-2845-4a25-bc1a-96969297c3c2/Edit_this_portrait_slim_down_the_mans_cheeks_a_b-1778625530584.png)",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-8eec644f5994586a",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "2026-02-02",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/c348a52d-57c6-4f77-97ed-7abb6b94abf1/2026-02-02+03_40_14-Movies+%26+TV.remini-enhanced.jpg)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-d27e853df9120b73",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "1778702435875",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "- ![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/63b745aa-fad6-45f3-b0cb-a9a7d9b175b2/Edit_this_portrait_reduce_the_size_of_the_Switch_-1778702435875.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/63b745aa-fad6-45f3-b0cb-a9a7d9b175b2/Edit_this_portrait_reduce_the_size_of_the_Switch_-1778702435875.png)",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "- ![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/63b745aa-fad6-45f3-b0cb-a9a7d9b175b2/Edit_this_portrait_reduce_the_size_of_the_Switch_-1778702435875.png)",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-f46a9fdcd8af9a1c",
+      "observation_type": "contact",
+      "contact_type": "email",
+      "observed_value": "lessons@switchwillo.com",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "lessons@switchwillo.com Holly Mortimer; Lesson Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer Lesson Program Information lessons@switchwillo.com 512-565-5983",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "lessons@switchwillo.com Holly Mortimer; Lesson Director",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com?subject=Question%20from%20Website)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com?subject=Question%20from%20Website)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "lessons@switchwillo.com Holly Mortimer; Lesson Director",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "lessons@switchwillo.com Holly Mortimer; Lesson Director",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "[lessons@switchwillo.com](mailto:lessons@switchwillo.com) Holly Mortimer; Lesson Director",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-f499dddb193c3f3a",
+      "observation_type": "contact",
+      "contact_type": "email",
+      "observed_value": "boarding@switchwillo.com",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "Cindi Wallace Barn Manager boarding@switchwillo.com",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[boarding@switchwillo.com](mailto:boarding@switchwillo.com)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "[boarding@switchwillo.com](mailto:boarding@switchwillo.com)",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-contact-ff1772d58aee80db",
+      "observation_type": "contact",
+      "contact_type": "phone",
+      "observed_value": "2026-07-19",
+      "observed_context": {
+        "nearby_person_observation_id": null
+      },
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "![](https://images.squarespace-cdn.com/content/v1/621417874edcd23a3f0c750c/e150c122-31e1-4a7a-a96d-709c3d6354f7/Screenshot+2026-07-19+at+9.12.52%E2%80%AFPM.png)",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        }
+      ]
+    }
+  ],
+  "social_links": [
+    {
+      "observation_id": "website-social-4c60e4ed73670ba4",
+      "observation_type": "social_link",
+      "platform": "instagram",
+      "observed_url": "https://www.instagram.com/switchwillo/",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/switchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-b6bef146ac83fb57",
+      "observation_type": "social_link",
+      "platform": "instagram",
+      "observed_url": "https://www.instagram.com/averyfletcherphotography/?hl=en",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Avery Fletcher Photography",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/averyfletcherphotography/?hl=en",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "Avery Fletcher Photography",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/averyfletcherphotography/?hl=en",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Avery Fletcher Photography",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/averyfletcherphotography/?hl=en",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Avery Fletcher Photography",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/averyfletcherphotography/?hl=en",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-de9892282311a7e1",
+      "observation_type": "social_link",
+      "platform": "facebook",
+      "observed_url": "https://www.facebook.com/switchwillo",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.facebook.com/switchwillo",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    },
+    {
+      "observation_id": "website-social-f6118a745e2a4816",
+      "observation_type": "social_link",
+      "platform": "instagram",
+      "observed_url": "https://www.instagram.com/campswitchwillo/",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 2,
+          "page_url": "https://www.switchwillostable.com/contact-us",
+          "page_title": "Contact Us | Get in Touch Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "8eeeb7a438ee389af5b1187d3f2306371a6d840f2ae8c8d291e63b7bf3cb672c"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "https://www.instagram.com/campswitchwillo/",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ]
+    }
+  ],
+  "candidate_people": [
+    {
+      "observation_id": "website-person-0263e394887af0ab",
+      "observation_type": "candidate_person",
+      "observed_name": "Horsemanship Class",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Horsemanship Class",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-02b94ab3382b2b16",
+      "observation_type": "candidate_person",
+      "observed_name": "Riding Academy",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Riding Academy",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-042368a0551f2a27",
+      "observation_type": "candidate_person",
+      "observed_name": "Beverly Manroe",
+      "observed_role": "Trainer",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Beverly Manroe — Trainer",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Beverly Manroe — TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Beverly Manroe — TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Trainer",
+        "TRAINER"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-344d297888b01f2a",
+      "observation_type": "candidate_person",
+      "observed_name": "Kirk Berlin",
+      "observed_role": "Head Trainer",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Kirk Berlin — Head Trainer",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Kirk Berlin — HEAD TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Kirk Berlin — HEAD TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Head Trainer",
+        "HEAD TRAINER"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-4ec6b5e8a9156f9a",
+      "observation_type": "candidate_person",
+      "observed_name": "Pheobe Johnson",
+      "observed_role": "Owner",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Pheobe Johnson — Owner",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        }
+      ],
+      "observed_role_candidates": [
+        "Owner"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-5bc57e15ee631a66",
+      "observation_type": "candidate_person",
+      "observed_name": "Riley Wooding",
+      "observed_role": "Camp Director",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Riley Wooding — Camp Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Riley Wooding",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Camp Director"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-6a11b206b790a61c",
+      "observation_type": "candidate_person",
+      "observed_name": "Cindi Wallace",
+      "observed_role": "Barn Manager",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Cindi Wallace — Barn Manager",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Cindi Wallace — BARN MANAGER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Cindi Wallace — BARN MANAGER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Barn Manager",
+        "BARN MANAGER"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-8e4c45ad1a0645cf",
+      "observation_type": "candidate_person",
+      "observed_name": "Wendy Kratzer",
+      "observed_role": "Trainer",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Wendy Kratzer — Trainer",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Wendy Kratzer — TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Wendy Kratzer — TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Trainer",
+        "TRAINER"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-91336399b8168931",
+      "observation_type": "candidate_person",
+      "observed_name": "Holly Mortimer",
+      "observed_role": "Lesson Director",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Holly Mortimer — Lesson Director",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer — LESSON DIRECTOR",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer — LESSON DIRECTOR",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Lesson Director",
+        "LESSON DIRECTOR"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-98e8fe7c22f8783e",
+      "observation_type": "candidate_person",
+      "observed_name": "Open Menu Close Menu",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Open Menu Close Menu",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-991f4c840fd75da9",
+      "observation_type": "candidate_person",
+      "observed_name": "Summer Camp",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Summer Camp",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-9aeeda74bf3e832a",
+      "observation_type": "candidate_person",
+      "observed_name": "Phoebe Johnson",
+      "observed_role": "FOUNDER, OWNER & TRAINER",
+      "page_evidence": [
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Phoebe Johnson — FOUNDER, OWNER & TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Phoebe Johnson — FOUNDER, OWNER & TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "FOUNDER, OWNER & TRAINER"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-a8865f3dbd0532e7",
+      "observation_type": "candidate_person",
+      "observed_name": "Natalie Pape",
+      "observed_role": "Trainer",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Natalie Pape — Trainer",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Natalie Pape — TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Natalie Pape — TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Trainer",
+        "TRAINER"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-aa0bf9aa74246208",
+      "observation_type": "candidate_person",
+      "observed_name": "Kylie Wiggins",
+      "observed_role": "Trainer & IEA Coach",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Kylie Wiggins — Trainer & IEA Coach",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Kylie Wiggins — TRAINER & IEA COACH",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Kylie Wiggins — TRAINER & IEA COACH",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Trainer & IEA Coach",
+        "TRAINER & IEA COACH"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-aa7cef401e923aa2",
+      "observation_type": "candidate_person",
+      "observed_name": "Lessons FAQ",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Lessons FAQ",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-b342541436db792d",
+      "observation_type": "candidate_person",
+      "observed_name": "Switch Willo Stables",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Switch Willo Stables",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-c22d6d20ca61e218",
+      "observation_type": "candidate_person",
+      "observed_name": "Glenn Johnson",
+      "observed_role": "Head Trainer",
+      "page_evidence": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Glenn Johnson, Head Trainer",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Glenn Johnson — Owner",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Glenn Johnson — OWNER & TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Glenn Johnson — OWNER & TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [
+        "Head Trainer",
+        "Owner",
+        "OWNER & TRAINER"
+      ],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-c5e53f09ff598ed6",
+      "observation_type": "candidate_person",
+      "observed_name": "Archived Newsletters",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Archived Newsletters",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    },
+    {
+      "observation_id": "website-person-c8b09cdc30465113",
+      "observation_type": "candidate_person",
+      "observed_name": "Greater Houston",
+      "observed_role": null,
+      "source_mention": "Centex and Greater Houston",
+      "extraction_method": "shared_surname_split",
+      "source_block_id": "website-person-block-be68fab350621849",
+      "page_evidence": [
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer started at Switch Willow Stables, and has been involved in the hunter/jumper world for at least 25 years, managing show offices of many of the Centex and Greater Houston shows.",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer started at Switch Willow Stables, and has been involved in the hunter/jumper world for at least 25 years, managing show offices of many of the Centex and Greater Houston shows.",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": [
+        "Centex and Greater Houston"
+      ]
+    },
+    {
+      "observation_id": "website-person-e51cee2ed7a771e5",
+      "observation_type": "candidate_person",
+      "observed_name": "Centex Houston",
+      "observed_role": null,
+      "source_mention": "Centex and Greater Houston",
+      "extraction_method": "shared_surname_split",
+      "source_block_id": "website-person-block-be68fab350621849",
+      "page_evidence": [
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer started at Switch Willow Stables, and has been involved in the hunter/jumper world for at least 25 years, managing show offices of many of the Centex and Greater Houston shows.",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Holly Mortimer started at Switch Willow Stables, and has been involved in the hunter/jumper world for at least 25 years, managing show offices of many of the Centex and Greater Houston shows.",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": [
+        "Centex and Greater Houston"
+      ]
+    },
+    {
+      "observation_id": "website-person-f66e80e26eb10339",
+      "observation_type": "candidate_person",
+      "observed_name": "Open MenuClose Menu",
+      "observed_role": null,
+      "page_evidence": [
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Open MenuClose Menu",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        }
+      ],
+      "observed_role_candidates": [],
+      "source_mentions": []
+    }
+  ],
+  "person_evidence_blocks": [
+    {
+      "block_id": "website-person-block-dcfdb8ebc220056d",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 0,
+      "text": "Meet the Switch Willo Team!",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-c0c48de6cee5d7e3",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 3,
+      "text": "Glenn Johnson began riding at Switch Willo in 1965. Early in his career he rode Cricket—an ex-bucking horse—to numerous Grand Prix wins at The American Gold Cup, American Invitational, and Winter Equestrian Festival (Wellington, FL).",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-df5b3054aa958dfc",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 5,
+      "text": "FOUNDER, OWNER & TRAINER",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-43b93df4740dd027",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 6,
+      "text": "A lifelong love of horses and the hunter jumper sport inspires Phoebe Johnson to provide exceptional training for Switch Willo riders and horses. After she started riding at age 12 at local barn Hobby Horse, her father bought two horses for Phoebe and her sister and purchased the first seven acre parcel of Switch Willo land.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-a34752b5796d8b18",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 9,
+      "text": "Kirk Berlin has been involved with horses for over 40 years. When he moved to Austin to attend college, he rode at Switch Willo as an amateur. Upon completing his education he chose to stay on at SWS and turn professional.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-950de942e859357f",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 12,
+      "text": "Cindi Wallace has been riding horses for the past 25 years and joined the Switch Willo family in 2008 as a boarder with her horse Pendleton.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-be68fab350621849",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 15,
+      "text": "Holly Mortimer started at Switch Willow Stables, and has been involved in the hunter/jumper world for at least 25 years, managing show offices of many of the Centex and Greater Houston shows.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-4bba51e62cb633ee",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 17,
+      "text": "SWITCH WILLO CAMP DIRECTOR Riley brings a lifelong love of horse camp, along with a deep passion for mentorship to her role here at Camp Switch Willo. A lifelong rider herself, she grew up attending both day camps and sleepaway camps before later working as a wrangler and helping with the care and management of horse herds.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-e2e32424227ae1d1",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 20,
+      "text": "Beverly Manroe began her long career at age nine in Houston at a hunter/jumper barn called Parish Stables. She took lessons there for several years and became good enough so that when Mr. Parish left town, he’d put her in charge of teaching as well.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-aced5b098e382579",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 23,
+      "text": "Kylie Wiggins first entered Switch Willo Stables when she was only 5 years old. Little did she know that this would soon become her home away from home. She began competing at the local shows when she turned 6 and by the time she was in her teens was competing at the 3 foot level.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-4ff834fd85d7d303",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 26,
+      "text": "Natalie graduated with a degree in equine studies and participated on their Varsity IHSA team. She has been riding for over 25 plus years. Natalie spent 5 years in Houston where she was able to train, compete and teach students of all levels at Fort Bend Equestrian Center.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-ac002d16ac4d84a8",
+      "page_index": 3,
+      "page_url": "https://www.switchwillostable.com/about-2",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+      "source_index": 29,
+      "text": "Wendy grew up with horses and competed in 4-H and local shows in southern Michigan. At Ball State University she joined the IHSA equestrian team under Coach Mindy McMinn (later Darst) and had a blast rolling around central Indiana and Ohio in the team’s elderly RV.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-6aaeed55a25f6dfb",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 0,
+      "text": "Meet the Switch Willo Team!",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-15dd345448742e93",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 3,
+      "text": "Glenn Johnson began riding at Switch Willo in 1965. Early in his career he rode Cricket—an ex-bucking horse—to numerous Grand Prix wins at The American Gold Cup, American Invitational, and Winter Equestrian Festival (Wellington, FL).",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-386805b39bcc706c",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 5,
+      "text": "FOUNDER, OWNER & TRAINER",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-1e986d2993189b80",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 6,
+      "text": "A lifelong love of horses and the hunter jumper sport inspires Phoebe Johnson to provide exceptional training for Switch Willo riders and horses. After she started riding at age 12 at local barn Hobby Horse, her father bought two horses for Phoebe and her sister and purchased the first seven acre parcel of Switch Willo land.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-580c8f654f628a7a",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 9,
+      "text": "Kirk Berlin has been involved with horses for over 40 years. When he moved to Austin to attend college, he rode at Switch Willo as an amateur. Upon completing his education he chose to stay on at SWS and turn professional.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-536e0d74363d859a",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 12,
+      "text": "Cindi Wallace has been riding horses for the past 25 years and joined the Switch Willo family in 2008 as a boarder with her horse Pendleton.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-637decf030e66e0d",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 15,
+      "text": "Holly Mortimer started at Switch Willow Stables, and has been involved in the hunter/jumper world for at least 25 years, managing show offices of many of the Centex and Greater Houston shows.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-2671f6937e3d3c7c",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 17,
+      "text": "SWITCH WILLO CAMP DIRECTOR Riley brings a lifelong love of horse camp, along with a deep passion for mentorship to her role here at Camp Switch Willo. A lifelong rider herself, she grew up attending both day camps and sleepaway camps before later working as a wrangler and helping with the care and management of horse herds.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-dc32f8ff35c32be6",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 20,
+      "text": "Beverly Manroe began her long career at age nine in Houston at a hunter/jumper barn called Parish Stables. She took lessons there for several years and became good enough so that when Mr. Parish left town, he’d put her in charge of teaching as well.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-26687a555c4bcaf4",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 23,
+      "text": "Kylie Wiggins first entered Switch Willo Stables when she was only 5 years old. Little did she know that this would soon become her home away from home. She began competing at the local shows when she turned 6 and by the time she was in her teens was competing at the 3 foot level.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-8dd8433f8ebc4aed",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 26,
+      "text": "Natalie graduated with a degree in equine studies and participated on their Varsity IHSA team. She has been riding for over 25 plus years. Natalie spent 5 years in Houston where she was able to train, compete and teach students of all levels at Fort Bend Equestrian Center.",
+      "untrusted_source_content": true
+    },
+    {
+      "block_id": "website-person-block-9f3b392e3ddedafe",
+      "page_index": 4,
+      "page_url": "https://www.switchwillostable.com/team",
+      "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+      "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012",
+      "source_index": 29,
+      "text": "Wendy grew up with horses and competed in 4-H and local shows in southern Michigan. At Ball State University she joined the IHSA equestrian team under Coach Mindy McMinn (later Darst) and had a blast rolling around central Indiana and Ohio in the team’s elderly RV.",
+      "untrusted_source_content": true
+    }
+  ],
+  "person_extraction_coverage": {
+    "status": "pending_llm_observation_proposals",
+    "semantic_block_count": 24,
+    "deterministic_candidate_count": 21,
+    "llm_observation_proposals_validated": false
+  },
+  "summary": {
+    "contacts": 17,
+    "social_links": 4,
+    "candidate_people": 21
+  },
+  "business_decisions_made": false,
+  "role_classification_performed": false,
+  "external_calls": 0,
+  "external_actions": 0,
+  "errors": [],
+  "artifact_sha256": "2ab94cc94dc3f9f512ba7fc1daa84ed0f18fb3614e6fbb7ace2ed1328be55765"
+}

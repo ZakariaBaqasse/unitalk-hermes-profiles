@@ -3,7 +3,7 @@
   "schema_version": "0.1.0",
   "run_id": "STEP10-SYN-001",
   "company_id": null,
-  "created_at": "2026-09-18T17:41:03Z",
+  "created_at": "2026-09-21T16:42:39Z",
   "status": "valid",
   "errors": [],
   "warnings": [],
@@ -44,8 +44,15 @@
       },
       "work_email": {
         "value": "jordan@example.test",
-        "status": "DELIVERABLE"
+        "status": "DELIVERABLE",
+        "provider_status": "DELIVERABLE",
+        "status_source": "fullenrich",
+        "source": "fullenrich_contact_enrichment"
       },
+      "work_email_status": "DELIVERABLE",
+      "work_email_status_source": "fullenrich",
+      "work_email_retention": "retain_with_status",
+      "work_email_qualifies_as_verified_channel": true,
       "mobile_phone": {
         "value": "+1 555 0101",
         "region": "US",
@@ -103,8 +110,15 @@
       },
       "work_email": {
         "value": "morgan@example.test",
-        "status": "HIGH_PROBABILITY"
+        "status": "HIGH_PROBABILITY",
+        "provider_status": "HIGH_PROBABILITY",
+        "status_source": "fullenrich",
+        "source": "fullenrich_contact_enrichment"
       },
+      "work_email_status": "HIGH_PROBABILITY",
+      "work_email_status_source": "fullenrich",
+      "work_email_retention": "retain_with_status",
+      "work_email_qualifies_as_verified_channel": true,
       "mobile_phone": null,
       "personal_email_candidate": null,
       "personal_email_requested": false,
@@ -142,5 +156,5 @@
   },
   "provider_payload_sha256": "d1092b0fff8ec1c359fe96894e5ab01358435ff4a9ab05f441a3fdc3fb77210e",
   "external_calls": 0,
-  "artifact_sha256": "7f08298e75e5b9a23c42cfad42761311fc605c3e169571d32558cc96ff659714"
+  "artifact_sha256": "8b1e7e0699c1660616273764650190a4fd4db74de98857f2ba61ce379c16b219"
 }

@@ -20,6 +20,11 @@ def validate_plan(plan):
   bad=A1_PROTECTED.intersection(fields)
   if bad:errors.append(f'operations[{i}] attempts protected A1 fields: {sorted(bad)}')
   if 'personalEmailCandidate' in fields:errors.append(f'operations[{i}] cannot auto-write personal email')
+  if 'emailStatus' in fields:
+   value=fields.get('emailStatus')
+   if op.get('operation_type') not in {'create_person','update_person'}:errors.append(f'operations[{i}] emailStatus is Person-only')
+   if not isinstance(value,str) or not value.strip() or len(value)>100 or any(ch in value for ch in '\r\n\x00'):errors.append(f'operations[{i}] emailStatus must be bounded plain text')
+   if 'emails' not in fields:errors.append(f'operations[{i}] emailStatus requires the corresponding email composite write')
  if len(ids)!=len(set(ids)):errors.append('operation IDs must be unique')
  merge_positions=[i for i,o in enumerate(ops) if isinstance(o,dict) and o.get('operation_type')=='update_company_fields']
  if len(merge_positions)>1:errors.append('at most one Company business-field merge operation is allowed')
@@ -35,7 +40,15 @@ def validate_plan(plan):
  return errors
 def unwrap(payload,singular):
  data=payload.get('data',payload) if isinstance(payload,dict) else {}
- return data.get(singular,data) if isinstance(data,dict) else {}
+ if not isinstance(data,dict):return {}
+ if singular in data and isinstance(data.get(singular),dict):return data[singular]
+ # Twenty wraps mutation results as createX/updateX (e.g. createPerson, updateCompany)
+ cap=singular[:1].upper()+singular[1:]
+ for key in (f'create{cap}',f'update{cap}',f'upsert{cap}'):
+  if isinstance(data.get(key),dict):return data[key]
+ # a bare record envelope (has an id) is returned as-is
+ if 'id' in data:return data
+ return data
 def equivalent(expected,observed):
  if expected==observed:return True
  if isinstance(expected,str) and isinstance(observed,str):

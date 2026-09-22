@@ -1,6 +1,6 @@
 {
   "status": "dry_run",
-  "write_plan_sha256": "16c6c018a30eaadcb44812f42d316f375c771fe1660c839bf30395bef0e01f21",
+  "write_plan_sha256": "8554bf9cec2389737206c5ea5a966f8bbf31d0d0c977dca79c39aff649a132dd",
   "operation_count": 5,
   "operations": [
     {
@@ -16,8 +16,8 @@
         "a2CompanyMatchStatus": "CONFIRMED",
         "a2EnrichmentStatus": "ENRICHED",
         "a2FullenrichPersonid": "fe-owner",
-        "a2LastVerifiedAt": "2026-09-18T17:41:03Z",
-        "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+        "a2LastVerifiedAt": "2026-09-21T16:42:39Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
         "a2EnrichmentRunId": "STEP10-SYN-001",
         "name": {
           "firstName": "Jordan",
@@ -28,6 +28,7 @@
           "primaryEmail": "jordan@example.test",
           "additionalEmails": []
         },
+        "emailStatus": "DELIVERABLE",
         "phones": {
           "primaryPhoneNumber": "+1 555 0101",
           "primaryPhoneCountryCode": "US",
@@ -61,8 +62,8 @@
         "a2CompanyMatchStatus": "CONFIRMED",
         "a2EnrichmentStatus": "PARTIAL",
         "a2FullenrichPersonid": "fe-manager",
-        "a2LastVerifiedAt": "2026-09-18T17:41:03Z",
-        "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+        "a2LastVerifiedAt": "2026-09-21T16:42:39Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
         "a2EnrichmentRunId": "STEP10-SYN-001",
         "name": {
           "firstName": "Morgan",
@@ -73,6 +74,7 @@
           "primaryEmail": "morgan@example.test",
           "additionalEmails": []
         },
+        "emailStatus": "HIGH_PROBABILITY",
         "linkedinLink": {
           "primaryLinkUrl": "https://www.linkedin.com/in/fe-manager",
           "primaryLinkLabel": "LinkedIn",
@@ -95,13 +97,13 @@
         "a2EnrichmentStatus": "ENRICHED",
         "a2EnrichmentVersion": "0.1.0",
         "a2EnrichmentRunId": "STEP10-SYN-001",
-        "a2LastAttemptedAt": "2026-09-18T17:41:03Z",
+        "a2LastAttemptedAt": "2026-09-21T16:42:39Z",
         "a2EnrichmentErrorCode": null,
-        "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
         "a2NextRetryAt": null
       }
     }
   ],
   "external_writes": 0,
-  "completed_at": "2026-09-18T17:41:03Z"
+  "completed_at": "2026-09-21T16:42:39Z"
 }

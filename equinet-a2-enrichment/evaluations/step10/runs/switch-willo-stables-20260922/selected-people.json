@@ -1,0 +1,122 @@
+{
+  "schema_id": "a2-website-selected-contact-batch",
+  "schema_version": "0.1.0",
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": null,
+  "created_at": "2026-09-22T10:30:01Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "selected_people": [
+    {
+      "request_id": "contact-web-website-person-9aeeda74bf3e832a",
+      "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "twenty_person_id": null,
+      "website_person_id": "website-person-9aeeda74bf3e832a",
+      "provider_person_id": null,
+      "full_name": "Phoebe Johnson",
+      "source_full_name": "Phoebe Johnson",
+      "first_name": "Phoebe",
+      "last_name": "Johnson",
+      "professional_network_url": null,
+      "company_name": "Switch Willo Stables",
+      "company_domain": "switchwillostable.com",
+      "source_kind": "new",
+      "selection_stage": "website",
+      "selected_target_priority": "PRIMARY",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "exact_current_role": "FOUNDER, OWNER & TRAINER",
+      "website_work_email": null,
+      "website_phone": null,
+      "evidence_refs": [
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Phoebe Johnson — FOUNDER, OWNER & TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Phoebe Johnson — FOUNDER, OWNER & TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "inspires Phoebe Johnson to provide exceptional training for Switch Willo riders and horses",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+          "source_block_id": "website-person-block-43b93df4740dd027"
+        }
+      ]
+    },
+    {
+      "request_id": "contact-web-website-person-c22d6d20ca61e218",
+      "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "twenty_person_id": null,
+      "website_person_id": "website-person-c22d6d20ca61e218",
+      "provider_person_id": null,
+      "full_name": "Glenn Johnson",
+      "source_full_name": "Glenn Johnson",
+      "first_name": "Glenn",
+      "last_name": "Johnson",
+      "professional_network_url": null,
+      "company_name": "Switch Willo Stables",
+      "company_domain": "switchwillostable.com",
+      "source_kind": "new",
+      "selection_stage": "website",
+      "selected_target_priority": "PRIMARY",
+      "identity_status": "VERIFIED",
+      "company_match_status": "CONFIRMED",
+      "role_status": "CURRENT_AT_COMPANY",
+      "exact_current_role": "Head Trainer",
+      "website_work_email": null,
+      "website_phone": null,
+      "evidence_refs": [
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Glenn Johnson, Head Trainer",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 1,
+          "page_url": "https://www.switchwillostable.com/",
+          "page_title": "Switch Willo Stables",
+          "evidence_text": "Glenn Johnson — Owner",
+          "page_content_sha256": "93764ec09309fb29f7dbcd638641a21aa5393dcc02712cb0ac04fcb43cb49065"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Glenn Johnson — OWNER & TRAINER",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec"
+        },
+        {
+          "page_index": 4,
+          "page_url": "https://www.switchwillostable.com/team",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Glenn Johnson — OWNER & TRAINER",
+          "page_content_sha256": "7b939714ee501777f3cb6d2dced3fe341b5c6f6e7bc56d4daf81fba4805a8012"
+        },
+        {
+          "page_index": 3,
+          "page_url": "https://www.switchwillostable.com/about-2",
+          "page_title": "Team | Meet Our Expert Team - Join Today — Switch Willo Stables",
+          "evidence_text": "Glenn Johnson began riding at Switch Willo in 1965",
+          "page_content_sha256": "c0844c98c967f232e68f79d1ad309b02b0251eac9f31be75242396193b3cf6ec",
+          "source_block_id": "website-person-block-c0c48de6cee5d7e3"
+        }
+      ]
+    }
+  ],
+  "complete_people": [],
+  "artifact_sha256": "a60ee1f245cd040990f2cd11c8f0e0d9aec32cfb63ebd8385ac840a35abb5bbf"
+}

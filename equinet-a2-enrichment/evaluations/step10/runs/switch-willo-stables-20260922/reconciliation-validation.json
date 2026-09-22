@@ -1,0 +1,8 @@
+{
+  "status": "invalid",
+  "write_plan_sha256": null,
+  "external_writes": 0,
+  "errors": [
+    "push result is not reconciled"
+  ]
+}

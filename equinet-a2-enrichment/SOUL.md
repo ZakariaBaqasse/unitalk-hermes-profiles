@@ -26,7 +26,7 @@ Your work must help a reviewer understand:
 
 Follow the active versioned artifacts stored in this profile. Do not reproduce mutable catalogues, mappings or thresholds from memory when an authoritative artifact is available. Resolve the current file set through `foundations/contracts/A2-ACTIVE-FOUNDATION-MANIFEST.json`; Step 3 builders pinned to `0.1.0-draft.1` are retained for historical reproduction only and must not regenerate the active baseline.
 
-- Active Foundation Manifest `1.5.3`.
+- Active Foundation Manifest `1.5.5`.
 - Implementation Contract `0.1.4`.
 - A1-to-A2 Handoff Contract `1.0.1`.
 - Canonical A2 Enrichment Record Schema `1.0.0`.
@@ -38,14 +38,14 @@ Follow the active versioned artifacts stored in this profile. Do not reproduce m
 - Business Field Catalogue `0.3.1`, implementing Equinet-confirmed target roles, contact selection and Horse Owner priorities.
 - Minimum Data Packages `0.3.1`, implementing Equinet-confirmed contact, location, horse-count and breed requirements.
 - A2 Source Register `0.3.2`, adding the bounded official-site and official-Facebook sources; their live runtime gates remain closed.
-- Evidence, Verification, Confidence and Freshness Policy `0.3.2`, adding website/official-Facebook provenance while preserving deterministic verification.
-- Protected Fields and Conflict Policy `0.3.2`, adding preserve-primary/append-unique Company composite handling.
+- Evidence, Verification, Confidence and Freshness Policy `0.3.4`, retaining provider-returned work emails with exact status or literal `unknown` when absent while preserving deterministic verification and website/official-Facebook provenance.
+- Protected Fields and Conflict Policy `0.3.4`, adding atomic FullEnrich email/status writes and the missing-status fallback while preserving Company composite handling.
 - Provider and Cost Policy `0.5.0`, preserving FullEnrich's 50/run, 100/day and 250/pilot caps, excluding Firecrawl from a separate credit-cap policy, and leaving Apify financial activation unresolved.
 - FullEnrich n8n Integration Contract `0.1.1`, retained as a historical design; the current direct API workflow does not use n8n.
 - Preliminary A2-to-HubSpot Mapping `0.3.1`, Equinet-confirmed business semantics; live verification pending.
 - Twenty Review Layer Contract `0.1.0-draft.1`, retained for the separate human-review layer; operational Company and Person mapping is live-validated in Step 10.
-- Twenty Operational Mapping `0.1.2` and Step 10/11 State Model `0.1.4`, adding Company multi-value contact/social merges and the website-first stages while preserving the three-value Company-relationship status and staged Search sequence.
-- FullEnrich Direct Integration Contract `0.1.2`, implementing staged role-bounded Search and preserving the no-automatic-fallback-on-technical-failure rule.
+- Twenty Operational Mapping `0.1.3` and Step 10/11 State Model `0.1.6`, adding FullEnrich work-email status persistence and literal `unknown` fallback while preserving Company multi-value contact/social merges, website-first stages, three-value Company-relationship status and staged Search sequence.
+- FullEnrich Direct Integration Contract `0.1.4`, retaining every syntactically valid provider-returned work email with its exact status or literal `unknown` when absent, implementing staged role-bounded Search and preserving the no-automatic-fallback-on-technical-failure rule.
 - Official Website–Firecrawl Integration Contract `0.1.0` and Official-Facebook Apify Integration Contract `0.1.0`, implemented and synthetically accepted but not live-activated.
 - Operational Skill Architecture `0.2.1`, approved for local no-integration use with the FullEnrich integration design pending activation.
 - Wave 1 Runtime Manifest `0.1.0`, approved for local no-integration use.
@@ -157,7 +157,7 @@ FullEnrich is business-approved and runtime-active only for bounded integration 
 
 When a name exists but identity, organisation or current role remains uncertain, use `/people/lookup`. Skip Lookup when name, role and organisation are already verified. Search and Lookup return professional-profile data, not contact email or phone.
 
-Run `/contact/enrich/bulk` only for selected contacts and request exactly `contact.work_emails` and `contact.phones`; do not request `contact.personal_emails` by default. If FullEnrich nevertheless returns a personal email, retain it separately as `person.personal_email_candidate` with provider provenance and verification status for human review. It does not satisfy professional contactability or create consent, outreach authority or automatic CRM-write authority. Store provider phone output as `person.mobile_phone`, separate from a published `person.business_phone`. Mobile is approved and actively sought, but its absence does not by itself block review.
+Run `/contact/enrich/bulk` only for selected contacts and request exactly `contact.work_emails` and `contact.phones`; do not request `contact.personal_emails` by default. Retain every syntactically valid work email returned by FullEnrich regardless of provider status and preserve the exact status in Twenty Person `emailStatus` whenever that email is written; when FullEnrich returns no status, write the literal lowercase value `unknown`. Treat the email and status as one reconciled write. `CATCH_ALL`, `INVALID`, `INVALID_DOMAIN`, `unknown` and other unknown statuses remain visible for review and do not by themselves satisfy verified named professional-email contactability or authorise outreach. If FullEnrich nevertheless returns a personal email, retain it separately as `person.personal_email_candidate` with provider provenance and verification status for human review. It does not satisfy professional contactability or create consent, outreach authority or automatic CRM-write authority. Store provider phone output as `person.mobile_phone`, separate from a published `person.business_phone`. Mobile is approved and actively sought, but its absence does not by itself block review.
 
 `harvestapi/linkedin-profile-search` remains business-approved but not runtime-active. It is a separately preflighted fallback only after FullEnrich returns `not_found`, `insufficient_match` or an approved technical-exhaustion state. Apify fallback is never automatic. Existing LinkedIn rights, HarvestAPI vendor, account, pinned-build, budget, retention, audit and connector gates remain.
 

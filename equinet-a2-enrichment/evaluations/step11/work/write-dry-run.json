@@ -1,6 +1,6 @@
 {
   "status": "dry_run",
-  "write_plan_sha256": "be428362e58b67654e7908415f9dde096373f01cb3156b89b8e95907c4e7ceb8",
+  "write_plan_sha256": "f0167a7799ff05baccc8ac854e889af1a79b6df6591882d60b07fddb7376a7a4",
   "operation_count": 6,
   "operations": [
     {
@@ -120,8 +120,8 @@
         "a2CompanyMatchStatus": "CONFIRMED",
         "a2EnrichmentStatus": "ENRICHED",
         "a2FullenrichPersonid": "fe-web-1",
-        "a2LastVerifiedAt": "2026-09-18T17:40:57Z",
-        "a2LastEnrichedAt": "2026-09-18T17:40:57Z",
+        "a2LastVerifiedAt": "2026-09-21T16:42:33Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:33Z",
         "a2EnrichmentRunId": "step11-fixture-run",
         "name": {
           "firstName": "Alex",
@@ -132,6 +132,7 @@
           "primaryEmail": "person1@example.com",
           "additionalEmails": []
         },
+        "emailStatus": "CATCH_ALL",
         "phones": {
           "primaryPhoneNumber": "+15550101",
           "primaryPhoneCountryCode": "US",
@@ -160,8 +161,8 @@
         "a2CompanyMatchStatus": "CONFIRMED",
         "a2EnrichmentStatus": "ENRICHED",
         "a2FullenrichPersonid": "fe-web-2",
-        "a2LastVerifiedAt": "2026-09-18T17:40:57Z",
-        "a2LastEnrichedAt": "2026-09-18T17:40:57Z",
+        "a2LastVerifiedAt": "2026-09-21T16:42:33Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:33Z",
         "a2EnrichmentRunId": "step11-fixture-run",
         "name": {
           "firstName": "Taylor",
@@ -172,6 +173,7 @@
           "primaryEmail": "person2@example.com",
           "additionalEmails": []
         },
+        "emailStatus": "CATCH_ALL",
         "phones": {
           "primaryPhoneNumber": "+15550102",
           "primaryPhoneCountryCode": "US",
@@ -195,11 +197,11 @@
         "a2EnrichmentStatus": "PARTIALLY_ENRICHED",
         "a2EnrichmentVersion": "step11-0.1.0",
         "a2EnrichmentRunId": "step11-fixture-run",
-        "a2LastAttemptedAt": "2026-09-18T17:40:57Z",
+        "a2LastAttemptedAt": "2026-09-21T16:42:33Z",
         "a2EnrichmentErrorCode": null
       }
     }
   ],
   "external_writes": 0,
-  "completed_at": "2026-09-18T17:40:57Z"
+  "completed_at": "2026-09-21T16:42:33Z"
 }

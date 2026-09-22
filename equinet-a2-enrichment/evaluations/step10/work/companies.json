@@ -3,7 +3,7 @@
   "schema_version": "0.1.0",
   "run_id": "STEP10-SYN-001",
   "company_id": null,
-  "created_at": "2026-09-18T17:41:02Z",
+  "created_at": "2026-09-21T16:42:38Z",
   "status": "valid",
   "errors": [],
   "warnings": [],
@@ -80,7 +80,7 @@
       "a2_enrichment_status": "PROCESSING",
       "a2_enrichment_version": null,
       "a2_enrichment_run_id": "STEP10-SYN-001",
-      "a2_processing_started_at": "2026-09-18T17:41:02Z",
+      "a2_processing_started_at": "2026-09-21T16:42:38Z",
       "linked_people": [
         {
           "twenty_person_id": "22222222-2222-4222-8222-222222222222",
@@ -92,6 +92,7 @@
           },
           "job_title": "Trainer",
           "work_email": null,
+          "email_status": null,
           "phone": null,
           "professional_network_url": "https://www.linkedin.com/in/taylor-existing",
           "a2_identity_status": null,
@@ -146,5 +147,5 @@
     }
   },
   "external_writes": 0,
-  "artifact_sha256": "88cef74740b66fdc33417f5419d4fc9a3b47191f14cdd39b0710fac0dd33f758"
+  "artifact_sha256": "2b98a925727fa98f0afece2b8e66d2795301e8c706cb786e250a3f20cc23b33f"
 }

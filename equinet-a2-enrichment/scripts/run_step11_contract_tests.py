@@ -13,7 +13,7 @@ class Tests(unittest.TestCase):
  def test_source_order(self):
   d=load('foundations/contracts/sources/a2-source-register-0.3.2.json')['source_sequence'];self.assertLess(d.index('prospect_official_website'),d.index('fullenrich_people_search'));self.assertLess(d.index('apify_facebook_page_contact_information'),d.index('fullenrich_people_search'))
  def test_twenty_mapping(self):
-  f=load('foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.2.json')['objects']['company']['business_fields'];self.assertEqual(f,{'website':'domainName','email':'email','phone':'phone','linkedin':'linkedinLink','facebook':'facebook','instagram':'instagram','youtube':'youtube','tiktok':'tiktok','x':'xTwitter'})
+  d=load('foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.3.json');f=d['objects']['company']['business_fields'];self.assertEqual(f,{'website':'domainName','email':'email','phone':'phone','linkedin':'linkedinLink','facebook':'facebook','instagram':'instagram','youtube':'youtube','tiktok':'tiktok','x':'xTwitter'});self.assertEqual(d['objects']['person']['a2_fields']['email_status'],'emailStatus')
  def test_runtime_stays_blocked(self):
   p=load('foundations/contracts/runtime/a2-step11-runtime-policy-0.1.0-rc.1.json')['permissions'];self.assertFalse(p['firecrawl_live']);self.assertFalse(p['apify_facebook_live']);self.assertFalse(p['twenty_company_contact_social_write'])
 if __name__=='__main__':unittest.main(verbosity=2)

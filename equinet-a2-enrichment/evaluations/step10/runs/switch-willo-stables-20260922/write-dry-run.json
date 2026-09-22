@@ -1,0 +1,168 @@
+{
+  "status": "dry_run",
+  "write_plan_sha256": "93939ce840c9d8dc03d19d426b18adc9a4e0585e0f8885910923227b39b1becc",
+  "operation_count": 6,
+  "operations": [
+    {
+      "operation_id": "update-company-business-fields",
+      "operation_type": "update_company_fields",
+      "twenty_company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "baseline_sha256": "681318f564db7c35b0969e42acd1e057401e2a82a9bb5002614b46a1ea9c7235",
+      "baseline_fields": {
+        "email": {
+          "primaryEmail": "",
+          "additionalEmails": []
+        },
+        "phone": {
+          "primaryPhoneNumber": "5126955269",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "+1",
+          "additionalPhones": []
+        },
+        "linkedinLink": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "facebook": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "youtube": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "tiktok": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "xTwitter": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        }
+      },
+      "fields": {
+        "email": {
+          "primaryEmail": "camp@switchwillo.com",
+          "additionalEmails": [
+            "lessons@switchwillo.com",
+            "boarding@switchwillo.com"
+          ]
+        },
+        "phone": {
+          "primaryPhoneNumber": "5126955269",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "+1",
+          "additionalPhones": [
+            {
+              "number": "512-565-5983",
+              "countryCode": "",
+              "callingCode": ""
+            },
+            {
+              "number": "760-908-1301",
+              "countryCode": "",
+              "callingCode": ""
+            }
+          ]
+        },
+        "facebook": {
+          "primaryLinkLabel": "Facebook",
+          "primaryLinkUrl": "https://facebook.com/switchwillo",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkLabel": "Instagram",
+          "primaryLinkUrl": "https://instagram.com/switchwillo",
+          "secondaryLinks": [
+            {
+              "url": "https://instagram.com/campswitchwillo",
+              "label": "Instagram"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "operation_id": "create-person-0",
+      "operation_type": "create_person",
+      "temporary_person_key": "new-0-website-person-9aeeda74bf3e832a",
+      "source_provider_person_id": null,
+      "source_website_person_id": "website-person-9aeeda74bf3e832a",
+      "fields": {
+        "a2IdentityStatus": "VERIFIED",
+        "a2RoleStatus": "CURRENT_AT_COMPANY",
+        "a2RolePriority": "PRIMARY",
+        "a2CompanyMatchStatus": "CONFIRMED",
+        "a2EnrichmentStatus": "CONTACT_ENRICHMENT_PENDING",
+        "a2LastVerifiedAt": "2026-09-22T11:14:44Z",
+        "a2LastEnrichedAt": "2026-09-22T11:14:44Z",
+        "a2EnrichmentRunId": "switch-willo-stables-20260922",
+        "name": {
+          "firstName": "Phoebe",
+          "lastName": "Johnson"
+        },
+        "jobTitle": "FOUNDER, OWNER & TRAINER"
+      }
+    },
+    {
+      "operation_id": "associate-person-0",
+      "operation_type": "associate_person_company",
+      "temporary_person_key": "new-0-website-person-9aeeda74bf3e832a",
+      "twenty_company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "fields": {}
+    },
+    {
+      "operation_id": "create-person-1",
+      "operation_type": "create_person",
+      "temporary_person_key": "new-1-website-person-c22d6d20ca61e218",
+      "source_provider_person_id": null,
+      "source_website_person_id": "website-person-c22d6d20ca61e218",
+      "fields": {
+        "a2IdentityStatus": "VERIFIED",
+        "a2RoleStatus": "CURRENT_AT_COMPANY",
+        "a2RolePriority": "PRIMARY",
+        "a2CompanyMatchStatus": "CONFIRMED",
+        "a2EnrichmentStatus": "CONTACT_ENRICHMENT_PENDING",
+        "a2LastVerifiedAt": "2026-09-22T11:14:44Z",
+        "a2LastEnrichedAt": "2026-09-22T11:14:44Z",
+        "a2EnrichmentRunId": "switch-willo-stables-20260922",
+        "name": {
+          "firstName": "Glenn",
+          "lastName": "Johnson"
+        },
+        "jobTitle": "OWNER & TRAINER"
+      }
+    },
+    {
+      "operation_id": "associate-person-1",
+      "operation_type": "associate_person_company",
+      "temporary_person_key": "new-1-website-person-c22d6d20ca61e218",
+      "twenty_company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "fields": {}
+    },
+    {
+      "operation_id": "final-company-status",
+      "operation_type": "update_company_status",
+      "twenty_company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "fields": {
+        "a2EnrichmentStatus": "PARTIALLY_ENRICHED",
+        "a2EnrichmentVersion": "0.1.0",
+        "a2EnrichmentRunId": "switch-willo-stables-20260922",
+        "a2LastAttemptedAt": "2026-09-22T11:14:44Z",
+        "a2EnrichmentErrorCode": null
+      }
+    }
+  ],
+  "external_writes": 0,
+  "completed_at": "2026-09-22T11:16:14Z"
+}

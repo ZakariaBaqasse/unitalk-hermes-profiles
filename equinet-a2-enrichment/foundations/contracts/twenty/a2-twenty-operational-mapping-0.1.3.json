@@ -1,0 +1,203 @@
+{
+  "contract_id": "equinet-a2-twenty-operational-mapping",
+  "version": "0.1.3",
+  "status": "implementation_candidate_email_status_live_metadata_verified",
+  "workspace_metadata_endpoint": "/rest/metadata/objects",
+  "core_openapi_endpoint": "/open-api/core",
+  "objects": {
+    "company": {
+      "singular": "company",
+      "plural": "companies",
+      "id_field": "id",
+      "people_relation": "people",
+      "read_only_a1_fields": [
+        "discoveryStatus",
+        "discoverySourceNotes",
+        "discoveryFingerprint",
+        "qualificationStatus",
+        "icpScoreStatus",
+        "icpScore",
+        "icpBand",
+        "icpOutcome",
+        "evidenceConfidenceScore",
+        "evidenceConfidenceLevel"
+      ],
+      "identity_fields": [
+        "name",
+        "domainName",
+        "address",
+        "linkedinLink",
+        "segment"
+      ],
+      "a2_fields": {
+        "status": "a2EnrichmentStatus",
+        "version": "a2EnrichmentVersion",
+        "run_id": "a2EnrichmentRunId",
+        "processing_started_at": "a2ProcessingStartedAt",
+        "last_attempted_at": "a2LastAttemptedAt",
+        "last_enriched_at": "a2LastEnrichedAt",
+        "next_retry_at": "a2NextRetryAt",
+        "error_code": "a2EnrichmentErrorCode"
+      },
+      "business_fields": {
+        "website": "domainName",
+        "email": "email",
+        "phone": "phone",
+        "linkedin": "linkedinLink",
+        "facebook": "facebook",
+        "instagram": "instagram",
+        "youtube": "youtube",
+        "tiktok": "tiktok",
+        "x": "xTwitter"
+      },
+      "composite_merge": {
+        "email": "preserve primary, append unique additionalEmails",
+        "phone": "preserve primary, append unique additionalPhones",
+        "links": "preserve primary, append unique secondaryLinks"
+      }
+    },
+    "person": {
+      "singular": "person",
+      "plural": "people",
+      "id_field": "id",
+      "company_id_field": "companyId",
+      "business_fields": {
+        "name": "name",
+        "email": "emails",
+        "phone": "phones",
+        "professional_network_url": "linkedinLink",
+        "job_title": "jobTitle"
+      },
+      "a2_fields": {
+        "identity_status": "a2IdentityStatus",
+        "role_status": "a2RoleStatus",
+        "role_priority": "a2RolePriority",
+        "company_match_status": "a2CompanyMatchStatus",
+        "enrichment_status": "a2EnrichmentStatus",
+        "fullenrich_person_id": "a2FullenrichPersonid",
+        "last_verified_at": "a2LastVerifiedAt",
+        "last_enriched_at": "a2LastEnrichedAt",
+        "run_id": "a2EnrichmentRunId",
+        "email_status": "emailStatus"
+      },
+      "email_status_mapping": {
+        "field": "emailStatus",
+        "type": "TEXT",
+        "source": "FullEnrich Contact Enrichment work-email status",
+        "write_condition": "write only with the corresponding retained FullEnrich work email",
+        "retention": "preserve exact non-empty provider-returned status",
+        "clear_when_no_provider_email": false,
+        "read_back_required": true
+      }
+    }
+  },
+  "company_statuses": [
+    "NOT_ENRICHED",
+    "PROCESSING",
+    "ENRICHED",
+    "PARTIALLY_ENRICHED",
+    "COMPLETED_NO_TARGET",
+    "RETRYABLE_ERROR",
+    "BLOCKED"
+  ],
+  "person_statuses": {
+    "identity": [
+      "VERIFIED",
+      "AMBIGUOUS",
+      "CONFLICT",
+      "NOT_FOUND"
+    ],
+    "role": [
+      "CURRENT_AT_COMPANY",
+      "NOT_CURRENT_AT_COMPANY",
+      "UNVERIFIED"
+    ],
+    "priority": [
+      "PRIMARY",
+      "SECONDARY",
+      "REVIEW_ONLY",
+      "EXCLUDED",
+      "UNKNOWN"
+    ],
+    "company_match": [
+      "CONFIRMED",
+      "PROBABLE",
+      "AMBIGUOUS",
+      "MISMATCH"
+    ],
+    "enrichment": [
+      "PENDING",
+      "ENRICHED",
+      "PARTIAL",
+      "NOT_FOUND",
+      "ERROR"
+    ]
+  },
+  "write_policy": {
+    "a1_fields_mutable": false,
+    "fill_empty_business_fields": true,
+    "overwrite_different_populated_manual_values": false,
+    "personal_email_auto_write": false,
+    "maximum_new_primary_people_per_company_per_search": 2,
+    "read_back_required": true,
+    "fullenrich_work_email_retained_regardless_of_provider_status": true,
+    "fullenrich_email_status_written_with_email": true
+  },
+  "live_confirmations": {
+    "api_key_write_access": true,
+    "person_create": true,
+    "company_person_association": true,
+    "status_filter": true,
+    "webhooks_required": false,
+    "fullenrich_person_id_field_unique": true,
+    "person_email_status_field": true
+  },
+  "company_pull_filters": {
+    "server_side_then_local_validation": true,
+    "default_statuses": [
+      "NOT_ENRICHED"
+    ],
+    "null_status_requires_include_null": true,
+    "reprocessing_requires_allow_any_status": true,
+    "supported": [
+      "company_id",
+      "exact_company_name",
+      "segment",
+      "city",
+      "state",
+      "country",
+      "created_after",
+      "created_before",
+      "updated_after",
+      "updated_before"
+    ],
+    "repeatable": [
+      "company_id",
+      "company_name",
+      "segment",
+      "city",
+      "state",
+      "country",
+      "status"
+    ],
+    "default_order_by": "createdAt[DescNullsLast]",
+    "allowed_order_fields": [
+      "createdAt",
+      "updatedAt",
+      "name"
+    ],
+    "ambiguous_exact_name": "reject_require_company_id"
+  },
+  "role_status_semantics": {
+    "CURRENT_AT_COMPANY": "Reliable current evidence places the Person at the target Company.",
+    "NOT_CURRENT_AT_COMPANY": "Reliable evidence shows the Person is not currently at the target Company. This does not by itself prove prior employment.",
+    "UNVERIFIED": "Current relationship with the target Company could not be verified."
+  },
+  "role_status_migration": {
+    "CURRENT": "CURRENT_AT_COMPANY",
+    "STALE": "NOT_CURRENT_AT_COMPANY",
+    "UNKNOWN": "UNVERIFIED"
+  },
+  "decision_record": "foundations/decisions/A2-WEBSITE-FIRST-FIRECRAWL-FACEBOOK-20260918.json",
+  "supersedes": "0.1.2"
+}

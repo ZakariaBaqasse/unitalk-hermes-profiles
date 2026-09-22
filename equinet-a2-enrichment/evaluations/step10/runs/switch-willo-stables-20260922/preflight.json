@@ -1,0 +1,16 @@
+{
+  "schema_id": "a2-step11-source-preflight",
+  "schema_version": "0.1.0",
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+  "created_at": "2026-09-22T10:22:17Z",
+  "status": "allowed_live",
+  "errors": [],
+  "warnings": [],
+  "source_id": "prospect_official_website",
+  "execution_mode": "live",
+  "preflight_status": "allowed_live",
+  "blocks": [],
+  "external_actions": 0,
+  "artifact_sha256": "c000260201a89889d5e5c8415101e52779bb88bef5d3552df76d6398869bff2a"
+}

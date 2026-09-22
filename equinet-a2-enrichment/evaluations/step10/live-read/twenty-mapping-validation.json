@@ -1,12 +1,27 @@
 {
   "status": "valid",
-  "mapping_version": "0.1.1",
+  "mapping_version": "0.1.3",
   "observed": {
     "company": {
       "object_id": "89cb0885-61c0-4d39-989f-b7f0cf248dc9",
       "a2_fields": {
-        "a2ProcessingStartedAt": {
+        "a2LastAttemptedAt": {
           "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2EnrichmentVersion": {
+          "type": "TEXT",
+          "isUnique": false,
+          "options": []
+        },
+        "a2NextRetryAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2EnrichmentErrorCode": {
+          "type": "TEXT",
           "isUnique": false,
           "options": []
         },
@@ -23,27 +38,12 @@
             "BLOCKED"
           ]
         },
-        "a2EnrichmentErrorCode": {
-          "type": "TEXT",
-          "isUnique": false,
-          "options": []
-        },
-        "a2NextRetryAt": {
-          "type": "DATE_TIME",
-          "isUnique": false,
-          "options": []
-        },
-        "a2LastAttemptedAt": {
-          "type": "DATE_TIME",
-          "isUnique": false,
-          "options": []
-        },
-        "a2EnrichmentVersion": {
-          "type": "TEXT",
-          "isUnique": false,
-          "options": []
-        },
         "a2LastEnrichedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2ProcessingStartedAt": {
           "type": "DATE_TIME",
           "isUnique": false,
           "options": []
@@ -58,56 +58,6 @@
     "person": {
       "object_id": "4220f12d-d3ec-4268-ad2f-64c4453859fa",
       "a2_fields": {
-        "a2LastVerifiedAt": {
-          "type": "DATE_TIME",
-          "isUnique": false,
-          "options": []
-        },
-        "a2EnrichmentRunId": {
-          "type": "TEXT",
-          "isUnique": false,
-          "options": []
-        },
-        "a2RoleStatus": {
-          "type": "SELECT",
-          "isUnique": false,
-          "options": [
-            "CURRENT_AT_COMPANY",
-            "NOT_CURRENT_AT_COMPANY",
-            "UNVERIFIED"
-          ]
-        },
-        "a2EnrichmentStatus": {
-          "type": "SELECT",
-          "isUnique": false,
-          "options": [
-            "PENDING",
-            "ENRICHED",
-            "PARTIAL",
-            "NOT_FOUND",
-            "ERROR"
-          ]
-        },
-        "a2IdentityStatus": {
-          "type": "SELECT",
-          "isUnique": false,
-          "options": [
-            "VERIFIED",
-            "AMBIGUOUS",
-            "CONFLICT",
-            "NOT_FOUND"
-          ]
-        },
-        "a2FullenrichPersonid": {
-          "type": "TEXT",
-          "isUnique": true,
-          "options": []
-        },
-        "a2LastEnrichedAt": {
-          "type": "DATE_TIME",
-          "isUnique": false,
-          "options": []
-        },
         "a2CompanyMatchStatus": {
           "type": "SELECT",
           "isUnique": false,
@@ -128,11 +78,66 @@
             "EXCLUDED",
             "UNKNOWN"
           ]
+        },
+        "a2RoleStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "CURRENT_AT_COMPANY",
+            "NOT_CURRENT_AT_COMPANY",
+            "UNVERIFIED"
+          ]
+        },
+        "a2IdentityStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "VERIFIED",
+            "AMBIGUOUS",
+            "CONFLICT",
+            "NOT_FOUND"
+          ]
+        },
+        "a2EnrichmentStatus": {
+          "type": "SELECT",
+          "isUnique": false,
+          "options": [
+            "PENDING",
+            "ENRICHED",
+            "PARTIAL",
+            "NOT_FOUND",
+            "ERROR"
+          ]
+        },
+        "a2FullenrichPersonid": {
+          "type": "TEXT",
+          "isUnique": true,
+          "options": []
+        },
+        "a2LastEnrichedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "a2LastVerifiedAt": {
+          "type": "DATE_TIME",
+          "isUnique": false,
+          "options": []
+        },
+        "emailStatus": {
+          "type": "TEXT",
+          "isUnique": false,
+          "options": []
+        },
+        "a2EnrichmentRunId": {
+          "type": "TEXT",
+          "isUnique": false,
+          "options": []
         }
       }
     }
   },
-  "metadata_sha256": "d8f81b4f0c51f4ae35ff9474ed4c1057f26e50672146e797dce82a4169d23559",
+  "metadata_sha256": "fa44471eff8e00b737a82e29ec7ad26c4bc8ac90c89ad30ed03a61fa100f7529",
   "external_calls": 1,
   "external_writes": 0,
   "errors": []

@@ -4,7 +4,7 @@ from __future__ import annotations
 import argparse,json
 from pathlib import Path
 from a2_twenty_fullenrich_common import TWENTY_MAPPING,http_json,load_json,sha256_json,twenty_env,write_json_atomic
-EXPECTED_TYPES={'a2EnrichmentStatus':'SELECT','a2EnrichmentVersion':'TEXT','a2EnrichmentRunId':'TEXT','a2ProcessingStartedAt':'DATE_TIME','a2LastAttemptedAt':'DATE_TIME','a2LastEnrichedAt':'DATE_TIME','a2NextRetryAt':'DATE_TIME','a2EnrichmentErrorCode':'TEXT','a2IdentityStatus':'SELECT','a2RoleStatus':'SELECT','a2RolePriority':'SELECT','a2CompanyMatchStatus':'SELECT','a2FullenrichPersonid':'TEXT','a2LastVerifiedAt':'DATE_TIME'}
+EXPECTED_TYPES={'a2EnrichmentStatus':'SELECT','a2EnrichmentVersion':'TEXT','a2EnrichmentRunId':'TEXT','a2ProcessingStartedAt':'DATE_TIME','a2LastAttemptedAt':'DATE_TIME','a2LastEnrichedAt':'DATE_TIME','a2NextRetryAt':'DATE_TIME','a2EnrichmentErrorCode':'TEXT','a2IdentityStatus':'SELECT','a2RoleStatus':'SELECT','a2RolePriority':'SELECT','a2CompanyMatchStatus':'SELECT','a2FullenrichPersonid':'TEXT','emailStatus':'TEXT','a2LastVerifiedAt':'DATE_TIME'}
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--fixture',type=Path);ap.add_argument('--output',type=Path,required=True);a=ap.parse_args();mapping=load_json(TWENTY_MAPPING)
  if a.fixture:payload=load_json(a.fixture);external_calls=0

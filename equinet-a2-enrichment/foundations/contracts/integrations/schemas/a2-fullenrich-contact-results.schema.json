@@ -32,7 +32,29 @@
       "const": false
     },
     "results": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "work_email": {
+            "type": ["object", "null"],
+            "properties": {
+              "value": {"type": "string", "format": "email"},
+              "status": {"type": ["string", "null"], "maxLength": 100},
+              "provider_status": {"type": ["string", "null"], "maxLength": 100},
+              "status_source": {"enum": ["fullenrich", "a2_missing_provider_status_fallback"]},
+              "source": {"const": "fullenrich_contact_enrichment"}
+            },
+            "required": ["value", "status", "provider_status", "status_source", "source"],
+            "additionalProperties": true
+          },
+          "work_email_status": {"type": ["string", "null"], "maxLength": 100},
+          "work_email_status_source": {"type": ["string", "null"]},
+          "work_email_retention": {"enum": ["retain_with_status", "not_returned"]},
+          "work_email_qualifies_as_verified_channel": {"type": "boolean"}
+        },
+        "additionalProperties": true
+      }
     }
   }
 }

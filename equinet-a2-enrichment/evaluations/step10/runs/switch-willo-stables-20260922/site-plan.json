@@ -1,0 +1,52 @@
+{
+  "schema_id": "a2-official-site-plan",
+  "schema_version": "0.1.0",
+  "created_at": "2026-09-22T10:22:17Z",
+  "status": "ready",
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+  "company": {
+    "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+    "name": "Switch Willo Stables",
+    "segment": "HORSE_OWNER",
+    "website": "https://www.switchwillostable.com",
+    "domain": "switchwillostable.com"
+  },
+  "official_url": "https://www.switchwillostable.com/",
+  "official_host": "www.switchwillostable.com",
+  "page_limit": 5,
+  "homepage_pages": 1,
+  "discovered_page_limit": 4,
+  "discovery_categories": [
+    "contact",
+    "about",
+    "team",
+    "staff"
+  ],
+  "allowed_schemes": [
+    "http",
+    "https"
+  ],
+  "same_domain_only": true,
+  "live_dns_validation_required": true,
+  "firecrawl": {
+    "api_version": "v2",
+    "homepage_endpoint": "POST /v2/scrape",
+    "discovered_pages_endpoint": "POST /v2/batch/scrape then GET /v2/batch/scrape/{id}",
+    "formats": [
+      "markdown",
+      "html",
+      "links"
+    ],
+    "onlyMainContent": false,
+    "storeInCache": false,
+    "skipTlsVerification": false,
+    "maxConcurrency": 1,
+    "json_or_llm_formats": false,
+    "credit_policy_calls": false
+  },
+  "external_calls": 0,
+  "external_actions": 0,
+  "errors": [],
+  "artifact_sha256": "3d4c3a2ab8d305e66bfb96decfb38bae91176100a26bdadf12877207b7ef33aa"
+}

@@ -1,0 +1,198 @@
+{
+  "contract_id": "equinet-a2-fullenrich-direct-integration",
+  "version": "0.1.3",
+  "status": "live_search_validated_lookup_and_contact_live_acceptance_pending",
+  "provider": "FullEnrich API v2",
+  "base_url": "https://app.fullenrich.com/api/v2",
+  "authentication": {
+    "type": "bearer",
+    "environment_variable": "FULLENRICH_API_KEY"
+  },
+  "rate_limits": {
+    "api_calls_per_minute": 60,
+    "contact_bulk_max_contacts": 100,
+    "default_concurrent_enrichments": 100
+  },
+  "operations": {
+    "verify_key": {
+      "method": "GET",
+      "path": "/account/keys/verify"
+    },
+    "credit_balance": {
+      "method": "GET",
+      "path": "/account/credits"
+    },
+    "people_lookup": {
+      "method": "POST",
+      "path": "/people/lookup",
+      "synchronous": true,
+      "accepted_identifiers": [
+        "person_professional_network_url",
+        "person_professional_network_id",
+        "person_name_plus_company_domain",
+        "person_name_plus_company_professional_network_url",
+        "person_name_plus_company_professional_network_id"
+      ],
+      "maximum_people": 1
+    },
+    "people_search": {
+      "method": "POST",
+      "path": "/people/search",
+      "synchronous": true,
+      "maximum_retained_people": 2,
+      "company_filters": [
+        "current_company_names",
+        "current_company_domains",
+        "current_company_professional_network_urls",
+        "current_company_professional_network_ids",
+        "current_company_headquarters"
+      ],
+      "role_filters": [
+        "current_position_titles"
+      ],
+      "domain_required": false,
+      "filter_or_semantics_requires_low_cost_live_test": true,
+      "staged_sequence": [
+        "primary",
+        "owner",
+        "linked_secondary",
+        "secondary",
+        "completed_no_target"
+      ],
+      "stage_rules": {
+        "primary": "Search approved primary titles except generic Owner; role-specific owner titles remain primary.",
+        "owner": "Search exact generic Owner only when no primary candidate was retained.",
+        "secondary": "Search approved secondary titles only when no Owner candidate was retained.",
+        "completed_no_target": "Use only after the secondary stage yields no acceptable retained Person.",
+        "linked_secondary": "Resolve validated current linked SECONDARY People from Lookup with zero provider calls; if selected, Contact Enrich the existing Person and skip paid secondary Search."
+      },
+      "automatic_progression_on_technical_failure": false,
+      "default_result_limit": 1,
+      "linked_secondary_provider_calls": 0,
+      "paid_secondary_search_condition": "No linked secondary fallback was selected."
+    },
+    "contact_enrichment_start": {
+      "method": "POST",
+      "path": "/contact/enrich/bulk",
+      "synchronous": false,
+      "maximum_contacts_per_request": 100,
+      "selected_contacts_only": true,
+      "enrich_fields": [
+        "contact.work_emails",
+        "contact.phones"
+      ],
+      "prohibited_enrich_fields": [
+        "contact.personal_emails"
+      ],
+      "silent_fail": true
+    },
+    "contact_enrichment_result": {
+      "method": "GET",
+      "path": "/contact/enrich/bulk/{enrichment_id}",
+      "polling": true,
+      "in_progress_http_status": 400,
+      "in_progress_error_code": "error.enrichment.in_progress",
+      "recommended_retry_seconds": 30,
+      "terminal_statuses": [
+        "CANCELED",
+        "CREDITS_INSUFFICIENT",
+        "FINISHED"
+      ],
+      "endpoint_error_retry_seconds": 30,
+      "default_poll_seconds": 300,
+      "indeterminate_statuses": [
+        "RATE_LIMIT",
+        "UNKNOWN"
+      ],
+      "retained_work_email_fields": [
+        "email",
+        "status"
+      ],
+      "twenty_mapping": {
+        "email": "person.emails",
+        "status": "person.emailStatus"
+      }
+    }
+  },
+  "email_statuses": [
+    "DELIVERABLE",
+    "HIGH_PROBABILITY",
+    "CATCH_ALL",
+    "INVALID",
+    "INVALID_DOMAIN"
+  ],
+  "accepted_work_email_statuses": [
+    "DELIVERABLE",
+    "HIGH_PROBABILITY",
+    "CATCH_ALL",
+    "INVALID",
+    "INVALID_DOMAIN"
+  ],
+  "phone_preference": {
+    "source": "most_probable_phone",
+    "prefer_line_type": "MOBILE",
+    "reject_line_status": "INACTIVE",
+    "reject_ownership_match": "MISMATCH"
+  },
+  "retry_policy": {
+    "transient_technical_failure": 1,
+    "not_found": 0,
+    "invalid_input": 0,
+    "authentication_or_credit_block": 0
+  },
+  "documentation": [
+    "https://docs.fullenrich.com/api/v2/general/introduction",
+    "https://docs.fullenrich.com/api/v2/people/search/post",
+    "https://docs.fullenrich.com/api/v2/people/lookup/post",
+    "https://docs.fullenrich.com/api/v2/contact/enrich/bulk/post",
+    "https://docs.fullenrich.com/api/v2/contact/enrich/bulk/get",
+    "https://docs.fullenrich.com/api/v2/general/ratelimit",
+    "https://docs.fullenrich.com/api/v2/reference/openapi.yaml"
+  ],
+  "account_preflight": {
+    "status": "verified",
+    "path": "evaluations/step10/live-fullenrich/account-preflight.json",
+    "credits_available": 499,
+    "paid_enrichment_calls": 0
+  },
+  "live_acceptance": {
+    "run_id": "A2-LIVE-20260915T111736Z",
+    "summary_path": "evaluations/step10/runs/A2-LIVE-20260915T111736Z/run-summary.json",
+    "people_search": {
+      "status": "passed_no_results",
+      "requests": 4,
+      "credits": 0
+    },
+    "people_lookup": {
+      "status": "not_exercised_no_existing_people"
+    },
+    "contact_enrichment": {
+      "status": "not_exercised_no_selected_people"
+    },
+    "account_balance_after": 499
+  },
+  "decision_records": [
+    "foundations/decisions/A2-STAGED-PEOPLE-SEARCH-20260917.json",
+    "foundations/decisions/A2-LINKED-SECONDARY-FALLBACK-20260917.json"
+  ],
+  "supersedes": "0.1.2",
+  "work_email_retention_policy": {
+    "retain_any_syntactically_valid_provider_returned_work_email": true,
+    "provider_status_required_for_twenty_write": true,
+    "twenty_person_email_field": "emails",
+    "twenty_person_status_field": "emailStatus",
+    "status_value": "preserve_exact_provider_returned_text",
+    "never_discard_only_because_status_is_catch_all_invalid_or_invalid_domain": true,
+    "contactability_qualifying_statuses": [
+      "DELIVERABLE",
+      "HIGH_PROBABILITY"
+    ],
+    "non_qualifying_but_retained_statuses": [
+      "CATCH_ALL",
+      "INVALID",
+      "INVALID_DOMAIN"
+    ],
+    "unknown_status": "retain_email_and_exact_nonempty_status_for_review",
+    "outreach_authority": false
+  }
+}

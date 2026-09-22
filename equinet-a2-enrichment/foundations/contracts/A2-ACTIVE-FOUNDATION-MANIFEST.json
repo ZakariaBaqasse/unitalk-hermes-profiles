@@ -1,16 +1,16 @@
 {
   "manifest_id": "equinet-a2-active-foundation",
-  "version": "1.5.3",
+  "version": "1.5.5",
   "status": "integration_validation_in_progress",
-  "active_since": "2026-09-18T17:41:31Z",
-  "release_id": "equinet-a2-prose-person-extraction-1.5.3",
+  "active_since": "2026-09-21T16:42:57Z",
+  "release_id": "equinet-a2-missing-email-status-fallback-1.5.5",
   "canonical_schema_version": "1.0.0",
   "active_business_configuration_version": "0.3.2",
-  "current_clarification": "Bounded semantic person evidence blocks, prose/shared-name extraction and exact-span LLM proposal validation implemented; all relevant blocks must be reviewed before no-target",
+  "current_clarification": "A syntactically valid FullEnrich work email is retained even when provider status is absent; Twenty Person emailStatus receives literal lowercase unknown",
   "runtime_policy": {
     "path": "foundations/contracts/runtime/a2-integration-validation-runtime-policy-0.1.0.json",
     "version": "0.1.0",
-    "sha256": "0bb457cdd416d40e345a23b9a1da40bb70636862aa3fb51629eaee7b8a2cd74d",
+    "sha256": "9b65bcdfdfb586c17553077eff11d87fe2f3697e957783aaff481c915aac6a6f",
     "status": "integration_validation_in_progress"
   },
   "skills": [
@@ -96,7 +96,7 @@
       "version": "0.1.0",
       "status": "integration_validation_in_progress",
       "path": "skills/equinet-a2/a2-twenty-fullenrich-workflow/SKILL.md",
-      "sha256": "e1b35445ac5ebd39795945d002c0a3154150806a3e885e2d36871086b55d45aa"
+      "sha256": "b4a5cf80b37b8960a74471db0d243dbaf10003361c6061aa81943655903f0353"
     },
     {
       "skill_id": "a2-twenty-connector",
@@ -110,7 +110,7 @@
       "version": "0.1.0",
       "status": "integration_validation_in_progress",
       "path": "skills/equinet-a2/a2-fullenrich-connector/SKILL.md",
-      "sha256": "4ba8bcd3528f8831fa000219e255a3f5044a8323466b4e85bd3f0194962e039f"
+      "sha256": "70592ccc40cc6338fab3ff0fc6d00638ae2893abb2c00a12122f0eda2aa7e69c"
     },
     {
       "skill_id": "a2-contact-resolution-and-selection",
@@ -124,7 +124,7 @@
       "version": "0.1.0",
       "status": "integration_validation_in_progress",
       "path": "skills/equinet-a2/a2-twenty-write-governance/SKILL.md",
-      "sha256": "6cbc51b0abac24f25bc80b8b6cbe663a25429ab9ada749785d70c451bfa0e610"
+      "sha256": "6fc3333c1e4832c85030f237873bda8ff414ab481974ef939f55e11a57425f6b"
     },
     {
       "skill_id": "a2-official-site-and-facebook-enrichment",
@@ -137,8 +137,8 @@
   "active_files": [
     {
       "path": "SOUL.md",
-      "bytes": 28765,
-      "sha256": "88a16cd9773aca34feeeb874121471f5ad4a91a7357bd709f6631b6c67c6d46a"
+      "bytes": 29624,
+      "sha256": "8c7e996ae5afa1eecf0e8440a55a22f8d38581d71a5c80d735dcf3f60ce59893"
     },
     {
       "path": "foundations/A2-IMPLEMENTATION-CONTRACT.md",
@@ -206,14 +206,14 @@
       "sha256": "0f89481b1abd62a02f22a1c97f19bab08404d5877ced5d20680d53fc8b2a3797"
     },
     {
-      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.3.2.json",
-      "bytes": 13712,
-      "sha256": "de411ce8bd6c8b5f029756f7925d89d34dfc98ec25e1135a4ff1ae417982cf7c"
+      "path": "foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.3.4.json",
+      "bytes": 14492,
+      "sha256": "e3ff5461a3cce252b405bed7769ecf337dca753a483b248486433762c762119f"
     },
     {
-      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.3.2.json",
-      "bytes": 11789,
-      "sha256": "9295bb64241dcfa3b6d87d49cf9720e5d8278531cd5ddad2a7ce00d505d996ac"
+      "path": "foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.3.4.json",
+      "bytes": 12227,
+      "sha256": "089085e4063b4c16c27ae1c8bdf8a75055cd77eb9ced3fe49d8b3b5a5c1b3cec"
     },
     {
       "path": "foundations/contracts/mappings/a2-hubspot-preliminary-mapping-0.3.1.json",
@@ -507,8 +507,8 @@
     },
     {
       "path": "scripts/normalise_fullenrich_response.py",
-      "bytes": 10588,
-      "sha256": "cb9a0c99b3d26d960483760e003953b32e5545178fbbe049a7a8dd2ceeadeba2"
+      "bytes": 10435,
+      "sha256": "6f40a114d18daac695e923fa7553b6df00c27ae90f52511e803ed1b0ef863dae"
     },
     {
       "path": "foundations/decisions/A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906.json",
@@ -538,7 +538,7 @@
     {
       "path": "foundations/contracts/runtime/a2-integration-validation-runtime-policy-0.1.0.json",
       "bytes": 3501,
-      "sha256": "0bb457cdd416d40e345a23b9a1da40bb70636862aa3fb51629eaee7b8a2cd74d"
+      "sha256": "9b65bcdfdfb586c17553077eff11d87fe2f3697e957783aaff481c915aac6a6f"
     },
     {
       "path": "foundations/contracts/runtime/a2-profile-runtime-requirements-1.1.0.yaml",
@@ -547,8 +547,8 @@
     },
     {
       "path": "foundations/contracts/runtime/a2-step10-implementation-manifest-0.1.0.json",
-      "bytes": 20751,
-      "sha256": "ea8d675639587efe871b9ad9f5befc74905519aebcefc25a2bc766c3e3924769"
+      "bytes": 18847,
+      "sha256": "b9839e22f69b03bacc07c4fe5bba57cc632b864718fa9ec34294b2661dd9857f"
     },
     {
       "path": "foundations/decisions/A2-INTEGRATION-VALIDATION-STATUS-20260915.json",
@@ -561,14 +561,14 @@
       "sha256": "259610fafcdade1b4abdafbabb14f28ac96772a89a7f7193d84cbabfdf829292"
     },
     {
-      "path": "foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.2.json",
-      "bytes": 5292,
-      "sha256": "60125a002e78e6945cb6939d3bd1de5cedd830e59c98036bcb13fe1e8455cc9b"
+      "path": "foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.3.json",
+      "bytes": 5924,
+      "sha256": "4f6dba5cf16691b1d48e0b6a36b5710a28bc49b450aeedbb0fc914c3c7d2ddad"
     },
     {
-      "path": "foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.4.json",
-      "bytes": 4523,
-      "sha256": "c92a883e459dcfe0670a9977073a41b7aff34d86bd687c853ecb5d41e8140a28"
+      "path": "foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.6.json",
+      "bytes": 5247,
+      "sha256": "f7f8a6e655a06cb38b9823ba17987830a1961190b1937f9c7052f6ad44d5ae89"
     },
     {
       "path": "foundations/contracts/integrations/schemas/a2-lookup-decisions-0.1.2.schema.json",
@@ -627,8 +627,8 @@
     },
     {
       "path": "foundations/contracts/runtime/a2-step11-implementation-manifest-0.1.0.json",
-      "bytes": 30448,
-      "sha256": "8c8bd7051a03e137a803939bc15f08908d7aa4d2b979cb5b253311f1fc9b58aa"
+      "bytes": 31666,
+      "sha256": "23bf084e893b131b4d7bb5ae043ad45b235c619e3b5e87dc04beac6a730528e3"
     },
     {
       "path": "foundations/contracts/integrations/schemas/a2-apify-facebook-requests-0.1.0.schema.json",
@@ -667,11 +667,36 @@
     },
     {
       "path": "foundations/contracts/integrations/schemas/a2-write-proposal-0.1.3.schema.json",
-      "bytes": 2565,
-      "sha256": "113a79947fe48f61f53c613d7ece3520040899692d0207ead0d500e4be45302e"
+      "bytes": 3823,
+      "sha256": "3640a706a08be3a387a2f1ae16838b281e2f098145117a6336fdde13aee24900"
+    },
+    {
+      "path": "foundations/contracts/integrations/a2-fullenrich-direct-integration-0.1.4.json",
+      "bytes": 6570,
+      "sha256": "6b74a1b26c7f9de8a245d9a7df9bc35d7609443f44d803ab1fb7448d455c0f3e"
+    },
+    {
+      "path": "foundations/decisions/A2-FULLENRICH-WORK-EMAIL-STATUS-20260921.json",
+      "bytes": 1078,
+      "sha256": "5fc27353b46da12de37a012c358b7dba0c9275e26f37e0896ccb45602bab8b42"
+    },
+    {
+      "path": "evaluations/step11/live-read/twenty-email-status-mapping.json",
+      "bytes": 556,
+      "sha256": "6673951ccecfeab39f685e5debfc45685391d4509df0e601c4b9dcd9ed69a5fc"
+    },
+    {
+      "path": "foundations/decisions/A2-FULLENRICH-MISSING-EMAIL-STATUS-20260921.json",
+      "bytes": 741,
+      "sha256": "356451eed490064e78d55e1c9e086e049360cb0d2ec8947ecd621946a4e6b23a"
+    },
+    {
+      "path": "evaluations/step11/missing-email-status-acceptance.json",
+      "bytes": 630,
+      "sha256": "9b428944a43b7ca17dffeff6ed468784f7a82ad67f044267aa05e7cbe7d56054"
     }
   ],
-  "active_file_count": 107,
+  "active_file_count": 112,
   "historical_runtime_policies": [
     "evaluations/step9/release-candidate/a2-no-integration-runtime-policy-1.0.0-rc.1.yaml",
     "foundations/contracts/runtime/a2-runtime-policy-0.1.0.yaml",
@@ -697,7 +722,7 @@
     "twenty_company_composite_live_write": false
   },
   "external_actions": 0,
-  "supersedes": "1.5.2",
+  "supersedes": "1.5.4",
   "business_confirmation": {
     "decision_id": "A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906",
     "decision_path": "foundations/decisions/A2-FULLENRICH-INCIDENTAL-PERSONAL-EMAIL-20260906.json",
@@ -720,7 +745,7 @@
     "hash_algorithm": "sha256_raw_file_bytes",
     "integration_permissions_changed": false
   },
-  "active_integration_configuration_version": "0.2.0",
+  "active_integration_configuration_version": "1.5.5",
   "superseded_runtime_policy": {
     "path": "foundations/contracts/runtime/a2-no-integration-runtime-policy-1.2.1.yaml",
     "version": "1.2.1",
@@ -732,11 +757,12 @@
     "step10_manifest": {
       "path": "foundations/contracts/runtime/a2-step10-implementation-manifest-0.1.0.json",
       "version": "0.1.0",
-      "sha256": "ea8d675639587efe871b9ad9f5befc74905519aebcefc25a2bc766c3e3924769"
+      "sha256": "b9839e22f69b03bacc07c4fe5bba57cc632b864718fa9ec34294b2661dd9857f"
     },
     "verified_live": {
       "twenty_company_read_filter_claim_status_write_reconcile": true,
-      "fullenrich_account_credit_and_search": true
+      "fullenrich_account_credit_and_search": true,
+      "twenty_person_email_status_field": "TEXT metadata verified read-only"
     },
     "pending_live": [
       "Firecrawl positive-result official-site candidate acceptance",
@@ -759,7 +785,7 @@
     "step11_manifest": {
       "path": "foundations/contracts/runtime/a2-step11-implementation-manifest-0.1.0.json",
       "version": "0.1.0",
-      "sha256": "8c8bd7051a03e137a803939bc15f08908d7aa4d2b979cb5b253311f1fc9b58aa",
+      "sha256": "23bf084e893b131b4d7bb5ae043ad45b235c619e3b5e87dc04beac6a730528e3",
       "status": "implemented_local_live_acceptance_pending"
     },
     "locally_validated": {
@@ -771,7 +797,12 @@
       "website_person_prose_extraction": true,
       "exact_span_llm_proposal_validation": true,
       "quillin_real_page_regression": true,
-      "focused_step11_tests_passed": 67
+      "focused_step11_tests_passed": 71,
+      "fullenrich_work_email_all_status_retention": true,
+      "twenty_person_email_status_mapping": true,
+      "catch_all_email_write_plan": true,
+      "catch_all_email_status_readback_reconciliation": true,
+      "missing_fullenrich_email_status_falls_back_to_unknown": true
     },
     "credential_resolution": {
       "FIRECRAWL_API_KEY": true,
@@ -801,6 +832,16 @@
         "Vince Grupposo"
       ],
       "quillin_product_false_positives": 0
+    },
+    "work_email_status": {
+      "twenty_field": "emailStatus",
+      "mapping_version": "0.1.3",
+      "fullenrich_contract_version": "0.1.4",
+      "retain_any_syntactically_valid_returned_work_email": true,
+      "write_email_and_status_together": true,
+      "catch_all_qualifies_as_verified_named_email": false,
+      "live_person_email_status_write_readback": "pending",
+      "missing_provider_status": "unknown"
     }
   },
   "role_status_semantics": {
@@ -817,8 +858,8 @@
     "populated_legacy_records_migrated": 0
   },
   "search_flow": {
-    "contract": "foundations/contracts/integrations/a2-fullenrich-direct-integration-0.1.2.json",
-    "state_model": "foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.4.json",
+    "contract": "foundations/contracts/integrations/a2-fullenrich-direct-integration-0.1.4.json",
+    "state_model": "foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.6.json",
     "decision": "foundations/decisions/A2-LINKED-SECONDARY-FALLBACK-20260917.json",
     "sequence": [
       "primary",
@@ -857,6 +898,13 @@
     "firecrawl_credit_policy": null,
     "apify_calls_per_company": 1,
     "apify_retries": 0,
-    "live_enabled": false
+    "live_enabled": false,
+    "fullenrich_work_email_status": {
+      "retention": "all syntactically valid provider-returned work emails",
+      "twenty_field": "person.emailStatus",
+      "atomic_write_with_email": true,
+      "catch_all_review_only": true,
+      "missing_provider_status": "unknown"
+    }
   }
 }

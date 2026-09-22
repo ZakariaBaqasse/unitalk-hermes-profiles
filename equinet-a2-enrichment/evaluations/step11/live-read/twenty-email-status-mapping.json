@@ -1,0 +1,19 @@
+{
+  "record_type": "a2_twenty_person_email_status_mapping_validation",
+  "validated_at": "2026-09-21T16:01:52Z",
+  "source": "Twenty GET /rest/metadata/objects",
+  "external_calls": 1,
+  "external_writes": 0,
+  "person_object_id": "4220f12d-d3ec-4268-ad2f-64c4453859fa",
+  "field": {
+    "id": "ea8ba52d-a58b-4fa9-af43-7ca62e04ce31",
+    "name": "emailStatus",
+    "label": "Email Status",
+    "type": "TEXT",
+    "isNullable": true,
+    "isUnique": false,
+    "defaultValue": null
+  },
+  "status": "verified_read_only",
+  "credentials_persisted": false
+}

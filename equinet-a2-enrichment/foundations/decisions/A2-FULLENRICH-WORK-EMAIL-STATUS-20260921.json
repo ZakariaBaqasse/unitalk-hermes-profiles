@@ -1,0 +1,22 @@
+{
+  "decision_id": "A2-FULLENRICH-WORK-EMAIL-STATUS-20260921",
+  "recorded_at": "2026-09-21T16:01:52Z",
+  "profile": "equinet-a2-enrichment",
+  "status": "CONFIRMED_BY_EQUINET_USER",
+  "decision": "Retain every syntactically valid work email returned by FullEnrich and write the exact provider status to Twenty Person emailStatus.",
+  "rules": [
+    "Do not discard a FullEnrich work email solely because the status is CATCH_ALL, INVALID, INVALID_DOMAIN or another provider value.",
+    "Write emails and emailStatus together and reconcile both.",
+    "Do not clear emailStatus when no provider work email is returned.",
+    "CATCH_ALL and invalid statuses remain reviewable and do not by themselves satisfy verified named-email contactability or authorise outreach.",
+    "Personal-email handling is unchanged."
+  ],
+  "twenty_field": {
+    "object": "person",
+    "name": "emailStatus",
+    "type": "TEXT",
+    "live_metadata_verified": true,
+    "metadata_receipt": "evaluations/step11/live-read/twenty-email-status-mapping.json"
+  },
+  "external_writes_authorized": false
+}

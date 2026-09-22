@@ -118,9 +118,13 @@
       "merged_work_emails": [
         {
           "value": "person1@example.com",
-          "status": "DELIVERABLE"
+          "status": "CATCH_ALL",
+          "provider_status": "CATCH_ALL",
+          "status_source": "fullenrich",
+          "source": "fullenrich_contact_enrichment"
         }
       ],
+      "fullenrich_email_status": "CATCH_ALL",
       "merged_phones": [
         {
           "value": "+15550101",
@@ -154,9 +158,13 @@
       "merged_work_emails": [
         {
           "value": "person2@example.com",
-          "status": "DELIVERABLE"
+          "status": "CATCH_ALL",
+          "provider_status": "CATCH_ALL",
+          "status_source": "fullenrich",
+          "source": "fullenrich_contact_enrichment"
         }
       ],
+      "fullenrich_email_status": "CATCH_ALL",
       "merged_phones": [
         {
           "value": "+15550102",

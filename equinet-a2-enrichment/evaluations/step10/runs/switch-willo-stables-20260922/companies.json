@@ -1,0 +1,146 @@
+{
+  "schema_id": "a2-twenty-company-batch",
+  "schema_version": "0.1.0",
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": null,
+  "created_at": "2026-09-22T10:20:55Z",
+  "status": "valid",
+  "errors": [],
+  "warnings": [],
+  "input_snapshot_sha256": "5f0d5e9748a4ea55ce757c57a47ed2ad3def887cf068bdde7f392d7b4ff39b13",
+  "requested_batch_size": 1,
+  "company_count": 1,
+  "companies": [
+    {
+      "twenty_company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "name": "Switch Willo Stables",
+      "segment": "HORSE_OWNER",
+      "website_url": "https://www.switchwillostable.com",
+      "domain": "switchwillostable.com",
+      "professional_network_url": null,
+      "company_emails": [],
+      "company_phones": [
+        {
+          "number": "5126955269",
+          "countryCode": "US",
+          "callingCode": "+1"
+        }
+      ],
+      "social_links": {
+        "linkedin": [],
+        "facebook": [],
+        "instagram": [],
+        "youtube": [],
+        "tiktok": [],
+        "x": []
+      },
+      "company_contact_composites": {
+        "email": {
+          "primaryEmail": "",
+          "additionalEmails": []
+        },
+        "phone": {
+          "primaryPhoneNumber": "5126955269",
+          "primaryPhoneCountryCode": "US",
+          "primaryPhoneCallingCode": "+1",
+          "additionalPhones": []
+        },
+        "linkedinLink": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "facebook": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "instagram": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "youtube": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "tiktok": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        },
+        "xTwitter": {
+          "primaryLinkLabel": "",
+          "primaryLinkUrl": "",
+          "secondaryLinks": []
+        }
+      },
+      "location": {
+        "street": "4829 Switch Willo, Austin, TX 78727",
+        "city": "Austin",
+        "region": "Texas",
+        "country": "US",
+        "postal_code": "78727"
+      },
+      "a2_enrichment_status": "PROCESSING",
+      "a2_enrichment_version": "0.1.0",
+      "a2_enrichment_run_id": "switch-willo-stables-20260922",
+      "a2_processing_started_at": "2026-09-22T10:20:55.000Z",
+      "linked_people": [],
+      "snapshot_updated_at": "2026-09-22T10:20:55.710Z"
+    }
+  ],
+  "claims": [
+    {
+      "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+      "claimed": true,
+      "write_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-22T10:20:55Z"
+      },
+      "read_receipt": {
+        "http_status": 200,
+        "attempt": 1,
+        "received_at": "2026-09-22T10:20:55Z"
+      }
+    }
+  ],
+  "applied_filters": {
+    "statuses": [
+      "NOT_ENRICHED"
+    ],
+    "include_null": true,
+    "allow_any_status": false,
+    "company_ids": [],
+    "company_names": [
+      "Switch Willo Stables"
+    ],
+    "segments": [],
+    "cities": [],
+    "states": [],
+    "countries": [],
+    "created_after": null,
+    "created_before": null,
+    "updated_after": null,
+    "updated_before": null,
+    "order_by": "createdAt[DescNullsLast]"
+  },
+  "twenty_query": {
+    "path": "/rest/companies",
+    "params": {
+      "limit": "200",
+      "depth": "1",
+      "order_by": "createdAt[DescNullsLast]",
+      "filter": "or(a2EnrichmentStatus[eq]:NOT_ENRICHED,a2EnrichmentStatus[is]:NULL),name[eq]:\"Switch Willo Stables\""
+    },
+    "receipt": {
+      "http_status": 200,
+      "attempt": 1,
+      "received_at": "2026-09-22T10:20:55Z"
+    }
+  },
+  "external_writes": 1,
+  "artifact_sha256": "152acf85654ba5db2087e6912e0b0d833dace15e9eb6aae7e6695e2858d5cfd0"
+}

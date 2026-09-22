@@ -253,8 +253,8 @@ The LLM decides attribution, name boundaries, role classification and retention.
 5. `foundations/contracts/evidence/a2-evidence-verification-confidence-freshness-policy-0.3.2.json` — official-site and official-Facebook-page evidence semantics.
 6. `foundations/contracts/governance/a2-provider-and-cost-policy-0.5.0.json` — preserve FullEnrich credits and add only Apify USD/event controls. Firecrawl has no credit policy or cap enforcement.
 7. `foundations/contracts/governance/a2-protected-fields-and-conflict-policy-0.3.2.json` — multi-value append and baseline-preservation rules.
-8. `foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.2.json` — Company email, phone and social fields.
-9. `foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.4.json` — website and Facebook stages before FullEnrich.
+8. `foundations/contracts/twenty/a2-twenty-operational-mapping-0.1.3.json` — Company contacts/socials and Person `emailStatus`.
+9. `foundations/contracts/runtime/a2-twenty-fullenrich-state-model-0.1.5.json` — website/Facebook stages and FullEnrich email-status retention.
 10. JSON Schemas for website fetch plans/results, extraction observations, LLM decisions, Facebook requests/results, company merge plans and updated write proposals.
 11. A successor Active Foundation Manifest only after synthetic and live acceptance pass.
 

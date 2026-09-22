@@ -3,7 +3,7 @@
   "schema_version": "0.1.0",
   "run_id": "STEP10-SYN-001",
   "company_id": "11111111-1111-4111-8111-111111111111",
-  "created_at": "2026-09-18T17:41:03Z",
+  "created_at": "2026-09-21T16:42:39Z",
   "status": "valid",
   "errors": [],
   "warnings": [],
@@ -21,8 +21,8 @@
         "a2CompanyMatchStatus": "CONFIRMED",
         "a2EnrichmentStatus": "ENRICHED",
         "a2FullenrichPersonid": "fe-owner",
-        "a2LastVerifiedAt": "2026-09-18T17:41:03Z",
-        "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+        "a2LastVerifiedAt": "2026-09-21T16:42:39Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
         "a2EnrichmentRunId": "STEP10-SYN-001",
         "name": {
           "firstName": "Jordan",
@@ -33,6 +33,7 @@
           "primaryEmail": "jordan@example.test",
           "additionalEmails": []
         },
+        "emailStatus": "DELIVERABLE",
         "phones": {
           "primaryPhoneNumber": "+1 555 0101",
           "primaryPhoneCountryCode": "US",
@@ -66,8 +67,8 @@
         "a2CompanyMatchStatus": "CONFIRMED",
         "a2EnrichmentStatus": "PARTIAL",
         "a2FullenrichPersonid": "fe-manager",
-        "a2LastVerifiedAt": "2026-09-18T17:41:03Z",
-        "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+        "a2LastVerifiedAt": "2026-09-21T16:42:39Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
         "a2EnrichmentRunId": "STEP10-SYN-001",
         "name": {
           "firstName": "Morgan",
@@ -78,6 +79,7 @@
           "primaryEmail": "morgan@example.test",
           "additionalEmails": []
         },
+        "emailStatus": "HIGH_PROBABILITY",
         "linkedinLink": {
           "primaryLinkUrl": "https://www.linkedin.com/in/fe-manager",
           "primaryLinkLabel": "LinkedIn",
@@ -100,9 +102,9 @@
         "a2EnrichmentStatus": "ENRICHED",
         "a2EnrichmentVersion": "0.1.0",
         "a2EnrichmentRunId": "STEP10-SYN-001",
-        "a2LastAttemptedAt": "2026-09-18T17:41:03Z",
+        "a2LastAttemptedAt": "2026-09-21T16:42:39Z",
         "a2EnrichmentErrorCode": null,
-        "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+        "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
         "a2NextRetryAt": null
       }
     }
@@ -112,9 +114,9 @@
       "a2EnrichmentStatus": "ENRICHED",
       "a2EnrichmentVersion": "0.1.0",
       "a2EnrichmentRunId": "STEP10-SYN-001",
-      "a2LastAttemptedAt": "2026-09-18T17:41:03Z",
+      "a2LastAttemptedAt": "2026-09-21T16:42:39Z",
       "a2EnrichmentErrorCode": null,
-      "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+      "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
       "a2NextRetryAt": null
     },
     "people": [
@@ -127,8 +129,8 @@
           "a2CompanyMatchStatus": "CONFIRMED",
           "a2EnrichmentStatus": "ENRICHED",
           "a2FullenrichPersonid": "fe-owner",
-          "a2LastVerifiedAt": "2026-09-18T17:41:03Z",
-          "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+          "a2LastVerifiedAt": "2026-09-21T16:42:39Z",
+          "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
           "a2EnrichmentRunId": "STEP10-SYN-001",
           "name": {
             "firstName": "Jordan",
@@ -139,6 +141,7 @@
             "primaryEmail": "jordan@example.test",
             "additionalEmails": []
           },
+          "emailStatus": "DELIVERABLE",
           "phones": {
             "primaryPhoneNumber": "+1 555 0101",
             "primaryPhoneCountryCode": "US",
@@ -161,8 +164,8 @@
           "a2CompanyMatchStatus": "CONFIRMED",
           "a2EnrichmentStatus": "PARTIAL",
           "a2FullenrichPersonid": "fe-manager",
-          "a2LastVerifiedAt": "2026-09-18T17:41:03Z",
-          "a2LastEnrichedAt": "2026-09-18T17:41:03Z",
+          "a2LastVerifiedAt": "2026-09-21T16:42:39Z",
+          "a2LastEnrichedAt": "2026-09-21T16:42:39Z",
           "a2EnrichmentRunId": "STEP10-SYN-001",
           "name": {
             "firstName": "Morgan",
@@ -173,6 +176,7 @@
             "primaryEmail": "morgan@example.test",
             "additionalEmails": []
           },
+          "emailStatus": "HIGH_PROBABILITY",
           "linkedinLink": {
             "primaryLinkUrl": "https://www.linkedin.com/in/fe-manager",
             "primaryLinkLabel": "LinkedIn",
@@ -182,5 +186,5 @@
       }
     ]
   },
-  "artifact_sha256": "3c2d0cac00fec2c6098ed388aeb47e8cb76b0c0d5bf04cf37957e4d07fadac6f"
+  "artifact_sha256": "1da6c9188c1017694fe0d74e2c03c1555f007eb9eb0e40683c3e3225219ac2ca"
 }

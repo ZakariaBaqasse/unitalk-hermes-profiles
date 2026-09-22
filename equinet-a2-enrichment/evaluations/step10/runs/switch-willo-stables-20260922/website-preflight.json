@@ -1,0 +1,11 @@
+{
+  "source_id": "prospect_official_website",
+  "execution_mode": "live",
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+  "official_url": "https://www.switchwillostable.com",
+  "maximum_pages": 5,
+  "agent_web_extract": false,
+  "integration_validation_approved": true,
+  "approval_basis": "User-approved full-workflow Step 11 live official-site validation run confirmed in chat on 2026-09-22 for Switch Willo Stables (Twenty Company 19be5759-8496-4af1-8501-ebbe2c06d9fe)."
+}

@@ -1,0 +1,52 @@
+{
+  "run_id": "switch-willo-stables-20260922",
+  "company_id": "19be5759-8496-4af1-8501-ebbe2c06d9fe",
+  "reviewed_block_ids": [
+    "website-person-block-dcfdb8ebc220056d",
+    "website-person-block-c0c48de6cee5d7e3",
+    "website-person-block-df5b3054aa958dfc",
+    "website-person-block-43b93df4740dd027",
+    "website-person-block-a34752b5796d8b18",
+    "website-person-block-950de942e859357f",
+    "website-person-block-be68fab350621849",
+    "website-person-block-4bba51e62cb633ee",
+    "website-person-block-e2e32424227ae1d1",
+    "website-person-block-aced5b098e382579",
+    "website-person-block-4ff834fd85d7d303",
+    "website-person-block-ac002d16ac4d84a8",
+    "website-person-block-6aaeed55a25f6dfb",
+    "website-person-block-15dd345448742e93",
+    "website-person-block-386805b39bcc706c",
+    "website-person-block-1e986d2993189b80",
+    "website-person-block-580c8f654f628a7a",
+    "website-person-block-536e0d74363d859a",
+    "website-person-block-637decf030e66e0d",
+    "website-person-block-2671f6937e3d3c7c",
+    "website-person-block-dc32f8ff35c32be6",
+    "website-person-block-26687a555c4bcaf4",
+    "website-person-block-8dd8433f8ebc4aed",
+    "website-person-block-9f3b392e3ddedafe"
+  ],
+  "proposals": [
+    {
+      "proposal_id": "prop-phoebe-johnson-owner",
+      "block_id": "website-person-block-43b93df4740dd027",
+      "person_name": "Phoebe Johnson",
+      "source_mention": "Phoebe Johnson",
+      "derivation": "exact",
+      "relationship_to_company": "current",
+      "company_relationship_evidence": "inspires Phoebe Johnson to provide exceptional training for Switch Willo riders and horses",
+      "role_text": null
+    },
+    {
+      "proposal_id": "prop-glenn-johnson-owner",
+      "block_id": "website-person-block-c0c48de6cee5d7e3",
+      "person_name": "Glenn Johnson",
+      "source_mention": "Glenn Johnson",
+      "derivation": "exact",
+      "relationship_to_company": "current",
+      "company_relationship_evidence": "Glenn Johnson began riding at Switch Willo in 1965",
+      "role_text": null
+    }
+  ]
+}

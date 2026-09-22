@@ -3,7 +3,7 @@
   "schema_version": "0.1.0",
   "run_id": "step11-fixture-run",
   "company_id": null,
-  "created_at": "2026-09-18T17:40:57Z",
+  "created_at": "2026-09-21T16:42:32Z",
   "status": "valid",
   "errors": [],
   "warnings": [],
@@ -39,8 +39,15 @@
       },
       "work_email": {
         "value": "person1@example.com",
-        "status": "DELIVERABLE"
+        "status": "CATCH_ALL",
+        "provider_status": "CATCH_ALL",
+        "status_source": "fullenrich",
+        "source": "fullenrich_contact_enrichment"
       },
+      "work_email_status": "CATCH_ALL",
+      "work_email_status_source": "fullenrich",
+      "work_email_retention": "retain_with_status",
+      "work_email_qualifies_as_verified_channel": false,
       "mobile_phone": {
         "value": "+15550101",
         "region": "US",
@@ -101,8 +108,15 @@
       },
       "work_email": {
         "value": "person2@example.com",
-        "status": "DELIVERABLE"
+        "status": "CATCH_ALL",
+        "provider_status": "CATCH_ALL",
+        "status_source": "fullenrich",
+        "source": "fullenrich_contact_enrichment"
       },
+      "work_email_status": "CATCH_ALL",
+      "work_email_status_source": "fullenrich",
+      "work_email_retention": "retain_with_status",
+      "work_email_qualifies_as_verified_channel": false,
       "mobile_phone": {
         "value": "+15550102",
         "region": "US",
@@ -152,7 +166,7 @@
     "reservation": null,
     "settlement": null
   },
-  "provider_payload_sha256": "2d7e998942da0ff3c87ac2d75b757cb0bded34d962f2f59b326068f2c140af0c",
+  "provider_payload_sha256": "8b2d377aed63c1b7218c047f29b1b58b70d49e40cfcd22c4e0ce615161766422",
   "external_calls": 0,
-  "artifact_sha256": "0d2c2983d952b86c667a21a8af757554bfb4a804991213f2ae4c3cb24a577e26"
+  "artifact_sha256": "b6a27ceb589f9a108edde175bf3bd2241d2c64f55b8376124cace75f84abfcc4"
 }

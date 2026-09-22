@@ -19,7 +19,7 @@
       "contact_info": {
         "most_probable_work_email": {
           "email": "person1@example.com",
-          "status": "DELIVERABLE"
+          "status": "CATCH_ALL"
         },
         "most_probable_phone": {
           "number": "+15550101",
@@ -59,7 +59,7 @@
       "contact_info": {
         "most_probable_work_email": {
           "email": "person2@example.com",
-          "status": "DELIVERABLE"
+          "status": "CATCH_ALL"
         },
         "most_probable_phone": {
           "number": "+15550102",

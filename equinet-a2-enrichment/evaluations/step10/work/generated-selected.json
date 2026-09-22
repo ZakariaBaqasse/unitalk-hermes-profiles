@@ -3,7 +3,7 @@
   "schema_version": "0.1.0",
   "run_id": "STEP10-SYN-001",
   "company_id": null,
-  "created_at": "2026-09-18T17:41:04Z",
+  "created_at": "2026-09-21T16:42:40Z",
   "status": "valid",
   "errors": [],
   "warnings": [],
@@ -39,5 +39,5 @@
       "selection_stage": "primary"
     }
   ],
-  "artifact_sha256": "7c37facc90027082cd0a216d0b7901408f90ba4cfbe62ceb95446d11dd90a9d0"
+  "artifact_sha256": "8c147ee96027bab34dca82e293ee5dbd8655b602b2c4bfba665ff6d2aac4777e"
 }
